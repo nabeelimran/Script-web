@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply font-outfit text-white;
+  }
+
+  body,
+  html {
+    @apply bg-black text-white;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto w-[90%] max-w-[1440px];
+  }
+
+  .container-two {
+    @apply mx-auto w-[90%] lg:w-[86%] max-w-[1400px];
+  }
+
+  .nav-link {
+    @apply transition-all duration-200 hover:text-primary hover:underline;
+  }
+}
+
+.black-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100 !important;
+  transition: all 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.black-screen.show {
+  opacity: 1;
+  pointer-events: visible;
+}
