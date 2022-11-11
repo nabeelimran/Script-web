@@ -1,9 +1,13 @@
 import { Icon } from "@iconify/react";
+import useMediaQuery from "hooks/useMediaQuery";
 import React from "react";
+import DropdownAccordion from "./DropdownAccordion";
 
 function NavDropdown({ showDropdown, title, children, twoColumns }) {
-  return (
-    <div className="group/dropdown flex items-center space-x-2 relative">
+  const isAbove1024px = useMediaQuery("(min-width: 1024px)");
+
+  return isAbove1024px ? (
+    <div className="group/dropdown flex items-center justify-between space-x-2 relative">
       <p className="group-hover/dropdown:text-primary group-hover/dropdown:underline transition-all duration-300 text-sm xl:text-base font-medium cursor-pointer">
         {title}
       </p>
@@ -31,6 +35,12 @@ function NavDropdown({ showDropdown, title, children, twoColumns }) {
         </div>
       )}
     </div>
+  ) : (
+    <DropdownAccordion title={title}>
+      <div className="bg-shade-dark-blue-2 py-4 px-6 rounded mt-4 space-y-6">
+        {children}
+      </div>
+    </DropdownAccordion>
   );
 }
 
