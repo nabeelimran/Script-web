@@ -24,7 +24,7 @@ function TokenTable() {
       </div>
 
       <div className="flex flex-col items-center">
-        <p className="text-center text-2xl lg:text-3xl xl:text-5xl font-semibold mb-6 sm:mb-8">
+        <p className="text-center text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6 sm:mb-8">
           Want To Learn More?
         </p>
 

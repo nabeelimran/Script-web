@@ -58,7 +58,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="container-two py-6 xl:py-8 flex flex-col sm:flow-row space-y-6 sm:space-y-0 items-center justify-between">
+      <div className="container-two py-6 xl:py-8 flex flex-col sm:flex-row space-y-6 sm:space-y-0 items-center justify-between">
         <div className="flex items-center space-x-6 sm:space-x-10">
           <img src="images/logo.svg" className="w-24 xl:w-32" alt="" />
 

@@ -8,11 +8,11 @@ function About() {
     <div>
       <div className="container-two">
         <div className="mb-12 md:mb-16 xl:mb-24">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-8xl font-semibold text-primary text-center mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-primary text-center mb-4">
             About
           </h1>
 
-          <p className="font-medium text-base lg:text-lg xl:text-2xl text-center">
+          <p className="font-medium text-base lg:text-lg xl:text-xl text-center max-w-[40rem] mx-auto">
             Introducing our team – made up of entrepreneurs, product managers,
             strategists, operators, engineers and evangelists all focused on the
             common goal.
@@ -30,7 +30,7 @@ function About() {
           />
         </div>
 
-        <p className="text-center text-base lg:text-lg xl:text-2xl font-semibold leading-1_7 mb-14">
+        <p className="text-center text-base lg:text-lg font-semibold leading-1_7 mb-14">
           The Protocol Is Built On Our Own, Script Blockchain. Although Both{" "}
           <br />
           Tokens Have Limited Supply, Script Network Is Focused To Deliver{" "}
