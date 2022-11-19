@@ -1,21 +1,24 @@
 import CordCard from "components/CordCard";
+import Title from "components/Title";
 import React from "react";
 
 function ScriptTVVideo() {
   return (
     <section>
       <div className="container">
-        <h1 className="text-center text-5xl font-bold text-white mb-14">
-          Script Tv <span className="text-primary">Video</span> Infrastructure
-        </h1>
+        <div className="mb-8 lg:mb-14">
+          <Title>
+            Script Tv <span className="text-primary">Video</span> Infrastructure
+          </Title>
+        </div>
 
-        <div className="w-[253px] h-[253px] bg-primary rounded-full flex items-center justify-center mx-auto mb-20">
+        <div className="w-[200px] xl:w-[253px] h-[200px] xl:h-[253px] bg-primary rounded-full flex items-center justify-center mx-auto mb-10 lg:mb-20">
           <div className="px-6">
-            <p className="text-2xl text-center font-bold text-black mb-1">
+            <p className="text-xl xl:text-2xl text-center font-bold text-black mb-1">
               Metachain
             </p>
 
-            <p className="text-center text-base text-black mb-2">
+            <p className="text-center text-sm xl:text-base text-black mb-2">
               Customize Highly Scable blockchain for your web3 Business
             </p>
 
@@ -28,7 +31,7 @@ function ScriptTVVideo() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 xl:gap-8">
           <CordCard
             title="Web3 Video API"
             desc="Lowe youe cost to encode,store

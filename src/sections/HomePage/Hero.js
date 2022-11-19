@@ -6,61 +6,83 @@ import React from "react";
 function Hero() {
   return (
     <div>
-      <div className="container grid grid-cols-2 gap-14">
-        <div>
-          <h5 className="text-primary mb-4 font-semibold text-2xl">
+      <div className="container grid lg:grid-cols-2 gap-14">
+        <div className="text-center lg:text-left relative z-10">
+          <h5 className="text-primary mb-4 font-semibold text-base lg:text-lg xl:text-2xl">
             Powering Live TV and Film for the next generation.
           </h5>
-          <h1 className="text-white font-semibold text-6xl lh-1_2 mb-6">
+          <h1 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl xl:text-6xl lh-1_2 mb-6 max-w-[30rem] lg:max-w-none mx-auto">
             Watch To Earn Live TV Decentralised On Chain,{" "}
             <span className="text-primary">For Free</span>
           </h1>
 
-          <p className="text-2xl text-white opacity-50 font-normal mb-12">
+          <img
+            src="images/hero-img.png"
+            className="w-full block lg:hidden max-w-[26rem] mx-auto"
+            alt=""
+          />
+
+          <p className="text-base lg:text-lg xl:text-2xl text-white opacity-50 font-normal mb-10 xl:mb-12">
             24/7 live television on chain. Earn rewards whilst you watch through
             gameFi and socialFi elements.Join and start earning in minutes!
             Built on Script infrastructure, on Script blockchain.
           </p>
 
-          <div className="flex items-center space-x-7 mb-8">
+          <div className="flex items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start">
             <Button label="Whitepapper" />
             <ArrowButton label="Launch app" />
           </div>
 
-          <p className="text-xl font-medium text-white mb-9">
+          <p className="text-base xl:text-xl font-medium text-white mb-9">
             <span className="opacity-50">Already using script.tv?</span>{" "}
             <a href="/" className="text-primary">
               Sign in
             </a>
           </p>
 
-          <div className="flex space-x-8 items-stretch">
-            <div className="flex space-x-6">
-              <div className="flex -space-x-7">
+          <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-8 items-stretch justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-6 justify-center sm:justify-start space-y-4 sm:space-y-0">
+              <div className="flex -space-x-4 xl:-space-x-7">
                 <EconomyAvatar img="images/avatar-1.png" className="z-30" />
                 <EconomyAvatar img="images/avatar-2.png" className="z-20" />
                 <EconomyAvatar img="images/avatar-3.png" className="z-10" />
               </div>
               <div>
-                <p className="text-white font-medium text-4xl mb-1">150,000+</p>
-                <p className="text-xl text-white opacity-50">
+                <p className="text-white font-medium text-xl lg:text-2xl xl:text-4xl mb-1">
+                  150,000+
+                </p>
+                <p className="text-sm xl:text-xl text-white opacity-50">
                   Part of the ecoy <br /> stem pre launch
                 </p>
               </div>
             </div>
             <div className="flex items-center">
-              <div className="w-[2px] h-[90%] bg-white opacity-50"></div>
+              <div className="w-[50%] mx-auto sm:w-[2px] h-[2px] sm:h-[90%] bg-white opacity-50"></div>
             </div>
             <div>
-              <p className="text-white font-medium text-4xl mb-1">24/7/365+</p>
-              <p className="text-xl text-white opacity-50">
+              <p className="text-white font-medium text-xl lg:text-2xl xl:text-4xl mb-1">
+                24/7/365+
+              </p>
+              <p className="text-sm xl:text-xl text-white opacity-50">
                 Television for free
               </p>
             </div>
           </div>
         </div>
-        <div className="relative">
-          <img src="images/hero-img.png" className="w-full" alt="" />
+        <div className="w-full hidden lg:block">
+          <div className="relative z-20">
+            <img
+              src="images/yellow-blob.png"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240%] h-[240%] object-cover -z-20 hidden lg:block"
+              alt=""
+            />
+
+            <img
+              src="images/hero-img.png"
+              className="w-full hidden lg:block -z-20 relative"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>

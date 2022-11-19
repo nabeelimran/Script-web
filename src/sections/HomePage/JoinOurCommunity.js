@@ -1,17 +1,20 @@
 import { Icon } from "@iconify/react";
 import SocialCard from "components/SocialCard";
+import Title from "components/Title";
 import React from "react";
 
 function JoinOurCommunity() {
   return (
     <section>
-      <div className="container grid grid-cols-[.7fr_1fr] gap-20 items-start">
+      <div className="container grid md:grid-cols-[.5fr_1fr] lg:grid-cols-[.7fr_1fr] gap-10 lg:gap-14 xl:gap-20 items-start">
         <div>
-          <h2 className="text-5xl font-bold text-white mb-5">
-            Join our <span className="text-primary">community</span>
-          </h2>
+          <div className="mb-4">
+            <Title className="text-white font-bold">
+              Join our <span className="text-primary">community</span>
+            </Title>
+          </div>
 
-          <p className="text-lg text-white mb-11">
+          <p className="text-base xl:text-lg text-white mb-11">
             Be part of a growing community of builders,users, and creators on
             Script tv paving the way for a more interoperable crypto ecosystem.
           </p>
@@ -20,14 +23,14 @@ function JoinOurCommunity() {
             <img src="images/community-image.png" alt="" />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5">
           <SocialCard
             title="Discord"
             IconComponent={() => <Icon icon="ic:outline-discord" />}
           />
           <SocialCard
             title="Telegram"
-            IconComponent={() => <Icon icon="ic:outline-discord" />}
+            IconComponent={() => <Icon icon="file-icons:telegram" />}
           />
           <SocialCard
             title="Twitter"

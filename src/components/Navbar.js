@@ -18,7 +18,7 @@ function Navbar() {
   }, [isSidebarVisible]);
 
   return (
-    <div className="container py-5 xl:py-7 flex items-center justify-between">
+    <div className="container py-5 xl:py-7 flex items-center justify-between z-50">
       <img
         src="images/logo.svg"
         className="w-24 md:w-28 xl:w-32 cursor-pointer"

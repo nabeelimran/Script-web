@@ -62,6 +62,14 @@
   .centered-cliped {
     clip-path: polygon(50% 10%, 100% 0, 100% 100%, 0 100%, 0 0);
   }
+
+  .color-inherit {
+    color: inherit;
+  }
+
+  .heading-sub {
+    @apply text-base xl:text-xl;
+  }
 }
 
 .black-screen {

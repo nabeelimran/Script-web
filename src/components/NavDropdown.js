@@ -20,7 +20,7 @@ function NavDropdown({ showDropdown, title, children, twoColumns }) {
         <div
           className={`${
             twoColumns ? "w-[560px] xl:w-[650px]" : "w-[680px] xl:w-[760px]"
-          } absolute left-1/2 -translate-x-1/2 top-full pt-6 transition-all duration-300 translate-y-8 opacity-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:translate-y-0 group-hover/dropdown:pointer-events-auto`}
+          } absolute left-1/2 -translate-x-1/2 top-full pt-6 transition-all duration-300 translate-y-8 opacity-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:translate-y-0 group-hover/dropdown:pointer-events-auto z-[100]`}
         >
           {/*  */}
           <div className="bg-shade-dark-blue-2 py-8 xl:py-11 px-9 rounded-2xl xl:rounded-[30px]">

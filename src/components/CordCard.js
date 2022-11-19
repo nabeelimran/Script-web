@@ -2,19 +2,19 @@ import React from "react";
 
 function CordCard({ title, desc, linkTitle, link = "/" }) {
   return (
-    <div className="bg-blue-1 px-28 py-11 rounded-3xl text-center flex flex-col">
-      <h4 className="text-center text-4xl mb-5 text-white font-semibold">
+    <div className="bg-blue-1 px-8 lg:px-16 xl:px-28 py-8 lg:py-11 rounded-3xl text-center flex flex-col">
+      <h4 className="text-center text-xl lg:text-2xl xl:text-4xl mb-3 lg:mb-5 text-white font-semibold">
         {title}
       </h4>
 
-      <p className="text-center font-medium text-lg text-white opacity-70 flex-1">
+      <p className="text-center font-medium text-base xl:text-lg text-white opacity-70 flex-1">
         {desc}
       </p>
 
       {linkTitle && (
         <a
           href={link}
-          className="w-fit mx-auto block text-lg text-primary mt-6 underline"
+          className="w-fit mx-auto block text-sm lg:text-base xl:text-lg text-primary mt-6 underline"
         >
           {linkTitle}
         </a>

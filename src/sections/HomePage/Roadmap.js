@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import SwiperCore, { Navigation } from "swiper";
 import { Icon } from "@iconify/react";
+import Title from "components/Title";
 SwiperCore.use([Navigation]);
 
 function Roadmap() {
@@ -13,12 +14,14 @@ function Roadmap() {
   return (
     <section>
       <div className="container">
-        <div className="mb-20">
-          <h1 className="text-center text-5xl font-bold text-white mb-5">
-            The <span className="text-primary">Roadmap</span>
-          </h1>
+        <div className="mb-14 lg:mb-20">
+          <div className="mb-5">
+            <Title>
+              The <span className="text-primary">Roadmap</span>
+            </Title>
+          </div>
 
-          <p className="text-white text-center text-xl font-medium mx-auto max-w-[50rem] opacity-50">
+          <p className="heading-sub text-white text-center font-medium mx-auto max-w-[50rem] opacity-50">
             Roadmap items listed below are susceptible to change based on
             dynamics in the market and feedback and proposal from the Gummys TV
             community.
@@ -43,6 +46,19 @@ function Roadmap() {
                   swiper.navigation.update();
                 }
               });
+            }}
+            breakpoints={{
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+              600: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+              },
+              100: {
+                slidesPerView: 1,
+              },
             }}
           >
             <SwiperSlide>
