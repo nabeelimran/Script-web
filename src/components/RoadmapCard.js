@@ -1,0 +1,23 @@
+import React from "react";
+
+function RoadmapCard({ point, title, year }) {
+  return (
+    <div>
+      <div className="flex items-center space-x-4 mb-7">
+        <h1 className="text-5xl text-primary font-bold">{title}</h1>
+        <p className="text-2xl text-white font-medium">{year}</p>
+      </div>
+
+      <div className="space-y-4">
+        {point &&
+          point.map((point, i) => (
+            <p key={i} className="text-xl font-medium opacity-70">
+              {point}
+            </p>
+          ))}
+      </div>
+    </div>
+  );
+}
+
+export default RoadmapCard;

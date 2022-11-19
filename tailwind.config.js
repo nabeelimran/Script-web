@@ -12,11 +12,17 @@ module.exports = {
       primary: "#FFEF00",
       darkGray: "#1C1C1C",
       gray: "#646464",
+      gray2: "#151515",
       darkBlue: "#060910",
+      blue: {
+        1: "#11151F",
+        2: "#09090A",
+      },
       shade: {
         "dark-blue": "#10131A",
         "dark-blue-2": "#15171C",
         "darkest-blue": "#0B0B0D",
+        grayis: "#161616",
       },
     },
     lineHeight: {
@@ -34,6 +40,13 @@ module.exports = {
     extend: {
       fontSize: {
         "90px": "90px",
+      },
+      backgroundImage: {
+        televisionGradient:
+          "linear-gradient(180.16deg, #09090A 0.14%, #1F242E 118.5%)",
+      },
+      borderWidth: {
+        "1px": "1px",
       },
     },
   },
