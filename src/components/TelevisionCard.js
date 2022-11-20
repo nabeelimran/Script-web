@@ -9,7 +9,7 @@ function TelevisionCard({ title, children, subtitle }) {
 
       <div className="pt-2 centered-cliped bg-primary w-[104%] ml-[-2%] mx-auto">
         <div className="pt-5 pb-3 centered-cliped bg-gray2">
-          <p className="text-center text-lg xl:text-2xl text-white font-bold">
+          <p className="text-center text-lg xl:text-xl text-white font-bold">
             {subtitle}
           </p>
         </div>

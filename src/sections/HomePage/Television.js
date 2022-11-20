@@ -28,22 +28,22 @@ function Television() {
             }
           >
             <div className="space-y-3">
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 Slow Payouts
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 No rewards to users
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 No control over any platform
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 decisions
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 Complex advertising
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 Expensive storage
               </p>
             </div>
@@ -59,19 +59,19 @@ function Television() {
             }
           >
             <div className="space-y-3">
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 Faster Payments to Content Owners
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 Rewards to Users
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 On-chain content governance
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 On-chain advertising
               </p>
-              <p className="text-base xl:text-xl text-white font-medium opacity-80">
+              <p className="text-base text-white font-medium opacity-80">
                 dStorage - cutting costs by up to 85%
               </p>
             </div>

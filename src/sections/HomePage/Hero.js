@@ -8,10 +8,10 @@ function Hero() {
     <div>
       <div className="container grid lg:grid-cols-2 gap-14">
         <div className="text-center lg:text-left relative z-10">
-          <h5 className="text-primary mb-4 font-semibold text-base lg:text-lg xl:text-2xl">
+          <h5 className="text-primary mb-4 font-semibold text-base lg:text-lg xl:text-xl">
             Powering Live TV and Film for the next generation.
           </h5>
-          <h1 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl xl:text-6xl lh-1_2 mb-6 max-w-[30rem] lg:max-w-none mx-auto">
+          <h1 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl lh-1_2 mb-6 max-w-[30rem] lg:max-w-none mx-auto">
             Watch To Earn Live TV Decentralised On Chain,{" "}
             <span className="text-primary">For Free</span>
           </h1>
@@ -22,7 +22,7 @@ function Hero() {
             alt=""
           />
 
-          <p className="text-base lg:text-lg xl:text-2xl text-white opacity-50 font-normal mb-10 xl:mb-12">
+          <p className="text-base lg:text-lg xl:text-xl text-white opacity-50 font-normal mb-10 xl:mb-12">
             24/7 live television on chain. Earn rewards whilst you watch through
             gameFi and socialFi elements.Join and start earning in minutes!
             Built on Script infrastructure, on Script blockchain.
@@ -33,7 +33,7 @@ function Hero() {
             <ArrowButton label="Launch app" />
           </div>
 
-          <p className="text-base xl:text-xl font-medium text-white mb-9">
+          <p className="text-base xl:text-lg font-medium text-white mb-9">
             <span className="opacity-50">Already using script.tv?</span>{" "}
             <a href="/" className="text-primary">
               Sign in
@@ -48,10 +48,10 @@ function Hero() {
                 <EconomyAvatar img="images/avatar-3.png" className="z-10" />
               </div>
               <div>
-                <p className="text-white font-medium text-xl lg:text-2xl xl:text-4xl mb-1">
+                <p className="text-white font-medium text-xl lg:text-2xl mb-1">
                   150,000+
                 </p>
-                <p className="text-sm xl:text-xl text-white opacity-50">
+                <p className="text-sm xl:text-base text-white opacity-50">
                   Part of the ecoy <br /> stem pre launch
                 </p>
               </div>
@@ -60,10 +60,10 @@ function Hero() {
               <div className="w-[50%] mx-auto sm:w-[2px] h-[2px] sm:h-[90%] bg-white opacity-50"></div>
             </div>
             <div>
-              <p className="text-white font-medium text-xl lg:text-2xl xl:text-4xl mb-1">
+              <p className="text-white font-medium text-xl lg:text-2xl mb-1">
                 24/7/365+
               </p>
-              <p className="text-sm xl:text-xl text-white opacity-50">
+              <p className="text-sm xl:text-base text-white opacity-50">
                 Television for free
               </p>
             </div>

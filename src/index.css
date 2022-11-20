@@ -68,7 +68,7 @@
   }
 
   .heading-sub {
-    @apply text-base xl:text-xl;
+    @apply text-base xl:text-lg;
   }
 }
 
