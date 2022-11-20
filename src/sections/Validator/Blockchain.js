@@ -21,7 +21,7 @@ function Blockchain() {
             Enthusiasts Building To Help Change And Shape The Future.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-7 mb-16">
+        <div className="validator-grid">
           <ValidatorCard
             img="images/blockchain/earn.png"
             title="Earn Exclusive Rewards"

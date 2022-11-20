@@ -70,6 +70,47 @@
   .heading-sub {
     @apply text-base xl:text-lg;
   }
+
+  /* TABLE */
+
+  .validator-table {
+    @apply w-full overflow-hidden border-collapse min-w-[900px];
+  }
+
+  .validator-table thead tr {
+    @apply border-b-2 border-black;
+  }
+
+  .validator-table tr:not(:last-child) {
+    @apply border-b-2 border-black;
+  }
+
+  .validator-table tbody tr td:last-child,
+  .validator-table thead tr th:last-child {
+    @apply bg-primary text-black font-semibold;
+  }
+
+  .validator-table th {
+    @apply text-left;
+  }
+
+  .validator-table th {
+    @apply text-sm lg:text-base xl:text-lg text-primary;
+  }
+
+  .validator-table td {
+    @apply text-xs lg:text-sm xl:text-base;
+  }
+
+  .validator-table td,
+  .validator-table th {
+    @apply bg-blue-1 py-4 xl:py-5 px-3 md:px-6 font-medium;
+  }
+
+  /* WRAAPPERS */
+  .validator-grid {
+    @apply grid lg:grid-cols-2 gap-5 xl:gap-7 mb-10 lg:mb-16;
+  }
 }
 
 .black-screen {

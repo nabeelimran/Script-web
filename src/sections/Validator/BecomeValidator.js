@@ -7,7 +7,7 @@ function BecomeValidator() {
   return (
     <section>
       <div className="container">
-        <div className="mb-16">
+        <div className="mb-10 lg:mb-16">
           <div className="mb-3">
             <Title>
               Become a <span className="text-primary">Validator</span>
@@ -19,7 +19,7 @@ function BecomeValidator() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-7 mb-16">
+        <div className="validator-grid">
           <ValidatorCard
             title="Learn About Your Responsibilities"
             desc="The Script upgrades will only be successful if
