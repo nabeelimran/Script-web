@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 import DropdownCard from "./DropdownCard";
 import NavDropdown from "./NavDropdown";
@@ -19,11 +20,13 @@ function Navbar() {
 
   return (
     <div className="container py-5 xl:py-7 flex items-center justify-between z-50">
-      <img
-        src="images/logo.svg"
-        className="w-24 md:w-28 xl:w-32 cursor-pointer"
-        alt=""
-      />
+      <Link to="/">
+        <img
+          src="images/logo.svg"
+          className="w-24 md:w-28 xl:w-32 cursor-pointer"
+          alt=""
+        />
+      </Link>
 
       <div>
         <button

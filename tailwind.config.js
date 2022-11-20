@@ -17,6 +17,7 @@ module.exports = {
       blue: {
         1: "#11151F",
         2: "#09090A",
+        3: "#121215",
       },
       shade: {
         "dark-blue": "#10131A",
@@ -44,6 +45,8 @@ module.exports = {
       backgroundImage: {
         televisionGradient:
           "linear-gradient(180.16deg, #09090A 0.14%, #1F242E 118.5%)",
+        yellowGradient:
+          "linear-gradient(45deg, #FFAB09 14.64%, #FFEF00 85.36%)",
       },
       borderWidth: {
         "1px": "1px",
