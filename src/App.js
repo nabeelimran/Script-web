@@ -1,5 +1,6 @@
 import Calculator from "pages/Calculator";
 import HomePage from "pages/HomePage";
+import Research from "pages/Research";
 import Technology from "pages/Technology";
 import TokenPage from "pages/TokenPage";
 import Validator from "pages/Validator";
@@ -14,6 +15,7 @@ function App() {
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/validator" element={<Validator />} />
         <Route path="/technology" element={<Technology />} />
+        <Route path="/research" element={<Research />} />
       </Routes>
     </Router>
   );
