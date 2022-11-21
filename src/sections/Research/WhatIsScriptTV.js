@@ -18,7 +18,7 @@ function WhatIsScriptTV() {
           />
         </div>
 
-        <div className="space-y-8 mb-14">
+        <div className="space-y-8">
           <BulletPoint
             point="Script TV daily rewards from active users can be used to redeem further rewards including
 premium content, upgradable NFTs and more."
@@ -43,34 +43,6 @@ gamification where users can enhance their experience, and earn more per day."
           <BulletPoint
             point="Script TV daily rewards from active users can be used to redeem further rewards including
 premium content, upgradable NFTs and more."
-          />
-          <BulletPoint point="" />
-        </div>
-
-        <Title className="text-left font-medium text-primary mb-16">
-          2. Watch-to-earn with online watch TV online and get paid rewards per
-          block
-        </Title>
-
-        <div className="space-y-8 mb-14">
-          <BulletPoint point="Redefining crypto advertising (allowing crypto/NFT projects to easily promote via the platform)." />
-          <BulletPoint point="Redefining crypto advertising (allowing crypto/NFT projects to easily promote via the platform)" />
-          <BulletPoint
-            point="Gamified Reward Structure - earn rewards through our viewing content, engaging, and
-upgrading your NFTs"
-          />
-          <BulletPoint point="Fully Decentralised video storage solution - lowering costs by over 80% for Web2 companies" />
-        </div>
-
-        <Title className="text-left font-medium text-primary mb-10">
-          3. Existing Products
-        </Title>
-
-        <div className="space-y-8 mb-14">
-          <BulletPoint
-            point="Script TV: Simply head to our web app (get.script.tv) to watch television across a range of channels,
-and get rewarded for it.
-"
           />
         </div>
       </div>

@@ -116,6 +116,29 @@
   .yellow-corner-blob {
     @apply absolute top-0 left-0 w-[200px] md:w-[300px] h-[200px] md:h-[300px] rounded-full bg-primary -z-10 blur-[200px];
   }
+
+  /* TOKEN STATS TABLE */
+
+  .token-stats-table {
+    @apply w-full;
+  }
+
+  .token-stats-table thead {
+    @apply bg-primary;
+  }
+
+  .token-stats-table tbody tr {
+    @apply border-b-1px border-[#2C2C2C];
+  }
+
+  .token-stats-table th {
+    @apply text-black;
+  }
+
+  .token-stats-table th,
+  .token-stats-table td {
+    @apply text-left px-6 py-3 text-xl font-medium;
+  }
 }
 
 .black-screen {
