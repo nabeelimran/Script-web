@@ -17,7 +17,7 @@ const RightComponent = () => {
         Content interaction layer:
       </Title>
 
-      <p className="heading-sub text-white">
+      <p className="heading-sub text-white lh-1_7">
         Filmmakers / content owners (beyond getting a tonne of benefits such as
         faster pay, more distribution and actual data on viewership) - can
         launch NFTs or bespoke competitions over the top of their film, and have

@@ -52,7 +52,7 @@
   }
 
   .container-two {
-    @apply mx-auto w-[90%] lg:w-[86%] max-w-[1400px];
+    @apply mx-auto w-[90%] lg:w-[70%] max-w-[1200px];
   }
 
   .nav-link {

@@ -17,7 +17,7 @@ const RightComponent = () => {
         Our video advertising protocol layer is an industry first{" "}
       </Title>
 
-      <p className="heading-sub text-white">
+      <p className="heading-sub text-white lh-1_7">
         No other platform allows you to buy ads on chain with no need to
         interact with credit cards / sign up forms
       </p>

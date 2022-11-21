@@ -11,7 +11,7 @@ function RoadmapCard({ point, title, year }) {
       <div className="space-y-3">
         {point &&
           point.map((point, i) => (
-            <p key={i} className="fs-18px font-medium opacity-70">
+            <p key={i} className="fs-16px font-medium opacity-70">
               {point}
             </p>
           ))}

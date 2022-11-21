@@ -9,7 +9,7 @@ const LeftComponent = () => {
         Our multi BFT consensus layer allows for the first time ever
       </Title>
 
-      <p className="heading-sub text-white">
+      <p className="heading-sub text-white lh-1_7">
         For you to not only have governance over decisions in the ecosystem
         (like most projects), but decision making power on content being aired =
         the first content company working towards true decentralization, rather

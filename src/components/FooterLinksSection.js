@@ -8,7 +8,7 @@ const FooterLinksSection = ({ title, links = [] }) => {
       <div className="space-y-2">
         {links &&
           links.map((obj, i) => (
-            <p className="text-xs xl:text-base font-medium cursor-pointer w-fit">
+            <p className="text-xs xl:text-sm cursor-pointer w-fit">
               {obj.title}
             </p>
           ))}
