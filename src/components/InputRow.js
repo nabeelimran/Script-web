@@ -20,7 +20,7 @@ const InputRow = ({
       <div>
         <label
           htmlFor={id}
-          className="block text-sm md:text-base xl:text-lg font-semibold text-white cursor-pointer w-fit"
+          className="block fs-16px font-semibold text-white cursor-pointer w-fit"
         >
           {label}
         </label>
@@ -33,7 +33,7 @@ const InputRow = ({
           name={name}
           placeholder={placeholder}
           readOnly={readonly}
-          className={`h-[40px] lg:h-[50px] flex items-center px-4 lg:px-6 text-base xl:text-lg font-semibold rounded-lg w-full outline-none ${variants[variant]}`}
+          className={`h-[40px] lg:h-[40px] flex items-center px-4 lg:px-5 fs-16px font-semibold rounded-lg w-full outline-none ${variants[variant]}`}
         />
       </div>
     </div>

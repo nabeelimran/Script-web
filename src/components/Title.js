@@ -1,7 +1,8 @@
 import React from "react";
 
 const variants = {
-  36: "text-2xl lg:text-3xl xl:text-4xl",
+  48: "text-xl lg:text-3xl xl:text-5xl",
+  36: "text-xl lg:text-2xl xl:text-3xl",
   30: "text-xl lg:text-2xl xl:text-3xl",
   24: "text-base lg:text-lg xl:text-2xl",
   20: "text-base lg:text-base xl:text-xl",

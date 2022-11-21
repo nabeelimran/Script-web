@@ -19,7 +19,7 @@ function StakingInformation() {
         </h4>
       </div>
 
-      <div className="space-y-6 lg:space-y-5">
+      <div className="space-y-6 lg:space-y-4">
         <InputRow label="Enter Your SCPT Amount:" placeholder="0" id="amount" />
         <InputRow
           label="% Staked of Total Circulating Supply:"

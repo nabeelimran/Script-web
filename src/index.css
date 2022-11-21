@@ -68,7 +68,7 @@
   }
 
   .heading-sub {
-    @apply text-base xl:text-lg;
+    @apply text-sm md:text-base;
   }
 
   /* TABLE */
@@ -116,6 +116,9 @@
   .yellow-corner-blob {
     @apply absolute top-0 left-0 w-[200px] md:w-[300px] h-[200px] md:h-[300px] rounded-full bg-primary -z-10 blur-[200px];
   }
+  .yellow-center-blob {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary -z-10;
+  }
 
   /* TOKEN STATS TABLE */
 
@@ -158,6 +161,28 @@
 
   .milestone-table table {
     @apply min-w-[700px] table-auto;
+  }
+
+  /* FONT-SIZES */
+
+  .text-inherit {
+    @apply text-[inherit];
+  }
+
+  .fs-16px {
+    @apply text-sm md:text-base;
+  }
+
+  .fs-18px {
+    @apply text-base xl:text-lg;
+  }
+
+  .fs-20px {
+    @apply text-base lg:text-lg xl:text-xl;
+  }
+
+  .fs-24px {
+    @apply text-lg xl:text-2xl;
   }
 }
 

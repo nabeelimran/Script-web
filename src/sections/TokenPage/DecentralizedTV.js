@@ -10,18 +10,18 @@ function DecentralizedTV() {
         isAbove640px ? "container-two px-12 rounded-2xl" : ""
       } flex flex-col items-center text-center py-10 xl:py-14 overflow-hidden relative z-10`}
     >
-      <img src="images/tv.svg" className="w-12 sm:w-16 xl:w-20 mb-8" alt="" />
+      <img src="images/tv.svg" className="w-12 sm:w-16 mb-8" alt="" />
 
       <div className={`${isAbove640px ? "" : "container-two"}`}>
         <p
-          className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-8 md:mb-10 xl:mb-12"
+          className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-8 md:mb-10 xl:mb-10"
           style={{ lineHeight: 1.3 }}
         >
           Decentralised TV And Film For You, <br /> And Everyone With A Device
         </p>
 
         <p
-          className="text-base sm:text-lg xl:text-xl font-medium mx-auto"
+          className="fs-18px font-medium mx-auto max-w-[36em]"
           style={{ lineHeight: 1.4 }}
         >
           Introducing SCPT – the token for the overall network and script

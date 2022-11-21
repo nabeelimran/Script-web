@@ -1,4 +1,5 @@
 import Button from "components/Button";
+import Title from "components/Title";
 import TokenTableCard from "components/TokenTableCard";
 import React from "react";
 
@@ -6,12 +7,8 @@ function TokenTable() {
   return (
     <div className="sm:bg-shade-dark-blue sm:rounded-[60px] pb-12 sm:pb-16 pt-8 sm:px-12">
       <div className="flex items-center justify-between mb-6 px-5">
-        <h2 className="text-2xl md:text-3xl xl:text-4xl uppercase font-bold">
-          SCPT
-        </h2>
-        <h2 className="text-2xl md:text-3xl xl:text-4xl uppercase font-bold">
-          SPAY
-        </h2>
+        <Title>SCPT</Title>
+        <Title>SPAY</Title>
       </div>
 
       <div className="space-y-3 xl:space-y-5 mb-8">
@@ -24,7 +21,7 @@ function TokenTable() {
       </div>
 
       <div className="flex flex-col items-center">
-        <p className="text-center text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6 sm:mb-8">
+        <p className="text-center fs-24px font-semibold mb-6">
           Want To Learn More?
         </p>
 

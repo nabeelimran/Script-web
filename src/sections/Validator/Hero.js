@@ -1,10 +1,11 @@
 import Button from "components/Button";
+import Title from "components/Title";
 import React from "react";
 
 function Hero() {
   return (
     <section>
-      <div className="container grid lg:grid-cols-2 gap-20">
+      <div className="container grid lg:grid-cols-2 gap-20 items-center">
         <div className="hidden lg:block relative z-10">
           <img src="images/validator-banner.png" className="w-full" alt="" />
 
@@ -16,9 +17,12 @@ function Hero() {
             community.
           </p>
 
-          <h1 className="text-center lg:text-left max-w-[30rem] lg:max-w-none mx-auto lg:mx-0 text-2xl sm:text-3xl lg:text-4xl xl:text-6xl lh-1_2 text-white font-bold mb-10">
+          <Title
+            className="lh-1_2 font-bold mb-10 max-w-[30rem] lg:max-w-none mx-auto lg:mx-0"
+            variant="48"
+          >
             Become a validator and help secure the future of Script
-          </h1>
+          </Title>
 
           <div className="block lg:hidden max-w-[24rem] mx-auto w-full mb-8 relative z-10">
             <img src="images/validator-banner.png" className="w-full" alt="" />

@@ -14,7 +14,7 @@ function JoinOurCommunity() {
             </Title>
           </div>
 
-          <p className="text-base xl:text-lg text-white mb-11">
+          <p className="fs-18px text-white mb-11">
             Be part of a growing community of builders,users, and creators on
             Script tv paving the way for a more interoperable crypto ecosystem.
           </p>

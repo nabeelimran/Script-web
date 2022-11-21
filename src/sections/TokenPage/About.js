@@ -1,5 +1,6 @@
 import AboutCard from "components/AboutCard";
 import Button from "components/Button";
+import Title from "components/Title";
 import React from "react";
 import TokenTable from "sections/TokenTable";
 
@@ -7,12 +8,15 @@ function About() {
   return (
     <div>
       <div className="container-two">
-        <div className="mb-12 md:mb-16 xl:mb-24">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-primary text-center mb-4">
+        <div className="mb-12 md:mb-16">
+          <Title
+            className="text-primary text-center mb-4 font-bold"
+            variant="48"
+          >
             About
-          </h1>
+          </Title>
 
-          <p className="font-medium text-base lg:text-lg xl:text-xl text-center max-w-[40rem] mx-auto">
+          <p className="heading-sub font-medium text-center max-w-[40rem] mx-auto">
             Introducing our team – made up of entrepreneurs, product managers,
             strategists, operators, engineers and evangelists all focused on the
             common goal.
@@ -30,7 +34,7 @@ function About() {
           />
         </div>
 
-        <p className="text-center text-base lg:text-lg font-semibold leading-1_7 mb-14">
+        <p className="text-center fs-16px font-semibold leading-1_7 mb-14">
           The Protocol Is Built On Our Own, Script Blockchain. Although Both{" "}
           <br />
           Tokens Have Limited Supply, Script Network Is Focused To Deliver{" "}

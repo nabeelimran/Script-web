@@ -12,7 +12,7 @@ function Television() {
               Television <span className="text-primary">Re</span> Imagined
             </Title>
           </div>
-          <p className="heading-sub text-white opacity-50 text-center max-w-[50rem] mx-auto">
+          <p className="heading-sub text-white opacity-50 text-center max-w-[40rem] mx-auto">
             Script Network focuses on creating game changing products to improve
             the experience for content owners, studios and users worldwide
           </p>
@@ -28,22 +28,22 @@ function Television() {
             }
           >
             <div className="space-y-3">
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 Slow Payouts
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 No rewards to users
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 No control over any platform
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 decisions
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 Complex advertising
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 Expensive storage
               </p>
             </div>
@@ -59,19 +59,19 @@ function Television() {
             }
           >
             <div className="space-y-3">
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 Faster Payments to Content Owners
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 Rewards to Users
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 On-chain content governance
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 On-chain advertising
               </p>
-              <p className="text-base text-white font-medium opacity-80">
+              <p className="fs-16px text-white font-medium opacity-80">
                 dStorage - cutting costs by up to 85%
               </p>
             </div>
