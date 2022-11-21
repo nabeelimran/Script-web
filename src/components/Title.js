@@ -6,6 +6,7 @@ const variants = {
   24: "text-base lg:text-lg xl:text-2xl",
   20: "text-base lg:text-base xl:text-xl",
   18: "text-base lg:text-base xl:text-lg",
+  16: "text-sm md:text-base",
 };
 
 function Title({

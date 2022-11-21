@@ -1,5 +1,4 @@
 import BlubDivider from "components/BlubDivider";
-import BulletPoint from "components/BulletPoint";
 import ListIntended from "components/ListIntended";
 import ReadMoreCards from "components/ReadMoreCards";
 import Title from "components/Title";

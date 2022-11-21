@@ -5,7 +5,7 @@ import React from "react";
 const ProgressBarWithTitl = ({ value, color, title }) => {
   return (
     <div>
-      <Title className="font-medium text-white mb-3" variant="18">
+      <Title className="font-medium text-white mb-3" variant="16">
         {title}
       </Title>
       <ProgressBar value={value} color={color} />
