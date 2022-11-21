@@ -120,7 +120,7 @@
   /* TOKEN STATS TABLE */
 
   .token-stats-table {
-    @apply w-full;
+    @apply w-full table-fixed;
   }
 
   .token-stats-table thead {
@@ -137,7 +137,27 @@
 
   .token-stats-table th,
   .token-stats-table td {
-    @apply text-left px-6 py-3 text-xl font-medium;
+    @apply text-left px-6 py-2 md:py-3 text-xs sm:text-sm lg:text-base font-medium;
+  }
+
+  /*  */
+
+  .research-list-wrapper {
+    @apply space-y-20;
+  }
+
+  .research-list {
+    @apply space-y-6;
+  }
+
+  /*  */
+
+  .milestone-table {
+    @apply overflow-x-auto;
+  }
+
+  .milestone-table table {
+    @apply min-w-[700px] table-auto;
   }
 }
 

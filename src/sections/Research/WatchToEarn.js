@@ -5,12 +5,12 @@ import React from "react";
 function WatchToEarn() {
   return (
     <section className="container">
-      <Title className="text-left font-medium text-primary mb-16">
+      <Title className="text-left font-medium text-primary mb-10" variant="24">
         2. Watch-to-earn with online watch TV online and get paid rewards per
         block
       </Title>
 
-      <div className="space-y-8">
+      <div className="research-list">
         <BulletPoint point="Redefining crypto advertising (allowing crypto/NFT projects to easily promote via the platform)." />
         <BulletPoint point="Redefining crypto advertising (allowing crypto/NFT projects to easily promote via the platform)" />
         <BulletPoint

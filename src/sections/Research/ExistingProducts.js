@@ -5,12 +5,12 @@ import React from "react";
 function ExistingProducts() {
   return (
     <section className="container">
-      <Title className="text-left font-medium text-primary mb-10">
+      <Title className="text-left font-medium text-primary mb-10" variant="24">
         3. Existing Products
       </Title>
 
-      <div className="space-y-8">
-        <div className="space-y-12">
+      <div className="research-list">
+        <div className="research-list">
           <BulletPoint point="Script TV: Simply head to our web app (get.script.tv) to watch television across a range of channels, and get rewarded for it." />
 
           <img
