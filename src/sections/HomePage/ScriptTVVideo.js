@@ -34,8 +34,11 @@ function ScriptTVVideo() {
         <div className="grid md:grid-cols-2 gap-6 xl:gap-8">
           <CordCard
             title="Web3 Video API"
-            desc="Lowe youe cost to encode,store
-          and deliver video"
+            desc={
+              <>
+                Lowe youe cost to encode,store <br /> and deliver video
+              </>
+            }
             linkTitle="Learn more"
           />
           <CordCard

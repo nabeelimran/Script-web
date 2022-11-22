@@ -1,4 +1,5 @@
 import React from "react";
+import BulletPoint from "./BulletPoint";
 
 function RoadmapCard({ point, title, year }) {
   return (
@@ -8,12 +9,18 @@ function RoadmapCard({ point, title, year }) {
         <p className="fs-24px text-white font-medium">{year}</p>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {point &&
           point.map((point, i) => (
-            <p key={i} className="fs-16px font-medium opacity-70">
-              {point}
-            </p>
+            <BulletPoint
+              key={i}
+              point={point}
+              textClassName="opacity-60"
+              bulletClassName="min-w-[10px] h-[10px] rotate-45 mt-[.5em]"
+            />
+            // <p key={i} className="fs-16px font-medium opacity-70">
+            //   {point}
+            // </p>
           ))}
       </div>
     </div>

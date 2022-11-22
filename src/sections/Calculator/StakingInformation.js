@@ -26,16 +26,8 @@ function StakingInformation() {
           placeholder="0.10"
           id="staked"
         />
-        <InputRow
-          label="Enter Your SCPT Amount:"
-          placeholder="0.025"
-          id="scpt"
-        />
-        <InputRow
-          label="Enter Your SCPT Amount:"
-          placeholder="0.01"
-          id="your"
-        />
+        <InputRow label="SCPT Price (USD):" placeholder="0.025" id="scpt" />
+        <InputRow label="$SPAY Price (USD):" placeholder="0.01" id="your" />
 
         <div className="grid lg:grid-cols-2">
           <div></div>

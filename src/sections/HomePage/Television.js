@@ -27,7 +27,7 @@ function Television() {
               </p>
             }
           >
-            <div className="space-y-3">
+            <div className="space-y-3 text-center">
               <p className="fs-16px text-white font-medium opacity-80">
                 Slow Payouts
               </p>
@@ -58,7 +58,7 @@ function Television() {
               />
             }
           >
-            <div className="space-y-3">
+            <div className="space-y-3 text-center">
               <p className="fs-16px text-white font-medium opacity-80">
                 Faster Payments to Content Owners
               </p>

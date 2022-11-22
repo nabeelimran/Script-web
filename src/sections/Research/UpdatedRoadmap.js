@@ -1,4 +1,5 @@
 import BlubDivider from "components/BlubDivider";
+import BulletPoint from "components/BulletPoint";
 import ListIntended from "components/ListIntended";
 import ReadMoreCards from "components/ReadMoreCards";
 import Title from "components/Title";
@@ -130,9 +131,30 @@ function UpdatedRoadmap() {
             </Title>
 
             <div className="space-y-3">
-              <ListIntended title="Twitter" />
-              <ListIntended title="Telegram" />
-              <ListIntended title="Discord" />
+              <a
+                href="https://twitter.com/script_network"
+                className="w-fit block"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BulletPoint point="Twitter" />
+              </a>
+              <a
+                href="https://t.me/+Vu1gbwyoksZORzAG"
+                className="w-fit block"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BulletPoint point="Telegram" />
+              </a>
+              <a
+                href="https://discord.com/invite/hmhdWV6EVK"
+                className="w-fit block"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BulletPoint point="Discord" />
+              </a>
             </div>
           </div>
 
@@ -142,14 +164,42 @@ function UpdatedRoadmap() {
             </Title>
 
             <div className="space-y-3">
-              <ListIntended title="Website" />
-              <ListIntended title="Medium" />
-              <ListIntended title="Whitepapper" />
-              <ListIntended title="Linktree" />
+              <a
+                href="token.script.tv"
+                className="w-fit block"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BulletPoint point="Website" />
+              </a>
+              <a
+                href="https://medium.com/@scriptnetwork"
+                className="w-fit block"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BulletPoint point="Medium" />
+              </a>
+              <a
+                href="https://whitepaper.script.tv/"
+                className="w-fit block"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BulletPoint point="Whitepapper" />
+              </a>
+              <a
+                href="/"
+                className="w-fit block"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BulletPoint point="Linktree" />
+              </a>
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <Title className="text-primary font-medium mb-4" variant="20">
               8.1 Advisors
             </Title>
@@ -160,7 +210,7 @@ function UpdatedRoadmap() {
               <ListIntended title="Scott Dunlap: VP at Adidas, CEO at Runtastic" />
               <ListIntended title="Scott Dunlap: VP at Adidas, CEO at Runtastic" />
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div>

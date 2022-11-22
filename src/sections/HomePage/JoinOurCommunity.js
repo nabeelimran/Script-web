@@ -25,30 +25,37 @@ function JoinOurCommunity() {
         </div>
         <div className="grid sm:grid-cols-2 gap-5">
           <SocialCard
+            link="https://discord.com/invite/hmhdWV6EVK"
             title="Discord"
             IconComponent={() => <Icon icon="ic:outline-discord" />}
           />
           <SocialCard
+            link="https://t.me/+Vu1gbwyoksZORzAG"
             title="Telegram"
             IconComponent={() => <Icon icon="file-icons:telegram" />}
           />
           <SocialCard
+            link="https://twitter.com/script_network"
             title="Twitter"
             IconComponent={() => <Icon icon="mdi:twitter" />}
           />
           <SocialCard
+            link="https://medium.com/@scriptnetwork"
             title="Blog"
             IconComponent={() => <Icon icon="bi:medium" />}
           />
           <SocialCard
+            link="https://www.facebook.com/scriptnetwork"
             title="Facebook"
             IconComponent={() => <Icon icon="ic:baseline-facebook" />}
           />
           <SocialCard
+            link="https://www.instagram.com/script_network/"
             title="Instagram"
             IconComponent={() => <Icon icon="ri:instagram-fill" />}
           />
           <SocialCard
+            link="https://github.com/scriptnetwork"
             title="Github"
             IconComponent={() => <Icon icon="mdi:github" />}
           />
