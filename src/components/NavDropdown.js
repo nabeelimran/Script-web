@@ -37,7 +37,7 @@ function NavDropdown({ showDropdown, title, children, twoColumns }) {
     </div>
   ) : (
     <DropdownAccordion title={title}>
-      <div className="bg-shade-dark-blue-2 py-4 px-6 rounded mt-4 space-y-6">
+      <div className="bg-shade-dark-blue-2 py-4 px-6 rounded mt-4 grid gap-6">
         {children}
       </div>
     </DropdownAccordion>
