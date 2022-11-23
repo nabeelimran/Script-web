@@ -26,7 +26,7 @@ function Research() {
           <Hero />
         </div>
 
-        <div className="yellow-corner-blob"></div>
+        <div className="yellow-corner-blob opacity-60"></div>
       </div>
 
       <div className="mb-12 lg:mb-16">

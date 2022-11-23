@@ -1,4 +1,5 @@
 import CordCard from "components/CordCard";
+import MetachainCircle from "components/MetachainCircle";
 import Title from "components/Title";
 import React from "react";
 
@@ -12,26 +13,9 @@ function ScriptTVVideo() {
           </Title>
         </div>
 
-        <div className="w-[200px] xl:w-[253px] h-[200px] xl:h-[253px] bg-primary rounded-full flex items-center justify-center mx-auto mb-10">
-          <div className="px-6">
-            <p className="text-xl xl:text-2xl text-center font-bold text-black mb-1">
-              Metachain
-            </p>
+        <div className="grid md:grid-cols-2 gap-6 xl:gap-8 relative">
+          <MetachainCircle />
 
-            <p className="text-center text-sm xl:text-base text-black mb-2">
-              Customize Highly Scable blockchain for your web3 Business
-            </p>
-
-            <a
-              href="/"
-              className="block w-fit mx-auto text-sm underline text-black font-medium"
-            >
-              Learn more
-            </a>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 xl:gap-8">
           <CordCard
             title="Web3 Video API"
             desc={

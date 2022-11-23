@@ -12,7 +12,7 @@ function TermsAndConditions() {
 
       <div className="container-two mb-20">
         <div className="mb-14 lg:mb-20">
-          <Title variant="44">Terms & Condition</Title>
+          <Title variant="44">Terms & Conditions</Title>
         </div>
 
         <div className="dictator-content">

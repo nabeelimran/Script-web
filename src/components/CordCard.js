@@ -7,14 +7,14 @@ function CordCard({ title, desc, linkTitle, link = "/" }) {
         {title}
       </h4>
 
-      <p className="text-center font-medium fs-16px text-white opacity-70 flex-1">
+      <p className="text-center font-medium text-sm xl:text-base text-white opacity-70 flex-1">
         {desc}
       </p>
 
       {linkTitle && (
         <a
           href={link}
-          className="w-fit mx-auto block fs-16px text-primary mt-6 underline"
+          className="w-fit mx-auto block text-sm xl:text-base text-primary mt-6 underline"
         >
           {linkTitle}
         </a>

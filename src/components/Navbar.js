@@ -116,12 +116,20 @@ function Navbar() {
             >
               Technology
             </Link>
-            <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
+            <a
+              href="https://whitepaper.script.tv"
+              target="_blank"
+              rel="noreferrer"
+              className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+            >
               Docs
-            </p>
+            </a>
           </div>
 
-          <Button label="Sign In" className="mt-8 lg:mt-0" />
+          <Button
+            label="Sign In"
+            className="mt-8 lg:mt-0 flex justify-center"
+          />
         </div>
       </div>
 

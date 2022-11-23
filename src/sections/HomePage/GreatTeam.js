@@ -2,6 +2,32 @@ import TeamCard from "components/TeamCard";
 import Title from "components/Title";
 import React from "react";
 
+const companies = [
+  { iconImg: "images/partners/poolz.svg", className: "w-[24vh]" },
+  { iconImg: "images/partners/NFTrade.svg" },
+  // { iconImg: "images/partners/kommunitas.png" },
+  { iconImg: "images/partners/chainlink.svg" },
+  { iconImg: "images/partners/dwf.svg", className: "w-[26vh]" },
+  { iconImg: "images/partners/arcana-network.svg" },
+  { iconImg: "images/partners/yay-games.png", className: "w-[22vh]" },
+  { iconImg: "images/partners/gate-io.png" },
+  { iconImg: "images/partners/kenzo.png" },
+  { iconImg: "images/partners/karus-starter.svg" },
+  { iconImg: "images/partners/gameFi-cap.png" },
+  { iconImg: "images/partners/spearad.webp" },
+  { iconImg: "images/partners/unruly.svg", className: "w-[26vh]" },
+  { iconImg: "images/partners/leomark-studios.png" },
+  { iconImg: "images/partners/panony-group.jpg" },
+  // { iconImg: "images/partners/d.png" },
+  // { iconImg: "images/partners/Do.png" },
+  // { iconImg: "images/partners/C.png" },
+  // { iconImg: "images/partners/S.png" },
+  // { iconImg: "images/partners/SY.png" },
+  // { iconImg: "images/partners/m.png" },
+  // { iconImg: "images/partners/U.png" },
+  // { iconImg: "images/partners/G.png" },
+];
+
 function GreatTeam() {
   return (
     <section>
@@ -106,30 +132,16 @@ function GreatTeam() {
 
       <div className="bg-blue-2 ">
         <div className="mt-16 lg:mt-24 container py-10 md:py-16 grid-cols-2 sm:grid-cols-3 grid md:grid-cols-4 items-center gap-x-12 gap-y-6 sm:gap-x-8 sm:gap-y-8">
-          <div className="flex justify-center">
-            <img src="images/partners/d.png" className="w-[30vh]" alt="" />
-          </div>
-          <div className="flex justify-center">
-            <img src="images/partners/Do.png" className="w-[30vh]" alt="" />
-          </div>
-          <div className="flex justify-center">
-            <img src="images/partners/C.png" className="w-[30vh]" alt="" />
-          </div>
-          <div className="flex justify-center">
-            <img src="images/partners/S.png" className="w-[30vh]" alt="" />
-          </div>
-          <div className="flex justify-center">
-            <img src="images/partners/SY.png" className="w-[30vh]" alt="" />
-          </div>
-          <div className="flex justify-center">
-            <img src="images/partners/m.png" className="w-[30vh]" alt="" />
-          </div>
-          <div className="flex justify-center">
-            <img src="images/partners/U.png" className="w-[30vh]" alt="" />
-          </div>
-          <div className="flex justify-center">
-            <img src="images/partners/G.png" className="w-[30vh]" alt="" />
-          </div>
+          {companies.map(({ iconImg, className }, i) => (
+            <div className="flex justify-center">
+              <img
+                key={i}
+                src={iconImg}
+                className={`${className ? className : "w-[30vh]"}`}
+                alt=""
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

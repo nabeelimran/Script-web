@@ -174,11 +174,11 @@
   }
 
   .dictator-title {
-    @apply fs-24px font-semibold text-primary;
+    @apply text-lg lg:text-2xl xl:text-3xl font-semibold text-primary;
   }
 
   .dictator-title-center {
-    @apply fs-24px font-semibold text-primary text-center;
+    @apply text-lg lg:text-2xl xl:text-3xl font-semibold text-primary text-center;
   }
 
   .dictator-desc {
