@@ -22,7 +22,7 @@ function Comparing() {
                 <th>
                   <img
                     src="images/logo-black.svg"
-                    className="max-w-[135px]"
+                    className="max-w-[110px]"
                     alt=""
                   />
                 </th>

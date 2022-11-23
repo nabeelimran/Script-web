@@ -8,8 +8,8 @@ import React from "react";
 function UpdatedRoadmap() {
   return (
     <section>
-      <div className="container">
-        <Title className="text-primary font-medium mb-5" variant="24">
+      <div className="container-two">
+        <Title className="text-primary font-medium mb-5" variant="20">
           6.2 Updated roadmap
         </Title>
 
@@ -121,7 +121,7 @@ function UpdatedRoadmap() {
         </div>
 
         <div className="mb-20">
-          <BlubDivider noContainer={true} />
+          <BlubDivider container="" />
         </div>
 
         <div className="space-y-12 mb-20">

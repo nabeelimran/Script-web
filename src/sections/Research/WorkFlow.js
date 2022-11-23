@@ -16,13 +16,13 @@ const ProgressBarWithTitl = ({ value, color, title }) => {
 function WorkFlow() {
   return (
     <section>
-      <div className="container">
+      <div className="container-two">
         <div className="mb-10 lg:mb-16">
-          <Title className="text-primary font-medium mb-3" variant="24">
+          <Title className="text-primary font-medium mb-3" variant="20">
             The Script TV protocol workflow is based on the ‘Watch to Earn’
             model.
           </Title>
-          <Title className="text-primary font-medium" variant="24">
+          <Title className="text-primary font-medium" variant="20">
             SPAY Core Tokenomics
           </Title>
         </div>

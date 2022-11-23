@@ -4,8 +4,8 @@ import React from "react";
 
 function ExistingProducts() {
   return (
-    <section className="container">
-      <Title className="text-left font-medium text-primary mb-10" variant="24">
+    <section className="container-two">
+      <Title className="text-left font-medium text-primary mb-10" variant="20">
         3. Existing Products
       </Title>
 

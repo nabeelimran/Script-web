@@ -52,7 +52,7 @@ function HomePage() {
       <div className="mb-20 lg:mb-24">
         <Start />
       </div>
-      <Footer />
+      <Footer container="container" />
     </div>
   );
 }

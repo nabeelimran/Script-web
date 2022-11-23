@@ -1,11 +1,10 @@
-import BulletPoint from "components/BulletPoint";
 import ListIntended from "components/ListIntended";
 import React from "react";
 
 function UpperPoints() {
   return (
     <div>
-      <div className="container research-list-wrapper">
+      <div className="container-two research-list-wrapper">
         <div className="research-list">
           <ListIntended
             title="Script TV is a watch to earn television platform. Users, through watching tv and completing

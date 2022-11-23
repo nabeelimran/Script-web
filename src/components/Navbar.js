@@ -70,10 +70,12 @@ function Navbar() {
                 subtitle="Our native marketplace for buying, selling and renting ScriptGLASS ."
               />
               <DropdownCard
+                to="/validator"
                 title="Script Blockchain"
                 subtitle="our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."
               />
               <DropdownCard
+                to="/research"
                 title="ScriptGLASS"
                 subtitle="Our upgradeable NFT collection"
               />
@@ -87,17 +89,19 @@ function Navbar() {
               />
             </NavDropdown>
             <NavDropdown
-              title="How It Work"
+              title="How it works"
               showDropdown={true}
               twoColumns={true}
             >
               <DropdownCard
+                to="/research"
                 title="ScriptGLASS explained"
                 subtitle="our user first watch to earn television platform."
               />
               <DropdownCard
-                title="ScriptTV - how to earn"
-                subtitle="Our native marketplace for buying, selling and renting ScriptGLASS ."
+                to="/token"
+                title="Script Tokens"
+                subtitle="Learn about SCPT and SPAY tokens"
               />
             </NavDropdown>
             <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
@@ -106,15 +110,18 @@ function Navbar() {
             <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
               Explorer
             </p>
-            <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
-              Wallet
-            </p>
+            <Link
+              to="/technology"
+              className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+            >
+              Technology
+            </Link>
             <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
               Docs
             </p>
           </div>
 
-          <Button label="Sing In" className="mt-8 lg:mt-0" />
+          <Button label="Sign In" className="mt-8 lg:mt-0" />
         </div>
       </div>
 

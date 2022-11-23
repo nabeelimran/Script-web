@@ -12,7 +12,7 @@ function ScriptTVVideo() {
           </Title>
         </div>
 
-        <div className="w-[200px] xl:w-[253px] h-[200px] xl:h-[253px] bg-primary rounded-full flex items-center justify-center mx-auto mb-10 lg:mb-20">
+        <div className="w-[200px] xl:w-[253px] h-[200px] xl:h-[253px] bg-primary rounded-full flex items-center justify-center mx-auto mb-10">
           <div className="px-6">
             <p className="text-xl xl:text-2xl text-center font-bold text-black mb-1">
               Metachain

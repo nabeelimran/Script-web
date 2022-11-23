@@ -29,7 +29,7 @@ function Hero() {
           </p>
 
           <div className="flex items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start">
-            <Button label="Whitepapper" />
+            <Button label="Whitepaper" />
             <Button label="Launch app" variant={2} arrowVisible={true} />
           </div>
 
@@ -42,11 +42,11 @@ function Hero() {
 
           <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-8 items-stretch justify-center lg:justify-start">
             <div className="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-6 justify-center sm:justify-start space-y-4 sm:space-y-0">
-              <div className="flex -space-x-4 xl:-space-x-7">
+              {/* <div className="flex -space-x-4 xl:-space-x-7">
                 <EconomyAvatar img="images/avatar-1.png" className="z-30" />
                 <EconomyAvatar img="images/avatar-2.png" className="z-20" />
                 <EconomyAvatar img="images/avatar-3.png" className="z-10" />
-              </div>
+              </div> */}
               <div>
                 <p className="text-white font-medium fs-20px mb-1">150,000+</p>
                 <p className="text-sm text-white opacity-50">
@@ -71,7 +71,7 @@ function Hero() {
 
             <img
               src="images/hero-img.png"
-              className="w-full hidden lg:block -z-20 relative"
+              className="w-full hidden lg:block z-10 relative"
               alt=""
             />
           </div>

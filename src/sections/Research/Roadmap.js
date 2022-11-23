@@ -20,12 +20,12 @@ const milestones = {
 function Roadmap() {
   return (
     <section>
-      <div className="container">
+      <div className="container-two">
         <div className="space-y-4 mb-8">
-          <Title variant="24" className="text-primary font-medium">
+          <Title variant="20" className="text-primary font-medium">
             6. Roadmap, updates, and business development
           </Title>
-          <Title variant="24" className="text-primary font-medium">
+          <Title variant="20" className="text-primary font-medium">
             6.1 Completed Milestones
           </Title>
         </div>

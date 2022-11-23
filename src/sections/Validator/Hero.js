@@ -19,7 +19,7 @@ function Hero() {
 
           <Title
             className="lh-1_2 font-bold mb-10 max-w-[30rem] lg:max-w-none mx-auto lg:mx-0"
-            variant="48"
+            variant="44"
           >
             Become a validator and help secure the future of Script
           </Title>

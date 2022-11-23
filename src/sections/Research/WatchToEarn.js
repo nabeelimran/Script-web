@@ -4,8 +4,8 @@ import React from "react";
 
 function WatchToEarn() {
   return (
-    <section className="container">
-      <Title className="text-left font-medium text-primary mb-10" variant="24">
+    <section className="container-two">
+      <Title className="text-left font-medium text-primary mb-10" variant="20">
         2. Watch-to-earn with online watch TV online and get paid rewards per
         block
       </Title>

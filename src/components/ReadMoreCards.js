@@ -7,11 +7,11 @@ function ReadMoreCards({ img = "images/read-more-banner.png" }) {
       <img src={img} className="w-full block object-cover h-[159px]" alt="" />
 
       <div className="px-4 py-4 pb-8">
-        <Title className="font-medium mb-2" variant="24">
+        <Title className="font-medium mb-3" variant="18">
           Stargate Finance (STG)
         </Title>
 
-        <p className="text-sm lg:text-base opacity-80">
+        <p className="text-sm opacity-80">
           An Omnichain Liquidity Transport Protocol.
         </p>
       </div>

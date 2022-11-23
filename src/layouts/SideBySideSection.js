@@ -5,10 +5,11 @@ function SideBySideSection({
   LeftComponent,
   RightComponent,
   verticalReverseOnMobile = false,
+  container = "container-two",
 }) {
   return (
     <section
-      className={`container grid md:grid-cols-2 gap-10 md:gap-16 lg:gap-28 ${className}`}
+      className={`${container} grid md:grid-cols-2 gap-10 md:gap-16 lg:gap-28 ${className}`}
     >
       {LeftComponent && <LeftComponent />}
       {RightComponent && <RightComponent />}

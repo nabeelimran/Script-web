@@ -34,7 +34,7 @@ function Validator() {
       <div className="mb-20 lg:mb-24">
         <Comparing />
       </div>
-      <Footer />
+      <Footer container="container" />
     </div>
   );
 }

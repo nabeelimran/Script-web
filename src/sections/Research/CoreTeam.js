@@ -5,8 +5,8 @@ import React from "react";
 function CoreTeam() {
   return (
     <section>
-      <div className="container">
-        <Title className="text-primary font-medium mb-8 lg:mb-12" variant="24">
+      <div className="container-two">
+        <Title className="text-primary font-medium mb-8 lg:mb-12" variant="20">
           5. Core Team
         </Title>
 

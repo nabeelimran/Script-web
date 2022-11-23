@@ -1,4 +1,3 @@
-import BulletPoint from "components/BulletPoint";
 import ListIntended from "components/ListIntended";
 import Title from "components/Title";
 import React from "react";
@@ -6,18 +5,18 @@ import React from "react";
 function WhatIsScriptTV() {
   return (
     <section>
-      <div className="container">
+      <div className="container-two">
         <div className="mb-4">
           <Title
             className="text-left font-medium text-primary mb-4 lg:mb-12"
-            variant="24"
+            variant="20"
           >
             1. What is Script Network?
           </Title>
 
           <img
             src="images/hero-img.png"
-            className="mx-auto w-full max-w-[624px]"
+            className="mx-auto w-full max-w-[400px]"
             alt=""
           />
         </div>

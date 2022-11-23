@@ -22,7 +22,7 @@ function Television() {
           <TelevisionCard
             subtitle="Web2"
             title={
-              <p className="text-center text-white text-xl font-semibold">
+              <p className="text-center text-white fs-24px font-semibold">
                 Current Market
               </p>
             }
@@ -35,10 +35,7 @@ function Television() {
                 No rewards to users
               </p>
               <p className="fs-16px text-white font-medium opacity-80">
-                No control over any platform
-              </p>
-              <p className="fs-16px text-white font-medium opacity-80">
-                decisions
+                No control on platforms
               </p>
               <p className="fs-16px text-white font-medium opacity-80">
                 Complex advertising

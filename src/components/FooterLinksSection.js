@@ -1,17 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FooterLinksSection = ({ title, links = [] }) => {
   return (
     <div className="">
       <h4 className="text-base xl:text-lg uppercase font-bold mb-4">{title}</h4>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         {links &&
-          links.map((obj, i) => (
-            <p className="text-xs xl:text-sm cursor-pointer w-fit">
-              {obj.title}
-            </p>
-          ))}
+          links.map(
+            ({ title, to = "/", target = "_self", anchorTag = false }, i) =>
+              anchorTag ? (
+                <a
+                  href={to}
+                  target={target}
+                  className="block text-xs xl:text-sm cursor-pointer w-fit"
+                >
+                  {title}
+                </a>
+              ) : (
+                <Link
+                  to={to}
+                  target={target}
+                  className="block text-xs xl:text-sm cursor-pointer w-fit"
+                >
+                  {title}
+                </Link>
+              )
+          )}
       </div>
     </div>
   );

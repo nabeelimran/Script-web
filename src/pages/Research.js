@@ -29,47 +29,47 @@ function Research() {
         <div className="yellow-corner-blob"></div>
       </div>
 
-      <div className="mb-12 lg:mb-24">
-        <BlubDivider />
+      <div className="mb-12 lg:mb-16">
+        <BlubDivider container="container-two" />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <UpperPoints />
       </div>
 
-      <div className="mb-20 lg:mb-24">
-        <BlubDivider />
+      <div className="mb-20 lg:mb-20">
+        <BlubDivider container="container-two" />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <WhatIsScriptTV />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <WatchToEarn />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <ExistingProducts />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <TokenSalesAndEconomics />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <WorkFlow />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <CoreTeam />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <Roadmap />
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <UpdatedRoadmap />
       </div>
 

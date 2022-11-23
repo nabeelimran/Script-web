@@ -52,7 +52,7 @@
   }
 
   .container-two {
-    @apply mx-auto w-[90%] lg:w-[70%] max-w-[1200px];
+    @apply mx-auto w-[90%] max-w-[940px];
   }
 
   .nav-link {
@@ -95,16 +95,16 @@
   }
 
   .validator-table th {
-    @apply text-sm lg:text-base xl:text-lg text-primary;
+    @apply text-sm lg:text-base text-primary;
   }
 
   .validator-table td {
-    @apply text-xs lg:text-sm xl:text-base;
+    @apply text-xs lg:text-sm;
   }
 
   .validator-table td,
   .validator-table th {
-    @apply bg-blue-1 py-4 xl:py-5 px-3 md:px-6 font-medium;
+    @apply bg-blue-1 py-4 px-3 md:px-6 font-medium;
   }
 
   /* WRAAPPERS */
@@ -140,7 +140,7 @@
 
   .token-stats-table th,
   .token-stats-table td {
-    @apply text-left px-6 py-2 md:py-3 text-xs sm:text-sm lg:text-base font-medium;
+    @apply text-left px-6 py-2 md:py-3 text-xs sm:text-sm font-medium;
   }
 
   /*  */

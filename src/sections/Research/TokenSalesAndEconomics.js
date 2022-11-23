@@ -31,13 +31,13 @@ const tokenAllocation = {
 function TokenSalesAndEconomics() {
   return (
     <section>
-      <div className="container">
-        <Title className="text-primary font-medium mb-6" variant="24">
+      <div className="container-two">
+        <Title className="text-primary font-medium mb-6" variant="20">
           4. Token sales and economics
         </Title>
 
         <div className="space-y-6 mb-14">
-          <Title className="text-primary font-medium" variant="24">
+          <Title className="text-primary font-medium" variant="20">
             4.1 Token sales data
           </Title>
 
@@ -45,7 +45,7 @@ function TokenSalesAndEconomics() {
         </div>
 
         <div className="space-y-6 mb-14">
-          <Title className="text-primary font-medium" variant="24">
+          <Title className="text-primary font-medium" variant="20">
             4.2 Token allocation
           </Title>
 
