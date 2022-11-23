@@ -87,9 +87,9 @@ function Footer({ container = "container-two" }) {
           <FooterLinksSection
             title="pRIVACY"
             links={[
-              { title: "Trams of Service" },
-              { title: "Privacy Policy" },
-              { title: "Cookies Policy" },
+              { title: "Trams of Service", to: "/terms-condition" },
+              { title: "Privacy Policy", to: "/privacy-policy" },
+              { title: "Cookies Policy", to: "/cookies-policy" },
             ]}
           />
         </div>

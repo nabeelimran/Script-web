@@ -163,6 +163,35 @@
     @apply min-w-[700px] table-auto;
   }
 
+  /* dictator SECTION */
+
+  .dictator-content {
+    @apply space-y-16 lg:space-y-20;
+  }
+
+  .dictator-section {
+    @apply space-y-5;
+  }
+
+  .dictator-title {
+    @apply fs-24px font-semibold text-primary;
+  }
+
+  .dictator-title-center {
+    @apply fs-24px font-semibold text-primary text-center;
+  }
+
+  .dictator-desc {
+    @apply fs-16px lh-1_6;
+  }
+
+  .dictator-indented-1 {
+    @apply ml-8 lg:ml-[85px];
+  }
+  .dictator-indented-2 {
+    @apply ml-4 lg:ml-[35px];
+  }
+
   /* FONT-SIZES */
 
   .text-inherit {
