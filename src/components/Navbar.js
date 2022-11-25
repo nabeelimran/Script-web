@@ -24,7 +24,7 @@ function Navbar() {
       <div className="relative">
         <Link
           to="/"
-          className="block lg:absolute top-1/2 left-0 translate-x-0 lg:-translate-y-1/2 w-10 lg:w-12"
+          className="lg:absolute top-1/2 left-0 translate-x-0 lg:-translate-y-1/2 w-10 lg:w-12 flex items-center space-x-4"
         >
           {/* <img
           src="images/logo.svg"
@@ -32,10 +32,14 @@ function Navbar() {
           alt=""
         /> */}
           <img
-            src="images/logos/script-tv-logo.svg"
+            src="images/logos/clean-logo.png"
             className="w-full cursor-pointer"
             alt=""
           />
+
+          <p className="fs-18px text-primary font-bold w-fit whitespace-nowrap">
+            Script Network
+          </p>
         </Link>
       </div>
 

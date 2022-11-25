@@ -41,7 +41,6 @@ const companies = [
     iconImg: "images/partners/gameFi-cap.png",
     className: "w-[28vh] invert-[100%] brightness-0",
   },
-  // { iconImg: "images/partners/spearad.webp" },
   {
     iconImg: "images/partners/unruly.svg",
     className: "w-[19vh] invert-[100%] brightness-0",
@@ -61,6 +60,22 @@ const companies = [
   {
     iconImg: "images/partners/yay-games.png",
     className: "w-[16vh] invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/jin.png",
+    className: "w-[22vh] invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/k.png",
+    className: "w-[28vh] invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/magna.png",
+    className: "w-[22vh] invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/chainport.png",
+    className: "w-[26vh] invert-[100%] brightness-0",
   },
   // { iconImg: "images/partners/d.png" },
   // { iconImg: "images/partners/Do.png" },
@@ -91,7 +106,7 @@ const team = [
   },
   {
     name: "Antoinette Chaela Icabales",
-    img: "images/team/Antoinette-Chaela-Icabales.png",
+    img: "images/team/Antoinette-Chaela-Icabales-2.JPG",
     designation: "Co Founder/Content acq Partnership",
   },
   {
@@ -102,7 +117,7 @@ const team = [
   {
     name: "Maxwell Chan",
     img: "images/team/Maxwell-Chan.jpeg",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Advisor",
   },
   {
     name: "Michael Terpin",
