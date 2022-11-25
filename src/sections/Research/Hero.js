@@ -12,8 +12,8 @@ function Hero() {
             alt=""
           /> */}
           <img
-            src="images/logos/script-tv-logo.svg"
-            className="w-[50px] xl:w-[50px]"
+            src="images/logos/logo-black.png"
+            className="w-[50px] xl:w-[50px] invert"
             alt=""
           />
           <Title className="text-center lg:text-left font-medium" variant="30">
