@@ -60,6 +60,22 @@ const companies = [
     iconImg: "images/partners/gotbit.png",
     className: "invert-[100%] brightness-0 h-6 xl:h-10",
   },
+  {
+    iconImg: "images/partners/k.png",
+    className: "h-6 xl:h-10 invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/magna.png",
+    className: "h-5 xl:h-8 invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/chainport.png",
+    className: "h-6 xl:h-10 invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/jin.png",
+    className: "h-6 xl:h-12 invert-[100%] brightness-0",
+  },
   // { iconImg: "images/partners/d.png" ,className : "invert-[100%] brightness-0"},
   // { iconImg: "images/partners/Do.png" },
   // { iconImg: "images/partners/C.png" },

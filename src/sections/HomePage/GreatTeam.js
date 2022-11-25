@@ -37,9 +37,13 @@ const companies = [
     iconImg: "images/partners/karus-starter.svg",
     className: "w-[20vh] invert-[100%] brightness-0",
   },
+  // {
+  //   iconImg: "images/partners/gameFi-cap.png",
+  //   className: "w-[28vh] invert-[100%] brightness-0",
+  // },
   {
-    iconImg: "images/partners/gameFi-cap.png",
-    className: "w-[28vh] invert-[100%] brightness-0",
+    iconImg: "images/partners/gamefi-2.png",
+    className: "w-[26vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/unruly.svg",
