@@ -1,6 +1,7 @@
 import ScrollToTop from "components/ScrollToTop";
 import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
+import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
 import PrivacyPolicy from "pages/PrivacyPolicy";
 import Research from "pages/Research";
@@ -24,6 +25,7 @@ function App() {
         <Route path="/terms-condition" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
     </Router>
   );

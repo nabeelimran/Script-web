@@ -59,7 +59,8 @@ function PrivacyPolicy() {
 
           <div class="dictator-section">
             <h4 class="dictator-title text-header">
-              1. TYPES OF DATA WE COLLECT
+              1. Types of data we collect
+              {/* 1. TYPES OF DATA WE COLLECT */}
             </h4>
             <p class="dictator-desc dictator-indented-2">
               The types of Personal Data that we collect directly from you or
@@ -84,8 +85,9 @@ function PrivacyPolicy() {
             </p>
           </div>
           <div class="dictator-section">
-            <h4 class="dictator-title text-header">
-              2. HOW DO WE COLLECT PERSONAL DATA?
+            <h4 class="dictator-title text-header ">
+              {/* 2. HOW DO WE COLLECT PERSONAL DATA? */}
+              2. How do we collect personal data?
             </h4>
             <p class="dictator-desc dictator-indented-2">
               This Privacy Policy covers any Personal Data provided to us:
@@ -127,7 +129,8 @@ function PrivacyPolicy() {
           </div>
           <div class="dictator-section">
             <h4 class="dictator-title text-header">
-              3. WHAT OTHER DATA DO WE COLLECT?
+              {/* 3. WHAT OTHER DATA DO WE COLLECT? */}
+              3. What other data do we collect?
             </h4>
             <p class="dictator-desc dictator-indented-2">
               From our website and services, we collect your Personal Data in
@@ -211,7 +214,8 @@ function PrivacyPolicy() {
           </div>
           <div class="dictator-section">
             <h4 class="dictator-title text-header">
-              4. WHAT DO WE USE YOUR PERSONAL DATA FOR?
+              {/* 4. WHAT DO WE USE YOUR PERSONAL DATA FOR? */}
+              4. What do we use your personal data for?
             </h4>
             <p class="dictator-desc dictator-indented-2">
               We may use your Personal Data for the following “Core Purposes”:
@@ -261,7 +265,8 @@ function PrivacyPolicy() {
           </div>
           <div class="dictator-section">
             <h4 class="dictator-title text-header">
-              5. ACCESSING / CORRECTING / UPDATING YOUR PERSONAL DATA
+              {/* 5. ACCESSING / CORRECTING / UPDATING YOUR PERSONAL DATA */}
+              5. Accessing / correcting / updating your personal data
             </h4>
             <div class="dictator-section dictator-indented-2">
               <p class="dictator-desc">
@@ -336,7 +341,7 @@ function PrivacyPolicy() {
             </div>
           </div>
           <div class="dictator-section">
-            <h4 class="dictator-title text-header">6. WITHDRAWING CONSENT</h4>
+            <h4 class="dictator-title text-header">6. Withdrawing consent</h4>
             <p class="dictator-desc dictator-indented-2">
               Please note that it is obligatory for the Company to process your
               Personal Data for the Core Purpose as stated above, without which
@@ -360,7 +365,8 @@ function PrivacyPolicy() {
           </div>
           <div class="dictator-section">
             <h4 class="dictator-title text-header">
-              7. TO WHOM DO WE DISCLOSE YOUR PERSONAL DATA?
+              {/* 7. TO WHOM DO WE DISCLOSE YOUR PERSONAL DATA? */}
+              7. To whom do we disclose your personal data?
             </h4>
             <p class="dictator-desc dictator-indented-2">
               We will not trade or sell your Personal Data to third parties.
@@ -387,7 +393,8 @@ function PrivacyPolicy() {
           </div>
           <div class="dictator-section">
             <h4 class="dictator-title text-header">
-              8. HOW LONG WILL WE RETAIN YOUR PERSONAL DATA?
+              {/* 8. HOW LONG WILL WE RETAIN YOUR PERSONAL DATA? */}
+              8. How long will we retain your personal data?
             </h4>
             <p class="dictator-desc dictator-indented-2">
               The Company may store data in global hosting providers with
@@ -411,7 +418,8 @@ function PrivacyPolicy() {
           </div>
           <div class="dictator-section">
             <h4 class="dictator-title text-header">
-              9. LINKS TO THIRD PARTY WEBSITES
+              {/* 9. LINKS TO THIRD PARTY WEBSITES */}
+              9. Links to third party websites
             </h4>
             <p class="dictator-desc dictator-indented-2">
               We may link this website and/or our applications to other
@@ -431,7 +439,8 @@ function PrivacyPolicy() {
           </div>
           <div class="dictator-section">
             <h4 class="dictator-title text-header">
-              10. ADDITIONAL INFORMATION OR ASSISTANCE
+              {/* 10. ADDITIONAL INFORMATION OR ASSISTANCE */}
+              10. Additional information or assistance
             </h4>
             <p class="dictator-desc dictator-indented-2">
               Please note that this Privacy Policy may be amended from time to

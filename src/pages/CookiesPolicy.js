@@ -89,7 +89,7 @@ function CookiesPolicy() {
           </div>
           <div class="dictator-section">
             <h4 class="dictator-title">4. What are the cookies used for?</h4>
-            <h6 class="dictator-title-center">Functional Cookies</h6>
+            <h6 class="dictator-title-center">Functional cookies</h6>
             <p class="dictator-desc  dictator-indented-2">
               Functional cookies are essential to provide our services as we
               want to provide them. They are used to remember your preferences

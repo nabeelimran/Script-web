@@ -6,9 +6,14 @@ function Hero() {
     <section>
       <div className="container-two">
         <div className="flex flex-col lg:flex-row items-center space-y-6 lg:space-y-0 lg:space-x-6 justify-center mb-6">
-          <img
+          {/* <img
             src="images/logo.svg"
             className="w-[100px] md:w-[120px] xl:w-[160px]"
+            alt=""
+          /> */}
+          <img
+            src="images/logos/script-tv-logo.svg"
+            className="w-[50px] xl:w-[50px]"
             alt=""
           />
           <Title className="text-center lg:text-left font-medium" variant="30">

@@ -10,7 +10,7 @@ function CoreTeam() {
           5. Core Team
         </Title>
 
-        <div className="grid md:grid-cols-3 gap-5 lg:gap-9">
+        <div className="grid md:grid-cols-2 gap-5 lg:gap-9">
           <CoreTeamCard
             title="Abiel Alazar"
             desc="Decades of experience in game
@@ -21,14 +21,6 @@ ranking on the ios app store"
           />
           <CoreTeamCard
             title="Akeem Ojuko"
-            desc="Decades of experience in game
-development, operation, and marketing,
-Developed several games with top
-ranking on the ios app store"
-            designation="Co-Founder"
-          />
-          <CoreTeamCard
-            title="Jerry Huang"
             desc="Decades of experience in game
 development, operation, and marketing,
 Developed several games with top

@@ -20,9 +20,9 @@ function Footer({ container = "container-two" }) {
             ]}
           />
           <FooterLinksSection
-            title="How It Works"
+            title="Script Tokens"
             links={[
-              { title: "ScriptGLASS explained", to: "/research" },
+              { title: "learn about SCPT and SPAY tokens", to: "/research" },
               { title: "ScriptTV - how to earn", to: "/token" },
             ]}
           />
@@ -73,19 +73,17 @@ function Footer({ container = "container-two" }) {
               },
             ]}
           />
-          <FooterLinksSection
+          {/* <FooterLinksSection
             title="About Script.tv"
             links={[
-              { title: "Script TV" },
-              { title: "Script Glass" },
               { title: "Marketplace" },
               { title: "dStorage" },
               { title: "Script Blockchain" },
               { title: "sADs" },
             ]}
-          />
+          /> */}
           <FooterLinksSection
-            title="pRIVACY"
+            title="TERMS"
             links={[
               { title: "Trams of Service", to: "/terms-condition" },
               { title: "Privacy Policy", to: "/privacy-policy" },
