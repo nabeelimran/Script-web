@@ -4,8 +4,9 @@ import React from "react";
 const VARIANT_DEFAULT = "text-darkGray bg-primary";
 const VARIANT_1 = "bg-blue-1 text-white";
 const VARIANT_2 = "bg-shade-grayis text-white";
+const VARIANT_3 = "bg-transparent border-2 border-primary text-primary";
 
-const variants = [VARIANT_DEFAULT, VARIANT_1, VARIANT_2];
+const variants = [VARIANT_DEFAULT, VARIANT_1, VARIANT_2, VARIANT_3];
 
 function Button({ label, className, variant = 0, arrowVisible = false }) {
   return (

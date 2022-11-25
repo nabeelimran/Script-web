@@ -14,6 +14,7 @@ module.exports = {
       gray: "#646464",
       gray2: "#151515",
       darkBlue: "#060910",
+
       grey: {
         1: "#101011",
       },
@@ -22,6 +23,7 @@ module.exports = {
         2: "#09090A",
         3: "#121215",
         4: "#5F6978",
+        link: "#3C58EE",
       },
       shade: {
         "dark-blue": "#10131A",

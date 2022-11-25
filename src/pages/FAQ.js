@@ -1,4 +1,5 @@
 import Accordion from "components/Accordion";
+import Button from "components/Button";
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import Title from "components/Title";
@@ -150,6 +151,45 @@ function FAQ() {
             {RightFAQ.map((item, i) => (
               <Accordion title={item.question}>{item.content}</Accordion>
             ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-16 lg:mb-20">
+        <div className="container">
+          <div className="bg-[#131313] rounded-3xl p-8 sm:p-10 md:p-14 grid md:grid-cols-[1fr_237px] gap-12">
+            <div>
+              <Title
+                variant="48"
+                className="text-left font-medium text-primary mb-5"
+                lineHeight={1.2}
+              >
+                <span className="text-blue-link">Script</span> <br />
+                Documentaton
+              </Title>
+
+              <p className="fs-16px font-medium mb-8">
+                Want to know more about how Script Network works? Head to our
+                whitepaper for details on our protocol, security, vision, and
+                tokenomics.
+              </p>
+
+              <div className="flex items-start flex-wrap -mx-2 -my-2">
+                <div className="m-2">
+                  <Button label="Whitepaper" />
+                </div>
+                <div className="m-2">
+                  <Button label="Exclusive Summary" variant={3} />
+                </div>
+                <div className="m-2">
+                  <Button label="One Pager" variant={3} />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <img src="images/whitepaper.png" className="w-full" alt="" />
+            </div>
           </div>
         </div>
       </div>

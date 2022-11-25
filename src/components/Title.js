@@ -15,9 +15,15 @@ function Title({
   children,
   className = "text-white font-bold text-center",
   variant = "36",
+  lineHeight = 1.4,
 }) {
   return (
-    <h1 className={`${variants[variant]} lh-1_4 ${className}`}>{children}</h1>
+    <h1
+      className={`${variants[variant]} ${className}`}
+      style={{ lineHeight: lineHeight }}
+    >
+      {children}
+    </h1>
   );
 }
 
