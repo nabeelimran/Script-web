@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import DropdownCard from "./DropdownCard";
 import NavDropdown from "./NavDropdown";
+import { Link as ScrollLink } from "react-scroll";
 
 function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -20,13 +21,23 @@ function Navbar() {
 
   return (
     <div className="container py-5 xl:py-7 flex items-center justify-between z-50">
-      <Link to="/">
-        <img
+      <div className="relative">
+        <Link
+          to="/"
+          className="block lg:absolute top-1/2 left-0 translate-x-0 lg:-translate-y-1/2 w-10 lg:w-12"
+        >
+          {/* <img
           src="images/logo.svg"
           className="w-24 md:w-28 xl:w-32 cursor-pointer"
           alt=""
-        />
-      </Link>
+        /> */}
+          <img
+            src="images/logos/script-tv-logo.svg"
+            className="w-full cursor-pointer"
+            alt=""
+          />
+        </Link>
+      </div>
 
       <div>
         <button
@@ -104,9 +115,13 @@ function Navbar() {
                 subtitle="Learn about SCPT and SPAY tokens"
               />
             </NavDropdown>
-            <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
+            <ScrollLink
+              smooth={true}
+              to="footer-community-links"
+              className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+            >
               Community
-            </p>
+            </ScrollLink>
             <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
               Explorer
             </p>

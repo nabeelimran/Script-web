@@ -21,38 +21,33 @@ function BecomeValidator() {
 
         <div className="validator-grid">
           <ValidatorCard
-            title="Learn About Your Responsibilities"
-            desc="The Script upgrades will only be successful if
-            validators understand the risks and
-            responsibilities."
-            linkTitle="Validator FAQ"
+            title="Learn about the requirements."
+            desc="Script Network requires validators and lightning nodes to understand the ecosystem, reward mechanism and the risks. "
+            linkTitle="Validator Information"
             img="images/validator/faq.png"
           />
           <ValidatorCard
-            title="Prep Nodes"
-            desc="You’ll need to run on Script node to become
-            a validator. Take a look at the checklist to
-            prepare yourself and your equipment."
+            title="Run a Node."
+            desc="To run a node you'll need to have a system beyond the minimum requirements, amongst a few other things. View more information on there, here"
             linkTitle="Heardware Checklist"
             img="images/validator/prep.png"
           />
 
           <ValidatorCard
-            title="Practice On A Testnet"
-            desc="We recommend you go through the entire
-            process on a testnet first to get comfortable."
+            title="Head to Testnet"
+            desc="Head to our Testnet and take part in buying, selling and trading tokens before our launch, alongside running a node. "
             linkTitle="Try the testnet"
             img="images/validator/practice.png"
           />
-          <ValidatorCard
+          {/* <ValidatorCard
             title="Avoid Phishing"
             desc="Make sure you're aware of how to avoid
 phishing attacks. We've prepared a list of
 things to look out for."
             linkTitle="Phishing Guide"
             img="images/validator/avoid.png"
-          />
-          <ValidatorCard
+          /> */}
+          {/* <ValidatorCard
             title="Wait To Become Active"
             desc="Once set up, your validator won't become
             active straight away. Use this time to
@@ -60,12 +55,10 @@ things to look out for."
             practice on a testnet."
             linkTitle="Complete Checklist"
             img="images/validator/wait.png"
-          />
+          /> */}
           <ValidatorCard
-            title="Time To Deposit"
-            desc="Once you're comfortable, you'll go through
-generating your keys and depositing your
-ETH."
+            title="Deposit SCPT."
+            desc="Once you're all set up, deposit tokens to stake to begin running a validator or lightning node. "
             linkTitle="Heardware Checklist"
             img="images/validator/time.png"
           />

@@ -18,7 +18,7 @@ function ValidatorCard({ link = "/", title, desc, linkTitle, img }) {
       <div className="flex-1 flex flex-col">
         <p className="fs-18px font-medium mb-2">{title}</p>
         <div className="flex-1">
-          <p className="text-sm font-light">{desc}</p>
+          <p className="text-sm">{desc}</p>
         </div>
 
         {linkTitle && (

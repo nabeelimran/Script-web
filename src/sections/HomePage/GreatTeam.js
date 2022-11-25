@@ -14,10 +14,11 @@ const companies = [
   { iconImg: "images/partners/kenzo.png" },
   { iconImg: "images/partners/karus-starter.svg" },
   { iconImg: "images/partners/gameFi-cap.png" },
-  { iconImg: "images/partners/spearad.webp" },
+  // { iconImg: "images/partners/spearad.webp" },
   { iconImg: "images/partners/unruly.svg", className: "w-[26vh]" },
   { iconImg: "images/partners/leomark-studios.png" },
   { iconImg: "images/partners/panony-group.jpg" },
+  { iconImg: "images/partners/gotbit.png" },
   // { iconImg: "images/partners/d.png" },
   // { iconImg: "images/partners/Do.png" },
   // { iconImg: "images/partners/C.png" },
@@ -137,7 +138,9 @@ function GreatTeam() {
               <img
                 key={i}
                 src={iconImg}
-                className={`${className ? className : "w-[30vh]"}`}
+                className={`${
+                  className ? className : "w-[30vh]"
+                } grayscale-[100%]`}
                 alt=""
               />
             </div>
