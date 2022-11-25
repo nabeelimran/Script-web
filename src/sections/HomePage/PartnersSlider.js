@@ -77,7 +77,7 @@ function PartnersSlider() {
         gradient={false}
         className="flex items-center"
         speed={50}
-        direction="right"
+        direction="left"
       >
         {companies.map(({ iconImg, className = "h-6 xl:h-10" }, i) => (
           <div className="flex justify-center mx-4 lg:mx-8">
