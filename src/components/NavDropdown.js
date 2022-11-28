@@ -27,7 +27,7 @@ function NavDropdown({ showDropdown, title, children, twoColumns }) {
             <div
               className={`grid ${
                 twoColumns ? "grid-cols-2" : "grid-cols-3"
-              } gap-x-12 xl:gap-x-[86px] gap-y-6 relative z-10`}
+              } gap-x-12 xl:gap-x-[86px] gap-y-8 relative z-10`}
             >
               {children}
             </div>

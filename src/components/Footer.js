@@ -4,7 +4,7 @@ import FooterLinksSection from "./FooterLinksSection";
 function Footer({ container = "container-two" }) {
   return (
     <div className="bg-shade-darkest-blue" id="footer-community-links">
-      <div className="py-11 border-b-2 border-gray">
+      <div className="py-11">
         <div
           className={`${container} grid grid-cols-[1fr_auto] sm:grid-cols-[1fr_1fr_auto] gap-y-8 md:gap-y-0 md:flex justify-between`}
         >
@@ -22,8 +22,9 @@ function Footer({ container = "container-two" }) {
           <FooterLinksSection
             title="Script Tokens"
             links={[
-              { title: "learn about SCPT and SPAY tokens", to: "/research" },
+              { title: "Learn about SCPT and SPAY tokens", to: "/research" },
               { title: "ScriptTV - how to earn", to: "/token" },
+              { title: "Calculator", to: "/calculator" },
             ]}
           />
           <FooterLinksSection
@@ -93,24 +94,26 @@ function Footer({ container = "container-two" }) {
         </div>
       </div>
 
-      <div
-        className={`${container} py-6 xl:py-8 flex flex-col sm:flex-row space-y-6 sm:space-y-0 items-center justify-between`}
-      >
-        <div className="flex items-center space-x-6 sm:space-x-10">
-          <img src="images/logo.svg" className="w-24 xl:w-32" alt="" />
+      {/* <div className="border-t-2 border-gray">
+        <div
+          className={`${container} py-6 xl:py-8 flex flex-col sm:flex-row space-y-6 sm:space-y-0 items-center justify-between`}
+        >
+          <div className="flex items-center space-x-6 sm:space-x-10">
+            <img src="images/logo.svg" className="w-24 xl:w-32" alt="" />
 
-          <a
-            href="mailto:contact@script.tv"
-            className="text-base xl:text-lg font-medium"
-          >
-            contact@script.tv
-          </a>
+            <a
+              href="mailto:contact@script.tv"
+              className="text-base xl:text-lg font-medium"
+            >
+              contact@script.tv
+            </a>
+          </div>
         </div>
 
         <p className="text-base xl:text-xl font-medium">
           Copyright © 2022 scripttv
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }

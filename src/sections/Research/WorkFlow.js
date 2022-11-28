@@ -27,7 +27,7 @@ function WorkFlow() {
           </Title>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_371px] gap-8 mb-10 lg:mb-16">
+        {/* <div className="grid lg:grid-cols-[1fr_371px] gap-8 mb-10 lg:mb-16">
           <div className="flex items-center justify-center">
             <img
               src="images/token-chart.png"
@@ -58,7 +58,7 @@ function WorkFlow() {
               title="Token Liquidity"
             />
           </div>
-        </div>
+        </div> */}
 
         <img src="images/vesting-chart.png" className="w-full" alt="" />
       </div>

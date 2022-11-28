@@ -24,9 +24,9 @@ function Hero() {
         <h2 className="text-center text-white fs-18px font-medium mb-5 lg:mb-6 xl:mb-8">
           The NFT collection supporting the reward system in Script Network
         </h2>
-        <h2 className="text-center text-white fs-16px font-medium">
+        {/* <h2 className="text-center text-white fs-16px font-medium">
           November 5th 2022
-        </h2>
+        </h2> */}
       </div>
     </section>
   );

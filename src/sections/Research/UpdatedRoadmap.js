@@ -2,6 +2,7 @@ import BlubDivider from "components/BlubDivider";
 import BulletPoint from "components/BulletPoint";
 import ListIntended from "components/ListIntended";
 import ReadMoreCards from "components/ReadMoreCards";
+import ScriptDocumentation from "components/ScriptDocumentation";
 import Title from "components/Title";
 import React from "react";
 
@@ -124,7 +125,7 @@ function UpdatedRoadmap() {
           <BlubDivider container="" />
         </div>
 
-        <div className="space-y-12 mb-20">
+        {/* <div className="space-y-12 mb-20">
           <div>
             <Title className="text-primary font-medium mb-4" variant="20">
               7. Community
@@ -198,19 +199,10 @@ function UpdatedRoadmap() {
               </a>
             </div>
           </div>
+        </div> */}
 
-          {/* <div>
-            <Title className="text-primary font-medium mb-4" variant="20">
-              8.1 Advisors
-            </Title>
-
-            <div className="space-y-3">
-              <ListIntended title="Scott Dunlap: VP at Adidas, CEO at Runtastic" />
-              <ListIntended title="Scott Dunlap: VP at Adidas, CEO at Runtastic" />
-              <ListIntended title="Scott Dunlap: VP at Adidas, CEO at Runtastic" />
-              <ListIntended title="Scott Dunlap: VP at Adidas, CEO at Runtastic" />
-            </div>
-          </div> */}
+        <div className="mb-20">
+          <ScriptDocumentation />
         </div>
 
         <div>

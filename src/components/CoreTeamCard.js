@@ -4,7 +4,7 @@ import Title from "./Title";
 
 function CoreTeamCard({ title, desc, twitterLink = "/", designation }) {
   return (
-    <div className="bg-shade-dark-blue rounded-xl py-5 lg:py-7 px-4 lg:px-6">
+    <div className="bg-shade-dark-blue rounded-xl py-5 lg:py-7 px-4 lg:px-6 flex flex-col">
       <div className="mb-3">
         <Title variant="20">{title}</Title>
       </div>

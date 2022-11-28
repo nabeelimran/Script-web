@@ -17,31 +17,23 @@ function ScriptTVVideo() {
           <MetachainCircle />
 
           <CordCard
-            title="Web3 Video API"
-            desc={
-              <>
-                Lowe youe cost to encode,store <br /> and deliver video
-              </>
-            }
+            title="Video Advertising Layer"
+            desc="First on chain payment protocol for advertisers - pay for ads through SCPT tokens"
             linkTitle="Learn more"
           />
           <CordCard
-            title="Enterprise Validators"
-            desc="Trade your SPAY tokens for real world
-products such as festival, events and cinema
-tickets through our Script Swap model"
+            title="Utility beyond Blockchain"
+            desc="Collect ScriptGlasses and SPAY through being active in the ecosystem, and swap /burn them for real life experiences including cinema tickets and events."
             linkTitle="Learn more"
           />
           <CordCard
-            title="Global Edge Network"
-            desc="Share bandwidth, storage and
-computing to earn rewards."
+            title="Script Node Network"
+            desc="Contribute to computing data, transcoding and sharing bandwidth - and earn exciting rewards whilst doing so"
             linkTitle="Learn more"
           />
           <CordCard
-            title="NFTs with DRM"
-            desc="Monetize your content and IP
-secure with digital rights"
+            title="Content Layer (NFTs)"
+            desc="For the first time ever, create NFT experiences for viewers live, including spontaneous drops, rewards and access. "
             linkTitle="Learn more"
           />
         </div>

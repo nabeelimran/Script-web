@@ -40,8 +40,8 @@ const companies = [
     className: "invert-[100%] brightness-0 h-6 xl:h-10",
   },
   {
-    iconImg: "images/partners/gameFi-cap.png",
-    className: "h-4 xl:h-6 invert-[100%] brightness-0",
+    iconImg: "images/partners/gamefi-2.png",
+    className: "h-6 xl:h-12 invert-[100%] brightness-0",
   },
   // { iconImg: "images/partners/spearad.webp" },
   {
@@ -104,27 +104,6 @@ function PartnersSlider() {
             />
           </div>
         ))}
-        {/* <div className="flex justify-center mx-4 lg:mx-8">
-          <img src="images/partners/Do.png" className="h-10 xl:h-14" alt="" />
-        </div>
-        <div className="flex justify-center mx-4 lg:mx-8">
-          <img src="images/partners/C.png" className="h-8 xl:h-12" alt="" />
-        </div>
-        <div className="flex justify-center mx-4 lg:mx-8">
-          <img src="images/partners/S.png" className="h-6 xl:h-8" alt="" />
-        </div>
-        <div className="flex justify-center mx-4 lg:mx-8">
-          <img src="images/partners/SY.png" className="h-6 xl:h-8" alt="" />
-        </div>
-        <div className="flex justify-center mx-4 lg:mx-8">
-          <img src="images/partners/m.png" className="h-10 xl:h-14" alt="" />
-        </div>
-        <div className="flex justify-center mx-4 lg:mx-8">
-          <img src="images/partners/U.png" className="h-6 xl:h-10" alt="" />
-        </div>
-        <div className="flex justify-center mx-4 lg:mx-8">
-          <img src="images/partners/G.png" className="h-6 xl:h-10" alt="" />
-        </div> */}
       </Marquee>
     </section>
   );

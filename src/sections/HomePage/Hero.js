@@ -48,9 +48,11 @@ function Hero() {
                 <EconomyAvatar img="images/avatar-3.png" className="z-10" />
               </div> */}
               <div>
-                <p className="text-white font-medium fs-20px mb-1">150,000+</p>
+                <p className="text-white font-medium fs-20px mb-1">40,000+</p>
                 <p className="text-sm text-white opacity-50">
-                  Part of the ecoy <br /> stem pre launch
+                  Part of the <br />
+                  ecosystem <br />
+                  pre launch
                 </p>
               </div>
             </div>

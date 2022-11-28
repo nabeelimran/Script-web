@@ -5,37 +5,37 @@ import React from "react";
 const companies = [
   {
     iconImg: "images/partners/poolz.svg",
-    className: "w-[18vh] invert-[100%] brightness-0",
+    className: "w-[16vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/NFTrade.svg",
-    className: "w-[22vh] invert-[100%] brightness-0",
+    className: "w-[20vh] invert-[100%] brightness-0",
   },
   // { iconImg: "images/partners/kommunitas.png" },
   {
     iconImg: "images/partners/chainlink.svg",
-    className: "w-[20vh] invert-[100%] brightness-0",
+    className: "w-[18vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/dwf.svg",
-    className: "w-[20vh] invert-[100%] brightness-0",
+    className: "w-[18vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/arcana-network.svg",
-    className: "w-[22vh] invert-[100%] brightness-0",
+    className: "w-[20vh] invert-[100%] brightness-0",
   },
 
   {
     iconImg: "images/partners/gate-io.png",
-    className: "w-[20vh] invert-[100%] brightness-0",
+    className: "w-[18vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/kenzo.png",
-    className: "w-[20vh] invert-[100%] brightness-0",
+    className: "w-[18vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/karus-starter.svg",
-    className: "w-[20vh] invert-[100%] brightness-0",
+    className: "w-[18vh] invert-[100%] brightness-0",
   },
   // {
   //   iconImg: "images/partners/gameFi-cap.png",
@@ -43,43 +43,43 @@ const companies = [
   // },
   {
     iconImg: "images/partners/gamefi-2.png",
-    className: "w-[26vh] invert-[100%] brightness-0",
+    className: "w-[24vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/unruly.svg",
-    className: "w-[19vh] invert-[100%] brightness-0",
+    className: "w-[17vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/leomark-studios.png",
-    className: "w-[26vh] grayscale-[100%]",
+    className: "w-[24vh] grayscale-[100%]",
   },
   {
     iconImg: "images/partners/panony-group.jpg",
-    className: "w-[24vh] invert-[100%] brightness-0",
+    className: "w-[22vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/gotbit.png",
-    className: "w-[24vh] invert-[100%] brightness-0",
+    className: "w-[22vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/yay-games.png",
-    className: "w-[16vh] invert-[100%] brightness-0",
+    className: "w-[14vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/jin.png",
-    className: "w-[22vh] invert-[100%] brightness-0",
+    className: "w-[20vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/k.png",
-    className: "w-[28vh] invert-[100%] brightness-0",
+    className: "w-[26vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/magna.png",
-    className: "w-[22vh] invert-[100%] brightness-0",
+    className: "w-[20vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/chainport.png",
-    className: "w-[26vh] invert-[100%] brightness-0",
+    className: "w-[24vh] invert-[100%] brightness-0",
   },
   // { iconImg: "images/partners/d.png" },
   // { iconImg: "images/partners/Do.png" },
@@ -157,7 +157,7 @@ function GreatTeam() {
       <div className="container">
         <div className="mb-5">
           <Title>
-            Meet Our <span className="text-primary">Great Team</span>
+            Meet <span className="text-primary">Our Team</span>
           </Title>
         </div>
 
@@ -216,14 +216,21 @@ function GreatTeam() {
         </div>
       </div>
 
-      <div className="bg-blue-2 ">
-        <div className="mt-16 lg:mt-24 container py-10 md:py-16 grid-cols-2 sm:grid-cols-3 grid md:grid-cols-4 items-center gap-x-12 gap-y-6 sm:gap-x-8 sm:gap-y-10">
+      <div className="bg-blue-2 mt-16 lg:mt-24 py-10 md:py-16">
+        <div className="mb-12 container">
+          <Title>
+            Our <span className="text-primary">Partners</span> and{" "}
+            <span className="text-primary">Investors</span>
+          </Title>
+        </div>
+
+        <div className="container grid-cols-2 sm:grid-cols-3 grid md:grid-cols-5 items-center gap-x-12 gap-y-6 sm:gap-x-8 sm:gap-y-10">
           {companies.map(({ iconImg, className }, i) => (
             <div className="flex justify-center">
               <img
                 key={i}
                 src={iconImg}
-                className={`${className ? className : "w-[30vh]"}`}
+                className={`${className ? className : "w-[20vh]"}`}
                 alt=""
               />
               {/* grayscale-[100%] */}

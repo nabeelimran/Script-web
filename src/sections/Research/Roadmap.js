@@ -11,7 +11,7 @@ const milestones = {
       "Public Beta Release with Decentralized Wallet Function Launch",
       "Medium Announcement",
     ],
-    ["Team", "Fundraising Complete", "Medium Announcement"],
+    // ["Team", "Fundraising Complete", "Medium Announcement"],
     ["Ecosystem/ Treasury", "iOS Official Launch", "Tweet"],
     ["Move and Earn", "Reached 21k DAU and 66k MAU", "Tweet"],
   ],

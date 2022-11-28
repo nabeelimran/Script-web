@@ -111,12 +111,17 @@ function Navbar() {
               <DropdownCard
                 to="/research"
                 title="ScriptGLASS explained"
-                subtitle="our user first watch to earn television platform."
+                subtitle="Our user first watch to earn television platform."
               />
               <DropdownCard
                 to="/token"
                 title="Script Tokens"
                 subtitle="Learn about SCPT and SPAY tokens"
+              />
+              <DropdownCard
+                to="/calculator"
+                title="Calculator"
+                subtitle="Calculate your earnings through staking and rewards"
               />
             </NavDropdown>
             <ScrollLink
