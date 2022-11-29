@@ -3,6 +3,7 @@ import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
 import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
+import Login from "pages/Login";
 import PrivacyPolicy from "pages/PrivacyPolicy";
 import Research from "pages/Research";
 import Technology from "pages/Technology";
@@ -26,6 +27,10 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
         <Route path="/faq" element={<FAQ />} />
+
+        {/* TV ROUTES */}
+
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

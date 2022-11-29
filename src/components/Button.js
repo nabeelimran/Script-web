@@ -8,9 +8,16 @@ const VARIANT_3 = "bg-transparent border-2 border-primary text-primary";
 
 const variants = [VARIANT_DEFAULT, VARIANT_1, VARIANT_2, VARIANT_3];
 
-function Button({ label, className, variant = 0, arrowVisible = false }) {
+function Button({
+  type = "button",
+  label,
+  className,
+  variant = 0,
+  arrowVisible = false,
+}) {
   return (
     <button
+      type={type}
       className={`flex items-center space-x-3 text-xs sm:text-sm xl:text-base px-6 xl:px-8 min-h-[34px] xl:min-h-[38px] rounded-lg font-semibold ${className} ${variants[variant]}`}
     >
       <span className="text-inherit">{label}</span>
