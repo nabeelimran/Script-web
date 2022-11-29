@@ -27,7 +27,7 @@ function FloatingInput({
     <div className="relative text-sm lg:text-base space-y-1">
       <label
         htmlFor={id}
-        className="transition-all -z-1 duration-300 bg-black text-primary block w-fit cursor-pointer"
+        className="transition-all -z-1 duration-300 text-primary block w-fit cursor-pointer"
       >
         {label}
       </label>
@@ -42,7 +42,7 @@ function FloatingInput({
       {error && (
         <div>
           <p className="text-[#ff5454]" style={{ fontSize: "inherit" }}>
-            This field is requird. Please enter email.
+            {error}
           </p>
         </div>
       )}

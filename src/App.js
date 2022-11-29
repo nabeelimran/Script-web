@@ -5,10 +5,12 @@ import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
 import Login from "pages/Login";
 import PrivacyPolicy from "pages/PrivacyPolicy";
+import Register from "pages/Regsiter";
 import Research from "pages/Research";
 import Technology from "pages/Technology";
 import TermsAndConditions from "pages/TermsAndConditions";
 import TokenPage from "pages/TokenPage";
+import TvHomepage from "pages/TvHomepage";
 import Validator from "pages/Validator";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -31,6 +33,8 @@ function App() {
         {/* TV ROUTES */}
 
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/tv" element={<TvHomepage />} />
       </Routes>
     </Router>
   );

@@ -113,6 +113,9 @@
   }
 
   /* BLOBS */
+  .yellow-blob {
+    @apply w-[200px] md:w-[300px] h-[200px] md:h-[300px] rounded-full bg-primary -z-10 blur-[200px];
+  }
   .yellow-corner-blob {
     @apply absolute top-0 left-0 w-[200px] md:w-[300px] h-[200px] md:h-[300px] rounded-full bg-primary -z-10 blur-[200px];
   }
@@ -254,6 +257,16 @@
   .checkbox input[type="checkbox"]:checked:before {
     scale: 1;
     color: black;
+  }
+
+  /* SLIDER */
+
+  .people-slider-bullet {
+    @apply w-[10px] h-[10px] cursor-pointer rounded-full bg-[#BABABA] transition-all duration-200;
+  }
+
+  .people-slider-bullet.active {
+    @apply bg-white;
   }
 }
 

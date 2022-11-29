@@ -151,6 +151,7 @@ function Navbar() {
           </div>
 
           <Button
+            link="/login"
             label="Sign In"
             className="mt-8 lg:mt-0 flex justify-center"
           />
