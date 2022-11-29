@@ -5,9 +5,9 @@ import React from "react";
 const tokenSales = {
   headings: ["Token Name", "GMT"],
   data: [
-    ["Total Token Supply", "6,000,000,000 GMT"],
+    // ["Total Token Supply", "6,000,000,000 GMT"],
     ["Private Sale Allocation", "978,000,000 GMT"],
-    ["Private Sale Token Price", "~ 0.005 USD / GMT"],
+    // ["Private Sale Token Price", "~ 0.005 USD / GMT"],
     // ["Private Sale Amount Raised", "~ 5,000,000 USD"],
     ["Binance Launchpad Sale Allocation", "420,000,000 GMT"],
     ["Binance Launchpad Sale Price", "	0.010 USD / GMT"],

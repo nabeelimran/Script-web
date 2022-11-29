@@ -1,3 +1,4 @@
+import Logo from "components/Logo";
 import Title from "components/Title";
 import React from "react";
 
@@ -20,11 +21,12 @@ function Comparing() {
                 <th>Ethereum</th>
                 <th>Polkadot</th>
                 <th>
-                  <img
+                  <Logo />
+                  {/* <img
                     src="images/logo-black.svg"
                     className="max-w-[110px]"
                     alt=""
-                  />
+                  /> */}
                 </th>
               </tr>
             </thead>

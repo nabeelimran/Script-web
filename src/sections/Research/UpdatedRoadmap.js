@@ -1,19 +1,36 @@
 import BlubDivider from "components/BlubDivider";
 import BulletPoint from "components/BulletPoint";
+import LinkScroller from "components/LinkScroller";
 import ListIntended from "components/ListIntended";
 import ReadMoreCards from "components/ReadMoreCards";
 import ScriptDocumentation from "components/ScriptDocumentation";
 import Title from "components/Title";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function UpdatedRoadmap() {
   return (
     <section>
       <div className="container-two">
         <Title className="text-primary font-medium mb-5" variant="20">
-          6.2 Updated roadmap
+          Read more about our roadmap{" "}
+          <LinkScroller
+            to="/"
+            wait={100}
+            scrollerOptions={{
+              smooth: true,
+              offset: -50,
+            }}
+            id="homepage-roadmap"
+            className="text-blue-link"
+          >
+            HERE
+          </LinkScroller>
         </Title>
-
+        {/* <Title className="text-primary font-medium mb-5" variant="20">
+          6.2 Updated roadmap
+        </Title> */}
+        {/* 
         <div className="space-y-16 mb-20">
           <div>
             <Title className="text-primary font-medium mb-4" variant="20">
@@ -119,7 +136,7 @@ function UpdatedRoadmap() {
               />
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="mb-20">
           <BlubDivider container="" />

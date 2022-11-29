@@ -11,13 +11,12 @@ const companies = [
     iconImg: "images/partners/NFTrade.svg",
     className: "w-[20vh] invert-[100%] brightness-0",
   },
-  // { iconImg: "images/partners/kommunitas.png" },
   {
     iconImg: "images/partners/chainlink.svg",
     className: "w-[18vh] invert-[100%] brightness-0",
   },
   {
-    iconImg: "images/partners/dwf.svg",
+    iconImg: "images/partners/newone.png",
     className: "w-[18vh] invert-[100%] brightness-0",
   },
   {
@@ -37,10 +36,7 @@ const companies = [
     iconImg: "images/partners/karus-starter.svg",
     className: "w-[18vh] invert-[100%] brightness-0",
   },
-  // {
-  //   iconImg: "images/partners/gameFi-cap.png",
-  //   className: "w-[28vh] invert-[100%] brightness-0",
-  // },
+
   {
     iconImg: "images/partners/gamefi-2.png",
     className: "w-[24vh] invert-[100%] brightness-0",
@@ -81,14 +77,10 @@ const companies = [
     iconImg: "images/partners/chainport.png",
     className: "w-[24vh] invert-[100%] brightness-0",
   },
-  // { iconImg: "images/partners/d.png" },
-  // { iconImg: "images/partners/Do.png" },
-  // { iconImg: "images/partners/C.png" },
-  // { iconImg: "images/partners/S.png" },
-  // { iconImg: "images/partners/SY.png" },
-  // { iconImg: "images/partners/m.png" },
-  // { iconImg: "images/partners/U.png" },
-  // { iconImg: "images/partners/G.png" },
+  {
+    iconImg: "images/partners/ibc.png",
+    className: "w-[11vh] invert-[100%] brightness-0",
+  },
 ];
 
 const team = [
@@ -121,7 +113,7 @@ const team = [
   {
     name: "Maxwell Chan",
     img: "images/team/Maxwell-Chan.jpeg",
-    designation: "Advisor",
+    designation: "Advisor, Director BKEX",
   },
   {
     name: "Michael Terpin",

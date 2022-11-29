@@ -64,9 +64,9 @@ function Research() {
         <CoreTeam />
       </div>
 
-      <div className="mb-20 lg:mb-20">
+      {/* <div className="mb-20 lg:mb-20">
         <Roadmap />
-      </div>
+      </div> */}
 
       <div className="mb-20 lg:mb-20">
         <UpdatedRoadmap />

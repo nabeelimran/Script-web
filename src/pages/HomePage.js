@@ -43,7 +43,7 @@ function HomePage() {
       <div className="mb-20 lg:mb-24">
         <GreatTeam />
       </div>
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-24" id="homepage-roadmap">
         <Roadmap />
       </div>
       <div className="mb-20 lg:mb-40">

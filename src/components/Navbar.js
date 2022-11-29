@@ -6,6 +6,7 @@ import Button from "./Button";
 import DropdownCard from "./DropdownCard";
 import NavDropdown from "./NavDropdown";
 import { Link as ScrollLink } from "react-scroll";
+import Logo from "./Logo";
 
 function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -21,27 +22,11 @@ function Navbar() {
 
   return (
     <div className="container py-5 xl:py-7 flex items-center justify-between z-50">
-      <div className="relative">
-        <Link
-          to="/"
-          className="lg:absolute top-1/2 left-0 translate-x-0 lg:-translate-y-1/2 w-10 lg:w-12 flex items-center space-x-4"
-        >
-          {/* <img
-          src="images/logo.svg"
-          className="w-24 md:w-28 xl:w-32 cursor-pointer"
-          alt=""
-        /> */}
-          <img
-            src="images/logos/clean-logo.png"
-            className="w-full cursor-pointer"
-            alt=""
-          />
-
-          <p className="fs-18px text-primary font-bold w-fit whitespace-nowrap">
-            Script Network
-          </p>
-        </Link>
-      </div>
+      <Logo
+        variant="yellow"
+        imgClassName="w-10 lg:w-12"
+        textClassName="fs-18px"
+      />
 
       <div>
         <button
@@ -77,15 +62,18 @@ function Navbar() {
           <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-9">
             <NavDropdown title="Products" showDropdown={true}>
               <DropdownCard
+                teller="BETA"
                 title="Script TV"
                 subtitle="our user first watch to earn television platform."
               />
               <DropdownCard
                 title="Marketplace"
+                teller="COMING SOON"
                 subtitle="Our native marketplace for buying, selling and renting ScriptGLASS ."
               />
               <DropdownCard
                 to="/validator"
+                teller="COMING SOON"
                 title="Script Blockchain"
                 subtitle="our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."
               />
@@ -95,10 +83,12 @@ function Navbar() {
                 subtitle="Our upgradeable NFT collection"
               />
               <DropdownCard
+                teller="COMING SOON"
                 title="dStorage"
                 subtitle="Save 70%+ on transcoding, transferring and storage costs from web2."
               />
               <DropdownCard
+                teller="COMING SOON"
                 title="sADs"
                 subtitle="The video advertising layer built on Script Blockchain."
               />
