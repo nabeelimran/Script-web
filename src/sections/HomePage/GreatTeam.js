@@ -111,9 +111,9 @@ const team = [
     designation: "Marketing Comms",
   },
   {
-    name: "Maxwell Chan",
-    img: "images/team/Maxwell-Chan.jpeg",
-    designation: "Advisor, Director BKEX",
+    name: "Prem Ranjan",
+    img: "images/team/prem.jpeg",
+    designation: "Engineer",
   },
   {
     name: "Shiv Kumar",
@@ -121,9 +121,9 @@ const team = [
     designation: "Engineer",
   },
   {
-    name: "Prem Ranjan",
-    img: "images/team/prem.jpeg",
-    designation: "Engineer",
+    name: "Maxwell Chan",
+    img: "images/team/Maxwell-Chan.jpeg",
+    designation: "Advisor, Director BKEX",
   },
 
   {
