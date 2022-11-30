@@ -46,7 +46,7 @@ function HomePage() {
       <div className="mb-20 lg:mb-24" id="homepage-roadmap">
         <Roadmap />
       </div>
-      <div className="mb-20 lg:mb-40">
+      <div className="mb-20 lg:mb-40" id="homepage-community-section">
         <JoinOurCommunity />
       </div>
       <div className="mb-20 lg:mb-24">

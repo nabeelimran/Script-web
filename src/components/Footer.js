@@ -3,7 +3,7 @@ import FooterLinksSection from "./FooterLinksSection";
 
 function Footer({ container = "container-two" }) {
   return (
-    <div className="bg-shade-darkest-blue" id="footer-community-links">
+    <div className="bg-shade-darkest-blue">
       <div className="py-11">
         <div
           className={`${container} grid grid-cols-[1fr_auto] sm:grid-cols-[1fr_1fr_auto] gap-y-8 md:gap-y-0 md:flex justify-between`}

@@ -1,16 +1,18 @@
 import { Icon } from "@iconify/react";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
 import DropdownCard from "./DropdownCard";
 import NavDropdown from "./NavDropdown";
 import { Link as ScrollLink } from "react-scroll";
 import Logo from "./Logo";
+import LinkScroller from "./LinkScroller";
 
 function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
+  const location = useLocation();
 
   useEffect(() => {
     if (isSidebarVisible) {
@@ -63,6 +65,7 @@ function Navbar() {
             <NavDropdown title="Products" showDropdown={true}>
               <DropdownCard
                 teller="BETA"
+                tellerClassName="text-primary"
                 title="Script TV"
                 subtitle="our user first watch to earn television platform."
               />
@@ -114,13 +117,18 @@ function Navbar() {
                 subtitle="Calculate your earnings through staking and rewards"
               />
             </NavDropdown>
-            <ScrollLink
-              smooth={true}
-              to="footer-community-links"
+            <LinkScroller
+              id="homepage-community-section"
+              to="/"
+              wait={location.pathname === "/" ? 0 : 200}
               className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              scrollerOptions={{
+                smooth: true,
+                offset: -50,
+              }}
             >
               Community
-            </ScrollLink>
+            </LinkScroller>
             <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
               Explorer
             </p>

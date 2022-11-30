@@ -11,7 +11,7 @@ const ListIntended = ({ title, points, shouldBeIntended = true }) => {
           className={`space-y-5 lg:space-y-3 ${shouldBeIntended ? "pl-6" : ""}`}
         >
           {points.map((item, i) => (
-            <BulletPoint variant={2} point={item} />
+            <BulletPoint variant="white" point={item} />
           ))}
         </div>
       )}
