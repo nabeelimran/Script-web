@@ -10,7 +10,7 @@ function ExistingProducts() {
       </Title>
 
       <div className="research-list">
-        <div className="research-list">
+        <div className="research-list pb-8">
           <BulletPoint point="Script TV: Simply head to our web app (get.script.tv) to watch television across a range of channels, and get rewarded for it." />
 
           <img
