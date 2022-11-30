@@ -1,4 +1,6 @@
 import { Icon } from "@iconify/react";
+import StreamComment from "components/StreamComment";
+import StreamForm from "components/StreamForm";
 import Title from "components/Title";
 import React from "react";
 
@@ -19,9 +21,9 @@ function AllTvChannels() {
           </p>
         </div>
 
-        <div className="bg-shade-darkest-blue grid grid-cols-2">
-          <div></div>
-          <div className="py-5 pr-10">
+        <div className="bg-shade-darkest-blue grid grid-cols-[1fr_420px] gap-10 pr-10 rounded-lg overflow-hidden">
+          <div className="bg-shade-grayis"></div>
+          <div className="py-5">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-2">
                 <img src="images/blockchain/stake.png" className="w-6" alt="" />
@@ -46,7 +48,17 @@ function AllTvChannels() {
                 Stream Chat
               </Title>
 
-              <div className="rounded-2xl py-7 px-8 bg-[#010101]"></div>
+              <div className="rounded-2xl py-7 px-8 bg-[#010101]">
+                <div className="space-y-4 mb-6">
+                  <StreamComment />
+                  <StreamComment />
+                  <StreamComment />
+                  <StreamComment />
+                  <StreamComment />
+                </div>
+
+                <StreamForm />
+              </div>
             </div>
           </div>
         </div>

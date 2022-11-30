@@ -6,8 +6,15 @@ const VARIANT_DEFAULT = "text-darkGray bg-primary";
 const VARIANT_1 = "bg-blue-1 text-white";
 const VARIANT_2 = "bg-shade-grayis text-white";
 const VARIANT_3 = "bg-transparent border-2 border-primary text-primary";
+const VARIANT_NONE = "";
 
-const variants = [VARIANT_DEFAULT, VARIANT_1, VARIANT_2, VARIANT_3];
+const variants = [
+  VARIANT_DEFAULT,
+  VARIANT_1,
+  VARIANT_2,
+  VARIANT_3,
+  VARIANT_NONE,
+];
 
 function Button({
   type = "button",
@@ -18,14 +25,19 @@ function Button({
   link,
   linkProps,
   buttonProps,
+  customizationClassName = "space-x-3 px-6 xl:px-8 rounded-lg font-semibold",
+  LeftComponent,
+  RightComponent,
 }) {
   return link ? (
     <Link
       to={link}
       {...linkProps}
-      className={`flex items-center space-x-3 text-xs sm:text-sm xl:text-base px-6 xl:px-8 min-h-[34px] xl:min-h-[38px] rounded-lg font-semibold ${className} ${variants[variant]}`}
+      className={`flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] ${customizationClassName} ${className} ${variants[variant]}`}
     >
-      <span className="text-inherit">{label}</span>
+      {LeftComponent && <LeftComponent />}
+      <span className="text-inherit lh-1">{label}</span>
+      {RightComponent && <RightComponent />}
 
       {arrowVisible && (
         <Icon
@@ -40,9 +52,11 @@ function Button({
     <button
       type={type}
       {...buttonProps}
-      className={`flex items-center space-x-3 text-xs sm:text-sm xl:text-base px-6 xl:px-8 min-h-[34px] xl:min-h-[38px] rounded-lg font-semibold ${className} ${variants[variant]}`}
+      className={`flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] ${customizationClassName} ${className} ${variants[variant]}`}
     >
-      <span className="text-inherit">{label}</span>
+      {LeftComponent && <LeftComponent />}
+      <span className="text-inherit lh-1">{label}</span>
+      {RightComponent && <RightComponent />}
 
       {arrowVisible && (
         <Icon

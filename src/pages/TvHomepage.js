@@ -1,7 +1,12 @@
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import AllTvChannels from "sections/TvHomepage/AllTvChannels";
+import Channels from "sections/TvHomepage/Channels";
+import ChannelsFree from "sections/TvHomepage/ChannelsFree";
+import Community from "sections/TvHomepage/Community";
 import Hero from "sections/TvHomepage/Hero";
+import HowToEarn from "sections/TvHomepage/HowToEarn";
+import KeyStats from "sections/TvHomepage/KeyStats";
 
 function TvHomepage() {
   return (
@@ -10,12 +15,32 @@ function TvHomepage() {
         <Navbar />
       </div>
 
-      <div className="mb-16 lg:mb-20">
+      <div className="mb-16 lg:mb-24">
         <Hero />
       </div>
 
-      <div className="mb-16 lg:mb-20">
+      <div className="mb-16 lg:mb-28">
         <AllTvChannels />
+      </div>
+
+      <div className="mb-16 lg:mb-24">
+        <Channels />
+      </div>
+
+      <div className="mb-16 lg:mb-24">
+        <ChannelsFree />
+      </div>
+
+      <div className="mb-24 lg:mb-32">
+        <HowToEarn />
+      </div>
+
+      <div className="mb-24 lg:mb-32">
+        <KeyStats />
+      </div>
+
+      <div className="mb-16 lg:mb-24">
+        <Community />
       </div>
 
       <Footer container="container" />

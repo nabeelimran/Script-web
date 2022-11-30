@@ -295,3 +295,21 @@ input:-webkit-autofill:active {
   opacity: 1;
   pointer-events: visible;
 }
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.two-lines-only {
+  --lines: 2;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--lines); /* number of lines to show */
+}

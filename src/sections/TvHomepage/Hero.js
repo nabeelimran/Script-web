@@ -71,25 +71,25 @@ function Hero() {
           <div className="absolute bottom-6 right-8 z-50 rounded-full overflow-hidden flex items-center">
             <button
               ref={prevRef}
-              className="min-w-[22px] h-5 flex items-center justify-end text-sm text-black bg-white"
+              className="min-w-[22px] group/navigator h-5 flex items-center justify-end text-sm text-black bg-white"
             >
               <Icon
                 icon="material-symbols:arrow-back-ios-new-rounded"
-                className="invert"
+                className="invert group-disabled/navigator:opacity-30"
               />
             </button>
             <button
               ref={nextRef}
-              className="min-w-[22px] h-5 flex items-center justify-start text-sm text-black bg-white"
+              className="min-w-[22px] h-5 flex group/navigator items-center justify-start text-sm text-black bg-white"
             >
               <Icon
                 icon="material-symbols:arrow-forward-ios-rounded"
-                className="invert"
+                className="invert group-disabled/navigator:opacity-30"
               />
             </button>
           </div>
 
-          <div className="bullet-pagination z-50 space-x-2 absolute bottom-7 left-0 w-full flex items-center justify-center"></div>
+          <div className="bullet-pagination z-40 space-x-2 absolute bottom-7 left-0 w-full flex items-center justify-center"></div>
         </div>
 
         <div className="space-y-6 flex flex-col items-center">
