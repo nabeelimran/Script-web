@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import useMediaQuery from "hooks/useMediaQuery";
-import React from "react";
+import React, { ReactDOM } from "react";
 import DropdownAccordion from "./DropdownAccordion";
 
 function NavDropdown({ showDropdown, title, children, twoColumns }) {
