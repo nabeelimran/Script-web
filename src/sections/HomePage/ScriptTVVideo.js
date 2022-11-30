@@ -9,7 +9,7 @@ function ScriptTVVideo() {
       <div className="container">
         <div className="mb-8 lg:mb-14">
           <Title>
-            Script Tv <span className="text-primary">Video</span> Infrastructure
+            Script TV <span className="text-primary">Video</span> Infrastructure
           </Title>
         </div>
 

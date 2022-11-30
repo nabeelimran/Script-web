@@ -96,9 +96,9 @@ const team = [
   },
 
   {
-    name: "Andrew Fennell",
-    img: "images/team/Andrew-Fennell.png",
-    designation: "Co Founder/Content acq Partnership",
+    name: "Roomani Bajaj",
+    img: "images/team/Roomani-Bajaj.avif",
+    designation: "CTO",
   },
   {
     name: "Antoinette Chaela Icabales",
@@ -116,35 +116,36 @@ const team = [
     designation: "Advisor, Director BKEX",
   },
   {
-    name: "Michael Terpin",
-    img: "images/team/Michael-Terpin.png",
-    designation: "Advisor",
-  },
-  {
-    name: "Pekka Kelkka",
-    img: "images/team/Pekka-Kelkka.png",
-    designation: "Advisor",
-  },
-  {
-    name: "Roomani Bajaj",
-    img: "images/team/Roomani-Bajaj.avif",
-    designation: "CTO",
-  },
-
-  {
     name: "Shiv Kumar",
     img: "images/team/Shiv-Kumar.png",
     designation: "Engineer",
   },
+  {
+    name: "Prem Ranjan",
+    img: "images/team/prem.jpeg",
+    designation: "Engineer",
+  },
+
+  {
+    name: "Andrew Fennell",
+    img: "images/team/Andrew-Fennell.png",
+    designation: "Advisor",
+  },
+  {
+    name: "Michael Terpin",
+    img: "images/team/Michael-Terpin.png",
+    designation: "Advisor",
+  },
+
   {
     name: "Yule Caise",
     img: "images/team/Yule-Caise.png",
     designation: "Advisor",
   },
   {
-    name: "Prem Ranjan",
-    img: "images/team/prem.jpeg",
-    designation: "Engineer",
+    name: "Pekka Kelkka",
+    img: "images/team/Pekka-Kelkka.png",
+    designation: "Advisor",
   },
 ];
 

@@ -17,6 +17,7 @@ function RoadmapCard({ point, title, year }) {
               point={point}
               textClassName="opacity-60"
               bulletClassName="min-w-[10px] h-[10px] rotate-45 mt-[.5em]"
+              variant="bullet1"
             />
             // <p key={i} className="fs-16px font-medium opacity-70">
             //   {point}
