@@ -6,8 +6,6 @@ import React from "react";
 import CoreTeam from "sections/Research/CoreTeam";
 import ExistingProducts from "sections/Research/ExistingProducts";
 import Hero from "sections/Research/Hero";
-import Roadmap from "sections/Research/Roadmap";
-import TokenSalesAndEconomics from "sections/Research/TokenSalesAndEconomics";
 import UpdatedRoadmap from "sections/Research/UpdatedRoadmap";
 import UpperPoints from "sections/Research/UpperPoints";
 import WatchToEarn from "sections/Research/WatchToEarn";
