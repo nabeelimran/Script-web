@@ -14,7 +14,7 @@ function ExistingProducts() {
           <BulletPoint point="Script TV: Simply head to our web app (get.script.tv) to watch television across a range of channels, and get rewarded for it." />
 
           <img
-            src="images/existing-product-1.png"
+            src="images/abc.png"
             className="w-full max-w-[900px] mx-auto"
             alt=""
           />

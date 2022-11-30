@@ -1,6 +1,7 @@
 import BlubDivider from "components/BlubDivider";
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
+import Title from "components/Title";
 import React from "react";
 import CoreTeam from "sections/Research/CoreTeam";
 import ExistingProducts from "sections/Research/ExistingProducts";
@@ -53,7 +54,20 @@ function Research() {
       </div>
 
       <div className="mb-20 lg:mb-20">
-        <TokenSalesAndEconomics />
+        {/* <TokenSalesAndEconomics /> */}
+        <div className="container-two">
+          <Title className="text-primary text-left font-semibold" variant="24">
+            Read more about SPAY tokenomics{" "}
+            <a
+              href="https://whitepaper.script.tv"
+              rel="noreferrer"
+              target="_blank"
+              className="text-blue-link"
+            >
+              HERE
+            </a>
+          </Title>
+        </div>
       </div>
 
       <div className="mb-20 lg:mb-20">

@@ -12,14 +12,14 @@ function UpdatedRoadmap() {
   return (
     <section>
       <div className="container-two">
-        <Title className="text-primary font-medium mb-5" variant="20">
+        <Title className="text-primary font-medium mb-5" variant="24">
           Read more about our roadmap{" "}
           <LinkScroller
             to="/"
-            wait={100}
+            wait={200}
             scrollerOptions={{
               smooth: true,
-              offset: -50,
+              offset: -30,
             }}
             id="homepage-roadmap"
             className="text-blue-link"

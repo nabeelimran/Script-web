@@ -87,7 +87,7 @@ const team = [
   {
     name: "Abiel Alazar",
     img: "images/team/Abiel-Alazar.png",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Co Founder - Content + Operations",
   },
   {
     name: "Akeem Ojuko",
@@ -103,12 +103,12 @@ const team = [
   {
     name: "Antoinette Chaela Icabales",
     img: "images/team/Antoinette-Chaela-Icabales-2.JPG",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Head of Marketing",
   },
   {
     name: "Lili Hamdan",
     img: "images/team/Lili-Hamdan.png",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Marketing Comms",
   },
   {
     name: "Maxwell Chan",
@@ -118,28 +118,33 @@ const team = [
   {
     name: "Michael Terpin",
     img: "images/team/Michael-Terpin.png",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Advisor",
   },
   {
     name: "Pekka Kelkka",
     img: "images/team/Pekka-Kelkka.png",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Advisor",
   },
   {
     name: "Roomani Bajaj",
     img: "images/team/Roomani-Bajaj.avif",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "CTO",
   },
 
   {
     name: "Shiv Kumar",
     img: "images/team/Shiv-Kumar.png",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Engineer",
   },
   {
     name: "Yule Caise",
     img: "images/team/Yule-Caise.png",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Advisor",
+  },
+  {
+    name: "Prem Ranjan",
+    img: "images/team/prem.jpeg",
+    designation: "Engineer",
   },
 ];
 
