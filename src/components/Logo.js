@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const variants = {
   default: {
-    img: "images/logos/logo-black.png",
+    img: "/images/logos/logo-black.png",
     textClassName: "text-black",
   },
   yellow: {
-    img: "images/logos/clean-logo.png",
+    img: "/images/logos/clean-logo.png",
     textClassName: "text-primary",
   },
 };

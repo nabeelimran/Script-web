@@ -1,4 +1,5 @@
 import ScrollToTop from "components/ScrollToTop";
+import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
 import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
 import FAQ from "pages/FAQ";
@@ -11,6 +12,9 @@ import Technology from "pages/Technology";
 import TermsAndConditions from "pages/TermsAndConditions";
 import TokenPage from "pages/TokenPage";
 import TvHomepage from "pages/TvHomepage";
+import KeyStore from "pages/UnlockWallet/KeyStore";
+import Mnemonics from "pages/UnlockWallet/Mnemonics";
+import PrivateKey from "pages/UnlockWallet/PrivateKey";
 import Validator from "pages/Validator";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -35,6 +39,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/tv" element={<TvHomepage />} />
+        <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
+          <Route path="key-store" element={<KeyStore />} />
+          <Route path="mnemonics" element={<Mnemonics />} />
+          <Route path="private-key" element={<PrivateKey />} />
+        </Route>
       </Routes>
     </Router>
   );

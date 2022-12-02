@@ -28,12 +28,13 @@ function Button({
   customizationClassName = "space-x-3 px-6 xl:px-8 rounded-lg font-semibold",
   LeftComponent,
   RightComponent,
+  buttonHeightClassName = "min-h-[34px] xl:min-h-[38px]",
 }) {
   return link ? (
     <Link
       to={link}
       {...linkProps}
-      className={`flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] ${customizationClassName} ${className} ${variants[variant]}`}
+      className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]}`}
     >
       {LeftComponent && <LeftComponent />}
       <span className="text-inherit lh-1">{label}</span>
@@ -52,7 +53,7 @@ function Button({
     <button
       type={type}
       {...buttonProps}
-      className={`flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] ${customizationClassName} ${className} ${variants[variant]}`}
+      className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]}`}
     >
       {LeftComponent && <LeftComponent />}
       <span className="text-inherit lh-1">{label}</span>
