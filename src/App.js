@@ -2,6 +2,7 @@ import ScrollToTop from "components/ScrollToTop";
 import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
 import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
+import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
 import Login from "pages/Login";
@@ -35,10 +36,10 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
 
         {/* TV ROUTES */}
-
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/tv" element={<TvHomepage />} />
+        <Route path="explorer" element={<Explorer />} />
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
           <Route path="key-store" element={<KeyStore />} />
           <Route path="mnemonics" element={<Mnemonics />} />

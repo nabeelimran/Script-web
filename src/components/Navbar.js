@@ -28,8 +28,8 @@ function Navbar() {
       <div className="container py-5 xl:py-7 flex items-center justify-between z-[200] relative">
         <Logo
           variant="yellow"
-          imgClassName="w-10 lg:w-12"
-          textClassName="fs-18px"
+          imgClassName="w-10 xl:w-12"
+          textClassName="text-sm xl:text-lg"
         />
 
         <div>
@@ -131,9 +131,12 @@ function Navbar() {
               >
                 Community
               </LinkScroller>
-              <p className="nav-link text-sm xl:text-base font-medium cursor-pointer">
+              <Link
+                to="/explorer"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
                 Explorer
-              </p>
+              </Link>
               <Link
                 to="/technology"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"

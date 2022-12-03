@@ -29,11 +29,14 @@ function BulletPoint({
   bulletClassName = "min-w-[10px] h-[10px] rotate-45 mt-[.4em]",
   variant = "default",
   bulletComponent,
+  className,
 }) {
   const v = variants[variant];
 
   return (
-    <div className="flex space-x-4 text-sm md:text-base items-start">
+    <div
+      className={`flex space-x-4 text-sm md:text-base items-start ${className}`}
+    >
       {v.component ? (
         <div className={`${v.className} ${bulletClassName}`}></div>
       ) : (
