@@ -9,6 +9,7 @@ import Login from "pages/Login";
 import PrivacyPolicy from "pages/PrivacyPolicy";
 import Register from "pages/Regsiter";
 import Research from "pages/Research";
+import Stake from "pages/Stake";
 import Technology from "pages/Technology";
 import TermsAndConditions from "pages/TermsAndConditions";
 import TokenPage from "pages/TokenPage";
@@ -40,6 +41,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/tv" element={<TvHomepage />} />
         <Route path="explorer" element={<Explorer />} />
+        <Route path="stake" element={<Stake />} />
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
           <Route path="key-store" element={<KeyStore />} />
           <Route path="mnemonics" element={<Mnemonics />} />

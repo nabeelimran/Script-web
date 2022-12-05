@@ -8,8 +8,8 @@ const StakingCard = ({ data }) => {
         active ? "bg-transparent border-2 border-dashed" : "bg-blue-1"
       }`}
     >
-      <p className="text-xs sm:text-sm xl:text-base font-bold">{title}</p>
-      <p className="text-xs sm:text-sm xl:text-base font-bold">{value}</p>
+      <p className="text-xs sm:text-sm font-bold uppercase">{title}</p>
+      <p className="text-xs sm:text-sm font-bold">{value}</p>
     </div>
   );
 };

@@ -3,12 +3,12 @@ import Title from "components/Title";
 import React from "react";
 
 const stakingData = [
-  { title: "Script Token (USD)", value: "0.025", active: false },
-  { title: "Script Pay (USD)", value: "0.01", active: false },
+  { title: "SCPT (USD)", value: "0.025", active: false },
+  { title: "SPAY (USD)", value: "0.01", active: false },
   { title: "Market Cap (USD)", value: "25,005.4", active: false },
   { title: "Market Cap Spay (USD)", value: "7771.887", active: true },
   { title: "Validator Stake", value: "50,250,000", active: false },
-  { title: "Llightning Stake", value: "10,000", active: false },
+  { title: "Lightning Stake", value: "10,000", active: false },
   { title: "Total Staked Nodes", value: "3", active: false },
   { title: "Total Staked (%)", value: "5.03%", active: false },
   { title: "24h Blocks", value: "0.025", active: true },
