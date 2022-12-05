@@ -1,8 +1,10 @@
 import ScrollToTop from "components/ScrollToTop";
+import DashboardLayout from "layouts/DashboardLayout";
 import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
 import AccountDetails from "pages/AccountDetails";
 import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
+import Home from "pages/Dashboard/Home";
 import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
@@ -49,6 +51,10 @@ function App() {
           <Route path="key-store" element={<KeyStore />} />
           <Route path="mnemonics" element={<Mnemonics />} />
           <Route path="private-key" element={<PrivateKey />} />
+        </Route>
+
+        <Route path="dashboard" element={<DashboardLayout />}>
+          <Route index element={<Home />} />
         </Route>
       </Routes>
     </Router>

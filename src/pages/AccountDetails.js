@@ -6,7 +6,9 @@ import React from "react";
 
 function AccountDetails() {
   return (
-    <div>
+    <div className="relative z-10">
+      <div className="yellow-corner-blob opacity-40" />
+
       <div className="mb-4 sm:mb-6 lg:mb-10 relative z-50">
         <Navbar />
       </div>
@@ -15,7 +17,7 @@ function AccountDetails() {
         <section className="mb-16 lg:mb-20">
           <Title
             variant="24"
-            className="font-bold text-center text-primary mb-10"
+            className="font-bold text-center text-primary mb-6 lg:mb-10"
           >
             Account Details
           </Title>
@@ -28,10 +30,12 @@ function AccountDetails() {
               <thead>
                 <tr>
                   <th className="lineNone">
-                    <span className="fs-18px">Address</span>
+                    <span className="text-sm md:text-base xl:text-lg">
+                      Address
+                    </span>
                   </th>
                   <th>
-                    <span className="fs-18px">
+                    <span className="text-sm md:text-base xl:text-lg">
                       0x98fd878cd2267577ea6ac47bcb5ff4dd97d2f9e5
                     </span>
                   </th>
@@ -58,7 +62,7 @@ function AccountDetails() {
         <section className="mb-16 lg:mb-20">
           <Title
             variant="24"
-            className="font-bold text-center text-primary mb-10"
+            className="font-bold text-center text-primary mb-6 lg:mb-10"
           >
             Tokens Staked by this address toValidator/Lightning Nodes
           </Title>
@@ -86,7 +90,7 @@ function AccountDetails() {
         <section className="mb-16 lg:mb-20">
           <Title
             variant="24"
-            className="font-bold text-center text-primary mb-10"
+            className="font-bold text-center text-primary mb-6 lg:mb-10"
           >
             Tokens Staked to this Node
           </Title>

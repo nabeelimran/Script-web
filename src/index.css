@@ -134,7 +134,7 @@
 
   .stake-nodes-table th,
   .stake-nodes-table td {
-    @apply text-left text-xs sm:text-sm h-[59px] px-6 overflow-hidden text-ellipsis;
+    @apply text-left text-xs sm:text-sm h-[50px] lg:h-[59px] px-6 overflow-hidden text-ellipsis;
   }
 
   .stake-nodes-table.evenBg tbody > tr:nth-child(2n + 1) {
@@ -295,6 +295,18 @@
 
   .people-slider-bullet.active {
     @apply bg-white;
+  }
+
+  /* DASHBOARD */
+  .dashboard-layout {
+    @apply px-10;
+  }
+
+  .dashboard-top-spacing {
+    @apply pt-7;
+  }
+  .dashboard-bottom-spacing {
+    @apply pb-7;
   }
 }
 
