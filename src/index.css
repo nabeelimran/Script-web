@@ -123,6 +123,21 @@
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary -z-10;
   }
 
+  /* STAKE TABLES */
+
+  .stake-nodes-table {
+    @apply min-w-[700px] lg:min-w-full w-full bg-[#0B0D10] rounded-lg overflow-hidden xl:table-fixed;
+  }
+
+  .stake-nodes-table th,
+  .stake-nodes-table td {
+    @apply text-left text-xs sm:text-sm h-[59px] px-6 overflow-hidden text-ellipsis;
+  }
+
+  .stake-nodes-table tbody > tr:nth-child(2n + 1) {
+    @apply bg-[#212121];
+  }
+
   /* TOKEN STATS TABLE */
 
   .token-stats-table {

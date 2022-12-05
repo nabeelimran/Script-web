@@ -1,8 +1,8 @@
 import React from "react";
 
-function TableList({ data, headings }) {
+function TableList({ data, headings, className = "token-stats-table" }) {
   return (
-    <table className="token-stats-table">
+    <table className={className}>
       <thead>
         <tr>
           {headings.map((heading, i) => (
