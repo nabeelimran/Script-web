@@ -21,7 +21,11 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
         }}
       >
         <div className="mb-8 px-7">
-          <Logo variant="yellow" imgClassName="w-9" textClassName="text-sm" />
+          <Logo
+            variant="yellow"
+            imgClassName="w-7 xl:w-9"
+            textClassName="text-xs lg:text-sm"
+          />
         </div>
 
         <div className="space-y-3 mb-8 px-5 flex-1">

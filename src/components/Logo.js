@@ -26,11 +26,13 @@ function Logo({
       <Link to="/" className={className}>
         <img src={v.img} className={`cursor-pointer ${imgClassName}`} alt="" />
 
-        <p
-          className={`${textClassName} font-bold w-fit whitespace-nowrap ${v.textClassName}`}
-        >
-          {title}
-        </p>
+        {title && (
+          <p
+            className={`${textClassName} font-bold w-fit whitespace-nowrap ${v.textClassName}`}
+          >
+            {title}
+          </p>
+        )}
       </Link>
     </div>
   );

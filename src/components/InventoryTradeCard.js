@@ -6,13 +6,13 @@ function InventoryTradeCard() {
       <div className="mb-8">
         <img
           src="images/cool-glasses.png"
-          className="w-full h-[70px] object-contain"
+          className="w-full h-[40px] lg:h-[70px] object-contain"
           alt=""
         />
       </div>
 
-      <div className="bg-primary w-fit py-1 px-3 rounded-xl mx-auto mb-8 transition-all duration-200 group-hover:bg-[#0E0E0F]">
-        <p className="fs-16px text-black transition-all duration-200 group-hover:text-white">
+      <div className="bg-primary w-fit py-1 px-3 rounded-md lg:rounded-xl mx-auto mb-3 lg:mb-8 transition-all duration-200 group-hover:bg-[#0E0E0F]">
+        <p className="text-sm xl:text-base text-black transition-all duration-200 group-hover:text-white">
           #535435
         </p>
       </div>

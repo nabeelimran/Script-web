@@ -9,7 +9,9 @@ const DividerLine = () => {
 
 const HeadingSmall = ({ children, className }) => {
   return (
-    <p className={`${className} text-sm font-medium opacity-60`}>{children}</p>
+    <p className={`${className} text-xs xl:text-sm font-medium opacity-60`}>
+      {children}
+    </p>
   );
 };
 
@@ -68,8 +70,12 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
         </div>
         <div className="space-y-4">
           <div className="px-6 space-y-1">
-            <p className="fs-16px font-medium">Your Action Items</p>
-            <p className="fs-16px font-medium">Your Journey Start Here!</p>
+            <p className="text-sm xl:text-base font-medium">
+              Your Action Items
+            </p>
+            <p className="text-sm xl:text-base font-medium">
+              Your Journey Start Here!
+            </p>
           </div>
 
           <DividerLine />
@@ -86,7 +92,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
             <HeadingSmall className="mb-2">
               Minutes watched in total
             </HeadingSmall>
-            <p className="fs-16px font-bold">5,400 Minutes</p>
+            <p className="text-sm xl:text-base font-bold">5,400 Minutes</p>
           </div>
 
           <DividerLine />
@@ -96,7 +102,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
               Minutes watched in the last 24 hours
             </HeadingSmall>
 
-            <p className="fs-16px font-bold">24 Minutes</p>
+            <p className="text-sm xl:text-base font-bold">24 Minutes</p>
           </div>
 
           <DividerLine />
@@ -107,7 +113,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
             <div className="flex-1">
               <img
                 src="images/tv/cultured-one.svg"
-                className="w-full min-w-[96px]"
+                className="w-full min-w-[76px] xl:min-w-[96px]"
                 alt=""
               />
             </div>
@@ -117,11 +123,15 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
 
           <div className="px-6 flex items-center space-x-4 justify-between">
             <div>
-              <p className="fs-16px font-medium">#535435</p>
+              <p className="text-sm xl:text-base font-medium">#535435</p>
               <HeadingSmall>Favourite Glasses</HeadingSmall>
             </div>
 
-            <img src="images/cool-glasses.png" className="w-[90px]" alt="" />
+            <img
+              src="images/cool-glasses.png"
+              className="w-[60px] xl:w-[90px]"
+              alt=""
+            />
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ const GemTitle = ({ title, gemVariant = "default" }) => {
     <div className="flex items-center space-x-3">
       <img
         src="images/gem.svg"
-        className={`w-[18px] ${variants[gemVariant]}`}
+        className={`w-[16px] md:w-[18px] ${variants[gemVariant]}`}
         alt=""
       />
       <p className="fs-16px font-medium">{title}</p>

@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="min-h-screen pb-14">
-      <div className="dashboard-top-spacing pb-12 bg-[#18181A] relative z-10 mb-8">
+      <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10 mb-8">
         <div className="dashboard-layout">
           <Title variant="20" className="font-semibold text-center mb-7">
             Welcome Back, Peter
           </Title>
 
-          <div className="space-y-1 mb-12">
+          <div className="space-y-1 mb-8 lg:mb-12">
             <p className="fs-20px font-medium">
               Welcome to your Script TV dashboard
             </p>
@@ -24,7 +24,7 @@ function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-3 md:gap-6">
             <div className="py-4 px-5 rounded-lg flex items-center bg-[#5815BA]">
               <div className="flex items-start space-x-3">
                 <div className="min-w-[40px] h-[40px] rounded-full bg-white"></div>
@@ -76,7 +76,7 @@ function Home() {
       <div className="dashboard-layout mb-12">
         <h1 className="fs-20px font-medium mb-7">My Inventory Trade Here</h1>
 
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <InventoryTradeCard />
           <InventoryTradeCard />
           <InventoryTradeCard />
@@ -84,7 +84,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="dashboard-layout grid grid-cols-[auto_auto] gap-12 justify-start mb-12">
+      <div className="dashboard-layout grid sm:grid-cols-[auto_auto] gap-10 sm:gap-12 justify-start mb-12">
         <div>
           <p className="fs-18px font-medium mb-6">Milestone Achieved</p>
 
@@ -105,10 +105,18 @@ function Home() {
         <p className="fs-18px mb-4">Tip Of the Day</p>
 
         <div className="bg-[#0E0E0F] rounded-lg p-5 relative">
-          <div className="w-[70%]">
-            <p className="fs-16px mb-2">Be Yourself and have a Fun</p>
+          <img
+            src="images/lawyer.png"
+            className="w-[120px] sm:w-[180px] lg:w-[26%] absolute top-[-80px] sm:top-[-50px] lg:bottom-0 right-0"
+            alt=""
+          />
 
-            <p className="text-sm mb-2">
+          <div className="sm:w-[70%] lg:w-[70%]">
+            <p className="fs-16px mb-2 w-[60%] sm:w-full">
+              Be Yourself and have a Fun
+            </p>
+
+            <p className="text-xs sm:text-sm mb-2">
               People come to Twich to see you. Try to be yourself, have fun and
               enjoy the process. The biggest advantures satrt with samllest if
               it take time to get your first viwers, its part of the process .{" "}
@@ -118,12 +126,6 @@ function Home() {
               What is useful ?
             </Link>
           </div>
-
-          <img
-            src="images/lawyer.png"
-            className="w-[26%] absolute bottom-0 right-0"
-            alt=""
-          />
         </div>
       </div>
     </div>
