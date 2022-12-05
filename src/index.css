@@ -126,7 +126,10 @@
   /* STAKE TABLES */
 
   .stake-nodes-table {
-    @apply min-w-[700px] lg:min-w-full w-full bg-[#0B0D10] rounded-lg overflow-hidden xl:table-fixed;
+    --bgColor: #0b0d10;
+    --highlightedColor: #212121;
+
+    @apply w-full bg-[var(--bgColor)] overflow-hidden;
   }
 
   .stake-nodes-table th,
@@ -134,8 +137,18 @@
     @apply text-left text-xs sm:text-sm h-[59px] px-6 overflow-hidden text-ellipsis;
   }
 
-  .stake-nodes-table tbody > tr:nth-child(2n + 1) {
-    @apply bg-[#212121];
+  .stake-nodes-table.evenBg tbody > tr:nth-child(2n + 1) {
+    @apply bg-[var(--highlightedColor)];
+  }
+
+  .stake-nodes-table.dividerLine tr:nth-child(2n + 1) > td,
+  .stake-nodes-table.dividerLine tr:nth-child(2n + 1) > th {
+    @apply border-b-1px border-[#5A5A5A];
+  }
+
+  .stake-nodes-table.dividerLine tr:nth-child(2n + 1) > td.lineNone,
+  .stake-nodes-table.dividerLine tr:nth-child(2n + 1) > th.lineNone {
+    @apply border-b-0;
   }
 
   /* TOKEN STATS TABLE */

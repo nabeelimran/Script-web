@@ -1,5 +1,6 @@
 import ScrollToTop from "components/ScrollToTop";
 import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
+import AccountDetails from "pages/AccountDetails";
 import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
 import Explorer from "pages/Explorer";
@@ -42,6 +43,8 @@ function App() {
         <Route path="/tv" element={<TvHomepage />} />
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
+        <Route path="account-details" element={<AccountDetails />} />
+
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
           <Route path="key-store" element={<KeyStore />} />
           <Route path="mnemonics" element={<Mnemonics />} />

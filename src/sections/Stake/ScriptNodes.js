@@ -61,14 +61,14 @@ function ScriptNodes() {
       <div className="grid xl:grid-cols-2 gap-8">
         <div className="overflow-x-auto">
           <TableList
-            className="stake-nodes-table"
+            className="stake-nodes-table evenBg min-w-[700px] lg:min-w-full rounded-lg xl:table-fixed"
             headings={table1.heading}
             data={table1.data}
           />
         </div>
         <div className="overflow-x-auto">
           <TableList
-            className="stake-nodes-table"
+            className="stake-nodes-table evenBg min-w-[700px] lg:min-w-full rounded-lg xl:table-fixed"
             headings={table2.heading}
             data={table2.data}
           />
