@@ -466,9 +466,11 @@ input:-webkit-autofill:active {
 }
 
 .cut-text {
+  --width: 160px;
+
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 160px;
+  width: var(--width);
   height: 1.2em;
   white-space: nowrap;
 }

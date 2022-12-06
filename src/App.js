@@ -7,6 +7,7 @@ import CookiesPolicy from "pages/CookiesPolicy";
 import ChangePassword from "pages/Dashboard/ChangePassword";
 import EditProfile from "pages/Dashboard/EditProfile";
 import Home from "pages/Dashboard/Home";
+import ShareRefferal from "pages/Dashboard/ShareRefferal";
 import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
@@ -37,7 +38,7 @@ function App() {
         <Route path="/technology" element={<Technology />} />
         <Route path="/research" element={<Research />} />
         <Route path="/terms-condition" element={<TermsAndConditions />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/  " element={<PrivacyPolicy />} />
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
         <Route path="/faq" element={<FAQ />} />
 
@@ -59,6 +60,7 @@ function App() {
           <Route path="" index element={<Home />} />
           <Route path="change-password" element={<ChangePassword />} />
           <Route path="edit-profile" element={<EditProfile />} />
+          <Route path="share-referral" element={<ShareRefferal />} />
         </Route>
       </Routes>
     </Router>
