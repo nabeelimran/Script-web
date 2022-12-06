@@ -1,5 +1,5 @@
 import Footer from "components/Footer";
-import Navbar from "components/Navbar";
+import TvNavbar from "components/TvNavbar";
 import AllTvChannels from "sections/TvHomepage/AllTvChannels";
 import Channels from "sections/TvHomepage/Channels";
 import ChannelsFree from "sections/TvHomepage/ChannelsFree";
@@ -12,7 +12,7 @@ function TvHomepage() {
   return (
     <div>
       <div className="mb-4 sm:mb-6 relative z-50">
-        <Navbar />
+        <TvNavbar />
       </div>
 
       <div className="mb-16 lg:mb-24">

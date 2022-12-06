@@ -10,7 +10,7 @@ import Logo from "./Logo";
 import LinkScroller from "./LinkScroller";
 import UpperRoot from "./UpperRoot";
 
-function Navbar() {
+function TvNavbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();
@@ -30,6 +30,7 @@ function Navbar() {
           variant="yellow"
           imgClassName="w-10"
           textClassName="text-sm xl:text-base"
+          title={<>Script Network</>}
         />
 
         <div>
@@ -64,7 +65,7 @@ function Navbar() {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-9">
-              <NavDropdown title="Products" showDropdown={true}>
+              <NavDropdown title="Channels" showDropdown={true}>
                 <DropdownCard
                   teller="BETA"
                   tellerClassName="text-primary"
@@ -98,11 +99,21 @@ function Navbar() {
                   subtitle="The video advertising layer built on Script Blockchain."
                 />
               </NavDropdown>
-              <NavDropdown
-                title="How it works"
-                showDropdown={true}
-                twoColumns={true}
+
+              <LinkScroller
+                id="homepage-community-section"
+                to="/"
+                wait={location.pathname === "/" ? 0 : 200}
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+                scrollerOptions={{
+                  smooth: true,
+                  offset: -50,
+                }}
               >
+                Watch
+              </LinkScroller>
+
+              <NavDropdown title="Help" showDropdown={true} twoColumns={true}>
                 <DropdownCard
                   to="/research"
                   title="ScriptGLASS explained"
@@ -119,29 +130,18 @@ function Navbar() {
                   subtitle="Calculate your earnings through staking and rewards"
                 />
               </NavDropdown>
-              <LinkScroller
-                id="homepage-community-section"
-                to="/"
-                wait={location.pathname === "/" ? 0 : 200}
-                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
-                scrollerOptions={{
-                  smooth: true,
-                  offset: -50,
-                }}
-              >
-                Community
-              </LinkScroller>
+
               <Link
                 to="/explorer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
-                Explorer
+                Screenzero
               </Link>
               <Link
                 to="/technology"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
-                Technology
+                Wallet
               </Link>
               <a
                 href="https://whitepaper.script.tv"
@@ -149,19 +149,32 @@ function Navbar() {
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
-                Docs
+                Explorer
               </a>
             </div>
 
-            <Button
-              link="/login"
-              label={
-                <span className="text-xs xl:text-sm text-black">Sign In</span>
-              }
-              className="mt-8 lg:mt-0 flex justify-center text-center"
-              customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
-              buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
-            />
+            <div className="flex items-center space-x-4">
+              <Button
+                link="/login"
+                className="mt-8 lg:mt-0 flex justify-center"
+                customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
+                buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
+                label={
+                  <span className="text-xs xl:text-sm text-black">
+                    MarketPlace
+                  </span>
+                }
+              />
+              <Button
+                link="/login"
+                label={
+                  <span className="text-xs xl:text-sm text-black">Sign In</span>
+                }
+                className="mt-8 lg:mt-0 flex justify-center text-center"
+                customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
+                buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
+              />
+            </div>
           </div>
         </div>
 
@@ -171,4 +184,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default TvNavbar;
