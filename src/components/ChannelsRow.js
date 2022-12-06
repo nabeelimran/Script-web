@@ -4,9 +4,20 @@ import ChannelBox from "./ChannelBox";
 
 function ChannelsRow({ channels, channleDetails }) {
   const [activeCard, setActiveCard] = useState("");
+  const [currenChannels, setCurrentChannels] = useState(channels);
+
+  const selector = (id) => {
+    const newArr = currenChannels.map((item) =>
+      item.id === id
+        ? { ...item, selected: item.selected ? false : true }
+        : { ...item, selected: false }
+    );
+
+    setCurrentChannels(newArr);
+  };
 
   return (
-    <div className="grid grid-cols-[106px_1fr] gap-3 grid-rows-[106px]">
+    <div className="grid grid-cols-[80px_1fr] md:grid-cols-[106px_1fr] gap-3 grid-rows-[80px] md:grid-rows-[106px]">
       <div className="relative bg-shade-grayis rounded-md flex items-center justify-center px-4">
         <button className="flex absolute top-2 right-2 text-lg opacity-60">
           <Icon icon="material-symbols:info-outline" />
@@ -14,15 +25,17 @@ function ChannelsRow({ channels, channleDetails }) {
         <img src={channleDetails.img} className="w-full" alt="" />
       </div>
 
-      {channels && (
+      {currenChannels && (
         <div className="flex space-x-3 overflow-x-scroll hide-scrollbar">
-          {channels.map((channel, index) => (
+          {currenChannels.map((channel, index) => (
             <ChannelBox
+              onClick={() => selector(channel.id)}
               state={{ setter: setActiveCard, getter: activeCard }}
               key={index}
               title={channel.name}
               time={channel.time}
               id={channel.id}
+              data={channel}
             />
           ))}
         </div>

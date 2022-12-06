@@ -5,15 +5,15 @@ function ChannelsFree() {
   return (
     <section>
       <div className="container">
-        <div className="bg-blue-link py-14 rounded-2xl text-center">
-          <div className="space-y-2 mb-6">
+        <div className="bg-blue-link py-6 md:py-14 rounded-lg md:rounded-2xl text-center px-8">
+          <div className="space-y-2 mb-4 md:mb-6">
             <Title variant="44">100s OF CHANNELS.</Title>
             <Title variant="44">
               <span className="text-primary">100% Free</span>
             </Title>
           </div>
 
-          <p className="text-xl max-w-[40rem] mx-auto">
+          <p className="text-sm md:text-base xl:text-xl max-w-[40rem] mx-auto">
             Drop in to over 100 of hit movies, binge- warthy TV shows, cartoons,
             sports and more. Anytime, always for free.
           </p>

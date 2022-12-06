@@ -45,9 +45,9 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
 
         {/* TV ROUTES */}
+        <Route path="/tv" element={<TvHomepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/tv" element={<TvHomepage />} />
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="account-details" element={<AccountDetails />} />

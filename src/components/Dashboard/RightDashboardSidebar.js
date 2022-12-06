@@ -1,19 +1,9 @@
+import DividerLine from "components/DividerLine";
+import HeadingSmall from "components/HeadingSmall";
 import UpperRoot from "components/UpperRoot";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
 import { Link } from "react-router-dom";
-
-const DividerLine = () => {
-  return <div className="w-full h-[1px] bg-[#202020]"></div>;
-};
-
-const HeadingSmall = ({ children, className }) => {
-  return (
-    <p className={`${className} text-xs xl:text-sm font-medium opacity-60`}>
-      {children}
-    </p>
-  );
-};
 
 function RightDashboardSidebar({ width, breakpointMatched, state }) {
   const { getter, setter } = state;

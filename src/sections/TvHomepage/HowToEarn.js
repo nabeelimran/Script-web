@@ -5,13 +5,13 @@ import React from "react";
 function HowToEarn() {
   return (
     <section className="container">
-      <div className="mb-14">
+      <div className="mb-10 lg:mb-14">
         <Title>
           How to Earn on <span className="text-primary">Script Network</span>
         </Title>
       </div>
 
-      <div className="grid grid-cols-3 gap-10">
+      <div className="grid lg:grid-cols-3 gap-6 xl:gap-10">
         <HowToEarnCard
           img="images/tv/earn-1.svg"
           title="Watching Videos"
