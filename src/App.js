@@ -40,7 +40,7 @@ function App() {
         <Route path="/technology" element={<Technology />} />
         <Route path="/research" element={<Research />} />
         <Route path="/terms-condition" element={<TermsAndConditions />} />
-        <Route path="/  " element={<PrivacyPolicy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
         <Route path="/faq" element={<FAQ />} />
 
