@@ -29,12 +29,16 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
         </div>
 
         <div className="space-y-3 mb-8 px-5 flex-1">
-          <PageLink label="Home" img="home.svg" />
+          <PageLink link="" label="Home" img="home.svg" />
           <PageLink label="Edit Profile" img="edit.svg" />
-          <PageLink label="Share Refaral" img="share.svg" />
+          <PageLink label="Share Referral" img="share.svg" />
           <PageLink label="Analytics" img="analytics.svg" />
-          <PageLink label="Change password" img="change.svg" />
-          <PageLink label="Token Maping" img="token.svg" />
+          <PageLink
+            link="change-password"
+            label="Change password"
+            img="change.svg"
+          />
+          <PageLink label="Token Mapping" img="token.svg" />
         </div>
 
         <div className="px-5">

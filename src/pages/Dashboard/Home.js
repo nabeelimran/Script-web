@@ -1,133 +1,25 @@
-import FillBar from "components/FillBar";
-import GemTitle from "components/GemTitle";
-import InventoryTradeCard from "components/InventoryTradeCard";
-import Title from "components/Title";
 import React from "react";
-import { Link } from "react-router-dom";
+import Gems from "sections/Dashboard/Home/Gems";
+import InventoryTrade from "sections/Dashboard/Home/InventoryTrade";
+import Tip from "sections/Dashboard/Home/Tip";
+import Welcome from "sections/Dashboard/Home/Welcome";
 
 function Home() {
   return (
     <div className="min-h-screen pb-14">
-      <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10 mb-8">
-        <div className="dashboard-layout">
-          <Title variant="20" className="font-semibold text-center mb-7">
-            Welcome Back, Peter
-          </Title>
-
-          <div className="space-y-1 mb-8 lg:mb-12">
-            <p className="fs-20px font-medium">
-              Welcome to your Script TV dashboard
-            </p>
-            <p className="text-sm">
-              Connect and interact with viewers, and build community around your
-              passions.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-3 md:gap-6">
-            <div className="py-4 px-5 rounded-lg flex items-center bg-[#5815BA]">
-              <div className="flex items-start space-x-3">
-                <div className="min-w-[40px] h-[40px] rounded-full bg-white"></div>
-
-                <div className="">
-                  <p className="fs-16px font-medium mb-1">Nice Work!</p>
-                  <p className="text-sm">
-                    You have earned 13.5 SPAY this week!
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
-              <div className="flex items-center space-x-3 flex-1 mb-2">
-                <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
-                <p className="fs-18px font-semibold">1,232 SPAY</p>
-              </div>
-
-              <p className="text-xs mb-2">Get 50 Subscruber</p>
-              <FillBar barColor="#FF38DC" progress="90%" bgColor="#A6A6A6" />
-            </div>
-
-            <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
-              <div className="flex items-center space-x-3 flex-1 mb-2">
-                <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
-                <p className="fs-18px font-semibold">250 SCPT</p>
-              </div>
-
-              <p className="text-xs mb-2">Get 5 people Chated Same Time</p>
-              <FillBar progress="100%" />
-            </div>
-          </div>
-        </div>
-
-        <img
-          src="images/dashboard-home-circles.svg"
-          className="absolute bottom-0 left-16 -z-10 w-[180px]"
-          alt=""
-        />
-
-        <img
-          src="images/rectangular-boxes.png"
-          className="absolute bottom-4 right-6 -z-10 w-[74px]"
-          alt=""
-        />
+      <div className="mb-8">
+        <Welcome />
       </div>
 
-      <div className="dashboard-layout mb-12">
-        <h1 className="fs-20px font-medium mb-7">My Inventory Trade Here</h1>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <InventoryTradeCard />
-          <InventoryTradeCard />
-          <InventoryTradeCard />
-          <InventoryTradeCard />
-        </div>
+      <div className="mb-12">
+        <InventoryTrade />
       </div>
 
-      <div className="dashboard-layout grid sm:grid-cols-[auto_auto] gap-10 sm:gap-12 justify-start mb-12">
-        <div>
-          <p className="fs-18px font-medium mb-6">Milestone Achieved</p>
-
-          <GemTitle title="1.0" />
-        </div>
-
-        <div>
-          <p className="fs-18px font-medium mb-6">My Gems</p>
-
-          <div className="flex items-center space-x-6">
-            <GemTitle title="1.0" />
-            <GemTitle title="1.0" gemVariant="white" />
-          </div>
-        </div>
+      <div className="mb-12">
+        <Gems />
       </div>
 
-      <div className="dashboard-layout">
-        <p className="fs-18px mb-4">Tip Of the Day</p>
-
-        <div className="bg-[#0E0E0F] rounded-lg p-5 relative">
-          <img
-            src="images/lawyer.png"
-            className="w-[120px] sm:w-[180px] lg:w-[26%] absolute top-[-80px] sm:top-[-50px] lg:bottom-0 right-0"
-            alt=""
-          />
-
-          <div className="sm:w-[70%] lg:w-[70%]">
-            <p className="fs-16px mb-2 w-[60%] sm:w-full">
-              Be Yourself and have a Fun
-            </p>
-
-            <p className="text-xs sm:text-sm mb-2">
-              People come to Twich to see you. Try to be yourself, have fun and
-              enjoy the process. The biggest advantures satrt with samllest if
-              it take time to get your first viwers, its part of the process .{" "}
-            </p>
-
-            <Link to="/" className="text-blue-link text-sm">
-              What is useful ?
-            </Link>
-          </div>
-        </div>
-      </div>
+      <Tip />
     </div>
   );
 }

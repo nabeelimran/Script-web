@@ -4,6 +4,7 @@ import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
 import AccountDetails from "pages/AccountDetails";
 import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
+import ChangePassword from "pages/Dashboard/ChangePassword";
 import Home from "pages/Dashboard/Home";
 import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
@@ -54,7 +55,8 @@ function App() {
         </Route>
 
         <Route path="dashboard" element={<DashboardLayout />}>
-          <Route index element={<Home />} />
+          <Route path="" index element={<Home />} />
+          <Route path="change-password" element={<ChangePassword />} />
         </Route>
       </Routes>
     </Router>

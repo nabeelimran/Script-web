@@ -308,6 +308,18 @@
   .dashboard-bottom-spacing {
     @apply pb-7;
   }
+
+  /*  */
+
+  .pagelink-activated {
+    @apply bg-primary;
+  }
+  .pagelink-activated .pagelink-img {
+    @apply brightness-0;
+  }
+  .pagelink-activated .pagelink-text {
+    @apply text-black;
+  }
 }
 
 /* Change the white to any color */

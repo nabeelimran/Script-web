@@ -26,9 +26,9 @@ function Header({ setRightSidebarVisibility, setLeftSidebarVisibility }) {
               <div className="w-[30px] md:w-[34px] rounded-full h-[30px] md:h-[34px] relative">
                 <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
                 <img
-                  src="images/dashboard/user.png"
-                  className="rounded-full w-full"
-                  alt=""
+                  src="/images/dashboard/user.png"
+                  className="rounded-full w-full h-full"
+                  alt="img"
                 />
               </div>
 

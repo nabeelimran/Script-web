@@ -35,21 +35,21 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
           <div className="flex items-center space-x-3">
             <Link className="block w-[14px]">
               <img
-                src="images/dashboard/message.svg"
+                src="/images/dashboard/message.svg"
                 className="w-full"
                 alt=""
               />
             </Link>
             <Link className="block w-[12px]">
               <img
-                src="images/dashboard/notification.svg"
+                src="/images/dashboard/notification.svg"
                 className="w-full"
                 alt=""
               />
             </Link>
             <Link className="block w-[14px]">
               <img
-                src="images/dashboard/setting.svg"
+                src="/images/dashboard/setting.svg"
                 className="w-full"
                 alt=""
               />
@@ -61,7 +61,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
             <div className="w-[34px] rounded-full h-[34px] relative">
               <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
               <img
-                src="images/dashboard/user.png"
+                src="/images/dashboard/user.png"
                 className="rounded-full w-full"
                 alt=""
               />
@@ -112,7 +112,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
 
             <div className="flex-1">
               <img
-                src="images/tv/cultured-one.svg"
+                src="/images/tv/cultured-one.svg"
                 className="w-full min-w-[76px] xl:min-w-[96px]"
                 alt=""
               />
@@ -128,7 +128,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
             </div>
 
             <img
-              src="images/cool-glasses.png"
+              src="/images/cool-glasses.png"
               className="w-[60px] xl:w-[90px]"
               alt=""
             />
