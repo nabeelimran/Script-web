@@ -5,6 +5,7 @@ import AccountDetails from "pages/AccountDetails";
 import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
 import ChangePassword from "pages/Dashboard/ChangePassword";
+import EditProfile from "pages/Dashboard/EditProfile";
 import Home from "pages/Dashboard/Home";
 import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
@@ -57,6 +58,7 @@ function App() {
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route path="" index element={<Home />} />
           <Route path="change-password" element={<ChangePassword />} />
+          <Route path="edit-profile" element={<EditProfile />} />
         </Route>
       </Routes>
     </Router>

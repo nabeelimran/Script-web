@@ -15,10 +15,10 @@ function CookiesPolicy() {
           <Title variant="44">Cookies Policy</Title>
         </div>
 
-        <div class="dictator-content">
-          <div class="dictator-section">
-            <h4 class="dictator-title">1. About this Policy</h4>
-            <p class="dictator-desc  dictator-indented-2">
+        <div className="dictator-content">
+          <div className="dictator-section">
+            <h4 className="dictator-title">1. About this Policy</h4>
+            <p className="dictator-desc  dictator-indented-2">
               {" "}
               Our Privacy Policy&nbsp;explains our principles when it comes to
               the collection, processing, and storage of your personal
@@ -28,9 +28,9 @@ function CookiesPolicy() {
               should be read together with our Privacy Policy.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title">2. What are cookies?</h4>
-            <p class="dictator-desc  dictator-indented-2">
+          <div className="dictator-section">
+            <h4 className="dictator-title">2. What are cookies?</h4>
+            <p className="dictator-desc  dictator-indented-2">
               {" "}
               Cookies are text files, containing small amounts of information,
               which are downloaded to your browsing device, such as your
@@ -40,7 +40,7 @@ function CookiesPolicy() {
               This helps websites know if the browsing device has visited them
               before.
             </p>
-            <p class="dictator-desc  dictator-indented-2">
+            <p className="dictator-desc  dictator-indented-2">
               {" "}
               We use two types of cookies: persistent cookies and session
               cookies. A persistent cookie lasts beyond the current session and
@@ -52,7 +52,7 @@ function CookiesPolicy() {
               as long as the session (usually the current visit to a website or
               a browser session).
             </p>
-            <p class="dictator-desc  dictator-indented-2">
+            <p className="dictator-desc  dictator-indented-2">
               2.3. Script TV is operating under the legislation of England and
               Wales. The services provided by the Website are not considered to
               be financial or custodian services under this jurisdiction, and
@@ -66,15 +66,15 @@ function CookiesPolicy() {
               illegal in the territory where you reside,
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title">3. Do I need to accept cookies?</h4>
-            <p class="dictator-desc  dictator-indented-2">
+          <div className="dictator-section">
+            <h4 className="dictator-title">3. Do I need to accept cookies?</h4>
+            <p className="dictator-desc  dictator-indented-2">
               {" "}
               No, you do not need to accept cookies. But, pleased be advised
               that if you do not accept cookies the service might be difficult
               or impossible to use.
             </p>
-            <p class="dictator-desc  dictator-indented-2">
+            <p className="dictator-desc  dictator-indented-2">
               {" "}
               You can adjust settings on your browser so that you will be
               notified when you receive a cookie. Please refer to your browser
@@ -87,10 +87,10 @@ function CookiesPolicy() {
               in.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title">4. What are the cookies used for?</h4>
-            <h6 class="dictator-title-center">Functional cookies</h6>
-            <p class="dictator-desc  dictator-indented-2">
+          <div className="dictator-section">
+            <h4 className="dictator-title">4. What are the cookies used for?</h4>
+            <h6 className="dictator-title-center">Functional cookies</h6>
+            <p className="dictator-desc  dictator-indented-2">
               Functional cookies are essential to provide our services as we
               want to provide them. They are used to remember your preferences
               on our website and to provide an enhanced and personalised
@@ -102,12 +102,12 @@ function CookiesPolicy() {
               browsing session, but some are also persistent cookies.
             </p>
           </div>
-          <div class="dictator-section">
-            <h6 class="dictator-title-center">
+          <div className="dictator-section">
+            <h6 className="dictator-title-center">
               {" "}
               Essential or ‘Strictly Necessary’ Cookies
             </h6>
-            <p class="dictator-desc  dictator-indented-2">
+            <p className="dictator-desc  dictator-indented-2">
               {" "}
               These cookies are essential to provide our services. Without these
               cookies, parts of our website will not function. These cookies do
@@ -118,12 +118,12 @@ function CookiesPolicy() {
               you close your browsing session.
             </p>
           </div>
-          <div class="dictator-section">
-            <h6 class="dictator-title-center">
+          <div className="dictator-section">
+            <h6 className="dictator-title-center">
               {" "}
               Essential or ‘Strictly Necessary’ Cookies
             </h6>
-            <p class="dictator-desc  dictator-indented-2">
+            <p className="dictator-desc  dictator-indented-2">
               {" "}
               Analytical performance cookies are used to monitor the performance
               of our website and services, for example, to determine the number
@@ -137,9 +137,9 @@ function CookiesPolicy() {
               used for statistical purposes
             </p>
           </div>
-          <div class="dictator-section">
-            <h6 class="dictator-title-center"> Advertising Cookies</h6>
-            <p class="dictator-desc  dictator-indented-2">
+          <div className="dictator-section">
+            <h6 className="dictator-title-center"> Advertising Cookies</h6>
+            <p className="dictator-desc  dictator-indented-2">
               {" "}
               These cookies remember that you have visited a website and use
               that information to provide you with content or advertising which

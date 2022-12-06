@@ -15,16 +15,16 @@ function PrivacyPolicy() {
           <Title variant="44">Privacy Policy</Title>
         </div>
 
-        <div class="dictator-content">
-          <div class="dictator-section">
-            <p class="dictator-desc">
+        <div className="dictator-content">
+          <div className="dictator-section">
+            <p className="dictator-desc">
               This Privacy Policy constitutes a part of Script TV’s Terms and
               Conditions (the “Terms”). The terms used in this Privacy Policy
               shall have the same meanings as in the Terms except as otherwise
               provided herein.
             </p>
 
-            <p class="dictator-desc">
+            <p className="dictator-desc">
               This Privacy Policy explains how Script TV and Script TV Operators
               collect, use, process, disclose, share, transfer, and protect
               personal information obtained through Script TV and its partners.
@@ -36,7 +36,7 @@ function PrivacyPolicy() {
               Policy for the exact use of cookies.
             </p>
 
-            <p class="dictator-desc">
+            <p className="dictator-desc">
               Please carefully read the full content of this Privacy Policy.
               When visiting the Script TV website www.token.script.tv regardless
               of whether or not you register for or log in, you acknowledge,
@@ -46,7 +46,7 @@ function PrivacyPolicy() {
               Terms without prior notification to you and your consent..
             </p>
 
-            <p class="dictator-desc">
+            <p className="dictator-desc">
               This Privacy Policy has incorporated elements from the General
               Data Protection Regulation (GDPR) as we act in accordance with its
               personal information processing rules within the European Economic
@@ -57,104 +57,104 @@ function PrivacyPolicy() {
             </p>
           </div>
 
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
               1. Types of data we collect
               {/* 1. TYPES OF DATA WE COLLECT */}
             </h4>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               The types of Personal Data that we collect directly from you or
               third parties depend on the circumstances of collection and the
               nature of the service requested or transaction undertaken. It may
               include (but is not limited to):
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (a) personal information that links back to an individual, e.g.,
               name, date of birth, and other personal identification numbers;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (b) contact information, e.g., address, phone number and email
               address, ERC-20 wallet address;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (c) technical information, e.g., IP address for API services and
               logins;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               statistical data, e.g., hits to the website.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header ">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header ">
               {/* 2. HOW DO WE COLLECT PERSONAL DATA? */}
               2. How do we collect personal data?
             </h4>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               This Privacy Policy covers any Personal Data provided to us:
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (a) when you engage with our products and services;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (b) when you create an account with us;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (c) under any other contractual agreement or arrangement;
             </p>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               Some of the other ways we may collect Personal Data shall include
               (but is not limited to):
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (a) communications with you via telephone, letter, fax, and email;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (b) when you visit our website;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (c) when you contact us in person;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (d) when we contact you in person;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (e) when we collect information about you from third parties (such
               as the social graphs available from social media companies); and
               other channels including our support helpdesk.
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (f) Possible extrapolation of other information by processing the
               data.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
               {/* 3. WHAT OTHER DATA DO WE COLLECT? */}
               3. What other data do we collect?
             </h4>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               From our website and services, we collect your Personal Data in
               the following ways:
             </p>
-            <p class="dictator-desc dictator-indented-1">(a) IP address</p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">(a) IP address</p>
+            <p className="dictator-desc dictator-indented-1">
               We use your IP address to help diagnose problems with our server
               and to administer our website. IP addresses are not linked to
               personally identifiable information.
             </p>
-            <p class="dictator-desc dictator-indented-1">(b) Cookiess</p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">(b) Cookiess</p>
+            <p className="dictator-desc dictator-indented-1">
               A cookie is an element of data that a website can send to your
               browser, which may then store it on your system. We use cookies in
               some of our pages to store your preferences and record session
               information. The information that we collect is then used to
               ensure a more personalized service level for our users.
             </p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
               Please refer to our Cookie Policy for the exact information on how
               we use cookies.
             </p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
               Information collected from cookies is used by us to evaluate the
               effectiveness of our site, analyze trends, and manage the
               platform. The information collected from cookies allows us to
@@ -162,7 +162,7 @@ function PrivacyPolicy() {
               and difficulties our visitors may experience in accessing our
               site.
             </p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
               With this knowledge, we can improve the quality of your experience
               on the platform by recognizing and delivering more of the most
               desired features and information, as well as by resolving access
@@ -172,29 +172,31 @@ function PrivacyPolicy() {
               provide you with a more personalized experience when using our
               site, or allow third-party service providers to do this.
             </p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
               Your continued use of this site, as well as any subsequent usage,
               will be interpreted as your consent to cookies being stored on
               your device.
             </p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
               Log in information can potentially be saved in cookies. Therefore
               it is important that you prevent unauthorized access to your
               password and your computer. If you use a shared computer, you
               should always log out properly and clear the browser for cookies.
             </p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
               (c) User feedback form
             </p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
               Our feedback form requires you to give us contact information
               (e.g. your name and email address) so that we can respond to your
               comments. We use your contact information from the registration
               form to send you information about our company. Your contact
               information is also used to contact you where necessary.
             </p>
-            <p class="dictator-desc dictator-indented-1">(d) Site tracking</p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
+              (d) Site tracking
+            </p>
+            <p className="dictator-desc dictator-indented-1">
               We also use third-party service provider(s), to assist us in
               better understanding the use of our site. Our service provider(s)
               will place cookies on the hard drive of your computer and will
@@ -212,64 +214,66 @@ function PrivacyPolicy() {
               our Site other than to assist us.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
               {/* 4. WHAT DO WE USE YOUR PERSONAL DATA FOR? */}
               4. What do we use your personal data for?
             </h4>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               We may use your Personal Data for the following “Core Purposes”:
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (a) to enable us to provide our services and perform our services
               to you;
             </p>
-            <p class=" dictator-desc dictator-indented-1">(i) he Terms; and</p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
+              (i) he Terms; and
+            </p>
+            <p className=" dictator-desc dictator-indented-1">
               (b) to protect the safety and well being of yourself and/or other
               customers;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (c) to investigate and respond to claims and inquiries from you;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (e) for business development purposes such as statistical and
               marketing analysis, systems testing, maintenance and development,
               customer surveys or to help us in any future dealings with you,
               for example by identifying your requirements and preference;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (e) to comply with any legal or regulatory requirements; and/ or
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (f) for all other purposes ancillary to any of the purposes stated
               above.
             </p>
-            <p class="dictator-desc dictator-indented-1">
+            <p className="dictator-desc dictator-indented-1">
               Ancillary to these “Core Purposes”, we reserve the right to use
               your data in the following ways:
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (g) to communicate offers, product, services and information on
               products and activities;
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (h) marketing/cross-marketing and communicating with you in
               relation to products and services offered by us and our service
               partners as well as our appointed agents; and/or
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (i) for all other company-related purposes ancillary to any of the
               purposes stated above.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
               {/* 5. ACCESSING / CORRECTING / UPDATING YOUR PERSONAL DATA */}
               5. Accessing / correcting / updating your personal data
             </h4>
-            <div class="dictator-section dictator-indented-2">
-              <p class="dictator-desc">
+            <div className="dictator-section dictator-indented-2">
+              <p className="dictator-desc">
                 Depending on your country of residence and its legislation, you
                 may have the right to request from us a copy of your personal
                 data, as well as to delete your personal data, make amendments
@@ -278,7 +282,7 @@ function PrivacyPolicy() {
                 also reserve the right to validate all requests for the
                 authenticity of the request.
               </p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">
                 You may be requested to provide us with your personal data, such
                 as KYC documents in specific situations to comply with legal and
                 regulatory requirements or in case of a dispute between you and
@@ -286,35 +290,35 @@ function PrivacyPolicy() {
                 with such requested information for the further processing and
                 actions.
               </p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">
                 We hope to ensure that you are fully aware of the data
                 protection rights that you enjoy. Unless otherwise required by
                 law or government orders, each User has the following rights:
               </p>
-              <p class="dictator-desc">5.1 Right of Access</p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">5.1 Right of Access</p>
+              <p className="dictator-desc">
                 You have the right to access or obtain copies of your personal
                 information. We may charge a reasonable fee for providing the
                 access service.
               </p>
-              <p class="dictator-desc">5.2 Right to Rectification</p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">5.2 Right to Rectification</p>
+              <p className="dictator-desc">
                 You have the right to correct your personal information that you
                 deem inaccurate. You also have the right to ask us to complete
                 the personal information that you deem incomplete within a
                 reasonable limit.
               </p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">
                 5.3 Right to Erasure (Right to be Forgotten)
               </p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">
                 You have the right to request the erasure of your personal data
                 under certain circumstances.
               </p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">
                 5.4 Right to Restriction of Processing
               </p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">
                 Under certain circumstances as required by law or as
                 specifically reminded by us, you have the right to request us to
                 restrict the processing of your personal information; however,
@@ -322,16 +326,16 @@ function PrivacyPolicy() {
                 prevent us from providing you with some of the Script TV
                 Services.
               </p>
-              <p class="dictator-desc">5.5 Right to Object</p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">5.5 Right to Object</p>
+              <p className="dictator-desc">
                 Under certain circumstances as required by law or as
                 specifically reminded by us, you have the right to object to the
                 processing of your personal information; however, you understand
                 that such objection of the processing may prevent us from
                 providing you with some of the Script TV’s Services.
               </p>
-              <p class="dictator-desc">5.6 Right to Data Portability</p>
-              <p class="dictator-desc">
+              <p className="dictator-desc">5.6 Right to Data Portability</p>
+              <p className="dictator-desc">
                 Under certain circumstances as required by law or as
                 specifically reminded by us, you have the right to request us to
                 transmit the personal information that we collect to another
@@ -340,9 +344,11 @@ function PrivacyPolicy() {
               </p>
             </div>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">6. Withdrawing consent</h4>
-            <p class="dictator-desc dictator-indented-2">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
+              6. Withdrawing consent
+            </h4>
+            <p className="dictator-desc dictator-indented-2">
               Please note that it is obligatory for the Company to process your
               Personal Data for the Core Purpose as stated above, without which
               some services or features provided by Script TV may be affected.
@@ -350,25 +356,25 @@ function PrivacyPolicy() {
               Ancillary Purposes, we will not be able to keep you updated about
               our future, new and/or enhanced services and products.
             </p>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               Nevertheless, you may stop receiving promotional activities by:
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (a) unsubscribing from the mailing list(s);
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (b) editing the relevant account settings to unsubscribe; or
             </p>
-            <p class=" dictator-desc dictator-indented-1">
+            <p className=" dictator-desc dictator-indented-1">
               (c) sending a request via our Contact Us form on www.script.tv
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
               {/* 7. TO WHOM DO WE DISCLOSE YOUR PERSONAL DATA? */}
               7. To whom do we disclose your personal data?
             </h4>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               We will not trade or sell your Personal Data to third parties.
               Your Personal Data shall only be disclosed or transferred to the
               following third parties appointed or authorised by the Company for
@@ -391,12 +397,12 @@ function PrivacyPolicy() {
               Statement.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
               {/* 8. HOW LONG WILL WE RETAIN YOUR PERSONAL DATA? */}
               8. How long will we retain your personal data?
             </h4>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               The Company may store data in global hosting providers with
               servers across various regions and we shall take all reasonable
               steps to ensure that all Personal Data is destroyed or permanently
@@ -404,7 +410,7 @@ function PrivacyPolicy() {
               and prepare a disposal schedule for inactive data after a 24 month
               period.
             </p>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               Script TV implements various security measures to ensure that your
               personal data is stored safely and is not compromised in any way.
               At the same time, Script TV cannot in good faith guarantee that
@@ -416,12 +422,12 @@ function PrivacyPolicy() {
               you should contact Script TV Support as soon as possible.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
               {/* 9. LINKS TO THIRD PARTY WEBSITES */}
               9. Links to third party websites
             </h4>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               We may link this website and/or our applications to other
               companies’ or organizations’ websites (collectively, “Third Party
               Sites”). This Privacy Notice does not apply to such Third Party
@@ -437,17 +443,17 @@ function PrivacyPolicy() {
               these Third-Party Sites.
             </p>
           </div>
-          <div class="dictator-section">
-            <h4 class="dictator-title text-header">
+          <div className="dictator-section">
+            <h4 className="dictator-title text-header">
               {/* 10. ADDITIONAL INFORMATION OR ASSISTANCE */}
               10. Additional information or assistance
             </h4>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               Please note that this Privacy Policy may be amended from time to
               time in accordance with applicable laws and regulations and such
               variations may be applicable to you.
             </p>
-            <p class="dictator-desc dictator-indented-2">
+            <p className="dictator-desc dictator-indented-2">
               For further inquiries or complaints in relation to our handling of
               your Personal Data or our Privacy Policy or if you wish to access,
               update or amend your Personal Data as mentioned above please

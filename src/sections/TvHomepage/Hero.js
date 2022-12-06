@@ -37,7 +37,7 @@ function Hero() {
               bulletActiveClass: "active",
               clickable: true,
               renderBullet: function (index, className) {
-                return '<span class="' + className + '">' + "" + "</span>";
+                return '<span className="' + className + '">' + "" + "</span>";
               },
             }}
             onSwiper={(swiper) => {

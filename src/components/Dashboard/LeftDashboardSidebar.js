@@ -30,7 +30,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
 
         <div className="space-y-3 mb-8 px-5 flex-1">
           <PageLink link="" label="Home" img="home.svg" />
-          <PageLink label="Edit Profile" img="edit.svg" />
+          <PageLink link="edit-profile" label="Edit Profile" img="edit.svg" />
           <PageLink label="Share Referral" img="share.svg" />
           <PageLink label="Analytics" img="analytics.svg" />
           <PageLink
