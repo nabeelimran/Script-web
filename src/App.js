@@ -8,6 +8,7 @@ import ChangePassword from "pages/Dashboard/ChangePassword";
 import EditProfile from "pages/Dashboard/EditProfile";
 import Home from "pages/Dashboard/Home";
 import ShareRefferal from "pages/Dashboard/ShareRefferal";
+import TokenMapping from "pages/Dashboard/TokenMapping";
 import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
@@ -61,6 +62,7 @@ function App() {
           <Route path="change-password" element={<ChangePassword />} />
           <Route path="edit-profile" element={<EditProfile />} />
           <Route path="share-referral" element={<ShareRefferal />} />
+          <Route path="token-mapping" element={<TokenMapping />} />
         </Route>
       </Routes>
     </Router>

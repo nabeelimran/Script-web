@@ -42,7 +42,11 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
             label="Change password"
             img="change.svg"
           />
-          <PageLink label="Token Mapping" img="token.svg" />
+          <PageLink
+            link="token-mapping"
+            label="Token Mapping"
+            img="token.svg"
+          />
         </div>
 
         <div className="px-5">
