@@ -1,9 +1,10 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-function PageLink({ label, icon, img, link = "/" }) {
+function PageLink({ label, icon, img, link = "/", onClick }) {
   return (
     <NavLink
+      onClick={onClick}
       to={link}
       end
       className={({ isActive }) =>

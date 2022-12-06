@@ -29,23 +29,41 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
         </div>
 
         <div className="space-y-3 mb-8 px-5 flex-1">
-          <PageLink link="" label="Home" img="home.svg" />
-          <PageLink link="edit-profile" label="Edit Profile" img="edit.svg" />
+          <PageLink
+            link=""
+            label="Home"
+            img="home.svg"
+            onClick={() => setter(false)}
+          />
+          <PageLink
+            link="edit-profile"
+            label="Edit Profile"
+            img="edit.svg"
+            onClick={() => setter(false)}
+          />
           <PageLink
             link="share-referral"
             label="Share Referral"
             img="share.svg"
+            onClick={() => setter(false)}
           />
-          <PageLink label="Analytics" img="analytics.svg" />
+          <PageLink
+            link="analytics"
+            label="Analytics"
+            img="analytics.svg"
+            onClick={() => setter(false)}
+          />
           <PageLink
             link="change-password"
             label="Change password"
             img="change.svg"
+            onClick={() => setter(false)}
           />
           <PageLink
             link="token-mapping"
             label="Token Mapping"
             img="token.svg"
+            onClick={() => setter(false)}
           />
         </div>
 

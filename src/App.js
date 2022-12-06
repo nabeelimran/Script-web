@@ -4,6 +4,7 @@ import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
 import AccountDetails from "pages/AccountDetails";
 import Calculator from "pages/Calculator";
 import CookiesPolicy from "pages/CookiesPolicy";
+import Analytics from "pages/Dashboard/Analytics";
 import ChangePassword from "pages/Dashboard/ChangePassword";
 import EditProfile from "pages/Dashboard/EditProfile";
 import Home from "pages/Dashboard/Home";
@@ -63,6 +64,7 @@ function App() {
           <Route path="edit-profile" element={<EditProfile />} />
           <Route path="share-referral" element={<ShareRefferal />} />
           <Route path="token-mapping" element={<TokenMapping />} />
+          <Route path="analytics" element={<Analytics />} />
         </Route>
       </Routes>
     </Router>

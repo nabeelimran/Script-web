@@ -4,7 +4,7 @@ import React from "react";
 
 const SwapBox = ({ children }) => {
   return (
-    <div className="h-[70px] bg-primary rounded-lg flex items-center justify-center text-center">
+    <div className="h-[40px] sm:h-[50px] lg:h-[70px] bg-primary rounded-lg flex items-center justify-center text-center">
       {children}
     </div>
   );
