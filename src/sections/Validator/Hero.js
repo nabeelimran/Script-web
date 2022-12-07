@@ -21,7 +21,8 @@ function Hero() {
             className="lh-1_2 font-bold mb-10 max-w-[30rem] lg:max-w-none mx-auto lg:mx-0"
             variant="44"
           >
-            Become a validator and help secure the future of Script
+            {/* Become a validator and help secure the future of Script */}
+            Run a lightning node and help secure the future of Script Network
           </Title>
 
           <div className="block lg:hidden max-w-[24rem] mx-auto w-full mb-8 relative z-10">
@@ -32,13 +33,21 @@ function Hero() {
 
           <div className="grid max-w-[16rem] lg:max-w-none mx-auto lg:mx-0 lg:grid-cols-2 gap-4 lg:gap-6">
             <Button
-              label="Become a lightning node"
+              label="Run a lightning node"
               className="justify-center"
+              buttonProps={{
+                onClick: () =>
+                  window.open("https://whitepaper.script.tv/nodes", "_blank"),
+              }}
             />
             <Button
               variant={1}
-              label="Thinking about staking?"
+              label="How to run a node?"
               className="justify-center"
+              buttonProps={{
+                onClick: () =>
+                  window.open("https://whitepaper.script.tv/nodes", "_blank"),
+              }}
             />
           </div>
         </div>

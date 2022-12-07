@@ -10,7 +10,7 @@ function BecomeValidator() {
         <div className="mb-10 lg:mb-16">
           <div className="mb-3">
             <Title>
-              Become a <span className="text-primary">Validator</span>
+              Run a <span className="text-primary">Validator Node</span>
             </Title>
           </div>
           <p className="heading-sub text-center text-white opacity-80 max-w-[40rem] w-full mx-auto">

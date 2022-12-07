@@ -6,8 +6,8 @@ function ChannelsFree() {
     <section>
       <div className="container">
         <div className="bg-blue-link py-6 md:py-14 rounded-lg md:rounded-2xl text-center px-8">
-          <div className="space-y-2 mb-4 md:mb-6">
-            <Title variant="44">100s OF CHANNELS.</Title>
+          <div className="space-y-1 mb-4 md:mb-6">
+            <Title variant="44">100s of hours of films and tv shows</Title>
             <Title variant="44">
               <span className="text-primary">100% Free</span>
             </Title>

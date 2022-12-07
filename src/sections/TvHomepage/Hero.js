@@ -10,11 +10,12 @@ const SliderContent = () => {
   return (
     <div className="h-[auto] md:h-full relative z-10 rounded-xl overflow-hidden">
       <img
-        src="images/tv/hero-banner.png"
+        // src="images/tv/hero-banner.png"
+        src="images/banner.jpeg"
         className="w-full h-[200px] md:h-full"
         alt=""
       />
-      <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,.6)] z-20"></div>
+      {/* <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,.6)] z-20"></div> */}
     </div>
   );
 };
@@ -97,6 +98,8 @@ function Hero() {
         </div>
 
         <div className="bg-[#0D0D0D] py-6 rounded-xl">
+          <p className="fs-20px font-semibold mb-4 px-6">Your Mini Dashboard</p>
+
           <div className="space-y-4">
             <div className="px-6">
               <HeadingSmall className="mb-1">

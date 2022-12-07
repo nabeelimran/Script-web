@@ -22,7 +22,7 @@ function Validator() {
         <div className="yellow-corner-blob"></div>
       </div>
 
-      <div className="mb-20 lg:mb-24">
+      <div className="mb-20 lg:mb-20">
         <ScriptNetwork />
       </div>
       <div className="mb-20 lg:mb-24">
