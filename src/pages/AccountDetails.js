@@ -1,7 +1,7 @@
 import Footer from "components/Footer";
-import Navbar from "components/Navbar";
 import TableList from "components/TableList";
 import Title from "components/Title";
+import TvNavbar from "components/TvNavbar";
 import React from "react";
 
 function AccountDetails() {
@@ -10,7 +10,7 @@ function AccountDetails() {
       <div className="yellow-corner-blob opacity-40" />
 
       <div className="mb-4 sm:mb-6 lg:mb-10 relative z-50">
-        <Navbar />
+        <TvNavbar />
       </div>
 
       <main className="flex-1 container">

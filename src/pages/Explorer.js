@@ -1,5 +1,5 @@
 import Footer from "components/Footer";
-import Navbar from "components/Navbar";
+import TvNavbar from "components/TvNavbar";
 import React from "react";
 import Details from "sections/Explorer/Details/Details";
 import Hero from "sections/Explorer/Hero";
@@ -9,7 +9,7 @@ function Explorer() {
   return (
     <div>
       <div className="mb-4 sm:mb-6 lg:mb-10 relative z-50">
-        <Navbar />
+        <TvNavbar />
       </div>
 
       <div className="mb-20 lg:mb-24">

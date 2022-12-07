@@ -96,14 +96,12 @@ function TvNavbar() {
               >
                 Wallet
               </Link>
-              <a
-                href="https://whitepaper.script.tv"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/explorer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Explorer
-              </a>
+              </Link>
             </div>
 
             <div className="flex items-center space-x-4">
