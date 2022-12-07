@@ -15,7 +15,7 @@ function TvHomepage() {
         <TvNavbar />
       </div>
 
-      <div className="mb-16 lg:mb-24">
+      <div className="mb-16">
         <Hero />
       </div>
 

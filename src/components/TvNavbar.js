@@ -9,6 +9,8 @@ import { Link as ScrollLink } from "react-scroll";
 import Logo from "./Logo";
 import LinkScroller from "./LinkScroller";
 import UpperRoot from "./UpperRoot";
+import ChannelsDropdown from "./ChannelsDropdown";
+import HelpDropdown from "./HelpDropdown";
 
 function TvNavbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -65,40 +67,7 @@ function TvNavbar() {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-9">
-              <NavDropdown title="Channels" showDropdown={true}>
-                <DropdownCard
-                  teller="BETA"
-                  tellerClassName="text-primary"
-                  title="Script TV"
-                  subtitle="our user first watch to earn television platform."
-                />
-                <DropdownCard
-                  title="Marketplace"
-                  teller="COMING SOON"
-                  subtitle="Our native marketplace for buying, selling and renting ScriptGLASS ."
-                />
-                <DropdownCard
-                  to="/validator"
-                  teller="COMING SOON"
-                  title="Script Blockchain"
-                  subtitle="our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."
-                />
-                <DropdownCard
-                  to="/research"
-                  title="ScriptGLASS"
-                  subtitle="Our upgradeable NFT collection"
-                />
-                <DropdownCard
-                  teller="COMING SOON"
-                  title="dStorage"
-                  subtitle="Save 70%+ on transcoding, transferring and storage costs from web2."
-                />
-                <DropdownCard
-                  teller="COMING SOON"
-                  title="sADs"
-                  subtitle="The video advertising layer built on Script Blockchain."
-                />
-              </NavDropdown>
+              <ChannelsDropdown />
 
               <LinkScroller
                 id="homepage-community-section"
@@ -113,23 +82,7 @@ function TvNavbar() {
                 Watch
               </LinkScroller>
 
-              <NavDropdown title="Help" showDropdown={true} twoColumns={true}>
-                <DropdownCard
-                  to="/research"
-                  title="ScriptGLASS explained"
-                  subtitle="Our user first watch to earn television platform."
-                />
-                <DropdownCard
-                  to="/token"
-                  title="Script Tokens"
-                  subtitle="Learn about SCPT and SPAY tokens"
-                />
-                <DropdownCard
-                  to="/calculator"
-                  title="Calculator"
-                  subtitle="Calculate your earnings through staking and rewards"
-                />
-              </NavDropdown>
+              <HelpDropdown />
 
               <Link
                 to="/explorer"

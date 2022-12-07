@@ -25,9 +25,8 @@ function AllTvChannels() {
           <img src="images/fire.svg" className="w-[26px]" alt="" />
 
           <Title variant="24" className="font-medium text-center sm:text-left">
-            All your TV{" "}
-            <span className="text-primary font-semibold">channels in one</span>{" "}
-            place
+            Decentralised television,{" "}
+            <span className="text-primary">for free</span>
           </Title>
         </div>
       </div>
