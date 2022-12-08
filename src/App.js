@@ -14,6 +14,7 @@ import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
 import Login from "pages/Login";
+import Marketplace from "pages/Marketplace";
 import PrivacyPolicy from "pages/PrivacyPolicy";
 import Register from "pages/Regsiter";
 import Research from "pages/Research";
@@ -66,6 +67,10 @@ function App() {
           <Route path="token-mapping" element={<TokenMapping />} />
           <Route path="analytics" element={<Analytics />} />
         </Route>
+
+        {/* MARKETPLACE */}
+
+        <Route path="marketplace" element={<Marketplace />} />
       </Routes>
     </Router>
   );
