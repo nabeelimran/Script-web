@@ -3,6 +3,15 @@ import axios from 'axios';
 
 export default class Api {
     static fetchMediumBlog(blogLimit) {
-        return axios.get(`${APIPATH}getAllMediumFeeds?limit=${blogLimit}`).then(res => res.data);
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: 'research'
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}getAllMediumFeeds?limit=${blogLimit}`, options).then(res => res.data);
     }
 }

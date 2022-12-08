@@ -7,8 +7,17 @@ import ScriptDocumentation from "components/ScriptDocumentation";
 import Title from "components/Title";
 import React from "react";
 import { Link } from "react-router-dom";
+import Api from "services/api";
+
+function getMediumBlogs() {
+  return Api.fetchMediumBlog(4)
+}
 
 function UpdatedRoadmap() {
+  getMediumBlogs().then((res) => {
+    console.log('blogs', res)
+  });
+  
   return (
     <section>
       <div className="container-two">
