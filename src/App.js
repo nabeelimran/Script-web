@@ -18,6 +18,7 @@ import Marketplace from "pages/Marketplace";
 import PrivacyPolicy from "pages/PrivacyPolicy";
 import Register from "pages/Regsiter";
 import Research from "pages/Research";
+import Rewards from "pages/Rewards";
 import Stake from "pages/Stake";
 import Technology from "pages/Technology";
 import TermsAndConditions from "pages/TermsAndConditions";
@@ -52,6 +53,7 @@ function App() {
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="account-details" element={<AccountDetails />} />
+        <Route path="reward" element={<Rewards />} />
 
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
           <Route path="key-store" element={<KeyStore />} />
@@ -69,7 +71,6 @@ function App() {
         </Route>
 
         {/* MARKETPLACE */}
-
         <Route path="marketplace" element={<Marketplace />} />
       </Routes>
     </Router>
