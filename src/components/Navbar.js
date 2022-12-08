@@ -132,17 +132,18 @@ function Navbar() {
                 Community
               </LinkScroller>
               <Link
-                to="/explorer"
-                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
-              >
-                Explorer
-              </Link>
-              <Link
                 to="/technology"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Technology
               </Link>
+              <Link
+                to="/explorer"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Explorer
+              </Link>
+
               <a
                 href="https://whitepaper.script.tv"
                 target="_blank"
@@ -156,7 +157,9 @@ function Navbar() {
             <Button
               link="/login"
               label={
-                <span className="text-xs xl:text-sm text-black">Sign In</span>
+                <span className="text-xs xl:text-sm text-black">
+                  Sign in / Sign in
+                </span>
               }
               className="mt-8 lg:mt-0 flex justify-center text-center"
               customizationClassName="space-x-3 px-5 rounded-lg font-semibold"

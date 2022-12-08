@@ -10,10 +10,10 @@ const LeftComponent = () => {
       </Title>
 
       <p className="heading-sub text-white lh-1_7">
-        For you to not only have governance over decisions in the ecosystem
-        (like most projects), but decision making power on content being aired =
-        the first content company working towards true decentralization, rather
-        than just using a small % of blockchain technology.
+        for you to not only have governance over protocol level decision in the
+        ecosystem, but decision making power on future content being aired. This
+        is part of our long term vision to make television decentralized, and
+        give viewers the power and control they deserve.
       </p>
     </div>
   );

@@ -28,12 +28,21 @@ function TvNavbar() {
   return (
     <UpperRoot>
       <div className="container py-5 xl:py-7 flex items-center justify-between z-[200] relative">
-        <Logo
+        {/* <Logo
+          to="/tv"
           variant="yellow"
           imgClassName="w-10"
-          textClassName="text-sm xl:text-base"
-          title={<>Script Network</>}
-        />
+          textClassName="text-sm xl:text-base lh-1"
+          title={<>script.tv</>}
+        /> */}
+
+        <Link to="/tv">
+          <img
+            src="images/logo-beta.svg"
+            className="w-[100px] xl:w-[120px]"
+            alt=""
+          />
+        </Link>
 
         <div>
           <button

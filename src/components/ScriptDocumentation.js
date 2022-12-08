@@ -34,8 +34,10 @@ function ScriptDocumentation() {
         </div>
       </div>
 
-      <div>
-        <img src="images/whitepaper.png" className="w-full" alt="" />
+      <div className="flex items-end">
+        <div className="border-t-2 border-white">
+          <img src="images/whitepaper.png" className="w-full" alt="" />
+        </div>
       </div>
     </div>
   );
