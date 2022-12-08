@@ -41,7 +41,9 @@ const ChannelsDropdownBody = () => {
         />
       </div>
       <div className="py-4 lg:py-7 px-5 lg:px-8 border-t-1px lg:border-t-0 lg:border-l-1px border-primary">
-        <p className="text-base font-bold mb-6">Channels</p>
+        <p className="text-base font-bold mb-6 uppercase text-primary">
+          Channels
+        </p>
 
         <div className="grid grid-cols-2 gap-6 lg:gap-0 lg:flex flex-wrap items-center lg:-mx-3 lg:-my-3">
           {channels.map((item, i) => (
