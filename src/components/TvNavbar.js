@@ -12,7 +12,7 @@ import UpperRoot from "./UpperRoot";
 import ChannelsDropdown from "./ChannelsDropdown";
 import HelpDropdown from "./HelpDropdown";
 
-function TvNavbar() {
+function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();

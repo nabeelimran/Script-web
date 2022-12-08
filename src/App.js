@@ -3,6 +3,7 @@ import DashboardLayout from "layouts/DashboardLayout";
 import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
 import AccountDetails from "pages/AccountDetails";
 import Calculator from "pages/Calculator";
+import ConnectWallet from "pages/ConnectWallet";
 import CookiesPolicy from "pages/CookiesPolicy";
 import Analytics from "pages/Dashboard/Analytics";
 import ChangePassword from "pages/Dashboard/ChangePassword";
@@ -54,6 +55,7 @@ function App() {
         <Route path="stake" element={<Stake />} />
         <Route path="account-details" element={<AccountDetails />} />
         <Route path="reward" element={<Rewards />} />
+        <Route path="connect-wallet" element={<ConnectWallet />} />
 
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
           <Route path="key-store" element={<KeyStore />} />
