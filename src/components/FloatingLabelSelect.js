@@ -1,7 +1,23 @@
 import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 
-function FloatingLabelSelect({ label }) {
+const dummyOptions = [
+  { value: "", title: "" },
+  { value: "1", title: "Alabama" },
+  { value: "2", title: "Boston" },
+  { value: "3", title: "Ohaio" },
+  { value: "4", title: "New York" },
+  { value: "5", title: "Washington" },
+];
+
+function FloatingLabelSelect({
+  label,
+  className = "text-sm xl:text-base",
+  arrowClassName = "right-4 text-2xl",
+  selectClassName = "bg-black h-[40px] xl:h-[50px] px-4 xl:px-5 border-1px border-[#313131] rounded-lg text-white",
+  floatingFontSize = "13px",
+  options,
+}) {
   const [value, setvalue] = useState("");
 
   const changeFruit = (newFruit) => {
@@ -9,23 +25,34 @@ function FloatingLabelSelect({ label }) {
   };
 
   return (
-    <div className="did-floating-label-content relative">
+    <div
+      className={`did-floating-label-content relative ${className}`}
+      style={{ "--float-font-size": floatingFontSize }}
+    >
       <select
         value={value}
         onChange={(event) => changeFruit(event.target.value)}
         className={`${
           value !== "" ? "up" : ""
-        } did-floating-select bg-black px-4 xl:px-5 border-1px border-[#313131] rounded-lg text-white`}
+        } did-floating-select ${selectClassName}`}
       >
-        <option value=""></option>
-        <option value="1">Alabama</option>
-        <option value="2">Boston</option>
-        <option value="3">Ohaio</option>
-        <option value="4">New York</option>
-        <option value="5">Washington</option>
+        {options &&
+          options.map((item, i) => (
+            <option key={i} value={item.value}>
+              {item.title}
+            </option>
+          ))}
+        {!options &&
+          dummyOptions.map((item, i) => (
+            <option key={i} value={item.value}>
+              {item.title}
+            </option>
+          ))}
       </select>
 
-      <div className="absolute top-1/2 -translate-y-1/2 right-4 text-2xl z-50 pointer-events-none">
+      <div
+        className={`absolute top-1/2 -translate-y-1/2 z-50 pointer-events-none ${arrowClassName}`}
+      >
         <Icon icon="material-symbols:keyboard-arrow-down-rounded" />
       </div>
       <label className="did-floating-label left-2 xl:left-3 bg-black">

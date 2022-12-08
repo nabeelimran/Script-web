@@ -327,7 +327,8 @@
 
   /* FLOATING LABEL INPUT */
   .did-floating-label-content {
-    @apply relative text-sm xl:text-base;
+    ----float-font-size: 13px;
+    @apply relative;
   }
   .did-floating-label {
     font-weight: normal;
@@ -342,7 +343,7 @@
   }
   .did-floating-input,
   .did-floating-select {
-    @apply h-[40px] xl:h-[50px];
+    /* @apply h-[40px] xl:h-[50px]; */
 
     display: block;
     width: 100%;
@@ -366,21 +367,21 @@
   .did-floating-select:focus ~ .did-floating-label {
     bottom: 82%;
     transform: translateY(0%);
-    font-size: 13px;
+    font-size: var(--float-font-size);
   }
   .did-floating-input:not(:placeholder-shown) ~ .did-floating-label {
     bottom: 82%;
-    font-size: 13px;
+    font-size: var(--float-font-size);
     transform: translateY(0%);
   }
   .did-floating-select.up ~ .did-floating-label {
     bottom: 82%;
-    font-size: 13px;
+    font-size: var(--float-font-size);
     transform: translateY(0%);
   }
   .did-floating-select[value=""]:focus ~ .did-floating-label {
     bottom: 82%;
-    font-size: 13px;
+    font-size: var(--float-font-size);
     transform: translateY(0%);
   }
   /* .did-error-input .did-floating-input,
