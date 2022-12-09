@@ -123,7 +123,7 @@ const team = [
   {
     name: "Maxwell Chan",
     img: "images/team/Maxwell-Chan.jpeg",
-    designation: "Advisor, Director BKEX",
+    designation: "Advisor",
   },
 
   {

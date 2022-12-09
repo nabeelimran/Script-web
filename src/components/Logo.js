@@ -18,12 +18,13 @@ function Logo({
   textClassName = "fs-16px",
   imgClassName = "w-10",
   className = "flex items-center space-x-3",
+  to = "/",
 }) {
   const v = variants[variant];
 
   return (
     <div className="relative">
-      <Link to="/" className={className}>
+      <Link to={to} className={className}>
         <img src={v.img} className={`cursor-pointer ${imgClassName}`} alt="" />
 
         {title && (

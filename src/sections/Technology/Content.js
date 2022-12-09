@@ -18,15 +18,21 @@ const RightComponent = () => {
       </Title>
 
       <p className="heading-sub text-white lh-1_7">
-        Filmmakers / content owners (beyond getting a tonne of benefits such as
-        faster pay, more distribution and actual data on viewership) - can
-        launch NFTs or bespoke competitions over the top of their film, and have
-        users interact with it at the time. In simple terms, if i have my film
-        aired on Script TV between 3-5pm, i can launch a NFT spontaneously which
-        gives an opportunity to viewers who are watching the film at that time
-        only, to buy / mint for free / get a reward. No other company, let alone
-        film company, has explored this type of discovery process of NFTs to
-        date.
+        Filmmaker and content owners already will get a range of benefits from
+        being part of Script Network - including faster payment, extra data and
+        actual data on their audience - but there is so much more to unlock.{" "}
+        <br /> <br />
+        In the near future, content owners can, during their show / film being
+        aired, release NFTs or bespoke competitions in real time, giving all
+        viewers at the time unrivalled access, opportunity and rewards. <br />{" "}
+        <br />
+        In simple terms, if Andrew has a film that is aired on Script Network
+        between 3pm-5pm - he can release a special access NFT or quiz on his
+        film to viewers. Those who interact and answer correctly gets exclusive
+        access on or off chain.
+        <br /> <br />
+        Our goal is to do more with NFTs to benefit collectors and owners,
+        whilst providing best in class innovation to the industry.
       </p>
     </div>
   );
@@ -35,7 +41,7 @@ const RightComponent = () => {
 function Content() {
   return (
     <SideBySideSection
-      className="items-center"
+      className=""
       LeftComponent={LeftComponent}
       RightComponent={RightComponent}
     />

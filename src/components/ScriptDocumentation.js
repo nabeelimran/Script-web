@@ -26,7 +26,7 @@ function ScriptDocumentation() {
             <Button label="Whitepaper" />
           </div>
           <div className="m-2">
-            <Button label="Exclusive Summary" variant={3} />
+            <Button label="Summary" variant={3} />
           </div>
           {/* <div className="m-2">
             <Button label="One Pager" variant={3} />
@@ -34,9 +34,11 @@ function ScriptDocumentation() {
         </div>
       </div>
 
-      <div>
-        <img src="images/whitepaper.png" className="w-full" alt="" />
-      </div>
+      {/* <div className="flex items-end">
+        <div className="border-t-2 border-white">
+          <img src="images/whitepaper.png" className="w-full" alt="" />
+        </div>
+      </div> */}
     </div>
   );
 }

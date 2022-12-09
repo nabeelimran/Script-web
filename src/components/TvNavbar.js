@@ -12,7 +12,7 @@ import UpperRoot from "./UpperRoot";
 import ChannelsDropdown from "./ChannelsDropdown";
 import HelpDropdown from "./HelpDropdown";
 
-function TvNavbar() {
+function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();
@@ -28,12 +28,21 @@ function TvNavbar() {
   return (
     <UpperRoot>
       <div className="container py-5 xl:py-7 flex items-center justify-between z-[200] relative">
-        <Logo
+        {/* <Logo
+          to="/tv"
           variant="yellow"
           imgClassName="w-10"
-          textClassName="text-sm xl:text-base"
-          title={<>Script Network</>}
-        />
+          textClassName="text-sm xl:text-base lh-1"
+          title={<>script.tv</>}
+        /> */}
+
+        <Link to="/tv">
+          <img
+            src="images/logo-beta.svg"
+            className="w-[100px] xl:w-[120px]"
+            alt=""
+          />
+        </Link>
 
         <div>
           <button
@@ -45,7 +54,7 @@ function TvNavbar() {
 
           <div
             ref={sidebarRef}
-            className={`p-12 lg:p-0 flex flex-col lg:flex-row lg:items-center lg:space-x-10 xl:space-x-12 fixed lg:static top-0 right-0 w-[300px] lg:w-auto h-full border-l-2 border-primary lg:border-none transition-all duration-300 bg-black lg:bg-transparent z-[110] overflow-y-auto lg:overflow-y-visible ${
+            className={`p-12 lg:p-0 flex flex-col lg:flex-row lg:items-center lg:space-x-10 xl:space-x-10 fixed lg:static top-0 right-0 w-[300px] lg:w-auto h-full border-l-2 border-primary lg:border-none transition-all duration-300 bg-black lg:bg-transparent z-[110] overflow-y-auto lg:overflow-y-visible ${
               isSidebarVisible
                 ? "translate-x-0"
                 : "translate-x-[300px] lg:translate-x-0"
@@ -66,7 +75,7 @@ function TvNavbar() {
               </button>
             </div>
 
-            <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-9">
+            <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
               <ChannelsDropdown />
 
               <LinkScroller
@@ -84,12 +93,19 @@ function TvNavbar() {
 
               <HelpDropdown />
 
-              <Link
-                to="/explorer"
+              <LinkScroller
+                id="tv-community"
+                to="/tv"
+                wait={location.pathname === "/tv" ? 0 : 200}
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+                scrollerOptions={{
+                  smooth: true,
+                  offset: -50,
+                }}
               >
-                Screenzero
-              </Link>
+                Community
+              </LinkScroller>
+
               <Link
                 to="/technology"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
@@ -104,9 +120,9 @@ function TvNavbar() {
               </Link>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">
               <Button
-                link="/login"
+                link="/marketplace"
                 className="mt-8 lg:mt-0 flex justify-center"
                 customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
@@ -119,7 +135,9 @@ function TvNavbar() {
               <Button
                 link="/login"
                 label={
-                  <span className="text-xs xl:text-sm text-black">Sign In</span>
+                  <span className="text-xs xl:text-sm text-black">
+                    Sign in / Sign up
+                  </span>
                 }
                 className="mt-8 lg:mt-0 flex justify-center text-center"
                 customizationClassName="space-x-3 px-5 rounded-lg font-semibold"

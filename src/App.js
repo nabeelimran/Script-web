@@ -3,6 +3,7 @@ import DashboardLayout from "layouts/DashboardLayout";
 import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
 import AccountDetails from "pages/AccountDetails";
 import Calculator from "pages/Calculator";
+import ConnectWallet from "pages/ConnectWallet";
 import CookiesPolicy from "pages/CookiesPolicy";
 import Analytics from "pages/Dashboard/Analytics";
 import ChangePassword from "pages/Dashboard/ChangePassword";
@@ -14,9 +15,11 @@ import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
 import Login from "pages/Login";
+import Marketplace from "pages/Marketplace";
 import PrivacyPolicy from "pages/PrivacyPolicy";
 import Register from "pages/Regsiter";
 import Research from "pages/Research";
+import Rewards from "pages/Rewards";
 import Stake from "pages/Stake";
 import Technology from "pages/Technology";
 import TermsAndConditions from "pages/TermsAndConditions";
@@ -51,6 +54,8 @@ function App() {
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="account-details" element={<AccountDetails />} />
+        <Route path="reward" element={<Rewards />} />
+        <Route path="connect-wallet" element={<ConnectWallet />} />
 
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
           <Route path="key-store" element={<KeyStore />} />
@@ -66,6 +71,9 @@ function App() {
           <Route path="token-mapping" element={<TokenMapping />} />
           <Route path="analytics" element={<Analytics />} />
         </Route>
+
+        {/* MARKETPLACE */}
+        <Route path="marketplace" element={<Marketplace />} />
       </Routes>
     </Router>
   );

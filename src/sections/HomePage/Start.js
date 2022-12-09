@@ -8,7 +8,10 @@ function Start() {
       <div className="container grid md:grid-cols-[.8fr_1fr] gap-8 md:gap-20">
         <div className="border-b-2 border-primary pb-6">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl text-white font-bold">
-            <span className="text-primary">Start in</span> Seconds
+            <span className="text-primary">
+              Start <br /> in
+            </span>{" "}
+            Seconds
           </h1>
         </div>
         <div>
