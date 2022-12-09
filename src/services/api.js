@@ -12,6 +12,7 @@ export default class Api {
                 screenName: 'research'
             }
         }
-        return axios.get(`${APIPATH.BASEURL}getAllMediumFeeds?limit=${blogLimit}`, options).then(res => res.data);
+        return axios.get(
+            `${APIPATH.BASEURL}getAllMediumFeeds?limit=${blogLimit}`, options).then(res => res.data);
     }
 }
