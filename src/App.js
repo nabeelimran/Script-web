@@ -1,3 +1,4 @@
+import ConnectWalletModal from "components/ConnectWalletModal";
 import ScrollToTop from "components/ScrollToTop";
 import DashboardLayout from "layouts/DashboardLayout";
 import UnlockWalletPageLayout from "layouts/UnlockWalletPageLayout";
@@ -35,6 +36,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <ConnectWalletModal />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/token" element={<TokenPage />} />

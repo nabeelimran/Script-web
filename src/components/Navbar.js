@@ -9,11 +9,14 @@ import { Link as ScrollLink } from "react-scroll";
 import Logo from "./Logo";
 import LinkScroller from "./LinkScroller";
 import UpperRoot from "./UpperRoot";
+import { useDispatch } from "react-redux";
+import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 
 function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSidebarVisible) {
@@ -155,15 +158,20 @@ function Navbar() {
             </div>
 
             <Button
-              link="/login"
+              className="mt-8 lg:mt-0 flex justify-center text-center"
+              customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
+              buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
               label={
                 <span className="text-xs xl:text-sm text-black">
                   Sign in / Sign in
                 </span>
               }
-              className="mt-8 lg:mt-0 flex justify-center text-center"
-              customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
-              buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
+              buttonProps={{
+                onClick: () => {
+                  setSidebarVisibility(false);
+                  dispatch(toggleModalVisibility(true));
+                },
+              }}
             />
           </div>
         </div>

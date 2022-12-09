@@ -11,11 +11,14 @@ import LinkScroller from "./LinkScroller";
 import UpperRoot from "./UpperRoot";
 import ChannelsDropdown from "./ChannelsDropdown";
 import HelpDropdown from "./HelpDropdown";
+import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+import { useDispatch } from "react-redux";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSidebarVisible) {
@@ -133,7 +136,12 @@ function TvNavbar({ className }) {
                 }
               />
               <Button
-                link="/login"
+                buttonProps={{
+                  onClick: () => {
+                    setSidebarVisibility(false);
+                    dispatch(toggleModalVisibility(true));
+                  },
+                }}
                 label={
                   <span className="text-xs xl:text-sm text-black">
                     Sign in / Sign up
