@@ -18,10 +18,10 @@ function Collect() {
     <section className="container">
       <div className="mb-12">
         <Title className="text-primary text-center font-medium mb-2">
-          Collect your reward severy day
+          Collect your rewards everyday
         </Title>
         <p className="fs-16px text-center">
-          Log in 7 days in a row, your rewards will grow
+          Complete tasks, earn points and swap them for tradeable tokens!
         </p>
       </div>
 

@@ -14,11 +14,11 @@ const RightComponent = () => {
   return (
     <div>
       <Title className="text-primary text-left font-semibold mb-5">
-        Content interaction layer:
+        Content interaction layer
       </Title>
 
       <p className="heading-sub text-white lh-1_7">
-        Filmmaker and content owners already will get a range of benefits from
+        Filmmakers and content owners already will get a range of benefits from
         being part of Script Network - including faster payment, extra data and
         actual data on their audience - but there is so much more to unlock.{" "}
         <br /> <br />

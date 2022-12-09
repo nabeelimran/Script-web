@@ -16,7 +16,7 @@ function Rewards() {
         <Hero />
       </div>
 
-      <div className="mb-16 lg:mb-20">
+      <div className="mb-14">
         <Collect />
       </div>
 

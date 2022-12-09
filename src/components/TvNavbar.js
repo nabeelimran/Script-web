@@ -39,7 +39,7 @@ function TvNavbar({ className }) {
         <Link to="/tv">
           <img
             src="images/logo-beta.svg"
-            className="w-[100px] xl:w-[120px]"
+            className="w-[100px] xl:w-[130px]"
             alt=""
           />
         </Link>
@@ -76,8 +76,6 @@ function TvNavbar({ className }) {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
-              <ChannelsDropdown />
-
               <LinkScroller
                 id="homepage-community-section"
                 to="/"
@@ -90,6 +88,8 @@ function TvNavbar({ className }) {
               >
                 Watch
               </LinkScroller>
+
+              <ChannelsDropdown />
 
               <HelpDropdown />
 
