@@ -535,3 +535,39 @@ input:-webkit-autofill:active {
 [type="radio"]:checked + label:before {
   @apply border-primary;
 }
+
+/* POPUP ANIMTION */
+
+.popup-in {
+  animation: mount forwards 300ms;
+  top: 40%;
+  left: 50%;
+}
+
+@keyframes mount {
+  0% {
+    top: 40%;
+    left: 50%;
+  }
+
+  100% {
+    top: 50%;
+  }
+}
+
+.popup-out {
+  animation: unmount forwards 300ms;
+  top: 50%;
+  left: 50%;
+}
+
+@keyframes unmount {
+  0% {
+    top: 50%;
+    left: 50%;
+  }
+
+  100% {
+    top: 40%;
+  }
+}

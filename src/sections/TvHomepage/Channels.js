@@ -2,6 +2,8 @@ import { Icon } from "@iconify/react";
 import Button from "components/Button";
 import ChannelsRow from "components/ChannelsRow";
 import FillBar from "components/FillBar";
+import GlassModalButton from "components/GlassModalButton";
+import Popup from "components/Popup";
 import SquareBox from "components/SquareBox";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -215,16 +217,7 @@ function Channels() {
           <div className="grid xl:grid-cols-[1fr_340px] gap-10 items-center">
             <div className="xl:flex items-center space-y-12 xl:space-y-0 xl:space-x-6">
               <div className="grid grid-cols-2 xl:grid-cols-[110px_110px] gap-4 xl:gap-6">
-                <SquareBox className="flex-1 xl:flex-auto" variant={1}>
-                  <img
-                    src="images/glasses.svg"
-                    className="w-[34px] xl:w-[38px] mb-2 xl:mb-3"
-                    alt=""
-                  />
-                  <div className="py-1 px-3 text-[10px] xl:text-xs bg-black font-medium rounded">
-                    #708543
-                  </div>
-                </SquareBox>
+                <GlassModalButton />
 
                 <SquareBox className="flex-1 xl:flex-auto">
                   <img
