@@ -11,6 +11,7 @@ function NavDropdown({
   Component,
   componentWrapperClassName,
   childrenClassName = "bg-shade-dark-blue-2 py-4 px-6 rounded mt-4 grid gap-6",
+  className = "text-sm xl:text-base font-medium",
 }) {
   const isAbove1024px = useMediaQuery("(min-width: 1024px)");
   const wrapperClassName = twoColumns
@@ -19,7 +20,9 @@ function NavDropdown({
 
   return isAbove1024px ? (
     <div className="group/dropdown flex items-center justify-between space-x-2 relative">
-      <p className="group-hover/dropdown:text-primary group-hover/dropdown:underline transition-all duration-300 text-sm xl:text-base font-medium cursor-pointer">
+      <p
+        className={`group-hover/dropdown:text-primary group-hover/dropdown:underline transition-all duration-300 cursor-pointer ${className}`}
+      >
         {title}
       </p>
       <Icon

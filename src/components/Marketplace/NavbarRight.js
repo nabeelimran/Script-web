@@ -1,17 +1,22 @@
 import { Icon } from "@iconify/react";
 import BlackScreen from "components/BlackScreen";
+import ChannelsDropdown from "components/ChannelsDropdown";
+import HelpDropdown from "components/HelpDropdown";
+import LinkScroller from "components/LinkScroller";
 import UpperRoot from "components/UpperRoot";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
 import { forwardRef } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Content = forwardRef(({ isAbove1024px, open, setOpen }, ref) => {
+  const location = useLocation();
+
   return (
     <div
       ref={ref}
-      className={`fixed lg:static top-0 right-0  lg:translate-x-0 transition-all duration-300 w-[260px] lg:w-auto h-screen lg:h-auto bg-black lg:bg-transparent z-[10000] p-8 lg:p-0 ${
+      className={`fixed lg:static top-0 right-0  lg:translate-x-0 transition-all duration-300 w-[260px] lg:w-auto h-screen lg:h-auto bg-black lg:bg-transparent z-[10000] overflow-y-auto lg:overflow-visible p-8 lg:p-0 ${
         open ? "translate-x-[0]" : "translate-x-[260px]"
       }`}
     >
@@ -40,7 +45,7 @@ const Content = forwardRef(({ isAbove1024px, open, setOpen }, ref) => {
             </div>
           )}
 
-          <div className="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-5">
+          {/* <div className="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-5">
             <Link
               to="/explorer"
               className="nav-link text-sm font-medium cursor-pointer"
@@ -64,6 +69,51 @@ const Content = forwardRef(({ isAbove1024px, open, setOpen }, ref) => {
               className="nav-link text-sm font-medium cursor-pointer"
             >
               Create
+            </Link>
+          </div> */}
+
+          <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
+            <LinkScroller
+              id="homepage-community-section"
+              to="/"
+              wait={location.pathname === "/" ? 0 : 200}
+              className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              scrollerOptions={{
+                smooth: true,
+                offset: -50,
+              }}
+            >
+              Watch
+            </LinkScroller>
+
+            <ChannelsDropdown />
+
+            <HelpDropdown />
+
+            <LinkScroller
+              id="tv-community"
+              to="/tv"
+              wait={location.pathname === "/tv" ? 0 : 200}
+              className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              scrollerOptions={{
+                smooth: true,
+                offset: -50,
+              }}
+            >
+              Community
+            </LinkScroller>
+
+            <Link
+              to="/technology"
+              className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+            >
+              Wallet
+            </Link>
+            <Link
+              to="/explorer"
+              className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+            >
+              Explorer
             </Link>
           </div>
         </div>

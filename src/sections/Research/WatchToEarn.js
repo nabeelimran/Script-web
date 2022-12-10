@@ -11,7 +11,6 @@ function WatchToEarn() {
       </Title>
 
       <div className="research-list">
-        <BulletPoint point="Redefining crypto advertising (allowing crypto/NFT projects to easily promote via the platform)." />
         <BulletPoint point="Redefining crypto advertising (allowing crypto/NFT projects to easily promote via the platform)" />
         <BulletPoint
           point="Gamified Reward Structure - earn rewards through our viewing content, engaging, and

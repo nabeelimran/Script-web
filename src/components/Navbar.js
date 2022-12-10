@@ -80,10 +80,14 @@ function Navbar() {
                   subtitle="Our native marketplace for buying, selling and renting ScriptGLASS ."
                 />
                 <DropdownCard
-                  to="/validator"
-                  teller="COMING SOON"
+                  teller={<span className="text-primary">TESTNET</span>}
                   title="Script Blockchain"
                   subtitle="our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."
+                  anchor={true}
+                  others={{
+                    href: "https://faucet.script.tv/",
+                    target: "_blank",
+                  }}
                 />
                 <DropdownCard
                   to="/research"
@@ -120,6 +124,11 @@ function Navbar() {
                   to="/calculator"
                   title="Calculator"
                   subtitle="Calculate your earnings through staking and rewards"
+                />
+                <DropdownCard
+                  to="/calculator"
+                  title="Run a Node"
+                  subtitle="Help secure and grow the ecosystem - and get rewarded"
                 />
               </NavDropdown>
               <LinkScroller

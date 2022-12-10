@@ -25,6 +25,7 @@ function Footer({ container = "container-two" }) {
               { title: "Learn about SCPT and SPAY tokens", to: "/research" },
               { title: "ScriptTV - how to earn", to: "/token" },
               { title: "Calculator", to: "/calculator" },
+              { title: "Run a node - earn rewards", to: "/calculator" },
             ]}
           />
           <FooterLinksSection
