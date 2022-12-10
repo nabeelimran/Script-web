@@ -15,7 +15,7 @@ function Footer({ container = "container-two" }) {
               { title: "Script Glass", to: "/research" },
               { title: "Marketplace", to: "" },
               { title: "dStorage", to: "" },
-              { title: "Script Blockchain", to: "/validator" },
+              { title: "Script Blockchain", to: "/node" },
               { title: "sADs", to: "" },
             ]}
           />

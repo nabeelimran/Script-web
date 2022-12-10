@@ -42,7 +42,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/token" element={<TokenPage />} />
         <Route path="/calculator" element={<Calculator />} />
-        <Route path="/validator" element={<Validator />} />
+        <Route path="/node" element={<Validator />} />
         <Route path="/technology" element={<Technology />} />
         <Route path="/research" element={<Research />} />
         <Route path="/terms-condition" element={<TermsAndConditions />} />
