@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function MarketPlaceDisplayCard() {
+function MarketPlaceDisplayCard({ to = "/details" }) {
   return (
-    <div className="bg-[#131313] rounded-xl">
+    <Link to={to} className="bg-[#131313] rounded-xl block">
       <img
         src="images/nft.png"
         className="w-full rounded-xl aspect-square object-cover"
@@ -30,7 +31,7 @@ function MarketPlaceDisplayCard() {
           <span className="opacity-80">02:20:20:10</span>
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 

@@ -8,7 +8,7 @@ import RightContent from "./RightContent";
 function NFTDetails() {
   return (
     <div>
-      <div className="grid grid-cols-[300px_1fr] gap-8 mb-10">
+      <div className="grid md:grid-cols-[300px_1fr] gap-8 mb-10">
         <NFTContent />
         <RightContent />
       </div>
