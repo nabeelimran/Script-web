@@ -3,6 +3,7 @@ import MarketplaceFilterBar from "components/Marketplace/MarketplaceFilterBar";
 import Content from "components/Marketplace/Content";
 import useMediaQuery from "hooks/useMediaQuery";
 import { useState, useEffect } from "react";
+import BlackScreen from "components/BlackScreen";
 
 function Marketplace() {
   const isAbove1024px = useMediaQuery("(min-width:1024px)");
@@ -30,6 +31,9 @@ function Marketplace() {
         navbarHeight={navbarHeight}
         sidebarWidth={sidebarWidth}
       />
+
+      <BlackScreen show={isFilterBarVisible || isOpen} />
+
       <MarketplaceFilterBar
         open={isFilterBarVisible}
         setOpen={setFilterVisibility}

@@ -424,6 +424,15 @@
     border-radius: 4px 0 0 4px;
     border-right: none;
   }
+
+  .nft-activity-table {
+    @apply w-full min-w-[800px];
+  }
+
+  .nft-activity-table td,
+  .nft-activity-table th {
+    @apply text-xs xl:text-sm py-2 px-2 text-left;
+  }
 }
 
 /* Change the white to any color */

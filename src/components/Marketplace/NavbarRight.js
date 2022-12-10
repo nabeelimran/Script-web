@@ -109,8 +109,6 @@ function NavbarRight({ isAbove1024px, isOpen, setIsOpen }) {
         <Icon icon="material-symbols:menu-rounded" />
       </button>
 
-      <BlackScreen show={isOpen} />
-
       <UpperRoot>
         <Content
           ref={sidebarRef}

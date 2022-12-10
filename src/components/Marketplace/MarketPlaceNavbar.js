@@ -1,7 +1,5 @@
-import { Icon } from "@iconify/react";
 import Logo from "components/Logo";
 import React from "react";
-import { Link } from "react-router-dom";
 import NavbarRight from "./NavbarRight";
 
 const NavbarLeft = () => {
@@ -25,25 +23,27 @@ function MarketPlaceNavbar({
   setIsOpen,
 }) {
   return (
-    <div
-      className="flex items-center bg-[#131313] fixed top-0 left-0 w-full z-[1000] px-6 lg:px-0"
-      style={{ height: navbarHeight }}
-    >
+    <>
       <div
-        className="flex justify-between lg:grid w-full items-center"
-        style={{
-          gridTemplateColumns: isAbove1024px ? `${sidebarWidth} 1fr` : "auto",
-        }}
+        className="flex items-center bg-[#131313] fixed top-0 left-0 w-full z-[1000] px-6 lg:px-0"
+        style={{ height: navbarHeight }}
       >
-        <NavbarLeft />
+        <div
+          className="flex justify-between lg:grid w-full items-center"
+          style={{
+            gridTemplateColumns: isAbove1024px ? `${sidebarWidth} 1fr` : "auto",
+          }}
+        >
+          <NavbarLeft />
 
-        <NavbarRight
-          isAbove1024px={isAbove1024px}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-        />
+          <NavbarRight
+            isAbove1024px={isAbove1024px}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -70,8 +70,6 @@ function MarketplaceFilterBar({
 
   return (
     <>
-      <BlackScreen show={open} />
-
       <UpperRoot>
         <div
           ref={filterMenuRef}

@@ -12,6 +12,7 @@ import EditProfile from "pages/Dashboard/EditProfile";
 import Home from "pages/Dashboard/Home";
 import ShareRefferal from "pages/Dashboard/ShareRefferal";
 import TokenMapping from "pages/Dashboard/TokenMapping";
+import Details from "pages/Details";
 import Explorer from "pages/Explorer";
 import FAQ from "pages/FAQ";
 import HomePage from "pages/HomePage";
@@ -58,6 +59,7 @@ function App() {
         <Route path="account-details" element={<AccountDetails />} />
         <Route path="reward" element={<Rewards />} />
         <Route path="connect-wallet" element={<ConnectWallet />} />
+        <Route path="details" element={<Details />} />
 
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
           <Route path="key-store" element={<KeyStore />} />
