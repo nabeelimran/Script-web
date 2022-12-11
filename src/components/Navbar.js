@@ -69,7 +69,7 @@ function Navbar() {
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-9">
               <NavDropdown title="Products" showDropdown={true}>
                 <DropdownCard
-                  teller="Beta"
+                  teller="BETA"
                   tellerClassName="text-primary"
                   title="Script TV"
                   subtitle="our user first watch to earn television platform."
@@ -80,7 +80,7 @@ function Navbar() {
                   subtitle="Our native marketplace for buying, selling and renting ScriptGLASS ."
                 />
                 <DropdownCard
-                  teller="Testnet"
+                  teller="TESTNET"
                   tellerClassName="text-primary"
                   title="Script Blockchain"
                   subtitle="our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."

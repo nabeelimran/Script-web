@@ -13,7 +13,11 @@ const NavbarLeft = () => {
         title={<>Script Network</>}
       /> */}
       <Link to="/tv">
-        <img src="images/logo-beta.svg" className="w-[100px]" alt="" />
+        <img
+          src="images/logo-beta.svg"
+          className="w-[100px] xl:w-[120px]"
+          alt=""
+        />
       </Link>
     </div>
   );

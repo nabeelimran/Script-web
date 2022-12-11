@@ -30,7 +30,7 @@ function About() {
           />
           <AboutCard
             title="$SPAY"
-            desc="SPAY however, has a different usecase. it is the operational token of the script network blockchain, as is for rewards for guardians & edge nodes, gas nft trading, off chain rewards offline."
+            desc="SPAY however, has a different usecase. it is the operational token of the script network blockchain, as is for rewards for lightning & edge nodes, gas nft trading, off chain rewards offline."
           />
         </div>
 

@@ -32,8 +32,8 @@ function Hero() {
     <section>
       <div className="container">
         <div className="flex flex-col xl:flex-row items-center justify-between space-y-10 xl:space-y-0 xl:space-x-20">
-          <div className="flex flex-col xl:flex-row items-center text-center xl:text-left space-y-5 xl:space-y-0 xl:space-x-8">
-            <div className="w-[100px] lg:w-[130px] xl:w-[140px] h-[100px] lg:h-[130px] xl:h-[140px] rounded-full bg-primary flex items-center justify-center">
+          <div className="flex-1 flex flex-col xl:flex-row items-center text-center xl:text-left space-y-5 xl:space-y-0 xl:space-x-8">
+            <div className="min-w-[100px] w-[100px] lg:w-[130px] lg:min-w-[130px] xl:w-[140px] xl:min-w-[140px] h-[100px] lg:h-[130px] xl:h-[140px] rounded-full bg-primary flex items-center justify-center">
               <Logo
                 className="flex flex-col items-center space-y-2"
                 imgClassName="w-[30%]"
@@ -49,9 +49,8 @@ function Hero() {
                 className="font-semibold text-center xl:text-left"
                 variant="30"
               >
-                Welcome to <span className="text-primary">script network</span>{" "}
-                <br />
-                governance & staking
+                Welcome to Governance and Staking for{" "}
+                <span className="text-primary">Script Network</span>{" "}
               </Title>
             </div>
           </div>
