@@ -17,7 +17,7 @@ function DecentralizedTV() {
           className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-8 md:mb-10 xl:mb-10"
           style={{ lineHeight: 1.3 }}
         >
-          Decentralised TV And Film For You, <br /> And Everyone With A Device
+          Decentralized TV And Film For You, <br /> And Everyone With A Device
         </p>
 
         <p

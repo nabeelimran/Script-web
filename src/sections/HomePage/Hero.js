@@ -12,7 +12,7 @@ function Hero() {
             Powering Live TV and Film for the next generation.
           </h5>
           <h1 className="text-white font-semibold text-2xl sm:text-3xl lg:text-4xl lh-1_2 mb-6 max-w-[30rem] lg:max-w-none mx-auto">
-            Watch To Earn Live TV Decentralised On Chain,{" "}
+            Watch To Earn Live TV Decentralized On Chain,{" "}
             <span className="text-primary">For Free</span>
           </h1>
 

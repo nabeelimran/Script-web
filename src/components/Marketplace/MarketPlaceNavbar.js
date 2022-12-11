@@ -1,16 +1,20 @@
 import Logo from "components/Logo";
 import React from "react";
+import { Link } from "react-router-dom";
 import NavbarRight from "./NavbarRight";
 
 const NavbarLeft = () => {
   return (
     <div className="lg:px-6">
-      <Logo
+      {/* <Logo
         variant="yellow"
         imgClassName="w-8"
         textClassName="text-sm"
         title={<>Script Network</>}
-      />
+      /> */}
+      <Link to="/tv">
+        <img src="images/logo-beta.svg" className="w-[100px]" alt="" />
+      </Link>
     </div>
   );
 };

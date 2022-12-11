@@ -43,15 +43,15 @@ function Hero() {
 
             <div className="space-y-2">
               <p className="text-sm xl:text-base text-white opacity-60 font-semibold">
-                Introduching Script Network
+                Introducing Script Network
               </p>
               <Title
                 className="font-semibold text-center xl:text-left"
                 variant="30"
               >
-                Welcome To <span className="text-primary">Script Network</span>{" "}
+                Welcome to <span className="text-primary">script network</span>{" "}
                 <br />
-                Governance & Staking
+                governance & staking
               </Title>
             </div>
           </div>

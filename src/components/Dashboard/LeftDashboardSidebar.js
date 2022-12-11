@@ -2,6 +2,7 @@ import Logo from "components/Logo";
 import UpperRoot from "components/UpperRoot";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
+import { Link } from "react-router-dom";
 import PageLink from "./PageLink";
 
 function LeftDashboardSidebar({ width, breakpointMatched, state }) {
@@ -21,11 +22,19 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
         }}
       >
         <div className="mb-8 px-7">
-          <Logo
+          {/* <Logo
             variant="yellow"
             imgClassName="w-7 xl:w-9"
             textClassName="text-xs lg:text-sm"
-          />
+          /> */}
+
+          <Link to="/tv">
+            <img
+              src="images/logo-beta.svg"
+              className="w-[100px] xl:w-[110px]"
+              alt=""
+            />
+          </Link>
         </div>
 
         <div className="space-y-3 mb-8 px-5 flex-1">

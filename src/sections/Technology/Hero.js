@@ -10,7 +10,7 @@ function Hero() {
           </h1>
           <p className="fs-20px text-white">
             Script.tv is pioneering a new paradigm in blockchain design.
-            Aminimal Modular consensus layer for rollups.
+            A minimal Modular consensus layer for rollups.
           </p>
         </div>
       </div>
