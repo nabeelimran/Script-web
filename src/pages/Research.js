@@ -64,23 +64,6 @@ function Research() {
       </div>
 
       <div className="mb-20 lg:mb-20">
-        {/* <TokenSalesAndEconomics /> */}
-        <div className="container-two">
-          <Title className="text-primary text-left font-semibold" variant="24">
-            Read more about SPAY tokenomics{" "}
-            <a
-              href="https://whitepaper.script.tv/spay-tokenomics"
-              rel="noreferrer"
-              target="_blank"
-              className="text-blue-link"
-            >
-              HERE
-            </a>
-          </Title>
-        </div>
-      </div>
-
-      <div className="mb-20 lg:mb-20">
         <WorkFlow />
       </div>
 
@@ -94,6 +77,24 @@ function Research() {
 
           <img src="images/scpt.jpg" className="mb-6" alt="" />
           <img src="images/spay.jpg" alt="" />
+
+          <div className="mt-10">
+            {/* <TokenSalesAndEconomics /> */}
+            <Title
+              className="text-primary text-left font-semibold"
+              variant="24"
+            >
+              Read more about SPAY tokenomics{" "}
+              <a
+                href="https://whitepaper.script.tv/spay-tokenomics"
+                rel="noreferrer"
+                target="_blank"
+                className="text-blue-link"
+              >
+                HERE
+              </a>
+            </Title>
+          </div>
         </div>
       </section>
 
