@@ -94,6 +94,15 @@ function Research() {
         <CoreTeam />
       </div>
 
+      <div className="mb-20 lg:mb-20">
+        <div className="container-two">
+          {/* <Title className="text-left text-primary font-semibold mb-6">
+            Revenue Streams
+          </Title> */}
+          <img src="images/revenue.jpg" className="w-full" alt="" />
+        </div>
+      </div>
+
       {/* <div className="mb-20 lg:mb-20">
         <Roadmap />
       </div> */}
