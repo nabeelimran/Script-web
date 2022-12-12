@@ -12,7 +12,7 @@ const SliderContent = () => {
       <img
         // src="images/tv/hero-banner.png"
         src="images/tv-banner-3.png"
-        className="w-full h-[200px] md:h-full"
+        className="h-[200px] md:absolute top-0 left-0 w-full md:h-full"
         alt=""
       />
       {/* <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,.6)] z-20"></div> */}
