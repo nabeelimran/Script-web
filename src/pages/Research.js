@@ -33,6 +33,12 @@ function Research() {
 
       <div className="mb-20 lg:mb-20">
         <div className="container-two">
+          <Title
+            className="text-left font-medium text-primary mb-4 lg:mb-12"
+            variant="20"
+          >
+            1. What is Script Network?
+          </Title>
           <img src="images/our-products.jpg" className="w-full" alt="" />
         </div>
       </div>
@@ -82,7 +88,7 @@ function Research() {
         <div className="container-two">
           <div className="mb-10 lg:mb-16">
             <Title className="text-primary font-medium" variant="20">
-              Tokens in the Script Network Ecosystem
+              4. Tokens in the Script Network ecosystem
             </Title>
           </div>
 
@@ -96,9 +102,21 @@ function Research() {
 
       <div className="mb-20 lg:mb-20">
         <div className="container-two">
-          {/* <Title className="text-left text-primary font-semibold mb-6">
-            Revenue Streams
-          </Title> */}
+          <div className="mb-10 lg:mb-16">
+            <div className="mb-4">
+              <Title
+                // variant="20"
+                className="text-primary text-center font-medium"
+              >
+                6. Revenue Streams
+              </Title>
+            </div>
+            <p className="heading-sub text-white opacity-60 text-center max-w-[40rem] mx-auto">
+              As an ecosystem, it is important that the there is development
+              beyond the reliance of tokens. Thus, Script Network has a multiple
+              revenue streams, activated from launch.
+            </p>
+          </div>
           <img src="images/revenue.jpg" className="w-full" alt="" />
         </div>
       </div>

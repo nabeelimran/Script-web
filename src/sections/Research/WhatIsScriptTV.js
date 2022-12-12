@@ -6,7 +6,7 @@ function WhatIsScriptTV() {
   return (
     <section>
       <div className="container-two">
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <Title
             className="text-left font-medium text-primary mb-4 lg:mb-12"
             variant="20"
@@ -19,7 +19,7 @@ function WhatIsScriptTV() {
             className="mx-auto w-full max-w-[400px]"
             alt=""
           />
-        </div>
+        </div> */}
 
         <div className="research-list">
           <ListIntended

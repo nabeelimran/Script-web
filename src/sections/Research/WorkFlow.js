@@ -17,7 +17,7 @@ function WorkFlow() {
   return (
     <section>
       <div className="container-two">
-        <div className="mb-10 lg:mb-16">
+        {/* <div className="mb-10 lg:mb-16">
           <Title className="text-primary font-medium mb-3" variant="20">
             The Script TV protocol workflow is based on the ‘Watch to Earn’
             model.
@@ -25,7 +25,7 @@ function WorkFlow() {
           <Title className="text-primary font-medium" variant="20">
             SPAY Core Tokenomics
           </Title>
-        </div>
+        </div> */}
 
         {/* <div className="grid lg:grid-cols-[1fr_371px] gap-8 mb-10 lg:mb-16">
           <div className="flex items-center justify-center">
