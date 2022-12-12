@@ -107,7 +107,7 @@ function Research() {
           <div className="mb-10 lg:mb-16">
             <div className="mb-4">
               <Title
-                // variant="20"
+                variant="20"
                 className="text-primary text-left font-medium"
               >
                 6. Revenue Streams
