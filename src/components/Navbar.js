@@ -29,11 +29,18 @@ function Navbar() {
   return (
     <UpperRoot>
       <div className="container py-5 xl:py-7 flex items-center justify-between z-[200] relative">
-        <Logo
+        {/* <Logo
           variant="yellow"
           imgClassName="w-10"
           textClassName="text-sm xl:text-base"
-        />
+        /> */}
+        <Link to="/tv">
+          <img
+            src="images/logo-beta.svg"
+            className="w-[100px] xl:w-[160px]"
+            alt=""
+          />
+        </Link>
 
         <div>
           <button

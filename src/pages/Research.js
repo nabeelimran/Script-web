@@ -32,6 +32,12 @@ function Research() {
       </div>
 
       <div className="mb-20 lg:mb-20">
+        <div className="container-two">
+          <img src="images/our-products.jpg" className="w-full" alt="" />
+        </div>
+      </div>
+
+      <div className="mb-20 lg:mb-20">
         <UpperPoints />
       </div>
 
@@ -57,7 +63,7 @@ function Research() {
           <Title className="text-primary text-left font-semibold" variant="24">
             Read more about SPAY tokenomics{" "}
             <a
-              href="https://whitepaper.script.tv"
+              href="https://whitepaper.script.tv/spay-tokenomics"
               rel="noreferrer"
               target="_blank"
               className="text-blue-link"
@@ -71,6 +77,18 @@ function Research() {
       <div className="mb-20 lg:mb-20">
         <WorkFlow />
       </div>
+
+      <section className="mb-16 lg:mb-20">
+        <div className="container-two">
+          <div className="mb-10 lg:mb-16">
+            <Title className="text-primary font-medium" variant="20">
+              Tokens in the Script Network Ecosystem
+            </Title>
+          </div>
+
+          <img src="images/scpt.jpg" alt="" />
+        </div>
+      </section>
 
       <div className="mb-20 lg:mb-20">
         <CoreTeam />

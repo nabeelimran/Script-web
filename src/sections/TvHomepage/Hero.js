@@ -11,7 +11,7 @@ const SliderContent = () => {
     <div className="h-[auto] md:h-full relative z-10 rounded-xl overflow-hidden">
       <img
         // src="images/tv/hero-banner.png"
-        src="images/tv-banner-2.png"
+        src="images/tv-banner-3.png"
         className="w-full h-[200px] md:h-full"
         alt=""
       />

@@ -42,7 +42,7 @@ function TvNavbar({ className }) {
         <Link to="/tv">
           <img
             src="images/logo-beta.svg"
-            className="w-[100px] xl:w-[140px]"
+            className="w-[100px] xl:w-[160px]"
             alt=""
           />
         </Link>

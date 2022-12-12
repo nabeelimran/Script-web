@@ -60,7 +60,7 @@ function WorkFlow() {
           </div>
         </div> */}
 
-        <img src="images/vesting-chart.png" className="w-full" alt="" />
+        {/* <img src="images/vesting-chart.png" className="w-full" alt="" /> */}
       </div>
     </section>
   );

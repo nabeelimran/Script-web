@@ -35,12 +35,12 @@ function About() {
         </div>
 
         <p className="text-center fs-16px font-semibold leading-1_7 mb-14">
-          The Protocol Is Built On Our Own, Script Blockchain. Although Both{" "}
+          The protocol is built on our own, script blockchain. Although both{" "}
           <br />
-          Tokens Have Limited Supply, Script Network Is Focused To Deliver{" "}
+          Tokens have limited supply, script network is focused to deliver{" "}
           <br />
-          Significant Scale Across The Platform And Future Applications For Our
-          Users, Investors And Partners.
+          Significant scale across the platform and future applications for our
+          Users, investors and partners.
         </p>
 
         <div className="flex justify-center mb-10">

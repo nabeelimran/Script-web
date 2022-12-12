@@ -6,8 +6,7 @@ function WatchToEarn() {
   return (
     <section className="container-two">
       <Title className="text-left font-medium text-primary mb-10" variant="20">
-        2. Watch-to-earn with online watch TV online and get paid rewards per
-        block
+        What are the key benefits of Script Network
       </Title>
 
       <div className="research-list">
@@ -17,6 +16,7 @@ function WatchToEarn() {
 upgrading your NFTs"
         />
         <BulletPoint point="Fully Decentralised video storage solution - lowering costs by over 80% for Web2 companies" />
+        <BulletPoint point="Watch online TV and get paid rewards per minute" />
       </div>
     </section>
   );

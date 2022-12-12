@@ -31,7 +31,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
           <Link to="/tv">
             <img
               src="images/logo-beta.svg"
-              className="w-[100px] xl:w-[120px]"
+              className="w-[100px] xl:w-[160px]"
               alt=""
             />
           </Link>
