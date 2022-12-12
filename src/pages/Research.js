@@ -92,7 +92,8 @@ function Research() {
             </Title>
           </div>
 
-          <img src="images/scpt.jpg" alt="" />
+          <img src="images/scpt.jpg" className="mb-6" alt="" />
+          <img src="images/spay.jpg" alt="" />
         </div>
       </section>
 
