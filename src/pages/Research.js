@@ -105,7 +105,7 @@ function Research() {
       <div className="mb-20 lg:mb-20">
         <div className="container-two">
           <div className="mb-10 lg:mb-16">
-            <div className="mb-4">
+            <div className="mb-3">
               <Title
                 variant="20"
                 className="text-primary text-left font-medium"
@@ -113,7 +113,7 @@ function Research() {
                 6. Revenue Streams
               </Title>
             </div>
-            <p className="heading-sub text-white opacity-60 text-left max-w-[46rem]">
+            <p className="heading-sub text-white text-left">
               As an ecosystem, it is important that the there is development
               beyond the reliance of tokens. Thus, Script Network has a multiple
               revenue streams, activated from launch.

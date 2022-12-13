@@ -9,7 +9,7 @@ const StakingCard = ({ data }) => {
       }`}
     >
       <p className="text-xs sm:text-sm font-bold uppercase">{title}</p>
-      <p className="fs-20px font-bold">{value}</p>
+      <p className="text-base xl:text-xl 2xl:text-2xl font-bold">{value}</p>
     </div>
   );
 };
