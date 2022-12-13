@@ -4,6 +4,7 @@ import Title from "components/Title";
 import CalculatorLayout from "layouts/CalculatorLayout";
 import React from "react";
 
+
 function StakingInformation() {
   return (
     <CalculatorLayout>
