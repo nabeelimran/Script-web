@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import HowToEarnCard from "components/HowToEarnCard";
 import Title from "components/Title";
 import React from "react";
@@ -11,34 +12,33 @@ function HowToEarn() {
         </Title>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6 xl:gap-10">
+      <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
         <HowToEarnCard
           img="images/tv/earn-1.svg"
-          title="Watching Videos"
-          desc="Simply creat an account and watch
-hundreds of shows and films through a live
-TV ecperience, available 24/7, 365 days a
-year. Earn token which you can then use
-to yield further benifits within Script
-Network"
+          title="Mint a ScriptGLASS"
+          desc="No upfront costs - create and account and mint a ScriptGLASS NFT in seconds! Each one completely unique and your pass to earn daily rewards."
         />
+        <div className="flex items-center justify-center text-xl xl:text-3xl">
+          <Icon
+            icon="material-symbols:arrow-right-alt-rounded"
+            className="rotate-90 lg:rotate-0"
+          />
+        </div>
         <HowToEarnCard
           img="images/tv/earn-2.svg"
-          title="Become A Node"
-          desc="Earn daily rewards, exclusive NFT's and
-limited opportunities for helping secure
-and grow the Script Network ecosystem.
-"
+          title="Watch TV"
+          desc="Upgrade your glasses, and watch from multiple channels 24/7/365, whilst connecting with other users, and get rewarded for doing so."
         />
+        <div className="flex items-center justify-center text-xl xl:text-3xl">
+          <Icon
+            icon="material-symbols:arrow-right-alt-rounded"
+            className="rotate-90 lg:rotate-0"
+          />
+        </div>
         <HowToEarnCard
           img="images/tv/earn-3.svg"
-          title="Watching Videos"
-          desc="Be an active part of the community and
-gain multiple rewards including cinema
-tickets IRL, fractionalised payouts for Script
-Network assets and more. Be engaged = 
-get rewarded for doing so.
-"
+          title="Stake and Run Nodes"
+          desc="Help secure and scale the future of Script Network and its ecosystem by staking your tokens, or running a node - both with significant reward opportunities."
         />
       </div>
     </section>
