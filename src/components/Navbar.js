@@ -79,7 +79,7 @@ function Navbar() {
                   teller="BETA"
                   tellerClassName="text-primary"
                   title="Script TV"
-                  subtitle="our user first watch to earn television platform."
+                  subtitle="Our user first watch to earn television platform."
                 />
                 <DropdownCard
                   title="Marketplace"
@@ -90,7 +90,7 @@ function Navbar() {
                   teller="TESTNET"
                   tellerClassName="text-primary"
                   title="Script Blockchain"
-                  subtitle="our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."
+                  subtitle="Our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."
                   anchor={true}
                   others={{
                     href: "https://faucet.script.tv/",

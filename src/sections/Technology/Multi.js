@@ -10,7 +10,7 @@ const LeftComponent = () => {
       </Title>
 
       <p className="heading-sub text-white lh-1_7">
-        for you to not only have governance over protocol level decision in the
+        For you to not only have governance over protocol level decision in the
         ecosystem, but decision making power on future content being aired. This
         is part of our long term vision to make television decentralized, and
         give viewers the power and control they deserve.
