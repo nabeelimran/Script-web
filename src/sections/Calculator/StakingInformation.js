@@ -5,7 +5,9 @@ import CalculatorLayout from "layouts/CalculatorLayout";
 import React from "react";
 
 
-function StakingInformation() {
+function StakingInformation({
+  totalSCPTVal
+}) {
   return (
     <CalculatorLayout>
       <div className="mb-12 lg:mb-16">
@@ -16,7 +18,7 @@ function StakingInformation() {
         </div>
 
         <h4 className="heading-sub text-center text-white">
-          Current Circulating Supply: 1000216.0000
+          Current Circulating Supply: {totalSCPTVal}
         </h4>
       </div>
 
