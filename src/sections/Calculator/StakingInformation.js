@@ -4,10 +4,11 @@ import Title from "components/Title";
 import CalculatorLayout from "layouts/CalculatorLayout";
 import React from "react";
 
-
 function StakingInformation({
-  totalSCPTVal
+  totalSCPTVal,
+  marketValues
 }) {
+
   return (
     <CalculatorLayout>
       <div className="mb-12 lg:mb-16">
@@ -23,14 +24,15 @@ function StakingInformation({
       </div>
 
       <div className="space-y-6 lg:space-y-4">
-        <InputRow label="Enter Your SCPT Amount:" placeholder="0" id="amount" />
+        <InputRow label="Enter Your SCPT Amount:" placeholder="0" id="amount"/>
         <InputRow
           label="% Staked of Total Circulating Supply:"
           placeholder="0.10"
           id="staked"
+          value={marketValues.circInPercent}
         />
-        <InputRow label="SCPT Price (USD):" placeholder="0.025" id="scpt" />
-        <InputRow label="$SPAY Price (USD):" placeholder="0.01" id="your" />
+        <InputRow label="SCPT Price (USD):" placeholder={marketValues.scptPriceUSD} id="scpt" value={marketValues.scptPriceUSD} />
+        <InputRow label="$SPAY Price (USD):" placeholder={marketValues.spayPriceUSD} id="your" value={marketValues.spayPriceUSD} />
 
         <div className="grid lg:grid-cols-2">
           <div></div>

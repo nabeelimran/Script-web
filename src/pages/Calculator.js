@@ -11,7 +11,12 @@ class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalSCPTVal: 0
+      totalSCPTVal: 0,
+      marketValues: {
+        spayPriceUSD: 0.01,
+        scptPriceUSD: 0.025,
+        circInPercent: 0,
+      }
     };
   }
 
@@ -23,8 +28,14 @@ class Calculator extends Component {
   getSupplyData() {
     Api.getSupplyData().then((res) => {
       if(res) {
+        const scptVal = res.totalScptWeiValue.toFixed(4);
         this.setState({
-          totalSCPTVal: res.totalScptWeiValue.toFixed(4)
+          totalSCPTVal: scptVal,
+          marketValues: {
+            circInPercent: 0 / 1000000000 * 100,
+            spayPriceUSD: 0.01,
+            scptPriceUSD: 0.025,
+          }
         })
       }
     })
@@ -35,7 +46,7 @@ class Calculator extends Component {
   }
 
   render() {
-    const { totalSCPTVal } = this.state;
+    const { totalSCPTVal, marketValues } = this.state;
     return (
       <div>
         <div className="mb-4 sm:mb-6 lg:mb-10">
@@ -45,7 +56,7 @@ class Calculator extends Component {
           <Hero totalSCPTVal={totalSCPTVal} />
         </div>
         <div className="mb-20 lg:mb-24">
-          <StakingInformation totalSCPTVal={totalSCPTVal} />
+          <StakingInformation totalSCPTVal={totalSCPTVal} marketValues={marketValues}/>
         </div>
         <div className="mb-20 lg:mb-24">
           <Result />
