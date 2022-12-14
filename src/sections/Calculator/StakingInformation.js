@@ -2,13 +2,15 @@ import Button from "components/Button";
 import InputRow from "components/InputRow";
 import Title from "components/Title";
 import CalculatorLayout from "layouts/CalculatorLayout";
-import React from "react";
+import React, { useState } from "react";
 
 function StakingInformation({
   totalSCPTVal,
-  marketValues
+  marketValues,
+  calculateReward,
+  checkAmount,
+  amount
 }) {
-
   return (
     <CalculatorLayout>
       <div className="mb-12 lg:mb-16">
@@ -24,7 +26,7 @@ function StakingInformation({
       </div>
 
       <div className="space-y-6 lg:space-y-4">
-        <InputRow label="Enter Your SCPT Amount:" placeholder="0" id="amount"/>
+        <InputRow label="Enter Your SCPT Amount:" placeholder={amount} id="amount" changeAmount={checkAmount} value={amount} />
         <InputRow
           label="% Staked of Total Circulating Supply:"
           placeholder="0.10"
@@ -37,7 +39,7 @@ function StakingInformation({
         <div className="grid lg:grid-cols-2">
           <div></div>
           <div>
-            <Button label="Calculate earnings" />
+            <Button label="Calculate earnings" calReward={calculateReward} />
           </div>
         </div>
       </div>
