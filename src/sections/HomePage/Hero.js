@@ -2,8 +2,21 @@ import ArrowButton from "components/ArrowButton";
 import Button from "components/Button";
 import EconomyAvatar from "components/EconomyAvatar";
 import React from "react";
+import MetamaskService from "services/metamask";
 
 function Hero() {
+
+  const connectMetamask = () => {
+    MetamaskService.connectHandler().then((res) => {
+      console.log(res);
+      if(res && res.length > 0) {
+        MetamaskService.accountsChanged(res[0]).then((resp) => {
+          console.log(resp);
+        });
+      }
+    })
+  }
+
   return (
     <div>
       <div className="container grid lg:grid-cols-2 gap-14">
@@ -29,7 +42,7 @@ function Hero() {
           </p>
 
           <div className="flex items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start">
-            <Button label="Whitepaper" />
+            <Button label="Whitepaper" calReward={connectMetamask} />
             <Button label="Launch app" variant={2} arrowVisible={true} />
           </div>
 

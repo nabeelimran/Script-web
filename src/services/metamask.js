@@ -9,7 +9,7 @@ export default class MetamaskService {
             const res = await window.ethereum.request({
               method: "eth_requestAccounts",
             });
-            await this.accountChange(res[0]);
+            return await res[0];
           } catch (err) {
             console.error(err);
             throw(err);
@@ -18,6 +18,25 @@ export default class MetamaskService {
           return "Install MetaMask";
         }
     };
+
+    static async signatureRequest(walletAddress) {
+        return await window.ethereum.request({
+          method: 'eth_sign',
+          params: [walletAddress, this.cryptoService.getHash(`met@m@sk@login`).toString()]
+        })
+    }
+
+    static async getChainId() {
+        try {
+            let chainId = await window.ethereum.request({
+                method: 'eth_chainId'
+            })
+            return await chainId    
+        } catch (error) {
+            throw(error)
+        }
+    }
+    
 
     static async accountsChanged(newAccount) {
         try {
