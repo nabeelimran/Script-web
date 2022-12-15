@@ -32,7 +32,6 @@ function Calculator() {
   });
 
   const calculateReward = () => {
-    debugger
     const cirSupply = 1000000000;
     const myTotalPortion = (amount / marketValues.circInPercent * cirSupply);
     const myAnnualPayout = myTotalPortion * suppyData.totalSCPTVal;
