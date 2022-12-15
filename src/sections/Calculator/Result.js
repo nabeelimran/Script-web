@@ -14,7 +14,6 @@ function Result({
     <CalculatorLayout>
       <div className="mb-8 lg:mb-12">
         <Title>
-        {console.log(result, 'res')}
           <span className="text-primary">Result</span>
         </Title>
       </div>

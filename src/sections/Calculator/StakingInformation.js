@@ -16,7 +16,6 @@ function StakingInformation({
       <div className="mb-12 lg:mb-16">
         <div className="mb-4">
           <Title>
-            {console.log(marketValues, 'm')}
             <span className="text-primary">Staking Information</span>
           </Title>
         </div>
