@@ -3,15 +3,18 @@ import InputRow from "components/InputRow";
 import Title from "components/Title";
 import CalculatorLayout from "layouts/CalculatorLayout";
 import React from "react";
+import { helper } from "utils/helper";
 
 function Result({
-  result
+  result,
+  amount,
+  marketValues
 }) {
   return (
     <CalculatorLayout>
       <div className="mb-8 lg:mb-12">
         <Title>
-        {console.log(result)}
+        {console.log(result, 'res')}
           <span className="text-primary">Result</span>
         </Title>
       </div>
@@ -21,73 +24,73 @@ function Result({
           readonly={true}
           variant={1}
           label="Total Staked SCPT Coins:"
-          value="0.00"
+          value={amount * marketValues.circInPercent}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="Your Total USD Value in SCPT:"
-          value="0.10"
+          value={helper.currencyFormat(result.totalInvestment)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="Personal % of All SCPT Staked:"
-          value="NaN%"
+          value={helper.percentFormat(result.myStakePercentage)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="Your Annual Percentage Rate:"
-          value="NaN%"
+          value={helper.percentFormat(result._yield * 100)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="$SPAY Rewards Per Day:"
-          value="NaN%"
+          value={helper.numberFormat(result.myDailyPayout)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="$SPAY Daily Rewards USD Value:"
-          value="NaN%"
+          value={helper.currencyFormat(result.myDailyPayoutMoney)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="$SPAY Rewards Per Week:"
-          value="NaN%"
+          value={helper.numberFormat(result.myWeeklyPayout)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="$SPAY Weekly Rewards USD Value:"
-          value="NaN%"
+          value={helper.currencyFormat(result.myWeeklyPayoutMoney)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="$SPAY Rewards Per Month:"
-          value="NaN%"
+          value= {helper.numberFormat(result.myMonthlyPayout)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="$SPAY Monthly Rewards USD Value:"
-          value="NaN%"
+          value={helper.currencyFormat(result.myMonthlyPayoutMoney)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="$SPAY Rewards Per Year:"
-          value="NaN%"
+          value={helper.numberFormat(result.myAnnualPayout)}
         />
         <InputRow
           readonly={true}
           variant={1}
           label="$SPAY Yearly Rewards USD Year:"
-          value="NaN%"
+          value={helper.currencyFormat(result.myAnnualPayoutMoney)}
         />
 
         <div className="grid lg:grid-cols-2">

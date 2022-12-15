@@ -16,6 +16,7 @@ function StakingInformation({
       <div className="mb-12 lg:mb-16">
         <div className="mb-4">
           <Title>
+            {console.log(marketValues, 'm')}
             <span className="text-primary">Staking Information</span>
           </Title>
         </div>
@@ -29,7 +30,7 @@ function StakingInformation({
         <InputRow label="Enter Your SCPT Amount:" placeholder={amount} id="amount" changeAmount={checkAmount} value={amount} />
         <InputRow
           label="% Staked of Total Circulating Supply:"
-          placeholder="0.10"
+          placeholder={marketValues.circInPercent}
           id="staked"
           value={marketValues.circInPercent}
         />

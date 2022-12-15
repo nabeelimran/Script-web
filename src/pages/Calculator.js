@@ -1,16 +1,14 @@
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import React, { useEffect, useState } from "react";
-import { Component } from "react";
 import Hero from "sections/Calculator/Hero";
 import Result from "sections/Calculator/Result";
 import StakingInformation from "sections/Calculator/StakingInformation";
-import Api from "services/api";
 
 function Calculator() {
 
   const [suppyData, setSupplyData] = useState({
-    totalSCPTVal: 0
+    totalSCPTVal: 1000000000
   });
   const [marketValues, setMarketValues] = useState({
     circInPercent: 0,
@@ -34,40 +32,40 @@ function Calculator() {
   });
 
   const calculateReward = () => {
+    debugger
     const cirSupply = 1000000000;
     const myTotalPortion = (amount / marketValues.circInPercent * cirSupply);
     const myAnnualPayout = myTotalPortion * suppyData.totalSCPTVal;
-    const myStakePercentage = myTotalPortion * 100;
+    const myStakePercentage = myTotalPortion / 10000000000000000 * 100;
     const myMonthlyPayout = myAnnualPayout / 12;
     const myWeeklyPayout = myAnnualPayout / 52;
-    const myDailyPayout = myAnnualPayout / 365;
+    const myDailyPayout = (myAnnualPayout / 365) / 1000000000000000000;
     const totalInvestment = amount * marketValues.scptPriceUSD;
     const myAnnualPayoutMoney = myAnnualPayout * marketValues.spayPriceUSD;
     const myMonthlyPayoutMoney = myMonthlyPayout * marketValues.spayPriceUSD;
-    const myDailyPayoutMoney = myDailyPayout * marketValues.spayPriceUSD;
+    const myDailyPayoutMoney = myDailyPayout * marketValues.spayPriceUSD * 0.1;
     const myWeeklyPayoutMoney = myWeeklyPayout * marketValues.spayPriceUSD;
-    const _yield = myAnnualPayoutMoney / totalInvestment;
-    setResult({
-        myTotalPortion,
-        myAnnualPayout,
-        myStakePercentage,
-        myMonthlyPayout,
-        myWeeklyPayout,
-        myDailyPayout,
-        totalInvestment,
-        myAnnualPayoutMoney,
-        myMonthlyPayoutMoney,
-        myDailyPayoutMoney,
-        myWeeklyPayoutMoney,
-        _yield,
-    })
+    const _yield = (myAnnualPayoutMoney / totalInvestment) / 10000000000000000000;
+    // setResult({
+    //     myTotalPortion,
+    //     myAnnualPayout,
+    //     myStakePercentage,
+    //     myMonthlyPayout,
+    //     myWeeklyPayout,
+    //     myDailyPayout,
+    //     totalInvestment,
+    //     myAnnualPayoutMoney,
+    //     myMonthlyPayoutMoney,
+    //     myDailyPayoutMoney,
+    //     myWeeklyPayoutMoney,
+    //     _yield,
+    // })
   } 
   
   const checkAmount = (e) => {
-    const result = (amount/1000000000)*100;
     setAmount(e.target.value);
     setMarketValues({
-      circInPercent: result,
+      circInPercent: (e.target.value / 1000000000) * 100,
       spayPriceUSD: 0.01,
       scptPriceUSD: 0.025,
     })
@@ -79,19 +77,19 @@ function Calculator() {
   
   
   const getSupplyData = () => {
-    Api.getSupplyData().then((res) => {
-      if(res) {
-        const scptVal = res.totalScptWeiValue.toFixed(4);
+    // Api.getSupplyData().then((res) => {
+      // if(res) {
+        // const scptVal = res.totalScptWeiValue.toFixed(4);
         setSupplyData({
-          totalSCPTVal: scptVal
+          totalSCPTVal: 1000000000
         })
         setMarketValues({
-          circInPercent: (0/1000000000)*100,
+          circInPercent: 0,
           spayPriceUSD: 0.01,
           scptPriceUSD: 0.025,
         })
-      }
-    })
+      // }
+    // })
   }
 
   return (
@@ -109,7 +107,7 @@ function Calculator() {
           amount = {amount} />
       </div>
       <div className="mb-20 lg:mb-24">
-        <Result result={result} />
+        <Result result={result} amount={amount} marketValues={marketValues} />
       </div>
       <Footer />
     </div>
