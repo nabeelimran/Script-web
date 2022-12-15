@@ -2,10 +2,10 @@ import Button from "components/Button";
 import InputRow from "components/InputRow";
 import Title from "components/Title";
 import CalculatorLayout from "layouts/CalculatorLayout";
-import React, { useState } from "react";
+import React from "react";
 
 function StakingInformation({
-  totalSCPTVal,
+  suppyData,
   marketValues,
   calculateReward,
   checkAmount,
@@ -21,7 +21,7 @@ function StakingInformation({
         </div>
 
         <h4 className="heading-sub text-center text-white">
-          Current Circulating Supply: {totalSCPTVal}
+          Current Circulating Supply: {suppyData.totalSCPTVal}
         </h4>
       </div>
 

@@ -4,11 +4,14 @@ import Title from "components/Title";
 import CalculatorLayout from "layouts/CalculatorLayout";
 import React from "react";
 
-function Result() {
+function Result({
+  result
+}) {
   return (
     <CalculatorLayout>
       <div className="mb-8 lg:mb-12">
         <Title>
+        {console.log(result)}
           <span className="text-primary">Result</span>
         </Title>
       </div>
