@@ -29,6 +29,7 @@ function Button({
   LeftComponent,
   RightComponent,
   buttonHeightClassName = "min-h-[34px] xl:min-h-[38px]",
+  calReward,
 }) {
   return link ? (
     <Link
@@ -54,6 +55,7 @@ function Button({
       type={type}
       {...buttonProps}
       className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]}`}
+      onClick={calReward}
     >
       {LeftComponent && <LeftComponent />}
       <span className="text-inherit lh-1">{label}</span>

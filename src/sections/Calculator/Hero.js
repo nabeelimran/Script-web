@@ -1,6 +1,8 @@
 import React from "react";
 
-function Hero() {
+function Hero({
+  totalSCPTVal
+}) {
   return (
     <section className="container">
       <h1
@@ -12,7 +14,7 @@ function Hero() {
       </h1>
 
       <h4 className="text-center font-semibold fs-18px text-white">
-        Current Circulating Supply: 1000216.0000
+        Current Circulating Supply: {totalSCPTVal}
       </h4>
     </section>
   );

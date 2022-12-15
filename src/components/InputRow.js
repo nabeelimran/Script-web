@@ -14,6 +14,7 @@ const InputRow = ({
   name,
   variant = 0,
   readonly = false,
+  changeAmount,
 }) => {
   return (
     <div className="grid gap-4 lg:gap-0 lg:grid-cols-2 items-center">
@@ -34,6 +35,7 @@ const InputRow = ({
           placeholder={placeholder}
           readOnly={readonly}
           className={`h-[40px] lg:h-[40px] flex items-center px-4 lg:px-5 fs-16px font-semibold rounded-lg w-full outline-none ${variants[variant]}`}
+          onChange={changeAmount}
         />
       </div>
     </div>
