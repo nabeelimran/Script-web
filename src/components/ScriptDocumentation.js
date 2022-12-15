@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "./Button";
 import Title from "./Title";
+import { helper } from "utils/helper";
+import Summary from "../files/Summary.pdf";
 
 function ScriptDocumentation() {
   return (
@@ -23,10 +25,10 @@ function ScriptDocumentation() {
 
         <div className="flex items-start flex-wrap -mx-2 -my-2">
           <div className="m-2">
-            <Button label="Whitepaper" />
+            <Button label="Whitepaper" calReward={() => helper.openLink('https://whitepaper.script.tv/')} />
           </div>
           <div className="m-2">
-            <Button label="Summary" variant={3} />
+            <Button label="Summary" variant={3} calReward={() => helper.openLink(Summary)}/>
           </div>
           {/* <div className="m-2">
             <Button label="One Pager" variant={3} />
