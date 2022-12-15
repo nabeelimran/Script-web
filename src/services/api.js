@@ -23,4 +23,57 @@ export default class Api {
     static getSupplyData() {
         return axios.get(`${APIPATH.EXPLORERURL}supplyData`).then(res => res.data)
     }
+
+    static walletLogin(req, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName
+            },
+            data: req
+        }
+        return axios.post(`${APIPATH.BASEURL}walletRegisterAndLogin`, options);
+    }
+
+    static checkUsernameOrEmailExist(email, username, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}checkEmailOrUsernameIsExists?email=${email}&username=${username}`, options);
+    }
+
+    static getUserDetailsByWalletAddress(walletAddress, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}getUserDetailsByWalletAddress?walletAddress=${walletAddress}`, options);
+    }
+    
+    static getUserDetailByEmailAddress(email, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}getUserPrivilegesByUserEmail?emailId=${email}`, options);
+    }
 }
