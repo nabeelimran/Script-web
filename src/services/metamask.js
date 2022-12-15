@@ -1,5 +1,6 @@
 
 import { ethers } from "ethers";
+import { metamaskNetwork } from "utils/helper";
 
 export default class MetamaskService {
 
@@ -50,4 +51,28 @@ export default class MetamaskService {
           throw(err);
         }
     };
+
+    static async changeChain(networkName) {
+        let result = await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [
+            {
+              chainId: metamaskNetwork[networkName].chainId
+            }
+          ]
+        }).catch(async (err) => {
+          if (err && err.code === 4902) {
+            result = await window.ethereum.request({
+              method: 'wallet_addEthereumChain',
+              params: [
+                {
+                  ...metamaskNetwork[networkName]
+                }
+              ]
+            })
+          }
+        })
+        return result;
+    }
+    
 }

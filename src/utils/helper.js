@@ -5,7 +5,7 @@ export const helper = {
     openLink: (url) => window.open(url, '_blank')
 }
 
-export const metamaskNetwor = {
+export const metamaskNetwork = {
     polygonTestnet: {
       chainName: 'Polygon Testnet',
       rpcUrls: ['https://matic-mumbai.chainstacklabs.com'],
