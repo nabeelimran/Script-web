@@ -37,7 +37,7 @@ function Navbar() {
         <Link to="/tv">
           <img
             src="images/logo-beta.svg"
-            className="w-[100px] xl:w-[160px]"
+            className="w-[100px] xl:w-[144px]"
             alt=""
           />
         </Link>
