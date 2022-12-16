@@ -580,3 +580,8 @@ input:-webkit-autofill:active {
     top: 40%;
   }
 }
+
+video-js {
+  height: 100vh !important;
+  width: 100% !important;
+}
