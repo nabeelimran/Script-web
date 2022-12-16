@@ -12,12 +12,13 @@ function AllTvChannels() {
 
   const videoJsOptions = {
     autoplay: true,
+    playToggle: false,
     controls: true,
     responsive: true,
-    muted: true,
+    muted: false,
     fluid: true,
     sources: [{
-      src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8',
+      src: 'https://api.script.tv/ipfs/QmVCYfHwUBtdDSJg5DkvFQpgDdsmjBGyTaZEWrDo1NDXKT/master.m3u8',
       type:"application/x-mpegURL"
     }]
   };
