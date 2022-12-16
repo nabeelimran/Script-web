@@ -12,10 +12,12 @@ function AllTvChannels() {
 
   const videoJsOptions = {
     autoplay: true,
-    playToggle: false,
     controls: true,
+    'controlBar': {
+      playToggle: false,
+    },
     responsive: true,
-    muted: false,
+    muted: true,
     fluid: true,
     sources: [{
       src: 'https://api.script.tv/ipfs/QmVCYfHwUBtdDSJg5DkvFQpgDdsmjBGyTaZEWrDo1NDXKT/master.m3u8',

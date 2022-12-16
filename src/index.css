@@ -585,3 +585,19 @@ video-js {
   height: 100vh !important;
   width: 100% !important;
 }
+
+.vjs-progress-control {
+  visibility: hidden !important;
+}
+
+video-js .vjs-control .vjs-button .vjs-playing{
+  display: none;
+}
+
+video-js .vjs-picture-in-picture-control {
+  display: none !important;
+}
+
+.video-js .vjs-time-control {
+  display: none !important;
+}
