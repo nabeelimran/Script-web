@@ -1,5 +1,6 @@
 import { APIPATH } from '../constants/index'
 import axios from 'axios';
+import {helper} from '../utils/helper';
 
 export default class Api {
     static fetchMediumBlog(blogLimit) {
@@ -76,4 +77,29 @@ export default class Api {
         }
         return axios.get(`${APIPATH.BASEURL}getUserPrivilegesByUserEmail?emailId=${email}`, options);
     }
+     static getChannels(screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}show/details?zoneId=${helper.getTimeZone()}`, options);
+    }
+    static getShows(screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}live/shows?zoneId=${helper.getTimeZone()}`, options);
+    }
+    
 }

@@ -8,13 +8,22 @@ const ChannelBox = ({ title, time, id, state, onClick, data }) => {
     // state.setter(id)
     onClick();
   };
+  const getWidth=()=>{
+    return Math.ceil((data.duration/30)*160)}
+  const getWidthmd=()=>{
+    return 'md:min-w-['+Math.ceil((data.duration/30)*160)+'px]';
+  }
+
 
   return (
     <div
       onClick={click}
-      className={`cursor-pointer flex items-center px-4 md:px-10 bg-shade-grayis h-full rounded-md min-w-fit relative z-10 ${
+      className={`cursor-pointer flex items-center px-4 md:px-10 bg-shade-grayis h-full rounded-md  relative z-10  ${getWidth()} ${getWidthmd()}  ${
         data.selected ? "md:sticky left-0 right-0 z-50" : ""
-      }`}
+      } `}
+      style={{
+        minWidth:getWidth()+'px'
+      }}
     >
       <div className="max-w-[200px] space-y-[2px] z-50">
         <p className="text-xs md:text-base font-medium two-lines-only">
@@ -37,6 +46,7 @@ const ChannelBox = ({ title, time, id, state, onClick, data }) => {
         }`}
       ></div>
     </div>
+  
   );
 };
 export default ChannelBox;
