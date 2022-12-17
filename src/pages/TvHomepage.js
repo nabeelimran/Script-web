@@ -16,13 +16,80 @@ function TvHomepage() {
   const [channel, setchannels] = useState([])
   const [currentVideo, setCurrentVideo] = useState(null)
   const [adsList, setAdsList] = useState([])
+  const [videoTokenEarned, setVideoTokenEarned] = useState(null)
+  let userId = 0;
 
-  useEffect(()=>{
-     Api.getChannels('watch').then(res=>{
+  const getChannels = () => {
+    Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
       setAdsList(res.data.data[0].adsData)
      })
+  }
+
+  // this is used to get the token earned by video based on user id
+  const getVideoTokenEarned = () => {
+    Api.getVideoTokenEarned(userId ? userId : 0, 'watch').then((res) => {
+      if (res && res.isSuccess && res.data) {
+        const token = +res.data.earnedToken ? +res.data.earnedToken : 0;
+        setVideoTokenBalance(token > 0 ? '' : 'setDefault');
+        setVideoTokenEarned(token);
+      } else {
+        setVideoTokenEarned(0);
+      }
+    })
+  }
+
+  // this function is used to check the video watch at every 1 min interval
+  // @TODO need to change code
+  const checkVideoWatchTime = (e) => {
+    if(e) {
+      saveVideoDuration(e)
+    }
+  }
+
+  // this is used to save the watch time of user
+  // @TODO need to change code
+  const saveVideoDuration = (e) => {
+    const watchTime = (e.videoPlayTime - e.startTime) / 60
+    const req = {
+      "showId": currentVideo.id, // show id
+      "videoId": currentVideo.videoId, // video id
+      "userId": userId ? userId : 0,
+      "videoDuration": +watchTime.toFixed()  // duration in minute
+    };
+
+    if (+watchTime.toFixed() > 0) {
+      Api.saveVideoDuration(req, 'watch').then((res) => {
+        if (res && res.isSuccess) {
+
+        } else {
+
+        }
+      })
+    }
+  }
+
+  // this is used to save token earned by watch
+  const setVideoTokenBalance = (action) => {
+    const authToken = sessionStorage.getItem('token'); // auth token
+    if (authToken) {
+      const req = {
+        userId: userId ? userId : 0,
+        amount: action === 'setDefault' ? 0 : videoTokenEarned.toFixed(2)
+      };
+      Api.addVideoToken(req, 'watch').then((res) => {
+        if (res && res.success) {
+
+        } else {
+          
+        }
+      })
+    }
+  }
+
+  useEffect(()=>{
+    getChannels();
   }, [])
 
   const changeVideo=(show)=>{

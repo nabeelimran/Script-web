@@ -147,6 +147,10 @@ function AllTvChannels({
       videojs.log('player is waiting');
     });
 
+    player.on('play', () => {
+      console.log('video is playing')
+    })
+
     player.on('dispose', () => {
       videojs.log('player will dispose');
     });
