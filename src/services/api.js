@@ -128,5 +128,46 @@ export default class Api {
         }
         return axios.get(`${APIPATH.BASEURL}live/shows?zoneId=${helper.getTimeZone()}`, options);
     }
-    
+
+    static getVideoTokenEarned(userId, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}user/token/details?userId=${userId}`, options);
+    }
+
+    static addVideoToken(req, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}save/user/token`, options);
+    }
+
+    static saveVideoDuration(req, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}save/duration`, options);
+    }
 }
