@@ -1,25 +1,12 @@
-import ArrowButton from "components/ArrowButton";
 import Button from "components/Button";
-import EconomyAvatar from "components/EconomyAvatar";
 import React from "react";
-import MetamaskService from "services/metamask";
+import { helper } from "utils/helper";
 
 function Hero() {
 
-  const connectMetamask = () => {
-    MetamaskService.connectHandler().then((res) => {
-      
-      if(res && res.length > 0) {
-        MetamaskService.accountsChanged(res[0]).then((resp) => {
-          console.log(resp);
-        });
-      }
-    })
-  }
-
   return (
     <div>
-      <div className="container grid lg:grid-cols-2 gap-14">
+      <div className="container grid lg:grid-cols-2 gap-4">
         <div className="text-center lg:text-left relative z-10">
           <h5 className="text-primary mb-4 font-semibold fs-16px">
             Powering Live TV and Film for the next generation.
@@ -42,7 +29,11 @@ function Hero() {
           </p>
 
           <div className="flex items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start">
-            <Button label="Whitepaper" calReward={connectMetamask} />
+            <Button label="Whitepaper" />
+            <Button
+              label="Whitepaper"
+              calReward={() => helper.openLink("https://whitepaper.script.tv/")}
+            />
             <Button label="Launch app" variant={2} arrowVisible={true} />
           </div>
 

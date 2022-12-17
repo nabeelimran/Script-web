@@ -37,7 +37,7 @@ function Navbar() {
         <Link to="/tv">
           <img
             src="images/logo-beta.svg"
-            className="w-[100px] xl:w-[160px]"
+            className="w-[100px] xl:w-[144px]"
             alt=""
           />
         </Link>
@@ -157,12 +157,14 @@ function Navbar() {
               >
                 Technology
               </Link>
-              <Link
-                to="/explorer"
+              <a
+                href="https://explorer.script.tv/"
+                target="_blank"
+                rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Explorer
-              </Link>
+              </a>
 
               <a
                 href="https://whitepaper.script.tv"
