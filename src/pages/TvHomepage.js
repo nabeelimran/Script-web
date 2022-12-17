@@ -13,18 +13,23 @@ import Api from "../services/api"
 
 function TvHomepage() {
   
-  const [channel,setchannels]=useState([])
-  const [currentVideo,setCurrentVideo]=useState(null)
+  const [channel, setchannels] = useState([])
+  const [currentVideo, setCurrentVideo] = useState(null)
+  const [adsList, setAdsList] = useState([])
 
   useEffect(()=>{
      Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
+      setAdsList(res.data.data[0].adsData)
      })
   }, [])
 
   const changeVideo=(show)=>{
     setCurrentVideo(show);
+    if (channel && channel.length > 0) {
+      setAdsList(channel.filter(c => c.id === show.channelId)[0].adsData || [])
+    }
   }
 
   return (
@@ -40,6 +45,7 @@ function TvHomepage() {
       <div className="mb-12">
         <AllTvChannels 
         show={currentVideo}
+        adsList={adsList}
         />
       </div>
 
