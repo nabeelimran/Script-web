@@ -74,26 +74,29 @@ function ConnectWalletModal() {
     if(loginW && loginW.status===200 && loginW.data.isSuccess){
       ToastMessage(`${loginW.data.message}`,true)
       dispatch(toggleModalVisibility(false))
-      sessionStorage.setItem(
-        "script-token",
-        JSON.stringify( loginW.data.data.authToken,
-        )
-      );
-      sessionStorage.setItem(
-        "userInfo",
-        JSON.stringify({
-          email: loginW.data.data.email,
-          userId: loginW.data.data.id,
-          walletAddress: loginW.data.data.walletAddress
-        })
-      );
-      navigate({
-        pathname: '/tv',
-      });
-      // navigate({
-      //   pathname: '/verify-account',
-      //   search: `?email=${loginW.data.data.email}`,
-      // });
+      if (loginW.data.message === 'Please verify your account.') {
+        navigate({
+          pathname: '/verify-account',
+          search: `?email=${loginW.data.data.email}`,
+        });
+      } else {
+        sessionStorage.setItem(
+          "script-token",
+          JSON.stringify( loginW.data.data.authToken,
+          )
+        );
+        sessionStorage.setItem(
+          "userInfo",
+          JSON.stringify({
+            email: loginW.data.data.email,
+            userId: loginW.data.data.id,
+            walletAddress: loginW.data.data.walletAddress
+          })
+        );
+        navigate({
+          pathname: '/tv',
+        });
+      }
     }else{
       ToastMessage("Somthing went wrong")
     }

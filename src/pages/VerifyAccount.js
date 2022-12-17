@@ -21,7 +21,8 @@ const VerifyAccount = () => {
     var sendObj = {
       email: window.location.search.split("=")[1],
       otp: OTP,
-      mobile: true,
+      recaptcha: ""
+      // mobile: true,
     };
     
     if (OTP) {
@@ -35,7 +36,7 @@ const VerifyAccount = () => {
         ToastMessage(`${otpVerify.message}`, true);
       }
     } else {
-      ToastMessage("Please Type OTP");
+      ToastMessage("Please Enter OTP");
     }
   };
 
@@ -46,9 +47,8 @@ const VerifyAccount = () => {
       mobile: true,
     };
     const resend = await Api.resendOtp(sendObj,'opt')
-debugger
     if(resend && resend.status===200){
-
+      ToastMessage(`${resend.data.message}`, true)
     }else{
       ToastMessage(`${resend.data.message}`,true)
     }
@@ -68,7 +68,7 @@ debugger
             onChange={setOTP}
             autoFocus
             OTPLength={6}
-            otpType="string"
+            otpType="number"
             disabled={false}
             style={{ color: "#000" }}
           />
