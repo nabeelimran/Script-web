@@ -627,3 +627,18 @@ video-js .vjs-picture-in-picture-control {
 .video-js .vjs-tech {
   pointer-events: none !important;
 }
+
+.custom-pip-window {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: 300px;
+  width: 400px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.custom-pip-window > video-js {
+  height: 100% !important;
+  width: 100% !important;
+}

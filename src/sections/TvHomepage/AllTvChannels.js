@@ -86,6 +86,7 @@ function AllTvChannels({
   };
 
   const getVideoCurrentTimePace = (startTime) => (new Date().getTime() - new Date(startTime).getTime()) / 1000;
+  let timer;
   
   useEffect(()=>{
     console.log(show, playerRef)
@@ -107,7 +108,6 @@ function AllTvChannels({
       //       playerRef.current.ads.endLinearAdMode();
       //   });
       // })
-
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
         src: show.m3u8720Url,
@@ -119,6 +119,29 @@ function AllTvChannels({
   const handlePlayerReady = (player) => {
     playerRef.current = player;
     createShareButton();
+    window.addEventListener('scroll', function() {
+      if(timer !== null) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        const element = document.querySelector('#videoTag');
+        const position = element.getBoundingClientRect();
+  
+        // checking whether fully visible
+        let pipEl = document.getElementById('video-wrapper');
+        // if(position.top >= 0 && position.bottom <= window.innerHeight) {
+        if(position.top >= 0 && position.bottom >= 0) {
+          console.log('Element is fully visible in screen');
+          pipEl.classList.remove('custom-pip-window')
+          // player.requestPictureInPicture()
+        } else {
+          pipEl.classList.add('custom-pip-window')
+          
+          // player.exitPictureInPicture();
+          console.log('Element is hidden in screen');
+        }
+      }, 500);
+    })
     // You can handle player events here, for example:
     player.on('waiting', () => {
       videojs.log('player is waiting');
@@ -156,7 +179,7 @@ function AllTvChannels({
         </div>
       </div>
 
-      <div className="bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0">
+      <div className="bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0" id="videoTag">
         <div className="container">
           <div className="sm:bg-shade-darkest-blue grid lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px] gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden">
             <div className="bg-shade-grayis h-[200px] md:h-[300px] lg:h-auto">
