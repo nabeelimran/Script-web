@@ -43,13 +43,18 @@ function TvHomepage() {
   // this function is used to check the video watch at every 1 min interval
   // @TODO need to change code
   const checkVideoWatchTime = (e) => {
+    console.log(e, 'interval called')
     if(e) {
       saveVideoDuration(e)
+      if(videoTokenEarned) {
+        let token = videoTokenEarned + 0.05
+        setVideoTokenEarned(token)
+      }
+      setVideoTokenBalance('');
     }
   }
 
   // this is used to save the watch time of user
-  // @TODO need to change code
   const saveVideoDuration = (e) => {
     const watchTime = (e.videoPlayTime - e.startTime) / 60
     const req = {
@@ -116,6 +121,7 @@ function TvHomepage() {
         <AllTvChannels 
         show={currentVideo}
         adsList={adsList}
+        checkVideoWatchTime={checkVideoWatchTime}
         />
       </div>
 

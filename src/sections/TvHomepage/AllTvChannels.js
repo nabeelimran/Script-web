@@ -9,15 +9,17 @@ import 'videojs-contrib-ads';
 
 function AllTvChannels({
   show,
-  adsList
+  adsList,
+  checkVideoWatchTime
 }) {
-
+  let videoWatchInterval;
   const playerRef = React.useRef(null);
+  let slots = [];
 
   const getRandomAds = () => {
     let randomAds;
-    if (this.adsList && this.adsList.length > 0) {
-      randomAds = this.adsList[Math.floor(Math.random() * this.adsList.length)];
+    if (adsList && adsList.length > 0) {
+      randomAds = adsList[Math.floor(Math.random() * adsList.length)];
     }
     // console.log(randomAds, 'selected ads');
     return randomAds;
@@ -29,20 +31,20 @@ function AllTvChannels({
     const videoDurationInMin = Math.ceil((videDurationInSec && videDurationInSec > 0 ? videDurationInSec : document.getElementsByTagName('video')[0].duration) / 60);
     const currentTimeInMin = Math.ceil((videoCurrentTimeInSec && videoCurrentTimeInSec > 0 ? playerRef.current.currentTime : playerRef.current.currentTime) / 60)
     const interval = 20;
-    this.slots = [];
+    slots = [];
 
     console.log('total time', videoDurationInMin);
     console.log('current time', currentTimeInMin);
 
     for (let i = 0; i <= (videoDurationInMin / interval); i++) {
-      this.slots.push({
+      slots.push({
         slot: i * interval,
         isPassed: currentTimeInMin > (i * interval) ? true : false
       })
     }
-    if (this.slots.length > 0) {
-      console.log(this.slots, 'slots of ads');
-      this.isSlotCreated = true;
+    if (slots.length > 0) {
+      console.log(slots, 'slots of ads');
+      // isSlotCreated = true;
     }
   }
 
@@ -95,7 +97,7 @@ function AllTvChannels({
       // playerRef.current.on('readyforpreroll', () => {
       //   playerRef.current.ads.startLinearAdMode();
       //   playerRef.current.src({
-      //     src: getRandomAds() ? this.getRandomAds().adsS3Url : `https://scripttv.s3.eu-central-1.amazonaws.com/1648445836148-1c4e85894a244a128646d57c0646edd7.mp4`,
+      //     src: getRandomAds() ? getRandomAds().adsS3Url : `https://scripttv.s3.eu-central-1.amazonaws.com/1648445836148-1c4e85894a244a128646d57c0646edd7.mp4`,
       //     type: 'video/mp4'
       //   })
       //   // send event when ad is playing to remove loading spinner
@@ -149,6 +151,19 @@ function AllTvChannels({
 
     player.on('play', () => {
       console.log('video is playing')
+      
+      videoWatchInterval = setInterval(() => {
+        const videoWatchTime = {
+          startTime: getVideoCurrentTimePace,
+          endTime: player.duration,
+          videoPlayTime: (new Date().getTime() - new Date(show.startTime).getTime()) / 1000
+        };
+
+        // this condition is for video is playing then it increase the token
+        if (show.startTime && videoWatchTime && videoWatchTime.endTime) {
+          checkVideoWatchTime(videoWatchTime)
+        }  
+      }, 60000)
     })
 
     player.on('dispose', () => {
