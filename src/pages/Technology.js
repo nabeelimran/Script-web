@@ -5,6 +5,7 @@ import Content from "sections/Technology/Content";
 import Hero from "sections/Technology/Hero";
 import Multi from "sections/Technology/Multi";
 import OurVideo from "sections/Technology/OurVideo";
+import JoinOurCommunity from "sections/HomePage/JoinOurCommunity";
 
 function Technology() {
   return (
@@ -14,23 +15,27 @@ function Technology() {
           <Navbar />
         </div>
 
-        <div className="mb-20 lg:mb-28">
+        <div className="mb-20 lg:mb-12">
           <Hero />
         </div>
 
         <div className="yellow-corner-blob"></div>
       </div>
 
-      <div className="mb-24 lg:mb-20">
+      <div className="mb-24 lg:mb-0">
         <OurVideo />
       </div>
 
-      <div className="mb-24 lg:mb-20">
+      <div className="mb-24 lg:mb-16">
         <Multi />
       </div>
 
-      <div className="mb-16 lg:mb-20">
+      <div className="mb-16 lg:mb-24">
         <Content />
+      </div>
+
+      <div className="mb-20 lg:mb-24" id="homepage-community-section">
+        <JoinOurCommunity />
       </div>
 
       <Footer />
