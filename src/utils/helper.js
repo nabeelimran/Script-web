@@ -30,11 +30,7 @@ export const helper = {
       let diff = moment(startDate).diff(currentDate, 'minutes');
       return diff
     },
-    getDiffInMin:(startDate, endDate)=> {
-      let currentDate = moment(new Date());
-      let diff = moment(startDate).diff(moment(endDate), 'minutes');
-      return diff
-    },
+    getDiffInMin:(startDate, endDate)=> moment(startDate).diff(moment(endDate), 'minutes'),
     getIn12HoursFormat:(date)=>{
         let hours = date.getHours();
         let minutes = date.getMinutes();
