@@ -26,7 +26,7 @@ function AllTvChannels({show}) {
   };
   useEffect(()=>{
     console.log(show)
-  },[])
+  },[show])
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;

@@ -21,6 +21,7 @@ function TvHomepage() {
     },{})
 
     const changeVideo=(show)=>{
+      console.log(show)
       setCurrentVideo(show);
     }
   return (
