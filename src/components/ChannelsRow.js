@@ -22,7 +22,7 @@ function ChannelsRow({ channels, channleDetails }) {
         <button className="flex absolute top-2 right-2 text-lg opacity-60">
           <Icon icon="material-symbols:info-outline" />
         </button>
-        <img src={channleDetails.img} className="w-full" alt="" />
+        <img src={channleDetails.channelImageLink} className="w-full" alt="" />
       </div>
 
       {currenChannels && (
@@ -32,7 +32,7 @@ function ChannelsRow({ channels, channleDetails }) {
               onClick={() => selector(channel.id)}
               state={{ setter: setActiveCard, getter: activeCard }}
               key={index}
-              title={channel.name}
+              title={channel.title}
               time={channel.time}
               id={channel.id}
               data={channel}

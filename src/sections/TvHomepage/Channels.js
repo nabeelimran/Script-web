@@ -5,9 +5,10 @@ import FillBar from "components/FillBar";
 import GlassModalButton from "components/GlassModalButton";
 import Popup from "components/Popup";
 import SquareBox from "components/SquareBox";
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
+import Api from 'services/api'
+import { helper } from "utils/helper";
 const channels = [
   {
     id: uuidv4(),
@@ -142,18 +143,121 @@ const ChannelList = [
 ];
 
 const timeline = [
-  { time: "20:30", active: true },
+  { time: "00:00", active: false },
+  { time: "00:30", active: false },
+  { time: "01:00", active: true },
+  { time: "01:30", active: true },
+  { time: "02:00", active: true },
+  { time: "02:30", active: true },
+  { time: "03:00", active: true },
+  { time: "03:30", active: true },
+  { time: "04:00", active: true },
+  { time: "04:30", active: true },
+  { time: "05:00", active: true },
+  { time: "05:30", active: true },
+  { time: "06:00", active: false },
+  { time: "07:30", active: false },
+  { time: "08:00", active: false },
+  { time: "08:30", active: false },
+  { time: "09:00", active: false },
+  { time: "09:30", active: false },
+  { time: "10:00", active: false },
+  { time: "10:30", active: false },
+  { time: "11:00", active: false },
+  { time: "11:30", active: false },
+  { time: "12:00", active: false },
+  { time: "12:30", active: false },
+  { time: "13:00", active: false },
+  { time: "13:30", active: false },
+  { time: "14:00", active: false },
+  { time: "14:30", active: false },
+  { time: "15:00", active: false },
+  { time: "15:30", active: false },
+  { time: "16:00", active: false },
+  { time: "16:30", active: false },
+  { time: "17:00", active: false },
+  { time: "17:30", active: false },
+  { time: "18:00", active: false },
+  { time: "18:30", active: false },
+  { time: "19:00", active: false },
+  { time: "19:30", active: false },
+  { time: "20:00", active: false },
+  { time: "20:30", active: false },
   { time: "21:00", active: false },
   { time: "21:30", active: false },
   { time: "22:00", active: false },
   { time: "22:30", active: false },
   { time: "23:00", active: false },
   { time: "23:30", active: false },
-  { time: "00:00", active: false },
-  { time: "00:00", active: false },
+  
 ];
 
-function Channels() {
+function Channels({channeldata}) {
+  const [Channels, setchannels] = useState([])
+  
+  const [timeline, setTimeline] = useState([])
+  // useEffect(()=>{
+ 
+  //  Api.getChannels('watch').then(res=>{
+  //   let data=res.data.data.map(ch=>{
+  //    ch.shows= ch.shows.map(show => {
+  //     let res= getDurationInMinute(show.startedAt,show.endedAt);
+  //       show.duration=res.duration;
+  //       show.startTime=res.startTime;
+  //       show.endTime=res.endTime;
+  //       show.time=res.time;
+  //       return show;
+  //      });
+  //      return ch;
+  //   })
+  //   setchannels(data);
+  //   console.log(channels)
+  //  });
+   
+  // },{})
+  useEffect(()=>{
+    let timelinedata= helper.createTimeSlot(new Date());
+    setTimeline(timelinedata)
+  },[])
+  useEffect(()=>{
+  
+let data =channeldata.map(ch=>{
+  let liveshows=ch.liveShows.filter(ls=>new Date(ls.startTime).getDate()==new Date().getDate());
+  ch.liveShows=liveshows.map(show => {
+    let res= getDurationInMinute(show.startTime,show.endTime);
+      show.duration=res.duration;
+      show.time=res.time;
+      return show;
+     });
+
+     return ch;
+})
+  setchannels(data)
+  console.log(Channels)
+  },[timeline])
+
+  const getDurationInMinute=(startedAt , endedAt)=>{
+    let startDate=new Date(startedAt);
+    let endDate=new Date(endedAt);
+    // let startTime=startDate[1].split(':');
+  let timelinemin=Number(timeline[0]?.split(':')[1]);
+    let duration=helper.getDiffInMin(endDate,startDate);
+    let diff=helper.getDiffInMinfromCurrent(startDate);
+    let curdatemin=new Date().getMinutes();
+    console.log(duration,curdatemin,timelinemin,diff)
+    if(diff<0){
+      diff=diff+curdatemin-timelinemin;
+    }else{
+      diff=0
+    }
+ let res={
+  duration:duration+diff,
+  time:helper.getIn12HoursFormat(startDate)+'-'+helper.getIn12HoursFormat(endDate)
+ }
+ return res;
+
+  }
+
   return (
     <section>
       <div className="container">
@@ -272,8 +376,8 @@ function Channels() {
           <div className=""></div>
           <div className="flex items-center overflow-x-auto hide-scrollbar">
             {timeline.map((item, i) => (
-              <div className="min-w-[80px] md:min-w-[160px] flex flex-col items-center justify-center">
-                <p className="text-xs md:text-base lh-1">{item.time}</p>
+              <div className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center">
+                <p className="text-xs md:text-base lh-1">{item}</p>
                 <Icon
                   icon="ic:sharp-arrow-drop-down"
                   className={`text-3xl ${
@@ -286,11 +390,11 @@ function Channels() {
         </div>
 
         <div className="grid gap-3">
-          {ChannelList.map((ch, index) => (
-            <ChannelsRow
-              channleDetails={ch.channelDetails}
-              channels={ch.channels}
-            />
+          {Channels.map((ch, index) => (
+            ch.liveShows[0].duration?<ChannelsRow
+              channleDetails={ch}
+              channels={ch.liveShows}
+            />:null
           ))}
         </div>
       </div>
