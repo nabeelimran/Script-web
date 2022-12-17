@@ -1,10 +1,9 @@
-import ArrowButton from "components/ArrowButton";
 import Button from "components/Button";
-import EconomyAvatar from "components/EconomyAvatar";
 import React from "react";
 import { helper } from "utils/helper";
 
 function Hero() {
+
   return (
     <div>
       <div className="container grid lg:grid-cols-2 gap-4">
@@ -30,6 +29,7 @@ function Hero() {
           </p>
 
           <div className="flex items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start">
+            <Button label="Whitepaper" />
             <Button
               label="Whitepaper"
               calReward={() => helper.openLink("https://whitepaper.script.tv/")}

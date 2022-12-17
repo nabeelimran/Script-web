@@ -1,20 +1,53 @@
 import { Icon } from "@iconify/react";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleEpgModalVisibility, updateEpgData } from "redux/reducers/connectWalletModal_State";
+
 
 const ChannelBox = ({ title, time, id, state, onClick, data }) => {
   // const isActive = state.getter === id ? true : false;
+  const dispatch = useDispatch();
 
   const click = () => {
     // state.setter(id)
-    onClick();
+    onClick(data);
+    console.log(data)
   };
+  const getStyle=()=>{
+    let style={
+      minWidth:160,
+      marginLeft:2
+    }
+    let minWidth=160;
+    let res=(data.duration/30)*160;
+    if(res>minWidth){
+      style.minWidth=res;
+    }else{
+     style.marginLeft=res-minWidth;
+    }
+    return style
+  }
+  const getWidthmd=()=>{
+    return 'md:min-w-['+Math.ceil((data.duration/30)*160)+'px]';
+  }
+  const viewShowDetail=(event)=>{
+    event.stopPropagation(); 
+    dispatch(toggleEpgModalVisibility(true))
+    dispatch(updateEpgData(data))
+   
+    
+  }
+
 
   return (
     <div
       onClick={click}
-      className={`cursor-pointer flex items-center px-4 md:px-10 bg-shade-grayis h-full rounded-md min-w-fit relative z-10 ${
+      className={`cursor-pointer flex items-center px-4 md:px-10 bg-shade-grayis h-full rounded-md  relative z-10   ${getWidthmd()}  ${
         data.selected ? "md:sticky left-0 right-0 z-50" : ""
-      }`}
+      } `}
+      style={
+        getStyle()
+      }
     >
       <div className="max-w-[200px] space-y-[2px] z-50">
         <p className="text-xs md:text-base font-medium two-lines-only">
@@ -24,7 +57,7 @@ const ChannelBox = ({ title, time, id, state, onClick, data }) => {
         {time && (
           <div className="flex items-center space-x-2">
             <p className="text-xs md:text-sm font-medium">{time}</p>
-            <button className="flex text-base opacity-80">
+            <button className="flex text-base opacity-80" onClick={(e)=>viewShowDetail(e)}>
               <Icon icon="material-symbols:info-outline" />
             </button>
           </div>
@@ -37,6 +70,7 @@ const ChannelBox = ({ title, time, id, state, onClick, data }) => {
         }`}
       ></div>
     </div>
+  
   );
 };
 export default ChannelBox;
