@@ -64,19 +64,35 @@ function GlassPopup({ open, setOpen }) {
 
         <h2 className="text-center text-black mb-3">Glasses</h2>
 
-        <div className="flex border py-1 border-black mb-3 rounded">
-          <img src="images/tv/glasses.svg" alt="" className="mx-4" />
-          <div>
-            <h6 className="text-black">Hi</h6>
-            <p className="text-black text-xs">Hlo</p>
+        <div className="max-h-40 overflow-auto">
+          <div className="flex border py-1 border-black mb-3 rounded">
+            <img src="images/tv/glasses.svg" alt="" className="mx-4" />
+            <div>
+              <h6 className="text-black">Hi</h6>
+              <p className="text-black text-xs">Hlo</p>
+            </div>
           </div>
-        </div>
 
-        <div className="flex border py-1 border-black mb-3 rounded">
-          <img src="images/tv/glasses.svg" alt="" className="mx-4" />
-          <div>
-            <h6 className="text-black">Hi</h6>
-            <p className="text-black text-xs">Hlo</p>
+          <div className="flex border py-1 border-black mb-3 rounded">
+            <img src="images/tv/glasses.svg" alt="" className="mx-4" />
+            <div>
+              <h6 className="text-black">Hi</h6>
+              <p className="text-black text-xs">Hlo</p>
+            </div>
+          </div>
+          <div className="flex border py-1 border-black mb-3 rounded">
+            <img src="images/tv/glasses.svg" alt="" className="mx-4" />
+            <div>
+              <h6 className="text-black">Hi</h6>
+              <p className="text-black text-xs">Hlo</p>
+            </div>
+          </div>
+          <div className="flex border py-1 border-black mb-3 rounded">
+            <img src="images/tv/glasses.svg" alt="" className="mx-4" />
+            <div>
+              <h6 className="text-black">Hi</h6>
+              <p className="text-black text-xs">Hlo</p>
+            </div>
           </div>
         </div>
 
