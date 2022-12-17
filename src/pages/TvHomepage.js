@@ -10,19 +10,23 @@ import HowToEarn from "sections/TvHomepage/HowToEarn";
 import KeyStats from "sections/TvHomepage/KeyStats";
 import React, { useEffect,useState } from "react";
 import Api from "../services/api"
+
 function TvHomepage() {
+  
   const [channel,setchannels]=useState([])
-  const [currentVideo,setCurrentVideo]=useState([])
+  const [currentVideo,setCurrentVideo]=useState(null)
+
   useEffect(()=>{
      Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
      })
-    }, [])
+  }, [])
 
-    const changeVideo=(show)=>{
-      setCurrentVideo(show);
-    }
+  const changeVideo=(show)=>{
+    setCurrentVideo(show);
+  }
+
   return (
     <div>
       <div className="mb-4 sm:mb-6 relative z-50">
