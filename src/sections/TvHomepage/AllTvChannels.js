@@ -15,6 +15,7 @@ function AllTvChannels({
   let videoWatchInterval;
   const playerRef = React.useRef(null);
   const [startTime, setStartTime] = React.useState('')
+  const [showDetail, setShowDetail] = React.useState(null)
   let slots = [];
 
   const getRandomAds = () => {
@@ -93,7 +94,8 @@ function AllTvChannels({
   
   useEffect(()=>{
     if (show && playerRef && playerRef.current) {
-      console.log(show.startTime, 'startTime')
+      console.log(show, 'startTime')
+      setShowDetail(show);
       setStartTime(show.startTime);
       // playerRef.current.ads()
       // playerRef.current.on('readyforpreroll', () => {
@@ -118,7 +120,7 @@ function AllTvChannels({
         type: 'application/x-mpegURL'    
       })
     }
-  },[show])
+  }, [show])
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
@@ -153,7 +155,9 @@ function AllTvChannels({
 
     player.on('play', () => {
       videoWatchInterval = setInterval(() => {
-        debugger
+        console.log('normal show', show);
+        console.log('set show', showDetail);
+        console.log('set show', startTime);
         const videoWatchTime = {
           startTime: getVideoCurrentTimePace(),
           endTime: player.duration,
@@ -174,7 +178,6 @@ function AllTvChannels({
   
   return (
     <section>
-      {console.log('all tv channel', show)}
       <div className="container mb-8">
         {/* <div className="text-center space-y-5 mb-8">
           <Title>
