@@ -12,12 +12,17 @@ import React, { useEffect,useState } from "react";
 import Api from "../services/api"
 function TvHomepage() {
   const [channel,setchannels]=useState([])
+  const [currentVideo,setCurrentVideo]=useState([])
   useEffect(()=>{
      Api.getChannels('watch').then(res=>{
-      console.log(res.data)
       setchannels(res.data.data);
+      setCurrentVideo(res.data.data[0].liveShows[0])
      })
     },{})
+
+    const changeVideo=(show)=>{
+      setCurrentVideo(show);
+    }
   return (
     <div>
       <div className="mb-4 sm:mb-6 relative z-50">
@@ -29,12 +34,15 @@ function TvHomepage() {
       </div>
 
       <div className="mb-12">
-        <AllTvChannels />
+        <AllTvChannels 
+        show={currentVideo}
+        />
       </div>
 
       <div className="mb-12">
        {channel.length>0&& <Channels
         channeldata={channel}
+        currentVideo={(data)=>changeVideo(data)}
         />
 }
       </div>
