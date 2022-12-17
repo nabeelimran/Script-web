@@ -8,7 +8,7 @@ function Hero() {
 
   const connectMetamask = () => {
     MetamaskService.connectHandler().then((res) => {
-      console.log(res);
+      
       if(res && res.length > 0) {
         MetamaskService.accountsChanged(res[0]).then((resp) => {
           console.log(resp);

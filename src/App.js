@@ -32,12 +32,16 @@ import Mnemonics from "pages/UnlockWallet/Mnemonics";
 import PrivateKey from "pages/UnlockWallet/PrivateKey";
 import Validator from "pages/Validator";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import EmailConfirmation from "components/EmailConfirmation";
+import CreatePasswordForm from "components/CreatePasswordForm";
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <ConnectWalletModal />
+      <EmailConfirmation/>
+      <CreatePasswordForm />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/token" element={<TokenPage />} />
