@@ -17,7 +17,7 @@ function TvHomepage() {
   const [currentVideo, setCurrentVideo] = useState(null)
   const [adsList, setAdsList] = useState([])
   const [videoTokenEarned, setVideoTokenEarned] = useState(null)
-  let userId = 0;
+  let userId = 202210466;
 
   const getChannels = () => {
     Api.getChannels('watch').then(res=>{
@@ -29,7 +29,7 @@ function TvHomepage() {
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
-    Api.getVideoTokenEarned(userId ? userId : 0, 'watch').then((res) => {
+    Api.getVideoTokenEarned(userId, 'watch').then((res) => {
       if (res && res.isSuccess && res.data) {
         const token = +res.data.earnedToken ? +res.data.earnedToken : 0;
         setVideoTokenBalance(token > 0 ? '' : 'setDefault');
@@ -90,6 +90,9 @@ function TvHomepage() {
 
   useEffect(()=>{
     getChannels();
+    if(userId) {
+      getVideoTokenEarned(userId)
+    }
   }, [])
 
   const changeVideo=(show)=>{
