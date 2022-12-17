@@ -6,7 +6,7 @@ const ChannelBox = ({ title, time, id, state, onClick, data }) => {
 
   const click = () => {
     // state.setter(id)
-    onClick();
+    onClick(data);
   };
   const getWidth=()=>{
     return (data.duration/30)*160}

@@ -3,10 +3,10 @@ import StreamComment from "components/StreamComment";
 import StreamForm from "components/StreamForm";
 import Title from "components/Title";
 import VideoPlayer from "components/VideoPlayer";
-import React from "react";
+import React , { useEffect,useState }  from "react";
 import videojs from 'video.js';
 
-function AllTvChannels() {
+function AllTvChannels({show}) {
 
   const playerRef = React.useRef(null);
 
@@ -24,6 +24,9 @@ function AllTvChannels() {
       type:"application/x-mpegURL"
     }]
   };
+  useEffect(()=>{
+    console.log(show)
+  },[])
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
@@ -37,7 +40,7 @@ function AllTvChannels() {
       videojs.log('player will dispose');
     });
   };
-
+  
   return (
     <section>
       <div className="container mb-8">

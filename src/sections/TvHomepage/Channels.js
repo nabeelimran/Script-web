@@ -192,29 +192,10 @@ const timeline = [
   
 ];
 
-function Channels({channeldata}) {
+function Channels({channeldata,currentVideo}) {
   const [Channels, setchannels] = useState([])
   
   const [timeline, setTimeline] = useState([])
-  // useEffect(()=>{
- 
-  //  Api.getChannels('watch').then(res=>{
-  //   let data=res.data.data.map(ch=>{
-  //    ch.shows= ch.shows.map(show => {
-  //     let res= getDurationInMinute(show.startedAt,show.endedAt);
-  //       show.duration=res.duration;
-  //       show.startTime=res.startTime;
-  //       show.endTime=res.endTime;
-  //       show.time=res.time;
-  //       return show;
-  //      });
-  //      return ch;
-  //   })
-  //   setchannels(data);
-  //   console.log(channels)
-  //  });
-   
-  // },{})
   useEffect(()=>{
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
@@ -233,20 +214,17 @@ let data =channeldata.map(ch=>{
      return ch;
 })
   setchannels(data)
-  console.log(Channels)
   },[timeline])
 
   const getDurationInMinute=(startedAt , endedAt)=>{
     let startDate=new Date(startedAt);
     let endDate=new Date(endedAt);
-    // let startTime=startDate[1].split(':');
   let timelinemin=Number(timeline[0]?.split(':')[1]);
     let duration=helper.getDiffInMin(endDate,startDate);
     let diff=helper.getDiffInMinfromCurrent(startDate);
     let curdatemin=new Date().getMinutes();
-    console.log(duration,curdatemin,timelinemin,diff)
     if(diff<0){
-      diff=diff+curdatemin-timelinemin;
+      diff=diff+curdatemin-timelinemin;//adjust duration according to timeline
     }else{
       diff=0
     }
@@ -394,6 +372,7 @@ let data =channeldata.map(ch=>{
             ch.liveShows[0].duration?<ChannelsRow
               channleDetails={ch}
               channels={ch.liveShows}
+              changeVideo={(show)=>currentVideo(show)}
             />:null
           ))}
         </div>
