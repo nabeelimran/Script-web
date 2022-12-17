@@ -10,15 +10,25 @@ import HowToEarn from "sections/TvHomepage/HowToEarn";
 import KeyStats from "sections/TvHomepage/KeyStats";
 import React, { useEffect,useState } from "react";
 import Api from "../services/api"
+import { useSelector } from "react-redux";
+
 function TvHomepage() {
   const [channel,setchannels]=useState([])
   const [currentVideo,setCurrentVideo]=useState([])
+  const { changecurrentVideo,data } = useSelector(
+    (state) => state.connectWalletModal_State
+  );
   useEffect(()=>{
      Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
      })
     }, [])
+     useEffect(()=>{
+     if(changecurrentVideo){
+      setCurrentVideo(data);
+     }
+    }, [changecurrentVideo])
 
     const changeVideo=(show)=>{
       console.log(show)
