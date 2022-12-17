@@ -14,6 +14,7 @@ function AllTvChannels({
 }) {
   let videoWatchInterval;
   const playerRef = React.useRef(null);
+  const [startTime, setStartTime] = React.useState('')
   let slots = [];
 
   const getRandomAds = () => {
@@ -91,8 +92,9 @@ function AllTvChannels({
   let timer;
   
   useEffect(()=>{
-    console.log(show, playerRef)
     if (show && playerRef && playerRef.current) {
+      console.log(show.startTime, 'startTime')
+      setStartTime(show.startTime);
       // playerRef.current.ads()
       // playerRef.current.on('readyforpreroll', () => {
       //   playerRef.current.ads.startLinearAdMode();
@@ -150,20 +152,19 @@ function AllTvChannels({
     });
 
     player.on('play', () => {
-      console.log('video is playing')
-      
       videoWatchInterval = setInterval(() => {
+        debugger
         const videoWatchTime = {
-          startTime: getVideoCurrentTimePace,
+          startTime: getVideoCurrentTimePace(),
           endTime: player.duration,
-          videoPlayTime: (new Date().getTime() - new Date(show.startTime).getTime()) / 1000
+          videoPlayTime: (new Date().getTime() - new Date(startTime).getTime()) / 1000
         };
 
-        // this condition is for video is playing then it increase the token
-        if (show.startTime && videoWatchTime && videoWatchTime.endTime) {
+        if (startTime && videoWatchTime && videoWatchTime.endTime) {
+          console.log('final req', videoWatchTime);
           checkVideoWatchTime(videoWatchTime)
         }  
-      }, 60000)
+      }, 10000)
     })
 
     player.on('dispose', () => {
