@@ -34,7 +34,7 @@ import Validator from "pages/Validator";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import EmailConfirmation from "components/EmailConfirmation";
 import CreatePasswordForm from "components/CreatePasswordForm";
-import VerifyAccount from "pages/VierifyAccount";
+import VerifyAccount from "pages/VerifyAccount";
 
 function App() {
   return (

@@ -3,7 +3,7 @@ import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FloatingInput from "components/FloatingInput";
 import { useForm } from "react-hook-form";
 
@@ -34,6 +34,9 @@ function CreatePasswordForm() {
   const [passwordShow,setPasswordShow] = useState(false)
   const [confPasswordShow,setConfPasswordShow] = useState(false)
   const [loading,setLoading] = useState(false)
+  const { accountAddress } = useSelector((state) => state.metamask_state);
+  const { signature } = useSelector((state) => state.metamask_state);
+  const navigate = useNavigate()
 
   const switchPasswordView = (from) => {
     
@@ -44,8 +47,7 @@ function CreatePasswordForm() {
     }
   }
 
-  const { accountAddress } = useSelector((state) => state.metamask_state);
-  const { signature } = useSelector((state) => state.metamask_state);
+
 
   const onSubmit = async (data) => {
     setLoading(true)
@@ -64,19 +66,30 @@ function CreatePasswordForm() {
     };
 
     const loginW = await Api.walletLogin(resObj, "login_model");
-    if (loginW.status === 200 && loginW.data.isSuccess) {
+    if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
       
     setLoading(false)
       ToastMessage(`${loginW.data.message}`,true);
       sessionStorage.setItem(
+        "script-token",
+        JSON.stringify( loginW.data.data.authToken,
+        )
+      );
+      sessionStorage.setItem(
         "userInfo",
         JSON.stringify({
-          token: loginW.data.data.authToken,
           email: user.email,
         })
       );
+    }else{
+      ToastMessage("something went wrong")
+      loading(false)
     }
     dispatch(togglePasswordModalVisibility(false))
+    navigate({
+      pathname: '/verify-account',
+      search: `?email=${user.email}`,
+    });
   };
   const dispatch = useDispatch();
   const { isPasswordModal } = useSelector(
@@ -162,7 +175,7 @@ function CreatePasswordForm() {
                         value: 8,
                         message: "Password must have at least 8 characters",
                       },
-                      pattern:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+                      pattern:/^(?=.*[a-zA-Z\d].*)[a-zA-Z\d!@#$%&*]{8,}$/
                     }),
                   }}
                 />
@@ -191,7 +204,7 @@ function CreatePasswordForm() {
 
               <div className="space-y-6">
                 <div className="pt-2">
-                  <Button type="submit" label="Continue" loader={loading}/>
+                  <Button type="submit" label="Save" loader={loading}/>
                 </div>
               </div>
             </form>

@@ -27,6 +27,7 @@ function FloatingInput(props) {
       >
         {props.label}
       </label>
+      <div className="relative">
       <input
         {...props.other}
         type={props.type}
@@ -46,6 +47,7 @@ function FloatingInput(props) {
       )
         
       }
+      </div>
 
       {props.error && (
         <div>

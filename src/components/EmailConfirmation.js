@@ -166,11 +166,17 @@ function EmailConfirmation() {
 
               <div className="space-y-6">
                 <div className="pt-2">
-                  <Button type="submit" label="Continue" loader={loading}/>
+                  <Button type="submit" label="Continue" loader={loading} disable={loading}/>
                 </div>
               </div>
             </form>
           </div>
+          <button
+            onClick={() => dispatch(toggleEmailModalVisibility(false))}
+            className="absolute top-8 right-10 text-lg text-white flex z-[500000]"
+          >
+            <Icon icon="maki:cross" />
+          </button>
         </section>
       </UpperRoot>
     </>

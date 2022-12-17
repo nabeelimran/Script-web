@@ -3,7 +3,7 @@ import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toggleEmailModalVisibility, toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import { metamaskCred } from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
@@ -16,6 +16,7 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 
 function ConnectWalletModal() {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -69,10 +70,27 @@ function ConnectWalletModal() {
           }
 
     const loginW  = await Api.walletLogin(resObj,"")
-    console.log(loginW)
-    if(loginW.status===200 && loginW.data.isSuccess){
+    
+    if(loginW && loginW.status===200 && loginW.data.isSuccess){
       ToastMessage(`${loginW.data.message}`,true)
       dispatch(toggleModalVisibility(false))
+      sessionStorage.setItem(
+        "script-token",
+        JSON.stringify( loginW.data.data.authToken,
+        )
+      );
+      sessionStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          email: loginW.data.data.email,
+        })
+      );
+      navigate({
+        pathname: '/verify-account',
+        search: `?email=${loginW.data.data.email}`,
+      });
+    }else{
+      ToastMessage("Somthing went wrong")
     }
         
       }

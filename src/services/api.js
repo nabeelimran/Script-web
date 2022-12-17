@@ -39,6 +39,33 @@ export default class Api {
         return axios.post(`${APIPATH.BASEURL}walletRegisterAndLogin`,req, options);
     }
 
+    static emailVerification(req, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName
+            },
+            
+        }
+        return axios.post(`${APIPATH.BASEURL}emailVerification`,req, options);
+    }
+    static resendOtp(req, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName
+            },
+            
+        }
+        return axios.post(`${APIPATH.BASEURL}emailVerification`,req, options);
+    }
+
     static checkUsernameOrEmailExist(email, username, screenName) {
         const options = {
             headers:{
