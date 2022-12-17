@@ -4,18 +4,23 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+import { toggleEmailModalVisibility, toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+import { metamaskCred } from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
 import ConnectWalletButton from "./ConnectWalletButton";
 import SocialLoginCard from "./SocialLoginCard";
 import Title from "./Title";
 import UpperRoot from "./UpperRoot";
+import MetamaskService from "services/metamask";
+import { ToastMessage } from "./ToastMessage";
+import Api from "services/api";
 
 function ConnectWalletModal() {
   const dispatch = useDispatch();
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
   );
+  const { accountAddress } = useSelector((state) => state.metamask_state);
   const modalRef = OutsideClickDetector(() =>
     dispatch(toggleModalVisibility(false))
   );
@@ -27,6 +32,23 @@ function ConnectWalletModal() {
       document.body.style.overflowY = "auto";
     }
   }, [isModalVisible]);
+
+  const metaMaskHandler = async () => {
+    if (!window.ethereum) {
+      ToastMessage("Install Metamask");
+      return false;
+    }
+    const accAddres = await MetamaskService.connectHandler();
+    
+    if (accAddres) {
+      dispatch(metamaskCred(accAddres));
+      const isUser = await Api.getUserDetailsByWalletAddress(accAddres,'login-modal')
+      if(!isUser.data.isSuccess){
+        dispatch(toggleModalVisibility(false))
+        dispatch(toggleEmailModalVisibility(true))
+      }
+    }
+  };
 
   return (
     <>
@@ -52,6 +74,7 @@ function ConnectWalletModal() {
 
             <div className="grid grid-cols-1 gap-4 mb-7">
               <ConnectWalletButton
+                clickEvent={metaMaskHandler}
                 img="images/metamask.svg"
                 title={
                   <>

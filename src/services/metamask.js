@@ -1,10 +1,12 @@
 
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 import { metamaskNetwork } from "utils/helper";
+import CryptoService from "./CryptoService";
 
 export default class MetamaskService {
 
     static async connectHandler() {
+      
         if (window.ethereum) {
           try {
             const res = await window.ethereum.request({
@@ -21,9 +23,10 @@ export default class MetamaskService {
     };
 
     static async signatureRequest(walletAddress) {
+        
         return await window.ethereum.request({
           method: 'eth_sign',
-          params: [walletAddress, this.cryptoService.getHash(`met@m@sk@login`).toString()]
+          params: [walletAddress, CryptoService.getHash(`met@m@sk@login`).toString()]
         })
     }
 

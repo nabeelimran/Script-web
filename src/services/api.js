@@ -33,9 +33,9 @@ export default class Api {
                 countryName: 'dummyData',
                 screenName: screenName
             },
-            data: req
+            
         }
-        return axios.post(`${APIPATH.BASEURL}walletRegisterAndLogin`, options);
+        return axios.post(`${APIPATH.BASEURL}walletRegisterAndLogin`,req, options);
     }
 
     static checkUsernameOrEmailExist(email, username, screenName) {

@@ -9,7 +9,7 @@ function StakingInformation({
   marketValues,
   calculateReward,
   checkAmount,
-  amount
+  amount,
 }) {
   return (
     <CalculatorLayout>
@@ -26,20 +26,43 @@ function StakingInformation({
       </div>
 
       <div className="space-y-6 lg:space-y-4">
-        <InputRow label="Enter Your SCPT Amount:" placeholder={amount} id="amount" changeAmount={checkAmount} value={amount} />
+        <InputRow
+          label="Enter Your SCPT Amount:"
+          placeholder={amount}
+          id="amount"
+          changeAmount={checkAmount}
+          value={amount}
+        />
         <InputRow
           label="% Staked of Total Circulating Supply:"
           placeholder={marketValues.circInPercent}
           id="staked"
           value={marketValues.circInPercent}
         />
-        <InputRow label="SCPT Price (USD):" placeholder={marketValues.scptPriceUSD} id="scpt" value={marketValues.scptPriceUSD} />
-        <InputRow label="$SPAY Price (USD):" placeholder={marketValues.spayPriceUSD} id="your" value={marketValues.spayPriceUSD} />
+        <InputRow
+          label="SCPT Price (USD):"
+          placeholder={marketValues.scptPriceUSD}
+          id="scpt"
+          value={marketValues.scptPriceUSD}
+        />
+        <InputRow
+          label="$SPAY Price (USD):"
+          placeholder={marketValues.spayPriceUSD}
+          id="your"
+          value={marketValues.spayPriceUSD}
+        />
 
         <div className="grid lg:grid-cols-2">
           <div></div>
           <div>
-            <Button label="Calculate earnings" calReward={calculateReward} />
+            <Button
+              label="Calculate earnings"
+              buttonProps={{
+                onClick: () => {
+                  console.log("sl")
+                },
+              }}
+            />
           </div>
         </div>
       </div>
