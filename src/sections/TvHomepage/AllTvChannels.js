@@ -6,7 +6,9 @@ import VideoPlayer from "components/VideoPlayer";
 import React , { useEffect,useState }  from "react";
 import videojs from 'video.js';
 
-function AllTvChannels({show}) {
+function AllTvChannels({
+  show
+}) {
 
   const playerRef = React.useRef(null);
 
@@ -25,7 +27,17 @@ function AllTvChannels({show}) {
     }]
   };
   useEffect(()=>{
+<<<<<<< HEAD
     console.log(show)
+=======
+    console.log(show, playerRef)
+    if (show && playerRef && playerRef.current) {
+      playerRef.current.src({
+        src: show.m3u8720Url,
+        type: 'application/x-mpegURL'    
+      })
+    }
+>>>>>>> ad119b5c840d23085061188c7a610cedc67036e1
   },[show])
 
   const handlePlayerReady = (player) => {
@@ -43,6 +55,7 @@ function AllTvChannels({show}) {
   
   return (
     <section>
+      {console.log('all tv channel', show)}
       <div className="container mb-8">
         {/* <div className="text-center space-y-5 mb-8">
           <Title>

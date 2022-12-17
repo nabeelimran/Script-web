@@ -1,4 +1,5 @@
 import React from "react";
+import ReactHtmlParser from "react-html-parser";
 
 const variants = {
   default: {
@@ -20,6 +21,11 @@ const variants = {
     img: "",
     className: "bg-primary rounded-full",
     component: true,
+  },
+  bulletNone: {
+    img: "images/logos/clean-logo.png",
+    className: "opacity-0",
+    component: false,
   },
 };
 
@@ -46,7 +52,9 @@ function BulletPoint({
           alt=""
         />
       )}
-      <p className={`text-white lh-1_6 ${textClassName}`}>{point}</p>
+      <p className={`text-white lh-1_6 ${textClassName}`}>
+        {ReactHtmlParser(point)}
+      </p>
     </div>
   );
 }

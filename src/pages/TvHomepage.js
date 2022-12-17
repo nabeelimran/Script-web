@@ -13,11 +13,13 @@ import Api from "../services/api"
 import { useSelector } from "react-redux";
 
 function TvHomepage() {
+  
   const [channel,setchannels]=useState([])
   const [currentVideo,setCurrentVideo]=useState([])
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
+  
   useEffect(()=>{
      Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
@@ -30,10 +32,10 @@ function TvHomepage() {
      }
     }, [changecurrentVideo])
 
-    const changeVideo=(show)=>{
-      console.log(show)
-      setCurrentVideo(show);
-    }
+  const changeVideo=(show)=>{
+    setCurrentVideo(show);
+  }
+
   return (
     <div>
       <div className="mb-4 sm:mb-6 relative z-50">
