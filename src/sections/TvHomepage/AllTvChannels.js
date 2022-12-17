@@ -128,7 +128,7 @@ function AllTvChannels({
         const position = element.getBoundingClientRect();
   
         // checking whether fully visible
-        let pipEl = document.getElementById('video-wrapper');
+        let pipEl = document.getElementById('video-container');
         // if(position.top >= 0 && position.bottom <= window.innerHeight) {
         if(position.top >= 0 && position.bottom >= 0) {
           console.log('Element is fully visible in screen');
@@ -182,7 +182,7 @@ function AllTvChannels({
       <div className="bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0" id="videoTag">
         <div className="container">
           <div className="sm:bg-shade-darkest-blue grid lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px] gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden">
-            <div className="bg-shade-grayis h-[200px] md:h-[300px] lg:h-auto">
+            <div className="bg-shade-grayis h-[200px] md:h-[300px] lg:h-auto" id="video-wrapper">
               <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady}/>
             </div>
 

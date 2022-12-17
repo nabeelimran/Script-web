@@ -47,7 +47,7 @@ function VideoPlayer(props) {
     
     return (
     <div data-vjs-player>
-        <div ref={videoRef} id="video-wrapper" />
+        <div ref={videoRef} id="video-container" />
         {/* <video ref={videoRef} className="video-js"></video> */}
     </div>
     );
