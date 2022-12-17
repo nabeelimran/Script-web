@@ -18,7 +18,7 @@ function TvHomepage() {
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
      })
-    },{})
+    }, [])
 
     const changeVideo=(show)=>{
       setCurrentVideo(show);
