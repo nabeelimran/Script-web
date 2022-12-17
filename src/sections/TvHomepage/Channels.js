@@ -192,67 +192,70 @@ const timeline = [
   
 ];
 
-function Channels() {
+function Channels({channeldata}) {
   const [Channels, setchannels] = useState([])
-  const [shows, setLiveShows] = useState([])
-  const [timeline, setTimeline] = useState([])
-  useEffect(()=>{
-  let data= helper.createTimeSlot(new Date());
-  console.log(data)
-  setTimeline(data)
-   Api.getChannels('watch').then(res=>{
-   
-    let data=res.data.data.map(ch=>{
-     ch.shows= ch.shows.map(show => {
-      let res= getDurationInMinute(show.startedAt,show.endedAt);
-        show.duration=res.duration;
-        show.startTime=res.startTime;
-        show.endTime=res.endTime;
-        show.time=res.time;
-        return show;
-       });
-       return ch;
-    })
-    setchannels(data);
-    console.log(channels)
-   });
-   Api.getShows('watch').then(res=>{
-    console.log(res.data.data)
-    setLiveShows(res.data.data);
-   })
   
-  },{})
+  const [timeline, setTimeline] = useState([])
+  // useEffect(()=>{
+ 
+  //  Api.getChannels('watch').then(res=>{
+  //   let data=res.data.data.map(ch=>{
+  //    ch.shows= ch.shows.map(show => {
+  //     let res= getDurationInMinute(show.startedAt,show.endedAt);
+  //       show.duration=res.duration;
+  //       show.startTime=res.startTime;
+  //       show.endTime=res.endTime;
+  //       show.time=res.time;
+  //       return show;
+  //      });
+  //      return ch;
+  //   })
+  //   setchannels(data);
+  //   console.log(channels)
+  //  });
+   
+  // },{})
   useEffect(()=>{
-let data =channels.map(ch=>{
-  ch.shows=shows.filter(s=>s.channelId==ch.id).map(show => {
+    let timelinedata= helper.createTimeSlot(new Date());
+    setTimeline(timelinedata)
+  },[])
+  useEffect(()=>{
+  
+let data =channeldata.map(ch=>{
+  let liveshows=ch.liveShows.filter(ls=>new Date(ls.startTime).getDate()==new Date().getDate());
+  ch.liveShows=liveshows.map(show => {
     let res= getDurationInMinute(show.startTime,show.endTime);
       show.duration=res.duration;
-      show.startTime=res.startTime;
-      show.endTime=res.endTime;
       show.time=res.time;
       return show;
      });
+
+     return ch;
 })
-  },[channels,shows])
+  setchannels(data)
+  console.log(Channels)
+  },[timeline])
 
   const getDurationInMinute=(startedAt , endedAt)=>{
     let startDate=new Date(startedAt);
     let endDate=new Date(endedAt);
     // let startTime=startDate[1].split(':');
-    console.log(timeline[0])
-     let startTime=timeline[0].split(':');
-    let endTime=endDate[1].split(':');
-   
-    let duration=Number(startTime[0])<Number(endTime[0])?Number((endTime[0])-Number(startTime[0])-1)*60+(Number(endTime[1])+(60-Number(startTime[1]))):(Number(endTime[1])-(60-Number(startTime[1])))
-
+  let timelinemin=Number(timeline[0]?.split(':')[1]);
+    let duration=helper.getDiffInMin(endDate,startDate);
+    let diff=helper.getDiffInMinfromCurrent(startDate);
+    let curdatemin=new Date().getMinutes();
+    console.log(duration,curdatemin,timelinemin,diff)
+    if(diff<0){
+      diff=diff+curdatemin-timelinemin;
+    }else{
+      diff=0
+    }
  let res={
-  duration:duration,
-  startTime:startTime[0]+':'+startTime[1],
-  endTime:endTime[0]+':'+endTime[1],
-  time:(Number(startTime[0])>12?Number(startTime[0])-12+':'+startTime[1]+' PM':Number(startTime[0])==12?startTime[0]+':'+startTime[1]+'PM' :startTime[0]+':'+startTime[1]+'AM')+'-'+
-  (Number(endTime[0])>12?Number(endTime[0])-12+':'+endTime[1]+' PM':Number(endTime[0])==12?endTime[0]+':'+endTime[1]+'PM' :endTime[0]+':'+endTime[1]+'AM')
+  duration:duration+diff,
+  time:helper.getIn12HoursFormat(startDate)+'-'+helper.getIn12HoursFormat(endDate)
  }
  return res;
+
   }
 
   return (
@@ -373,7 +376,7 @@ let data =channels.map(ch=>{
           <div className=""></div>
           <div className="flex items-center overflow-x-auto hide-scrollbar">
             {timeline.map((item, i) => (
-              <div className="min-w-[80px] md:min-w-[160px] flex flex-col items-center justify-center">
+              <div className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center">
                 <p className="text-xs md:text-base lh-1">{item}</p>
                 <Icon
                   icon="ic:sharp-arrow-drop-down"
@@ -388,10 +391,10 @@ let data =channels.map(ch=>{
 
         <div className="grid gap-3">
           {Channels.map((ch, index) => (
-            <ChannelsRow
+            ch.liveShows[0].duration?<ChannelsRow
               channleDetails={ch}
-              channels={ch.shows}
-            />
+              channels={ch.liveShows}
+            />:null
           ))}
         </div>
       </div>

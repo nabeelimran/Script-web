@@ -13,7 +13,10 @@ export const helper = {
       }
   
       const timeStops = [];
-  
+      if(currentDate.getMinutes()>=30){
+        startTime.add(30,'minutes')
+      }
+  console.log(startTime.format('HH:mm'))
       while (startTime <= endTime) {
         timeStops.push(moment(startTime).format('HH:mm'));
         startTime.add(30, 'minutes');
@@ -22,11 +25,27 @@ export const helper = {
       return timeStops;
     },
   
-    getDiffInMin:(startDate, dateType)=> {
+    getDiffInMinfromCurrent:(startDate, dateType)=> {
       let currentDate = moment(new Date());
       let diff = moment(startDate).diff(currentDate, 'minutes');
       return diff
+    },
+    getDiffInMin:(startDate, endDate)=> {
+      let currentDate = moment(new Date());
+      let diff = moment(startDate).diff(moment(endDate), 'minutes');
+      return diff
+    },
+    getIn12HoursFormat:(date)=>{
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        let strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
     }
+
 }
 
 export const metamaskNetwork = {

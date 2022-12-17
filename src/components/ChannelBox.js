@@ -9,7 +9,7 @@ const ChannelBox = ({ title, time, id, state, onClick, data }) => {
     onClick();
   };
   const getWidth=()=>{
-    return Math.ceil((data.duration/30)*160)}
+    return (data.duration/30)*160}
   const getWidthmd=()=>{
     return 'md:min-w-['+Math.ceil((data.duration/30)*160)+'px]';
   }
