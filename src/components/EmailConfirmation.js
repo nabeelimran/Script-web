@@ -90,6 +90,26 @@ function EmailConfirmation() {
     }
   };
 
+  const errorShow = (type) => {
+    let error;
+    if(type){
+      switch (type.type) {
+        case "required":
+          error = "This field is requird. Please enter email"
+          break;
+        case "pattern":
+          error = "Invalid Email"
+          break;
+      
+        default:
+          break;
+      }
+    }
+
+  
+    return error
+  }
+
   return (
     <>
       <BlackScreen zIndex="1000000" show={isEmailModal} />
@@ -120,10 +140,10 @@ function EmailConfirmation() {
                   label=""
                   placeholder="Enter username or email adress"
                   error={
-                    errors.email && "This field is requird. Please enter email."
+                    errorShow(errors.email)
                   }
                   other={{
-                    ...register("email", { required: true }),
+                    ...register("email", { required: true,pattern: /^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/}),
                   }}
                 />
                 <FloatingInput
