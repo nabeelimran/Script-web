@@ -83,12 +83,17 @@ function ConnectWalletModal() {
         "userInfo",
         JSON.stringify({
           email: loginW.data.data.email,
+          userId: loginW.data.data.id,
+          walletAddress: loginW.data.data.walletAddress
         })
       );
       navigate({
-        pathname: '/verify-account',
-        search: `?email=${loginW.data.data.email}`,
+        pathname: '/tv',
       });
+      // navigate({
+      //   pathname: '/verify-account',
+      //   search: `?email=${loginW.data.data.email}`,
+      // });
     }else{
       ToastMessage("Somthing went wrong")
     }
