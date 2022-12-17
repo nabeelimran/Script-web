@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FloatingInput from "components/FloatingInput";
@@ -22,6 +22,7 @@ import UpperRoot from "./UpperRoot";
 import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import MetamaskService from "services/metamask";
+import LoaderGif from "../assets/Loading_icon.gif";
 
 function EmailConfirmation() {
   const {
@@ -34,6 +35,8 @@ function EmailConfirmation() {
     nickname: "",
     refral: false,
   });
+
+  const [loading,setLoading] = useState(false)
 
   const dispatch = useDispatch();
   const { isEmailModal } = useSelector(
@@ -53,7 +56,7 @@ function EmailConfirmation() {
   }, [isEmailModal]);
 
   const onSubmit = async (data) => {
-    
+    setLoading(true)
     const emailCheck = await Api.checkUsernameOrEmailExist(
       data.email,
       data.nickname,
@@ -73,14 +76,39 @@ function EmailConfirmation() {
           dispatch(metamaskSignature(signeture));
           dispatch(toggleEmailModalVisibility(false));
           dispatch(togglePasswordModalVisibility(true));
+        setLoading(false)
+
         }
       } else {
         ToastMessage(emailCheck.data.message, true);
+        setLoading(false)
       }
     } else {
       ToastMessage("Somthing went wrong", true);
+      setLoading(false)
+
     }
   };
+
+  const errorShow = (type) => {
+    let error;
+    if(type){
+      switch (type.type) {
+        case "required":
+          error = "This field is requird. Please enter email"
+          break;
+        case "pattern":
+          error = "Invalid Email"
+          break;
+      
+        default:
+          break;
+      }
+    }
+
+  
+    return error
+  }
 
   return (
     <>
@@ -112,10 +140,10 @@ function EmailConfirmation() {
                   label=""
                   placeholder="Enter username or email adress"
                   error={
-                    errors.email && "This field is requird. Please enter email."
+                    errorShow(errors.email)
                   }
                   other={{
-                    ...register("email", { required: true }),
+                    ...register("email", { required: true,pattern: /^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/}),
                   }}
                 />
                 <FloatingInput
@@ -138,11 +166,17 @@ function EmailConfirmation() {
 
               <div className="space-y-6">
                 <div className="pt-2">
-                  <Button type="submit" label="Continue" />
+                  <Button type="submit" label="Continue" loader={loading} disable={loading}/>
                 </div>
               </div>
             </form>
           </div>
+          <button
+            onClick={() => dispatch(toggleEmailModalVisibility(false))}
+            className="absolute top-8 right-10 text-lg text-white flex z-[500000]"
+          >
+            <Icon icon="maki:cross" />
+          </button>
         </section>
       </UpperRoot>
     </>

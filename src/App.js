@@ -35,6 +35,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import EmailConfirmation from "components/EmailConfirmation";
 import CreatePasswordForm from "components/CreatePasswordForm";
 import EpgModal from "sections/TvHomepage/EpgModal";
+import VerifyAccount from "pages/VerifyAccount";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
         <Route path="/tv" element={<TvHomepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-account" element={<VerifyAccount />} />
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="account-details" element={<AccountDetails />} />
