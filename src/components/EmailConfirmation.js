@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FloatingInput from "components/FloatingInput";
@@ -22,6 +22,7 @@ import UpperRoot from "./UpperRoot";
 import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import MetamaskService from "services/metamask";
+import LoaderGif from "../assets/Loading_icon.gif";
 
 function EmailConfirmation() {
   const {
@@ -34,6 +35,8 @@ function EmailConfirmation() {
     nickname: "",
     refral: false,
   });
+
+  const [loading,setLoading] = useState(false)
 
   const dispatch = useDispatch();
   const { isEmailModal } = useSelector(
@@ -53,7 +56,7 @@ function EmailConfirmation() {
   }, [isEmailModal]);
 
   const onSubmit = async (data) => {
-    
+    setLoading(true)
     const emailCheck = await Api.checkUsernameOrEmailExist(
       data.email,
       data.nickname,
@@ -73,12 +76,17 @@ function EmailConfirmation() {
           dispatch(metamaskSignature(signeture));
           dispatch(toggleEmailModalVisibility(false));
           dispatch(togglePasswordModalVisibility(true));
+        setLoading(false)
+
         }
       } else {
         ToastMessage(emailCheck.data.message, true);
+        setLoading(false)
       }
     } else {
       ToastMessage("Somthing went wrong", true);
+      setLoading(false)
+
     }
   };
 
@@ -138,7 +146,7 @@ function EmailConfirmation() {
 
               <div className="space-y-6">
                 <div className="pt-2">
-                  <Button type="submit" label="Continue" />
+                  <Button type="submit" label="Continue" loader={loading}/>
                 </div>
               </div>
             </form>

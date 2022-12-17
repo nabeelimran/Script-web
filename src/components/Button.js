@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import React from "react";
 import { Link } from "react-router-dom";
+import LoaderGif from "../assets/Loading_icon.gif"
 
 const VARIANT_DEFAULT = "text-darkGray bg-primary";
 const VARIANT_1 = "bg-blue-1 text-white";
@@ -30,6 +31,7 @@ function Button({
   RightComponent,
   buttonHeightClassName = "min-h-[34px] xl:min-h-[38px]",
   calReward,
+  loader
 }) {
   return link ? (
     <Link
@@ -56,7 +58,9 @@ function Button({
       {...buttonProps}
       className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]}`}
       
+
     >
+      {loader ? (<img src={LoaderGif} alt="loader" style={{height:"16px"}}/>) : null}
       {LeftComponent && <LeftComponent />}
       <span className="text-inherit lh-1">{label}</span>
       {RightComponent && <RightComponent />}

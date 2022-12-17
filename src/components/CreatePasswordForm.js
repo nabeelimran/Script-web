@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import Button from "components/Button";
 import Checkbox from "components/Checkbox";
 import { togglePasswordModalVisibility } from "redux/reducers/connectWalletModal_State";
-import { metamaskCred,userInfo } from "redux/reducers/metamask_state";
+import { metamaskCred, userInfo } from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
 import ConnectWalletButton from "./ConnectWalletButton";
 import SocialLoginCard from "./SocialLoginCard";
@@ -31,37 +31,52 @@ function CreatePasswordForm() {
   });
 
   const { user } = useSelector((state) => state.metamask_state);
+  const [passwordShow,setPasswordShow] = useState(false)
+  const [confPasswordShow,setConfPasswordShow] = useState(false)
+  const [loading,setLoading] = useState(false)
+
+  const switchPasswordView = (from) => {
+    
+    if(from==="newPassword"){
+      setPasswordShow(!passwordShow)
+    }else{
+      setConfPasswordShow(!confPasswordShow)
+    }
+  }
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
   const { signature } = useSelector((state) => state.metamask_state);
 
   const onSubmit = async (data) => {
-  
+    setLoading(true)
     const resObj = {
-      "browser": "dummyData",
-      "country": "dummayData",
-      "device": "Web",
-      "loginIp": "dummyData",
-      "loginLocation": "dummmyData",
+      browser: "dummyData",
+      country: "dummayData",
+      device: "Web",
+      loginIp: "dummyData",
+      loginLocation: "dummmyData",
       email: user.email,
       userName: user.username,
-      password:data.password,
+      password: data.password,
       walletAddress: accountAddress,
       walletSignature: signature ? signature : "",
-      otherReferralCode: ""
-    }
+      otherReferralCode: "",
+    };
 
-    const loginW  = await Api.walletLogin(resObj,"login_model")
-    if(loginW.status===200 && loginW.data.isSuccess){
+    const loginW = await Api.walletLogin(resObj, "login_model");
+    if (loginW.status === 200 && loginW.data.isSuccess) {
       
-      ToastMessage(`${loginW.data.message}`)
-      sessionStorage.setItem("userInfo",JSON.stringify({
-        token:loginW.data.data.authToken,
-        email:user.email
-      }))
+    setLoading(false)
+      ToastMessage(`${loginW.data.message}`,true);
+      sessionStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          token: loginW.data.data.authToken,
+          email: user.email,
+        })
+      );
     }
-
-    
+    dispatch(togglePasswordModalVisibility(false))
   };
   const dispatch = useDispatch();
   const { isPasswordModal } = useSelector(
@@ -79,6 +94,29 @@ function CreatePasswordForm() {
       document.body.style.overflowY = "auto";
     }
   }, [isPasswordModal]);
+
+  const errorShow = (type) => {
+    let error;
+    if(type){
+      switch (type.type) {
+        case "required":
+          error = "This field is requird. Please enter password"
+          break;
+        case "minLength":
+          error = "Password must have at least 8 characters"
+          break;
+        case "pattern":
+          error = "Password Should be eight characters long and alphanumeric with special characters"
+          break;
+      
+        default:
+          break;
+      }
+    }
+
+  
+    return error
+  }
 
   return (
     <>
@@ -106,20 +144,34 @@ function CreatePasswordForm() {
               <div className="space-y-6 mb-10">
                 <FloatingInput
                   id="newPassword"
-                  type="password"
+                  type={passwordShow ? "text" : "password"}
+                  viewButton={true}
+                  switch={switchPasswordView}
+                  showPassword={passwordShow}
                   label=""
                   placeholder="Enter password"
+                  Eyebutton={true}
                   error={
-                    errors.password &&
-                    "This field is requird. Please enter password."
+                    
+                    errorShow(errors.password)
                   }
                   other={{
-                    ...register("password", { required: true }),
+                    ...register("password", {
+                      required: true,
+                      minLength: {
+                        value: 8,
+                        message: "Password must have at least 8 characters",
+                      },
+                      pattern:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+                    }),
                   }}
                 />
                 <FloatingInput
-                  type="password"
+                  type={confPasswordShow ? "text" : "password"}
                   id="confirm_password"
+                  viewButton={true}
+                  switch={switchPasswordView}
+                  showPassword={confPasswordShow}
                   label=""
                   placeholder="Repeat your password"
                   error={
@@ -139,7 +191,7 @@ function CreatePasswordForm() {
 
               <div className="space-y-6">
                 <div className="pt-2">
-                  <Button type="submit" label="Continue" />
+                  <Button type="submit" label="Continue" loader={loading}/>
                 </div>
               </div>
             </form>

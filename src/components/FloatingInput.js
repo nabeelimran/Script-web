@@ -1,15 +1,11 @@
 import React from "react";
+import { Icon } from "@iconify/react";
 
-function FloatingInput({
-  label,
-  placeholder,
-  type = "text",
-  id,
-  other,
-  error = null,
-}) {
+function FloatingInput(props) {
   return (
     // <div className="relative text-base">
+  //   viewButton=null,
+  // switch
     //   <input
     //     type="email"
     //     name="email"
@@ -26,23 +22,35 @@ function FloatingInput({
 
     <div className="relative text-sm lg:text-base space-y-1">
       <label
-        htmlFor={id}
+        htmlFor={props.id}
         className="transition-all -z-1 duration-300 text-primary block w-fit cursor-pointer"
       >
-        {label}
+        {props.label}
       </label>
       <input
-        {...other}
-        type={type}
-        id={id}
-        placeholder={placeholder}
+        {...props.other}
+        type={props.type}
+        id={props.id}
+        placeholder={props.placeholder}
         className="block w-full appearance-none outline-none bg-transparent pb-2 border-b-2 border-primary"
       />
 
-      {error && (
+      {props.viewButton && (
+        <button
+        type="button"
+        className="absolute top-1/3 -translate-y-1/2 right-5 flex opacity-60 z-20 text-base md:text-xl"
+        onClick={() => props.switch(props.id)}
+      >
+        {!props.showPassword ? <Icon icon="ion:eye-off" /> : <Icon icon="ion:eye" />}
+      </button>
+      )
+        
+      }
+
+      {props.error && (
         <div>
           <p className="text-[#ff5454]" style={{ fontSize: "inherit" }}>
-            {error}
+            {props.error}
           </p>
         </div>
       )}

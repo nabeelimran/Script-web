@@ -34,6 +34,7 @@ function ConnectWalletModal() {
   }, [isModalVisible]);
 
   const metaMaskHandler = async () => {
+    
     if (!window.ethereum) {
       ToastMessage("Install Metamask");
       return false;
@@ -41,11 +42,39 @@ function ConnectWalletModal() {
     const accAddres = await MetamaskService.connectHandler();
     
     if (accAddres) {
+    
       dispatch(metamaskCred(accAddres));
       const isUser = await Api.getUserDetailsByWalletAddress(accAddres,'login-modal')
       if(!isUser.data.isSuccess){
         dispatch(toggleModalVisibility(false))
         dispatch(toggleEmailModalVisibility(true))
+      }
+
+      if(isUser.data.data.userExist){
+
+        
+          const resObj = {
+            "browser": "dummyData",
+            "country": "dummayData",
+            "device": "Web",
+            "loginIp": "dummyData",
+            "loginLocation": "dummmyData",
+            email: "",
+            userName: "",
+            password:"",
+            walletAddress: accAddres,
+            walletSignature:  "",
+            otherReferralCode: ""
+           
+          }
+
+    const loginW  = await Api.walletLogin(resObj,"")
+    console.log(loginW)
+    if(loginW.status===200 && loginW.data.isSuccess){
+      ToastMessage(`${loginW.data.message}`,true)
+      dispatch(toggleModalVisibility(false))
+    }
+        
       }
     }
   };
