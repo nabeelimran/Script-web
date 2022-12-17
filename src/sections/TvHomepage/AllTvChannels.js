@@ -2,9 +2,45 @@ import { Icon } from "@iconify/react";
 import StreamComment from "components/StreamComment";
 import StreamForm from "components/StreamForm";
 import Title from "components/Title";
-import React from "react";
+import VideoPlayer from "components/VideoPlayer";
+import React , { useEffect,useState }  from "react";
+import videojs from 'video.js';
 
-function AllTvChannels() {
+function AllTvChannels({show}) {
+
+  const playerRef = React.useRef(null);
+
+  const videoJsOptions = {
+    autoplay: true,
+    controls: true,
+    'controlBar': {
+      playToggle: false,
+    },
+    responsive: true,
+    muted: true,
+    fluid: true,
+    sources: [{
+      src: 'https://api.script.tv/ipfs/QmVCYfHwUBtdDSJg5DkvFQpgDdsmjBGyTaZEWrDo1NDXKT/master.m3u8',
+      type:"application/x-mpegURL"
+    }]
+  };
+  useEffect(()=>{
+    console.log(show)
+  },[])
+
+  const handlePlayerReady = (player) => {
+    playerRef.current = player;
+
+    // You can handle player events here, for example:
+    player.on('waiting', () => {
+      videojs.log('player is waiting');
+    });
+
+    player.on('dispose', () => {
+      videojs.log('player will dispose');
+    });
+  };
+  
   return (
     <section>
       <div className="container mb-8">
@@ -34,7 +70,9 @@ function AllTvChannels() {
       <div className="bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0">
         <div className="container">
           <div className="sm:bg-shade-darkest-blue grid lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px] gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden">
-            <div className="bg-shade-grayis h-[200px] md:h-[300px] lg:h-auto"></div>
+            <div className="bg-shade-grayis h-[200px] md:h-[300px] lg:h-auto">
+              <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady}/>
+            </div>
 
             <div className="sm:py-5 sm:px-8 lg:px-0">
               <div className="flex items-center justify-between mb-6">
