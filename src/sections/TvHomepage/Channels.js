@@ -413,7 +413,7 @@ chData[0].liveShows[0].selected=true;
 
               <SquareBox to="/dashboard" className="flex-1 xl:flex-auto">
                 <h1 className="fs-24px text-primary font-semibold mb-1">
-                  {videoTokenEarned}
+                  {videoTokenEarned.toFixed(4)}
                 </h1>
                 <h1 className="text-xs xl:text-sm text-primary font-medium text-center">
                   Earned Today

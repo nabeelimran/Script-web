@@ -26,10 +26,9 @@ function TvHomepage() {
   const [metamaskBalance, setMetamaskBalance] = useState(0)
   const [recaptchaCode, setReCaptchaCode] = useState('');
   let userId = LocalServices.getServices("user")?.userId || null;
-
-
-  
-
+  const { refreshChannel} = useSelector(
+    (state) => state.connectWalletModal_State
+  );
   const getChannels = () => {
     Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
@@ -38,6 +37,11 @@ function TvHomepage() {
       setAdsList(res.data.data[0].adsData)
      })
   }
+  useEffect(()=>{
+    if(refreshChannel){
+      getChannels();
+    }
+  },[refreshChannel])
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
