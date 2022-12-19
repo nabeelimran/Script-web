@@ -43,7 +43,7 @@ function TvHomepage() {
   const getVideoTokenEarned = () => {
     Api.getVideoTokenEarned(userId, 'watch').then((res) => {
       if (res && res.data && res.data.isSuccess) {
-        const token = +res.data.data.earnedToken ? +res.data.data.earnedToken : 0;
+        const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
         setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
         setVideoTokenEarned(token);
       } else {
