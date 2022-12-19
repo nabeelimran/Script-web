@@ -20,7 +20,7 @@ function AllTvChannels({
 
   // from redux state
   const myShows = useSelector((state) => state.video_State)
-
+let durationcheckinterval;
   const getRandomAds = () => {
     let randomAds;
     if (adsList && adsList.length > 0) {
@@ -97,6 +97,7 @@ function AllTvChannels({
   
   useEffect(()=>{
     let videoWatchInterval;
+    let durationcheckinterval;
     if (show && playerRef && playerRef.current) {
       console.log(show, 'startTime')
       // playerRef.current.ads()
@@ -118,14 +119,14 @@ function AllTvChannels({
       // })
    
       playerRef.current.on('timeupdate',(evt)=>{
-        setInterval(()=>{
-          console.log(evt, playerRef.current.currentTime(),'duration',playerRef.current.duration(),'time update')
-          if(playerRef.current.currentTime()==playerRef.current.duration()){
+        console.log(playerRef.current)
+        if(playerRef.current&&playerRef.current?.currentTime()){
+        durationcheckinterval= setInterval(()=>{
+          if(playerRef.current?.currentTime()&&playerRef.current.currentTime()==playerRef.current.duration()){
             dispatch(refreshChannel(true))
           }
         },10000)
-       
-      
+      }
       })
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
@@ -151,10 +152,15 @@ function AllTvChannels({
         }, 60000)
       })
     }
-
-    if(videoWatchInterval) {
-      clearInterval(videoWatchInterval);
-    }
+    return () => {
+      if(videoWatchInterval) {
+        clearInterval(videoWatchInterval);
+      }
+      if(durationcheckinterval){
+        clearInterval(durationcheckinterval)
+      }
+    };
+  
   }, [show])
 
   const handlePlayerReady = (player) => {
