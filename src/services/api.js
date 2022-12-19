@@ -197,4 +197,19 @@ export default class Api {
         }
         return axios.post(`${APIPATH.BASEURL}logout`,req, options);
     }
+
+    static changePassword(req, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.post(`${APIPATH.BASEURL}changePassword`,req, options);
+    }
+    
 }
