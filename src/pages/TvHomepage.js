@@ -13,6 +13,8 @@ import Api from "../services/api"
 import {videoShows} from "../redux/reducers/video_State"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import MetamaskService from "services/metamask";
+import { helper } from "utils/helper";
 
 function TvHomepage() {
   const dispatch = useDispatch()
@@ -20,7 +22,11 @@ function TvHomepage() {
   const [currentVideo, setCurrentVideo] = useState(null)
   const [adsList, setAdsList] = useState([])
   const [videoTokenEarned, setVideoTokenEarned] = useState(null)
+  const [metamaskBalance, setMetamaskBalance] = useState(0)
+  const [recaptchaCode, setReCaptchaCode] = useState('');
   let userId = 202210466;
+
+  
 
   const getChannels = () => {
     Api.getChannels('watch').then(res=>{
@@ -34,9 +40,9 @@ function TvHomepage() {
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
     Api.getVideoTokenEarned(userId, 'watch').then((res) => {
-      if (res && res.isSuccess && res.data) {
-        const token = +res.data.earnedToken ? +res.data.earnedToken : 0;
-        setVideoTokenBalance(token > 0 ? '' : 'setDefault');
+      if (res && res.data && res.data.isSuccess) {
+        const token = +res.data.data.earnedToken ? +res.data.data.earnedToken : 0;
+        setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
         setVideoTokenEarned(token);
       } else {
         setVideoTokenEarned(0);
@@ -98,8 +104,30 @@ function TvHomepage() {
     }
   }
 
+  const getMetamaskBalance = () => {
+    const authToken = sessionStorage.getItem('script-token');
+    if (authToken) {
+      const walletAddress = JSON.parse(sessionStorage.getItem('userInfo')).walletAddress || null;
+      if (walletAddress) {
+        MetamaskService.accountsChanged(walletAddress).then((balance) => {
+          setMetamaskBalance(balance);    
+        })
+      } else {
+        MetamaskService.connectHandler().then((res) => {
+          MetamaskService.accountsChanged(res).then((balance) => {
+            setMetamaskBalance(balance);    
+          })
+        })
+      }
+    } else {
+      setMetamaskBalance(0)
+    }
+  }
+
   useEffect(()=>{
     getChannels();
+    getMetamaskBalance();
+    setReCaptchaCode(helper.getRandomNumber(8))
     if(userId) {
       getVideoTokenEarned(userId)
     }
@@ -137,6 +165,9 @@ function TvHomepage() {
        {channel.length>0&& <Channels
         channeldata={channel}
         currentVideo={(data)=>changeVideo(data)}
+        videoTokenEarned={videoTokenEarned}
+        metamaskBalance={metamaskBalance}
+        recaptchaCode={recaptchaCode}
         />
 }
       </div>

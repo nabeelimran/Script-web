@@ -195,8 +195,16 @@ const timeline = [
   
 ];
 
-function Channels({channeldata,currentVideo}) {
+function Channels({
+  channeldata,
+  currentVideo,
+  videoTokenEarned,
+  metamaskBalance,
+  recaptchaCode
+}) {
   const [channels, setChannels] = useState([])
+  const [cursorposition,setCursonPosition]=useState({marginLeft:0})
+  const [liveShow, setLiveShow] = useState({});
   
   const [timeline, setTimeline] = useState([])
   const dispatch=useDispatch();
@@ -206,6 +214,16 @@ function Channels({channeldata,currentVideo}) {
   useEffect(()=>{
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
+    if(timeline.length>0){
+      setInterval(()=>{
+        let style={marginLeft:0}
+        const todayDate= new Date();
+        let timelinemin=Number(timeline[0]?.split(':')[1]);
+        let min=todayDate.getMinutes()-timelinemin;
+        style.marginLeft=min;
+       setCursonPosition(style)
+      },10000)
+    }
   },[])
   useEffect(()=>{
 let chData =channeldata.map(ch=>{
@@ -220,6 +238,7 @@ let chData =channeldata.map(ch=>{
      return ch;
 })
 chData[0].liveShows[0].selected=true;
+  setLiveShow(chData[0].liveShows[0]);
   setChannels(chData);
   },[timeline])
   const getDurationInMinute=(startedAt , endedAt)=>{
@@ -242,7 +261,8 @@ chData[0].liveShows[0].selected=true;
 
   }
  const changeSelectedVideo=(show)=>{
-  let chdata=channels;
+  setLiveShow(show);
+  let chdata=JSON.parse(JSON.stringify(channels));
   chdata=chdata.map((ch)=>{
     ch.liveShows= ch.liveShows.map(ls=>{
        if(ls&&ls.selected){
@@ -254,8 +274,7 @@ chData[0].liveShows[0].selected=true;
      return ls
      })
      return ch;
-    })
-   
+    })  
   setChannels([...chdata])
    currentVideo(show);
   }
@@ -281,14 +300,7 @@ chData[0].liveShows[0].selected=true;
     }
    }, [changecurrentVideo,data])
 
-   const getCursorPosition=()=>{
-    let style={marginLeft:0}
-    const todayDate= new Date();
-    let timelinemin=Number(timeline[0]?.split(':')[1]);
-    let min=todayDate.getMinutes()-timelinemin;
-    style.marginLeft=min;
-    return style;
-   }
+
   return (
     <section>
       <div className="container">
@@ -299,7 +311,7 @@ chData[0].liveShows[0].selected=true;
                 <div className="grid grid-cols-[110px_110px] gap-6">
                   <div className="">
                     <img
-                      src="images/tv/cultured-one.svg"
+                      src={liveShow.channelIamge}
                       className="max-w-[108px] md:max-w-none md:w-full"
                       alt=""
                     />
@@ -324,8 +336,12 @@ chData[0].liveShows[0].selected=true;
                 <div className="flex-1 w-full">
                   <div className="md:max-w-[300px] w-full text-center md:text-left">
                     {/* <FillBar barColor="#6C6C6C" bgColor="#1F1F1F" /> */}
-                    <p className="text-sm">Film Xyz</p>
-                    <p className="text-sm">this film abcabcabcabcabc</p>
+                    <p className="text-sm">
+                      {liveShow.title}
+                    </p>
+                    <p className="text-sm">
+                      {liveShow.description ? liveShow.description : liveShow.channelDesc }
+                    </p>
                   </div>
                 </div>
               </div>
@@ -342,7 +358,7 @@ chData[0].liveShows[0].selected=true;
               />
               <Button
                 link="/dashboard"
-                label="LitpoV6gf"
+                label={recaptchaCode}
                 customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
                 variant={4}
               />
@@ -387,14 +403,18 @@ chData[0].liveShows[0].selected=true;
                 className="flex-1 xl:flex-auto"
                 variant={1}
               >
-                <h1 className="fs-24px text-black font-semibold mb-1">4.75</h1>
+                <h1 className="fs-24px text-black font-semibold mb-1">
+                  {(metamaskBalance / 1000000000000000000).toFixed(4)}
+                </h1>
                 <h1 className="text-xs xl:text-sm text-black font-medium text-center">
                   SPAY In WALLET
                 </h1>
               </SquareBox>
 
               <SquareBox to="/dashboard" className="flex-1 xl:flex-auto">
-                <h1 className="fs-24px text-primary font-semibold mb-1">203</h1>
+                <h1 className="fs-24px text-primary font-semibold mb-1">
+                  {videoTokenEarned}
+                </h1>
                 <h1 className="text-xs xl:text-sm text-primary font-medium text-center">
                   Earned Today
                 </h1>
@@ -414,7 +434,7 @@ chData[0].liveShows[0].selected=true;
                   className={`text-3xl ${
                     i==0 ? "opacity-100" : "opacity-0"
                   }`}
-                  style={getCursorPosition()}
+                  style={cursorposition}
                 />
               </div>
             ))}
