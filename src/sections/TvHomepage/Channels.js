@@ -195,9 +195,16 @@ const timeline = [
   
 ];
 
-function Channels({channeldata,currentVideo}) {
+function Channels({
+  channeldata,
+  currentVideo,
+  videoTokenEarned,
+  metamaskBalance
+}) {
   const [channels, setChannels] = useState([])
   const [cursorposition,setCursonPosition]=useState({marginLeft:0})
+  const [liveShow, setLiveShow] = useState({});
+  
   const [timeline, setTimeline] = useState([])
   const dispatch=useDispatch();
   const { changecurrentVideo,data } = useSelector(
@@ -230,6 +237,7 @@ let chData =channeldata.map(ch=>{
      return ch;
 })
 chData[0].liveShows[0].selected=true;
+  setLiveShow(chData[0].liveShows[0]);
   setChannels(chData);
   },[timeline])
   const getDurationInMinute=(startedAt , endedAt)=>{
@@ -252,6 +260,7 @@ chData[0].liveShows[0].selected=true;
 
   }
  const changeSelectedVideo=(show)=>{
+  setLiveShow(show);
   let chdata=channels;
   chdata=chdata.map((ch)=>{
     ch.liveShows= ch.liveShows.map(ls=>{
@@ -302,7 +311,7 @@ chData[0].liveShows[0].selected=true;
                 <div className="grid grid-cols-[110px_110px] gap-6">
                   <div className="">
                     <img
-                      src="images/tv/cultured-one.svg"
+                      src={liveShow.channelIamge}
                       className="max-w-[108px] md:max-w-none md:w-full"
                       alt=""
                     />
@@ -327,8 +336,12 @@ chData[0].liveShows[0].selected=true;
                 <div className="flex-1 w-full">
                   <div className="md:max-w-[300px] w-full text-center md:text-left">
                     {/* <FillBar barColor="#6C6C6C" bgColor="#1F1F1F" /> */}
-                    <p className="text-sm">Film Xyz</p>
-                    <p className="text-sm">this film abcabcabcabcabc</p>
+                    <p className="text-sm">
+                      {liveShow.title}
+                    </p>
+                    <p className="text-sm">
+                      {liveShow.description ? liveShow.description : liveShow.channelDesc }
+                    </p>
                   </div>
                 </div>
               </div>
@@ -390,14 +403,18 @@ chData[0].liveShows[0].selected=true;
                 className="flex-1 xl:flex-auto"
                 variant={1}
               >
-                <h1 className="fs-24px text-black font-semibold mb-1">4.75</h1>
+                <h1 className="fs-24px text-black font-semibold mb-1">
+                  {(metamaskBalance / 1000000000000000000).toFixed(4)}
+                </h1>
                 <h1 className="text-xs xl:text-sm text-black font-medium text-center">
                   SPAY In WALLET
                 </h1>
               </SquareBox>
 
               <SquareBox to="/dashboard" className="flex-1 xl:flex-auto">
-                <h1 className="fs-24px text-primary font-semibold mb-1">203</h1>
+                <h1 className="fs-24px text-primary font-semibold mb-1">
+                  {videoTokenEarned}
+                </h1>
                 <h1 className="text-xs xl:text-sm text-primary font-medium text-center">
                   Earned Today
                 </h1>
