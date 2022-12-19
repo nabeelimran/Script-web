@@ -119,12 +119,12 @@ let durationcheckinterval;
       // })
    
       playerRef.current.on('timeupdate',(evt)=>{
-       
-        if(playerRef.current&&playerRef.current?.currentTime()){
-        durationcheckinterval= setInterval(()=>{
-          if(playerRef.current?.currentTime()&&playerRef.current.currentTime()==playerRef.current.duration()){
-            dispatch(refreshChannel(true))
-          }
+        console.log(playerRef.current, 'timeupdate');
+        if(playerRef.current){
+          durationcheckinterval= setInterval(()=>{
+            if(playerRef.current?.currentTime()&&playerRef.current.currentTime() === playerRef.current.duration()){
+              dispatch(refreshChannel(true))
+            }
         },10000)
       }
       })
@@ -149,7 +149,7 @@ let durationcheckinterval;
             console.log('final req', videoWatchTime);
             checkVideoWatchTime(videoWatchTime)
           }
-        }, 60000)
+        }, 10000)
       })
     }
     return () => {

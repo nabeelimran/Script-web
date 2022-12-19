@@ -48,7 +48,8 @@ function TvHomepage() {
     Api.getVideoTokenEarned(userId, 'watch').then((res) => {
       if (res && res.data && res.data.isSuccess) {
         const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
-        setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
+        // setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
+        console.log('earned token', token);
         setVideoTokenEarned(token);
       } else {
         setVideoTokenEarned(0);
@@ -57,9 +58,8 @@ function TvHomepage() {
   }
 
   // this function is used to check the video watch at every 1 min interval
-  // @TODO need to change code
   const checkVideoWatchTime = (e) => {
-    console.log(e, 'interval called')
+    console.log(e, videoTokenEarned, 'interval called')
     if(e) {
       saveVideoDuration(e)
       let token = videoTokenEarned;
@@ -102,7 +102,7 @@ function TvHomepage() {
       };
       Api.addVideoToken(req, 'watch').then((res) => {
         if (res && res.success) {
-          setVideoTokenEarned(token);
+          // setVideoTokenEarned(token);
         } else {
           
         }
