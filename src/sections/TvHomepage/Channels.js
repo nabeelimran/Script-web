@@ -262,7 +262,7 @@ chData[0].liveShows[0].selected=true;
   }
  const changeSelectedVideo=(show)=>{
   setLiveShow(show);
-  let chdata=channels;
+  let chdata=JSON.parse(JSON.stringify(channels));
   chdata=chdata.map((ch)=>{
     ch.liveShows= ch.liveShows.map(ls=>{
        if(ls&&ls.selected){
