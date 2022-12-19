@@ -274,8 +274,7 @@ chData[0].liveShows[0].selected=true;
      return ls
      })
      return ch;
-    })
-   
+    })  
   setChannels([...chdata])
    currentVideo(show);
   }
