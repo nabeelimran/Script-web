@@ -149,7 +149,7 @@ let durationcheckinterval;
             console.log('final req', videoWatchTime);
             checkVideoWatchTime(videoWatchTime)
           }
-        }, 10000)
+        }, 60000)
       })
     }
     return () => {
