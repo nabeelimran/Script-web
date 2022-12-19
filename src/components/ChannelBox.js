@@ -40,11 +40,8 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data }) => {
     event.stopPropagation(); 
     dispatch(toggleEpgModalVisibility(true))
     dispatch(updateEpgData(data))
-   
-    
+    console.log('show view detail')
   }
-
-
   return (
     <div
       onClick={click}
