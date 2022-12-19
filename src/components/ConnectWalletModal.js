@@ -86,7 +86,7 @@ function ConnectWalletModal() {
           )
         );
         sessionStorage.setItem(
-          "userInfo",
+          "script-user",
           JSON.stringify({
             email: loginW.data.data.email,
             userId: loginW.data.data.id,

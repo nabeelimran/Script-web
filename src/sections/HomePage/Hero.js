@@ -29,10 +29,13 @@ function Hero() {
           </p>
 
           <div className="flex items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start">
-            <Button label="Whitepaper" />
+          
             <Button
               label="Whitepaper"
-              calReward={() => helper.openLink("https://whitepaper.script.tv/")}
+              buttonProps={{
+                onClick:() => helper.openLink("https://whitepaper.script.tv/")
+              }}
+              
             />
             <Button label="Launch app" variant={2} arrowVisible={true} />
           </div>

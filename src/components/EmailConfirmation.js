@@ -138,7 +138,7 @@ function EmailConfirmation() {
                   id="email"
                   type="email"
                   label=""
-                  placeholder="Enter username or email adress"
+                  placeholder="Enter username or email address"
                   error={
                     errorShow(errors.email)
                   }
@@ -160,7 +160,7 @@ function EmailConfirmation() {
                   type="text"
                   id="refral"
                   label=""
-                  placeholder="Refrral code"
+                  placeholder="Referral code "
                 />
               </div>
 

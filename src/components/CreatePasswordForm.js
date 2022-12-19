@@ -76,7 +76,7 @@ function CreatePasswordForm() {
         )
       );
       sessionStorage.setItem(
-        "userInfo",
+        "script-user",
         JSON.stringify({
           email: user.email,
         })
@@ -194,7 +194,7 @@ function CreatePasswordForm() {
                     ...register("confirm_password", {
                       validate: (val) => {
                         if (watch("password") != val) {
-                          return "Your passwords do no match";
+                          return "Your password do not match";
                         }
                       },
                     }),

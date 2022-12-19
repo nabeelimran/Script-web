@@ -51,7 +51,7 @@ function FloatingInput(props) {
 
       {props.error && (
         <div>
-          <p className="text-[#ff5454]" style={{ fontSize: "inherit" }}>
+          <p className="text-[#FFEF00]" style={{ fontSize: "inherit" }}>
             {props.error}
           </p>
         </div>

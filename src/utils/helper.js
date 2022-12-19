@@ -90,3 +90,8 @@ export const metamaskNetwork = {
       blockExplorerUrls: ['https://explorer.script.tv/']
     }
 }
+
+export const enumStorange =  {
+  token:"script-token",
+  user:"script-user"
+}
