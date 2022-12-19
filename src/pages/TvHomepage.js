@@ -22,14 +22,13 @@ function TvHomepage() {
   const [channel, setchannels] = useState([])
   const [currentVideo, setCurrentVideo] = useState(null)
   const [adsList, setAdsList] = useState([])
-  const [videoTokenEarned, setVideoTokenEarned] = useState(null)
+  const [videoTokenEarned, setVideoTokenEarned] = useState(0)
   const [metamaskBalance, setMetamaskBalance] = useState(0)
   const [recaptchaCode, setReCaptchaCode] = useState('');
   let userId = LocalServices.getServices("user")?.userId || null;
-
-
-  
-
+  const { refreshChannel} = useSelector(
+    (state) => state.connectWalletModal_State
+  );
   const getChannels = () => {
     Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
@@ -38,12 +37,17 @@ function TvHomepage() {
       setAdsList(res.data.data[0].adsData)
      })
   }
+  useEffect(()=>{
+    if(refreshChannel){
+      getChannels();
+    }
+  },[refreshChannel])
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
     Api.getVideoTokenEarned(userId, 'watch').then((res) => {
       if (res && res.data && res.data.isSuccess) {
-        const token = +res.data.data.earnedToken ? +res.data.data.earnedToken : 0;
+        const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
         setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
         setVideoTokenEarned(token);
       } else {
