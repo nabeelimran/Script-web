@@ -30,7 +30,7 @@ export const connectWalletModal_State = createSlice({
       state.data=action.payload
     },
     updateCurrentVideo:(state,action)=>{
-      state.changecurrentVideo=true;
+      state.changecurrentVideo=action.payload;
     }
   },
 });

@@ -40,7 +40,7 @@ function Button({
       to={link}
       {...linkProps}
       className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]}`}
-    >{console.log("DIS",disable)}
+    >
       {LeftComponent && <LeftComponent />}
       <span className="text-inherit lh-1">{label}</span>
       {RightComponent && <RightComponent />}

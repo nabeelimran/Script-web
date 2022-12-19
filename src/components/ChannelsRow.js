@@ -1,10 +1,10 @@
 import { Icon } from "@iconify/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChannelBox from "./ChannelBox";
 
 function ChannelsRow({ channels, channleDetails,changeVideo }) {
   const [activeCard, setActiveCard] = useState("");
-  const [currenChannels, setCurrentChannels] = useState(channels);
+  const [currenChannels, setCurrentChannels] = useState([]);
 
   const selector = (show) => {
     // const newArr = currenChannels.map((item) =>
@@ -14,11 +14,12 @@ function ChannelsRow({ channels, channleDetails,changeVideo }) {
     // );
 
     // setCurrentChannels(newArr);
-   console.log('change row')
     changeVideo(show);
     
   };
-
+  useEffect(()=>{
+    setCurrentChannels(channels)
+  },[channels])
   return (
     <div className="grid grid-cols-[80px_1fr] md:grid-cols-[106px_1fr] gap-3 grid-rows-[80px] md:grid-rows-[106px]">
       <div className="relative bg-shade-grayis rounded-md flex items-center justify-center px-4">

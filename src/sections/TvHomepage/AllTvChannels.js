@@ -155,9 +155,7 @@ function AllTvChannels({
 
     player.on('play', () => {
       videoWatchInterval = setInterval(() => {
-        console.log('normal show', show);
-        console.log('set show', showDetail);
-        console.log('set show', startTime);
+       
         const videoWatchTime = {
           startTime: getVideoCurrentTimePace(),
           endTime: player.duration,
