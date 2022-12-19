@@ -50,11 +50,12 @@ function TvHomepage() {
     console.log(e, 'interval called')
     if(e) {
       saveVideoDuration(e)
-      if(videoTokenEarned) {
-        let token = videoTokenEarned + 0.05
+      let token = videoTokenEarned;
+      if(videoTokenEarned >= 0) {
+        token = videoTokenEarned + 0.05
         setVideoTokenEarned(token)
       }
-      setVideoTokenBalance('');
+      setVideoTokenBalance('', token);
     }
   }
 
@@ -80,16 +81,16 @@ function TvHomepage() {
   }
 
   // this is used to save token earned by watch
-  const setVideoTokenBalance = (action) => {
+  const setVideoTokenBalance = (action, token) => {
     const authToken = sessionStorage.getItem('script-token'); // auth token
     if (authToken) {
       const req = {
         userId: userId ? userId : 0,
-        amount: action === 'setDefault' ? 0 : videoTokenEarned.toFixed(2)
+        amount: action === 'setDefault' ? 0 : token.toFixed(2)
       };
       Api.addVideoToken(req, 'watch').then((res) => {
         if (res && res.success) {
-
+          setVideoTokenEarned(token);
         } else {
           
         }
