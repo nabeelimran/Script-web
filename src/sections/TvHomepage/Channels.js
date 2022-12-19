@@ -8,6 +8,7 @@ import SquareBox from "components/SquareBox";
 import React, { useEffect,useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Api from 'services/api'
+import { useSelector } from "react-redux";
 import { helper } from "utils/helper";
 const channels = [
   {
@@ -193,27 +194,31 @@ const timeline = [
 ];
 
 function Channels({channeldata,currentVideo}) {
-  const [Channels, setchannels] = useState([])
+  const [channels, setChannels] = useState([])
   
   const [timeline, setTimeline] = useState([])
+  const { changecurrentVideo,data } = useSelector(
+    (state) => state.connectWalletModal_State
+  );
   useEffect(()=>{
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
   },[])
   useEffect(()=>{
   
-let data =channeldata.map(ch=>{
+let chData =channeldata.map(ch=>{
   let liveshows=ch.liveShows.filter(ls=>new Date(ls.startTime).getDate()==new Date().getDate());
   ch.liveShows=liveshows.map(show => {
     let res= getDurationInMinute(show.startTime,show.endTime);
       show.duration=res.duration;
       show.time=res.time;
+      show.selected=false;
       return show;
      });
-
      return ch;
 })
-  setchannels(data)
+chData[0].liveShows[0].selected=true;
+  setChannels(chData);
   },[timeline])
 
   const getDurationInMinute=(startedAt , endedAt)=>{
@@ -235,6 +240,30 @@ let data =channeldata.map(ch=>{
  return res;
 
   }
+ const changeSelectedVideo=(show)=>{
+  let chdata=channels;
+  chdata=chdata.map((ch)=>{
+    ch.liveShows= ch.liveShows.map(ls=>{
+       if(ls&&ls.selected){
+        ls.selected=false
+       };
+       if(ls&&show&&ls.id==show.id){
+         ls.selected=true;
+       }
+     return ls
+     })
+     return ch;
+    })
+   
+  setChannels([...chdata])
+   currentVideo(show);
+  }
+  useEffect(()=>{
+    if(!changecurrentVideo&&Object.keys(data).length !== 0){
+     console.log(data,'called in channel');
+     //changeSelectedVideo(data);
+    }
+   }, [changecurrentVideo,data])
 
   return (
     <section>
@@ -368,11 +397,11 @@ let data =channeldata.map(ch=>{
         </div>
 
         <div className="grid gap-3">
-          {Channels.map((ch, index) => (
-            ch.liveShows[0].duration?<ChannelsRow
+          {channels.map((ch, index) => (
+            ch.liveShows[0]?.duration?<ChannelsRow
               channleDetails={ch}
               channels={ch.liveShows}
-              changeVideo={(show)=>currentVideo(show)}
+              changeVideo={(show)=>changeSelectedVideo(show)}
             />:null
           ))}
         </div>

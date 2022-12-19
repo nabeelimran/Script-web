@@ -14,7 +14,9 @@ function ChannelsRow({ channels, channleDetails,changeVideo }) {
     // );
 
     // setCurrentChannels(newArr);
+   console.log('change row')
     changeVideo(show);
+    
   };
 
   return (

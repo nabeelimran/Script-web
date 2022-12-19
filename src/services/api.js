@@ -63,7 +63,7 @@ export default class Api {
             },
             
         }
-        return axios.post(`${APIPATH.BASEURL}emailVerification`,req, options);
+        return axios.post(`${APIPATH.BASEURL}resendOTP`,req, options);
     }
 
     static checkUsernameOrEmailExist(email, username, screenName) {

@@ -12,6 +12,8 @@ import React, { useEffect,useState } from "react";
 import Api from "../services/api"
 import {videoShows} from "../redux/reducers/video_State"
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
 function TvHomepage() {
   const dispatch = useDispatch()
   const [channel, setchannels] = useState([])
