@@ -26,7 +26,6 @@ function TvHomepage() {
     Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
-      console.log('API DISPATCH',res.data.data[0].liveShows[0])
       dispatch(videoShows(res.data.data[0].liveShows[0]))
       setAdsList(res.data.data[0].adsData)
      })
@@ -82,7 +81,7 @@ function TvHomepage() {
 
   // this is used to save token earned by watch
   const setVideoTokenBalance = (action) => {
-    const authToken = sessionStorage.getItem('token'); // auth token
+    const authToken = sessionStorage.getItem('script-token'); // auth token
     if (authToken) {
       const req = {
         userId: userId ? userId : 0,

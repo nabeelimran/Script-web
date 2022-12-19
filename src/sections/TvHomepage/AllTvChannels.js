@@ -14,10 +14,7 @@ function AllTvChannels({
   adsList,
   checkVideoWatchTime
 }) {
-  let videoWatchInterval;
   const playerRef = React.useRef(null);
-  const [startTime, setStartTime] = React.useState('')
-  const [showDetail, setShowDetail] = React.useState(null)
   let slots = [];
 
   // from redux state
@@ -98,11 +95,9 @@ function AllTvChannels({
   let timer;
   
   useEffect(()=>{
+    let videoWatchInterval;
     if (show && playerRef && playerRef.current) {
       console.log(show, 'startTime')
-
-      setShowDetail(show);
-      setStartTime(show.startTime);
       // playerRef.current.ads()
       // playerRef.current.on('readyforpreroll', () => {
       //   playerRef.current.ads.startLinearAdMode();
@@ -125,6 +120,28 @@ function AllTvChannels({
         src: show.m3u8720Url,
         type: 'application/x-mpegURL'    
       })
+      playerRef.current.on('play', () => {
+        console.log('video playing...');
+        const videoStartTime = getVideoCurrentTimePace(show.startTime);
+        videoWatchInterval = setInterval(() => {
+          console.log('normal show', show);
+          console.log('set show', show.startTime);
+          const videoWatchTime = {
+            startTime: videoStartTime,
+            endTime: playerRef.current.duration(),
+            videoPlayTime: (new Date().getTime() - new Date(show.startTime).getTime()) / 1000
+          };
+  
+          if (show.startTime && videoWatchTime && videoWatchTime.endTime) {
+            console.log('final req', videoWatchTime);
+            checkVideoWatchTime(videoWatchTime)
+          }
+        }, 60000)
+      })
+    }
+
+    if(videoWatchInterval) {
+      clearInterval(videoWatchInterval);
     }
   }, [show])
 
@@ -160,22 +177,7 @@ function AllTvChannels({
     });
 
     player.on('play', () => {
-      videoWatchInterval = setInterval(() => {
-        console.log("MYSHOWS",myShows)
-        console.log('normal show', show);
-        console.log('set show', showDetail);
-        console.log('set show', startTime);
-        const videoWatchTime = {
-          startTime: getVideoCurrentTimePace(),
-          endTime: player.duration,
-          videoPlayTime: (new Date().getTime() - new Date(startTime).getTime()) / 1000
-        };
-
-        if (startTime && videoWatchTime && videoWatchTime.endTime) {
-          console.log('final req', videoWatchTime);
-          checkVideoWatchTime(videoWatchTime)
-        }  
-      }, 10000)
+      
     })
 
     player.on('dispose', () => {

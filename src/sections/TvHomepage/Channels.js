@@ -383,7 +383,7 @@ chData[0].liveShows[0].selected=true;
           <div className=""></div>
           <div className="flex items-center overflow-x-auto hide-scrollbar">
             {timeline.map((item, i) => (
-              <div className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center">
+              <div key={i} className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center">
                 <p className="text-xs md:text-base lh-1">{item}</p>
                 <Icon
                   icon="ic:sharp-arrow-drop-down"
@@ -398,7 +398,7 @@ chData[0].liveShows[0].selected=true;
 
         <div className="grid gap-3">
           {channels.map((ch, index) => (
-            ch.liveShows[0]?.duration?<ChannelsRow
+            ch.liveShows[0]?.duration?<ChannelsRow key={index}
               channleDetails={ch}
               channels={ch.liveShows}
               changeVideo={(show)=>changeSelectedVideo(show)}
