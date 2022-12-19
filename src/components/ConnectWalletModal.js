@@ -75,13 +75,13 @@ function ConnectWalletModal() {
         if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
           dispatch(toggleModalVisibility(false));
           if (loginW.data.message === "Please verify your account.") {
-          ToastMessage(`${loginW.data.message}`);
+            ToastMessage(`${loginW.data.message}`);
             navigate({
               pathname: "/verify-account",
               search: `?email=${loginW.data.data.email}`,
             });
           } else {
-          ToastMessage(`${loginW.data.message}`,true);
+            ToastMessage(`${loginW.data.message}`,true);
             if (loginW.data.data.authToken) {
               sessionStorage.setItem(
                 "script-token",
