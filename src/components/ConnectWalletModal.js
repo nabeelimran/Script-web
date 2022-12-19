@@ -73,14 +73,15 @@ function ConnectWalletModal() {
         const loginW = await Api.walletLogin(resObj, "");
 
         if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
-          ToastMessage(`${loginW.data.message}`, true);
           dispatch(toggleModalVisibility(false));
           if (loginW.data.message === "Please verify your account.") {
+          ToastMessage(`${loginW.data.message}`);
             navigate({
               pathname: "/verify-account",
               search: `?email=${loginW.data.data.email}`,
             });
           } else {
+          ToastMessage(`${loginW.data.message}`,true);
             if (loginW.data.data.authToken) {
               sessionStorage.setItem(
                 "script-token",
