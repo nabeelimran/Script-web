@@ -27,7 +27,6 @@ const VerifyAccount = () => {
     
     if (OTP) {
       Api.emailVerification(sendObj, "otp").then((otpVerify) => {
-        debugger
         if (otpVerify) {
           if (otpVerify && otpVerify.status === 200) {
             if (otpVerify.data.data.authToken) {
