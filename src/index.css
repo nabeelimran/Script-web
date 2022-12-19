@@ -580,3 +580,7 @@ input:-webkit-autofill:active {
     top: 40%;
   }
 }
+
+.active-class {
+  border: 1px solid #ffcc00;
+}
