@@ -1,13 +1,27 @@
 import Logo from "components/Logo";
+import { ToastMessage } from "components/ToastMessage";
 import UpperRoot from "components/UpperRoot";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Api from "services/api";
 import PageLink from "./PageLink";
 
 function LeftDashboardSidebar({ width, breakpointMatched, state }) {
   const { getter, setter } = state;
   const sidebarRef = OutsideClickDetector(() => setter && setter(false));
+  const navigate = useNavigate();
+
+  const logout = () => {
+    Api.logout({
+      email: ''
+    }).then(() => {})
+    sessionStorage.clear();
+    ToastMessage("Logout successfully", true);
+    navigate({
+      pathname: '/tv',
+    })
+  }
 
   return (
     <UpperRoot>
@@ -77,7 +91,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
         </div>
 
         <div className="px-5">
-          <PageLink label="Log Out" img="logout.svg" />
+          <PageLink label="Log Out" img="logout.svg" onClick={logout}/>
         </div>
       </div>
     </UpperRoot>

@@ -11,7 +11,6 @@ const ChannelBox = ({ title, time, id, state, onClick, data }) => {
   const click = () => {
     // state.setter(id)
     onClick(data);
-    console.log(data)
   };
   const getStyle=()=>{
     let style={

@@ -8,8 +8,10 @@ import SquareBox from "components/SquareBox";
 import React, { useEffect,useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Api from 'services/api'
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import { helper } from "utils/helper";
+import { updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
+
 const channels = [
   {
     id: uuidv4(),
@@ -197,6 +199,7 @@ function Channels({channeldata,currentVideo}) {
   const [channels, setChannels] = useState([])
   
   const [timeline, setTimeline] = useState([])
+  const dispatch=useDispatch();
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
@@ -205,7 +208,6 @@ function Channels({channeldata,currentVideo}) {
     setTimeline(timelinedata)
   },[])
   useEffect(()=>{
-  
 let chData =channeldata.map(ch=>{
   let liveshows=ch.liveShows.filter(ls=>new Date(ls.startTime).getDate()==new Date().getDate());
   ch.liveShows=liveshows.map(show => {
@@ -220,7 +222,6 @@ let chData =channeldata.map(ch=>{
 chData[0].liveShows[0].selected=true;
   setChannels(chData);
   },[timeline])
-
   const getDurationInMinute=(startedAt , endedAt)=>{
     let startDate=new Date(startedAt);
     let endDate=new Date(endedAt);
@@ -259,12 +260,35 @@ chData[0].liveShows[0].selected=true;
    currentVideo(show);
   }
   useEffect(()=>{
-    if(!changecurrentVideo&&Object.keys(data).length !== 0){
-     console.log(data,'called in channel');
-     //changeSelectedVideo(data);
+    if(changecurrentVideo){
+      dispatch(updateCurrentVideo(false))
+      let chdata=JSON.parse(JSON.stringify(channels));
+      chdata=chdata.map((ch)=>{
+        ch.liveShows= ch.liveShows.map(ls=>{
+           if(ls&&ls.selected){
+            ls.selected=false
+           
+           };
+           if(ls&&data&&ls.id==data.id){
+           ls.selected=true           }
+         return ls
+         })
+         return ch;
+        })
+      setChannels([...chdata])
+       currentVideo(data);
+      
     }
    }, [changecurrentVideo,data])
 
+   const getCursorPosition=()=>{
+    let style={marginLeft:0}
+    const todayDate= new Date();
+    let timelinemin=Number(timeline[0]?.split(':')[1]);
+    let min=todayDate.getMinutes()-timelinemin;
+    style.marginLeft=min;
+    return style;
+   }
   return (
     <section>
       <div className="container">
@@ -383,13 +407,14 @@ chData[0].liveShows[0].selected=true;
           <div className=""></div>
           <div className="flex items-center overflow-x-auto hide-scrollbar">
             {timeline.map((item, i) => (
-              <div className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center">
+              <div key={i} className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center">
                 <p className="text-xs md:text-base lh-1">{item}</p>
                 <Icon
                   icon="ic:sharp-arrow-drop-down"
                   className={`text-3xl ${
-                    item.active ? "opacity-100" : "opacity-0"
+                    i==0 ? "opacity-100" : "opacity-0"
                   }`}
+                  style={getCursorPosition()}
                 />
               </div>
             ))}
@@ -398,7 +423,7 @@ chData[0].liveShows[0].selected=true;
 
         <div className="grid gap-3">
           {channels.map((ch, index) => (
-            ch.liveShows[0]?.duration?<ChannelsRow
+            ch.liveShows[0]?.duration?<ChannelsRow key={index}
               channleDetails={ch}
               channels={ch.liveShows}
               changeVideo={(show)=>changeSelectedVideo(show)}

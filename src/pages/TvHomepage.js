@@ -10,10 +10,12 @@ import HowToEarn from "sections/TvHomepage/HowToEarn";
 import KeyStats from "sections/TvHomepage/KeyStats";
 import React, { useEffect,useState } from "react";
 import Api from "../services/api"
+import {videoShows} from "../redux/reducers/video_State"
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 function TvHomepage() {
-  
+  const dispatch = useDispatch()
   const [channel, setchannels] = useState([])
   const [currentVideo, setCurrentVideo] = useState(null)
   const [adsList, setAdsList] = useState([])
@@ -24,6 +26,7 @@ function TvHomepage() {
     Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
+      dispatch(videoShows(res.data.data[0].liveShows[0]))
       setAdsList(res.data.data[0].adsData)
      })
   }
@@ -47,11 +50,12 @@ function TvHomepage() {
     console.log(e, 'interval called')
     if(e) {
       saveVideoDuration(e)
-      if(videoTokenEarned) {
-        let token = videoTokenEarned + 0.05
+      let token = videoTokenEarned;
+      if(videoTokenEarned >= 0) {
+        token = videoTokenEarned + 0.05
         setVideoTokenEarned(token)
       }
-      setVideoTokenBalance('');
+      setVideoTokenBalance('', token);
     }
   }
 
@@ -77,16 +81,16 @@ function TvHomepage() {
   }
 
   // this is used to save token earned by watch
-  const setVideoTokenBalance = (action) => {
-    const authToken = sessionStorage.getItem('token'); // auth token
+  const setVideoTokenBalance = (action, token) => {
+    const authToken = sessionStorage.getItem('script-token'); // auth token
     if (authToken) {
       const req = {
         userId: userId ? userId : 0,
-        amount: action === 'setDefault' ? 0 : videoTokenEarned.toFixed(2)
+        amount: action === 'setDefault' ? 0 : token.toFixed(2)
       };
       Api.addVideoToken(req, 'watch').then((res) => {
         if (res && res.success) {
-
+          setVideoTokenEarned(token);
         } else {
           
         }
@@ -102,7 +106,10 @@ function TvHomepage() {
   }, [])
 
   const changeVideo=(show)=>{
+    console.log("DISPATCH",show)
+    dispatch(videoShows(show))
     setCurrentVideo(show);
+
     if (channel && channel.length > 0) {
       setAdsList(channel.filter(c => c.id === show.channelId)[0].adsData || [])
     }
