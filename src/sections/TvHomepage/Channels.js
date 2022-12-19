@@ -199,7 +199,8 @@ function Channels({
   channeldata,
   currentVideo,
   videoTokenEarned,
-  metamaskBalance
+  metamaskBalance,
+  recaptchaCode
 }) {
   const [channels, setChannels] = useState([])
   const [cursorposition,setCursonPosition]=useState({marginLeft:0})
@@ -358,7 +359,7 @@ chData[0].liveShows[0].selected=true;
               />
               <Button
                 link="/dashboard"
-                label="LitpoV6gf"
+                label={recaptchaCode}
                 customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
                 variant={4}
               />

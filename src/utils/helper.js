@@ -40,8 +40,15 @@ export const helper = {
         minutes = minutes < 10 ? '0'+minutes : minutes;
         let strTime = hours + ':' + minutes + ' ' + ampm;
         return strTime;
+    },
+    getRandomNumber: (size) => {
+      const char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      let result = '';
+      for (let i = size; i > 0; i--) {
+        result += char[Math.round(Math.random() * (char.length - 1))];
+      }
+      return result;
     }
-
 }
 
 export const metamaskNetwork = {
