@@ -119,7 +119,7 @@ let durationcheckinterval;
       // })
    
       playerRef.current.on('timeupdate',(evt)=>{
-        console.log(playerRef.current)
+       
         if(playerRef.current&&playerRef.current?.currentTime()){
         durationcheckinterval= setInterval(()=>{
           if(playerRef.current?.currentTime()&&playerRef.current.currentTime()==playerRef.current.duration()){
