@@ -93,5 +93,5 @@ export const metamaskNetwork = {
 
 export const enumStorange =  {
   token:"script-token",
-  user:"script-user"
+  user:"userInfo"
 }

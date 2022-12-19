@@ -76,7 +76,7 @@ function CreatePasswordForm() {
         )
       );
       sessionStorage.setItem(
-        "script-user",
+        "userInfo",
         JSON.stringify({
           email: user.email,
         })

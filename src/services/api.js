@@ -6,7 +6,7 @@ import LocalServices from './LocalServices';
 
 axios.interceptors.request.use(
     config => {
-        const token = LocalServices.getServices(token);
+        const token = LocalServices.getServices("token");
 
       if (token) {
         config.headers['Authorization'] = 'Bearer ' + token
