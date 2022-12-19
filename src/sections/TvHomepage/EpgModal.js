@@ -20,6 +20,7 @@ function EpgModal() {
   );
 
   useEffect(() => {
+    console.log('epg modal',isEpgModalVisible)
     if (isEpgModalVisible) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -52,7 +53,7 @@ const closeModal=()=>{
           <div className="">
             <div className="mb-8 flex justify-between">
             <p className=" text-lg mb-3">{data.title}</p>
-              <a onClick={closeModal()} className="text-lg ">&times;</a>
+              <a onClick={()=>closeModal()} className="text-lg ">&times;</a>
             </div>
 
             <div className="flex justify-center mb-7 h-[300px]">
