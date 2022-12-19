@@ -195,6 +195,6 @@ export default class Api {
                  
             }
         }
-        return axios.post(`${APIPATH.BASEURL}logout`,req, options);
+        return axios.post(`${APIPATH.BASEURL}logoutUser`,req, options);
     }
 }
