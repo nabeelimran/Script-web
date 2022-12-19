@@ -2,20 +2,27 @@ import { Icon } from "@iconify/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleEpgModalVisibility, updateEpgData } from "redux/reducers/connectWalletModal_State";
+import { ToastMessage } from "./ToastMessage";
 
 
-const ChannelBox = ({ title, time, id, state, onClick, data }) => {
+
+const ChannelBox = ({ title, time,indexnum, id, state, onClick, data }) => {
   // const isActive = state.getter === id ? true : false;
   const dispatch = useDispatch();
 
   const click = () => {
     // state.setter(id)
+    if(indexnum==0){
     onClick(data);
+    }else{
+      ToastMessage('Live show will be begin shortly on this channel!');
+    }
   };
   const getStyle=()=>{
     let style={
       minWidth:160,
-      marginLeft:2
+      marginLeft:0,
+      borderLeft:'2px solid black'
     }
     let minWidth=160;
     let res=(data.duration/30)*160;

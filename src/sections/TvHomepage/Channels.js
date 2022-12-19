@@ -197,7 +197,7 @@ const timeline = [
 
 function Channels({channeldata,currentVideo}) {
   const [channels, setChannels] = useState([])
-  
+  const [cursorposition,setCursonPosition]=useState({marginLeft:0})
   const [timeline, setTimeline] = useState([])
   const dispatch=useDispatch();
   const { changecurrentVideo,data } = useSelector(
@@ -206,6 +206,16 @@ function Channels({channeldata,currentVideo}) {
   useEffect(()=>{
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
+    if(timeline.length>0){
+      setInterval(()=>{
+        let style={marginLeft:0}
+        const todayDate= new Date();
+        let timelinemin=Number(timeline[0]?.split(':')[1]);
+        let min=todayDate.getMinutes()-timelinemin;
+        style.marginLeft=min;
+       setCursonPosition(style)
+      },10000)
+    }
   },[])
   useEffect(()=>{
 let chData =channeldata.map(ch=>{
@@ -281,14 +291,7 @@ chData[0].liveShows[0].selected=true;
     }
    }, [changecurrentVideo,data])
 
-   const getCursorPosition=()=>{
-    let style={marginLeft:0}
-    const todayDate= new Date();
-    let timelinemin=Number(timeline[0]?.split(':')[1]);
-    let min=todayDate.getMinutes()-timelinemin;
-    style.marginLeft=min;
-    return style;
-   }
+
   return (
     <section>
       <div className="container">
@@ -414,7 +417,7 @@ chData[0].liveShows[0].selected=true;
                   className={`text-3xl ${
                     i==0 ? "opacity-100" : "opacity-0"
                   }`}
-                  style={getCursorPosition()}
+                  style={cursorposition}
                 />
               </div>
             ))}
