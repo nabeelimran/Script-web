@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import DropdownCard from "./DropdownCard";
 import NavDropdown from "./NavDropdown";
@@ -19,6 +19,7 @@ function TvNavbar({ className }) {
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isSidebarVisible) {
@@ -27,6 +28,11 @@ function TvNavbar({ className }) {
       document.body.style.overflowY = "auto";
     }
   }, [isSidebarVisible]);
+
+  const checkToken = () => sessionStorage.getItem('script-token') || null;
+  const goToDashboard = () => navigate({
+    pathname: '/dashboard',
+  });
 
   return (
     <UpperRoot>
@@ -42,7 +48,7 @@ function TvNavbar({ className }) {
         <Link to="/tv">
           <img
             src="images/logo-beta.svg"
-            className="w-[100px] xl:w-[160px]"
+            className="w-[100px] xl:w-[144px]"
             alt=""
           />
         </Link>
@@ -115,12 +121,14 @@ function TvNavbar({ className }) {
               >
                 Wallet
               </Link>
-              <Link
-                to="/explorer"
+              <a
+                href="https://explorer.script.tv/"
+                target="_blank"
+                rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Explorer
-              </Link>
+              </a>
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">
@@ -135,9 +143,16 @@ function TvNavbar({ className }) {
                   </span>
                 }
               />
-              <Button
-                buttonProps={{
-                  onClick: () => {
+              {
+                checkToken() ? (
+                  <div className="w-[34px] rounded-full h-[34px] relative" onClick={goToDashboard}>
+                    <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
+                    <img src="/images/dashboard/user.png" className="rounded-full w-full" alt="" />
+                  </div>
+                ) : (
+                  <Button
+                    buttonProps={{
+                    onClick: () => {
                     setSidebarVisibility(false);
                     dispatch(toggleModalVisibility(true));
                   },
@@ -151,6 +166,8 @@ function TvNavbar({ className }) {
                 customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
               />
+                )
+              }
             </div>
           </div>
         </div>

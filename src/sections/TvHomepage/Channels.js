@@ -5,9 +5,11 @@ import FillBar from "components/FillBar";
 import GlassModalButton from "components/GlassModalButton";
 import Popup from "components/Popup";
 import SquareBox from "components/SquareBox";
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
+import Api from 'services/api'
+import { useSelector } from "react-redux";
+import { helper } from "utils/helper";
 const channels = [
   {
     id: uuidv4(),
@@ -142,18 +144,127 @@ const ChannelList = [
 ];
 
 const timeline = [
-  { time: "20:30", active: true },
+  { time: "00:00", active: false },
+  { time: "00:30", active: false },
+  { time: "01:00", active: true },
+  { time: "01:30", active: true },
+  { time: "02:00", active: true },
+  { time: "02:30", active: true },
+  { time: "03:00", active: true },
+  { time: "03:30", active: true },
+  { time: "04:00", active: true },
+  { time: "04:30", active: true },
+  { time: "05:00", active: true },
+  { time: "05:30", active: true },
+  { time: "06:00", active: false },
+  { time: "07:30", active: false },
+  { time: "08:00", active: false },
+  { time: "08:30", active: false },
+  { time: "09:00", active: false },
+  { time: "09:30", active: false },
+  { time: "10:00", active: false },
+  { time: "10:30", active: false },
+  { time: "11:00", active: false },
+  { time: "11:30", active: false },
+  { time: "12:00", active: false },
+  { time: "12:30", active: false },
+  { time: "13:00", active: false },
+  { time: "13:30", active: false },
+  { time: "14:00", active: false },
+  { time: "14:30", active: false },
+  { time: "15:00", active: false },
+  { time: "15:30", active: false },
+  { time: "16:00", active: false },
+  { time: "16:30", active: false },
+  { time: "17:00", active: false },
+  { time: "17:30", active: false },
+  { time: "18:00", active: false },
+  { time: "18:30", active: false },
+  { time: "19:00", active: false },
+  { time: "19:30", active: false },
+  { time: "20:00", active: false },
+  { time: "20:30", active: false },
   { time: "21:00", active: false },
   { time: "21:30", active: false },
   { time: "22:00", active: false },
   { time: "22:30", active: false },
   { time: "23:00", active: false },
   { time: "23:30", active: false },
-  { time: "00:00", active: false },
-  { time: "00:00", active: false },
+  
 ];
 
-function Channels() {
+function Channels({channeldata,currentVideo}) {
+  const [channels, setChannels] = useState([])
+  
+  const [timeline, setTimeline] = useState([])
+  const { changecurrentVideo,data } = useSelector(
+    (state) => state.connectWalletModal_State
+  );
+  useEffect(()=>{
+    let timelinedata= helper.createTimeSlot(new Date());
+    setTimeline(timelinedata)
+  },[])
+  useEffect(()=>{
+  
+let chData =channeldata.map(ch=>{
+  let liveshows=ch.liveShows.filter(ls=>new Date(ls.startTime).getDate()==new Date().getDate());
+  ch.liveShows=liveshows.map(show => {
+    let res= getDurationInMinute(show.startTime,show.endTime);
+      show.duration=res.duration;
+      show.time=res.time;
+      show.selected=false;
+      return show;
+     });
+     return ch;
+})
+chData[0].liveShows[0].selected=true;
+  setChannels(chData);
+  },[timeline])
+
+  const getDurationInMinute=(startedAt , endedAt)=>{
+    let startDate=new Date(startedAt);
+    let endDate=new Date(endedAt);
+  let timelinemin=Number(timeline[0]?.split(':')[1]);
+    let duration=helper.getDiffInMin(endDate,startDate);
+    let diff=helper.getDiffInMinfromCurrent(startDate);
+    let curdatemin=new Date().getMinutes();
+    if(diff<0){
+      diff=diff+curdatemin-timelinemin;//adjust duration according to timeline
+    }else{
+      diff=0
+    }
+ let res={
+  duration:duration+diff,
+  time:helper.getIn12HoursFormat(startDate)+'-'+helper.getIn12HoursFormat(endDate)
+ }
+ return res;
+
+  }
+ const changeSelectedVideo=(show)=>{
+  let chdata=channels;
+  chdata=chdata.map((ch)=>{
+    ch.liveShows= ch.liveShows.map(ls=>{
+       if(ls&&ls.selected){
+        ls.selected=false
+       };
+       if(ls&&show&&ls.id==show.id){
+         ls.selected=true;
+       }
+     return ls
+     })
+     return ch;
+    })
+   
+  setChannels([...chdata])
+   currentVideo(show);
+  }
+  useEffect(()=>{
+    if(!changecurrentVideo&&Object.keys(data).length !== 0){
+     console.log(data,'called in channel');
+     //changeSelectedVideo(data);
+    }
+   }, [changecurrentVideo,data])
+
   return (
     <section>
       <div className="container">
@@ -272,8 +383,8 @@ function Channels() {
           <div className=""></div>
           <div className="flex items-center overflow-x-auto hide-scrollbar">
             {timeline.map((item, i) => (
-              <div className="min-w-[80px] md:min-w-[160px] flex flex-col items-center justify-center">
-                <p className="text-xs md:text-base lh-1">{item.time}</p>
+              <div className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center">
+                <p className="text-xs md:text-base lh-1">{item}</p>
                 <Icon
                   icon="ic:sharp-arrow-drop-down"
                   className={`text-3xl ${
@@ -286,11 +397,12 @@ function Channels() {
         </div>
 
         <div className="grid gap-3">
-          {ChannelList.map((ch, index) => (
-            <ChannelsRow
-              channleDetails={ch.channelDetails}
-              channels={ch.channels}
-            />
+          {channels.map((ch, index) => (
+            ch.liveShows[0]?.duration?<ChannelsRow
+              channleDetails={ch}
+              channels={ch.liveShows}
+              changeVideo={(show)=>changeSelectedVideo(show)}
+            />:null
           ))}
         </div>
       </div>

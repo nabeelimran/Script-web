@@ -580,3 +580,65 @@ input:-webkit-autofill:active {
     top: 40%;
   }
 }
+
+video-js {
+  height: 100vh !important;
+  width: 100% !important;
+}
+
+.vjs-progress-control {
+  visibility: hidden !important;
+}
+
+video-js .vjs-control .vjs-button .vjs-playing{
+  display: none;
+}
+
+video-js .vjs-picture-in-picture-control {
+  display: none !important;
+}
+
+.video-js .vjs-time-control {
+  display: none !important;
+}
+
+#shareButton {
+  font-family: "Font Awesome 5 Free";
+}
+
+#shareButton .vjs-icon-placeholder {
+  font-family: "Font Awesome 5 Free";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-weight: 900;
+}
+
+#shareButton .vjs-icon-placeholder::before {
+  content: "\f064";
+  font-family: "Font Awesome 5 Free";
+  color: #ffffff;
+}
+
+.video-js .vjs-tech {
+  pointer-events: none !important;
+}
+
+.custom-pip-window {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: 300px;
+  width: 400px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.custom-pip-window > video-js {
+  height: 100% !important;
+  width: 100% !important;
+}
