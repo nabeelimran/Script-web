@@ -6,7 +6,8 @@ const initialState = {
   user:{
     email:"",
     password:"",
-    username:""
+    username:"",
+    referal:""
   }
   
 };
@@ -22,7 +23,7 @@ export const metamask_state = createSlice({
       state.signature = action.payload;
     },
     userInfo:(state, action)=>{
-      state.user = {...state.user,email:action.payload.email,password:action.payload.password,username:action.payload.username}
+      state.user = {...state.user,email:action.payload.email,password:action.payload.password,username:action.payload.username,referal:action.payload.referal}
     }
   },
 });

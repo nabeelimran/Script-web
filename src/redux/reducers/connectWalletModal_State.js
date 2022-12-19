@@ -24,13 +24,14 @@ export const connectWalletModal_State = createSlice({
       state.isPasswordModal= action.payload
     },
     toggleEpgModalVisibility:(state,action)=>{
+      console.log(action.payload)
       state.isEpgModalVisible=action.payload
     },
     updateEpgData:(state,action)=>{
       state.data=action.payload
     },
     updateCurrentVideo:(state,action)=>{
-      state.changecurrentVideo=true;
+      state.changecurrentVideo=action.payload;
     }
   },
 });

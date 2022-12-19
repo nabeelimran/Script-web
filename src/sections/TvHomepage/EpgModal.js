@@ -13,11 +13,14 @@ function EpgModal() {
     (state) => state.connectWalletModal_State
   );
   const { accountAddress } = useSelector((state) => state.metamask_state);
-  const modalRef = OutsideClickDetector(() =>
+  const modalRef = OutsideClickDetector(() =>{
     dispatch(toggleEpgModalVisibility(false))
+    
+  }
   );
 
   useEffect(() => {
+    console.log('epg modal',isEpgModalVisible)
     if (isEpgModalVisible) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -26,11 +29,12 @@ function EpgModal() {
   }, [isEpgModalVisible]);
 
   const watchVideo = () => {
-    console.log('watch video')
         dispatch(updateCurrentVideo(true));
         dispatch(toggleEpgModalVisibility(false))
   };
-
+const closeModal=()=>{
+  dispatch(toggleEpgModalVisibility(false))
+}
   return (
     <>
       <BlackScreen zIndex="1000000" show={isEpgModalVisible} />
@@ -49,7 +53,7 @@ function EpgModal() {
           <div className="">
             <div className="mb-8 flex justify-between">
             <p className=" text-lg mb-3">{data.title}</p>
-              <a className="text-lg ">&times;</a>
+              <a onClick={()=>closeModal()} className="text-lg ">&times;</a>
             </div>
 
             <div className="flex justify-center mb-7 h-[300px]">

@@ -4,7 +4,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toggleEmailModalVisibility, toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+import {
+  toggleEmailModalVisibility,
+  toggleModalVisibility,
+} from "redux/reducers/connectWalletModal_State";
 import { metamaskCred } from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
 import ConnectWalletButton from "./ConnectWalletButton";
@@ -16,7 +19,7 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 
 function ConnectWalletModal() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -35,72 +38,71 @@ function ConnectWalletModal() {
   }, [isModalVisible]);
 
   const metaMaskHandler = async () => {
-    
     if (!window.ethereum) {
       ToastMessage("Install Metamask");
       return false;
     }
     const accAddres = await MetamaskService.connectHandler();
-    
+
     if (accAddres) {
-    
       dispatch(metamaskCred(accAddres));
-      const isUser = await Api.getUserDetailsByWalletAddress(accAddres,'login-modal')
-      if(!isUser.data.isSuccess){
-        dispatch(toggleModalVisibility(false))
-        dispatch(toggleEmailModalVisibility(true))
+      const isUser = await Api.getUserDetailsByWalletAddress(
+        accAddres,
+        "login-modal"
+      );
+      if (!isUser.data.isSuccess) {
+        dispatch(toggleModalVisibility(false));
+        dispatch(toggleEmailModalVisibility(true));
       }
 
-      if(isUser.data.data.userExist){
+      if (isUser.data.data.userExist) {
+        const resObj = {
+          browser: "dummyData",
+          country: "dummayData",
+          device: "Web",
+          loginIp: "dummyData",
+          loginLocation: "dummmyData",
+          email: "",
+          userName: "",
+          password: "",
+          walletAddress: accAddres,
+          walletSignature: "",
+          otherReferralCode: "",
+        };
 
-        
-          const resObj = {
-            "browser": "dummyData",
-            "country": "dummayData",
-            "device": "Web",
-            "loginIp": "dummyData",
-            "loginLocation": "dummmyData",
-            email: "",
-            userName: "",
-            password:"",
-            walletAddress: accAddres,
-            walletSignature:  "",
-            otherReferralCode: ""
-           
+        const loginW = await Api.walletLogin(resObj, "");
+
+        if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
+          ToastMessage(`${loginW.data.message}`, true);
+          dispatch(toggleModalVisibility(false));
+          if (loginW.data.message === "Please verify your account.") {
+            navigate({
+              pathname: "/verify-account",
+              search: `?email=${loginW.data.data.email}`,
+            });
+          } else {
+            if (loginW.data.data.authToken) {
+              sessionStorage.setItem(
+                "script-token",
+                JSON.stringify(loginW.data.data.authToken)
+              );
+            }
+
+            sessionStorage.setItem(
+              "userInfo",
+              JSON.stringify({
+                email: loginW.data.data.email,
+                userId: loginW.data.data.id,
+                walletAddress: loginW.data.data.walletAddress,
+              })
+            );
+            navigate({
+              pathname: "/tv",
+            });
           }
-
-    const loginW  = await Api.walletLogin(resObj,"")
-    
-    if(loginW && loginW.status===200 && loginW.data.isSuccess){
-      ToastMessage(`${loginW.data.message}`,true)
-      dispatch(toggleModalVisibility(false))
-      if (loginW.data.message === 'Please verify your account.') {
-        navigate({
-          pathname: '/verify-account',
-          search: `?email=${loginW.data.data.email}`,
-        });
-      } else {
-        sessionStorage.setItem(
-          "script-token",
-          JSON.stringify( loginW.data.data.authToken,
-          )
-        );
-        sessionStorage.setItem(
-          "userInfo",
-          JSON.stringify({
-            email: loginW.data.data.email,
-            userId: loginW.data.data.id,
-            walletAddress: loginW.data.data.walletAddress
-          })
-        );
-        navigate({
-          pathname: '/tv',
-        });
-      }
-    }else{
-      ToastMessage("Somthing went wrong")
-    }
-        
+        } else {
+          ToastMessage("Somthing went wrong");
+        }
       }
     }
   };

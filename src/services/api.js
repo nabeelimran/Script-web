@@ -1,6 +1,23 @@
 import { APIPATH } from '../constants/index'
 import axios from 'axios';
 import {helper} from '../utils/helper';
+import LocalServices from './LocalServices';
+
+
+axios.interceptors.request.use(
+    config => {
+        const token = LocalServices.getServices("token");
+
+      if (token) {
+        config.headers['Authorization'] = 'Bearer ' + token
+      }
+      // config.headers['Content-Type'] = 'application/json';
+      return config
+    },
+    error => {
+      Promise.reject(error)
+    }
+  )
 
 export default class Api {
     static fetchMediumBlog(blogLimit) {
@@ -154,7 +171,7 @@ export default class Api {
                 Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
             }
         }
-        return axios.get(`${APIPATH.BASEURL}save/user/token`, options);
+        return axios.post(`${APIPATH.BASEURL}save/user/token`,req, options);
     }
 
     static saveVideoDuration(req, screenName) {
@@ -168,6 +185,20 @@ export default class Api {
                 Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
             }
         }
-        return axios.get(`${APIPATH.BASEURL}save/duration`, options);
+        return axios.put(`${APIPATH.BASEURL}save/duration`, req, options);
+    }
+
+    static logout(req, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.post(`${APIPATH.BASEURL}logout`,req, options);
     }
 }
