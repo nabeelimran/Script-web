@@ -17,7 +17,7 @@ const VerifyAccount = () => {
     setOTP("");
   }, []);
 
-  const verifyEmail = async () => {
+  const verifyEmail = () => {
     var sendObj = {
       email: window.location.search.split("=")[1],
       otp: OTP,
@@ -26,29 +26,36 @@ const VerifyAccount = () => {
     };
     
     if (OTP) {
-      const otpVerify = await Api.emailVerification(sendObj, "otp");
-
-      if (otpVerify && otpVerify.status === 200) {
-        if (otpVerify.data.data.authToken) {
-          sessionStorage.setItem(
-            "script-token",
-            JSON.stringify(otpVerify.data.data.authToken)
-          );
+      Api.emailVerification(sendObj, "otp").then((otpVerify) => {
+        if (otpVerify) {
+          if (otpVerify && otpVerify.status === 200) {
+            if (otpVerify.data.data.authToken) {
+              sessionStorage.setItem(
+                "script-token",
+                JSON.stringify(otpVerify.data.data.authToken)
+              );
+            }
+    
+            sessionStorage.setItem(
+              "userInfo",
+              JSON.stringify({
+                email: otpVerify.data.data.email,
+                userId: otpVerify.data.data.id,
+                walletAddress: otpVerify.data.data.walletAddress,
+              })
+            );
+            navigate("/tv")
+            ToastMessage(`${otpVerify.data.message}`, true);
+          } else {
+            ToastMessage(`${otpVerify.message}`);
+          } 
+        } else {
+          ToastMessage("Invalid OTP");  
         }
-
-        sessionStorage.setItem(
-          "userInfo",
-          JSON.stringify({
-            email: otpVerify.data.data.email,
-            userId: otpVerify.data.data.id,
-            walletAddress: otpVerify.data.data.walletAddress,
-          })
-        );
-        navigate("/tv")
-
-      } else {
-        ToastMessage(`${otpVerify.message}`, true);
-      }
+      }).catch(err => {
+        ToastMessage(`${err.message}`);
+        setOTP('');
+      });
     } else {
       ToastMessage("Please Enter OTP");
     }
