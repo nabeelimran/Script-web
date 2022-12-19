@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MetamaskService from "services/metamask";
 import { helper } from "utils/helper";
+import LocalServices from "services/LocalServices";
 
 function TvHomepage() {
   const dispatch = useDispatch()
@@ -24,7 +25,8 @@ function TvHomepage() {
   const [videoTokenEarned, setVideoTokenEarned] = useState(null)
   const [metamaskBalance, setMetamaskBalance] = useState(0)
   const [recaptchaCode, setReCaptchaCode] = useState('');
-  let userId = 202210466;
+  let userId = LocalServices.getServices("user").userId || null;
+
 
   
 
