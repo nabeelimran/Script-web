@@ -25,7 +25,7 @@ function TvHomepage() {
   const [videoTokenEarned, setVideoTokenEarned] = useState(null)
   const [metamaskBalance, setMetamaskBalance] = useState(0)
   const [recaptchaCode, setReCaptchaCode] = useState('');
-  let userId = LocalServices.getServices("user").userId || null;
+  let userId = LocalServices.getServices("user")?.userId || null;
 
 
   
@@ -156,11 +156,11 @@ function TvHomepage() {
       </div>
 
       <div className="mb-12">
-        <AllTvChannels 
+        {channel.length>0&&<AllTvChannels 
         show={currentVideo}
         adsList={adsList}
         checkVideoWatchTime={checkVideoWatchTime}
-        />
+        />}
       </div>
 
       <div className="mb-12">
