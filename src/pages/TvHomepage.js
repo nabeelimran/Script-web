@@ -22,7 +22,7 @@ function TvHomepage() {
   const [channel, setchannels] = useState([])
   const [currentVideo, setCurrentVideo] = useState(null)
   const [adsList, setAdsList] = useState([])
-  const [videoTokenEarned, setVideoTokenEarned] = useState(null)
+  const [videoTokenEarned, setVideoTokenEarned] = useState(0)
   const [metamaskBalance, setMetamaskBalance] = useState(0)
   const [recaptchaCode, setReCaptchaCode] = useState('');
   let userId = LocalServices.getServices("user")?.userId || null;
