@@ -13,6 +13,7 @@ import Api from "../services/api"
 import {videoShows} from "../redux/reducers/video_State"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import MetamaskService from "services/metamask";
 
 function TvHomepage() {
   const dispatch = useDispatch()
@@ -20,6 +21,7 @@ function TvHomepage() {
   const [currentVideo, setCurrentVideo] = useState(null)
   const [adsList, setAdsList] = useState([])
   const [videoTokenEarned, setVideoTokenEarned] = useState(null)
+  const [metamaskBalance, setMetamaskBalance] = useState(0)
   let userId = 202210466;
 
   const getChannels = () => {
@@ -98,8 +100,29 @@ function TvHomepage() {
     }
   }
 
+  const getMetamaskBalance = () => {
+    const authToken = sessionStorage.getItem('script-token');
+    if (authToken) {
+      const walletAddress = JSON.parse(sessionStorage.getItem('userInfo')).walletAddress || null;
+      if (walletAddress) {
+        MetamaskService.accountsChanged(walletAddress).then((balance) => {
+          setMetamaskBalance(balance);    
+        })
+      } else {
+        MetamaskService.connectHandler().then((res) => {
+          MetamaskService.accountsChanged(res).then((balance) => {
+            setMetamaskBalance(balance);    
+          })
+        })
+      }
+    } else {
+      setMetamaskBalance(0)
+    }
+  }
+
   useEffect(()=>{
     getChannels();
+    getMetamaskBalance();
     if(userId) {
       getVideoTokenEarned(userId)
     }
@@ -137,6 +160,8 @@ function TvHomepage() {
        {channel.length>0&& <Channels
         channeldata={channel}
         currentVideo={(data)=>changeVideo(data)}
+        videoTokenEarned={videoTokenEarned}
+        metamaskBalance={metamaskBalance}
         />
 }
       </div>
