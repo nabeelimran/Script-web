@@ -29,7 +29,21 @@ const VerifyAccount = () => {
       const otpVerify = await Api.emailVerification(sendObj, "otp");
 
       if (otpVerify && otpVerify.status === 200) {
+        if (otpVerify.data.data.authToken) {
+          sessionStorage.setItem(
+            "script-token",
+            JSON.stringify(otpVerify.data.data.authToken)
+          );
+        }
 
+        sessionStorage.setItem(
+          "userInfo",
+          JSON.stringify({
+            email: otpVerify.data.data.email,
+            userId: otpVerify.data.data.id,
+            walletAddress: otpVerify.data.data.walletAddress,
+          })
+        );
         navigate("/tv")
 
       } else {

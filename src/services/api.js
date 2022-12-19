@@ -196,7 +196,7 @@ export default class Api {
                 longitude: 'dummyData',
                 countryName: 'dummyData',
                 screenName: screenName,
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
+                 
             }
         }
         return axios.post(`${APIPATH.BASEURL}logout`,req, options);

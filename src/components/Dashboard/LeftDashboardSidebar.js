@@ -13,8 +13,10 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
   const navigate = useNavigate();
 
   const logout = () => {
+    const user = JSON.parse(sessionStorage.getItem("userInfo"))
+    console.log("user",user)
     Api.logout({
-      email: ''
+      email: user.email
     }).then(() => {})
     sessionStorage.clear();
     ToastMessage("Logout successfully", true);

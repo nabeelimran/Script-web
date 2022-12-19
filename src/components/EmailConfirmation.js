@@ -33,7 +33,7 @@ function EmailConfirmation() {
   } = useForm({
     email: "",
     nickname: "",
-    refral: false,
+    refral: "",
   });
 
   const [loading,setLoading] = useState(false)
@@ -72,7 +72,7 @@ function EmailConfirmation() {
           accountAddress
         );
         if (signeture) {
-          dispatch(userInfo({email:data.email,username:data.nickname}))
+          dispatch(userInfo({email:data.email,username:data.nickname,referal:data.refral}))
           dispatch(metamaskSignature(signeture));
           dispatch(toggleEmailModalVisibility(false));
           dispatch(togglePasswordModalVisibility(true));
@@ -161,6 +161,9 @@ function EmailConfirmation() {
                   id="refral"
                   label=""
                   placeholder="Referral code "
+                  other={{
+                    ...register("refral"),
+                  }}
                 />
               </div>
 

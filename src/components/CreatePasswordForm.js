@@ -31,26 +31,23 @@ function CreatePasswordForm() {
   });
 
   const { user } = useSelector((state) => state.metamask_state);
-  const [passwordShow,setPasswordShow] = useState(false)
-  const [confPasswordShow,setConfPasswordShow] = useState(false)
-  const [loading,setLoading] = useState(false)
+  const [passwordShow, setPasswordShow] = useState(false);
+  const [confPasswordShow, setConfPasswordShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { accountAddress } = useSelector((state) => state.metamask_state);
   const { signature } = useSelector((state) => state.metamask_state);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const switchPasswordView = (from) => {
-    
-    if(from==="newPassword"){
-      setPasswordShow(!passwordShow)
-    }else{
-      setConfPasswordShow(!confPasswordShow)
+    if (from === "newPassword") {
+      setPasswordShow(!passwordShow);
+    } else {
+      setConfPasswordShow(!confPasswordShow);
     }
-  }
-
-
+  };
 
   const onSubmit = async (data) => {
-    setLoading(true)
+    setLoading(true);
     const resObj = {
       browser: "dummyData",
       country: "dummayData",
@@ -60,36 +57,43 @@ function CreatePasswordForm() {
       email: user.email,
       userName: user.username,
       password: data.password,
+      otherReferralCode: user.referal,
       walletAddress: accountAddress,
       walletSignature: signature ? signature : "",
-      otherReferralCode: "",
     };
 
     const loginW = await Api.walletLogin(resObj, "login_model");
-    if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
-      
-    setLoading(false)
-      ToastMessage(`${loginW.data.message}`,true);
-      sessionStorage.setItem(
-        "script-token",
-        JSON.stringify( loginW.data.data.authToken,
-        )
-      );
-      sessionStorage.setItem(
-        "userInfo",
-        JSON.stringify({
-          email: user.email,
-        })
-      );
-    }else{
-      ToastMessage("something went wrong")
-      loading(false)
+    if (loginW.data.message === "Please verify your account.") {
+      setLoading(false);
+      dispatch(togglePasswordModalVisibility(false));
+      navigate({
+        pathname: "/verify-account",
+        search: `?email=${user.email}`,
+      });
+    } else {
+      if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
+        setLoading(false);
+        if (loginW.data.data.authToken) {
+          sessionStorage.setItem(
+            "script-token",
+            JSON.stringify(loginW.data.data.authToken)
+          );
+        }
+
+        sessionStorage.setItem(
+          "userInfo",
+          JSON.stringify({
+            email: user.email,
+          })
+        );
+        ToastMessage(`${loginW.data.message}`, true);
+
+        dispatch(togglePasswordModalVisibility(false));
+      } else {
+        ToastMessage("something went wrong");
+        loading(false);
+      }
     }
-    dispatch(togglePasswordModalVisibility(false))
-    navigate({
-      pathname: '/verify-account',
-      search: `?email=${user.email}`,
-    });
   };
   const dispatch = useDispatch();
   const { isPasswordModal } = useSelector(
@@ -110,26 +114,26 @@ function CreatePasswordForm() {
 
   const errorShow = (type) => {
     let error;
-    if(type){
+    if (type) {
       switch (type.type) {
         case "required":
-          error = "This field is requird. Please enter password"
+          error = "This field is requird. Please enter password";
           break;
         case "minLength":
-          error = "Password must have at least 8 characters"
+          error = "Password must have at least 8 characters";
           break;
         case "pattern":
-          error = "Password Should be eight characters long and alphanumeric with special characters"
+          error =
+            "Password Should be eight characters long and alphanumeric with special characters";
           break;
-      
+
         default:
           break;
       }
     }
 
-  
-    return error
-  }
+    return error;
+  };
 
   return (
     <>
@@ -164,10 +168,7 @@ function CreatePasswordForm() {
                   label=""
                   placeholder="Enter password"
                   Eyebutton={true}
-                  error={
-                    
-                    errorShow(errors.password)
-                  }
+                  error={errorShow(errors.password)}
                   other={{
                     ...register("password", {
                       required: true,
@@ -175,7 +176,7 @@ function CreatePasswordForm() {
                         value: 8,
                         message: "Password must have at least 8 characters",
                       },
-                      pattern:/^(?=.*[a-zA-Z\d].*)[a-zA-Z\d!@#$%&*]{8,}$/
+                      pattern: /^(?=.*[a-zA-Z\d].*)[a-zA-Z\d!@#$%&*]{8,}$/,
                     }),
                   }}
                 />
@@ -204,7 +205,7 @@ function CreatePasswordForm() {
 
               <div className="space-y-6">
                 <div className="pt-2">
-                  <Button type="submit" label="Save" loader={loading}/>
+                  <Button type="submit" label="Save" loader={loading} />
                 </div>
               </div>
             </form>
