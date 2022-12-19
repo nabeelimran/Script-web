@@ -37,7 +37,7 @@ function GlassPopup({ open, setOpen }) {
       <Popup
         open={open}
         setOpen={setOpen}
-        className="max-w-[360px] w-full bg-primary py-4 px-8 rounded-lg mx-auto"
+        className="max-w-[400px] w-full bg-black text-white py-5 px-8 rounded-lg mx-auto shadow-primary shadow"
       >
         {/* <img
           src="images/tv/glasses.svg"
@@ -62,50 +62,48 @@ function GlassPopup({ open, setOpen }) {
           #708543
         </div> */}
 
-        <h2 className="text-center text-black mb-3">Glasses</h2>
+        <h2 className="text-center mb-3">Glasses</h2>
 
-        <div className="max-h-40 overflow-auto">
-          <div className="flex border py-1 border-black mb-3 rounded w-11/12 mx-auto bg-black hover:bg-sky-700 hover:bg-gray hover:border-gray cursor-pointer">
+        <div className="max-h-48 overflow-auto">
+          <div className="flex py-2 mb-3 rounded w-11/12 mx-auto bg-[#131313] cursor-pointer">
             <img src="images/tv/glasses.svg" alt="" className="mx-4" />
             <div>
-              <h6 className="text-white">Hi</h6>
-              <p className="text-white text-xs">Hlo</p>
+              <h6>Hi</h6>
+              <p className="text-xs">Hlo</p>
             </div>
           </div>
-          <div className="flex border py-1 border-black mb-3 rounded w-11/12 mx-auto bg-black hover:bg-sky-700 hover:bg-gray hover:border-gray cursor-pointer">
+          <div className="flex py-2 mb-3 rounded w-11/12 mx-auto bg-[#131313] cursor-pointer">
             <img src="images/tv/glasses.svg" alt="" className="mx-4" />
             <div>
-              <h6 className="text-white">Hi</h6>
-              <p className="text-white text-xs">Hlo</p>
+              <h6>Hi</h6>
+              <p className="text-xs">Hlo</p>
             </div>
           </div>
-          <div className="flex border py-1 border-black mb-3 rounded w-11/12 mx-auto bg-black hover:bg-sky-700 hover:bg-gray hover:border-gray cursor-pointer">
+          <div className="flex py-2 mb-3 rounded w-11/12 mx-auto bg-[#131313] cursor-pointer">
             <img src="images/tv/glasses.svg" alt="" className="mx-4" />
             <div>
-              <h6 className="text-white">Hi</h6>
-              <p className="text-white text-xs">Hlo</p>
+              <h6>Hi</h6>
+              <p className="text-xs">Hlo</p>
             </div>
           </div>
-          <div className="flex border py-1 border-black mb-3 rounded w-11/12 mx-auto bg-black hover:bg-sky-700 hover:bg-gray hover:border-gray cursor-pointer">
+          <div className="flex py-2 mb-3 rounded w-11/12 mx-auto bg-[#131313] cursor-pointer">
             <img src="images/tv/glasses.svg" alt="" className="mx-4" />
             <div>
-              <h6 className="text-white">Hi</h6>
-              <p className="text-white text-xs">Hlo</p>
+              <h6>Hi</h6>
+              <p className="text-xs">Hlo</p>
             </div>
           </div>
-          <div className="flex border py-1 border-black mb-3 rounded w-11/12 mx-auto bg-black hover:bg-sky-700 hover:bg-gray hover:border-gray cursor-pointer">
+          <div className="flex py-2 mb-3 rounded w-11/12 mx-auto bg-[#131313] cursor-pointer">
             <img src="images/tv/glasses.svg" alt="" className="mx-4" />
             <div>
-              <h6 className="text-white">Hi</h6>
-              <p className="text-white text-xs">Hlo</p>
+              <h6>Hi</h6>
+              <p className="text-xs">Hlo</p>
             </div>
           </div>
         </div>
 
         <div className="text-center mt-5">
-          <button className="bg-black px-5 py-1 rounded hover:bg-gray">
-            Click
-          </button>
+          <button className="px-5 py-1 rounded bg-[#131313]">Click</button>
         </div>
       </Popup>
     </>
