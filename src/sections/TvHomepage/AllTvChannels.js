@@ -4,8 +4,10 @@ import StreamForm from "components/StreamForm";
 import Title from "components/Title";
 import VideoPlayer from "components/VideoPlayer";
 import React , { useEffect }  from "react";
+import { useSelector } from "react-redux";
 import videojs from 'video.js';
 import 'videojs-contrib-ads';
+
 
 function AllTvChannels({
   show,
@@ -17,6 +19,9 @@ function AllTvChannels({
   const [startTime, setStartTime] = React.useState('')
   const [showDetail, setShowDetail] = React.useState(null)
   let slots = [];
+
+  // from redux state
+  const myShows = useSelector((state) => state.video_State)
 
   const getRandomAds = () => {
     let randomAds;
@@ -95,6 +100,7 @@ function AllTvChannels({
   useEffect(()=>{
     if (show && playerRef && playerRef.current) {
       console.log(show, 'startTime')
+
       setShowDetail(show);
       setStartTime(show.startTime);
       // playerRef.current.ads()
@@ -155,6 +161,7 @@ function AllTvChannels({
 
     player.on('play', () => {
       videoWatchInterval = setInterval(() => {
+        console.log("MYSHOWS",myShows)
         console.log('normal show', show);
         console.log('set show', showDetail);
         console.log('set show', startTime);
@@ -178,6 +185,7 @@ function AllTvChannels({
   
   return (
     <section>
+     
       <div className="container mb-8">
         {/* <div className="text-center space-y-5 mb-8">
           <Title>

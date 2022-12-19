@@ -10,9 +10,10 @@ import HowToEarn from "sections/TvHomepage/HowToEarn";
 import KeyStats from "sections/TvHomepage/KeyStats";
 import React, { useEffect,useState } from "react";
 import Api from "../services/api"
-
+import {videoShows} from "../redux/reducers/video_State"
+import { useDispatch } from "react-redux";
 function TvHomepage() {
-  
+  const dispatch = useDispatch()
   const [channel, setchannels] = useState([])
   const [currentVideo, setCurrentVideo] = useState(null)
   const [adsList, setAdsList] = useState([])
@@ -23,6 +24,8 @@ function TvHomepage() {
     Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
+      console.log('API DISPATCH',res.data.data[0].liveShows[0])
+      dispatch(videoShows(res.data.data[0].liveShows[0]))
       setAdsList(res.data.data[0].adsData)
      })
   }
@@ -101,7 +104,10 @@ function TvHomepage() {
   }, [])
 
   const changeVideo=(show)=>{
+    console.log("DISPATCH",show)
+    dispatch(videoShows(show))
     setCurrentVideo(show);
+
     if (channel && channel.length > 0) {
       setAdsList(channel.filter(c => c.id === show.channelId)[0].adsData || [])
     }
