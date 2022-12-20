@@ -319,7 +319,10 @@ function Channels({
 
    useEffect(()=>{
     console.log("GETVIDEO EARNEDDDD")
-    getVideoTokenEarned()
+    if(userId) {
+      getVideoTokenEarned(userId)
+    }
+    
    },[])
 
    useEffect(()=>{
