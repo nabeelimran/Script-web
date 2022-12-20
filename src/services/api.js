@@ -211,5 +211,47 @@ export default class Api {
         }
         return axios.post(`${APIPATH.BASEURL}changePassword`,req, options);
     }
+
+    static getVideoWatchDuration(userId, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}videoWatchDuration?userId=${userId}`, options);
+    }
     
+    static getLastWatchShowHistory(userId, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}lastVideoHistory?userId=${userId}`, options);
+    }
+
+    static getTwitterPosts(screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}getAllTwitterFeeds`, options);
+    }
+
 }
