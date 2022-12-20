@@ -46,7 +46,6 @@ function TransactionHistoryChart({
     });
     data.labels = [...videoIdArr];
     data.datasets[0].data = durationArr.sort();
-    console.log(data, 'sadsda');
   } 
 
   return (
