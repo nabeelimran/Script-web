@@ -2,6 +2,7 @@ import Button from "components/Button";
 import PassowrdInput from "components/PasswordInput";
 import Title from "components/Title";
 import React from "react";
+import Api from "services/api";
 
 const LabelPassword = ({ id, label, placeholder }) => {
   return (
@@ -18,6 +19,22 @@ const LabelPassword = ({ id, label, placeholder }) => {
 };
 
 function ChangePassword() {
+
+  const changePassword = () => {
+    const req = {
+      email: '',
+      oldPassword: '',
+      password: '',
+      confirmPassword: ''
+    }
+
+    Api.changePassword(req).then((res) => {
+
+    }).catch((err) => {
+      
+    })
+  }
+
   return (
     <div className="dashboard-top-spacing dashboard-bottom-spacing">
       <div className="dashboard-layout">
@@ -46,7 +63,7 @@ function ChangePassword() {
           />
 
           <div className="flex justify-end pt-2">
-            <Button label="Submit" type="submit" />
+            <Button label="Submit" type="submit" calReward={changePassword} />
           </div>
         </form>
       </div>

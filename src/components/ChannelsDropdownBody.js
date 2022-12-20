@@ -46,14 +46,14 @@ const ChannelsDropdownBody = () => {
         </p>
 
         <div className="grid grid-cols-2 gap-6 lg:gap-0 lg:flex flex-wrap items-center lg:-mx-3 lg:-my-3">
-          {channels.map((item, i) => (
+          { channels && channels.length > 0 ? channels.map((item, i) => (
             <img
               src={item.img}
               key={i}
               alt="abc"
               className={`lg:mx-3 lg:my-3 ${item.className}`}
             />
-          ))}
+          )) : null}
         </div>
       </div>
     </div>

@@ -2,12 +2,14 @@ import FillBar from "components/FillBar";
 import Title from "components/Title";
 import React from "react";
 
-function Welcome() {
+function Welcome({
+  profile
+}) {
   return (
     <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10">
       <div className="dashboard-layout">
         <Title variant="20" className="font-semibold text-center mb-7">
-          Welcome Back, Peter
+          Welcome Back, {profile?.firstName || ''}
         </Title>
 
         <div className="space-y-1 mb-8 lg:mb-12">

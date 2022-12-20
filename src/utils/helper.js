@@ -48,7 +48,8 @@ export const helper = {
         result += char[Math.round(Math.random() * (char.length - 1))];
       }
       return result;
-    }
+    },
+    formatDate: (date, format) => moment(date).format(format)
 }
 
 export const metamaskNetwork = {
