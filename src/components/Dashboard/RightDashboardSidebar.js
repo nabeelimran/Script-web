@@ -84,7 +84,7 @@ function RightDashboardSidebar({
           <div className="px-6">
             <HeadingSmall> Streaming now on IRL:</HeadingSmall>
 
-            <div className="h-[30px]"></div>
+            <div className="h-[30px]">N/A</div>
           </div>
 
           <DividerLine />
