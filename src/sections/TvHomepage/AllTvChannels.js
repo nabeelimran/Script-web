@@ -154,7 +154,7 @@ function AllTvChannels({
             
             //checkVideoWatchTime(videoWatchTime)
           }
-        }, 10000)
+        }, 60000)
       })
     }
     return () => {
