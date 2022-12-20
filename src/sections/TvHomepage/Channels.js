@@ -11,12 +11,9 @@ import Api from "services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { helper } from "utils/helper";
 import { updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
-<<<<<<< HEAD
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
-=======
 import RecaptchaPopup from "components/RecaptchaPopup";
->>>>>>> master
 
 const channels = [
   {
@@ -206,15 +203,11 @@ function Channels({
   videoTokenEarned,
   metamaskBalance,
   recaptchaCode,
-<<<<<<< HEAD
   latestVideo
-=======
->>>>>>> master
 }) {
   const [channels, setChannels] = useState([]);
   const [cursorposition, setCursonPosition] = useState({ marginLeft: 0 });
   const [liveShow, setLiveShow] = useState({});
-<<<<<<< HEAD
   let userId = LocalServices.getServices("user")?.userId || null;
   const {earnedToken} = useSelector((state) => state.video_State)
   const {videoTimeWatch} = useSelector((state) => state.video_State)
@@ -240,26 +233,6 @@ function Channels({
         style.marginLeft=min;
        setCursonPosition(style)
       },10000)
-=======
-
-  const [timeline, setTimeline] = useState([]);
-  const dispatch = useDispatch();
-  const { changecurrentVideo, data } = useSelector(
-    (state) => state.connectWalletModal_State
-  );
-  useEffect(() => {
-    let timelinedata = helper.createTimeSlot(new Date());
-    setTimeline(timelinedata);
-    if (timeline.length > 0) {
-      setInterval(() => {
-        let style = { marginLeft: 0 };
-        const todayDate = new Date();
-        let timelinemin = Number(timeline[0]?.split(":")[1]);
-        let min = todayDate.getMinutes() - timelinemin;
-        style.marginLeft = min;
-        setCursonPosition(style);
-      }, 10000);
->>>>>>> master
     }
   }, []);
   useEffect(() => {
