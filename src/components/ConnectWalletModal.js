@@ -38,6 +38,7 @@ function ConnectWalletModal() {
   }, [isModalVisible]);
 
   const metaMaskHandler = async () => {
+    console.log("CLALLED")
     if (!window.ethereum) {
       ToastMessage("Install Metamask");
       return false;
