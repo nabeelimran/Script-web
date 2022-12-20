@@ -67,7 +67,9 @@ function ShareRefferal() {
           <Button
             label="Copy Link"
             className="flex-[.6] text-center justify-center"
-            calReward={copyToClipboard}
+            buttonProps={{
+              onClick: () => copyToClipboard()
+            }}
           />
         </div>
       </div>
