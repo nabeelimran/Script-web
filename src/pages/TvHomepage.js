@@ -42,12 +42,9 @@ function TvHomepage() {
       //setAdsList(res.data.data[0].adsData)
      })
   }
-  useEffect(()=>{
-    
-    console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",refreshChannel)
-    if(refreshChannel){
-    console.log("yiyiuyiyyiuyiuyyiy",refreshChannel)
 
+  useEffect(()=>{
+    if(refreshChannel){
       getChannels();
     }
   }, [refreshChannel]);
@@ -98,9 +95,7 @@ function TvHomepage() {
     if (+watchTime.toFixed() > 0) {
       Api.saveVideoDuration(req, "watch").then((res) => {
         if (res && res.isSuccess) {
-          console.log("SUCCESS")
         } else {
-          console.log("FALSE")
         }
       });
     }
@@ -182,7 +177,6 @@ function TvHomepage() {
   }, []);
 
   const changeVideo = (show) => {
-    console.log("DISPATCH", show);
     dispatch(videoShows(show));
     setCurrentVideo(show);
 

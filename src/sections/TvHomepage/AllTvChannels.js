@@ -21,13 +21,13 @@ function AllTvChannels({
   let userId = LocalServices.getServices("user")?.userId || null;
 
 
-let durationcheckinterval;
+  let durationcheckinterval;
+
   const getRandomAds = () => {
     let randomAds;
     if (adsList && adsList.length > 0) {
       randomAds = adsList[Math.floor(Math.random() * adsList.length)];
     }
-    // console.log(randomAds, 'selected ads');
     return randomAds;
   }
 
@@ -38,9 +38,6 @@ let durationcheckinterval;
     const currentTimeInMin = Math.ceil((videoCurrentTimeInSec && videoCurrentTimeInSec > 0 ? playerRef.current.currentTime : playerRef.current.currentTime) / 60)
     const interval = 20;
     slots = [];
-
-    console.log('total time', videoDurationInMin);
-    console.log('current time', currentTimeInMin);
 
     for (let i = 0; i <= (videoDurationInMin / interval); i++) {
       slots.push({
@@ -100,7 +97,6 @@ let durationcheckinterval;
     let videoWatchInterval;
     let durationcheckinterval;
     if (show && playerRef && playerRef.current) {
-      console.log(show, 'startTime')
       // playerRef.current.ads()
       // playerRef.current.on('readyforpreroll', () => {
       //   playerRef.current.ads.startLinearAdMode();
@@ -125,24 +121,22 @@ let durationcheckinterval;
           durationcheckinterval= setInterval(()=>{
            // console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
             if(playerRef.current?.currentTime()&&playerRef.current.currentTime() === playerRef.current.duration()){
-              console.log("displayed refrace")
               dispatch(refreshChannel(true))
             }
         },10000)
       }
       })
-      console.log("!@!@!@@!@!@@!2222222222222222")
+
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
-        src: show.m3u8720Url,
+        src: show.hlsUrl,
         type: 'application/x-mpegURL'    
       })
+      playerRef.current.load();
+
       playerRef.current.on('play', () => {
-        console.log('video playing...');
         const videoStartTime = getVideoCurrentTimePace(show.startTime);
         videoWatchInterval = setInterval(() => {
-          console.log('normal show');
-          console.log('set show', show.startTime);
           const videoWatchTime = {
             startTime: videoStartTime,
             endTime: playerRef.current.duration(),
@@ -150,9 +144,7 @@ let durationcheckinterval;
           };
   
           if (show.startTime && videoWatchTime && videoWatchTime.endTime) {
-            console.log('final req', videoWatchTime);
             // let eToken = earnedToken + 0.05
-            // console.log("ETOKEN",earnedToken)
             dispatch(getVideoTimeWatch(videoWatchTime))
             if(userId){
 
@@ -189,14 +181,12 @@ let durationcheckinterval;
         let pipEl = document.getElementById('video-container');
         // if(position.top >= 0 && position.bottom <= window.innerHeight) {
         if(position.top >= 0 && position.bottom >= 0) {
-          console.log('Element is fully visible in screen');
           pipEl.classList.remove('custom-pip-window')
           // player.requestPictureInPicture()
         } else {
           pipEl.classList.add('custom-pip-window')
           
           // player.exitPictureInPicture();
-          console.log('Element is hidden in screen');
         }
       }, 500);
     })
@@ -206,7 +196,6 @@ let durationcheckinterval;
     });
 
     player.on('play', () => {
-      console.log("PLAYER OUTSIDE USEEFFECT")
     })
 
     player.on('dispose', () => {
