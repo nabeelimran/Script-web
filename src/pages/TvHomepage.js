@@ -25,6 +25,11 @@ function TvHomepage() {
   const [videoTokenEarned, setVideoTokenEarned] = useState(0)
   const [metamaskBalance, setMetamaskBalance] = useState(0)
   const [recaptchaCode, setReCaptchaCode] = useState('');
+  const [videoWatchDuration, setVideoWatchDuration] = useState(0);
+  const [lastDayWatchVideoDuration, setLastDayWatchVideoDuration] = useState(0);
+  const [lastVideoHistory, setLastVideoHistory] = useState(null);
+  const [twitterPost, setTwitterPost] = useState([]);
+
   let userId = LocalServices.getServices("user")?.userId || null;
   const { refreshChannel} = useSelector(
     (state) => state.connectWalletModal_State
@@ -137,12 +142,40 @@ function TvHomepage() {
     }
   }
 
+  const getVideoWatchDuration = (userId) => {
+    Api.getVideoWatchDuration(userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        setVideoWatchDuration(res.data.data.totalWatchVideoDuration);
+        setLastDayWatchVideoDuration(res.data.data.lastDayWatchVideoDuration);
+      }
+    })
+  }
+
+  const getLastShowWatchHistory = (userId) => {
+    Api.getLastWatchShowHistory(userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        setLastVideoHistory(res.data.data);
+      }
+    })
+  }
+
+  const getTwitterPost = () => {
+    Api.getTwitterPosts('home').then((res) => {
+      if(res && res.status === 200) {
+        setTwitterPost(res.data.data);
+      }
+    })
+  }
+
   useEffect(()=>{
+    getTwitterPost();
     getChannels();
     getMetamaskBalance();
     setReCaptchaCode(helper.getRandomNumber(8))
     if(userId) {
       getVideoTokenEarned(userId)
+      getVideoWatchDuration(userId)
+      getLastShowWatchHistory(userId)
     }
   }, [])
 
@@ -163,7 +196,7 @@ function TvHomepage() {
       </div>
 
       <div className="mb-8">
-        <Hero />
+        <Hero videoWatchDuration={videoWatchDuration} lastDayWatchVideoDuration={lastDayWatchVideoDuration} lastVideoHistory={lastVideoHistory} />
       </div>
 
       <div className="mb-6">
@@ -199,7 +232,10 @@ function TvHomepage() {
       </div>
 
       <div className="mb-16 lg:mb-24">
-        <Community />
+        {
+          twitterPost && twitterPost.length > 0 ? <Community twitterPost={twitterPost}  /> : null
+        }
+        
       </div>
 
       <div className="mb-20" id="tv-community">
