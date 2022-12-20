@@ -11,6 +11,8 @@ import Api from 'services/api'
 import {useDispatch, useSelector } from "react-redux";
 import { helper } from "utils/helper";
 import { updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
+import { earnedTokenRed } from "redux/reducers/video_State";
+import LocalServices from "services/LocalServices";
 
 const channels = [
   {
@@ -200,11 +202,16 @@ function Channels({
   currentVideo,
   videoTokenEarned,
   metamaskBalance,
-  recaptchaCode
+  recaptchaCode,
+  latestVideo
 }) {
   const [channels, setChannels] = useState([])
   const [cursorposition,setCursonPosition]=useState({marginLeft:0})
   const [liveShow, setLiveShow] = useState({});
+  let userId = LocalServices.getServices("user")?.userId || null;
+  const {earnedToken} = useSelector((state) => state.video_State)
+  const {videoTimeWatch} = useSelector((state) => state.video_State)
+
   
   const [timeline, setTimeline] = useState([])
   const dispatch=useDispatch();
@@ -212,6 +219,9 @@ function Channels({
     (state) => state.connectWalletModal_State
   );
   useEffect(()=>{
+    if(userId) {
+      getVideoTokenEarned(userId)
+    }
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
     if(timeline.length>0){
@@ -299,6 +309,82 @@ chData[0].liveShows[0].selected=true;
       
     }
    }, [changecurrentVideo,data])
+
+
+  //  Save video duration code
+
+   useEffect(()=>{
+    console.log("GETVIDEO EARNEDDDD")
+    getVideoTokenEarned()
+   },[])
+
+   useEffect(()=>{
+    
+    if(earnedToken){
+
+      saveVideoDuration(videoTimeWatch)
+    }
+  },[earnedToken])
+
+
+  // this is used to get the token earned by video based on user id
+  const getVideoTokenEarned = () => {
+    console.log("EARNED")
+    Api.getVideoTokenEarned(userId, 'watch').then((res) => {
+      if (res && res.data && res.data.isSuccess) {
+        const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
+    
+        dispatch(earnedTokenRed(token))
+        
+      } else {
+        dispatch(earnedTokenRed(0))
+        
+      }
+    })
+  }
+
+
+
+
+  // this is used to save the watch time of user
+  const saveVideoDuration = (e) => {
+    console.log("CURRRRRRRRRRRRR",currentVideo)
+    const watchTime = (e.videoPlayTime - e.startTime) / 60
+    const req = {
+      "showId": latestVideo.id, // show id
+      "videoId": latestVideo.videoId, // video id
+      "userId": userId ? userId : 0,
+      "videoDuration": +watchTime.toFixed()  // duration in minute
+    };
+
+    if (+watchTime.toFixed() > 0) {
+      Api.saveVideoDuration(req, 'watch').then((res) => {
+        if (res && res.isSuccess) {
+
+        } else {
+
+        }
+      })
+    }
+  }
+
+  // this is used to save token earned by watch
+  const setVideoTokenBalance = (action, token) => {
+    const authToken = sessionStorage.getItem('script-token'); // auth token
+    if (authToken) {
+      const req = {
+        userId: userId ? userId : 0,
+        amount: action === 'setDefault' ? 0 : token.toFixed(2)
+      };
+      Api.addVideoToken(req, 'watch').then((res) => {
+        if (res && res.success) {
+          // setVideoTokenEarned(token);
+        } else {
+          
+        }
+      })
+    }
+  }
 
 
   return (
@@ -413,7 +499,7 @@ chData[0].liveShows[0].selected=true;
 
               <SquareBox to="/dashboard" className="flex-1 xl:flex-auto">
                 <h1 className="fs-24px text-primary font-semibold mb-1">
-                  {videoTokenEarned.toFixed(4)}
+                  {earnedToken.toFixed(4)}
                 </h1>
                 <h1 className="text-xs xl:text-sm text-primary font-medium text-center">
                   Earned Today

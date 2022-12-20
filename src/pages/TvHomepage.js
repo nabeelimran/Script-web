@@ -41,6 +41,8 @@ function TvHomepage() {
     
     console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",refreshChannel)
     if(refreshChannel){
+    console.log("yiyiuyiyyiuyiuyyiy",refreshChannel)
+
       getChannels();
     }
   },[refreshChannel])
@@ -60,19 +62,21 @@ function TvHomepage() {
   }
 
   // this function is used to check the video watch at every 1 min interval
-  const checkVideoWatchTime = (e) => {
-    console.log('interval called',e)
-    console.log("videoTokenEarned",videoTokenEarned)
-    if(e) {
-      saveVideoDuration(e)
-      let token = videoTokenEarned;
-      if(videoTokenEarned >= 0) {
-        token = videoTokenEarned + 0.05
-        setVideoTokenEarned((prevState)=> prevState + 0.05)
-      }
-      setVideoTokenBalance('', token);
-    }
-  }
+  // const checkVideoWatchTime = (e) => {
+  //   console.log('interval called',e)
+  //   console.log("videoTokenEarned",videoTokenEarned)
+  //   if(e) {
+  //     saveVideoDuration(e)
+  //     let token = videoTokenEarned;
+  //     if(videoTokenEarned >= 0) {
+  //       token = videoTokenEarned + 0.05
+  //       //setVideoTokenEarned((prevState)=> prevState + 0.05)
+  //     }
+  //     //setVideoTokenBalance('', token);
+  //   }
+  // }
+
+
 
   // this is used to save the watch time of user
   const saveVideoDuration = (e) => {
@@ -87,9 +91,9 @@ function TvHomepage() {
     if (+watchTime.toFixed() > 0) {
       Api.saveVideoDuration(req, 'watch').then((res) => {
         if (res && res.isSuccess) {
-
+          console.log("SUCCESS")
         } else {
-
+          console.log("FALSE")
         }
       })
     }
@@ -166,7 +170,7 @@ function TvHomepage() {
         {channel.length>0&&<AllTvChannels 
         show={currentVideo}
         adsList={adsList}
-        checkVideoWatchTime={checkVideoWatchTime}
+        // checkVideoWatchTime={checkVideoWatchTime}
         />}
       </div>
 
@@ -174,6 +178,7 @@ function TvHomepage() {
        {channel.length>0&& <Channels
         channeldata={channel}
         currentVideo={(data)=>changeVideo(data)}
+        latestVideo={currentVideo}
         videoTokenEarned={videoTokenEarned}
         metamaskBalance={metamaskBalance}
         recaptchaCode={recaptchaCode}

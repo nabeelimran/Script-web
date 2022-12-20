@@ -8,18 +8,18 @@ import { useSelector,useDispatch } from "react-redux";
 import videojs from 'video.js';
 import 'videojs-contrib-ads';
 import {refreshChannel} from 'redux/reducers/connectWalletModal_State'
+import { earnedTokenRed, getVideoTimeWatch } from "redux/reducers/video_State";
 
 function AllTvChannels({
   show,
   adsList,
-  checkVideoWatchTime
+  // checkVideoWatchTime
 }) {
   const playerRef = React.useRef(null);
   const dispatch=useDispatch();
   let slots = [];
 
-  // from redux state
-  const myShows = useSelector((state) => state.video_State)
+
 let durationcheckinterval;
   const getRandomAds = () => {
     let randomAds;
@@ -124,11 +124,13 @@ let durationcheckinterval;
           durationcheckinterval= setInterval(()=>{
            // console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
             if(playerRef.current?.currentTime()&&playerRef.current.currentTime() === playerRef.current.duration()){
+              console.log("displayed refrace")
               dispatch(refreshChannel(true))
             }
         },10000)
       }
       })
+      console.log("!@!@!@@!@!@@!2222222222222222")
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
         src: show.m3u8720Url,
@@ -148,18 +150,22 @@ let durationcheckinterval;
   
           if (show.startTime && videoWatchTime && videoWatchTime.endTime) {
             console.log('final req', videoWatchTime);
-            checkVideoWatchTime(videoWatchTime)
+            // let eToken = earnedToken + 0.05
+            // console.log("ETOKEN",earnedToken)
+            dispatch(getVideoTimeWatch(videoWatchTime))
+            dispatch(earnedTokenRed(0.05))
+            
+            //checkVideoWatchTime(videoWatchTime)
           }
         }, 10000)
       })
     }
     return () => {
-      if(videoWatchInterval) {
+      
         clearInterval(videoWatchInterval);
-      }
-      if(durationcheckinterval){
+      
         clearInterval(durationcheckinterval)
-      }
+      
     };
   
   }, [show])
@@ -196,7 +202,7 @@ let durationcheckinterval;
     });
 
     player.on('play', () => {
-      
+      console.log("PLAYER OUTSIDE USEEFFECT")
     })
 
     player.on('dispose', () => {
