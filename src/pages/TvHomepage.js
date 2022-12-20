@@ -26,6 +26,7 @@ function TvHomepage() {
   const [metamaskBalance, setMetamaskBalance] = useState(0)
   const [recaptchaCode, setReCaptchaCode] = useState('');
   const [videoWatchDuration, setVideoWatchDuration] = useState(0);
+  const [lastDayWatchVideoDuration, setLastDayWatchVideoDuration] = useState(0);
   const [lastVideoHistory, setLastVideoHistory] = useState(null);
   const [twitterPost, setTwitterPost] = useState([]);
 
@@ -138,6 +139,7 @@ function TvHomepage() {
     Api.getVideoWatchDuration(userId, 'watch').then((res) => {
       if(res && res.status === 200) {
         setVideoWatchDuration(res.data.data.totalWatchVideoDuration);
+        setLastDayWatchVideoDuration(res.data.data.lastDayWatchVideoDuration);
       }
     })
   }
@@ -187,7 +189,7 @@ function TvHomepage() {
       </div>
 
       <div className="mb-8">
-        <Hero videoWatchDuration={videoWatchDuration} lastVideoHistory={lastVideoHistory} />
+        <Hero videoWatchDuration={videoWatchDuration} lastDayWatchVideoDuration={lastDayWatchVideoDuration} lastVideoHistory={lastVideoHistory} />
       </div>
 
       <div className="mb-12">

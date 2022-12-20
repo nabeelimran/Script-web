@@ -23,7 +23,8 @@ const SliderContent = () => {
 
 function Hero({
   videoWatchDuration,
-  lastVideoHistory
+  lastVideoHistory,
+  lastDayWatchVideoDuration
 }) {
   const prevRef = useRef();
   const nextRef = useRef();
@@ -123,7 +124,7 @@ function Hero({
               </HeadingSmall>
 
               <p className="text-sm xl:text-base font-bold">
-              {token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : 'N/A Minutes'}
+              {token ? `${lastDayWatchVideoDuration ? lastDayWatchVideoDuration : 0} Minutes` : 'N/A'}
               </p>
             </div>
 

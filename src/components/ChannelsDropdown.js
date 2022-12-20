@@ -12,7 +12,6 @@ function ChannelsDropdown({ className = "text-sm xl:text-base font-medium", chan
       childrenClassName="pt-4"
       className={className}
     >
-      {console.log(channels, 'c')}
       <ChannelsDropdownBody />
     </NavDropdown>
   );
