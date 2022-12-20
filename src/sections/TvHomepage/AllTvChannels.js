@@ -128,9 +128,11 @@ function AllTvChannels({
 
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
-        src: show.m3u8720Url,
+        src: show.hlsUrl,
         type: 'application/x-mpegURL'    
       })
+      playerRef.current.load();
+
       playerRef.current.on('play', () => {
         const videoStartTime = getVideoCurrentTimePace(show.startTime);
         videoWatchInterval = setInterval(() => {
