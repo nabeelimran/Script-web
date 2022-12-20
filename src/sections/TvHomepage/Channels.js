@@ -318,11 +318,9 @@ function Channels({
   //  Save video duration code
 
    useEffect(()=>{
-    console.log("GETVIDEO EARNEDDDD")
     if(userId) {
       getVideoTokenEarned(userId)
     }
-    
    },[])
 
    useEffect(()=>{
@@ -330,13 +328,13 @@ function Channels({
     if(earnedToken){
 
       saveVideoDuration(videoTimeWatch)
+      setVideoTokenBalance('', earnedToken);
     }
   },[earnedToken])
 
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
-    console.log("EARNED")
     Api.getVideoTokenEarned(userId, 'watch').then((res) => {
       if (res && res.data && res.data.isSuccess) {
         const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
@@ -355,7 +353,6 @@ function Channels({
 
   // this is used to save the watch time of user
   const saveVideoDuration = (e) => {
-    console.log("CURRRRRRRRRRRRR",currentVideo)
     const watchTime = (e.videoPlayTime - e.startTime) / 60
     const req = {
       "showId": latestVideo.id, // show id

@@ -12,7 +12,6 @@ function Popup({ open, setOpen, children, className, glass = false }) {
   // );
 
   useEffect(() => {
-    console.log(glass);
     if (open) {
       document.body.style.overflowY = "hidden";
     } else {

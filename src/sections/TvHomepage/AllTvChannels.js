@@ -20,13 +20,13 @@ function AllTvChannels({
   let slots = [];
 
 
-let durationcheckinterval;
+  let durationcheckinterval;
+
   const getRandomAds = () => {
     let randomAds;
     if (adsList && adsList.length > 0) {
       randomAds = adsList[Math.floor(Math.random() * adsList.length)];
     }
-    // console.log(randomAds, 'selected ads');
     return randomAds;
   }
 
@@ -37,9 +37,6 @@ let durationcheckinterval;
     const currentTimeInMin = Math.ceil((videoCurrentTimeInSec && videoCurrentTimeInSec > 0 ? playerRef.current.currentTime : playerRef.current.currentTime) / 60)
     const interval = 20;
     slots = [];
-
-    console.log('total time', videoDurationInMin);
-    console.log('current time', currentTimeInMin);
 
     for (let i = 0; i <= (videoDurationInMin / interval); i++) {
       slots.push({

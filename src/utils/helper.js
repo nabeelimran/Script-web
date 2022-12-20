@@ -16,7 +16,6 @@ export const helper = {
       if(currentDate.getMinutes()>=30){
         startTime.add(30,'minutes')
       }
-  console.log(startTime.format('HH:mm'))
       while (startTime <= endTime) {
         timeStops.push(moment(startTime).format('HH:mm'));
         startTime.add(30, 'minutes');
@@ -25,11 +24,7 @@ export const helper = {
       return timeStops;
     },
   
-    getDiffInMinfromCurrent:(startDate, dateType)=> {
-      let currentDate = moment(new Date());
-      let diff = moment(startDate).diff(currentDate, 'minutes');
-      return diff
-    },
+    getDiffInMinfromCurrent:(startDate, dateType) => moment(startDate).diff(moment(new Date()), 'minutes'),
     getDiffInMin:(startDate, endDate)=> moment(startDate).diff(moment(endDate), 'minutes'),
     getIn12HoursFormat:(date)=>{
         let hours = date.getHours();
@@ -99,7 +94,7 @@ export const metamaskNetwork = {
     }
 }
 
-export const enumStorange =  {
+export const STORAGEENUM =  {
   token: "script-token",
   user: "userInfo"
 }
