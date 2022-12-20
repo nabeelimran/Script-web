@@ -4,10 +4,10 @@ import StreamForm from "components/StreamForm";
 import Title from "components/Title";
 import VideoPlayer from "components/VideoPlayer";
 import React , { useEffect }  from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import videojs from 'video.js';
 import 'videojs-contrib-ads';
-
+import {refreshChannel} from 'redux/reducers/connectWalletModal_State'
 
 function AllTvChannels({
   show,
@@ -15,11 +15,12 @@ function AllTvChannels({
   checkVideoWatchTime
 }) {
   const playerRef = React.useRef(null);
+  const dispatch=useDispatch();
   let slots = [];
 
   // from redux state
   const myShows = useSelector((state) => state.video_State)
-
+let durationcheckinterval;
   const getRandomAds = () => {
     let randomAds;
     if (adsList && adsList.length > 0) {
@@ -96,6 +97,7 @@ function AllTvChannels({
   
   useEffect(()=>{
     let videoWatchInterval;
+    let durationcheckinterval;
     if (show && playerRef && playerRef.current) {
       console.log(show, 'startTime')
       // playerRef.current.ads()
@@ -115,6 +117,17 @@ function AllTvChannels({
       //       playerRef.current.ads.endLinearAdMode();
       //   });
       // })
+   
+      playerRef.current.on('timeupdate',(evt)=>{
+        console.log(playerRef.current, 'timeupdate');
+        if(playerRef.current){
+          durationcheckinterval= setInterval(()=>{
+            if(playerRef.current?.currentTime()&&playerRef.current.currentTime() === playerRef.current.duration()){
+              dispatch(refreshChannel(true))
+            }
+        },10000)
+      }
+      })
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
         src: show.m3u8720Url,
@@ -139,10 +152,15 @@ function AllTvChannels({
         }, 60000)
       })
     }
-
-    if(videoWatchInterval) {
-      clearInterval(videoWatchInterval);
-    }
+    return () => {
+      if(videoWatchInterval) {
+        clearInterval(videoWatchInterval);
+      }
+      if(durationcheckinterval){
+        clearInterval(durationcheckinterval)
+      }
+    };
+  
   }, [show])
 
   const handlePlayerReady = (player) => {

@@ -17,7 +17,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
     console.log("user",user)
     Api.logout({
       email: user.email
-    }).then(() => {})
+    }, 'dashboard').then(() => {})
     sessionStorage.clear();
     ToastMessage("Logout successfully", true);
     navigate({

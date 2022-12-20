@@ -26,10 +26,9 @@ function TvHomepage() {
   const [metamaskBalance, setMetamaskBalance] = useState(0)
   const [recaptchaCode, setReCaptchaCode] = useState('');
   let userId = LocalServices.getServices("user")?.userId || null;
-
-
-  
-
+  const { refreshChannel} = useSelector(
+    (state) => state.connectWalletModal_State
+  );
   const getChannels = () => {
     Api.getChannels('watch').then(res=>{
       setchannels(res.data.data);
@@ -38,13 +37,19 @@ function TvHomepage() {
       setAdsList(res.data.data[0].adsData)
      })
   }
+  useEffect(()=>{
+    if(refreshChannel){
+      getChannels();
+    }
+  },[refreshChannel])
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
     Api.getVideoTokenEarned(userId, 'watch').then((res) => {
       if (res && res.data && res.data.isSuccess) {
         const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
-        setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
+        // setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
+        console.log('earned token', token);
         setVideoTokenEarned(token);
       } else {
         setVideoTokenEarned(0);
@@ -53,9 +58,8 @@ function TvHomepage() {
   }
 
   // this function is used to check the video watch at every 1 min interval
-  // @TODO need to change code
   const checkVideoWatchTime = (e) => {
-    console.log(e, 'interval called')
+    console.log(e, videoTokenEarned, 'interval called')
     if(e) {
       saveVideoDuration(e)
       let token = videoTokenEarned;
@@ -98,7 +102,7 @@ function TvHomepage() {
       };
       Api.addVideoToken(req, 'watch').then((res) => {
         if (res && res.success) {
-          setVideoTokenEarned(token);
+          // setVideoTokenEarned(token);
         } else {
           
         }

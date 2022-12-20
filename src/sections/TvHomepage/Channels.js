@@ -227,7 +227,7 @@ function Channels({
   },[])
   useEffect(()=>{
 let chData =channeldata.map(ch=>{
-  let liveshows=ch.liveShows.filter(ls=>new Date(ls.startTime).getDate()==new Date().getDate());
+  let liveshows=ch.liveShows.filter(ls=>new Date(ls.startTime).getDate() === new Date().getDate());
   ch.liveShows=liveshows.map(show => {
     let res= getDurationInMinute(show.startTime,show.endTime);
       show.duration=res.duration;
@@ -268,7 +268,7 @@ chData[0].liveShows[0].selected=true;
        if(ls&&ls.selected){
         ls.selected=false
        };
-       if(ls&&show&&ls.id==show.id){
+       if(ls&&show&&ls.id === show.id){
          ls.selected=true;
        }
      return ls
@@ -288,7 +288,7 @@ chData[0].liveShows[0].selected=true;
             ls.selected=false
            
            };
-           if(ls&&data&&ls.id==data.id){
+           if(ls&&data&&ls.id === data.id){
            ls.selected=true           }
          return ls
          })
@@ -413,7 +413,7 @@ chData[0].liveShows[0].selected=true;
 
               <SquareBox to="/dashboard" className="flex-1 xl:flex-auto">
                 <h1 className="fs-24px text-primary font-semibold mb-1">
-                  {videoTokenEarned}
+                  {videoTokenEarned.toFixed(4)}
                 </h1>
                 <h1 className="text-xs xl:text-sm text-primary font-medium text-center">
                   Earned Today
@@ -432,7 +432,7 @@ chData[0].liveShows[0].selected=true;
                 <Icon
                   icon="ic:sharp-arrow-drop-down"
                   className={`text-3xl ${
-                    i==0 ? "opacity-100" : "opacity-0"
+                    i === 0 ? "opacity-100" : "opacity-0"
                   }`}
                   style={cursorposition}
                 />
