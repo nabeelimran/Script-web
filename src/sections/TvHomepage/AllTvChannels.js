@@ -18,6 +18,7 @@ function AllTvChannels({
   const playerRef = React.useRef(null);
   const dispatch=useDispatch();
   let slots = [];
+  let userId = LocalServices.getServices("user")?.userId || null;
 
 
 let durationcheckinterval;
@@ -153,7 +154,10 @@ let durationcheckinterval;
             // let eToken = earnedToken + 0.05
             // console.log("ETOKEN",earnedToken)
             dispatch(getVideoTimeWatch(videoWatchTime))
-            dispatch(earnedTokenRed(0.05))
+            if(userId){
+
+              dispatch(earnedTokenRed(0.05))
+            }
             
             //checkVideoWatchTime(videoWatchTime)
           }
