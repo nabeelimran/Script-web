@@ -34,10 +34,12 @@ function TvHomepage() {
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
       dispatch(videoShows(res.data.data[0].liveShows[0]))
-      setAdsList(res.data.data[0].adsData)
+      //setAdsList(res.data.data[0].adsData)
      })
   }
   useEffect(()=>{
+    
+    console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",refreshChannel)
     if(refreshChannel){
       getChannels();
     }
@@ -59,13 +61,14 @@ function TvHomepage() {
 
   // this function is used to check the video watch at every 1 min interval
   const checkVideoWatchTime = (e) => {
-    console.log(e, videoTokenEarned, 'interval called')
+    console.log('interval called',e)
+    console.log("videoTokenEarned",videoTokenEarned)
     if(e) {
       saveVideoDuration(e)
       let token = videoTokenEarned;
       if(videoTokenEarned >= 0) {
         token = videoTokenEarned + 0.05
-        setVideoTokenEarned(token)
+        setVideoTokenEarned((prevState)=> prevState + 0.05)
       }
       setVideoTokenBalance('', token);
     }
@@ -159,7 +162,7 @@ function TvHomepage() {
         <Hero />
       </div>
 
-      <div className="mb-12">
+      <div className="mb-6">
         {channel.length>0&&<AllTvChannels 
         show={currentVideo}
         adsList={adsList}

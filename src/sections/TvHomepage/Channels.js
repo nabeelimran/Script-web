@@ -304,8 +304,8 @@ chData[0].liveShows[0].selected=true;
   return (
     <section>
       <div className="container">
-        <div className="mb-16">
-          <div className="grid lg:grid-cols-[1fr_340px] gap-10 items-center mb-5">
+        <div className="mb-6">
+          <div className="grid lg:grid-cols-[1fr_340px] gap-10 items-center mb-2">
             <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6 justify-between">
               <div className="w-full flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6 flex-1">
                 <div className="grid grid-cols-[110px_110px] gap-6">

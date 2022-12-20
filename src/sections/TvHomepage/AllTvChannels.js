@@ -119,9 +119,10 @@ let durationcheckinterval;
       // })
    
       playerRef.current.on('timeupdate',(evt)=>{
-        console.log(playerRef.current, 'timeupdate');
+        
         if(playerRef.current){
           durationcheckinterval= setInterval(()=>{
+           // console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
             if(playerRef.current?.currentTime()&&playerRef.current.currentTime() === playerRef.current.duration()){
               dispatch(refreshChannel(true))
             }
@@ -137,7 +138,7 @@ let durationcheckinterval;
         console.log('video playing...');
         const videoStartTime = getVideoCurrentTimePace(show.startTime);
         videoWatchInterval = setInterval(() => {
-          console.log('normal show', show);
+          console.log('normal show');
           console.log('set show', show.startTime);
           const videoWatchTime = {
             startTime: videoStartTime,
@@ -149,7 +150,7 @@ let durationcheckinterval;
             console.log('final req', videoWatchTime);
             checkVideoWatchTime(videoWatchTime)
           }
-        }, 60000)
+        }, 10000)
       })
     }
     return () => {
