@@ -111,7 +111,7 @@ function Hero({
                 Minutes watched in total
               </HeadingSmall>
               <p className="text-sm xl:text-base font-bold">
-                {token ? `${videoWatchDuration} Minutes` : 'N/A Minutes'}
+                {token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : 'N/A Minutes'}
               </p>
             </div>
 
@@ -123,7 +123,7 @@ function Hero({
               </HeadingSmall>
 
               <p className="text-sm xl:text-base font-bold">
-              {token ? `${videoWatchDuration} Minutes` : 'N/A Minutes'}
+              {token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : 'N/A Minutes'}
               </p>
             </div>
 
