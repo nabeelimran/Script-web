@@ -52,7 +52,6 @@ function InventoryTrade() {
       <h1 className="fs-20px font-medium mb-7">My Inventory Trade Here</h1>
 
       <div className="relative">
-        {console.log(glasses)}
         <Swiper
           slidesPerView={4}
           spaceBetween={20}

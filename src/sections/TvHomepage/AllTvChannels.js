@@ -96,7 +96,6 @@ function AllTvChannels({
     let videoWatchInterval;
     let durationcheckinterval;
     if (show && playerRef && playerRef.current) {
-      console.log(show, 'startTime')
       // playerRef.current.ads()
       // playerRef.current.on('readyforpreroll', () => {
       //   playerRef.current.ads.startLinearAdMode();
@@ -121,24 +120,20 @@ function AllTvChannels({
           durationcheckinterval= setInterval(()=>{
            // console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
             if(playerRef.current?.currentTime()&&playerRef.current.currentTime() === playerRef.current.duration()){
-              console.log("displayed refrace")
               dispatch(refreshChannel(true))
             }
         },10000)
       }
       })
-      console.log("!@!@!@@!@!@@!2222222222222222")
+
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
         src: show.m3u8720Url,
         type: 'application/x-mpegURL'    
       })
       playerRef.current.on('play', () => {
-        console.log('video playing...');
         const videoStartTime = getVideoCurrentTimePace(show.startTime);
         videoWatchInterval = setInterval(() => {
-          console.log('normal show');
-          console.log('set show', show.startTime);
           const videoWatchTime = {
             startTime: videoStartTime,
             endTime: playerRef.current.duration(),
@@ -146,9 +141,7 @@ function AllTvChannels({
           };
   
           if (show.startTime && videoWatchTime && videoWatchTime.endTime) {
-            console.log('final req', videoWatchTime);
             // let eToken = earnedToken + 0.05
-            // console.log("ETOKEN",earnedToken)
             dispatch(getVideoTimeWatch(videoWatchTime))
             dispatch(earnedTokenRed(0.05))
             
@@ -182,14 +175,12 @@ function AllTvChannels({
         let pipEl = document.getElementById('video-container');
         // if(position.top >= 0 && position.bottom <= window.innerHeight) {
         if(position.top >= 0 && position.bottom >= 0) {
-          console.log('Element is fully visible in screen');
           pipEl.classList.remove('custom-pip-window')
           // player.requestPictureInPicture()
         } else {
           pipEl.classList.add('custom-pip-window')
           
           // player.exitPictureInPicture();
-          console.log('Element is hidden in screen');
         }
       }, 500);
     })
@@ -199,7 +190,6 @@ function AllTvChannels({
     });
 
     player.on('play', () => {
-      console.log("PLAYER OUTSIDE USEEFFECT")
     })
 
     player.on('dispose', () => {
