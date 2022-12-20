@@ -19,7 +19,6 @@ function ShareRefferal() {
   }
 
   const copyToClipboard = () => {
-    debugger
     if (profile?.referralCode) {
       const textField = document.createElement('textarea')
       textField.innerText = profile.referralCode
