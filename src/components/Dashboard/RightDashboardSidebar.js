@@ -6,7 +6,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LocalServices from "services/LocalServices";
 
-function RightDashboardSidebar({ width, breakpointMatched, state, profile }) {
+function RightDashboardSidebar({
+  width,
+  breakpointMatched,
+  state,
+  profile,
+  videoWatchDuration,
+  lastDayWatchVideoDuration,
+  lastVideoHistory }) {
   const { getter, setter } = state;
   const sidebarRef = OutsideClickDetector(() => setter && setter(false));
   const token = LocalServices.getServices("token");
@@ -87,7 +94,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state, profile }) {
               Minutes watched in total
             </HeadingSmall>
             <p className="text-sm xl:text-base font-bold">
-              { token ? `${5400} Minutes` : `N/A` }
+              { token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : `N/A` }
             </p>
           </div>
 
@@ -99,7 +106,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state, profile }) {
             </HeadingSmall>
 
             <p className="text-sm xl:text-base font-bold">
-            { token ? `${24} Minutes` : `N/A` }
+            { token ? `${lastDayWatchVideoDuration ? lastDayWatchVideoDuration : 0} Minutes` : `N/A` }
             </p>
           </div>
 
@@ -109,11 +116,13 @@ function RightDashboardSidebar({ width, breakpointMatched, state, profile }) {
             <HeadingSmall>Most watched channel:</HeadingSmall>
 
             <div className="flex-1">
-              <img
-                src="/images/tv/cultured-one.svg"
-                className="w-full min-w-[76px] xl:min-w-[96px]"
-                alt=""
-              />
+            {token && lastVideoHistory?.channelImageLink ? (
+                <img
+                  src={lastVideoHistory?.channelImageLink}
+                  className="w-[90px]"
+                  alt={lastVideoHistory?.channelName ? lastVideoHistory?.channelName : 'default'}
+                />
+              ) : 'N/A'}
             </div>
           </div>
 

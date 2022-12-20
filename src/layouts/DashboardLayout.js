@@ -14,10 +14,14 @@ function DashboardLayout() {
   const [leftSidebarVisible, setLeftSidebarVisibility] = useState(false);
   const [rightSidebarVisible, setRightSidebarVisibility] = useState(false);
   const [profile, setProfile] = useState(null);
+  const [videoWatchDuration, setVideoWatchDuration] = useState(0);
+  const [lastDayWatchVideoDuration, setLastDayWatchVideoDuration] = useState(0);
+  const [lastVideoHistory, setLastVideoHistory] = useState(null);
 
   const isAbove1280px = useMediaQuery("(min-width : 1280px)");
   const leftSidebar_Width = "220px";
   const rightSidebar_Width = "270px";
+
   const userId = LocalServices.getServices("user")?.userId || null;
 
   const viewUserProfile = (userId) => {
@@ -28,9 +32,28 @@ function DashboardLayout() {
     })
   }
 
+  const getVideoWatchDuration = (userId) => {
+    Api.getVideoWatchDuration(userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        setVideoWatchDuration(res.data.data.totalWatchVideoDuration);
+        setLastDayWatchVideoDuration(res.data.data.lastDayWatchVideoDuration);
+      }
+    })
+  }
+
+  const getLastShowWatchHistory = (userId) => {
+    Api.getLastWatchShowHistory(userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        setLastVideoHistory(res.data.data);
+      }
+    })
+  }
+
   useEffect(() => {
     if(userId) {
       viewUserProfile(userId)
+      getVideoWatchDuration(userId)
+      getLastShowWatchHistory(userId)
     }
     if (leftSidebarVisible || rightSidebarVisible) {
       document.body.style.overflowY = "hidden";
@@ -80,6 +103,9 @@ function DashboardLayout() {
           setter: setRightSidebarVisibility,
         }}
         profile={profile}
+        videoWatchDuration={videoWatchDuration}
+        lastDayWatchVideoDuration={lastDayWatchVideoDuration}
+        lastVideoHistory={lastVideoHistory}
       />
     </div>
   );
