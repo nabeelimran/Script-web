@@ -317,16 +317,9 @@ function Channels({
 
   //  Save video duration code
 
-   useEffect(()=>{
-    if(userId) {
-      getVideoTokenEarned(userId)
-    }
-   },[])
 
-   useEffect(()=>{
-    
-    if(earnedToken){
-
+  useEffect(()=>{
+    if(earnedToken) {
       saveVideoDuration(videoTimeWatch)
       setVideoTokenBalance('', earnedToken);
     }
