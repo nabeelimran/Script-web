@@ -5,12 +5,13 @@ import FillBar from "components/FillBar";
 import GlassModalButton from "components/GlassModalButton";
 import Popup from "components/Popup";
 import SquareBox from "components/SquareBox";
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Api from 'services/api'
-import {useDispatch, useSelector } from "react-redux";
+import Api from "services/api";
+import { useDispatch, useSelector } from "react-redux";
 import { helper } from "utils/helper";
 import { updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
+import RecaptchaPopup from "components/RecaptchaPopup";
 
 const channels = [
   {
@@ -192,7 +193,6 @@ const timeline = [
   { time: "22:30", active: false },
   { time: "23:00", active: false },
   { time: "23:30", active: false },
-  
 ];
 
 function Channels({
@@ -200,106 +200,110 @@ function Channels({
   currentVideo,
   videoTokenEarned,
   metamaskBalance,
-  recaptchaCode
+  recaptchaCode,
 }) {
-  const [channels, setChannels] = useState([])
-  const [cursorposition,setCursonPosition]=useState({marginLeft:0})
+  const [channels, setChannels] = useState([]);
+  const [cursorposition, setCursonPosition] = useState({ marginLeft: 0 });
   const [liveShow, setLiveShow] = useState({});
-  
-  const [timeline, setTimeline] = useState([])
-  const dispatch=useDispatch();
-  const { changecurrentVideo,data } = useSelector(
+
+  const [timeline, setTimeline] = useState([]);
+  const dispatch = useDispatch();
+  const { changecurrentVideo, data } = useSelector(
     (state) => state.connectWalletModal_State
   );
-  useEffect(()=>{
-    let timelinedata= helper.createTimeSlot(new Date());
-    setTimeline(timelinedata)
-    if(timeline.length>0){
-      setInterval(()=>{
-        let style={marginLeft:0}
-        const todayDate= new Date();
-        let timelinemin=Number(timeline[0]?.split(':')[1]);
-        let min=todayDate.getMinutes()-timelinemin;
-        style.marginLeft=min;
-       setCursonPosition(style)
-      },10000)
+  useEffect(() => {
+    let timelinedata = helper.createTimeSlot(new Date());
+    setTimeline(timelinedata);
+    if (timeline.length > 0) {
+      setInterval(() => {
+        let style = { marginLeft: 0 };
+        const todayDate = new Date();
+        let timelinemin = Number(timeline[0]?.split(":")[1]);
+        let min = todayDate.getMinutes() - timelinemin;
+        style.marginLeft = min;
+        setCursonPosition(style);
+      }, 10000);
     }
-  },[])
-  useEffect(()=>{
-let chData =channeldata.map(ch=>{
-  let liveshows=ch.liveShows.filter(ls=>new Date(ls.startTime).getDate() === new Date().getDate());
-  ch.liveShows=liveshows.map(show => {
-    let res= getDurationInMinute(show.startTime,show.endTime);
-      show.duration=res.duration;
-      show.time=res.time;
-      show.selected=false;
-      return show;
-     });
-     return ch;
-})
-chData[0].liveShows[0].selected=true;
-  setLiveShow(chData[0].liveShows[0]);
-  setChannels(chData);
-  },[timeline])
-  const getDurationInMinute=(startedAt , endedAt)=>{
-    let startDate=new Date(startedAt);
-    let endDate=new Date(endedAt);
-  let timelinemin=Number(timeline[0]?.split(':')[1]);
-    let duration=helper.getDiffInMin(endDate,startDate);
-    let diff=helper.getDiffInMinfromCurrent(startDate);
-    let curdatemin=new Date().getMinutes();
-    if(diff<0){
-      diff=diff+curdatemin-timelinemin;//adjust duration according to timeline
-    }else{
-      diff=0
+  }, []);
+  useEffect(() => {
+    let chData = channeldata.map((ch) => {
+      let liveshows = ch.liveShows.filter(
+        (ls) => new Date(ls.startTime).getDate() === new Date().getDate()
+      );
+      ch.liveShows = liveshows.map((show) => {
+        let res = getDurationInMinute(show.startTime, show.endTime);
+        show.duration = res.duration;
+        show.time = res.time;
+        show.selected = false;
+        return show;
+      });
+      return ch;
+    });
+    chData[0].liveShows[0].selected = true;
+    setLiveShow(chData[0].liveShows[0]);
+    setChannels(chData);
+  }, [timeline]);
+  const getDurationInMinute = (startedAt, endedAt) => {
+    let startDate = new Date(startedAt);
+    let endDate = new Date(endedAt);
+    let timelinemin = Number(timeline[0]?.split(":")[1]);
+    let duration = helper.getDiffInMin(endDate, startDate);
+    let diff = helper.getDiffInMinfromCurrent(startDate);
+    let curdatemin = new Date().getMinutes();
+    if (diff < 0) {
+      diff = diff + curdatemin - timelinemin; //adjust duration according to timeline
+    } else {
+      diff = 0;
     }
- let res={
-  duration:duration+diff,
-  time:helper.getIn12HoursFormat(startDate)+'-'+helper.getIn12HoursFormat(endDate)
- }
- return res;
+    let res = {
+      duration: duration + diff,
+      time:
+        helper.getIn12HoursFormat(startDate) +
+        "-" +
+        helper.getIn12HoursFormat(endDate),
+    };
+    return res;
+  };
+  const changeSelectedVideo = (show) => {
+    setLiveShow(show);
+    let chdata = JSON.parse(JSON.stringify(channels));
+    chdata = chdata.map((ch) => {
+      ch.liveShows = ch.liveShows.map((ls) => {
+        if (ls && ls.selected) {
+          ls.selected = false;
+        }
+        if (ls && show && ls.id === show.id) {
+          ls.selected = true;
+        }
+        return ls;
+      });
+      return ch;
+    });
+    setChannels([...chdata]);
+    currentVideo(show);
+  };
+  useEffect(() => {
+    if (changecurrentVideo) {
+      dispatch(updateCurrentVideo(false));
+      let chdata = JSON.parse(JSON.stringify(channels));
+      chdata = chdata.map((ch) => {
+        ch.liveShows = ch.liveShows.map((ls) => {
+          if (ls && ls.selected) {
+            ls.selected = false;
+          }
+          if (ls && data && ls.id === data.id) {
+            ls.selected = true;
+          }
+          return ls;
+        });
+        return ch;
+      });
+      setChannels([...chdata]);
+      currentVideo(data);
+    }
+  }, [changecurrentVideo, data]);
 
-  }
- const changeSelectedVideo=(show)=>{
-  setLiveShow(show);
-  let chdata=JSON.parse(JSON.stringify(channels));
-  chdata=chdata.map((ch)=>{
-    ch.liveShows= ch.liveShows.map(ls=>{
-       if(ls&&ls.selected){
-        ls.selected=false
-       };
-       if(ls&&show&&ls.id === show.id){
-         ls.selected=true;
-       }
-     return ls
-     })
-     return ch;
-    })  
-  setChannels([...chdata])
-   currentVideo(show);
-  }
-  useEffect(()=>{
-    if(changecurrentVideo){
-      dispatch(updateCurrentVideo(false))
-      let chdata=JSON.parse(JSON.stringify(channels));
-      chdata=chdata.map((ch)=>{
-        ch.liveShows= ch.liveShows.map(ls=>{
-           if(ls&&ls.selected){
-            ls.selected=false
-           
-           };
-           if(ls&&data&&ls.id === data.id){
-           ls.selected=true           }
-         return ls
-         })
-         return ch;
-        })
-      setChannels([...chdata])
-       currentVideo(data);
-      
-    }
-   }, [changecurrentVideo,data])
-
+  const [modal, setModal] = useState(false);
 
   return (
     <section>
@@ -336,11 +340,11 @@ chData[0].liveShows[0].selected=true;
                 <div className="flex-1 w-full">
                   <div className="md:max-w-[300px] w-full text-center md:text-left">
                     {/* <FillBar barColor="#6C6C6C" bgColor="#1F1F1F" /> */}
+                    <p className="text-sm">{liveShow.title}</p>
                     <p className="text-sm">
-                      {liveShow.title}
-                    </p>
-                    <p className="text-sm">
-                      {liveShow.description ? liveShow.description : liveShow.channelDesc }
+                      {liveShow.description
+                        ? liveShow.description
+                        : liveShow.channelDesc}
                     </p>
                   </div>
                 </div>
@@ -356,12 +360,17 @@ chData[0].liveShows[0].selected=true;
                   <Icon icon="mdi:view-dashboard" className="invert text-xl" />
                 )}
               />
-              <Button
-                link="/dashboard"
-                label={recaptchaCode}
-                customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
-                variant={4}
-              />
+
+              <>
+                <RecaptchaPopup open={modal} setOpen={setModal} />
+                <Button
+                  type="button"
+                  label={recaptchaCode}
+                  customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
+                  variant={4}
+                  buttonProps={{ onClick: () => setModal((val) => !val) }}
+                />
+              </>
             </div>
           </div>
 
@@ -427,7 +436,10 @@ chData[0].liveShows[0].selected=true;
           <div className=""></div>
           <div className="flex items-center overflow-x-auto hide-scrollbar">
             {timeline.map((item, i) => (
-              <div key={i} className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center">
+              <div
+                key={i}
+                className="min-w-[80px] md:min-w-[160px] flex flex-col items-start  justify-center"
+              >
                 <p className="text-xs md:text-base lh-1">{item}</p>
                 <Icon
                   icon="ic:sharp-arrow-drop-down"
@@ -442,13 +454,16 @@ chData[0].liveShows[0].selected=true;
         </div>
 
         <div className="grid gap-3">
-          {channels.map((ch, index) => (
-            ch.liveShows[0]?.duration?<ChannelsRow key={index}
-              channleDetails={ch}
-              channels={ch.liveShows}
-              changeVideo={(show)=>changeSelectedVideo(show)}
-            />:null
-          ))}
+          {channels.map((ch, index) =>
+            ch.liveShows[0]?.duration ? (
+              <ChannelsRow
+                key={index}
+                channleDetails={ch}
+                channels={ch.liveShows}
+                changeVideo={(show) => changeSelectedVideo(show)}
+              />
+            ) : null
+          )}
         </div>
       </div>
     </section>
