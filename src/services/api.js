@@ -282,4 +282,32 @@ export default class Api {
         return axios.get(`${APIPATH.BASEURL}getCountries`, options);    
     }
 
+    getCategory(pageNo, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}getCategory?pageNo=${pageNo}`, options);    
+    }
+
+    getAllChannels(pageNo, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}getAllChannels?page=${pageNo}`, options);    
+    }
+
 }
