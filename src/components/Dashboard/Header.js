@@ -5,7 +5,11 @@ import useMediaQuery from "hooks/useMediaQuery";
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Header({ setRightSidebarVisibility, setLeftSidebarVisibility }) {
+function Header({
+  setRightSidebarVisibility,
+  setLeftSidebarVisibility,
+  profile
+}) {
   const isAbove768px = useMediaQuery("(min-width : 768px)");
 
   return (
@@ -33,7 +37,9 @@ function Header({ setRightSidebarVisibility, setLeftSidebarVisibility }) {
               </div>
 
               {isAbove768px && (
-                <p className="font-medium text-xs md:text-sm">Peter Parker</p>
+                <p className="font-medium text-xs md:text-sm">
+                  {profile?.firstName ? profile?.firstName : ''}
+                </p>
               )}
             </div>
             {isAbove768px && (

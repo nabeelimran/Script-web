@@ -7,16 +7,31 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import Api from "services/api";
+import LocalServices from "services/LocalServices";
 
 function DashboardLayout() {
   const [leftSidebarVisible, setLeftSidebarVisibility] = useState(false);
   const [rightSidebarVisible, setRightSidebarVisibility] = useState(false);
+  const [profile, setProfile] = useState(null);
 
   const isAbove1280px = useMediaQuery("(min-width : 1280px)");
   const leftSidebar_Width = "220px";
   const rightSidebar_Width = "270px";
+  const userId = LocalServices.getServices("user")?.userId || null;
+
+  const viewUserProfile = (userId) => {
+    Api.viewUserProfile(userId, 'dashboard').then((res) => {
+      if(res && res.status === 200) {
+        setProfile(res.data.data);
+      }
+    })
+  }
 
   useEffect(() => {
+    if(userId) {
+      viewUserProfile(userId)
+    }
     if (leftSidebarVisible || rightSidebarVisible) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -31,10 +46,10 @@ function DashboardLayout() {
           <BlackScreen
             show={leftSidebarVisible || rightSidebarVisible ? true : false}
           />
-
           <Header
             setLeftSidebarVisibility={setLeftSidebarVisibility}
             setRightSidebarVisibility={setRightSidebarVisibility}
+            profile = {profile}
           />
         </>
       )}
@@ -64,6 +79,7 @@ function DashboardLayout() {
           getter: rightSidebarVisible,
           setter: setRightSidebarVisibility,
         }}
+        profile={profile}
       />
     </div>
   );

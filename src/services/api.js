@@ -254,4 +254,32 @@ export default class Api {
         return axios.get(`${APIPATH.BASEURL}getAllTwitterFeeds`, options);
     }
 
+    static viewUserProfile(userId, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}viewuserprofile?id=${userId}`, options);    
+    }
+
+    static getCountryList(screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}getCountries`, options);    
+    }
+
 }
