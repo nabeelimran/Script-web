@@ -48,35 +48,12 @@ function GlassPopup({ open, setOpen }) {
         </div>
       </Popup> */}
 
-      <Popup
+      {/* <Popup
         open={open}
         glass={true}
         setOpen={setOpen}
         className="max-w-[400px] w-full bg-black text-white py-5 px-8 rounded-lg mx-auto border border-primary"
       >
-        {/* <img
-          src="images/tv/glasses.svg"
-          className="mx-auto max-w-[70px] w-full mb-5"
-          alt=""
-        />
-
-        <div className="space-y-2 mb-3">
-          <div className="space-y-1 w-full">
-            <FillBar barColor="#FF0015" bgColor="#434242" />
-            <p className="text-center font-medium text-sm text-black">47/100</p>
-          </div>
-          <div className="space-y-1 w-full">
-            <FillBar barColor="#3C58EE" bgColor="#434242" />
-            <p className="text-center font-medium text-sm text-black">
-              Level 01
-            </p>
-          </div>
-        </div>
-
-        <div className="py-1 px-3 text-center w-fit mx-auto text-xs xl:text-xs bg-black font-medium rounded">
-          #708543
-        </div> */}
-
         <h2 className="text-center mb-3">Glasses</h2>
         <div className="max-h-48 overflow-auto">
           <div
@@ -151,6 +128,37 @@ function GlassPopup({ open, setOpen }) {
             onClick={() => setOpen(false)}
           >
             Continue
+          </button>
+        </div>
+      </Popup> */}
+
+      <Popup
+        open={open}
+        glass={true}
+        setOpen={setOpen}
+        className="max-w-[400px] w-full bg-black text-white rounded-lg mx-auto border border-primary"
+      >
+        <div className="px-5 py-3 flex justify-between items-center">
+          <h2 className="text-xl ">Verify Captcha</h2>
+          <p className="text-2xl">x</p>
+        </div>
+
+        <div className="flex flex-col py-5 px-5">
+          <label htmlFor="captchaCode" className="mb-2 ml-1">
+            Enter Captcha Code
+          </label>
+          <input
+            type="text"
+            name=""
+            id="captchaCode"
+            placeholder="Enter Captcha Code"
+            className="rounded py-1.5 px-3 bg-[#131313] outline-none"
+          />
+          <button
+            className="bg-primary text-black w-full rounded-xl py-2.5 mt-5"
+            onClick={() => setOpen(false)}
+          >
+            Verify
           </button>
         </div>
       </Popup>
