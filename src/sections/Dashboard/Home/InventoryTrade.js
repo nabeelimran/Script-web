@@ -4,6 +4,45 @@ import React, { useRef } from "react";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+const glassImages = [
+  'images/blue-glasses.png',
+  'images/yellow-glasses.png',
+  'images/green-glasses.png',
+  'images/orange-glasses.png'
+]
+
+const glasses = [
+  {
+    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    id: '#535435'
+  },
+  {
+    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    id: '#535436'
+  },
+  {
+    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    id: '#535437'
+  },
+  {
+    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    id: '#535438'
+  },
+  {
+    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    id: '#535439'
+  },
+  {
+    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    id: '#535440'
+  },
+  {
+    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    id: '#535441'
+  }
+]
+
+
 function InventoryTrade() {
   const prevRef = useRef();
   const nextRef = useRef();
@@ -13,6 +52,7 @@ function InventoryTrade() {
       <h1 className="fs-20px font-medium mb-7">My Inventory Trade Here</h1>
 
       <div className="relative">
+        {console.log(glasses)}
         <Swiper
           slidesPerView={4}
           spaceBetween={20}
@@ -46,7 +86,17 @@ function InventoryTrade() {
             },
           }}
         >
-          <SwiperSlide>
+          {
+            glasses.map(glass => {
+              return (
+                <SwiperSlide>
+                  <InventoryTradeCard glass={glass}/>
+                </SwiperSlide>
+              )
+            })
+          }
+          
+          {/* <SwiperSlide>
             <InventoryTradeCard />
           </SwiperSlide>
           <SwiperSlide>
@@ -63,10 +113,7 @@ function InventoryTrade() {
           </SwiperSlide>
           <SwiperSlide>
             <InventoryTradeCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <InventoryTradeCard />
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
 
         <button
