@@ -47,12 +47,8 @@ function UnlockWalletPageLayout() {
       <div className="bg-shade-dark-blue w-full sm:bg-transparent">
         <div className="container">
           <div className="bg-transparent sm:bg-shade-dark-blue sm:rounded-2xl sm:px-8 lg:px-12 py-6 sm:py-8 lg:py-12 w-full grid lg:grid-cols-2 gap-10 sm:gap-12 xl:gap-16">
-            <div className="relative row-start-2 row-end-3 lg:row-start-1 lg:row-end-2">
-              <img
-                src="/images/tv/form-img.png"
-                className="w-full lg:h-full object-cover rounded-2xl lg:absolute top-0 left-0"
-                alt=""
-              />
+            <div className="row-start-2 row-end-3 lg:row-start-1 lg:row-end-2">
+              <img src="/images/tv/form-img.png" className="w-full" alt="" />
             </div>
             <div className="pt-2">
               <div className="flex items-center space-x-5 lg:space-x-8 mb-8">

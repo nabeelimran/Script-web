@@ -7,15 +7,14 @@ import LocalServices from './LocalServices';
 axios.interceptors.request.use(
     config => {
         const token = LocalServices.getServices("token");
-
-      if (token) {
-        config.headers['Authorization'] = 'Bearer ' + token
-      }
-      // config.headers['Content-Type'] = 'application/json';
-      return config
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        // config.headers['Content-Type'] = 'application/json';
+        return config
     },
     error => {
-      Promise.reject(error)
+        Promise.reject(error)
     }
   )
 
@@ -153,8 +152,7 @@ export default class Api {
                 latitude: 'dummyData',
                 longitude: 'dummyData',
                 countryName: 'dummyData',
-                screenName: screenName,
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
+                screenName: screenName
             }
         }
         return axios.get(`${APIPATH.BASEURL}user/token/details?userId=${userId}`, options);
@@ -168,7 +166,6 @@ export default class Api {
                 longitude: 'dummyData',
                 countryName: 'dummyData',
                 screenName: screenName,
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
             }
         }
         return axios.post(`${APIPATH.BASEURL}save/user/token`,req, options);
@@ -182,7 +179,6 @@ export default class Api {
                 longitude: 'dummyData',
                 countryName: 'dummyData',
                 screenName: screenName,
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaGVlcmFqMjQxNEB5b3BtYWlsLmNvbSIsImF1dGgiOltdLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcxMTk4MjI1LCJleHAiOjE2NzM4MjgwMjV9.wxfULBdALmY9DGMqXaWKZ1B8w6r6ynyCAfuYjaS7Snw"
             }
         }
         return axios.put(`${APIPATH.BASEURL}save/duration`, req, options);
@@ -199,6 +195,6 @@ export default class Api {
                  
             }
         }
-        return axios.post(`${APIPATH.BASEURL}logout`,req, options);
+        return axios.post(`${APIPATH.BASEURL}logoutUser`,req, options);
     }
 }
