@@ -23,20 +23,32 @@ Chart.register(
 );
 
 const data = {
-  labels: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+  labels: [],
   datasets: [
     {
       label: "Dataset",
-      data: [
-        14394, 14200, 14322, 14123, 143120, 14489, 14348, 14123, 143120, 14489,
-        14348,
-      ],
+      data: [],
       borderColor: "#FFEF00",
     },
   ],
 };
 
-function TransactionHistoryChart() {
+function TransactionHistoryChart({
+  analyticData
+}) {
+
+  if (analyticData && analyticData.length > 0) {
+    let durationArr = []
+    let videoIdArr = []
+    analyticData.forEach(aData => {
+      durationArr.push(aData.duration);
+      videoIdArr.push(aData.videoId);
+    });
+    data.labels = [...videoIdArr];
+    data.datasets[0].data = durationArr.sort();
+    console.log(data, 'sadsda');
+  } 
+
   return (
     <Line
       data={data}

@@ -310,4 +310,18 @@ export default class Api {
         return axios.get(`${APIPATH.BASEURL}getAllChannels?page=${pageNo}`, options);    
     }
 
+    static getVideoWatchAnalytics(userId, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.get(`${APIPATH.BASEURL}analytic/graph?userId=${userId}`, options);    
+    }
+
 }
