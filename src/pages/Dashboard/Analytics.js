@@ -1,6 +1,8 @@
 import Title from "components/Title";
 import TransactionHistoryChart from "components/TransactionHistoryChart";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Api from "services/api";
+import LocalServices from "services/LocalServices";
 
 const Card = ({ children, className }) => {
   return (
@@ -13,6 +15,44 @@ const Card = ({ children, className }) => {
 };
 
 function Analytics() {
+
+  const userId = LocalServices.getServices("user")?.userId || null;
+  const [videoWatchDuration, setVideoWatchDuration] = useState(0);
+  const [lastVideoHistory, setLastVideoHistory] = useState(null);
+  const [analyticData, setAnalyticsData] = useState([])
+
+  const getVideoWatchDuration = (userId) => {
+    Api.getVideoWatchDuration(userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        setVideoWatchDuration(res?.data?.data?.totalWatchVideoDuration);
+      }
+    })
+  }
+
+  const getLastShowWatchHistory = (userId) => {
+    Api.getLastWatchShowHistory(userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        setLastVideoHistory(res?.data?.data);
+      }
+    })
+  }
+
+  const getVideoWatchAnalytics = (userId) => {
+    Api.getVideoWatchAnalytics(userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        setAnalyticsData(res?.data?.data || []);
+      }
+    })
+  }
+
+  useEffect(() => {
+    if(userId) {
+      getVideoWatchDuration(userId)
+      getLastShowWatchHistory(userId)
+      getVideoWatchAnalytics(userId)
+    }
+  }, []);
+
   return (
     <div className="dashboard-top-spacing dashboard-bottom-spacing dashboard-layout">
       <div className="mb-12 lg:mb-20">
@@ -26,7 +66,7 @@ function Analytics() {
               Watch Time
             </p>
             <p className="text-center text-xs sm:text-sm xl:text-base font-semibold">
-              11 ( Min)
+              {videoWatchDuration ? videoWatchDuration : 0} ( Min)
             </p>
           </Card>
           <Card>
@@ -42,10 +82,10 @@ function Analytics() {
               <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-lg bg-[#171717]"></div>
               <div>
                 <p className="text-xs sm:text-sm xl:text-base font-semibold mb-1">
-                  M.C Escher
+                  {lastVideoHistory?.videoTitle}
                 </p>
                 <p className="text-xs sm:text-sm xl:text-base font-semibold">
-                  01:04:15 - 48 (min)
+                {lastVideoHistory?.videoSize || 'N/A'} - {lastVideoHistory?.duration} (min)
                 </p>
               </div>
             </div>
@@ -53,7 +93,7 @@ function Analytics() {
         </div>
       </div>
 
-      <TransactionHistoryChart />
+      <TransactionHistoryChart analyticData={analyticData} />
     </div>
   );
 }

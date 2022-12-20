@@ -60,8 +60,6 @@ function Button({
       {...buttonProps}
       disabled={disable}
       className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]}`}
-      
-
     >
       {loader ? (<img src={LoaderGif} alt="loader" style={{height:"16px"}}/>) : null}
       {LeftComponent && <LeftComponent />}

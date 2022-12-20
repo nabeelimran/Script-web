@@ -92,7 +92,7 @@ const team = [
   {
     name: "Akeem Ojuko",
     img: "images/team/Akeem-Ojuko.png",
-    designation: "Co Founder/Content acq Partnership",
+    designation: "Co Founder/Product+Growth",
   },
 
   {

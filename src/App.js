@@ -36,6 +36,7 @@ import EmailConfirmation from "components/EmailConfirmation";
 import CreatePasswordForm from "components/CreatePasswordForm";
 import EpgModal from "sections/TvHomepage/EpgModal";
 import VerifyAccount from "pages/VerifyAccount";
+import PrivateRoute from "auth/PrivateRoute";
 
 function App() {
   return (
@@ -74,13 +75,13 @@ function App() {
           <Route path="private-key" element={<PrivateKey />} />
         </Route>
 
-        <Route path="dashboard" element={<DashboardLayout />}>
-          <Route path="" index element={<Home />} />
-          <Route path="change-password" element={<ChangePassword />} />
-          <Route path="edit-profile" element={<EditProfile />} />
-          <Route path="share-referral" element={<ShareRefferal />} />
-          <Route path="token-mapping" element={<TokenMapping />} />
-          <Route path="analytics" element={<Analytics />} />
+        <Route path="dashboard" element={<PrivateRoute><DashboardLayout /></PrivateRoute>}>
+          <Route path="" index element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="change-password" element={<PrivateRoute><ChangePassword /></PrivateRoute>} />
+          <Route path="edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
+          <Route path="share-referral" element={<PrivateRoute><ShareRefferal /></PrivateRoute>} />
+          <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} />
+          <Route path="analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
         </Route>
 
         {/* MARKETPLACE */}

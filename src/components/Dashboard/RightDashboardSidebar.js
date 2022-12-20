@@ -4,10 +4,19 @@ import UpperRoot from "components/UpperRoot";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
 import { Link } from "react-router-dom";
+import LocalServices from "services/LocalServices";
 
-function RightDashboardSidebar({ width, breakpointMatched, state }) {
+function RightDashboardSidebar({
+  width,
+  breakpointMatched,
+  state,
+  profile,
+  videoWatchDuration,
+  lastDayWatchVideoDuration,
+  lastVideoHistory }) {
   const { getter, setter } = state;
   const sidebarRef = OutsideClickDetector(() => setter && setter(false));
+  const token = LocalServices.getServices("token");
 
   return (
     <UpperRoot>
@@ -47,11 +56,13 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
           </div>
 
           <div className="flex items-center space-x-4">
-            <p className="font-medium text-sm">Peter Parker</p>
+            <p className="font-medium text-sm">
+              {profile?.firstName ? profile?.firstName : ''}
+            </p>
             <div className="w-[34px] rounded-full h-[34px] relative">
               <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
               <img
-                src="/images/dashboard/user.png"
+                src={profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/dashboard/user.png"} 
                 className="rounded-full w-full"
                 alt=""
               />
@@ -73,7 +84,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
           <div className="px-6">
             <HeadingSmall> Streaming now on IRL:</HeadingSmall>
 
-            <div className="h-[30px]"></div>
+            <div className="h-[30px]">N/A</div>
           </div>
 
           <DividerLine />
@@ -82,7 +93,9 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
             <HeadingSmall className="mb-2">
               Minutes watched in total
             </HeadingSmall>
-            <p className="text-sm xl:text-base font-bold">5,400 Minutes</p>
+            <p className="text-sm xl:text-base font-bold">
+              { token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : `N/A` }
+            </p>
           </div>
 
           <DividerLine />
@@ -92,7 +105,9 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
               Minutes watched in the last 24 hours
             </HeadingSmall>
 
-            <p className="text-sm xl:text-base font-bold">24 Minutes</p>
+            <p className="text-sm xl:text-base font-bold">
+            { token ? `${lastDayWatchVideoDuration ? lastDayWatchVideoDuration : 0} Minutes` : `N/A` }
+            </p>
           </div>
 
           <DividerLine />
@@ -101,11 +116,13 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
             <HeadingSmall>Most watched channel:</HeadingSmall>
 
             <div className="flex-1">
-              <img
-                src="/images/tv/cultured-one.svg"
-                className="w-full min-w-[76px] xl:min-w-[96px]"
-                alt=""
-              />
+            {token && lastVideoHistory?.channelImageLink ? (
+                <img
+                  src={lastVideoHistory?.channelImageLink}
+                  className="w-[90px]"
+                  alt={lastVideoHistory?.channelName ? lastVideoHistory?.channelName : 'default'}
+                />
+              ) : 'N/A'}
             </div>
           </div>
 
@@ -113,7 +130,7 @@ function RightDashboardSidebar({ width, breakpointMatched, state }) {
 
           <div className="px-6 flex items-center space-x-4 justify-between">
             <div>
-              <p className="text-sm xl:text-base font-medium">#535435</p>
+              <p className="text-sm xl:text-base font-medium">N/A</p>
               <HeadingSmall>Favourite Glasses</HeadingSmall>
             </div>
 

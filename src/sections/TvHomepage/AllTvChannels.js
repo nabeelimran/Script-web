@@ -4,29 +4,31 @@ import StreamForm from "components/StreamForm";
 import Title from "components/Title";
 import VideoPlayer from "components/VideoPlayer";
 import React , { useEffect }  from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import videojs from 'video.js';
 import 'videojs-contrib-ads';
 import {refreshChannel} from 'redux/reducers/connectWalletModal_State'
+import { earnedTokenRed, getVideoTimeWatch } from "redux/reducers/video_State";
+import LocalServices from "services/LocalServices";
 
 function AllTvChannels({
   show,
   adsList,
-  checkVideoWatchTime
+  // checkVideoWatchTime
 }) {
   const playerRef = React.useRef(null);
   const dispatch=useDispatch();
   let slots = [];
+  let userId = LocalServices.getServices("user")?.userId || null;
 
-  // from redux state
-  const myShows = useSelector((state) => state.video_State)
-let durationcheckinterval;
+
+  let durationcheckinterval;
+
   const getRandomAds = () => {
     let randomAds;
     if (adsList && adsList.length > 0) {
       randomAds = adsList[Math.floor(Math.random() * adsList.length)];
     }
-    // console.log(randomAds, 'selected ads');
     return randomAds;
   }
 
@@ -37,9 +39,6 @@ let durationcheckinterval;
     const currentTimeInMin = Math.ceil((videoCurrentTimeInSec && videoCurrentTimeInSec > 0 ? playerRef.current.currentTime : playerRef.current.currentTime) / 60)
     const interval = 20;
     slots = [];
-
-    console.log('total time', videoDurationInMin);
-    console.log('current time', currentTimeInMin);
 
     for (let i = 0; i <= (videoDurationInMin / interval); i++) {
       slots.push({
@@ -99,7 +98,6 @@ let durationcheckinterval;
     let videoWatchInterval;
     let durationcheckinterval;
     if (show && playerRef && playerRef.current) {
-      console.log(show, 'startTime')
       // playerRef.current.ads()
       // playerRef.current.on('readyforpreroll', () => {
       //   playerRef.current.ads.startLinearAdMode();
@@ -119,26 +117,27 @@ let durationcheckinterval;
       // })
    
       playerRef.current.on('timeupdate',(evt)=>{
-       
-        if(playerRef.current&&playerRef.current?.currentTime()){
-        durationcheckinterval= setInterval(()=>{
-          if(playerRef.current?.currentTime()&&playerRef.current.currentTime()==playerRef.current.duration()){
-            dispatch(refreshChannel(true))
-          }
+        
+        if(playerRef.current){
+          durationcheckinterval= setInterval(()=>{
+           // console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
+            if(playerRef.current?.currentTime()&&playerRef.current.currentTime() === playerRef.current.duration()){
+              dispatch(refreshChannel(true))
+            }
         },10000)
       }
       })
+
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
-        src: show.m3u8720Url,
+        src: show.hlsUrl,
         type: 'application/x-mpegURL'    
       })
+      playerRef.current.load();
+
       playerRef.current.on('play', () => {
-        console.log('video playing...');
         const videoStartTime = getVideoCurrentTimePace(show.startTime);
         videoWatchInterval = setInterval(() => {
-          console.log('normal show', show);
-          console.log('set show', show.startTime);
           const videoWatchTime = {
             startTime: videoStartTime,
             endTime: playerRef.current.duration(),
@@ -146,19 +145,24 @@ let durationcheckinterval;
           };
   
           if (show.startTime && videoWatchTime && videoWatchTime.endTime) {
-            console.log('final req', videoWatchTime);
-            checkVideoWatchTime(videoWatchTime)
+            // let eToken = earnedToken + 0.05
+            dispatch(getVideoTimeWatch(videoWatchTime))
+            if(userId){
+
+              dispatch(earnedTokenRed(0.05))
+            }
+            
+            //checkVideoWatchTime(videoWatchTime)
           }
         }, 60000)
       })
     }
     return () => {
-      if(videoWatchInterval) {
+      
         clearInterval(videoWatchInterval);
-      }
-      if(durationcheckinterval){
+      
         clearInterval(durationcheckinterval)
-      }
+      
     };
   
   }, [show])
@@ -178,14 +182,12 @@ let durationcheckinterval;
         let pipEl = document.getElementById('video-container');
         // if(position.top >= 0 && position.bottom <= window.innerHeight) {
         if(position.top >= 0 && position.bottom >= 0) {
-          console.log('Element is fully visible in screen');
           pipEl.classList.remove('custom-pip-window')
           // player.requestPictureInPicture()
         } else {
           pipEl.classList.add('custom-pip-window')
           
           // player.exitPictureInPicture();
-          console.log('Element is hidden in screen');
         }
       }, 500);
     })
@@ -195,7 +197,6 @@ let durationcheckinterval;
     });
 
     player.on('play', () => {
-      
     })
 
     player.on('dispose', () => {
@@ -230,7 +231,7 @@ let durationcheckinterval;
         </div>
       </div>
 
-      <div className="bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0" id="videoTag">
+      <div className="bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0">
         <div className="container">
           <div className="sm:bg-shade-darkest-blue grid lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px] gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden">
             <div className="bg-shade-grayis h-[200px] md:h-[300px] lg:h-auto" id="video-wrapper">

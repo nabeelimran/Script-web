@@ -7,8 +7,22 @@ import Title from "components/Title";
 import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "sections/Dashboard/EditProfile/Avatar";
+import { useForm } from "react-hook-form";
 
 function EditProfile() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    username:"",
+    email: "",
+    country: "",
+    bio: "",
+    privacyPolicy: false,
+  });
+
   return (
     <div className="dashboard-top-spacing dashboard-bottom-spacing dashboard-layout">
       <div className="flex justify-center mb-8">
@@ -23,18 +37,27 @@ function EditProfile() {
         <form>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 mb-6">
             <div>
-              <FloatingLabelInput lable="Username" />
+              <FloatingLabelInput
+                lable="Username"
+                other={{
+                  ...register("username", { required: true }),
+                }}
+              />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 You may update your username again 2 month
               </p>
             </div>
             <div>
-              <FloatingLabelInput lable="Username" />
+              <FloatingLabelInput lable="Username" other={{
+            ...register("username", { required: true }),
+          }}/>
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Customize capitalzation for your username
               </p>
             </div>
-            <FloatingLabelInput lable="Email" />
+            <FloatingLabelInput lable="Email" other={{
+            ...register("email", { required: true }),
+          }}/>
             <FloatingLabelSelect label="Country" />
             <div className="sm:col-span-2">
               <FloatingLabelTextarea placeholder="Bio" />
