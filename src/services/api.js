@@ -296,7 +296,7 @@ export default class Api {
         return axios.get(`${APIPATH.BASEURL}getCategory?pageNo=${pageNo}`, options);    
     }
 
-    getAllChannels(pageNo, screenName) {
+    static getAllChannels(pageNo, screenName) {
         const options = {
             headers:{
                 ipAddress: 'dummyData',

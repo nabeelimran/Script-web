@@ -133,11 +133,11 @@ function Hero({
               <HeadingSmall>Most watched channel:</HeadingSmall>
 
               <div>
-              {token ? (
+              {token && lastVideoHistory?.channelImageLink ? (
                 <img
-                  src="/images/tv/cultured-one.svg"
+                  src={lastVideoHistory?.channelImageLink}
                   className="w-[90px]"
-                  alt=""
+                  alt={lastVideoHistory?.channelName ? lastVideoHistory?.channelName : 'default'}
                 />
               ) : 'N/A'}
                 

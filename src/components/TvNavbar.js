@@ -13,6 +13,7 @@ import ChannelsDropdown from "./ChannelsDropdown";
 import HelpDropdown from "./HelpDropdown";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import { useDispatch } from "react-redux";
+import Api from "services/api";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -20,8 +21,18 @@ function TvNavbar({ className }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [channels,  setChannels] = useState([]);
+
+  const getChannels = () => {
+    Api.getAllChannels(5, 'header').then((res) => {
+      if(res && res.status === 200) {
+        setChannels(res.data.data);
+      }
+    })
+  }
 
   useEffect(() => {
+    getChannels();
     if (isSidebarVisible) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -98,7 +109,7 @@ function TvNavbar({ className }) {
                 Watch
               </LinkScroller>
 
-              <ChannelsDropdown />
+              <ChannelsDropdown channels={channels} />
 
               <HelpDropdown />
 
