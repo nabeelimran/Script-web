@@ -122,7 +122,9 @@ function Hero({
                 Minutes watched in the last 24 hours
               </HeadingSmall>
 
-              <p className="text-sm xl:text-base font-bold">24 Minutes</p>
+              <p className="text-sm xl:text-base font-bold">
+              {token ? `${videoWatchDuration} Minutes` : 'N/A Minutes'}
+              </p>
             </div>
 
             <DividerLine />
@@ -131,11 +133,14 @@ function Hero({
               <HeadingSmall>Most watched channel:</HeadingSmall>
 
               <div>
+              {token ? (
                 <img
                   src="/images/tv/cultured-one.svg"
                   className="w-[90px]"
                   alt=""
                 />
+              ) : 'N/A'}
+                
               </div>
             </div>
 
