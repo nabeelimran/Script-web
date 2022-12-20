@@ -215,7 +215,7 @@ function TvHomepage() {
         />}
       </div>
 
-      <div className="mb-12">
+      <div className="mb-12" id="videoTag">
        {channel.length>0&& <Channels
         channeldata={channel}
         currentVideo={(data)=>changeVideo(data)}
