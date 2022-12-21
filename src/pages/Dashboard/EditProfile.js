@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "components/ToastMessage";
+import { toFormData } from "axios";
 
 function EditProfile() {
 
@@ -55,7 +56,7 @@ function EditProfile() {
 
   const updateProfile = (data) => {
     setLoading(true);
-    const req = {};
+    const req = new FormData();
     Api.updateProfile(req, 'edit-profile').then(res => {
       if(res && res.status === 200) {
         navigate({
