@@ -2,87 +2,85 @@ import React from "react";
 import FooterLinksSection from "./FooterLinksSection";
 
 function Footer({ container = "container-two" }) {
-
   const footerData = [
-      {
-        title: "PRODUCTS",
-        links: [
-          { title: "Script TV", to: "" },
-          { title: "Script Glass", to: "/research" },
-          { title: "Marketplace", to: "" },
-          { title: "dStorage", to: "" },
-          { title: "Script Blockchain", to: "/node" },
-          { title: "sADs", to: "" },
-        ]
-      },
-      {
-        title: "Script Tokens",
-        links: [
-          { title: "Script TV", to: "" },
-          { title: "Script Glass", to: "/research" },
-          { title: "Marketplace", to: "" },
-          { title: "dStorage", to: "" },
-          { title: "Script Blockchain", to: "/node" },
-          { title: "sADs", to: "" },
-        ]
-      },
-      {
-        title: "Community",
-        links: [
-          {
-            title: "Discord",
-            to: "https://discord.com/invite/hmhdWV6EVK",
-            target: "_blank",
-            anchorTag: true,
-          },
-          {
-            title: "Telegram",
-            to: "https://t.me/+Vu1gbwyoksZORzAG",
-            target: "_blank",
-            anchorTag: true,
-          },
-          {
-            title: "Twitter",
-            to: "https://twitter.com/script_network",
-            target: "_blank",
-            anchorTag: true,
-          },
-          {
-            title: "Blog",
-            to: "https://medium.com/@scriptnetwork",
-            target: "_blank",
-            anchorTag: true,
-          },
-          {
-            title: "Facebook",
-            to: "https://www.facebook.com/scriptnetwork",
-            target: "_blank",
-            anchorTag: true,
-          },
-          {
-            title: "Inistagram",
-            to: "https://www.instagram.com/script_network/",
-            target: "_blank",
-            anchorTag: true,
-          },
-          {
-            title: "GIthub",
-            to: "https://github.com/scriptnetwork",
-            target: "_blank",
-            anchorTag: true,
-          },
-        ]
-      },
-      {
-        title: "TERMS",
-        links: [
-          { title: "Terms of Service", to: "/terms-condition" },
-          { title: "Privacy Policy", to: "/privacy-policy" },
-          { title: "Cookies Policy", to: "/cookies-policy" },
-        ]
-      }
-
-    ]
+    {
+      title: "PRODUCTS",
+      links: [
+        { title: "Script TV", to: "" },
+        { title: "Script Glass", to: "/research" },
+        { title: "Marketplace", to: "" },
+        { title: "dStorage", to: "" },
+        { title: "Script Blockchain", to: "/node" },
+        { title: "sADs", to: "" },
+      ],
+    },
+    {
+      title: "Script Tokens",
+      links: [
+        { title: "Script TV", to: "" },
+        { title: "Script Glass", to: "/research" },
+        { title: "Marketplace", to: "" },
+        { title: "dStorage", to: "" },
+        { title: "Script Blockchain", to: "/node" },
+        { title: "sADs", to: "" },
+      ],
+    },
+    {
+      title: "Community",
+      links: [
+        {
+          title: "Discord",
+          to: "https://discord.com/invite/hmhdWV6EVK",
+          target: "_blank",
+          anchorTag: true,
+        },
+        {
+          title: "Telegram",
+          to: "https://t.me/+Vu1gbwyoksZORzAG",
+          target: "_blank",
+          anchorTag: true,
+        },
+        {
+          title: "Twitter",
+          to: "https://twitter.com/script_network",
+          target: "_blank",
+          anchorTag: true,
+        },
+        {
+          title: "Blog",
+          to: "https://medium.com/@scriptnetwork",
+          target: "_blank",
+          anchorTag: true,
+        },
+        {
+          title: "Facebook",
+          to: "https://www.facebook.com/scriptnetwork",
+          target: "_blank",
+          anchorTag: true,
+        },
+        {
+          title: "Inistagram",
+          to: "https://www.instagram.com/script_network/",
+          target: "_blank",
+          anchorTag: true,
+        },
+        {
+          title: "GIthub",
+          to: "https://github.com/scriptnetwork",
+          target: "_blank",
+          anchorTag: true,
+        },
+      ],
+    },
+    {
+      title: "TERMS",
+      links: [
+        { title: "Terms of Service", to: "/terms-condition" },
+        { title: "Privacy Policy", to: "/privacy-policy" },
+        { title: "Cookies Policy", to: "/cookies-policy" },
+      ],
+    },
+  ];
 
   return (
     <div className="bg-shade-darkest-blue">
@@ -90,17 +88,15 @@ function Footer({ container = "container-two" }) {
         <div
           className={`${container} grid grid-cols-[1fr_auto] sm:grid-cols-[1fr_1fr_auto] gap-y-8 md:gap-y-0 md:flex justify-between`}
         >
-          {
-            footerData.map((data, i) => {
-              (
-                <FooterLinksSection
-                  key={i}
-                  title={data.title}
-                  links={data.links}
-                />
-              )
-            })
-          }
+          {footerData.map((data, i) => {
+            return (
+              <FooterLinksSection
+                key={i}
+                title={data.title}
+                links={data.links}
+              />
+            );
+          })}
         </div>
       </div>
 

@@ -1,8 +1,8 @@
-import { enumStorange } from "utils/helper"
+import { STORAGEENUM } from "utils/helper"
 
 export default class LocalServices {
 
-    static  getServices(name) {
-        return JSON.parse(sessionStorage.getItem(enumStorange[name]))
+    static getServices(name) {
+        return JSON.parse(sessionStorage.getItem(STORAGEENUM[name]))
     }
 }

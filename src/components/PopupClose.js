@@ -4,14 +4,13 @@ import React, { useEffect } from "react";
 import BlackScreen from "./BlackScreen";
 import UpperRoot from "./UpperRoot";
 
-function Popup({ open, setOpen, children, className, glass = false }) {
+function PopupClose({ open, setOpen, children, className, glass = false }) {
   const shouldModalRender = useDelayUnmount(open, 400);
-  //   const shouldModalRender = open;
-  // const modalRef = OutsideClickDetector(() =>
-  //   setOpen(glass === true ? true : false)
-  // );
+
+  const modalRef = OutsideClickDetector(() => setOpen(false));
 
   useEffect(() => {
+    console.log(glass);
     if (open) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -32,7 +31,9 @@ function Popup({ open, setOpen, children, className, glass = false }) {
                 : "popup-out opacity-0 pointer-events-none"
             }`}
           >
-            <div className={className}>{children}</div>
+            <div ref={modalRef} className={className}>
+              {children}
+            </div>
           </div>
         )}
       </UpperRoot>
@@ -40,4 +41,4 @@ function Popup({ open, setOpen, children, className, glass = false }) {
   );
 }
 
-export default Popup;
+export default PopupClose;

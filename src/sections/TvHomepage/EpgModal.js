@@ -20,7 +20,6 @@ function EpgModal() {
   );
 
   useEffect(() => {
-    console.log('epg modal',isEpgModalVisible)
     if (isEpgModalVisible) {
       document.body.style.overflowY = "hidden";
     } else {
