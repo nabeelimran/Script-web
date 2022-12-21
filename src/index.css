@@ -582,7 +582,7 @@ input:-webkit-autofill:active {
 }
 
 video-js {
-  height: 100vh !important;
+  height: auto !important;
   width: 100% !important;
   border: 1px solid #212121;
 }

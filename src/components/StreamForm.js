@@ -17,7 +17,7 @@ function StreamForm() {
       </div>
 
       <button
-        type="submit"
+        type="button"
         className="min-w-[40px] text-primary h-10 rounded-lg bg-shade-grayis flex items-center justify-center"
       >
         <img src="images/tv/send-icon.svg" className="w-[46%]" alt="" />
