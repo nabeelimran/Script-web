@@ -1,6 +1,6 @@
 import React from "react";
 
-function FloatingLabelInput({ lable, value }) {
+function FloatingLabelInput({ lable, value, other }) {
   return (
     <div
       className="did-floating-label-content text-sm xl:text-base"
@@ -11,6 +11,7 @@ function FloatingLabelInput({ lable, value }) {
         type="text"
         placeholder=" "
         value={value}
+        {...other}
       />
       <label className="did-floating-label left-2 xl:left-3 bg-black">
         {lable}

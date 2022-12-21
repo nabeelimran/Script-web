@@ -20,7 +20,7 @@ function EditProfile() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [videoWatchDuration, setVideoWatchDuration] = useState(0);
-  const [[profileImageFile], setProfileImageFile] = useState(0);
+  const [profileImageFile, setProfileImageFile] = useState(null);
   const navigate = useNavigate();
 
   const viewUserProfile = (userId) => {
@@ -48,10 +48,10 @@ function EditProfile() {
   }
 
   const { register, handleSubmit, watch, formState: { errors }, } = useForm({
-    username:"",
-    email: "",
+    username: profile?.username || "",
+    email: profile?.email || "",
     country: "",
-    bio: "",
+    bio: profile?.bio || "",
     privacyPolicy: false,
   });
 
@@ -61,7 +61,7 @@ function EditProfile() {
       if(file) {
         const imagePreviewEl = document.getElementById('imagePreview');
         imagePreviewEl.src = URL.createObjectURL(file);
-        setProfileImageFile(file);
+        setProfileImageFile(file,);
       }
     }
   }
@@ -80,7 +80,7 @@ function EditProfile() {
     req.append("countryId", data.country);
     req.append("walletId", null);
     req.append("terms", data.privacyPolicy);
-    req.append("profileImage", "")
+    req.append("profileImage", profileImageFile ? profileImageFile : null)
     Api.updateProfile(req, 'edit-profile').then(res => {
       if(res && res.status === 200) {
         navigate({
@@ -124,7 +124,6 @@ function EditProfile() {
                 other={{
                   ...register("username", { required: true }),
                 }}
-                value={profile?.userName || ''}
               />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 You may update your username again 2 month
@@ -133,7 +132,6 @@ function EditProfile() {
             <div>
               <FloatingLabelInput
                 lable="Username"
-                value={profile?.userName || ''}
                 other={{
                   ...register("username", { required: true }),
               }}/>
@@ -143,13 +141,14 @@ function EditProfile() {
             </div>
               <FloatingLabelInput
                 lable="Email"
-                value={profile?.email || ''}
                 other={{
                 ...register("email", { required: true }),
               }}/>
             <FloatingLabelSelect label="Country" options={countryList} value={profile?.profile?.country?.id || ''} />
             <div className="sm:col-span-2">
-              <FloatingLabelTextarea placeholder="Bio" value={profile?.bio || ''} />
+              <FloatingLabelTextarea placeholder="Bio" value={profile?.bio || ''} other={{
+                ...register("bio"),
+              }} />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Description for the About panel on your channel page in under
                 300 Characters
