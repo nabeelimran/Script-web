@@ -54,9 +54,25 @@ function EditProfile() {
     privacyPolicy: false,
   });
 
+  const onSelectFile = (e) => {
+    console.log('file', e)
+  }
+
   const updateProfile = (data) => {
     setLoading(true);
     const req = new FormData();
+    req.append("id", userId);
+    req.append("bio", data.bio);
+    req.append("description", null);
+    req.append("userName", data.username);
+    req.append("email", data.email);
+    req.append("isAccountLocked", profile?.accountLocked);
+    req.append("displayName", data.username);
+    req.append("dateOfBirth", null);
+    req.append("countryId", data.country);
+    req.append("walletId", null);
+    req.append("terms", data.privacyPolicy);
+    req.append("profileImage", "")
     Api.updateProfile(req, 'edit-profile').then(res => {
       if(res && res.status === 200) {
         navigate({
@@ -84,7 +100,7 @@ function EditProfile() {
   return (
     <div className="dashboard-top-spacing dashboard-bottom-spacing dashboard-layout">
       <div className="flex justify-center mb-8">
-        <Avatar />
+        <Avatar selectImage={onSelectFile} />
       </div>
 
       <div>
@@ -168,7 +184,7 @@ function EditProfile() {
                 href="https://wallet.script.tv/"
                 target="_blank"
                 rel="noreferrer"
-                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+                className="text-primary hover:underline"
               >
                 Wallet
               </a>
