@@ -20,6 +20,7 @@ function EditProfile() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [videoWatchDuration, setVideoWatchDuration] = useState(0);
+  const [[profileImageFile], setProfileImageFile] = useState(0);
   const navigate = useNavigate();
 
   const viewUserProfile = (userId) => {
@@ -55,12 +56,12 @@ function EditProfile() {
   });
 
   const onSelectFile = (e) => {
-    console.log('file', e)
     if (e) {
       const file = e?.target?.files[0] || null;
       if(file) {
         const imagePreviewEl = document.getElementById('imagePreview');
         imagePreviewEl.src = URL.createObjectURL(file);
+        setProfileImageFile(file);
       }
     }
   }
