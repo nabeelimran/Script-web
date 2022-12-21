@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 
-function PassowrdInput({ id, placeholder }) {
+function PassowrdInput({ id, placeholder, other }) {
   const [showPassword, setSowPassword] = useState(false);
 
   return (
@@ -11,6 +11,7 @@ function PassowrdInput({ id, placeholder }) {
         placeholder={placeholder}
         type={showPassword ? "text" : "password"}
         className="absolute top-0 left-0 w-full h-full z-10 bg-transparent px-4 text-xs md:text-sm"
+        {...other}
       />
 
       <button
