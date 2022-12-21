@@ -16,6 +16,7 @@ function Avatar({
         src="/images/men.png"
         className="w-full h-full rounded-full"
         alt=""
+        id="imagePreview"
       />
 
       <input type="file" accept="image/png, image/jpg, image/jpeg" id="file" className="hidden" onChange={selectImage} />

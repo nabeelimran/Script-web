@@ -56,6 +56,13 @@ function EditProfile() {
 
   const onSelectFile = (e) => {
     console.log('file', e)
+    if (e) {
+      const file = e?.target?.files[0] || null;
+      if(file) {
+        const imagePreviewEl = document.getElementById('imagePreview');
+        imagePreviewEl.src = URL.createObjectURL(file);
+      }
+    }
   }
 
   const updateProfile = (data) => {
