@@ -640,7 +640,7 @@ video-js .vjs-picture-in-picture-control {
 }
 
 .custom-pip-window > video-js {
-  height: 100% !important;
+  height: auto !important;
   width: 100% !important;
 }
 
