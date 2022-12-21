@@ -36,17 +36,18 @@ function TvHomepage() {
   );
   const getChannels = () => {
     Api.getChannels("watch").then((res) => {
+      
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
-      dispatch(videoShows(res.data.data[0].liveShows[0]))
+      //dispatch(videoShows(res.data.data[0].liveShows[0]))
       //setAdsList(res.data.data[0].adsData)
      })
   }
 
   useEffect(()=>{
-    if(refreshChannel){
+    
       getChannels();
-    }
+    
   }, [refreshChannel]);
 
   // this is used to get the token earned by video based on user id
@@ -57,7 +58,7 @@ function TvHomepage() {
           ? +res?.data?.data?.earnedToken
           : 0;
         // setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
-        console.log("earned token", token);
+
         setVideoTokenEarned(token);
       } else {
         setVideoTokenEarned(0);
@@ -65,58 +66,9 @@ function TvHomepage() {
     });
   };
 
-  // this function is used to check the video watch at every 1 min interval
-  // const checkVideoWatchTime = (e) => {
-  //   console.log('interval called',e)
-  //   console.log("videoTokenEarned",videoTokenEarned)
-  //   if(e) {
-  //     saveVideoDuration(e)
-  //     let token = videoTokenEarned;
-  //     if(videoTokenEarned >= 0) {
-  //       token = videoTokenEarned + 0.05
-  //       //setVideoTokenEarned((prevState)=> prevState + 0.05)
-  //     }
-  //     //setVideoTokenBalance('', token);
-  //   }
-  // }
 
 
 
-  // this is used to save the watch time of user
-  const saveVideoDuration = (e) => {
-    const watchTime = (e.videoPlayTime - e.startTime) / 60;
-    const req = {
-      showId: currentVideo.id, // show id
-      videoId: currentVideo.videoId, // video id
-      userId: userId ? userId : 0,
-      videoDuration: +watchTime.toFixed(), // duration in minute
-    };
-
-    if (+watchTime.toFixed() > 0) {
-      Api.saveVideoDuration(req, "watch").then((res) => {
-        if (res && res.isSuccess) {
-        } else {
-        }
-      });
-    }
-  };
-
-  // this is used to save token earned by watch
-  const setVideoTokenBalance = (action, token) => {
-    const authToken = sessionStorage.getItem("script-token"); // auth token
-    if (authToken) {
-      const req = {
-        userId: userId ? userId : 0,
-        amount: action === "setDefault" ? 0 : token.toFixed(2),
-      };
-      Api.addVideoToken(req, "watch").then((res) => {
-        if (res && res.success) {
-          // setVideoTokenEarned(token);
-        } else {
-        }
-      });
-    }
-  };
 
   const getMetamaskBalance = () => {
     const authToken = sessionStorage.getItem("script-token");
@@ -202,7 +154,7 @@ function TvHomepage() {
       </div>
 
       <div className="mb-6">
-        {channel.length>0&&<AllTvChannels 
+        {channel.length>0&&  currentVideo && <AllTvChannels 
         show={currentVideo}
         adsList={adsList}
         // checkVideoWatchTime={checkVideoWatchTime}

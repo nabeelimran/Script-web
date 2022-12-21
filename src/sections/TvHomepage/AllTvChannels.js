@@ -20,6 +20,7 @@ function AllTvChannels({
   const dispatch=useDispatch();
   let slots = [];
   let userId = LocalServices.getServices("user")?.userId || null;
+  const [isPlayerReady,setIsPlayerReady] = React.useState(false)
 
 
   let durationcheckinterval;
@@ -97,6 +98,7 @@ function AllTvChannels({
   useEffect(()=>{
     let videoWatchInterval;
     let durationcheckinterval;
+    console.log(playerRef,"REFFF")
     if (show && playerRef && playerRef.current) {
       // playerRef.current.ads()
       // playerRef.current.on('readyforpreroll', () => {
@@ -165,7 +167,7 @@ function AllTvChannels({
       
     };
   
-  }, [show])
+  }, [show,isPlayerReady,playerRef.current])
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
@@ -202,6 +204,10 @@ function AllTvChannels({
     player.on('dispose', () => {
       videojs.log('player will dispose');
     });
+    if(playerRef){
+
+      setIsPlayerReady(true)
+    }
   };
   
   return (
@@ -234,7 +240,7 @@ function AllTvChannels({
       <div className="bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0">
         <div className="container">
           <div className="sm:bg-shade-darkest-blue grid lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px] gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden">
-            <div className="bg-shade-grayis h-[200px] md:h-[300px] lg:h-auto" id="video-wrapper">
+            <div className=" h-[200px] md:h-[300px] lg:h-auto" id="video-wrapper">
               <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady}/>
             </div>
 
