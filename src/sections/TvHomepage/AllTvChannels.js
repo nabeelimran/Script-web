@@ -276,10 +276,10 @@ function AllTvChannels({
                 <div className="rounded-2xl py-5 sm:py-7 px-6 sm:px-8 bg-[#010101]">
                   <div className="space-y-4 mb-6">
                     <StreamComment />
+                    {/* <StreamComment />
                     <StreamComment />
                     <StreamComment />
-                    <StreamComment />
-                    <StreamComment />
+                    <StreamComment /> */}
                   </div>
 
                   <StreamForm />
