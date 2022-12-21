@@ -132,7 +132,7 @@ function AllTvChannels({
 
       playerRef.current.currentTime(getVideoCurrentTimePace(show.startTime));
       playerRef.current.src({
-        src: show.hlsUrl,
+        src: show?.hlsUrl ? show?.hlsUrl : show?.s3VideoUrl,
         type: 'application/x-mpegURL'    
       })
       playerRef.current.load();
