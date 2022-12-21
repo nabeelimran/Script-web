@@ -324,4 +324,18 @@ export default class Api {
         return axios.get(`${APIPATH.BASEURL}analytic/graph?userId=${userId}`, options);    
     }
 
+    static updateProfile(req, screenName) {
+        const options = {
+            headers:{
+                ipAddress: 'dummyData',
+                latitude: 'dummyData',
+                longitude: 'dummyData',
+                countryName: 'dummyData',
+                screenName: screenName,
+                 
+            }
+        }
+        return axios.post(`${APIPATH.BASEURL}edituserProfile/uploadFile`,req, options);
+    }
+
 }

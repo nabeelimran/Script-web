@@ -95,7 +95,6 @@ function ChangePassword() {
       }
       setLoading(false);
     }).catch((err) => {
-      console.log(err);
       ToastMessage(err?.response?.data?.message || 'Unable to change password.');
       setLoading(false);
     })

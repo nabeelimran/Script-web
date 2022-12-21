@@ -5,11 +5,12 @@ import FloatingLabelSelect from "components/FloatingLabelSelect";
 import FloatingLabelTextarea from "components/FloatingLabelTextarea";
 import Title from "components/Title";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "sections/Dashboard/EditProfile/Avatar";
 import { useForm } from "react-hook-form";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import { ToastMessage } from "components/ToastMessage";
 
 function EditProfile() {
 
@@ -17,6 +18,8 @@ function EditProfile() {
   const userId = LocalServices.getServices("user")?.userId || null;
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [videoWatchDuration, setVideoWatchDuration] = useState(0);
+  const navigate = useNavigate();
 
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, 'dashboard').then((res) => {
@@ -34,6 +37,14 @@ function EditProfile() {
     })
   }
 
+  const getVideoWatchDuration = (userId) => {
+    Api.getVideoWatchDuration(userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        setVideoWatchDuration(res?.data?.data?.totalWatchVideoDuration);
+      }
+    })
+  }
+
   const { register, handleSubmit, watch, formState: { errors }, } = useForm({
     username:"",
     email: "",
@@ -44,13 +55,27 @@ function EditProfile() {
 
   const updateProfile = (data) => {
     setLoading(true);
-
-
+    const req = {};
+    Api.updateProfile(req, 'edit-profile').then(res => {
+      if(res && res.status === 200) {
+        navigate({
+          pathname: "/dashboard",
+        })
+        ToastMessage(res.data.message, true);
+      } else {
+        ToastMessage(res.data.message);
+      }
+      setLoading(false);
+    }).catch(err => {
+      ToastMessage(err?.response?.data?.message || 'Unable to change password.');
+      setLoading(false);
+    })
   }
 
   useEffect(() => {
     getCountryList();
     if (userId) {
+      getVideoWatchDuration(userId);
       viewUserProfile(userId);
     }
   }, [])
@@ -133,17 +158,25 @@ function EditProfile() {
 
           <div className="flex lg:items-center justify-between space-y-4 lg:space-y-0 flex-col lg:flex-row mb-6">
             <p className="fs-18px font-medium">Total Earn : 0.00 $sSPAY</p>
-            <p className="fs-18px font-medium">Watch Time (min) 51</p>
+            <p className="fs-18px font-medium">Watch Time (min) {videoWatchDuration}</p>
           </div>
 
           <p className="fs-16px font-medium mb-6">
             If you wanna know more go to{" "}
-            <Link
+            <a
+                href="https://wallet.script.tv/"
+                target="_blank"
+                rel="noreferrer"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Wallet
+              </a>
+            {/* <Link
               to="/terms-condition"
               className="text-primary hover:underline"
             >
               Wallet
-            </Link>
+            </Link> */}
           </p>
 
           <Button label="Save Changes" loader={loading} />
