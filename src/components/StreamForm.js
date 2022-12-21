@@ -1,10 +1,13 @@
 import { Icon } from "@iconify/react";
 import React from "react";
+import { ToastMessage } from "./ToastMessage";
 
 function StreamForm() {
 
   const sendMessage = (e) => {
+    debugger
     e.preventDefault();
+    ToastMessage('Coming Soon!!')
   }
 
   return (
@@ -22,7 +25,7 @@ function StreamForm() {
       </div>
 
       <button
-        type="button"
+        type="submit"
         className="min-w-[40px] text-primary h-10 rounded-lg bg-shade-grayis flex items-center justify-center"
       >
         <img src="images/tv/send-icon.svg" className="w-[46%]" alt="" />
