@@ -4,24 +4,56 @@ import FloatingLabelInput from "components/FloatingLabelInput";
 import FloatingLabelSelect from "components/FloatingLabelSelect";
 import FloatingLabelTextarea from "components/FloatingLabelTextarea";
 import Title from "components/Title";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "sections/Dashboard/EditProfile/Avatar";
 import { useForm } from "react-hook-form";
+import Api from "services/api";
+import LocalServices from "services/LocalServices";
 
 function EditProfile() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
+
+  const [countryList, setCountryList] = useState([]);
+  const userId = LocalServices.getServices("user")?.userId || null;
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const viewUserProfile = (userId) => {
+    Api.viewUserProfile(userId, 'dashboard').then((res) => {
+      if(res && res.status === 200) {
+        setProfile(res.data.data);
+      }
+    })
+  }
+
+  const getCountryList = () => {
+    Api.getCountryList('dashboard').then((res) => {
+      if (res && res.status === 200) {
+        setCountryList(res.data.data);
+      }
+    })
+  }
+
+  const { register, handleSubmit, watch, formState: { errors }, } = useForm({
     username:"",
     email: "",
     country: "",
     bio: "",
     privacyPolicy: false,
   });
+
+  const updateProfile = (data) => {
+    setLoading(true);
+
+
+  }
+
+  useEffect(() => {
+    getCountryList();
+    if (userId) {
+      viewUserProfile(userId);
+    }
+  }, [])
 
   return (
     <div className="dashboard-top-spacing dashboard-bottom-spacing dashboard-layout">
@@ -34,7 +66,7 @@ function EditProfile() {
           Edit Profile
         </Title>
 
-        <form>
+        <form onSubmit={handleSubmit(updateProfile)}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 mb-6">
             <div>
               <FloatingLabelInput
@@ -42,25 +74,32 @@ function EditProfile() {
                 other={{
                   ...register("username", { required: true }),
                 }}
+                value={profile?.userName || ''}
               />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 You may update your username again 2 month
               </p>
             </div>
             <div>
-              <FloatingLabelInput lable="Username" other={{
-            ...register("username", { required: true }),
-          }}/>
+              <FloatingLabelInput
+                lable="Username"
+                value={profile?.userName || ''}
+                other={{
+                  ...register("username", { required: true }),
+              }}/>
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Customize capitalzation for your username
               </p>
             </div>
-            <FloatingLabelInput lable="Email" other={{
-            ...register("email", { required: true }),
-          }}/>
-            <FloatingLabelSelect label="Country" />
+              <FloatingLabelInput
+                lable="Email"
+                value={profile?.email || ''}
+                other={{
+                ...register("email", { required: true }),
+              }}/>
+            <FloatingLabelSelect label="Country" options={countryList} value={profile?.profile?.country?.id || ''} />
             <div className="sm:col-span-2">
-              <FloatingLabelTextarea placeholder="Bio" />
+              <FloatingLabelTextarea placeholder="Bio" value={profile?.bio || ''} />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Description for the About panel on your channel page in under
                 300 Characters
@@ -107,7 +146,7 @@ function EditProfile() {
             </Link>
           </p>
 
-          <Button label="Save Changes" />
+          <Button label="Save Changes" loader={loading} />
         </form>
       </div>
     </div>
