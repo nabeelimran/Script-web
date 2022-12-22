@@ -116,7 +116,7 @@ function ConnectWalletModal() {
 	const googleLoginHandler =  () => {
 		console.log("CLICKED");
 	  	const provider = new GoogleAuthProvider();
-		signInWithPopup(getAuth(auth),provider).then(async (res) => {
+		signInWithPopup(getAuth(auth),provider).then((res) => {
 			console.log(res);
 			const gBody = {
 				login: {
@@ -140,16 +140,46 @@ function ConnectWalletModal() {
 					status: "ACTIVE"
           		}
         	}
-        	Api.solicalLogin(gBody,"login-modal").then(serRes=>{
-        		console.log(serRes)
+        	Api.solicalLogin(gBody,"login-modal").then((loginRes)=>{
+        		if(loginRes && loginRes.status === 200) {
+					if (loginRes.data.message === "Please verify your account.") {
+						ToastMessage(`${loginRes.data.message}`);
+						navigate({
+							pathname: "/verify-account",
+							search: `?email=${loginRes.data.data.email}`,
+						});
+					} else {
+						ToastMessage(`${loginRes.data.message}`, true);
+						if (loginRes.data.data.authToken) {
+							sessionStorage.setItem(
+								"script-token",
+								JSON.stringify(loginRes.data.data.authToken)
+							);
+						}
 
-        	}).catch(err => console.log(err))
+						sessionStorage.setItem(
+							"userInfo",
+							JSON.stringify({
+								email: loginRes.data.data.email,
+								userId: loginRes.data.data.id,
+								walletAddress: loginRes.data.data.walletAddress,
+							})
+						);
+						navigate({
+							pathname: "/tv",
+						});
+					}
+				} else {
+					ToastMessage(loginRes?.data?.message || 'Something went wrong')
+				}
 
-
+        	}).catch(err => {
+				ToastMessage(err?.error?.message || 'Something went wrong')
+			})
 
 			})
 			.catch((err) => {
-				ToastMessage(err)
+				ToastMessage(err?.error?.message || 'Something went wrong')
 			});
 	};
 
