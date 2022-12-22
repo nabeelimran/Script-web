@@ -11,21 +11,28 @@ import { useForm } from "react-hook-form";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "components/ToastMessage";
-import { toFormData } from "axios";
 
 function EditProfile() {
 
   const [countryList, setCountryList] = useState([]);
-  const userId = LocalServices.getServices("user")?.userId || null;
+  const user = LocalServices.getServices("user") || null;
+  const userId = user ? user?.userId : null;
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [videoWatchDuration, setVideoWatchDuration] = useState(0);
+  const [profileImageFile, setProfileImageFile] = useState(null);
   const navigate = useNavigate();
 
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, 'dashboard').then((res) => {
       if(res && res.status === 200) {
+        console.log(res.data.data);
         setProfile(res.data.data);
+        setValue('username', res?.data?.data?.userName || "")
+        setValue('email', res?.data?.data?.email || "")
+        setValue('country', res?.data?.data?.profile?.country?.id || "")
+        setValue('privacyPolicy', res?.data?.data?.profile ? true : false)
+        setValue('bio', res?.data?.data?.profile?.bio || "")
       }
     })
   }
@@ -41,13 +48,14 @@ function EditProfile() {
   const getVideoWatchDuration = (userId) => {
     Api.getVideoWatchDuration(userId, 'watch').then((res) => {
       if(res && res.status === 200) {
+        
         setVideoWatchDuration(res?.data?.data?.totalWatchVideoDuration);
       }
     })
   }
 
-  const { register, handleSubmit, watch, formState: { errors }, } = useForm({
-    username:"",
+  const { register, handleSubmit, watch, setValue, formState: { errors }, } = useForm({
+    username: "",
     email: "",
     country: "",
     bio: "",
@@ -55,17 +63,44 @@ function EditProfile() {
   });
 
   const onSelectFile = (e) => {
-    console.log('file', e)
     if (e) {
       const file = e?.target?.files[0] || null;
       if(file) {
         const imagePreviewEl = document.getElementById('imagePreview');
         imagePreviewEl.src = URL.createObjectURL(file);
+        setProfileImageFile(file,);
       }
     }
   }
 
+  const errorShow = (type) => {
+    let error;
+    if (type) {
+      switch (type.type) {
+        case "required":
+          error = "This field is requird. Please enter password";
+          break;
+        case "minLength":
+          error = "Password must have at least 8 characters";
+          break;
+        case "pattern":
+          error =
+            "Password Should be eight characters long and alphanumeric with special characters";
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    return error;
+  };
+
   const updateProfile = (data) => {
+    if(data && !data.privacyPolicy) {
+      ToastMessage('Please accpet terms and condition');
+      return;
+    }
     setLoading(true);
     const req = new FormData();
     req.append("id", userId);
@@ -79,7 +114,10 @@ function EditProfile() {
     req.append("countryId", data.country);
     req.append("walletId", null);
     req.append("terms", data.privacyPolicy);
-    req.append("profileImage", "")
+    if(profileImageFile && profileImageFile.name) {
+      req.append("profileImage", profileImageFile, profileImageFile.name)
+    }
+    
     Api.updateProfile(req, 'edit-profile').then(res => {
       if(res && res.status === 200) {
         navigate({
@@ -107,7 +145,7 @@ function EditProfile() {
   return (
     <div className="dashboard-top-spacing dashboard-bottom-spacing dashboard-layout">
       <div className="flex justify-center mb-8">
-        <Avatar selectImage={onSelectFile} />
+        <Avatar selectImage={onSelectFile} image={profile?.profile?.urlProfileImage} />
       </div>
 
       <div>
@@ -123,7 +161,7 @@ function EditProfile() {
                 other={{
                   ...register("username", { required: true }),
                 }}
-                value={profile?.userName || ''}
+                error={errorShow(errors.username)}
               />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 You may update your username again 2 month
@@ -132,23 +170,35 @@ function EditProfile() {
             <div>
               <FloatingLabelInput
                 lable="Username"
-                value={profile?.userName || ''}
                 other={{
                   ...register("username", { required: true }),
-              }}/>
+              }}
+              error={errorShow(errors.username)}/>
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Customize capitalzation for your username
               </p>
             </div>
               <FloatingLabelInput
                 lable="Email"
-                value={profile?.email || ''}
                 other={{
                 ...register("email", { required: true }),
-              }}/>
-            <FloatingLabelSelect label="Country" options={countryList} value={profile?.profile?.country?.id || ''} />
+              }}
+              error={errors.email && "This field is requird. Please enter email."}
+              />
+            <FloatingLabelSelect
+              label="Country" options={countryList}
+              other={{
+                ...register("country", { required: true }),
+              }}
+              />
             <div className="sm:col-span-2">
-              <FloatingLabelTextarea placeholder="Bio" value={profile?.bio || ''} />
+              <FloatingLabelTextarea placeholder="Bio" other={{
+                ...register("bio"),
+                maxLength: {
+                  value: 300,
+                  message: "Bio have at most 300 characters",
+                },
+              }} />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Description for the About panel on your channel page in under
                 300 Characters
@@ -158,7 +208,8 @@ function EditProfile() {
 
           <div className="mb-6">
             <Checkbox
-              id="remeber"
+              id="privacyPolicy"
+              other={{...register("privacyPolicy")}}
               title={
                 <span className="text-white">
                   By clicking this, you agree to the{" "}
@@ -203,7 +254,7 @@ function EditProfile() {
             </Link> */}
           </p>
 
-          <Button label="Save Changes" loader={loading} />
+          <Button label="Save Changes" type="submit" loader={loading} />
         </form>
       </div>
     </div>

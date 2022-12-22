@@ -1,6 +1,6 @@
 import React from "react";
 
-function FloatingLabelInput({ lable, value }) {
+function FloatingLabelInput({ lable, value, other, error }) {
   return (
     <div
       className="did-floating-label-content text-sm xl:text-base"
@@ -11,10 +11,19 @@ function FloatingLabelInput({ lable, value }) {
         type="text"
         placeholder=" "
         value={value}
+        {...other}
       />
       <label className="did-floating-label left-2 xl:left-3 bg-black">
         {lable}
       </label>
+
+      {error && (
+        <div>
+          <p className="text-[#FFEF00]" style={{ fontSize: "inherit" }}>
+            {error}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
