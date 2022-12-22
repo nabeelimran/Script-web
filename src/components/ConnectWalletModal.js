@@ -114,7 +114,7 @@ function ConnectWalletModal() {
 	};
 
 	const googleLoginHandler =  () => {
-		console.log("CLICKED");
+		
 	  	const provider = new GoogleAuthProvider();
 		signInWithPopup(getAuth(auth),provider).then((res) => {
 			console.log(res);
@@ -184,11 +184,11 @@ function ConnectWalletModal() {
 			});
 	};
 	const twitterLoginHandler =  () => {
-		console.log("CLICKED");
-	  	const provider = new TwitterAuthProvider();
-		signInWithPopup(getAuth(auth),provider).then((result) => {
 		
-			const res = provider.credentialFromResult(result);
+	  	const provider = new TwitterAuthProvider();
+		signInWithPopup(getAuth(auth),provider).then((res) => {
+		
+			
 			console.log(res)
 			const gBody = {
 				login: {
