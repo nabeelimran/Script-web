@@ -28,11 +28,11 @@ function EditProfile() {
       if(res && res.status === 200) {
         console.log(res.data.data);
         setProfile(res.data.data);
-        setValue('username', res?.data?.data?.userName || "",)
-        setValue('email', res?.data?.data?.email || "",)
-        setValue('country', "")
-        setValue('privacyPolicy', false,)
-        setValue('bio', res?.data?.data?.profile?.bio || "",)
+        setValue('username', res?.data?.data?.userName || "")
+        setValue('email', res?.data?.data?.email || "")
+        setValue('country', res?.data?.data?.profile?.country?.id || "")
+        setValue('privacyPolicy', res?.data?.data?.profile ? true : false)
+        setValue('bio', res?.data?.data?.profile?.bio || "")
       }
     })
   }
@@ -72,6 +72,29 @@ function EditProfile() {
       }
     }
   }
+
+  const errorShow = (type) => {
+    let error;
+    if (type) {
+      switch (type.type) {
+        case "required":
+          error = "This field is requird. Please enter password";
+          break;
+        case "minLength":
+          error = "Password must have at least 8 characters";
+          break;
+        case "pattern":
+          error =
+            "Password Should be eight characters long and alphanumeric with special characters";
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    return error;
+  };
 
   const updateProfile = (data) => {
     console.log('data', data);
@@ -136,6 +159,7 @@ function EditProfile() {
                 other={{
                   ...register("username", { required: true }),
                 }}
+                error={errorShow(errors.username)}
               />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 You may update your username again 2 month
@@ -146,7 +170,8 @@ function EditProfile() {
                 lable="Username"
                 other={{
                   ...register("username", { required: true }),
-              }}/>
+              }}
+              error={errorShow(errors.username)}/>
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Customize capitalzation for your username
               </p>
@@ -155,8 +180,15 @@ function EditProfile() {
                 lable="Email"
                 other={{
                 ...register("email", { required: true }),
-              }}/>
-            <FloatingLabelSelect label="Country" options={countryList} value={profile?.profile?.country?.id || ''} />
+              }}
+              error={errors.email && "This field is requird. Please enter email."}
+              />
+            <FloatingLabelSelect
+              label="Country" options={countryList}
+              other={{
+                ...register("country", { required: true }),
+              }}
+              />
             <div className="sm:col-span-2">
               <FloatingLabelTextarea placeholder="Bio" other={{
                 ...register("bio"),
@@ -170,7 +202,8 @@ function EditProfile() {
 
           <div className="mb-6">
             <Checkbox
-              id="remeber"
+              id="privacyPolicy"
+              other={{...register("privacyPolicy", { required: true })}}
               title={
                 <span className="text-white">
                   By clicking this, you agree to the{" "}
