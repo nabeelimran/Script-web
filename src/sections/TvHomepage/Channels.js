@@ -214,8 +214,8 @@ function Channels({
   useEffect(()=>{
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
-    if(timeline.length>0){
-      setInterval(()=>{
+    
+   let cursorint=   setInterval(()=>{
         let style={marginLeft:0}
         const todayDate= new Date();
         let timelinemin=Number(timeline[0]?.split(':')[1]);
@@ -223,7 +223,9 @@ function Channels({
         style.marginLeft=min;
        setCursonPosition(style)
       },10000)
-    }
+   return( ()=>{
+    clearInterval(cursorint)
+    })
   },[])
   useEffect(()=>{
 let chData =channeldata.map(ch=>{
