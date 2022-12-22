@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { helper } from "utils/helper";
 import PopupClose from "./PopupClose";
 
 function RecaptchaPopup({ open, setOpen }) {
@@ -7,6 +8,11 @@ function RecaptchaPopup({ open, setOpen }) {
   const changeActiveState = (id) => {
     setActive(id);
   };
+
+  const verifyCaptcha = () => {
+    setOpen(false)
+    helper.comingSoonNotification();
+  }
 
   const returnClasses = (id) => {
     if (id === active) {
@@ -43,7 +49,7 @@ function RecaptchaPopup({ open, setOpen }) {
         />
         <button
           className="bg-primary text-black w-full rounded-xl py-2.5 mt-5"
-          onClick={() => setOpen(false)}
+          onClick={() => verifyCaptcha()}
         >
           Verify
         </button>

@@ -9,11 +9,11 @@ function StreamComment() {
 
       <div className="space-y-1 md:space-y-[2px] flex-1">
         <div className="flex items-center justify-between">
-          <p className="text-xs md:text-sm font-medium">Script Network</p>
+          <p className="text-xs md:text-sm font-medium">Script Network Live Chat</p>
           <p className="text-xs">5:46 PM</p>
         </div>
 
-        <p className="text-xs md:text-sm text-ellipsis">Coming Soon</p>
+        <p className="text-xs md:text-sm text-ellipsis">Coming Soon*</p>
       </div>
     </div>
   );

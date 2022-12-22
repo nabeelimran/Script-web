@@ -27,10 +27,10 @@ const HelpDropdownBody = () => {
 
         <div className="bg-[#1F1F1F] rounded-xl py-4 px-5">
           <div className="space-y-2">
-            <p className="text-sm font-medium">Whitepaper</p>
-            <p className="text-sm font-medium">Script TV explained</p>
-            <p className="text-sm font-medium">Blog</p>
-            <p className="text-sm font-medium">FAQ</p>
+            <a href="https://whitepaper.script.tv/" rel="noreferrer" target="_blank" className="text-sm font-medium">Whitepaper</a> <br/>
+            <Link to="/research" className="text-sm font-medium">Script TV explained</Link> <br/>
+            <Link to="/" className="text-sm font-medium">Blog</Link> <br/>
+            <Link to="/faq" className="text-sm font-medium">FAQ</Link> 
           </div>
         </div>
       </div>

@@ -80,6 +80,10 @@ function Navbar() {
                   tellerClassName="text-primary"
                   title="Script TV"
                   subtitle="Our user first watch to earn television platform."
+                  anchor={true}
+                  others={{
+                    href: "/tv",
+                  }}
                 />
                 <DropdownCard
                   title="Marketplace"

@@ -1,8 +1,14 @@
 import Button from "components/Button";
-import React from "react";
+import OutsideClickDetector from "hooks/OutsideClickDetector";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import { helper } from "utils/helper";
 
 function Hero() {
+  const [isSidebarVisible, setSidebarVisibility] = useState(false);
+  const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -42,7 +48,12 @@ function Hero() {
 
           <p className="fs-16px font-medium text-white mb-9">
             <span className="opacity-50">Already using script.tv?</span>{" "}
-            <a href="/" className="text-primary">
+            <a href="/" onClick={(e) => {
+              e.preventDefault();
+              setSidebarVisibility(false);
+              dispatch(toggleModalVisibility(true));
+            }}
+            className="text-primary">
               Sign in
             </a>
           </p>
