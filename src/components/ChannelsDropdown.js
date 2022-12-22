@@ -6,13 +6,13 @@ function ChannelsDropdown({ className = "text-sm xl:text-base font-medium", chan
   return (
     <NavDropdown
       componentWrapperClassName="w-[600px]"
-      Component={ChannelsDropdownBody}
+      // Component={ChannelsDropdownBody}
       title="Channels"
       showDropdown={true}
       childrenClassName="pt-4"
       className={className}
     >
-      <ChannelsDropdownBody />
+      <ChannelsDropdownBody channels={channels} />
     </NavDropdown>
   );
 }

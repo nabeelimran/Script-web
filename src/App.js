@@ -37,6 +37,7 @@ import CreatePasswordForm from "components/CreatePasswordForm";
 import EpgModal from "sections/TvHomepage/EpgModal";
 import VerifyAccount from "pages/VerifyAccount";
 import PrivateRoute from "auth/PrivateRoute";
+import ComingSoon from "pages/coming-soon";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
       <CreatePasswordForm />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/token" element={<TokenPage />} />
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/node" element={<Validator />} />
@@ -82,6 +84,7 @@ function App() {
           <Route path="share-referral" element={<PrivateRoute><ShareRefferal /></PrivateRoute>} />
           <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} />
           <Route path="analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
+          <Route path="coming-soon" element={<ComingSoon />} />
         </Route>
 
         {/* MARKETPLACE */}

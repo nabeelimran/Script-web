@@ -405,6 +405,9 @@ function Channels({
                       label="Follow"
                       variant={4}
                       customizationClassName="space-x-2 border-2 border-green px-5 rounded-lg text-green justify-center flex w-full"
+                      buttonProps={{
+                        onClick:() => helper.comingSoonNotification()
+                      }}
                       LeftComponent={() => (
                         <img
                           src="images/tv/green-heart.svg"
@@ -419,7 +422,7 @@ function Channels({
                 <div className="flex-1 w-full">
                   <div className="md:max-w-[300px] w-full text-center md:text-left">
                     {/* <FillBar barColor="#6C6C6C" bgColor="#1F1F1F" /> */}
-                    <p className="text-sm">{liveShow.title}</p>
+                    <p className="text-sm font-bold">{liveShow.title}</p>
                     <p className="text-sm">
                       {liveShow.description
                         ? liveShow.description
@@ -464,7 +467,8 @@ function Channels({
                     className="w-[20px] mb-2"
                     alt=""
                   />
-                  <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center">
+                  <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center"
+                    onClick={() => helper.comingSoonNotification()}>
                     Gem Activated
                   </div>
                 </SquareBox>

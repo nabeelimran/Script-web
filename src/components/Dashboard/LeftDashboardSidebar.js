@@ -84,7 +84,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
             onClick={() => setter(false)}
           />
           <PageLink
-            link="token-mapping"
+            link="coming-soon"
             label="Token Mapping"
             img="token.svg"
             onClick={() => setter(false)}

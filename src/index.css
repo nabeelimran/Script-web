@@ -582,16 +582,17 @@ input:-webkit-autofill:active {
 }
 
 video-js {
-  height: auto !important;
+  height: 100% !important;
   width: 100% !important;
   border: 1px solid #212121;
+  margin-left: 15px;
 }
 
 .vjs-progress-control {
   visibility: hidden !important;
 }
 
-video-js .vjs-control .vjs-button .vjs-playing{
+video-js .vjs-control .vjs-button .vjs-playing {
   display: none;
 }
 
@@ -640,7 +641,7 @@ video-js .vjs-picture-in-picture-control {
 }
 
 .custom-pip-window > video-js {
-  height: 100% !important;
+  height: auto !important;
   width: 100% !important;
 }
 

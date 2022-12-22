@@ -25,10 +25,18 @@ function ScriptDocumentation() {
 
         <div className="flex items-start flex-wrap -mx-2 -my-2">
           <div className="m-2">
-            <Button label="Whitepaper" calReward={() => helper.openLink('https://whitepaper.script.tv/')} />
+            <Button label="Whitepaper" buttonProps={{
+              onClick: () => {
+                helper.openLink('https://whitepaper.script.tv/')
+              },
+            }} />
           </div>
           <div className="m-2">
-            <Button label="Summary" variant={3} calReward={() => helper.openLink(Summary)}/>
+            <Button label="Summary" variant={3} buttonProps={{
+              onClick: () => {
+                helper.openLink(Summary)
+              },
+            }}/>
           </div>
           {/* <div className="m-2">
             <Button label="One Pager" variant={3} />

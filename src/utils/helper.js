@@ -1,3 +1,4 @@
+import { ToastMessage } from 'components/ToastMessage';
 import moment from 'moment'
 export const helper = {
     percentFormat: (num) => num.toFixed(4).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1'),
@@ -44,7 +45,13 @@ export const helper = {
       }
       return result;
     },
-    formatDate: (date, format) => moment(date).format(format)
+    formatDate: (date, format) => moment(date).format(format),
+    comingSoonNotification: (e) => {
+      if(e) {
+        e.preventDefault();
+      } 
+      ToastMessage('Coming Soon!!') 
+    } 
 }
 
 export const metamaskNetwork = {

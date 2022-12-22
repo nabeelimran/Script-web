@@ -1,14 +1,12 @@
 import { Icon } from "@iconify/react";
 import React from "react";
+import { helper } from "utils/helper";
+import { ToastMessage } from "./ToastMessage";
 
 function StreamForm() {
 
-  const sendMessage = (e) => {
-    e.preventDefault();
-  }
-
   return (
-    <form className="flex space-x-4" onSubmit={sendMessage}>
+    <form className="flex space-x-4" onSubmit={helper.comingSoonNotification}>
       <div className="h-10 w-full relative bg-shade-grayis rounded-lg overflow-hidden">
         <input
           type="text"
@@ -22,7 +20,7 @@ function StreamForm() {
       </div>
 
       <button
-        type="button"
+        type="submit"
         className="min-w-[40px] text-primary h-10 rounded-lg bg-shade-grayis flex items-center justify-center"
       >
         <img src="images/tv/send-icon.svg" className="w-[46%]" alt="" />
