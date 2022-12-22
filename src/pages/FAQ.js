@@ -5,7 +5,7 @@ import ScriptDocumentation from "components/ScriptDocumentation";
 import Title from "components/Title";
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
-import ScriptWPJAN2022 from '../files/ScriptWPJAN2022.pdf'
+import ScriptWPJAN2022 from "../files/ScriptWPJAN2022.pdf";
 
 const faqs = [
   {
@@ -58,12 +58,11 @@ const faqs = [
     question:
       "Where is the best place to stay up to date and in touch with the community?",
     content:
-      "We recommend you to join the telegram announcements channel <a href='https://t.me/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a href='https://discord.gg/tC26m3cTWu' target='_blank'>here</a> where you can interact with the community and the team.",
+      "We recommend you to join the telegram announcements channel <a href='https://t.me/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a href='https://discord.gg/scriptnetwork' target='_blank'>here</a> where you can interact with the community and the team.",
   },
   {
     question: "Where can I view the whitepaper and the tokenomics?",
-    content:
-      `You can view the tokenomics <a href='${ScriptWPJAN2022}' target='_blank'>here</a>, and for the whitepaper, <a href='${ScriptWPJAN2022}' target='_blank'>click here</a>.`,
+    content: `You can view the tokenomics <a href='${ScriptWPJAN2022}' target='_blank'>here</a>, and for the whitepaper, <a href='${ScriptWPJAN2022}' target='_blank'>click here</a>.`,
   },
   {
     question: "Why are there two different tokens?",
