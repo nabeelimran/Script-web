@@ -20,6 +20,7 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import auth from "auth/firebase";
 import {GoogleAuthProvider,signInWithPopup,getAuth} from "firebase/auth"
+import { detectBrowser } from "utils/helper";
 
 function ConnectWalletModal() {
 	const navigate = useNavigate();
@@ -114,28 +115,42 @@ function ConnectWalletModal() {
 
 	const googleLoginHandler =  () => {
 		console.log("CLICKED");
-	  const provider = new GoogleAuthProvider();
-		signInWithPopup(getAuth(auth),provider)
-			.then(async (res) => {
-				console.log(res);
-        const gBody = {
-          login:{
-            email:res?.user?.email
-          },
-          user:{
-            email:res?.user?.email,
-            userName: res?.user?.displayName || "dummy"
-          }
-        }
-        Api.solicalLogin(gBody,"login-modal").then(serRes=>{
-        console.log(serRes)
+	  	const provider = new GoogleAuthProvider();
+		signInWithPopup(getAuth(auth),provider).then(async (res) => {
+			console.log(res);
+			const gBody = {
+				login: {
+            		email:res?.user?.email,
+					device: "Web",
+					password: "",
+					browser: detectBrowser()
+          		},
+          		user:{
+            		email:res?.user?.email,
+            		userName: res?.user?.displayName,
+					accountLocked: false,
+					confirmPassword: "",
+					firstName: "",
+					id: 0,
+					lastName: "",
+					middleName: "",
+					password: "",
+					roleId: 0,
+					roleName: "",
+					status: "ACTIVE"
+          		}
+        	}
+        	Api.solicalLogin(gBody,"login-modal").then(serRes=>{
+        		console.log(serRes)
 
-        }).catch(err => console.log(err))
+        	}).catch(err => console.log(err))
 
 
 
 			})
-			.catch(alert);
+			.catch((err) => {
+				ToastMessage(err)
+			});
 	};
 
 	return (

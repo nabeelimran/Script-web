@@ -78,13 +78,7 @@ export default class Api {
 			},
 		};
 
-		req.login["browser"] = "dummy";
-		req.login["country"] = "dummy";
-		req.login["device"] = "dummy";
-		req.login["loginIp"] = "dummy";
-		req.login["loginLocation"] = "dummy";
-
-		return axios.post(`${APIPATH.BASEURL}socialLogin`, {...req}, options);
+		return axios.post(`${APIPATH.BASEURL}socialLogin`, req, options);
 	}
 
 	static emailVerification(req, screenName) {
