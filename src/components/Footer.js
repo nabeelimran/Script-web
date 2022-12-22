@@ -59,13 +59,13 @@ function Footer({ container = "container-two" }) {
           anchorTag: true,
         },
         {
-          title: "Inistagram",
+          title: "Instagram",
           to: "https://www.instagram.com/script_network/",
           target: "_blank",
           anchorTag: true,
         },
         {
-          title: "GIthub",
+          title: "Github",
           to: "https://github.com/scriptnetwork",
           target: "_blank",
           anchorTag: true,
