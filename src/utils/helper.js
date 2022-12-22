@@ -47,7 +47,9 @@ export const helper = {
     },
     formatDate: (date, format) => moment(date).format(format),
     comingSoonNotification: (e) => {
-      e.preventDefault();
+      if(e) {
+        e.preventDefault();
+      } 
       ToastMessage('Coming Soon!!') 
     } 
 }

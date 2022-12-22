@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { helper } from "utils/helper";
 
 const channels = [
   { img: "/images/channels/cultured-one.svg", className: "w-full lg:w-20" },
@@ -51,10 +52,12 @@ const ChannelsDropdownBody = ({
         <ChannelBox
           label="All Channels"
           img={<img src="images/channels.svg" className="w-[50%]" alt="" />}
+          to="/tv"
         />
         <ChannelBox
           label="All Categories"
           img={<img src="images/all.svg" className="w-[50%]" alt="" />}
+          to="/tv"
         />
       </div>
       <div className="py-4 lg:py-7 px-5 lg:px-8 border-t-1px lg:border-t-0 lg:border-l-1px border-primary">
