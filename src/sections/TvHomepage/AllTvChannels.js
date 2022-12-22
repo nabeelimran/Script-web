@@ -10,6 +10,7 @@ import "videojs-contrib-ads";
 import { refreshChannel } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed, getVideoTimeWatch } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
+import { helper } from "utils/helper";
 
 function AllTvChannels({
   show,
@@ -137,7 +138,7 @@ function AllTvChannels({
       // })
 
       playerRef.current.on("timeupdate", (evt) => {
-        if (playerRef.current) {
+        if (playerRef && playerRef.current) {
           durationcheckinterval = setInterval(() => {
             // console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
             if (
@@ -201,13 +202,14 @@ function AllTvChannels({
         // checking whether fully visible
         let pipEl = document.getElementById("video-container");
         // if(position.top >= 0 && position.bottom <= window.innerHeight) {
-        if (position.top >= 0 && position.bottom >= 0) {
-          pipEl.classList.remove("custom-pip-window");
-          // player.requestPictureInPicture()
-        } else {
-          pipEl.classList.add("custom-pip-window");
-
-          // player.exitPictureInPicture();
+        if(pipEl) {
+          if (position.top >= 0 && position.bottom >= 0) {
+            pipEl.classList.remove("custom-pip-window");
+            // player.requestPictureInPicture()
+          } else {
+            pipEl.classList.add("custom-pip-window");
+            // player.exitPictureInPicture();
+          }
         }
       }, 500);
     });
@@ -220,6 +222,7 @@ function AllTvChannels({
 
     player.on("dispose", () => {
       videojs.log("player will dispose");
+      playerRef.current = null;
     });
     if (playerRef) {
       setIsPlayerReady(true);
@@ -277,13 +280,13 @@ function AllTvChannels({
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <button className="text-2xl">
+                  <button className="text-2xl" onClick={helper.comingSoonNotification}>
                     <Icon
                       icon="material-symbols:arrow-right-alt-rounded"
                       className="rotate-180"
                     />
                   </button>
-                  <button className="text-xl">
+                  <button className="text-xl" onClick={helper.comingSoonNotification}>
                     <Icon icon="ep:setting" />
                   </button>
                 </div>

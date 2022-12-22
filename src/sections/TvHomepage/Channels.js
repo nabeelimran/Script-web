@@ -211,30 +211,14 @@ function Channels({
   let userId = LocalServices.getServices("user")?.userId || null;
   const {earnedToken} = useSelector((state) => state.video_State)
   const {videoTimeWatch} = useSelector((state) => state.video_State)
-
-  
+  const [modal, setModal] = useState(false);
   const [timeline, setTimeline] = useState([])
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
+  
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
-  useEffect(()=>{
-    if(userId) {
-      getVideoTokenEarned(userId)
-    }
-    let timelinedata= helper.createTimeSlot(new Date());
-    setTimeline(timelinedata)
-    if(timeline.length>0){
-      setInterval(()=>{
-        let style={marginLeft:0}
-        const todayDate= new Date();
-        let timelinemin=Number(timeline[0]?.split(':')[1]);
-        let min=todayDate.getMinutes()-timelinemin;
-        style.marginLeft=min;
-       setCursonPosition(style)
-      },10000)
-    }
-  }, []);
+
   useEffect(() => {
     let chData = channeldata.map((ch) => {
       let liveshows = ch.liveShows.filter(
@@ -253,27 +237,69 @@ function Channels({
     setLiveShow(chData[0].liveShows[0]);
     setChannels(chData);
   }, [timeline]);
+
+  useEffect(()=>{
+    if(userId) {
+      getVideoTokenEarned(userId)
+    }
+    let timelinedata= helper.createTimeSlot(new Date());
+    setTimeline(timelinedata)
+    
+    let cursorint = setInterval(()=>{
+      let style={marginLeft:0}
+      const todayDate= new Date();
+      let timelinemin=Number(timelinedata[0]?.split(':')[1]);
+      let min=todayDate.getMinutes()-timelinemin;
+      style.marginLeft=min;
+      setCursonPosition(style)
+    },10000)
+    
+    return( ()=>{
+      clearInterval(cursorint)
+    })
+    },[])
+
+  useEffect(()=>{
+    if(earnedToken) {
+      saveVideoDuration(videoTimeWatch)
+      setVideoTokenBalance('', earnedToken);
+    }
+  },[earnedToken])
+
   const getDurationInMinute = (startedAt, endedAt) => {
-    let startDate = new Date(startedAt);
-    let endDate = new Date(endedAt);
-    let timelinemin = Number(timeline[0]?.split(":")[1]);
-    let duration = helper.getDiffInMin(endDate, startDate);
+    const startDate = new Date(startedAt);
+    const endDate = new Date(endedAt);
+    const timelinemin = Number(timeline[0]?.split(":")[1]);
+    const duration = helper.getDiffInMin(endDate, startDate);
     let diff = helper.getDiffInMinfromCurrent(startDate);
-    let curdatemin = new Date().getMinutes();
+    const curdatemin = new Date().getMinutes();
     if (diff < 0) {
       diff = diff + curdatemin - timelinemin; //adjust duration according to timeline
     } else {
       diff = 0;
     }
-    let res = {
+    return {
       duration: duration + diff,
-      time:
-        helper.getIn12HoursFormat(startDate) +
-        "-" +
-        helper.getIn12HoursFormat(endDate),
+      time: `${helper.getIn12HoursFormat(startDate)}-${helper.getIn12HoursFormat(endDate)}`,
     };
-    return res;
   };
+
+  // this is used to get the token earned by video based on user id
+  const getVideoTokenEarned = () => {
+    Api.getVideoTokenEarned(userId, 'watch').then((res) => {
+      if (res && res.data && res.data.isSuccess) {
+        const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
+    
+        dispatch(earnedTokenRed(token))
+        
+      } else {
+        dispatch(earnedTokenRed(0))
+        
+      }
+    })
+  }
+
+
   const changeSelectedVideo = (show) => {
     setLiveShow(show);
     let chdata = JSON.parse(JSON.stringify(channels));
@@ -292,57 +318,6 @@ function Channels({
     setChannels([...chdata]);
     currentVideo(show);
   };
-  useEffect(() => {
-    if (changecurrentVideo) {
-      dispatch(updateCurrentVideo(false));
-      let chdata = JSON.parse(JSON.stringify(channels));
-      chdata = chdata.map((ch) => {
-        ch.liveShows = ch.liveShows.map((ls) => {
-          if (ls && ls.selected) {
-            ls.selected = false;
-          }
-          if (ls && data && ls.id === data.id) {
-            ls.selected = true;
-          }
-          return ls;
-        });
-        return ch;
-      });
-      setChannels([...chdata]);
-      currentVideo(data);
-    }
-  }, [changecurrentVideo, data]);
-
-  const [modal, setModal] = useState(false);
-
-  //  Save video duration code
-
-
-  useEffect(()=>{
-    if(earnedToken) {
-      saveVideoDuration(videoTimeWatch)
-      setVideoTokenBalance('', earnedToken);
-    }
-  },[earnedToken])
-
-
-  // this is used to get the token earned by video based on user id
-  const getVideoTokenEarned = () => {
-    Api.getVideoTokenEarned(userId, 'watch').then((res) => {
-      if (res && res.data && res.data.isSuccess) {
-        const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
-    
-        dispatch(earnedTokenRed(token))
-        
-      } else {
-        dispatch(earnedTokenRed(0))
-        
-      }
-    })
-  }
-
-
-
 
   // this is used to save the watch time of user
   const saveVideoDuration = (e) => {
@@ -383,6 +358,27 @@ function Channels({
     }
   }
 
+  useEffect(() => {
+    if (changecurrentVideo) {
+      dispatch(updateCurrentVideo(false));
+      let chdata = JSON.parse(JSON.stringify(channels));
+      chdata = chdata.map((ch) => {
+        ch.liveShows = ch.liveShows.map((ls) => {
+          if (ls && ls.selected) {
+            ls.selected = false;
+          }
+          if (ls && data && ls.id === data.id) {
+            ls.selected = true;
+          }
+          return ls;
+        });
+        return ch;
+      });
+      setChannels([...chdata]);
+      currentVideo(data);
+    }
+  }, [changecurrentVideo, data]);
+
 
   return (
     <section>
@@ -405,6 +401,9 @@ function Channels({
                       label="Follow"
                       variant={4}
                       customizationClassName="space-x-2 border-2 border-green px-5 rounded-lg text-green justify-center flex w-full"
+                      buttonProps={{
+                        onClick:() => helper.comingSoonNotification()
+                      }}
                       LeftComponent={() => (
                         <img
                           src="images/tv/green-heart.svg"
@@ -419,7 +418,7 @@ function Channels({
                 <div className="flex-1 w-full">
                   <div className="md:max-w-[300px] w-full text-center md:text-left">
                     {/* <FillBar barColor="#6C6C6C" bgColor="#1F1F1F" /> */}
-                    <p className="text-sm">{liveShow.title}</p>
+                    <p className="text-sm font-bold">{liveShow.title}</p>
                     <p className="text-sm">
                       {liveShow.description
                         ? liveShow.description
@@ -464,7 +463,8 @@ function Channels({
                     className="w-[20px] mb-2"
                     alt=""
                   />
-                  <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center">
+                  <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center"
+                    onClick={() => helper.comingSoonNotification()}>
                     Gem Activated
                   </div>
                 </SquareBox>
@@ -492,7 +492,7 @@ function Channels({
                 variant={1}
               >
                 <h1 className="fs-24px text-black font-semibold mb-1">
-                  {(metamaskBalance / 1000000000000000000).toFixed(4)}
+                  {(metamaskBalance / 1000000000000000000)?.toFixed(4)}
                 </h1>
                 <h1 className="text-xs xl:text-sm text-black font-medium text-center">
                   SPAY In WALLET
