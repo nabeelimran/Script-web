@@ -1,9 +1,12 @@
 import { Icon } from "@iconify/react";
 import React from "react";
+import { helper } from "utils/helper";
+import { ToastMessage } from "./ToastMessage";
 
 function StreamForm() {
+
   return (
-    <form className="flex space-x-4">
+    <form className="flex space-x-4" onSubmit={helper.comingSoonNotification}>
       <div className="h-10 w-full relative bg-shade-grayis rounded-lg overflow-hidden">
         <input
           type="text"

@@ -8,9 +8,9 @@ import Community from "sections/TvHomepage/Community";
 import Hero from "sections/TvHomepage/Hero";
 import HowToEarn from "sections/TvHomepage/HowToEarn";
 import KeyStats from "sections/TvHomepage/KeyStats";
-import React, { useEffect,useState } from "react";
-import Api from "../services/api"
-import {videoShows} from "../redux/reducers/video_State"
+import React, { useEffect, useState } from "react";
+import Api from "../services/api";
+import { videoShows } from "../redux/reducers/video_State";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MetamaskService from "services/metamask";
@@ -18,136 +18,126 @@ import { helper } from "utils/helper";
 import LocalServices from "services/LocalServices";
 
 function TvHomepage() {
-  const dispatch = useDispatch()
-  const [channel, setchannels] = useState([])
-  const [currentVideo, setCurrentVideo] = useState(null)
-  const [adsList, setAdsList] = useState([])
-  const [videoTokenEarned, setVideoTokenEarned] = useState(null)
-  const [metamaskBalance, setMetamaskBalance] = useState(0)
-  const [recaptchaCode, setReCaptchaCode] = useState('');
+  const dispatch = useDispatch();
+  const [channel, setchannels] = useState([]);
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [adsList, setAdsList] = useState([]);
+  const [videoTokenEarned, setVideoTokenEarned] = useState(0);
+  const [metamaskBalance, setMetamaskBalance] = useState(0);
+  const [recaptchaCode, setReCaptchaCode] = useState("");
+  const [videoWatchDuration, setVideoWatchDuration] = useState(0);
+  const [lastDayWatchVideoDuration, setLastDayWatchVideoDuration] = useState(0);
+  const [lastVideoHistory, setLastVideoHistory] = useState(null);
+  const [twitterPost, setTwitterPost] = useState([]);
+
   let userId = LocalServices.getServices("user")?.userId || null;
-  const { refreshChannel} = useSelector(
+  const { refreshChannel } = useSelector(
     (state) => state.connectWalletModal_State
   );
   const getChannels = () => {
-    Api.getChannels('watch').then(res=>{
+    Api.getChannels("watch").then((res) => {
+      
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
-      dispatch(videoShows(res.data.data[0].liveShows[0]))
-      setAdsList(res.data.data[0].adsData)
+      //dispatch(videoShows(res.data.data[0].liveShows[0]))
+      //setAdsList(res.data.data[0].adsData)
      })
   }
+
   useEffect(()=>{
-    if(refreshChannel){
+    
       getChannels();
-    }
-  },[refreshChannel])
+    
+  }, [refreshChannel]);
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
-    Api.getVideoTokenEarned(userId, 'watch').then((res) => {
+    Api.getVideoTokenEarned(userId, "watch").then((res) => {
       if (res && res.data && res.data.isSuccess) {
-        const token = +res.data.data.earnedToken ? +res.data.data.earnedToken : 0;
-        setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
+        const token = +res?.data?.data?.earnedToken
+          ? +res?.data?.data?.earnedToken
+          : 0;
+        // setVideoTokenBalance(token > 0 ? '' : 'setDefault', token);
+
         setVideoTokenEarned(token);
       } else {
         setVideoTokenEarned(0);
       }
-    })
-  }
+    });
+  };
 
-  // this function is used to check the video watch at every 1 min interval
-  // @TODO need to change code
-  const checkVideoWatchTime = (e) => {
-    console.log(e, 'interval called')
-    if(e) {
-      saveVideoDuration(e)
-      let token = videoTokenEarned;
-      if(videoTokenEarned >= 0) {
-        token = videoTokenEarned + 0.05
-        setVideoTokenEarned(token)
-      }
-      setVideoTokenBalance('', token);
-    }
-  }
 
-  // this is used to save the watch time of user
-  const saveVideoDuration = (e) => {
-    const watchTime = (e.videoPlayTime - e.startTime) / 60
-    const req = {
-      "showId": currentVideo.id, // show id
-      "videoId": currentVideo.videoId, // video id
-      "userId": userId ? userId : 0,
-      "videoDuration": +watchTime.toFixed()  // duration in minute
-    };
 
-    if (+watchTime.toFixed() > 0) {
-      Api.saveVideoDuration(req, 'watch').then((res) => {
-        if (res && res.isSuccess) {
 
-        } else {
-
-        }
-      })
-    }
-  }
-
-  // this is used to save token earned by watch
-  const setVideoTokenBalance = (action, token) => {
-    const authToken = sessionStorage.getItem('script-token'); // auth token
-    if (authToken) {
-      const req = {
-        userId: userId ? userId : 0,
-        amount: action === 'setDefault' ? 0 : token.toFixed(2)
-      };
-      Api.addVideoToken(req, 'watch').then((res) => {
-        if (res && res.success) {
-          setVideoTokenEarned(token);
-        } else {
-          
-        }
-      })
-    }
-  }
 
   const getMetamaskBalance = () => {
-    const authToken = sessionStorage.getItem('script-token');
+    const authToken = sessionStorage.getItem("script-token");
     if (authToken) {
-      const walletAddress = JSON.parse(sessionStorage.getItem('userInfo')).walletAddress || null;
+      const walletAddress =
+        JSON.parse(sessionStorage.getItem("userInfo")).walletAddress || null;
       if (walletAddress) {
         MetamaskService.accountsChanged(walletAddress).then((balance) => {
-          setMetamaskBalance(balance);    
-        })
+          setMetamaskBalance(balance);
+        });
       } else {
         MetamaskService.connectHandler().then((res) => {
           MetamaskService.accountsChanged(res).then((balance) => {
-            setMetamaskBalance(balance);    
-          })
-        })
+            setMetamaskBalance(balance);
+          });
+        });
       }
     } else {
-      setMetamaskBalance(0)
+      setMetamaskBalance(0);
     }
-  }
+  };
 
-  useEffect(()=>{
+  const getVideoWatchDuration = (userId) => {
+    Api.getVideoWatchDuration(userId, "watch").then((res) => {
+      if (res && res.status === 200) {
+        setVideoWatchDuration(res.data.data.totalWatchVideoDuration);
+        setLastDayWatchVideoDuration(res.data.data.lastDayWatchVideoDuration);
+      }
+    });
+  };
+
+  const getLastShowWatchHistory = (userId) => {
+    Api.getLastWatchShowHistory(userId, "watch").then((res) => {
+      if (res && res.status === 200) {
+        setLastVideoHistory(res.data.data);
+      }
+    });
+  };
+
+  const getTwitterPost = () => {
+    Api.getTwitterPosts("home").then((res) => {
+      if (res && res.status === 200) {
+        setTwitterPost(res.data.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getTwitterPost();
     getChannels();
     getMetamaskBalance();
-    setReCaptchaCode(helper.getRandomNumber(8))
-    if(userId) {
-      getVideoTokenEarned(userId)
+    setReCaptchaCode(helper.getRandomNumber(8));
+    if (userId) {
+      getVideoTokenEarned(userId);
+      getVideoWatchDuration(userId);
+      getLastShowWatchHistory(userId);
     }
-  }, [])
+  }, []);
 
-  const changeVideo=(show)=>{
-    console.log("DISPATCH",show)
-    dispatch(videoShows(show))
+  const changeVideo = (show) => {
+    dispatch(videoShows(show));
     setCurrentVideo(show);
 
     if (channel && channel.length > 0) {
-      setAdsList(channel.filter(c => c.id === show.channelId)[0].adsData || [])
+      setAdsList(
+        channel.filter((c) => c.id === show.channelId)[0].adsData || []
+      );
     }
-  }
+  };
 
   return (
     <div>
@@ -156,21 +146,26 @@ function TvHomepage() {
       </div>
 
       <div className="mb-8">
-        <Hero />
+        <Hero
+          videoWatchDuration={videoWatchDuration}
+          lastDayWatchVideoDuration={lastDayWatchVideoDuration}
+          lastVideoHistory={lastVideoHistory}
+        />
       </div>
 
-      <div className="mb-12">
-        {channel.length>0&&<AllTvChannels 
+      <div className="mb-6">
+        {channel.length>0&&  currentVideo && <AllTvChannels 
         show={currentVideo}
         adsList={adsList}
-        checkVideoWatchTime={checkVideoWatchTime}
+        // checkVideoWatchTime={checkVideoWatchTime}
         />}
       </div>
 
-      <div className="mb-12">
+      <div className="mb-12" id="videoTag">
        {channel.length>0&& <Channels
         channeldata={channel}
         currentVideo={(data)=>changeVideo(data)}
+        latestVideo={currentVideo}
         videoTokenEarned={videoTokenEarned}
         metamaskBalance={metamaskBalance}
         recaptchaCode={recaptchaCode}
@@ -191,7 +186,9 @@ function TvHomepage() {
       </div>
 
       <div className="mb-16 lg:mb-24">
-        <Community />
+        {twitterPost && twitterPost.length > 0 ? (
+          <Community twitterPost={twitterPost} />
+        ) : null}
       </div>
 
       <div className="mb-20" id="tv-community">

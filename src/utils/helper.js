@@ -1,3 +1,4 @@
+import { ToastMessage } from 'components/ToastMessage';
 import moment from 'moment'
 export const helper = {
     percentFormat: (num) => num.toFixed(4).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1'),
@@ -16,7 +17,6 @@ export const helper = {
       if(currentDate.getMinutes()>=30){
         startTime.add(30,'minutes')
       }
-  console.log(startTime.format('HH:mm'))
       while (startTime <= endTime) {
         timeStops.push(moment(startTime).format('HH:mm'));
         startTime.add(30, 'minutes');
@@ -25,11 +25,7 @@ export const helper = {
       return timeStops;
     },
   
-    getDiffInMinfromCurrent:(startDate, dateType)=> {
-      let currentDate = moment(new Date());
-      let diff = moment(startDate).diff(currentDate, 'minutes');
-      return diff
-    },
+    getDiffInMinfromCurrent:(startDate, dateType) => moment(startDate).diff(moment(new Date()), 'minutes'),
     getDiffInMin:(startDate, endDate)=> moment(startDate).diff(moment(endDate), 'minutes'),
     getIn12HoursFormat:(date)=>{
         let hours = date.getHours();
@@ -48,7 +44,14 @@ export const helper = {
         result += char[Math.round(Math.random() * (char.length - 1))];
       }
       return result;
-    }
+    },
+    formatDate: (date, format) => moment(date).format(format),
+    comingSoonNotification: (e) => {
+      if(e) {
+        e.preventDefault();
+      } 
+      ToastMessage('Coming Soon!!') 
+    } 
 }
 
 export const metamaskNetwork = {
@@ -98,7 +101,7 @@ export const metamaskNetwork = {
     }
 }
 
-export const enumStorange =  {
+export const STORAGEENUM =  {
   token: "script-token",
   user: "userInfo"
 }

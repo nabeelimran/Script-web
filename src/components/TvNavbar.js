@@ -13,6 +13,8 @@ import ChannelsDropdown from "./ChannelsDropdown";
 import HelpDropdown from "./HelpDropdown";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import { useDispatch } from "react-redux";
+import Api from "services/api";
+import { helper } from "utils/helper";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -20,8 +22,18 @@ function TvNavbar({ className }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [channels,  setChannels] = useState([]);
+
+  const getChannels = () => {
+    Api.getAllChannels(5, 'header').then((res) => {
+      if(res && res.status === 200) {
+        setChannels(res.data.data);
+      }
+    })
+  }
 
   useEffect(() => {
+    getChannels();
     if (isSidebarVisible) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -87,7 +99,7 @@ function TvNavbar({ className }) {
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
               <LinkScroller
                 id="homepage-community-section"
-                to="/"
+                to="/tv"
                 wait={location.pathname === "/" ? 0 : 200}
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
                 scrollerOptions={{
@@ -98,7 +110,7 @@ function TvNavbar({ className }) {
                 Watch
               </LinkScroller>
 
-              <ChannelsDropdown />
+              <ChannelsDropdown channels={channels} />
 
               <HelpDropdown />
 
@@ -115,12 +127,20 @@ function TvNavbar({ className }) {
                 Community
               </LinkScroller>
 
-              <Link
+              {/* <Link
                 to="/technology"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Wallet
-              </Link>
+              </Link> */}
+              <a
+                href="https://wallet.script.tv/"
+                target="_blank"
+                rel="noreferrer"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Wallet
+              </a>
               <a
                 href="https://explorer.script.tv/"
                 target="_blank"
@@ -133,7 +153,7 @@ function TvNavbar({ className }) {
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">
               <Button
-                link="/marketplace"
+                // link="/marketplace"
                 className="mt-8 lg:mt-0 flex justify-center"
                 customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
@@ -142,6 +162,9 @@ function TvNavbar({ className }) {
                     MarketPlace
                   </span>
                 }
+                buttonProps={{
+                  onClick:() => helper.comingSoonNotification()
+                }}
               />
               {
                 checkToken() ? (

@@ -12,7 +12,6 @@ function Popup({ open, setOpen, children, className, glass = false }) {
   // );
 
   useEffect(() => {
-    console.log(glass);
     if (open) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -33,9 +32,7 @@ function Popup({ open, setOpen, children, className, glass = false }) {
                 : "popup-out opacity-0 pointer-events-none"
             }`}
           >
-            <div  className={className}>
-              {children}
-            </div>
+            <div className={className}>{children}</div>
           </div>
         )}
       </UpperRoot>

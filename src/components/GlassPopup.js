@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { helper } from "utils/helper";
 import FillBar from "./FillBar";
 import Popup from "./Popup";
 
@@ -8,6 +9,11 @@ function GlassPopup({ open, setOpen }) {
   const changeActiveState = (id) => {
     setActive(id);
   };
+
+  const selectGlass = () => {
+    setOpen(false)
+    helper.comingSoonNotification();
+  }  
 
   const returnClasses = (id) => {
     if (id === active) {
@@ -54,29 +60,6 @@ function GlassPopup({ open, setOpen }) {
         setOpen={setOpen}
         className="max-w-[400px] w-full bg-black text-white py-5 px-8 rounded-lg mx-auto border border-primary"
       >
-        {/* <img
-          src="images/tv/glasses.svg"
-          className="mx-auto max-w-[70px] w-full mb-5"
-          alt=""
-        />
-
-        <div className="space-y-2 mb-3">
-          <div className="space-y-1 w-full">
-            <FillBar barColor="#FF0015" bgColor="#434242" />
-            <p className="text-center font-medium text-sm text-black">47/100</p>
-          </div>
-          <div className="space-y-1 w-full">
-            <FillBar barColor="#3C58EE" bgColor="#434242" />
-            <p className="text-center font-medium text-sm text-black">
-              Level 01
-            </p>
-          </div>
-        </div>
-
-        <div className="py-1 px-3 text-center w-fit mx-auto text-xs xl:text-xs bg-black font-medium rounded">
-          #708543
-        </div> */}
-
         <h2 className="text-center mb-3">Glasses</h2>
         <div className="max-h-48 overflow-auto">
           <div
@@ -148,7 +131,7 @@ function GlassPopup({ open, setOpen }) {
         <div className="text-center mt-5">
           <button
             className="px-5 py-1 rounded bg-[#131313]"
-            onClick={() => setOpen(false)}
+            onClick={() => selectGlass()}
           >
             Continue
           </button>

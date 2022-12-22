@@ -5,6 +5,7 @@ import { Navigation, Pagination } from "swiper";
 import { Icon } from "@iconify/react";
 import DividerLine from "components/DividerLine";
 import HeadingSmall from "components/HeadingSmall";
+import LocalServices from "services/LocalServices";
 
 const SliderContent = () => {
   return (
@@ -20,9 +21,14 @@ const SliderContent = () => {
   );
 };
 
-function Hero() {
+function Hero({
+  videoWatchDuration,
+  lastVideoHistory,
+  lastDayWatchVideoDuration
+}) {
   const prevRef = useRef();
   const nextRef = useRef();
+  const token = LocalServices.getServices("token");
 
   return (
     <div>
@@ -105,7 +111,9 @@ function Hero() {
               <HeadingSmall className="mb-1">
                 Minutes watched in total
               </HeadingSmall>
-              <p className="text-sm xl:text-base font-bold">5,400 Minutes</p>
+              <p className="text-sm xl:text-base font-bold">
+                {token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : 'N/A'}
+              </p>
             </div>
 
             <DividerLine />
@@ -115,7 +123,9 @@ function Hero() {
                 Minutes watched in the last 24 hours
               </HeadingSmall>
 
-              <p className="text-sm xl:text-base font-bold">24 Minutes</p>
+              <p className="text-sm xl:text-base font-bold">
+              {token ? `${lastDayWatchVideoDuration ? lastDayWatchVideoDuration : 0} Minutes` : 'N/A'}
+              </p>
             </div>
 
             <DividerLine />
@@ -124,11 +134,14 @@ function Hero() {
               <HeadingSmall>Most watched channel:</HeadingSmall>
 
               <div>
+              {token && lastVideoHistory?.channelImageLink ? (
                 <img
-                  src="/images/tv/cultured-one.svg"
+                  src={lastVideoHistory?.channelImageLink}
                   className="w-[90px]"
-                  alt=""
+                  alt={lastVideoHistory?.channelName ? lastVideoHistory?.channelName : 'default'}
                 />
+              ) : 'N/A'}
+                
               </div>
             </div>
 
@@ -136,7 +149,7 @@ function Hero() {
 
             <div className="px-6 flex items-center space-x-4 justify-between">
               <div>
-                <p className="text-sm xl:text-base font-medium">#535435</p>
+                <p className="text-sm xl:text-base font-medium">N/A</p>
                 <HeadingSmall>Favourite Glasses</HeadingSmall>
               </div>
 

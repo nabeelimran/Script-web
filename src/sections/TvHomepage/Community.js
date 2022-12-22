@@ -1,10 +1,13 @@
 import { Icon } from "@iconify/react";
 import Title from "components/Title";
 import React from "react";
+import { helper } from "utils/helper";
 
-const Card = () => {
+const Card = ({
+  post
+}) => {
   return (
-    <div className="bg-shade-grayis rounded-2xl py-5 md:py-7 px-6 md:px-8 flex flex-col relative">
+    <div className="bg-shade-grayis rounded-2xl py-5 md:py-7 px-6 md:px-8 flex flex-col relative" onClick={() => helper.openLink(post.twitterPostLink)}>
       <div className="xl:flex items-center justify-between mb-4 xl:mb-6">
         <div className="flex items-center space-x-3">
           <img
@@ -21,20 +24,19 @@ const Card = () => {
         </div>
 
         <p className="text-xs xl:text-sm text-primary absolute top-3 right-6 xl:static">
-          Nov 8/2022
+          {helper.formatDate(post.createAt, 'MMM D/YYYY')}
         </p>
       </div>
 
       <div className="flex-1 mb-5">
         <p className="text-xs xl:text-sm">
-          @Poolz__ @_Crypto_Pirates @MoverseRun @Project _Hive_io @MeMusicNews
-          @LegendsElysium @osis_ world @LeagueofEmpires @neptunemutual 📺
+          {post.text}
         </p>
       </div>
 
       <div>
         <p className="text-xs xl:text-sm text-center text-primary mb-5">
-          Script Network (script_network)
+          {post.userName}
         </p>
 
         <div className="flex items-center justify-center space-x-6">
@@ -42,12 +44,12 @@ const Card = () => {
 
           <div className="flex items-center space-x-1">
             <img src="images/tv/share-yellow.svg" className="w-[16px]" alt="" />
-            <span className="text-base text-primary">0</span>
+            <span className="text-base text-primary">{post.retweetCount ? post.retweetCount : 0}</span>
           </div>
 
           <div className="flex items-center space-x-1">
             <img src="images/tv/yellow-heart.svg" className="w-[16px]" alt="" />
-            <span className="text-base text-primary">1</span>
+            <span className="text-base text-primary">{post.favoriteCount ? post.favoriteCount : 0}</span>
           </div>
 
           <Icon icon="material-symbols:upload-rounded" className="text-xl" />
@@ -57,7 +59,9 @@ const Card = () => {
   );
 };
 
-function Community() {
+function Community({
+  twitterPost
+}) {
   return (
     <section className="container">
       <div className="mb-12 lg:mb-16">
@@ -68,9 +72,12 @@ function Community() {
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6 xl:gap-10">
+        {
+          twitterPost.map((post, index) => index <=2 ? <Card key={index} post={post} /> : null)
+        }
+        {/* <Card />
         <Card />
-        <Card />
-        <Card />
+        <Card /> */}
       </div>
     </section>
   );
