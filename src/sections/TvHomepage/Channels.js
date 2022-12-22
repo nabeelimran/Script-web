@@ -211,14 +211,17 @@ function Channels({
   let userId = LocalServices.getServices("user")?.userId || null;
   const {earnedToken} = useSelector((state) => state.video_State)
   const {videoTimeWatch} = useSelector((state) => state.video_State)
-
-  
+  const [modal, setModal] = useState(false);
   const [timeline, setTimeline] = useState([])
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
+  
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
   useEffect(()=>{
+    if(userId) {
+      getVideoTokenEarned(userId)
+    }
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
     
@@ -234,106 +237,6 @@ function Channels({
     clearInterval(cursorint)
     })
   },[])
-  useEffect(()=>{
-    if(userId) {
-      getVideoTokenEarned(userId)
-    }
-    let timelinedata= helper.createTimeSlot(new Date());
-    setTimeline(timelinedata)
-    if(timeline.length>0){
-      setInterval(()=>{
-        let style={marginLeft:0}
-        const todayDate= new Date();
-        let timelinemin=Number(timeline[0]?.split(':')[1]);
-        let min=todayDate.getMinutes()-timelinemin;
-        style.marginLeft=min;
-       setCursonPosition(style)
-      },10000)
-    }
-  }, []);
-  useEffect(() => {
-    let chData = channeldata.map((ch) => {
-      let liveshows = ch.liveShows.filter(
-        (ls) => new Date(ls.startTime).getDate() === new Date().getDate()
-      );
-      ch.liveShows = liveshows.map((show) => {
-        let res = getDurationInMinute(show.startTime, show.endTime);
-        show.duration = res.duration;
-        show.time = res.time;
-        show.selected = false;
-        return show;
-      });
-      return ch;
-    });
-    chData[0].liveShows[0].selected = true;
-    setLiveShow(chData[0].liveShows[0]);
-    setChannels(chData);
-  }, [timeline]);
-  const getDurationInMinute = (startedAt, endedAt) => {
-    let startDate = new Date(startedAt);
-    let endDate = new Date(endedAt);
-    let timelinemin = Number(timeline[0]?.split(":")[1]);
-    let duration = helper.getDiffInMin(endDate, startDate);
-    let diff = helper.getDiffInMinfromCurrent(startDate);
-    let curdatemin = new Date().getMinutes();
-    if (diff < 0) {
-      diff = diff + curdatemin - timelinemin; //adjust duration according to timeline
-    } else {
-      diff = 0;
-    }
-    let res = {
-      duration: duration + diff,
-      time:
-        helper.getIn12HoursFormat(startDate) +
-        "-" +
-        helper.getIn12HoursFormat(endDate),
-    };
-    return res;
-  };
-  const changeSelectedVideo = (show) => {
-    setLiveShow(show);
-    let chdata = JSON.parse(JSON.stringify(channels));
-    chdata = chdata.map((ch) => {
-      ch.liveShows = ch.liveShows.map((ls) => {
-        if (ls && ls.selected) {
-          ls.selected = false;
-        }
-        if (ls && show && ls.id === show.id) {
-          ls.selected = true;
-        }
-        return ls;
-      });
-      return ch;
-    });
-    setChannels([...chdata]);
-    currentVideo(show);
-  };
-  useEffect(() => {
-    if (changecurrentVideo) {
-      dispatch(updateCurrentVideo(false));
-      let chdata = JSON.parse(JSON.stringify(channels));
-      chdata = chdata.map((ch) => {
-        ch.liveShows = ch.liveShows.map((ls) => {
-          if (ls && ls.selected) {
-            ls.selected = false;
-          }
-          if (ls && data && ls.id === data.id) {
-            ls.selected = true;
-          }
-          return ls;
-        });
-        return ch;
-      });
-      setChannels([...chdata]);
-      currentVideo(data);
-    }
-  }, [changecurrentVideo, data]);
-
-  const [modal, setModal] = useState(false);
-
-  //  Save video duration code
-
-
   useEffect(()=>{
     if(earnedToken) {
       saveVideoDuration(videoTimeWatch)
@@ -358,7 +261,24 @@ function Channels({
   }
 
 
-
+  const changeSelectedVideo = (show) => {
+    setLiveShow(show);
+    let chdata = JSON.parse(JSON.stringify(channels));
+    chdata = chdata.map((ch) => {
+      ch.liveShows = ch.liveShows.map((ls) => {
+        if (ls && ls.selected) {
+          ls.selected = false;
+        }
+        if (ls && show && ls.id === show.id) {
+          ls.selected = true;
+        }
+        return ls;
+      });
+      return ch;
+    });
+    setChannels([...chdata]);
+    currentVideo(show);
+  };
 
   // this is used to save the watch time of user
   const saveVideoDuration = (e) => {
@@ -398,6 +318,27 @@ function Channels({
       })
     }
   }
+
+  useEffect(() => {
+    if (changecurrentVideo) {
+      dispatch(updateCurrentVideo(false));
+      let chdata = JSON.parse(JSON.stringify(channels));
+      chdata = chdata.map((ch) => {
+        ch.liveShows = ch.liveShows.map((ls) => {
+          if (ls && ls.selected) {
+            ls.selected = false;
+          }
+          if (ls && data && ls.id === data.id) {
+            ls.selected = true;
+          }
+          return ls;
+        });
+        return ch;
+      });
+      setChannels([...chdata]);
+      currentVideo(data);
+    }
+  }, [changecurrentVideo, data]);
 
 
   return (
