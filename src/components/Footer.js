@@ -6,23 +6,23 @@ function Footer({ container = "container-two" }) {
     {
       title: "PRODUCTS",
       links: [
-        { title: "Script TV", to: "" },
+        { title: "Script TV", to: "/tv" },
         { title: "Script Glass", to: "/research" },
-        { title: "Marketplace", to: "" },
-        { title: "dStorage", to: "" },
+        { title: "Marketplace", to: "/marketplace" },
+        { title: "dStorage", to: "/" },
         { title: "Script Blockchain", to: "/node" },
-        { title: "sADs", to: "" },
+        { title: "sADs", to: "/" },
       ],
     },
     {
       title: "Script Tokens",
       links: [
-        { title: "Script TV", to: "" },
-        { title: "Script Glass", to: "/research" },
-        { title: "Marketplace", to: "" },
-        { title: "dStorage", to: "" },
-        { title: "Script Blockchain", to: "/node" },
-        { title: "sADs", to: "" },
+        { title: "INFORMATION", to: "" },
+        { title: "ScriptGLASS Explained", to: "/research" },
+        { title: "Script Tokens", to: "/token" },
+        { title: "Calculator", to: "/calculator" },
+        { title: "Run a node", to: "/node" },
+        { title: "FAQ", to: "/faq" },
       ],
     },
     {
