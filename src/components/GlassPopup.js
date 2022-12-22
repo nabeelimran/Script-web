@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { helper } from "utils/helper";
 import FillBar from "./FillBar";
 import Popup from "./Popup";
 
@@ -8,6 +9,11 @@ function GlassPopup({ open, setOpen }) {
   const changeActiveState = (id) => {
     setActive(id);
   };
+
+  const selectGlass = () => {
+    setOpen(false)
+    helper.comingSoonNotification();
+  }  
 
   const returnClasses = (id) => {
     if (id === active) {
@@ -125,7 +131,7 @@ function GlassPopup({ open, setOpen }) {
         <div className="text-center mt-5">
           <button
             className="px-5 py-1 rounded bg-[#131313]"
-            onClick={() => setOpen(false)}
+            onClick={() => selectGlass()}
           >
             Continue
           </button>

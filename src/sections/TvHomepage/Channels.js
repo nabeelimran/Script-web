@@ -405,6 +405,9 @@ function Channels({
                       label="Follow"
                       variant={4}
                       customizationClassName="space-x-2 border-2 border-green px-5 rounded-lg text-green justify-center flex w-full"
+                      buttonProps={{
+                        onClick:() => helper.comingSoonNotification()
+                      }}
                       LeftComponent={() => (
                         <img
                           src="images/tv/green-heart.svg"
@@ -464,7 +467,8 @@ function Channels({
                     className="w-[20px] mb-2"
                     alt=""
                   />
-                  <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center">
+                  <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center"
+                    onClick={() => helper.comingSoonNotification()}>
                     Gem Activated
                   </div>
                 </SquareBox>
