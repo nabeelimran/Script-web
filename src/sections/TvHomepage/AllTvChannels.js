@@ -138,7 +138,7 @@ function AllTvChannels({
       // })
 
       playerRef.current.on("timeupdate", (evt) => {
-        if (playerRef.current) {
+        if (playerRef && playerRef.current) {
           durationcheckinterval = setInterval(() => {
             // console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
             if (
@@ -202,13 +202,14 @@ function AllTvChannels({
         // checking whether fully visible
         let pipEl = document.getElementById("video-container");
         // if(position.top >= 0 && position.bottom <= window.innerHeight) {
-        if (position.top >= 0 && position.bottom >= 0) {
-          pipEl.classList.remove("custom-pip-window");
-          // player.requestPictureInPicture()
-        } else {
-          pipEl.classList.add("custom-pip-window");
-
-          // player.exitPictureInPicture();
+        if(pipEl) {
+          if (position.top >= 0 && position.bottom >= 0) {
+            pipEl.classList.remove("custom-pip-window");
+            // player.requestPictureInPicture()
+          } else {
+            pipEl.classList.add("custom-pip-window");
+            // player.exitPictureInPicture();
+          }
         }
       }, 500);
     });
@@ -221,6 +222,7 @@ function AllTvChannels({
 
     player.on("dispose", () => {
       videojs.log("player will dispose");
+      playerRef.current = null;
     });
     if (playerRef) {
       setIsPlayerReady(true);
