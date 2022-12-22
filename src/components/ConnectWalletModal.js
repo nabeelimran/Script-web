@@ -20,7 +20,7 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import auth from "auth/firebase";
 import {GoogleAuthProvider,signInWithPopup,getAuth,TwitterAuthProvider} from "firebase/auth"
-import { detectBrowser } from "utils/helper";
+import { detectBrowser, helper } from "utils/helper";
 
 function ConnectWalletModal() {
 	const navigate = useNavigate();
@@ -183,8 +183,9 @@ function ConnectWalletModal() {
 				ToastMessage(err?.error?.message || 'Something went wrong')
 			});
 	};
-	const twitterLoginHandler =  () => {
-		
+	const twitterLoginHandler =  (e) => {
+		helper.comingSoonNotification(e);
+		return;
 	  	const provider = new TwitterAuthProvider();
 		signInWithPopup(getAuth(auth),provider).then((res) => {
 		
