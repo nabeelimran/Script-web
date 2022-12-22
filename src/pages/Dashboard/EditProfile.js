@@ -192,6 +192,10 @@ function EditProfile() {
             <div className="sm:col-span-2">
               <FloatingLabelTextarea placeholder="Bio" other={{
                 ...register("bio"),
+                maxLength: {
+                  value: 300,
+                  message: "Bio have at most 300 characters",
+                },
               }} />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Description for the About panel on your channel page in under
