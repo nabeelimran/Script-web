@@ -27,24 +27,22 @@ const ChannelBox = ({ img, label, to = "/" }) => {
   );
 };
 
-const ChannelsDropdownBody = ({
-  channels
-}) => {
-  if(channels && channels.length > 0) {
+const ChannelsDropdownBody = ({ channels }) => {
+  if (channels && channels.length > 0) {
     channels = channels.map((channel) => {
-      if(channel.id === 1922 || channel.id === 1913) {
+      if (channel.id === 1922 || channel.id === 1913) {
         channel.className = "w-full lg:w-20";
       }
-      if(channel.id === 1911 || channel.id === 1908) {
+      if (channel.id === 1911 || channel.id === 1908) {
         channel.className = "w-full lg:w-auto";
       }
-      if(channel.id === 621730) {
+      if (channel.id === 621730) {
         channel.className = "w-full lg:w-14";
       }
       return channel;
-    })
+    });
   }
-  
+
   return (
     <div className="bg-blue-3 rounded-lg grid lg:grid-cols-[230px,1fr] lg:p-0 gap-6 lg:gap-0 py-4 lg:py-0">
       <div className="lg:py-7 px-5 lg:px-8 flex-col space-y-3 lg:space-y-5">
@@ -63,14 +61,16 @@ const ChannelsDropdownBody = ({
         </p>
 
         <div className="grid grid-cols-2 gap-6 lg:gap-0 lg:flex flex-wrap items-center lg:-mx-3 lg:-my-3">
-          { channels && channels.length > 0 ? channels.map((item, i) => (
-            <img
-              src={item.image}
-              key={i}
-              alt="abc"
-              className={`lg:mx-3 lg:my-3 ${item.className}`}
-            />
-          )) : null}
+          {channels && channels.length > 0
+            ? channels.map((item, i) => (
+                <img
+                  src={item.image}
+                  key={i}
+                  alt="abc"
+                  className={`lg:mx-3 lg:my-3 ${item.className}`}
+                />
+              ))
+            : null}
         </div>
       </div>
     </div>

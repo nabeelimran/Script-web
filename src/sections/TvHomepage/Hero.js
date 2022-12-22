@@ -13,7 +13,7 @@ const SliderContent = () => {
       <img
         // src="images/tv/hero-banner.png"
         src="images/test-launch.png"
-        className="h-[200px] w-full md:h-full"
+        className="w-full md:h-full"
         alt=""
       />
       {/* <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,.6)] z-20"></div> */}
@@ -24,7 +24,7 @@ const SliderContent = () => {
 function Hero({
   videoWatchDuration,
   lastVideoHistory,
-  lastDayWatchVideoDuration
+  lastDayWatchVideoDuration,
 }) {
   const prevRef = useRef();
   const nextRef = useRef();
@@ -112,7 +112,9 @@ function Hero({
                 Minutes watched in total
               </HeadingSmall>
               <p className="text-sm xl:text-base font-bold">
-                {token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : 'N/A'}
+                {token
+                  ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes`
+                  : "N/A"}
               </p>
             </div>
 
@@ -124,7 +126,11 @@ function Hero({
               </HeadingSmall>
 
               <p className="text-sm xl:text-base font-bold">
-              {token ? `${lastDayWatchVideoDuration ? lastDayWatchVideoDuration : 0} Minutes` : 'N/A'}
+                {token
+                  ? `${
+                      lastDayWatchVideoDuration ? lastDayWatchVideoDuration : 0
+                    } Minutes`
+                  : "N/A"}
               </p>
             </div>
 
@@ -134,14 +140,19 @@ function Hero({
               <HeadingSmall>Most watched channel:</HeadingSmall>
 
               <div>
-              {token && lastVideoHistory?.channelImageLink ? (
-                <img
-                  src={lastVideoHistory?.channelImageLink}
-                  className="w-[90px]"
-                  alt={lastVideoHistory?.channelName ? lastVideoHistory?.channelName : 'default'}
-                />
-              ) : 'N/A'}
-                
+                {token && lastVideoHistory?.channelImageLink ? (
+                  <img
+                    src={lastVideoHistory?.channelImageLink}
+                    className="w-[90px]"
+                    alt={
+                      lastVideoHistory?.channelName
+                        ? lastVideoHistory?.channelName
+                        : "default"
+                    }
+                  />
+                ) : (
+                  "N/A"
+                )}
               </div>
             </div>
 
