@@ -11,12 +11,12 @@ import { useForm } from "react-hook-form";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "components/ToastMessage";
-import { toFormData } from "axios";
 
 function EditProfile() {
 
   const [countryList, setCountryList] = useState([]);
-  const userId = LocalServices.getServices("user")?.userId || null;
+  const user = LocalServices.getServices("user") || null;
+  const userId = user ? user?.userId : null;
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [videoWatchDuration, setVideoWatchDuration] = useState(0);
@@ -26,7 +26,13 @@ function EditProfile() {
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, 'dashboard').then((res) => {
       if(res && res.status === 200) {
+        console.log(res.data.data);
         setProfile(res.data.data);
+        setValue('username', res?.data?.data?.userName || "",)
+        setValue('email', res?.data?.data?.email || "",)
+        setValue('country', "")
+        setValue('privacyPolicy', false,)
+        setValue('bio', res?.data?.data?.profile?.bio || "",)
       }
     })
   }
@@ -42,16 +48,17 @@ function EditProfile() {
   const getVideoWatchDuration = (userId) => {
     Api.getVideoWatchDuration(userId, 'watch').then((res) => {
       if(res && res.status === 200) {
+        
         setVideoWatchDuration(res?.data?.data?.totalWatchVideoDuration);
       }
     })
   }
 
-  const { register, handleSubmit, watch, formState: { errors }, } = useForm({
-    username: profile?.username || "",
-    email: profile?.email || "",
+  const { register, handleSubmit, watch, setValue, formState: { errors }, } = useForm({
+    username: "",
+    email: "",
     country: "",
-    bio: profile?.bio || "",
+    bio: "",
     privacyPolicy: false,
   });
 
@@ -67,6 +74,7 @@ function EditProfile() {
   }
 
   const updateProfile = (data) => {
+    console.log('data', data);
     setLoading(true);
     const req = new FormData();
     req.append("id", userId);
@@ -80,8 +88,12 @@ function EditProfile() {
     req.append("countryId", data.country);
     req.append("walletId", null);
     req.append("terms", data.privacyPolicy);
-    req.append("profileImage", profileImageFile ? profileImageFile : null)
+    if(profileImageFile && profileImageFile.name) {
+      req.append("profileImage", profileImageFile, profileImageFile.name)
+    }
+    
     Api.updateProfile(req, 'edit-profile').then(res => {
+      console.log(res);
       if(res && res.status === 200) {
         navigate({
           pathname: "/dashboard",
@@ -108,7 +120,7 @@ function EditProfile() {
   return (
     <div className="dashboard-top-spacing dashboard-bottom-spacing dashboard-layout">
       <div className="flex justify-center mb-8">
-        <Avatar selectImage={onSelectFile} />
+        <Avatar selectImage={onSelectFile} image={profile?.profile?.urlProfileImage} />
       </div>
 
       <div>
@@ -146,7 +158,7 @@ function EditProfile() {
               }}/>
             <FloatingLabelSelect label="Country" options={countryList} value={profile?.profile?.country?.id || ''} />
             <div className="sm:col-span-2">
-              <FloatingLabelTextarea placeholder="Bio" value={profile?.bio || ''} other={{
+              <FloatingLabelTextarea placeholder="Bio" other={{
                 ...register("bio"),
               }} />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
@@ -203,7 +215,7 @@ function EditProfile() {
             </Link> */}
           </p>
 
-          <Button label="Save Changes" loader={loading} />
+          <Button label="Save Changes" type="submit" loader={loading} />
         </form>
       </div>
     </div>
