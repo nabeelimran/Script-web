@@ -97,7 +97,10 @@ function EditProfile() {
   };
 
   const updateProfile = (data) => {
-    console.log('data', data);
+    if(data && !data.privacyPolicy) {
+      ToastMessage('Please accpet terms and condition');
+      return;
+    }
     setLoading(true);
     const req = new FormData();
     req.append("id", userId);
@@ -116,7 +119,6 @@ function EditProfile() {
     }
     
     Api.updateProfile(req, 'edit-profile').then(res => {
-      console.log(res);
       if(res && res.status === 200) {
         navigate({
           pathname: "/dashboard",
@@ -207,7 +209,7 @@ function EditProfile() {
           <div className="mb-6">
             <Checkbox
               id="privacyPolicy"
-              other={{...register("privacyPolicy", { required: true })}}
+              other={{...register("privacyPolicy")}}
               title={
                 <span className="text-white">
                   By clicking this, you agree to the{" "}
