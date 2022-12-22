@@ -10,6 +10,7 @@ import "videojs-contrib-ads";
 import { refreshChannel } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed, getVideoTimeWatch } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
+import { helper } from "utils/helper";
 
 function AllTvChannels({
   show,
@@ -277,13 +278,13 @@ function AllTvChannels({
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <button className="text-2xl">
+                  <button className="text-2xl" onClick={helper.comingSoonNotification}>
                     <Icon
                       icon="material-symbols:arrow-right-alt-rounded"
                       className="rotate-180"
                     />
                   </button>
-                  <button className="text-xl">
+                  <button className="text-xl" onClick={helper.comingSoonNotification}>
                     <Icon icon="ep:setting" />
                   </button>
                 </div>
