@@ -218,6 +218,26 @@ function Channels({
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
+
+  useEffect(() => {
+    let chData = channeldata.map((ch) => {
+      let liveshows = ch.liveShows.filter(
+        (ls) => new Date(ls.startTime).getDate() === new Date().getDate()
+      );
+      ch.liveShows = liveshows.map((show) => {
+        let res = getDurationInMinute(show.startTime, show.endTime);
+        show.duration = res.duration;
+        show.time = res.time;
+        show.selected = false;
+        return show;
+      });
+      return ch;
+    });
+    chData[0].liveShows[0].selected = true;
+    setLiveShow(chData[0].liveShows[0]);
+    setChannels(chData);
+  }, [timeline]);
+
   useEffect(()=>{
     if(userId) {
       getVideoTokenEarned(userId)
@@ -225,18 +245,20 @@ function Channels({
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
     
-   let cursorint=   setInterval(()=>{
-        let style={marginLeft:0}
-        const todayDate= new Date();
-        let timelinemin=Number(timeline[0]?.split(':')[1]);
-        let min=todayDate.getMinutes()-timelinemin;
-        style.marginLeft=min;
-       setCursonPosition(style)
-      },10000)
-   return( ()=>{
-    clearInterval(cursorint)
+    let cursorint = setInterval(()=>{
+      let style={marginLeft:0}
+      const todayDate= new Date();
+      let timelinemin=Number(timelinedata[0]?.split(':')[1]);
+      let min=todayDate.getMinutes()-timelinemin;
+      style.marginLeft=min;
+      setCursonPosition(style)
+    },10000)
+    
+    return( ()=>{
+      clearInterval(cursorint)
     })
-  },[])
+    },[])
+
   useEffect(()=>{
     if(earnedToken) {
       saveVideoDuration(videoTimeWatch)
@@ -244,6 +266,23 @@ function Channels({
     }
   },[earnedToken])
 
+  const getDurationInMinute = (startedAt, endedAt) => {
+    const startDate = new Date(startedAt);
+    const endDate = new Date(endedAt);
+    const timelinemin = Number(timeline[0]?.split(":")[1]);
+    const duration = helper.getDiffInMin(endDate, startDate);
+    let diff = helper.getDiffInMinfromCurrent(startDate);
+    const curdatemin = new Date().getMinutes();
+    if (diff < 0) {
+      diff = diff + curdatemin - timelinemin; //adjust duration according to timeline
+    } else {
+      diff = 0;
+    }
+    return {
+      duration: duration + diff,
+      time: `${helper.getIn12HoursFormat(startDate)}-${helper.getIn12HoursFormat(endDate)}`,
+    };
+  };
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
