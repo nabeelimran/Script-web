@@ -186,8 +186,10 @@ function ConnectWalletModal() {
 	const twitterLoginHandler =  () => {
 		console.log("CLICKED");
 	  	const provider = new TwitterAuthProvider();
-		signInWithPopup(getAuth(auth),provider).then((res) => {
-			console.log(res);
+		signInWithPopup(getAuth(auth),provider).then((result) => {
+		
+			const res = provider.credentialFromResult(result);
+			console.log(res)
 			const gBody = {
 				login: {
             		email:res?.user?.email,
