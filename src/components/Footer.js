@@ -15,9 +15,9 @@ function Footer({ container = "container-two" }) {
       ],
     },
     {
-      title: "Script Tokens",
+      title: "INFORMATION",
       links: [
-        { title: "INFORMATION", to: "" },
+        // { title: "INFORMATION", to: "" },
         { title: "ScriptGLASS Explained", to: "/research" },
         { title: "Script Tokens", to: "/token" },
         { title: "Calculator", to: "/calculator" },

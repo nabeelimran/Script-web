@@ -17,4 +17,8 @@ export const  firebaseConfig = {
     messagingSenderId: "875901092274",
     appId: "1:875901092274:web:df9823fb0cbbacf118a4ab",
     measurementId: "G-G819P98MG1"
-  };
+};
+
+export const mixPanelConfig = {
+    mixPanelUserToken: 'a17b31503c22481ea191d20c528b3ca1',
+}

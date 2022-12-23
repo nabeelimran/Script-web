@@ -97,10 +97,10 @@ function EditProfile() {
   };
 
   const updateProfile = (data) => {
-    if(data && !data.privacyPolicy) {
-      ToastMessage('Please accpet terms and condition');
-      return;
-    }
+    // if(data && !data.privacyPolicy) {
+    //   ToastMessage('Please accpet terms and condition');
+    //   return;
+    // }
     setLoading(true);
     const req = new FormData();
     req.append("id", userId);
@@ -167,7 +167,7 @@ function EditProfile() {
                 You may update your username again 2 month
               </p>
             </div>
-            <div>
+            {/* <div>
               <FloatingLabelInput
                 lable="Username"
                 other={{
@@ -176,8 +176,8 @@ function EditProfile() {
               error={errorShow(errors.username)}/>
               <p className="text-xs xl:text-sm mt-2 opacity-70">
                 Customize capitalzation for your username
-              </p>
-            </div>
+              </p> 
+            </div>*/}
               <FloatingLabelInput
                 lable="Email"
                 other={{
@@ -206,7 +206,7 @@ function EditProfile() {
             </div>
           </div>
 
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <Checkbox
               id="privacyPolicy"
               other={{...register("privacyPolicy")}}
@@ -229,29 +229,29 @@ function EditProfile() {
                 </span>
               }
             />
-          </div>
+          </div> */}
 
           <div className="flex lg:items-center justify-between space-y-4 lg:space-y-0 flex-col lg:flex-row mb-6">
-            <p className="fs-18px font-medium">Total Earn : 0.00 $sSPAY</p>
+            <p className="fs-18px font-medium">Total Earn : 0.00 $Script Points</p>
             <p className="fs-18px font-medium">Watch Time (min) {videoWatchDuration}</p>
           </div>
 
           <p className="fs-16px font-medium mb-6">
-            If you wanna know more go to{" "}
-            <a
+            To open a Script Network wallet, head here{" "}
+            {/* <a
                 href="https://wallet.script.tv/"
                 target="_blank"
                 rel="noreferrer"
                 className="text-primary hover:underline"
               >
                 Wallet
-              </a>
-            {/* <Link
-              to="/terms-condition"
+              </a> */}
+            <Link
+              to="/unlock-wallet/key-store"
               className="text-primary hover:underline"
             >
               Wallet
-            </Link> */}
+            </Link>
           </p>
 
           <Button label="Save Changes" type="submit" loader={loading} />

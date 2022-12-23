@@ -12,7 +12,7 @@ function CollectRewardCard({ data }) {
         {title}
       </p>
 
-      <img src="images/trophy.png" className="h-[36px] lg:h-[50px]" alt="" />
+      <img src="../images/trophy.png" className="h-[36px] lg:h-[50px]" alt="" />
 
       <p className={`fs-16px ${active ? "text-black" : "text-white"}`}>
         {score}

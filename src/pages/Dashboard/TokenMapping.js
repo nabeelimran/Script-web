@@ -27,7 +27,7 @@ function TokenMapping() {
         <Title className="font-semibold" variant="24">
           Token Mapping
         </Title>
-        <p className="text-base">Convert your sSPAY to SPAY</p>
+        <p className="text-base">Convert your Script Points to SPAY</p>
       </div>
 
       <div className="space-y-6 max-w-[500px] mx-auto w-full flex flex-col justify-center">
@@ -36,7 +36,7 @@ function TokenMapping() {
             variant="20"
             className="text-center text-black font-semibold uppercase"
           >
-            sSPAY TOKEN
+            Script Points TOKEN
           </Title>
         </SwapBox>
         <SwapDivider />

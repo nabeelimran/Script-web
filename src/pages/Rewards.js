@@ -8,11 +8,11 @@ import Hero from "sections/Rewards/Hero";
 function Rewards() {
   return (
     <div>
-      <div className="mb-4 sm:mb-6 relative z-50">
+      {/* <div className="mb-4 sm:mb-6 relative z-50">
         <TvNavbar />
-      </div>
+      </div> */}
 
-      <div className="mb-16 lg:mb-20">
+      <div className="mb-16 lg:mb-20 mt-5">
         <Hero />
       </div>
 

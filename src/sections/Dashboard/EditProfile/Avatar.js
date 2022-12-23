@@ -15,7 +15,7 @@ function Avatar({
     <div className="relative w-[100px] xl:w-[120px] h-[100px] xl:h-[120px] rounded-full border-[4px] xl:border-[12px] border-primary">
       <img
         src={image ? image : "/images/men.png"} 
-        className="w-full h-full rounded-full"
+        className="w-full h-full rounded-full object-cover"
         alt=""
         id="imagePreview"
       />

@@ -68,9 +68,10 @@ function EmailConfirmation() {
         emailCheck.data.data.isEmailExist === false &&
         emailCheck.data.data.isUserNameExist === false
       ) {
-        const signeture = await MetamaskService.signatureRequest(
-          accountAddress
-        );
+        // const signeture = await MetamaskService.signatureRequest(
+        //   accountAddress
+        // );
+        const signeture = "dummySignature";
         if (signeture) {
           dispatch(userInfo({email:data.email,username:data.nickname,referal:data.refral}))
           dispatch(metamaskSignature(signeture));
