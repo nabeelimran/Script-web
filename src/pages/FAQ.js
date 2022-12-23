@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "How much can i earn staking?",
     content:
-      "This depends on various factors, but fortunately, we have made it easy for you to estimate this, through our staking calculator. This can be found on the footer of the token website. <br/> <br/> I am confused on how to take part in testnet, what do I do? We understand for many that’s it’s a totally new experience, so we have written out guides to explain further. Please head here (hyperlink here to the link below) for further explanation. <a href='https://whitepaper.script.tv/guides/how-to-sign-up-+-sign-in-to-script-tv'>https://whitepaper.script.tv/guides/how-to-sign-up-+-sign-in-to-script-tv</a>",
+      "This depends on various factors, but fortunately, we have made it easy for you to estimate this, through our staking calculator. This can be found on the footer of the token website. <br/> <br/> I am confused on how to take part in testnet, what do I do? We understand for many that’s it’s a totally new experience, so we have written out guides to explain further. Please head <a class='underline' href='https://whitepaper.script.tv/guides/how-to-sign-up-+-sign-in-to-script-tv'>here</a> for further explanation.",
   },
   {
     question: "I want to become a guardian or edge node, what do I do?",
@@ -34,7 +34,7 @@ const faqs = [
       "Firstly, you ensure you fit the requirements of token allocation and system minimum quality, then you fill in the validator / guardian sign up form here – You will then be contacted by one of the team via email to progress.",
   },
   {
-    question: "How can i take part in the parsale or early rounds?",
+    question: "How can I take part in the presale or early rounds?",
     content:
       "More information will be relayed in our discord and telegram announcements channel.",
   },
@@ -58,11 +58,11 @@ const faqs = [
     question:
       "Where is the best place to stay up to date and in touch with the community?",
     content:
-      "We recommend you to join the discord here (discord.gg/scriptnetwork put link on here) for up to date information on what is happening, or the discord here where you can interact with the community and the team. <br/><br/> I want to partner with Script Network, how can I get in contact? Please email <a href='https://t.me/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a href='https://discord.gg/scriptnetwork' target='_blank'>hello@script.tv</a> or use the form on the contact us page.",
+      "We recommend you to join the discord <a class='underline' href='discord.gg/scriptnetwork' target='_blank'> here </a> for up to date information on what is happening, or the discord here where you can interact with the community and the team. <br/><br/> I want to partner with Script Network, how can I get in contact? Please email <a class='underline' href='https://discord.gg/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a class='underline' href='https://t.me/scriptnetwork' target='_blank'>here</a> or use the form on the contact us page.",
   },
   {
     question: "Where can I view the whitepaper and the tokenomics?",
-    content: `You can view the tokenomics and the whitepaper, <a href='${ScriptWPJAN2022}' target='_blank'>here.</a>`,
+    content: `You can view the tokenomics and the whitepaper, <a class='underline' href='${ScriptWPJAN2022}' target='_blank'>here.</a>`,
   },
   {
     question: "Why are there two different tokens?",
@@ -72,59 +72,59 @@ const faqs = [
   {
     question: "What is ScriptGLASS?",
     content: 
-      "ScriptGLASS is the NFT collection which is directly integrated to the watch-to-earn protocol within ScriptTV. At least 1 pair of ScriptGLASS must be equipped to watch and earn on a day to day basis. Beyond each glasses being aesthetically unique in color and design, each has a specific rarity which affects how much a users could possibly earn on a day to day basis. When watching content, users will need to re-charge their glasses, upgrade to higher levels (to earn more per day), buy a gem (for multiplier and raffle opportunities), and loot boxes (which is only available to glasses who reach an advanced level). More on this, here (link here to: <a href='https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained' target='_blank'>https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained)</a>"
+      "ScriptGLASS is the NFT collection which is directly integrated to the watch-to-earn protocol within ScriptTV. At least 1 pair of ScriptGLASS must be equipped to watch and earn on a day to day basis. Beyond each glasses being aesthetically unique in color and design, each has a specific rarity which affects how much a users could possibly earn on a day to day basis. When watching content, users will need to re-charge their glasses, upgrade to higher levels (to earn more per day), buy a gem (for multiplier and raffle opportunities), and loot boxes (which is only available to glasses who reach an advanced level). More on this, <a class='underline' href='https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained' target='_blank'>here</a>"
   },
+  // {
+  //   question: "I want to partner with Script Network, how can i get in conact?",
+  //   content:
+  //     "Please email <a href='mailto:hello@script.tv'>hello@script.tv</a> or use the form on the <a href='mailto:hello@script.tv'>contact us page</a>.",
+  // },
   {
-    question: "I want to partner with Script Network, how can i get in conact?",
-    content:
-      "Please email <a href='mailto:hello@script.tv'>hello@script.tv</a> or use the form on the <a href='mailto:hello@script.tv'>contact us page</a>.",
-  },
-  {
-    question: "How will NFTs be implemented into a TV platfrom?",
+    question: "How will NFTs be implemented into a TV platform?",
     content:
       "This will be through live feed access, an original layer onto our platform which allows NFTs to be auctioned and traded in real time, during shows being aired on the platform. Besides this, there will be a marketplace where legacy NFTs can be shared and traded.",
   },
-  {
-    question: "I want to run a lighting node, how can i do this?",
-    content:
-      "If you’d like to run a node, please fill out the form here (link to the form)",
-  },
-  {
-    question:
-      "Does running a lighting node require hardware, or a high spec PC?",
-    content:
-      "Not at all, only basic system requirements used to run most PC apps is required to run a node on our network. No additional hardware is required.",
-  },
-  {
-    question: "What type of blockchain is Script Network?",
-    content: "Script Network is a Proof of Stake (PoS) blockchain.",
-  },
-  {
-    question: "I want to invest in Script Network, ow do I go about this?",
-    content:
-      "Please register by going to the form here (link to it), and filling it in.",
-  },
-  {
-    question: "Where can I buy SCPT tokens?",
-    content:
-      "They are not yet launched, but will be announced where and when they can be purchased in due course.",
-  },
-  {
-    question: "How do you gain rewards on Script Network?",
-    content:
-      "Rewards can be accrued in three ways on the network <br /> - Running a node <br> - Watching content <br> - Completing challenges <br> All of these methods have their own unique value accrual process and is written in more detail in our documentation.",
-  },
-  {
-    question: "Why is there two different types of tokens?",
-    content:
-      "The two tokens have two different use cases. <br /> SCPT: For Governance, Staking and Advertising.SPAY: For transactions, Trading / upgrading your NFTs, and rewards",
-  },
-  {
-    question:
-      "I have ab idea to run dApp to run on Script Network. How can I get started?",
-    content:
-      "Script Network will have a rolling fund for support through grants and opportunities through our ecosystem. Please contact us through discord for more info",
-  },
+  // {
+  //   question: "I want to run a lighting node, how can i do this?",
+  //   content:
+  //     "If you’d like to run a node, please fill out the form here (link to the form)",
+  // },
+  // {
+  //   question:
+  //     "Does running a lighting node require hardware, or a high spec PC?",
+  //   content:
+  //     "Not at all, only basic system requirements used to run most PC apps is required to run a node on our network. No additional hardware is required.",
+  // },
+  // {
+  //   question: "What type of blockchain is Script Network?",
+  //   content: "Script Network is a Proof of Stake (PoS) blockchain.",
+  // },
+  // {
+  //   question: "I want to invest in Script Network, ow do I go about this?",
+  //   content:
+  //     "Please register by going to the form here (link to it), and filling it in.",
+  // },
+  // {
+  //   question: "Where can I buy SCPT tokens?",
+  //   content:
+  //     "They are not yet launched, but will be announced where and when they can be purchased in due course.",
+  // },
+  // {
+  //   question: "How do you gain rewards on Script Network?",
+  //   content:
+  //     "Rewards can be accrued in three ways on the network <br /> - Running a node <br> - Watching content <br> - Completing challenges <br> All of these methods have their own unique value accrual process and is written in more detail in our documentation.",
+  // },
+  // {
+  //   question: "Why is there two different types of tokens?",
+  //   content:
+  //     "The two tokens have two different use cases. <br /> SCPT: For Governance, Staking and Advertising.SPAY: For transactions, Trading / upgrading your NFTs, and rewards",
+  // },
+  // {
+  //   question:
+  //     "I have ab idea to run dApp to run on Script Network. How can I get started?",
+  //   content:
+  //     "Script Network will have a rolling fund for support through grants and opportunities through our ecosystem. Please contact us through discord for more info",
+  // },
 ];
 
 const leftFAQ = faqs.slice(0, faqs.length / 2);
