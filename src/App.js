@@ -82,7 +82,7 @@ function App() {
           <Route path="change-password" element={<PrivateRoute><ChangePassword /></PrivateRoute>} />
           <Route path="edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
           <Route path="share-referral" element={<PrivateRoute><ShareRefferal /></PrivateRoute>} />
-          <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} />
+          {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
           <Route path="analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
           <Route path="coming-soon" element={<ComingSoon />} />
         </Route>

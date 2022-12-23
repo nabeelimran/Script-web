@@ -43,12 +43,7 @@ function ShareRefferal() {
           Share Referral
         </Title>
         <p className="text-sm md:text-base opacity-80">
-          Hey {profile?.firstName || ''} want to refer your friends? You will earn
-          referral points for every friend that signs up via your referral code
-          and purchase subscription. Enter Space Separated Email Addresses You
-          agree that you have the permission to provide Script-Tv with the
-          information set forth above. All information submitted to Script-Tv is
-          subject to our Privacy Policy
+          Hey {profile?.firstName || ''} want to refer your friends and get rewarded for doing so? Great!  You will earn referral points for every friend that signs up via your referral code. Your friend must verify themselves and begin interacting with the ecosystem to earn these points. Any attempt to decieve or fake the referral process will lead to points being removed. By referring others, you agree that you have the permission to provide Script Network with the information set forth above. All information submitted to Script Network is subject to our Privacy Policy
         </p>
       </div>
 
