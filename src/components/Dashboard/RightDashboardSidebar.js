@@ -135,7 +135,7 @@ function RightDashboardSidebar({
             </div>
 
             <img
-              src="/images/cool-glasses.png"
+              src="/images/green-glasses.png"
               className="w-[60px] xl:w-[90px]"
               alt=""
             />
