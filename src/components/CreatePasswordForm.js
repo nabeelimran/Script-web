@@ -201,7 +201,7 @@ function CreatePasswordForm() {
                   other={{
                     ...register("confirm_password", {
                       validate: (val) => {
-                        if (watch("password") != val) {
+                        if (watch("password") !== val) {
                           return "Your password do not match";
                         }
                       },
