@@ -161,14 +161,20 @@ function Navbar() {
               >
                 Technology
               </Link>
-              <a
+              <Link
+                to="/explorer"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Explorer
+              </Link>
+              {/* <a
                 href="https://explorer.script.tv/"
                 target="_blank"
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Explorer
-              </a>
+              </a> */}
 
               <a
                 href="https://whitepaper.script.tv"

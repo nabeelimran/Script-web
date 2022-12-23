@@ -127,28 +127,34 @@ function TvNavbar({ className }) {
                 Community
               </LinkScroller>
 
-              {/* <Link
-                to="/technology"
+              <Link
+                to="/unlock-wallet/key-store"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Wallet
-              </Link> */}
-              <a
+              </Link>
+              {/* <a
                 href="https://wallet.script.tv/"
                 target="_blank"
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Wallet
-              </a>
-              <a
+              </a> */}
+              <Link
+                to="/explorer"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Explorer
+              </Link>
+              {/* <a
                 href="https://explorer.script.tv/"
                 target="_blank"
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Explorer
-              </a>
+              </a> */}
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">
