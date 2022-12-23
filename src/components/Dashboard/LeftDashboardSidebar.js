@@ -14,6 +14,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
 
   const logout = () => {
     const user = JSON.parse(sessionStorage.getItem("userInfo"))
+    
     Api.logout({
       email: user.email
     }, 'dashboard').then(() => {})

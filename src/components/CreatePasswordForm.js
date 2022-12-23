@@ -18,6 +18,7 @@ import Title from "./Title";
 import UpperRoot from "./UpperRoot";
 import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
+import MixPanelService from "services/mixPanelService";
 
 function CreatePasswordForm() {
   const {
@@ -63,6 +64,12 @@ function CreatePasswordForm() {
     };
 
     const loginW = await Api.walletLogin(resObj, "login_model");
+    try {
+      MixPanelService.setIdentifier(loginW?.data?.data?.email);
+            MixPanelService.track('sign-up', loginW?.data?.data);
+    } catch (error) {
+      
+    }
     if (loginW.data.message === "Please verify your account.") {
       setLoading(false);
       dispatch(togglePasswordModalVisibility(false));
