@@ -25,7 +25,7 @@ function Collect() {
         </p>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4 lg:gap-6 mb-7">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-4 lg:gap-3 mb-7">
         {rewards.map((data, i) => (
           <CollectRewardCard key={i} data={data} />
         ))}
