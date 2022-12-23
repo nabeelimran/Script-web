@@ -1,14 +1,16 @@
 import { ToastMessage } from "components/ToastMessage";
+import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import LocalServices from "services/LocalServices";
 
 
  const PrivateRoute = ({ children }) => {
+  const dispatch = useDispatch();
   const token = LocalServices.getServices("token")
   if (!token) {
-    ToastMessage('UnAuthorized, Please login to continue')
-    // user is not authenticated
-    return <Navigate to="/tv" replace/>;  
+    dispatch(toggleModalVisibility(true));  
+    return <Navigate to="/tv" replace/>;;
   }
   return children;
 };

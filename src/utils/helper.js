@@ -50,7 +50,7 @@ export const helper = {
       if(e) {
         e.preventDefault();
       } 
-      ToastMessage('Coming Soon!!') 
+      ToastMessage('Coming Soon') 
     } 
 }
 
