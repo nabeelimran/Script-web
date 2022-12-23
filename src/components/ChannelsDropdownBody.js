@@ -44,7 +44,8 @@ const ChannelsDropdownBody = ({ channels }) => {
   }
 
   return (
-    <div className="bg-blue-3 rounded-lg grid lg:grid-cols-[230px,1fr] lg:p-0 gap-6 lg:gap-0 py-4 lg:py-0">
+    // <div className="bg-blue-3 rounded-lg grid lg:grid-cols-[230px,1fr] lg:p-0 gap-6 lg:gap-0 py-4 lg:py-0">
+    <div className="bg-blue-3 rounded-lg grid lg:grid-cols-3 lg:p-0 gap-6 lg:gap-0 py-4 lg:py-0 w-full">
       <div className="lg:py-7 px-5 lg:px-8 flex-col space-y-3 lg:space-y-5">
         <ChannelBox
           label="All Channels"
@@ -55,7 +56,7 @@ const ChannelsDropdownBody = ({ channels }) => {
           img={<img src="images/all.svg" className="w-[50%]" alt="" />}
         />
       </div>
-      <div className="py-4 lg:py-7 px-5 lg:px-8 border-t-1px lg:border-t-0 lg:border-l-1px border-primary">
+      <div className="py-4 lg:py-7 px-5 lg:px-8 border-t-1px lg:border-t-0 lg:border-l-1px border-primary w-full col-span-2">
         <p className="text-base font-bold mb-6 uppercase text-primary">
           Channels
         </p>
