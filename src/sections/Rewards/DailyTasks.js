@@ -9,7 +9,7 @@ const Row = ({ title, score, subtitle }) => {
       <p className="fs-16px">{title}</p>
 
       <div className="flex items-center space-x-2">
-        <img src="images/trophy.png" className="h-[16px]" alt="" />
+        <img src="../images/trophy.png" className="h-[16px]" alt="" />
         <p className="fs-16px">{score}</p>
       </div>
 

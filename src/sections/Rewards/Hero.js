@@ -23,7 +23,9 @@ function Hero() {
       <div className="bg-[#161616] py-5 sm:py-8 px-6 sm:px-10 grid sm:grid-cols-[1fr_.5fr] gap-8 rounded-lg">
         <div>
           <div className="flex items-center space-x-4 mb-4">
-            <Title className="font-semibold text-primary">My Rewards</Title>
+            <Title className="font-semibold text-primary" variant={24}>
+              My Rewards
+            </Title>
             <button>
               <Icon icon="oi:reload" />
             </button>
@@ -31,8 +33,8 @@ function Hero() {
 
           <Title className="font-semibold">0</Title>
         </div>
-        <div>
-          <img src="images/reward-coins.png" className="w-full" alt="" />
+        <div className="flex items-end">
+          <img src="../images/reward-coins.png" className="w-full" alt="" />
         </div>
       </div>
     </section>
