@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { helper } from "utils/helper";
 
 const channels = [
-  { img: "/images/channels/cultured-one.svg", className: "w-full lg:w-20" },
-  { img: "/images/channels/toom.svg", className: "w-full lg:w-20" },
-  { img: "/images/channels/drama.svg", className: "w-full lg:w-auto" },
-  // { img: "/images/channels/cultured-two.svg", className: "w-full lg:w-20" },
-  { img: "/images/channels/film.svg", className: "w-full lg:w-auto" },
-  { img: "/images/channels/irl.svg", className: "w-full lg:w-14" },
+  { img: "/images/channels/cultured-one.svg", className: "w-full lg:w-20", id:1922 },
+  { img: "/images/channels/toom.svg", className: "w-full lg:w-20", id:1913 },
+  { img: "/images/channels/drama.svg", className: "w-full lg:w-auto", id:1911 },
+  // { img: "/images/channels/cultured-two.svg", className: "w-full lg:w-20", id:1922 },
+  { img: "/images/channels/film.svg", className: "w-full lg:w-auto", id:1908 },
+  { img: "/images/channels/irl.svg", className: "w-full lg:w-14", id:621730 },
+  { img: "/images/channels/asmr.png", className: "w-full lg:w-20", id:727149 },
 ];
 
 const ImgBox = ({ children }) => {
@@ -29,23 +30,8 @@ const ChannelBox = ({ img, label, to = "/" }) => {
 };
 
 const ChannelsDropdownBody = (
-  // { channels }
   ) => {
-  // if (channels && channels.length > 0) {
-  //   channels = channels.map((channel) => {
-  //     if (channel.id === 1922 || channel.id === 1913) {
-  //       channel.className = "w-full lg:w-20";
-  //     }
-  //     if (channel.id === 1911 || channel.id === 1908) {
-  //       channel.className = "w-full lg:w-auto";
-  //     }
-  //     if (channel.id === 621730) {
-  //       channel.className = "w-full lg:w-14";
-  //     }
-  //     return channel;
-  //   });
-  // }
-
+  
   return (
     // <div className="bg-blue-3 rounded-lg grid lg:grid-cols-[230px,1fr] lg:p-0 gap-6 lg:gap-0 py-4 lg:py-0">
     <div className="bg-blue-3 rounded-lg grid lg:grid-cols-3 lg:p-0 gap-6 lg:gap-0 py-4 lg:py-0 w-full">
