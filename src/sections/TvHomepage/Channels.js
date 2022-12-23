@@ -221,7 +221,7 @@ function Channels({
 
   useEffect(() => {
     let chData = channeldata.map((ch) => {
-      let liveshows = ch && ch.liveShow && ch.liveShow.length > 0 && ch.liveShows.filter(
+      let liveshows = ch.liveShows.filter(
         (ls) => new Date(ls.startTime).getDate() === new Date().getDate()
       );
       // if(liveshows && liveshows.length > 0) {
