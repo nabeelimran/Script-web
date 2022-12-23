@@ -232,7 +232,7 @@ function EditProfile() {
           </div> */}
 
           <div className="flex lg:items-center justify-between space-y-4 lg:space-y-0 flex-col lg:flex-row mb-6">
-            <p className="fs-18px font-medium">Total Earn : 0.00 $Script Points</p>
+            <p className="fs-18px font-medium">Total Earn : 0.00 Script Points</p>
             <p className="fs-18px font-medium">Watch Time (min) {videoWatchDuration}</p>
           </div>
 
