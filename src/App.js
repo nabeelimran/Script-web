@@ -45,7 +45,7 @@ function App() {
       <ScrollToTop />
       <ConnectWalletModal />
       <EpgModal />
-      <EmailConfirmation/>
+      <EmailConfirmation />
       <CreatePasswordForm />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -68,7 +68,7 @@ function App() {
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="account-details" element={<AccountDetails />} />
-        <Route path="reward" element={<Rewards />} />
+        
         <Route path="connect-wallet" element={<ConnectWallet />} />
 
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
@@ -83,7 +83,15 @@ function App() {
           <Route path="edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
           <Route path="share-referral" element={<PrivateRoute><ShareRefferal /></PrivateRoute>} />
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
-          <Route path="analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
+          <Route path="reward" element={<Rewards />} />
+          <Route
+            path="analytics"
+            element={
+              <PrivateRoute>
+                <Analytics />
+              </PrivateRoute>
+            }
+          />
           <Route path="coming-soon" element={<ComingSoon />} />
         </Route>
 
