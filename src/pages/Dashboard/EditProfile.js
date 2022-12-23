@@ -97,10 +97,10 @@ function EditProfile() {
   };
 
   const updateProfile = (data) => {
-    if(data && !data.privacyPolicy) {
-      ToastMessage('Please accpet terms and condition');
-      return;
-    }
+    // if(data && !data.privacyPolicy) {
+    //   ToastMessage('Please accpet terms and condition');
+    //   return;
+    // }
     setLoading(true);
     const req = new FormData();
     req.append("id", userId);
@@ -206,7 +206,7 @@ function EditProfile() {
             </div>
           </div>
 
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <Checkbox
               id="privacyPolicy"
               other={{...register("privacyPolicy")}}
@@ -229,7 +229,7 @@ function EditProfile() {
                 </span>
               }
             />
-          </div>
+          </div> */}
 
           <div className="flex lg:items-center justify-between space-y-4 lg:space-y-0 flex-col lg:flex-row mb-6">
             <p className="fs-18px font-medium">Total Earn : 0.00 $Script Points</p>
