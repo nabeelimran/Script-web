@@ -57,13 +57,13 @@ function RightDashboardSidebar({
 
           <div className="flex items-center space-x-4">
             <p className="font-medium text-sm">
-              {profile?.firstName ? profile?.firstName : ''}
+              {profile?.firstName ? profile?.firstName : profile?.userName}
             </p>
             <div className="w-[34px] rounded-full h-[34px] relative">
               <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
               <img
                 src={profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/dashboard/user.png"} 
-                className="rounded-full w-full"
+                className="rounded-full w-full h-1.8 w-1.8"
                 alt=""
               />
             </div>

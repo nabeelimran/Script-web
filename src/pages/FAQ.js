@@ -11,63 +11,68 @@ const faqs = [
   {
     question: "What is Script tv?",
     content:
-      "Script TV is 24/7 television, on blockchain, for free. Watch thousands of hours of content, engage with the community, earn rewards and tokens, and benefit from live off chain opportunities. We are redefining television one step at a time.",
+      "Script TV is 24/7 television, built on Script blockchain, for free. Watch hundreds of hours of content, engage with the community, earn rewards and tokens, and benefit from live off chain opportunities. We are redefining television, one step at a time.",
   },
   {
     question: "Which blockchain is Script Tv on?",
     content:
-      "Script TV is built on our own blockchain (Script Blockchain). Built to scale, both vertically and horizontally. The best part is as the network grows, the platform (literally), gets stronger!",
+      "Script TV is built on Script blockchain. The goal of Script Network is to onboard the next 1 billion watchers of content to web3, whilst also providing a house for hundreds of thousands of filmmakers and studios to build using blockchain, with ease. The best part is as the network grows, the platform (literally), gets stronger!",
   },
   {
     question: "What makes this app unique?",
     content:
-      "Script TV is the first linear television platform on blockchain. That means you can watch films, tv series and more on our original channels, 24/7, at no cost, and get paid for doing so. Beyond this, we are the first to allow users to interact with content partners, earn off chain rewards, all on one platform.",
+    "There are multiple aspects, but here are some: <br/> - Script TV are the first linear television platform on blockchain. That means you can watch films, tv series and more, on Script TV original channels, 24/7, at no cost, whilst earning rewards for doing so. This is the first in TV. <br/> -Content layer NFTs. For the first time ever, claim, buy and get rewarded based on spontaneous releases of NFTs during shows / films being aired. This unlocks an entirely different opportunity for holders and owners long term. <br/> - Beyond this, users are able to interact with each other, create content clubs, and yield further benefits from being part of groups.",
   },
   {
     question: "How much can i earn staking?",
     content:
-      "This depends on various factors. To estimate your earnings however, head to our calculator tool <a href='https://token.script.tv/calculator/'>here</a>",
+      "This depends on various factors, but fortunately, we have made it easy for you to estimate this, through our staking calculator. This can be found on the footer of the token website. <br/> <br/> I am confused on how to take part in testnet, what do I do? We understand for many that’s it’s a totally new experience, so we have written out guides to explain further. Please head here (hyperlink here to the link below) for further explanation. <a href='https://whitepaper.script.tv/guides/how-to-sign-up-+-sign-in-to-script-tv'>https://whitepaper.script.tv/guides/how-to-sign-up-+-sign-in-to-script-tv</a>",
   },
   {
-    question: "I want to become a validatior or lighting node, what do i do?",
+    question: "I want to become a guardian or edge node, what do I do?",
     content:
-      "Firstly, please ensure you fit the requirements of token allocation and system requirements, this information can be found on our token page. Then, fill in the validator / lightning node sign up form here. You will then be contacted by one of the team via email to progress.",
+      "Firstly, you ensure you fit the requirements of token allocation and system minimum quality, then you fill in the validator / guardian sign up form here – You will then be contacted by one of the team via email to progress.",
   },
   {
     question: "How can i take part in the parsale or early rounds?",
     content:
-      "Initially, it will be available on Uniswap on launch, but it will soon expand to multiple exchanges. Further details will be shared on our social pages.",
+      "More information will be relayed in our discord and telegram announcements channel.",
   },
   {
     question:
       "Why would a content partner want to partner with script network?",
     content:
-      "Script Network is eliminating the need for any middle men in the industry. With our decentralised protocols, frustrating common issues in the industry like content storage, payments and data are all distributed automatically, without disruption. Besides this, blockchain brings an end to the unnecessary red tape in regards to transparency, immutability and traceability.",
+      "Script Network is eliminating the need for any middle men in the industry. With its decentralised protocols, frustrating common issues in the industry like payments and data are all distributed automatically, without any disruption throughout the year. Besides this, blockchain brings an end to the unnecessary red tape in regards to transparency, immutability and traceability. This of course goes without saying that its an opportunity for content partners to gain access to a completely new market, with new distribution opportunities also!",
   },
   {
     question: "After listing, where can i buy SCPT or SPAY tokens?",
     content:
-      "Initially, it will be available on Uniswap on launch, but it will soon expand to multiple exchanges, including our own.",
+      "More information will be relayed in our discord and telegram announcements channel.",
   },
   {
     question: "What is the vision of Script Network? ",
     content:
-      "The vision for Script Network is to be the web3 answer to film and television. Using our bespoke protocols, industry experience and original features, we aim to also change the long standing narrative of the television and film experience through a platform.",
+      "We have HUGE vision! The main initial focus is to bring linear television onto the blockchain, , alongside leveraging NFTs (from content partners), and handle a critical flaw of other on-demand platforms that simply not allow users to engage with each other, and earn money for the content they are consuming. Script Network plans to increase the adoption of video on blockchain to the wider community, by creating a user experience free from jargon, or difficulty for those new to this technology. Alongside this, we wanted to ensure our platform allows users to get significant benefits, rewards and earnings on the app, in the metaverse and offline. This is just the start.",
   },
   {
     question:
       "Where is the best place to stay up to date and in touch with the community?",
     content:
-      "We recommend you to join the telegram announcements channel <a href='https://t.me/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a href='https://discord.gg/scriptnetwork' target='_blank'>here</a> where you can interact with the community and the team.",
+      "We recommend you to join the discord here (discord.gg/scriptnetwork put link on here) for up to date information on what is happening, or the discord here where you can interact with the community and the team. <br/><br/> I want to partner with Script Network, how can I get in contact? Please email <a href='https://t.me/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a href='https://discord.gg/scriptnetwork' target='_blank'>hello@script.tv</a> or use the form on the contact us page.",
   },
   {
     question: "Where can I view the whitepaper and the tokenomics?",
-    content: `You can view the tokenomics <a href='${ScriptWPJAN2022}' target='_blank'>here</a>, and for the whitepaper, <a href='${ScriptWPJAN2022}' target='_blank'>click here</a>.`,
+    content: `You can view the tokenomics and the whitepaper, <a href='${ScriptWPJAN2022}' target='_blank'>here.</a>`,
   },
   {
     question: "Why are there two different tokens?",
     content:
-      "In order to ensure the network security, scalability and stability of the network, the token economy of Script Network is based on two tokens: <ul> <li class='text-black'>SCRIPT (ticker: SCPT), used for staking and network managing</li> <li class='text-black'>SPAY (ticker: SPAY), which actually is used as a gas for Script blockchain, alongside support for all transactions including payments for sharing a video stream, interacting with smart contracts, NFT transaction fees and more</li> </ul>",
+      "In order to ensure the effective management, security and stability of the network the token economy of Script.TV project based on close interaction of two tokens: <br/> 1.	SCRIPT ($SCPT), used for staking, governance and advertising <br/> 2.	SPAY ($SPAY), which actually is used as a rewards, transactions and upgrading ScriptGLASS. At its core, It is used to support all transactions on the blockchain such as payments for sharing a video stream, interacting with smart contracts, NFT transaction fees, etc.",
+  },
+  {
+    question: "What is ScriptGLASS?",
+    content: 
+      "ScriptGLASS is the NFT collection which is directly integrated to the watch-to-earn protocol within ScriptTV. At least 1 pair of ScriptGLASS must be equipped to watch and earn on a day to day basis. Beyond each glasses being aesthetically unique in color and design, each has a specific rarity which affects how much a users could possibly earn on a day to day basis. When watching content, users will need to re-charge their glasses, upgrade to higher levels (to earn more per day), buy a gem (for multiplier and raffle opportunities), and loot boxes (which is only available to glasses who reach an advanced level). More on this, here (link here to: <a href='https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained' target='_blank'>https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained)</a>"
   },
   {
     question: "I want to partner with Script Network, how can i get in conact?",
@@ -77,7 +82,7 @@ const faqs = [
   {
     question: "How will NFTs be implemented into a TV platfrom?",
     content:
-      "This will be through live feed access, an original layer onto our platform which allows NFTs to be auctioned and traded in real time, during shows being aired on the platform. Besides this, there will be a marketplace where legacy NFTs can be traded. Significantly, Script NFTs will bring multiple benefits including unlocking exclusive content / rewards on chain and staking the NFTs for SPAY tokens",
+      "This will be through live feed access, an original layer onto our platform which allows NFTs to be auctioned and traded in real time, during shows being aired on the platform. Besides this, there will be a marketplace where legacy NFTs can be shared and traded.",
   },
   {
     question: "I want to run a lighting node, how can i do this?",

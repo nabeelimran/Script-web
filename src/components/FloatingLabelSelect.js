@@ -17,6 +17,7 @@ function FloatingLabelSelect({
   selectClassName = "bg-black h-[40px] xl:h-[50px] px-4 xl:px-5 border-1px border-[#313131] rounded-lg text-white",
   floatingFontSize = "13px",
   options,
+  other
 }) {
   const [value, setvalue] = useState("");
 
@@ -30,11 +31,11 @@ function FloatingLabelSelect({
       style={{ "--float-font-size": floatingFontSize }}
     >
       <select
-        value={value}
         onChange={(event) => changeFruit(event.target.value)}
         className={`${
           value !== "" ? "up" : ""
         } did-floating-select ${selectClassName}`}
+        {...other}
       >
         {options &&
           options.map((item, i) => (

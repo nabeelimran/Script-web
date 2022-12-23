@@ -1,3 +1,4 @@
+import { ToastMessage } from 'components/ToastMessage';
 import moment from 'moment'
 export const helper = {
     percentFormat: (num) => num.toFixed(4).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1'),
@@ -44,7 +45,13 @@ export const helper = {
       }
       return result;
     },
-    formatDate: (date, format) => moment(date).format(format)
+    formatDate: (date, format) => moment(date).format(format),
+    comingSoonNotification: (e) => {
+      if(e) {
+        e.preventDefault();
+      } 
+      ToastMessage('Coming Soon!!') 
+    } 
 }
 
 export const metamaskNetwork = {
@@ -97,4 +104,26 @@ export const metamaskNetwork = {
 export const STORAGEENUM =  {
   token: "script-token",
   user: "userInfo"
+}
+
+export const detectBrowser = () => {
+  if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) !== -1) {
+    return `Opera`;
+  }
+  else if (navigator.userAgent.indexOf("Chrome") !== -1) {
+    return 'Chrome';
+  }
+  else if (navigator.userAgent.indexOf("Safari") !== -1) {
+    return 'Safari';
+  }
+  else if (navigator.userAgent.indexOf("Firefox") !== -1) {
+    return 'Firefox';
+  }
+  else if ((navigator.userAgent.indexOf("MSIE") !== -1)) {
+    return 'IE';
+  }
+  else {
+
+    return 'unknown';
+  }
 }
