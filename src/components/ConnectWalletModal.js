@@ -115,6 +115,10 @@ function ConnectWalletModal() {
 								walletAddress: loginW.data.data.walletAddress,
 							})
 						);
+						helper.trackByMixpanel('User Signed In', {
+							"method": "metamask",
+							"email" : loginW.data.data.email
+						});
 						navigate({
 							pathname: "/tv",
 						});
@@ -178,7 +182,11 @@ function ConnectWalletModal() {
 								walletAddress: loginRes.data.data.walletAddress,
 							})
 						);
-            dispatch(toggleModalVisibility(false))
+						helper.trackByMixpanel('User Signed In', {
+							"method": "google-sign-in",
+							"email" : loginRes.data.data.email
+						});
+            			dispatch(toggleModalVisibility(false))
 						navigate({
 							pathname: "/tv",
 						});

@@ -1,17 +1,25 @@
 import FillBar from "components/FillBar";
 import Title from "components/Title";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Welcome({
   profile
 }) {
+
+  const navigate = useNavigate();
+
+  const goToTVSite = () => navigate({
+    pathname: '/tv',
+  });
+
   return (
     <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10">
       <div className="dashboard-layout">
         <Title variant="20" className="font-semibold text-center mb-3">
           Welcome Back, {profile?.firstName || ''}
         </Title>
-        <h1 class="text-base lg:text-base xl:text-xl text-center text-primary font-semibold mb-7">Head back to TV</h1>
+        <h1 onClick={goToTVSite} class="text-base lg:text-base xl:text-xl text-center text-primary font-semibold mb-7">Head back to TV</h1>
 
         <div className="space-y-1 mb-8 lg:mb-12">
           <p className="fs-20px font-medium">
