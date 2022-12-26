@@ -8,9 +8,10 @@ function Welcome({
   return (
     <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10">
       <div className="dashboard-layout">
-        <Title variant="20" className="font-semibold text-center mb-7">
+        <Title variant="20" className="font-semibold text-center mb-3">
           Welcome Back, {profile?.firstName || ''}
         </Title>
+        <h1 class="text-base lg:text-base xl:text-xl text-center text-primary font-semibold mb-7">Head back to TV</h1>
 
         <div className="space-y-1 mb-8 lg:mb-12">
           <p className="fs-20px font-medium">
@@ -37,7 +38,7 @@ function Welcome({
           <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
             <div className="flex items-center space-x-3 flex-1 mb-2">
               <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
-              <p className="fs-18px font-semibold">1,232 SPAY</p>
+              <p className="fs-18px font-semibold">N/A SPAY</p>
             </div>
 
             <p className="text-xs mb-2">Accumulate 10,000 SPAY</p>
@@ -47,7 +48,7 @@ function Welcome({
           <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
             <div className="flex items-center space-x-3 flex-1 mb-2">
               <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
-              <p className="fs-18px font-semibold">250 SCPT</p>
+              <p className="fs-18px font-semibold">N/A SCPT</p>
             </div>
 
             <p className="text-xs mb-2">Connect on live chat 5x a week</p>
