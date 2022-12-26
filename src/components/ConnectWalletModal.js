@@ -100,6 +100,7 @@ function ConnectWalletModal() {
 								email: loginW.data.data.email,
 								userId: loginW.data.data.id,
 								walletAddress: loginW.data.data.walletAddress,
+								userName:loginW.data.data.userName
 							})
 						);
 						navigate({
@@ -163,6 +164,8 @@ function ConnectWalletModal() {
 								email: loginRes.data.data.email,
 								userId: loginRes.data.data.id,
 								walletAddress: loginRes.data.data.walletAddress,
+								userName:loginRes.data.data.userName
+
 							})
 						);
             dispatch(toggleModalVisibility(false))
@@ -236,6 +239,7 @@ function ConnectWalletModal() {
 								email: loginRes.data.data.email,
 								userId: loginRes.data.data.id,
 								walletAddress: loginRes.data.data.walletAddress,
+								userName:loginRes.data.data.userName
 							})
 						);
             dispatch(toggleModalVisibility(false))

@@ -233,7 +233,10 @@ function Channels({
       });
       return ch;
     });
-    chData[0].liveShows[0].selected = true;
+    if(chData[0].liveShows[0]){
+
+      chData[0].liveShows[0].selected = true;
+    }
     setLiveShow(chData[0].liveShows[0]);
     setChannels(chData);
   }, [timeline]);

@@ -1,19 +1,20 @@
+import moment from "moment";
 import React from "react";
 
-function StreamComment() {
+function StreamComment({item}) {
+
   return (
     <div className="flex space-x-3 md:space-x-4">
       <div className="w-8 md:w-10 h-8 md:h-10 rounded-full overflow-hidden">
         <img src="images/tv/chat-person.png" className="w-full h-full" alt="" />
       </div>
-
       <div className="space-y-1 md:space-y-[2px] flex-1">
         <div className="flex items-center justify-between">
-          <p className="text-xs md:text-sm font-medium">Script Network Live Chat</p>
-          <p className="text-xs">5:46 PM</p>
+          <p className="text-xs md:text-sm font-medium">{item.userName}</p>
+          <p className="text-xs">{moment(new Date(item.commentDate)).format("hh:mm A")}</p>
         </div>
 
-        <p className="text-xs md:text-sm text-ellipsis">Coming Soon*</p>
+        <p className="text-xs md:text-sm text-ellipsis">{item.msg || item.comment}</p>
       </div>
     </div>
   );

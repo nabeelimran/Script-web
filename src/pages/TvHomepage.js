@@ -162,7 +162,7 @@ function TvHomepage() {
       </div>
 
       <div className="mb-12" id="videoTag">
-       {channel.length>0&& <Channels
+       {channel.length>0&&  currentVideo &&<Channels
         channeldata={channel}
         currentVideo={(data)=>changeVideo(data)}
         latestVideo={currentVideo}
