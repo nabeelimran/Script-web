@@ -32,7 +32,7 @@ const useLiveChat = (currentShow) => {
 		// All socket events and function call against them
 		socketRef.current.on("new message", receiveMessage);
 
-		joinRoom(currentShow.channelId);
+		joinRoom(currentShow.videoId);
         getMessages()
 		// Destroys the socket reference
 		// when the connection is closed
