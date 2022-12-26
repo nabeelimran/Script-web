@@ -54,9 +54,9 @@ const user = LocalServices.getServices("user")
           {...register("typedMessage", { required:true})}
         />
 
-        <button type="button" className="absolute top-1/2 right-4 -translate-y-1/2 z-20 opacity-60 text-xl" onClick={(e)=>{e.preventDefault();setIsEmoji(!isEmoji);}}>
+        {/* <button type="button" className="absolute top-1/2 right-4 -translate-y-1/2 z-20 opacity-60 text-xl" onClick={(e)=>{e.preventDefault();setIsEmoji(!isEmoji);}}>
           <Icon icon="ic:outline-emoji-emotions" />
-        </button>
+        </button> */}
       </div>
 
       <button

@@ -18,7 +18,12 @@ const LiveChat = ({ currentShow }) => {
 		const domNode = scroll.current;
 
 		if (domNode) {
-			domNode.scrollIntoView({ behavior: "smooth" });
+            
+			domNode.scrollTo({
+                top: domNode.scrollHeight,
+                left: 0,
+                behavior: 'smooth'
+              })
 		}
 	}, [message]);
 
@@ -66,7 +71,7 @@ const LiveChat = ({ currentShow }) => {
 	return (
 		<div className='rounded-2xl py-5 sm:py-7 px-6 sm:px-8 bg-[#010101]'>
 			<ScrollToBottom>
-				<div className='space-y-4 mb-6 h-[300px] pr-2 pb-2'>
+				<div className='space-y-4 mb-6 h-[300px] pr-2 pb-2' ref={scroll}>
 					{message.length > 0 && (
 						<>
 							{message.map((item) => {
@@ -78,7 +83,7 @@ const LiveChat = ({ currentShow }) => {
 							})}
 						</>
 					)}
-					<div ref={scroll} />
+				
 				</div>
 			</ScrollToBottom>
 
