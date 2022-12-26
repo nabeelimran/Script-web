@@ -91,6 +91,7 @@ function CreatePasswordForm() {
           "userInfo",
           JSON.stringify({
             email: user.email,
+			userName: loginW.data.data.userName,
           })
         );
         ToastMessage(`${loginW.data.message}`, true);
