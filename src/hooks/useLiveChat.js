@@ -24,15 +24,15 @@ const useLiveChat = (currentShow) => {
 			socketRef.current = socketIOClient(APIPATH.SOCKETURL, {});
 			//socketRef.current.connect()
 		} else {
-			ToastMessage("Login to chat");
+			// ToastMessage("Login to chat");
 			return;
 		}
 
-		console.log("socketRef", socketRef);
+		console.log("socketRef", socketRef, currentShow);
 		// All socket events and function call against them
 		socketRef.current.on("new message", receiveMessage);
 
-		joinRoom(currentShow.videoId);
+		joinRoom(currentShow.channelId);
         getMessages()
 		// Destroys the socket reference
 		// when the connection is closed
