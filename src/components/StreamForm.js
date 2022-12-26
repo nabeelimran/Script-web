@@ -44,7 +44,7 @@ const user = LocalServices.getServices("user")
     {
       isEmoji && <EmojiPicker onEmojiClick={(res)=> emojiHandler(res)}/>
     }
-    <form className="flex space-x-4 mt-2" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex space-x-4 mt-2" onSubmit={(e) => {e.preventDefault();handleSubmit(onSubmit)}}>
       <div className="h-10 w-full relative bg-shade-grayis rounded-lg overflow-hidden">
         <input
           autoComplete="off"
@@ -54,7 +54,7 @@ const user = LocalServices.getServices("user")
           {...register("typedMessage", { required:true})}
         />
 
-        <button className="absolute top-1/2 right-4 -translate-y-1/2 z-20 opacity-60 text-xl" onClick={(e)=>{e.preventDefault();setIsEmoji(!isEmoji);}}>
+        <button type="button" className="absolute top-1/2 right-4 -translate-y-1/2 z-20 opacity-60 text-xl" onClick={(e)=>{e.preventDefault();setIsEmoji(!isEmoji);}}>
           <Icon icon="ic:outline-emoji-emotions" />
         </button>
       </div>
