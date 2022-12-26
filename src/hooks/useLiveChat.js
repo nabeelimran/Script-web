@@ -71,7 +71,7 @@ const useLiveChat = (currentShow) => {
 	//Function to send new message
 	function receiveMessage(arg) {
 		//
-		//console.log("receive message", arg);
+		console.log("receive message", arg);
 		setMessage((oldArry) => [...oldArry, arg]);
 	}
 
