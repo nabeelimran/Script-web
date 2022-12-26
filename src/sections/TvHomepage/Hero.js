@@ -7,12 +7,14 @@ import DividerLine from "components/DividerLine";
 import HeadingSmall from "components/HeadingSmall";
 import LocalServices from "services/LocalServices";
 
-const SliderContent = () => {
+const SliderContent = ({
+  img
+}) => {
   return (
     <div className="h-[auto] md:h-full relative z-10 rounded-xl overflow-hidden">
       <img
         // src="images/tv/hero-banner.png"
-        src="images/test-launch.png"
+        src={img}
         className="w-full md:h-full"
         alt=""
       />
@@ -29,6 +31,11 @@ function Hero({
   const prevRef = useRef();
   const nextRef = useRef();
   const token = LocalServices.getServices("token");
+
+  const bannerImgages = [
+    "images/christmas.png",
+    "images/test-launch.png"
+  ]
 
   return (
     <div>
@@ -48,7 +55,8 @@ function Hero({
               bulletActiveClass: "active",
               clickable: true,
               renderBullet: function (index, className) {
-                return '<span className="' + className + '">' + "" + "</span>";
+                return `<span className="${className}"></span>`;
+                // return '<span className="' + className + '">' + "" + "</span>";
               },
             }}
             onSwiper={(swiper) => {
@@ -62,7 +70,16 @@ function Hero({
               });
             }}
           >
-            <SwiperSlide>
+            {
+              bannerImgages && bannerImgages.map((img, index) => (
+                  <SwiperSlide key={index}>
+                    <SliderContent img={img}/>
+                  </SwiperSlide>
+                )
+              )
+            }
+            
+            {/* <SwiperSlide>
               <SliderContent />
             </SwiperSlide>
             <SwiperSlide>
@@ -70,13 +87,7 @@ function Hero({
             </SwiperSlide>
             <SwiperSlide>
               <SliderContent />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SliderContent />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SliderContent />
-            </SwiperSlide>
+            </SwiperSlide> */}
           </Swiper>
 
           <div className="absolute bottom-6 right-8 z-50 rounded-full overflow-hidden flex items-center">
@@ -165,7 +176,7 @@ function Hero({
               </div>
 
               <img
-                src="/images/cool-glasses.png"
+                src="/images/green-glasses.png"
                 className="w-[60px] xl:w-[80px]"
                 alt=""
               />

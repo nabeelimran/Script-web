@@ -5,6 +5,7 @@ import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Api from "services/api";
+import MixPanelService from "services/mixPanelService";
 import PageLink from "./PageLink";
 
 function LeftDashboardSidebar({ width, breakpointMatched, state }) {
@@ -13,16 +14,23 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
   const navigate = useNavigate();
 
   const logout = () => {
-    const user = JSON.parse(sessionStorage.getItem("userInfo"))
-    Api.logout({
-      email: user.email
-    }, 'dashboard').then(() => {})
+    const user = JSON.parse(sessionStorage.getItem("userInfo"));
+    try {
+      MixPanelService.setIdentifier(user?.email || "default");
+      MixPanelService.track("logout");
+    } catch (error) {}
+    Api.logout(
+      {
+        email: user.email,
+      },
+      "dashboard"
+    ).then(() => {});
     sessionStorage.clear();
     ToastMessage("Logout successfully", true);
     navigate({
-      pathname: '/tv',
-    })
-  }
+      pathname: "/tv",
+    });
+  };
 
   return (
     <UpperRoot>
@@ -89,10 +97,16 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
             img="token.svg"
             onClick={() => setter(false)}
           />
+          <PageLink
+            link="reward"
+            label="Rewards"
+            img="token.svg"
+            onClick={() => setter(false)}
+          />
         </div>
 
         <div className="px-5">
-          <PageLink label="Log Out" img="logout.svg" onClick={logout}/>
+          <PageLink label="Log Out" img="logout.svg" onClick={logout} />
         </div>
       </div>
     </UpperRoot>

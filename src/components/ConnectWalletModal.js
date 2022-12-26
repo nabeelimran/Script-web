@@ -21,6 +21,7 @@ import Api from "services/api";
 import auth from "auth/firebase";
 import {GoogleAuthProvider,signInWithPopup,getAuth,TwitterAuthProvider} from "firebase/auth"
 import { detectBrowser, helper } from "utils/helper";
+import MixPanelService from "services/mixPanelService";
 
 function ConnectWalletModal() {
 	const navigate = useNavigate();
@@ -79,6 +80,12 @@ function ConnectWalletModal() {
 
 				if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
 					dispatch(toggleModalVisibility(false));
+					try {
+						MixPanelService.setIdentifier(loginW?.data?.data?.email);
+            			MixPanelService.track('login', loginW?.data?.data);
+					} catch (error) {
+						
+					}
 					if (loginW.data.message === "Please verify your account.") {
 						ToastMessage(`${loginW.data.message}`);
 						navigate({

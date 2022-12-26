@@ -224,21 +224,23 @@ function Channels({
       let liveshows = ch.liveShows.filter(
         (ls) => new Date(ls.startTime).getDate() === new Date().getDate()
       );
-      ch.liveShows = liveshows.map((show) => {
-        let res = getDurationInMinute(show.startTime, show.endTime);
-        show.duration = res.duration;
-        show.time = res.time;
-        show.selected = false;
-        return show;
-      });
-      return ch;
+      // if(liveshows && liveshows.length > 0) {
+        ch.liveShows = liveshows.map((show) => {
+          let res = getDurationInMinute(show.startTime, show.endTime);
+          show.duration = res.duration;
+          show.time = res.time;
+          show.selected = false;
+          return show;
+        });
+        return ch;
+    
+      // } 
     });
-    if(chData[0].liveShows[0]){
-
+    // if(chData && chData.length > 0 && chData[0] && chData[0].liveShows && chData[0].liveShows.length > 0) {
       chData[0].liveShows[0].selected = true;
-    }
-    setLiveShow(chData[0].liveShows[0]);
-    setChannels(chData);
+      setLiveShow(chData[0].liveShows[0]);
+      setChannels(chData);
+    // }
   }, [timeline]);
 
   useEffect(()=>{

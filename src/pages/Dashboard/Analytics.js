@@ -74,7 +74,7 @@ function Analytics() {
               Total Earn
             </p>
             <p className="text-center text-xs sm:text-sm xl:text-base font-semibold">
-              0.00$sSPAY
+              0.00 Script Points
             </p>
           </Card>
           <Card className="col-span-2 sm:col-span-1">
