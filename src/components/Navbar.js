@@ -11,6 +11,8 @@ import LinkScroller from "./LinkScroller";
 import UpperRoot from "./UpperRoot";
 import { useDispatch } from "react-redux";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+import MixPanelService from "services/mixPanelService";
+import { helper } from "utils/helper";
 
 function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -192,13 +194,14 @@ function Navbar() {
               buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
               label={
                 <span className="text-xs xl:text-sm text-black">
-                  Sign in / Sign in
+                  Sign in / Sign up
                 </span>
               }
               buttonProps={{
                 onClick: () => {
                   setSidebarVisibility(false);
                   dispatch(toggleModalVisibility(true));
+                  helper.trackByMixpanel('Sign In Button Clicked', {});
                 },
               }}
             />
