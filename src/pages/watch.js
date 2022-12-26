@@ -95,6 +95,7 @@ function Watch() {
 
     useEffect(()=>{
         getChannels();
+        helper.trackByMixpanel('Watch Live Now Button Clicked', {})
         
     }, [refreshChannel]);
 
