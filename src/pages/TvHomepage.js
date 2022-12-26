@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import MetamaskService from "services/metamask";
 import { helper } from "utils/helper";
 import LocalServices from "services/LocalServices";
-import MixPanelService from "services/mixPanelService";
 
 function TvHomepage() {
   const dispatch = useDispatch();

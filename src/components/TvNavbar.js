@@ -15,7 +15,6 @@ import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import { useDispatch } from "react-redux";
 import Api from "services/api";
 import { helper } from "utils/helper";
-import MixPanelService from "services/mixPanelService";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -100,7 +99,7 @@ function TvNavbar({ className }) {
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
               <LinkScroller
                 id="homepage-community-section"
-                to="/tv"
+                to="/watch"
                 wait={location.pathname === "/" ? 0 : 200}
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
                 scrollerOptions={{

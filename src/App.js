@@ -40,6 +40,7 @@ import PrivateRoute from "auth/PrivateRoute";
 import ComingSoon from "pages/coming-soon";
 import { useEffect } from "react";
 import MixPanelService from "services/mixPanelService";
+import Watch from "pages/watch";
 
 function App() {
 
@@ -74,6 +75,7 @@ function App() {
 
         {/* TV ROUTES */}
         <Route path="/tv" element={<TvHomepage />} />
+        <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-account" element={<VerifyAccount />} />
