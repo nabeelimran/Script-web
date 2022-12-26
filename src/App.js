@@ -38,9 +38,10 @@ import EpgModal from "sections/TvHomepage/EpgModal";
 import VerifyAccount from "pages/VerifyAccount";
 import PrivateRoute from "auth/PrivateRoute";
 import ComingSoon from "pages/coming-soon";
+import Watch from "pages/Watch";
 import { useEffect } from "react";
 import MixPanelService from "services/mixPanelService";
-import Watch from "pages/watch";
+
 
 function App() {
 
