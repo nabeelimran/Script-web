@@ -45,9 +45,9 @@ function NavDropdown({
             ) : (
               <div className="bg-shade-dark-blue-2 py-8 xl:py-11 px-9 rounded-2xl xl:rounded-[30px]">
                 <div
-                // className={`grid ${
-                //   twoColumns ? "grid-cols-2" : "grid-cols-3"
-                // } gap-x-12 xl:gap-x-[86px] gap-y-8 relative z-10`}
+                className={`grid ${
+                  twoColumns ? "grid-cols-2" : "grid-cols-3"
+                } gap-x-12 xl:gap-x-[86px] gap-y-8 relative z-10`}
                 // className={`grid-cols-2 gap-x-12 xl:gap-x-[86px] gap-y-8 relative z-10`}
                 >
                   {children}
