@@ -1,5 +1,6 @@
 import { ToastMessage } from 'components/ToastMessage';
 import moment from 'moment'
+import MixPanelService from 'services/mixPanelService';
 export const helper = {
     percentFormat: (num) => num.toFixed(4).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1'),
     numberFormat: (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
@@ -51,6 +52,13 @@ export const helper = {
         e.preventDefault();
       } 
       ToastMessage('Coming Soon') 
+    },
+    trackByMixpanel: (event, data) => {
+      try {
+        MixPanelService.track(event, data);  
+      } catch (error) {
+        console.log(error, `on ${event} event`);
+      }
     } 
 }
 

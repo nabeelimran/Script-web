@@ -46,11 +46,6 @@ function TvHomepage() {
   }
 
   useEffect(()=>{
-    try {
-      MixPanelService.init();
-    } catch (error) {
-
-    }
     getChannels();
     
   }, [refreshChannel]);

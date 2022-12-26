@@ -38,8 +38,20 @@ import EpgModal from "sections/TvHomepage/EpgModal";
 import VerifyAccount from "pages/VerifyAccount";
 import PrivateRoute from "auth/PrivateRoute";
 import ComingSoon from "pages/coming-soon";
+import { useEffect } from "react";
+import MixPanelService from "services/mixPanelService";
 
 function App() {
+
+  useEffect(() => {
+    try {
+      console.log('init mixpanel');
+      MixPanelService.init();
+    } catch (error) {
+      console.log('error while connecting mixpanel', error);
+    }
+  }, [])
+
   return (
     <Router>
       <ScrollToTop />

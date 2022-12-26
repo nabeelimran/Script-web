@@ -1,6 +1,6 @@
 import Footer from "components/Footer";
 import TvNavbar from "components/TvNavbar";
-import React from "react";
+import React, { useEffect } from "react";
 import Collect from "sections/Rewards/Collect";
 import DailyTasks from "sections/Rewards/DailyTasks";
 import Hero from "sections/Rewards/Hero";

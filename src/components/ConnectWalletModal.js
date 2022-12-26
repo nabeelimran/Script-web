@@ -42,8 +42,14 @@ function ConnectWalletModal() {
 		}
 	}, [isModalVisible]);
 
+
+	const walletConnectHandler = () => {
+		helper.trackByMixpanel('Wallet Connect Button Clicked', {});
+	}
+
 	const metaMaskHandler = async () => {
-		console.log("CLALLED");
+		helper.trackByMixpanel('Metamask Button Clicked', {});
+		
 		if (!window.ethereum) {
 			ToastMessage("Install Metamask");
 			return false;
@@ -121,7 +127,7 @@ function ConnectWalletModal() {
 	};
 
 	const googleLoginHandler =  () => {
-		
+		helper.trackByMixpanel('Google Social Button Clicked', {})
 	  	const provider = new GoogleAuthProvider();
 		signInWithPopup(getAuth(auth),provider).then((res) => {
 			console.log(res);
@@ -191,6 +197,7 @@ function ConnectWalletModal() {
 			});
 	};
 	const twitterLoginHandler =  (e) => {
+		helper.trackByMixpanel('Twitter Social Button Clicked', {});
 		helper.comingSoonNotification(e);
 		return;
 	  	const provider = new TwitterAuthProvider();
@@ -306,6 +313,7 @@ function ConnectWalletModal() {
 							<ConnectWalletButton
 								img='images/wallet-connect.svg'
 								title='Walletconnet'
+								clickEvent={walletConnectHandler}
 							/>
 						</div>
 

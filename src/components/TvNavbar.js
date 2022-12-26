@@ -15,6 +15,7 @@ import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import { useDispatch } from "react-redux";
 import Api from "services/api";
 import { helper } from "utils/helper";
+import MixPanelService from "services/mixPanelService";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -169,7 +170,10 @@ function TvNavbar({ className }) {
                   </span>
                 }
                 buttonProps={{
-                  onClick:() => helper.comingSoonNotification()
+                  onClick:() => {
+                    helper.comingSoonNotification();
+                    helper.trackByMixpanel('Market Place Button Clicked', {});
+                  } 
                 }}
               />
               {
@@ -184,6 +188,7 @@ function TvNavbar({ className }) {
                     onClick: () => {
                     setSidebarVisibility(false);
                     dispatch(toggleModalVisibility(true));
+                    helper.trackByMixpanel('Sign In Button Clicked', {});
                   },
                 }}
                 label={
