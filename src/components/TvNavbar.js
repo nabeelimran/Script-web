@@ -99,7 +99,7 @@ function TvNavbar({ className }) {
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
               <LinkScroller
                 id="homepage-community-section"
-                to="/tv"
+                to="/watch"
                 wait={location.pathname === "/" ? 0 : 200}
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
                 scrollerOptions={{
@@ -169,7 +169,10 @@ function TvNavbar({ className }) {
                   </span>
                 }
                 buttonProps={{
-                  onClick:() => helper.comingSoonNotification()
+                  onClick:() => {
+                    helper.comingSoonNotification();
+                    helper.trackByMixpanel('Market Place Button Clicked', {});
+                  } 
                 }}
               />
               {
@@ -184,6 +187,7 @@ function TvNavbar({ className }) {
                     onClick: () => {
                     setSidebarVisibility(false);
                     dispatch(toggleModalVisibility(true));
+                    helper.trackByMixpanel('Sign In Button Clicked', {});
                   },
                 }}
                 label={

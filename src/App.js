@@ -38,8 +38,23 @@ import EpgModal from "sections/TvHomepage/EpgModal";
 import VerifyAccount from "pages/VerifyAccount";
 import PrivateRoute from "auth/PrivateRoute";
 import ComingSoon from "pages/coming-soon";
+import Watch from "pages/Watch";
+import { useEffect } from "react";
+import MixPanelService from "services/mixPanelService";
+import LeaderBoard from "pages/Leaderboard";
+
 
 function App() {
+
+  useEffect(() => {
+    try {
+      console.log('init mixpanel');
+      MixPanelService.init();
+    } catch (error) {
+      console.log('error while connecting mixpanel', error);
+    }
+  }, [])
+
   return (
     <Router>
       <ScrollToTop />
@@ -62,6 +77,7 @@ function App() {
 
         {/* TV ROUTES */}
         <Route path="/tv" element={<TvHomepage />} />
+        <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-account" element={<VerifyAccount />} />
@@ -84,6 +100,7 @@ function App() {
           <Route path="share-referral" element={<PrivateRoute><ShareRefferal /></PrivateRoute>} />
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
           <Route path="reward" element={<Rewards />} />
+          <Route path="leaderboard" element={<LeaderBoard />} />
           <Route
             path="analytics"
             element={

@@ -244,7 +244,8 @@ function Channels({
   }, [timeline]);
 
   useEffect(()=>{
-    if(userId) {
+    if(userId && !earnedToken) {
+      console.log("lslslsl")
       getVideoTokenEarned(userId)
     }
     let timelinedata= helper.createTimeSlot(new Date());
@@ -505,7 +506,7 @@ function Channels({
               </SquareBox>
 
               <SquareBox to="/dashboard" className="flex-1 xl:flex-auto">
-                <h1 className="fs-24px text-primary font-semibold mb-1">
+                <h1 className="fs-24px text-primary font-semibold mb-1 break-all">
                   {earnedToken.toFixed(4)}
                 </h1>
                 <h1 className="text-xs xl:text-sm text-primary font-medium text-center">

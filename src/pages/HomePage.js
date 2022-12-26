@@ -1,6 +1,7 @@
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
-import React from "react";
+import mixpanel from "mixpanel-browser";
+import React, { useEffect } from "react";
 import CordCutting from "sections/HomePage/CordCutting";
 import GreatTeam from "sections/HomePage/GreatTeam";
 import Hero from "sections/HomePage/Hero";
@@ -10,8 +11,14 @@ import Roadmap from "sections/HomePage/Roadmap";
 import ScriptTVVideo from "sections/HomePage/ScriptTVVideo";
 import Start from "sections/HomePage/Start";
 import Television from "sections/HomePage/Television";
+import { helper } from "utils/helper";
 
 function HomePage() {
+
+  useEffect(() => {
+    helper.trackByMixpanel('Home Page View', {});
+  }, [])
+
   return (
     <div>
       <div className="relative z-10">

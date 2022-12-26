@@ -1,4 +1,3 @@
-
 export const APIPATH = {
     BASEURL: "https://backend.script.tv/api/v1/",
     // BASEURL: "https://stagebackend.script.tv/api/v1/",
