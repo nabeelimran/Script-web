@@ -44,7 +44,7 @@ const user = LocalServices.getServices("user")
     {
       isEmoji && <EmojiPicker onEmojiClick={(res)=> emojiHandler(res)}/>
     }
-    <form className="flex space-x-4" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex space-x-4 mt-2" onSubmit={handleSubmit(onSubmit)}>
       <div className="h-10 w-full relative bg-shade-grayis rounded-lg overflow-hidden">
         <input
           autoComplete="off"
