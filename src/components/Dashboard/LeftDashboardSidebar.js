@@ -103,6 +103,12 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
             img="token.svg"
             onClick={() => setter(false)}
           />
+          <PageLink
+            link="leaderboard"
+            label="Leaderboard"
+            img="token.svg"
+            onClick={() => setter(false)}
+          />
         </div>
 
         <div className="px-5">

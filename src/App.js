@@ -41,6 +41,7 @@ import ComingSoon from "pages/coming-soon";
 import Watch from "pages/Watch";
 import { useEffect } from "react";
 import MixPanelService from "services/mixPanelService";
+import LeaderBoard from "pages/Leaderboard";
 
 
 function App() {
@@ -99,6 +100,7 @@ function App() {
           <Route path="share-referral" element={<PrivateRoute><ShareRefferal /></PrivateRoute>} />
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
           <Route path="reward" element={<Rewards />} />
+          <Route path="leaderboard" element={<LeaderBoard />} />
           <Route
             path="analytics"
             element={

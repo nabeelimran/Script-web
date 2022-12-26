@@ -4,8 +4,14 @@ import React, { useEffect } from "react";
 import Collect from "sections/Rewards/Collect";
 import DailyTasks from "sections/Rewards/DailyTasks";
 import Hero from "sections/Rewards/Hero";
+import { helper } from "utils/helper";
 
 function Rewards() {
+
+  useEffect(() => {
+    helper.trackByMixpanel('Reward Page View', {});
+  }, [])
+  
   return (
     <div>
       {/* <div className="mb-4 sm:mb-6 relative z-50">
