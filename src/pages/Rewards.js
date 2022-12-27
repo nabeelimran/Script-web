@@ -7,6 +7,7 @@ import DailyTasks from "sections/Rewards/DailyTasks";
 import Hero from "sections/Rewards/Hero";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import MixPanelService from "services/mixPanelService";
 import { helper } from "utils/helper";
 
 function Rewards() {
@@ -36,6 +37,7 @@ function Rewards() {
   }
 
   useEffect(() => {
+    MixPanelService.init();
     helper.trackByMixpanel('Reward Page View', {});
   }, [])
   
