@@ -228,7 +228,7 @@ function Channels({
    
     let chData = channeldata.map((ch) => {
       let liveshows = ch.liveShows.filter(
-        (ls) => new Date(ls.startTime).getDate() === new Date().getDate()
+        (ls) => new Date(ls.startTime).getDate() === new Date().getDate() + 1 // show schedule for next upcoming date
       );
       // if(liveshows && liveshows.length > 0) {
         ch.liveShows = liveshows.map((show) => {
