@@ -164,16 +164,16 @@ function AllTvChannels({
 
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
-					durationcheckinterval = setInterval(() => {
-						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
-						if (
-							playerRef.current?.currentTime() &&
-							playerRef.current.currentTime() ===
-								playerRef.current.duration()
-						) {
-							dispatch(refreshChannel(true));
-						}
-					}, 10000);
+					// durationcheckinterval = setInterval(() => {
+					// 	// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
+					// 	if (
+					// 		playerRef.current?.currentTime() &&
+					// 		playerRef.current.currentTime() ===
+					// 			playerRef.current.duration()
+					// 	) {
+					// 		dispatch(refreshChannel(true));
+					// 	}
+					// }, 10000);
 				}
 			});
 
@@ -188,6 +188,8 @@ function AllTvChannels({
 
 			playerRef.current.on("play", () => {
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
+			clearInterval(videoWatchInterval);
+
 				videoWatchInterval = setInterval(() => {
 					const videoWatchTime = {
 						startTime: videoStartTime,
@@ -205,13 +207,14 @@ function AllTvChannels({
 					) {
 						// let eToken = earnedToken + 0.05
 						dispatch(getVideoTimeWatch(videoWatchTime));
-						if (userId) {
+						if (userId ) {
+							console.log("DISPATCH FROM HERE",isPlayerReady)
 							dispatch(earnedTokenRed(0.05));
 						}
 
 						//checkVideoWatchTime(videoWatchTime)
 					}
-				}, 60000);
+				}, 30000);
 			});
 		}
 		return () => {
@@ -219,7 +222,8 @@ function AllTvChannels({
 
 			clearInterval(durationcheckinterval);
 		};
-	}, [show, isPlayerReady, playerRef.current]);
+		console.log('PLAYER REF',playerRef)
+	}, [show]);
 
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;
@@ -254,11 +258,13 @@ function AllTvChannels({
 		player.on("play", () => {});
 
 		player.on("dispose", () => {
+			console.log("PLAYER DISPOSED")
 			videojs.log("player will dispose");
 			playerRef.current = null;
 		});
-		if (playerRef) {
+		if (playerRef ) {
 			setIsPlayerReady(true);
+			
 		}
 	};
 
