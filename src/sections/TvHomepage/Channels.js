@@ -403,7 +403,12 @@ function Channels({
       Api.subscribeChannel(req, 'watch').then((res) => {
         if(res && res.status === 200) {
           if(req.unSubscribe) {
-            MixPanelService.setIdentifier(user.email)
+            try {
+              MixPanelService.setIdentifier(user.email)  
+            } catch (error) {
+              
+            }
+            
             helper.trackByMixpanel("Channel Subscribed",{
               "channel_id": req.channelId,
               "email" : user?.email || 'not-detect',
@@ -553,6 +558,11 @@ function Channels({
                   <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center"
                     onClick={() => {
                       helper.comingSoonNotification();
+                      try {
+                        MixPanelService.setIdentifier(user.email);  
+                      } catch (error) {
+                        console.log('set identifier')
+                      }
                       helper.trackByMixpanel("Gem Activated Button Clicked",{
                         "channel_id": selectedChananel?.id || 0,
                         "email" : user?.email || 'N/A',
