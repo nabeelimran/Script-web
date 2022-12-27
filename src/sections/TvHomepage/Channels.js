@@ -15,6 +15,7 @@ import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
 import { ToastMessage } from "components/ToastMessage";
+import MixPanelService from "services/mixPanelService";
 
 const channels = [
   {
@@ -402,6 +403,7 @@ function Channels({
       Api.subscribeChannel(req, 'watch').then((res) => {
         if(res && res.status === 200) {
           if(req.unSubscribe) {
+            MixPanelService.setIdentifier(user.email)
             helper.trackByMixpanel("Channel Subscribed",{
               "channel_id": req.channelId,
               "email" : user?.email || 'not-detect',
@@ -447,6 +449,11 @@ function Channels({
           return ls;
         });
         setSelectedChannel(ch);
+        helper.trackByMixpanel("Watch Live Button Clicked",{
+          "channel_id": ch?.id || 0,
+          "email" : user?.email || 'N/A',
+          "channel_name" : ch?.channelName || 'N/A'
+        })
         setTimeout(() => {
           if(userId) {
             getChannelByChannelId();
@@ -535,7 +542,7 @@ function Channels({
           <div className="grid xl:grid-cols-[1fr_340px] gap-10 items-center">
             <div className="xl:flex items-center space-y-12 xl:space-y-0 xl:space-x-6">
               <div className="grid grid-cols-2 xl:grid-cols-[110px_110px] gap-4 xl:gap-6">
-                <GlassModalButton />
+                <GlassModalButton selectedChananel={selectedChananel} user={user} />
 
                 <SquareBox className="flex-1 xl:flex-auto">
                   <img
@@ -544,7 +551,14 @@ function Channels({
                     alt=""
                   />
                   <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center"
-                    onClick={() => helper.comingSoonNotification()}>
+                    onClick={() => {
+                      helper.comingSoonNotification();
+                      helper.trackByMixpanel("Gem Activated Button Clicked",{
+                        "channel_id": selectedChananel?.id || 0,
+                        "email" : user?.email || 'N/A',
+                        "channel_name" : selectedChananel?.channelName || 'N/A'
+                      })
+                    }}>
                     Gem Activated
                   </div>
                 </SquareBox>
