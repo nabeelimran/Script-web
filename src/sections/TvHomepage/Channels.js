@@ -14,6 +14,7 @@ import { updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
+import { ToastMessage } from "components/ToastMessage";
 
 const channels = [
   {
@@ -209,10 +210,13 @@ function Channels({
   const [cursorposition, setCursonPosition] = useState({ marginLeft: 0 });
   const [liveShow, setLiveShow] = useState({});
   let userId = LocalServices.getServices("user")?.userId || null;
+  const user = LocalServices.getServices("user") || null
   const {earnedToken} = useSelector((state) => state.video_State)
   const {videoTimeWatch} = useSelector((state) => state.video_State)
   const [modal, setModal] = useState(false);
   const [timeline, setTimeline] = useState([])
+  const [selectedChananel, setSelectedChannel] = useState({});
+  const [channelFollowed, setChannelFollow] = useState(false);
   const dispatch = useDispatch();
   
   const { changecurrentVideo,data } = useSelector(
@@ -240,6 +244,12 @@ function Channels({
     // if(chData && chData.length > 0 && chData[0] && chData[0].liveShows && chData[0].liveShows.length > 0) {
       chData[0].liveShows[0].selected = true;
       setLiveShow(chData[0].liveShows[0]);
+      setSelectedChannel(chData[0]);
+      setTimeout(() => {
+        if(userId) {
+          getChannelByChannelId();
+        }
+      }, 1000)
       setChannels(chData);
     // }
   }, [timeline]);
@@ -326,6 +336,12 @@ function Channels({
         }
         return ls;
       });
+      setSelectedChannel(ch);
+      setTimeout(() => {
+        if(userId) {
+          getChannelByChannelId();
+        }
+      }, 1000)
       return ch;
     });
     setChannels([...chdata]);
@@ -371,6 +387,50 @@ function Channels({
     }
   }
 
+  // follow and unfollow channel code
+  const subscribeChannel = async () => {
+    const channelDetailsRes = await getChannelByChannelId();
+    const channelData = channelDetailsRes.isSuccess ? channelDetailsRes.data : null;
+    if(channelData) {
+      const req = {
+        channelId: selectedChananel?.id || 0,
+        id: 0,
+        subscribeDate: helper.getISOString(),
+        unSubscribe: channelData.channelSubscribed ? true : false, // if channelSubscribed is false then in req it go false else true for unfollow
+        userId: userId,
+      }
+      Api.subscribeChannel(req, 'watch').then((res) => {
+        if(res && res.status === 200) {
+          if(req.unSubscribe) {
+            helper.trackByMixpanel("Channel Subscribed",{
+              "channel_id": req.channelId,
+              "email" : user?.email || 'not-detect',
+              "channel_name": selectedChananel?.channelName || ""
+              })
+          }
+          getChannelByChannelId();
+          ToastMessage(res?.data?.message || 'Success', true);
+        }
+      })
+    }
+  }
+
+  const getChannelByChannelId = async () => {
+    return await Api.getChannelDetailByChannelId(selectedChananel.id, false, userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        const channelInfo = res.data.data;
+        if(channelInfo) {
+          setChannelFollow(channelInfo.channelSubscribed);
+        } else {
+          setChannelFollow(false);
+        }
+      }
+      return res.data;
+    } );
+  }
+
+  // end of follow and unfollow channel code
+
   useEffect(() => {
     console.log("CHANGE CURRENT VIDO")
     if (changecurrentVideo) {
@@ -386,6 +446,12 @@ function Channels({
           }
           return ls;
         });
+        setSelectedChannel(ch);
+        setTimeout(() => {
+          if(userId) {
+            getChannelByChannelId();
+          }
+        }, 1000)
         return ch;
       });
       setChannels([...chdata]);
@@ -412,11 +478,11 @@ function Channels({
 
                   <div className="">
                     <Button
-                      label="Follow"
+                      label={channelFollowed ? "Followed" : "Follow"}
                       variant={4}
                       customizationClassName="space-x-2 border-2 border-green px-5 rounded-lg text-green justify-center flex w-full"
                       buttonProps={{
-                        onClick:() => helper.comingSoonNotification()
+                        onClick:() => subscribeChannel()
                       }}
                       LeftComponent={() => (
                         <img
