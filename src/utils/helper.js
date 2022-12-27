@@ -47,6 +47,7 @@ export const helper = {
       return result;
     },
     formatDate: (date, format) => moment(date).format(format),
+    getISOString: () => moment().toISOString(),
     comingSoonNotification: (e) => {
       if(e) {
         e.preventDefault();

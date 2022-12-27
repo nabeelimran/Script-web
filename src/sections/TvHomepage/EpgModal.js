@@ -28,8 +28,8 @@ function EpgModal() {
   }, [isEpgModalVisible]);
 
   const watchVideo = () => {
-        dispatch(updateCurrentVideo(true));
-        dispatch(toggleEpgModalVisibility(false))
+      dispatch(updateCurrentVideo(true));
+      dispatch(toggleEpgModalVisibility(false))
   };
 const closeModal=()=>{
   dispatch(toggleEpgModalVisibility(false))

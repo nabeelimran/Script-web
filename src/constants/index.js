@@ -19,5 +19,6 @@ export const  firebaseConfig = {
 };
 
 export const mixPanelConfig = {
-    mixPanelUserToken: 'a17b31503c22481ea191d20c528b3ca1',
+    mixPanelUserToken: 'a17b31503c22481ea191d20c528b3ca1', // for dev
+    // mixPanelUserToken: '', // for prod
 }

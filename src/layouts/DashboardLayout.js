@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import MixPanelService from "services/mixPanelService";
 
 function DashboardLayout() {
   const [leftSidebarVisible, setLeftSidebarVisibility] = useState(false);
@@ -50,6 +51,7 @@ function DashboardLayout() {
   }
 
   useEffect(() => {
+    MixPanelService.init();
     if(userId) {
       viewUserProfile(userId)
       getVideoWatchDuration(userId)

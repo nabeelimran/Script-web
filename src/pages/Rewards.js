@@ -5,11 +5,39 @@ import Tip from "sections/Dashboard/Home/Tip";
 import Collect from "sections/Rewards/Collect";
 import DailyTasks from "sections/Rewards/DailyTasks";
 import Hero from "sections/Rewards/Hero";
+import Api from "services/api";
+import LocalServices from "services/LocalServices";
+import MixPanelService from "services/mixPanelService";
 import { helper } from "utils/helper";
 
 function Rewards() {
 
+  const user = LocalServices.getServices('user');
+
+  const getLatestDayReward = async () => {
+    if(user && user.walletAddress) {
+      return await Api.getLatestDayReward(user.walletAddress, 'reward-management').then(res => res.data);
+    }
+    
+  }
+
+  const handleCollectReward = async () => {
+    // const latestDayReward = await getLatestDayReward();
+    // console.log(latestDayReward, '==>>');
+    // if(latestDayReward && latestDayReward.isSuccess) {
+
+    // } else {
+
+    // }
+    // helper.trackByMixpanel("Collect Reward Button Clicked",{
+    //   "day": DAY_NUMBER,
+    //   "email" : EMAIL,
+    //   "amount" : REWARD_AMOUNT
+    //   })
+  }
+
   useEffect(() => {
+    MixPanelService.init();
     helper.trackByMixpanel('Reward Page View', {});
   }, [])
   
@@ -20,12 +48,12 @@ function Rewards() {
       </div> */}
 
       <div className="mb-16 lg:mb-20 mt-5">
-        <Hero />
+        <Hero handleCollectReward={handleCollectReward} />
       </div>
 
-      <div className="mb-14">
+      {/* <div className="mb-14">
         <Collect />
-      </div>
+      </div> */}
 
       <div className="mb-16 lg:mb-20">
         <DailyTasks />

@@ -42,6 +42,8 @@ import Watch from "pages/Watch";
 import { useEffect } from "react";
 import MixPanelService from "services/mixPanelService";
 import LeaderBoard from "pages/Leaderboard";
+import AllChannels from "pages/AllChannels";
+import AllCategory from "pages/AllCategory";
 
 
 function App() {
@@ -77,6 +79,8 @@ function App() {
 
         {/* TV ROUTES */}
         <Route path="/tv" element={<TvHomepage />} />
+        <Route path="/all-channels" element={<AllChannels />} />
+        <Route path="/all-categories" element={<AllCategory />} />
         <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
