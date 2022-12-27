@@ -423,6 +423,22 @@ export default class Api {
 		);
 	}
 
+	static getLeaderboardData(pageNo, pageSize, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getLeaderBoardLists?page=${pageNo}&size=${pageSize}`,
+			options
+		);
+	}
+
 	static getLatestDayReward(walletAddress, screenName) {
 		const options = {
 			headers: {
