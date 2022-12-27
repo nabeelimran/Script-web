@@ -39,12 +39,12 @@ const ChannelsDropdownBody = (
         <ChannelBox
           label="All Channels"
           img={<img src="images/channels.svg" className="w-[50%]" alt="" />}
-          to="/tv"
+          to="/all-channels"
         />
         <ChannelBox
           label="All Categories"
           img={<img src="images/all.svg" className="w-[50%]" alt="" />}
-          to="/tv"
+          to="/all-categories"
         />
       </div>
       <div className="py-4 lg:py-7 px-5 lg:px-8 border-t-1px lg:border-t-0 lg:border-l-1px border-primary w-full col-span-2">

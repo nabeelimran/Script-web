@@ -326,7 +326,7 @@ export default class Api {
 		return axios.get(`${APIPATH.BASEURL}getCountries`, options);
 	}
 
-	getCategory(pageNo, screenName) {
+	static getCategory(pageNo, screenName) {
 		const options = {
 			headers: {
 				ipAddress: "dummyData",
