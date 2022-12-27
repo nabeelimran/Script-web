@@ -225,7 +225,7 @@ function Channels({
   );
 
   useEffect(() => {
-    console.log("timeLineChange")
+   
     let chData = channeldata.map((ch) => {
       let liveshows = ch.liveShows.filter(
         (ls) => new Date(ls.startTime).getDate() === new Date().getDate()
@@ -256,9 +256,9 @@ function Channels({
   }, [timeline]);
 
   useEffect(()=>{
-    console.log("FIRST TIME GET TOKEN")
+    
     if(userId && earnedToken===0) {
-      console.log("lslslsl")
+      
       getVideoTokenEarned(userId)
     }
     let timelinedata= helper.createTimeSlot(new Date());
@@ -279,9 +279,9 @@ function Channels({
     },[])
 
   useEffect(()=>{
-    console.log('EARNED TOKEN CHANGE')
+    
     if(earnedToken>0) {
-    console.log('EARNED TOKEN CHANGE if not empty')
+  
 
       saveVideoDuration(videoTimeWatch)
       setVideoTokenBalance('', earnedToken);
@@ -308,11 +308,11 @@ function Channels({
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
-    console.log("CALLED AGAIN")
+    
     Api.getVideoTokenEarned(userId, 'watch').then((res) => {
       if (res && res.data && res.data.isSuccess) {
         const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
-    console.log("CALLED DISPATCH AGAIN")
+    
         
         dispatch(earnedTokenRed(token))
         
@@ -439,7 +439,7 @@ function Channels({
   // end of follow and unfollow channel code
 
   useEffect(() => {
-    console.log("CHANGE CURRENT VIDO")
+    
     if (changecurrentVideo) {
       dispatch(updateCurrentVideo(false));
       let chdata = JSON.parse(JSON.stringify(channels));

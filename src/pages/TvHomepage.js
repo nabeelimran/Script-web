@@ -46,7 +46,7 @@ function TvHomepage() {
   }
 
   useEffect(()=>{
-    console.log("REFRESH CHANNEL")
+    
     getChannels();
 
     
@@ -140,7 +140,7 @@ function TvHomepage() {
   }, []);
 
   const changeVideo = (show) => {
-    console.log("CHANGEVIDEO")
+    
     dispatch(videoShows(show));
     setCurrentVideo(show);
 

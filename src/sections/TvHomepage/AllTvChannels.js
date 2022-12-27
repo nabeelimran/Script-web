@@ -272,7 +272,7 @@ function AllTvChannels({
 		player.on("play", () => {});
 
 		player.on("dispose", () => {
-			console.log("PLAYER DISPOSED")
+			
 			videojs.log("player will dispose");
 			playerRef.current = null;
 		});
