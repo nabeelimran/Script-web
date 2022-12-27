@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Api from "services/api";
 
 function LeaderBoard() {
-
   const [leaderBoardData, setLeaderBoardData] = useState([]);
   const [dataPerPage, setDataPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
@@ -15,21 +14,23 @@ function LeaderBoard() {
   const currentPosts = leaderBoardData.slice(indexOfFirstPost, indexOfLastPost);
 
   const getLeaderBoardData = () => {
-    Api.getLeaderboardData(currentPage, dataPerPage, 'reward-management').then((res) => {
-      if(res && res.status === 200) {
-        setLeaderBoardData(res.data.data.content);
-        setTotalData(res.data.data.totalrecords);
+    Api.getLeaderboardData(currentPage, dataPerPage, "reward-management").then(
+      (res) => {
+        if (res && res.status === 200) {
+          setLeaderBoardData(res.data.data.content);
+          setTotalData(res.data.data.totalrecords);
+        }
       }
-    })
-  }
+    );
+  };
 
   useEffect(() => {
     getLeaderBoardData();
-  }, [currentPage])
+  }, [currentPage]);
 
   useEffect(() => {
     getLeaderBoardData();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -51,27 +52,26 @@ function LeaderBoard() {
             </tr>
           </thead>
           <tbody>
-            {
-              leaderBoardData && leaderBoardData.length > 0 ? leaderBoardData.map((data, index) => 
-                <tr className="border-b" key={index}>
-                  {console.log(data)}
-                  <td className="py-4">
-                    {data?.walletAddress || ''}
-                  </td>
-                  <td className="py-4">
-                    {data?.totalReward || 0}
-                  </td>
-                </tr>
-              ) : null
-            }
+            {leaderBoardData && leaderBoardData.length > 0
+              ? leaderBoardData.map((data, index) => (
+                  <tr className="border-b" key={index}>
+                    {console.log(data)}
+                    <td className="py-4">{data?.walletAddress || ""}</td>
+                    <td className="py-4">{data?.totalReward || 0}</td>
+                  </tr>
+                ))
+              : null}
           </tbody>
         </table>
       </div>
-      <div className="container rounded-xl py-8 px-8">
-        <Pagination dataPerPage={dataPerPage}
-        totalData={totalData}
-        paginate={paginate}
-        currentPage={currentPage}/>
+
+      <div className="container py-10">
+        <Pagination
+          dataPerPage={dataPerPage}
+          totalData={totalData}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
     </>
   );

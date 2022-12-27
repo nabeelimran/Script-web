@@ -1,19 +1,14 @@
 import React from "react";
 
-function Pagination({
-    dataPerPage,
-    totalData,
-    paginate,
-    currentPage,
-}) {
-    const pageNumbers = [];
+function Pagination({ dataPerPage, totalData, paginate, currentPage }) {
+  const pageNumbers = [];
 
-    for (let i = 1; i <= Math.ceil(totalData / dataPerPage); i++) {
-        pageNumbers.push(i);
-    }
+  for (let i = 1; i <= Math.ceil(totalData / dataPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
-    return (
-        <div className='py-2'>
+  return (
+    <div className="py-2">
       {/* <div>
         <p className='text-sm text-gray-700'>
           Showing
@@ -28,29 +23,30 @@ function Pagination({
           results
         </p>
       </div> */}
-      <nav className='block'>
-        <ul className='flex pl-0 rounded list-none flex-wrap'>
+      <nav className="block">
+        <ul className="flex justify-end">
           <li>
             {pageNumbers.map((number, index) => (
-                <a key={index}
-                    onClick={() => {
-                    paginate(number - 1);
-                    }}
-                    href='#'
-                    className={
-                    currentPage + 1 === number
-                        ? "bg-blue border-red-300 text-red-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                        : "bg-white border-gray-300 text-black hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                    }
-                >
-                    {number}
-                </a>
+              <a
+                key={index}
+                onClick={() => {
+                  paginate(number - 1);
+                }}
+                href="#"
+                className={
+                  currentPage + 1 === number
+                    ? "px-3 py-2 border text-sm font-medium rounded-3xl"
+                    : "bg-white text-black px-3 py-2 text-sm font-medium rounded-3xl ml-1"
+                }
+              >
+                {number}
+              </a>
             ))}
           </li>
         </ul>
       </nav>
     </div>
-    )
+  );
 }
 
 export default Pagination;
