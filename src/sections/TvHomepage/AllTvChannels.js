@@ -237,7 +237,7 @@ function AllTvChannels({
 			clearInterval(durationcheckinterval);
 		};
 		
-	},[show,playerRef.current])
+	},[show])
 
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;
