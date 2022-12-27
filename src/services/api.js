@@ -326,7 +326,7 @@ export default class Api {
 		return axios.get(`${APIPATH.BASEURL}getCountries`, options);
 	}
 
-	getCategory(pageNo, screenName) {
+	static getCategory(pageNo, screenName) {
 		const options = {
 			headers: {
 				ipAddress: "dummyData",
@@ -387,6 +387,38 @@ export default class Api {
 		return axios.post(
 			`${APIPATH.BASEURL}edituserProfile/uploadFile`,
 			req,
+			options
+		);
+	}
+
+	static addComment(body, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.post(
+			`${APIPATH.BASEURL}addComment`,body,
+			options
+		);
+	}
+	
+	static getCommentByVideoId(vdoId, pageNo,screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getVideoComment?videoId=${vdoId}&pageNo=${pageNo}`,
 			options
 		);
 	}
