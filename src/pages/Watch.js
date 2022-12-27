@@ -4,6 +4,7 @@ import { videoShows } from "redux/reducers/video_State";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import MetamaskService from "services/metamask";
+import MixPanelService from "services/mixPanelService";
 import { helper } from "utils/helper";
 
 const { default: TvNavbar } = require("components/TvNavbar");
@@ -74,6 +75,7 @@ function Watch() {
     };
 
     useEffect(() => {
+        MixPanelService.init();
         getChannels();
         getMetamaskBalance();
         setReCaptchaCode(helper.getRandomNumber(8));

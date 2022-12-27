@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import MetamaskService from "services/metamask";
 import { helper } from "utils/helper";
 import LocalServices from "services/LocalServices";
+import { updateCurrentVideo, updateEpgData } from "redux/reducers/connectWalletModal_State";
 
 function TvHomepage() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function TvHomepage() {
   );
   const getChannels = () => {
     Api.getChannels("watch").then((res) => {
-      
+     
       setchannels(res.data.data);
       setCurrentVideo(res.data.data[0].liveShows[0])
       //dispatch(videoShows(res.data.data[0].liveShows[0]))
@@ -45,7 +46,34 @@ function TvHomepage() {
   }
 
   useEffect(()=>{
+    
     getChannels();
+
+    
+  }, []);
+  useEffect(()=>{
+    // console.log("REFRESH CHANNEL")
+    // getChannels();
+    if(refreshChannel){
+    let nextIndex 
+    const currentChannel = channel.filter(ch => ch.id === currentVideo.channelId)
+    if(currentChannel[0]){
+
+      //console.log("currentChannel[0].liveShows",currentChannel[0].liveShows)
+       currentChannel[0].liveShows.map((c,i) => {
+        if(c.videoId===currentVideo.videoId && currentVideo.startTime === c.startTime){
+
+          nextIndex = i
+        
+        }
+      })
+
+      let nextVideo = currentChannel[0].liveShows[nextIndex+1]
+      dispatch(updateEpgData(nextVideo))
+      dispatch(updateCurrentVideo(true))
+    }
+  }
+
     
   }, [refreshChannel]);
 
@@ -112,6 +140,7 @@ function TvHomepage() {
   }, []);
 
   const changeVideo = (show) => {
+    
     dispatch(videoShows(show));
     setCurrentVideo(show);
 

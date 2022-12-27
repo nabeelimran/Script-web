@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 function Tip() {
   return (
     <div className="dashboard-layout">
-      <p className="fs-18px mb-4 font-medium">Tip Of the Day</p>
+      <p className="fs-18px mb-4 font-medium">Tip of the Day</p>
 
       <div className="bg-[#0E0E0F] rounded-lg p-5 relative">
         <img
-          src="images/lawyer.png"
+          src="../images/lawyer.png"
           className="w-[120px] sm:w-[180px] lg:w-[26%] absolute top-[-80px] sm:top-[-50px] lg:bottom-0 right-0"
           alt=""
         />
