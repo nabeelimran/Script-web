@@ -10,7 +10,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 const LiveChat = ({ currentShow }) => {
 	const { message, sendMessage } = useLiveChat(currentShow);
-
+	const [profile,setProfile] = useState(null)
 	const scroll = useRef(null);
 
 	const user = LocalServices.getServices("user");
@@ -21,6 +21,15 @@ const LiveChat = ({ currentShow }) => {
 			domNode.scrollIntoView({ behavior: "smooth" });
 		}
 	}, [message]);
+
+	useEffect(()=>{
+		Api.viewUserProfile(user.userId,"profile").then(result=> {
+			if(result.data.data.profile){
+				setProfile(result.data.data.profile?.urlProfileImage)
+			}
+		}).catch(err=>console.log("profile error"))
+
+	},[])
 
 	const getFormData = ({ typedMessage }) => {
 		const modifyTime = moment
@@ -47,6 +56,7 @@ const LiveChat = ({ currentShow }) => {
 				ToastMessage("Message not sent");
 			});
 
+
 		const sentMessage = {
 			comment: typedMessage,
 			room: currentShow.videoId,
@@ -54,7 +64,7 @@ const LiveChat = ({ currentShow }) => {
 			commentDate: moment().toISOString(),
 			userName: user.userName,
 			userId: user.userId,
-			urlProfileImage: null,
+			urlProfileImage: profile,
 			videoId: currentShow.videoId,
 			emote: "",
 			badgeType: "",
