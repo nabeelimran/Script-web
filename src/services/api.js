@@ -454,4 +454,36 @@ export default class Api {
 			options
 		);
 	}
+
+	static subscribeChannel(req, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.post(
+			`${APIPATH.BASEURL}subscribeChannel`, req,
+			options
+		);
+	}
+
+	static getChannelDetailByChannelId(channelId, isOwner, userId, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getChannelByChannelId?channelId=${channelId}&isOwner=${isOwner}&userId=${userId}`,
+			options
+		);
+	}
 }

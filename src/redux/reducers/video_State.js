@@ -12,14 +12,16 @@ export const video_State = createSlice({
   initialState,
   reducers: {
     videoShows: (state, action) => {
+      //console.log("SHOW DISPATCH")
         
       state.myShows = {...action.payload};
     },
     earnedTokenRed : (state,action) => {
-      
+     // console.log("TOKEN DISPATCH")
       state.earnedToken = state.earnedToken + action.payload 
     },
     getVideoTimeWatch : (state,action) => {
+      //console.log("VIDEO DISPATCH")
       
       state.videoTimeWatch = { ...action.payload} 
     }

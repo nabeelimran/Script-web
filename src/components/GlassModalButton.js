@@ -1,9 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import MixPanelService from "services/mixPanelService";
+import { helper } from "utils/helper";
 import GlassPopup from "./GlassPopup";
 import SquareBox from "./SquareBox";
 
-function GlassModalButton() {
+function GlassModalButton({
+  selectedChananel,
+  user
+}) {
   const [modal, setModal] = useState(false);
 
   return (
@@ -11,7 +16,20 @@ function GlassModalButton() {
       <GlassPopup open={modal} setOpen={setModal} />
 
       <SquareBox
-        buttonProps={{ onClick: () => setModal((val) => !val) }}
+        buttonProps={{ onClick: () => {
+          setModal((val) => !val);
+          try {
+            MixPanelService.setIdentifier(user.email);  
+          } catch (error) {
+            console.log('set identifier')
+          }
+          
+          helper.trackByMixpanel("Glasses Button Click",{
+            "channel_id": selectedChananel?.id || 0,
+            "email" : user?.email || 'N/A',
+            "channel_name" : selectedChananel?.channelName || 'N/A'
+          })
+        }  }}
         className="flex-1 xl:flex-auto"
         variant={1}
       >

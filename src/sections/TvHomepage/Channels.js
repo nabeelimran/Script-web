@@ -14,6 +14,8 @@ import { updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
+import { ToastMessage } from "components/ToastMessage";
+import MixPanelService from "services/mixPanelService";
 
 const channels = [
   {
@@ -209,10 +211,13 @@ function Channels({
   const [cursorposition, setCursonPosition] = useState({ marginLeft: 0 });
   const [liveShow, setLiveShow] = useState({});
   let userId = LocalServices.getServices("user")?.userId || null;
+  const user = LocalServices.getServices("user") || null
   const {earnedToken} = useSelector((state) => state.video_State)
   const {videoTimeWatch} = useSelector((state) => state.video_State)
   const [modal, setModal] = useState(false);
   const [timeline, setTimeline] = useState([])
+  const [selectedChananel, setSelectedChannel] = useState({});
+  const [channelFollowed, setChannelFollow] = useState(false);
   const dispatch = useDispatch();
   
   const { changecurrentVideo,data } = useSelector(
@@ -220,6 +225,7 @@ function Channels({
   );
 
   useEffect(() => {
+    console.log("timeLineChange")
     let chData = channeldata.map((ch) => {
       let liveshows = ch.liveShows.filter(
         (ls) => new Date(ls.startTime).getDate() === new Date().getDate()
@@ -239,12 +245,19 @@ function Channels({
     // if(chData && chData.length > 0 && chData[0] && chData[0].liveShows && chData[0].liveShows.length > 0) {
       chData[0].liveShows[0].selected = true;
       setLiveShow(chData[0].liveShows[0]);
+      setSelectedChannel(chData[0]);
+      setTimeout(() => {
+        if(userId) {
+          getChannelByChannelId();
+        }
+      }, 1000)
       setChannels(chData);
     // }
   }, [timeline]);
 
   useEffect(()=>{
-    if(userId && !earnedToken) {
+    console.log("FIRST TIME GET TOKEN")
+    if(userId && earnedToken===0) {
       console.log("lslslsl")
       getVideoTokenEarned(userId)
     }
@@ -266,7 +279,10 @@ function Channels({
     },[])
 
   useEffect(()=>{
-    if(earnedToken) {
+    console.log('EARNED TOKEN CHANGE')
+    if(earnedToken>0) {
+    console.log('EARNED TOKEN CHANGE if not empty')
+
       saveVideoDuration(videoTimeWatch)
       setVideoTokenBalance('', earnedToken);
     }
@@ -292,10 +308,12 @@ function Channels({
 
   // this is used to get the token earned by video based on user id
   const getVideoTokenEarned = () => {
+    console.log("CALLED AGAIN")
     Api.getVideoTokenEarned(userId, 'watch').then((res) => {
       if (res && res.data && res.data.isSuccess) {
         const token = +res?.data?.data?.earnedToken ? +res?.data?.data?.earnedToken : 0;
-    
+    console.log("CALLED DISPATCH AGAIN")
+        
         dispatch(earnedTokenRed(token))
         
       } else {
@@ -319,6 +337,12 @@ function Channels({
         }
         return ls;
       });
+      setSelectedChannel(ch);
+      setTimeout(() => {
+        if(userId) {
+          getChannelByChannelId();
+        }
+      }, 1000)
       return ch;
     });
     setChannels([...chdata]);
@@ -364,7 +388,58 @@ function Channels({
     }
   }
 
+  // follow and unfollow channel code
+  const subscribeChannel = async () => {
+    const channelDetailsRes = await getChannelByChannelId();
+    const channelData = channelDetailsRes.isSuccess ? channelDetailsRes.data : null;
+    if(channelData) {
+      const req = {
+        channelId: selectedChananel?.id || 0,
+        id: 0,
+        subscribeDate: helper.getISOString(),
+        unSubscribe: channelData.channelSubscribed ? true : false, // if channelSubscribed is false then in req it go false else true for unfollow
+        userId: userId,
+      }
+      Api.subscribeChannel(req, 'watch').then((res) => {
+        if(res && res.status === 200) {
+          if(req.unSubscribe) {
+            try {
+              MixPanelService.setIdentifier(user.email)  
+            } catch (error) {
+              
+            }
+            
+            helper.trackByMixpanel("Channel Subscribed",{
+              "channel_id": req.channelId,
+              "email" : user?.email || 'not-detect',
+              "channel_name": selectedChananel?.channelName || ""
+              })
+          }
+          getChannelByChannelId();
+          ToastMessage(res?.data?.message || 'Success', true);
+        }
+      })
+    }
+  }
+
+  const getChannelByChannelId = async () => {
+    return await Api.getChannelDetailByChannelId(selectedChananel.id, false, userId, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        const channelInfo = res.data.data;
+        if(channelInfo) {
+          setChannelFollow(channelInfo.channelSubscribed);
+        } else {
+          setChannelFollow(false);
+        }
+      }
+      return res.data;
+    } );
+  }
+
+  // end of follow and unfollow channel code
+
   useEffect(() => {
+    console.log("CHANGE CURRENT VIDO")
     if (changecurrentVideo) {
       dispatch(updateCurrentVideo(false));
       let chdata = JSON.parse(JSON.stringify(channels));
@@ -378,6 +453,17 @@ function Channels({
           }
           return ls;
         });
+        setSelectedChannel(ch);
+        helper.trackByMixpanel("Watch Live Button Clicked",{
+          "channel_id": ch?.id || 0,
+          "email" : user?.email || 'N/A',
+          "channel_name" : ch?.channelName || 'N/A'
+        })
+        setTimeout(() => {
+          if(userId) {
+            getChannelByChannelId();
+          }
+        }, 1000)
         return ch;
       });
       setChannels([...chdata]);
@@ -404,11 +490,11 @@ function Channels({
 
                   <div className="">
                     <Button
-                      label="Follow"
+                      label={channelFollowed ? "Followed" : "Follow"}
                       variant={4}
                       customizationClassName="space-x-2 border-2 border-green px-5 rounded-lg text-green justify-center flex w-full"
                       buttonProps={{
-                        onClick:() => helper.comingSoonNotification()
+                        onClick:() => subscribeChannel()
                       }}
                       LeftComponent={() => (
                         <img
@@ -461,7 +547,7 @@ function Channels({
           <div className="grid xl:grid-cols-[1fr_340px] gap-10 items-center">
             <div className="xl:flex items-center space-y-12 xl:space-y-0 xl:space-x-6">
               <div className="grid grid-cols-2 xl:grid-cols-[110px_110px] gap-4 xl:gap-6">
-                <GlassModalButton />
+                <GlassModalButton selectedChananel={selectedChananel} user={user} />
 
                 <SquareBox className="flex-1 xl:flex-auto">
                   <img
@@ -470,7 +556,19 @@ function Channels({
                     alt=""
                   />
                   <div className="text-xs xl:text-sm bg-black font-medium lh-1_2 rounded text-center"
-                    onClick={() => helper.comingSoonNotification()}>
+                    onClick={() => {
+                      helper.comingSoonNotification();
+                      try {
+                        MixPanelService.setIdentifier(user.email);  
+                      } catch (error) {
+                        console.log('set identifier')
+                      }
+                      helper.trackByMixpanel("Gem Activated Button Clicked",{
+                        "channel_id": selectedChananel?.id || 0,
+                        "email" : user?.email || 'N/A',
+                        "channel_name" : selectedChananel?.channelName || 'N/A'
+                      })
+                    }}>
                     Gem Activated
                   </div>
                 </SquareBox>
