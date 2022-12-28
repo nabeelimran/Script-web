@@ -129,7 +129,7 @@ function ReportIssueForm() {
                     </div>
                     <div className="sm:col-span-2">
                         <FloatingLabelTextarea placeholder="Issue Detail" other={{
-                            ...register("issueDetail"),
+                            ...register("issueDetail", {required: true}),
                             maxLength: {
                                 value: 300,
                                 message: "Issue Detail have at most 300 characters",
