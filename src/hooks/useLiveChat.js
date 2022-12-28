@@ -49,7 +49,9 @@ const useLiveChat = (currentShow) => {
                    
                     setMessage(oldArry => [...result.data.data.comment])
                 })
-				.catch((err) => ToastMessage("Chat not recieved"));
+				.catch((err) => {
+					// ToastMessage("Chat not recieved")
+				});
 		}
 	};
 
