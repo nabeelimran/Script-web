@@ -550,4 +550,20 @@ export default class Api {
 			options
 		);
 	}
+
+	static reportIssue(req, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.post(
+			`${APIPATH.BASEURL}reportIssue`, req,
+			options
+		);
+	}
 }

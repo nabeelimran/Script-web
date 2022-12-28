@@ -3,8 +3,10 @@ import FloatingLabelInput from 'components/FloatingLabelInput';
 import FloatingLabelSelect from 'components/FloatingLabelSelect';
 import FloatingLabelTextarea from 'components/FloatingLabelTextarea';
 import Title from 'components/Title';
+import { ToastMessage } from 'components/ToastMessage';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Api from 'services/api';
 import { helper } from 'utils/helper';
 
 function ReportIssueForm() {
@@ -22,7 +24,31 @@ function ReportIssueForm() {
     });
 
     const submitIssue = (data) => {
-        helper.comingSoonNotification();
+        debugger
+        setLoading(true);
+        const req = {
+            browser: "",
+            deviceUsed: "",
+            issueDetail: "",
+            issueFound: "",
+            operatingSystem: "",
+            reporterEmail: "",
+            reporterName: "",
+            userId: 0
+        };
+
+        Api.reportIssue(req, 'report-issue').then((res) => {
+            if (res && res.status === 200) {
+                ToastMessage(res?.data?.message || 'Success', true);
+                setLoading(false);
+            } else {
+                ToastMessage(res?.data?.message || 'Something went wrong');
+                setLoading(false);
+            }
+        }).catch((err) => {
+            ToastMessage(err?.error?.message || 'Something went wrong');
+            setLoading(false);
+        })
     }
 
     const errorShow = (type) => {
@@ -94,15 +120,15 @@ function ReportIssueForm() {
                     </div>
                     <div className="sm:col-span-2">
                         <FloatingLabelSelect
-                            label="Device Used" options={[]}
+                            label="Device Used" options={helper.deviceList}
                             other={{
                                 ...register("deviceUsed", { required: true }),
                             }}
                         />
                     </div>
-                    <div className="sm:col-span-2">
+                    <div className="sm:col-span-2 text-white">
                         <FloatingLabelSelect
-                            label="Browser" options={[]}
+                            label="Browser" options={helper.browserList}
                             other={{
                                 ...register("browser", { required: true }),
                             }}
@@ -110,7 +136,7 @@ function ReportIssueForm() {
                     </div>
                     <div className="sm:col-span-2">
                         <FloatingLabelSelect
-                            label="Operating System" options={[]}
+                            label="Operating System" options={helper.osList}
                             other={{
                                 ...register("operatingSystem", { required: true }),
                             }}
