@@ -195,16 +195,16 @@ function ConnectWalletModal() {
 						});
 					}
 				} else {
-					ToastMessage(loginRes?.data?.message || 'Something went wrong')
+					ToastMessage(loginRes?.data?.message || 'Something went wrong1')
 				}
 
         	}).catch(err => {
-				ToastMessage(err?.error?.message || 'Something went wrong')
+				ToastMessage(err?.error?.message || 'Something went wrong2')
 			})
 
 			})
 			.catch((err) => {
-				ToastMessage(err?.error?.message || 'Something went wrong')
+				ToastMessage(err?.error?.message || 'Something went wrong3')
 			});
 	};
 	const twitterLoginHandler =  (e) => {
