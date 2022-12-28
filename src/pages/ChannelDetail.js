@@ -31,7 +31,15 @@ function ChannelDetail() {
     }
 
     const getSchedulingDetailsByDate = (channelId) => {
-        Api.getSchedulingDetailsByDate(1922, 'channel-detail').then((res) => {
+        const date = new Date();
+        const dateStr =
+        date.getFullYear() + "-" +
+       ("00" + (date.getMonth() + 1)).slice(-2) + "-" +
+       ("00" + date.getDate()).slice(-2) + " " +
+       ("00" + date.getHours()).slice(-2) + ":" +
+       ("00" + date.getMinutes()).slice(-2) + ":" +
+       ("00" + date.getSeconds()).slice(-2);
+        Api.getSchedulingDetailsByDate(channelId, dateStr, 'channel-detail').then((res) => {
             if(res && res.status === 200) {
                 setCurrentShows(res.data.data);
             }
@@ -49,16 +57,19 @@ function ChannelDetail() {
     }, [])
     
     return (
-        <div className="container">
-            <div className="mb-4 sm:mb-6 relative z-50">
-                <TvNavbar />
-            </div>
-            <div className="mb-4 sm:mb-6 relative z-50">
-                <ChannelDetails channel={channelDetail} 
-                    pastShows={pastShows} currentShows={currentShows} />
+        <div>
+            <div className="container">
+                <div className="mb-4 sm:mb-6 relative z-50">
+                    <TvNavbar />
+                </div>
+                <div className="mb-4 sm:mb-6 relative z-50">
+                    <ChannelDetails channel={channelDetail} 
+                        pastShows={pastShows} currentShows={currentShows} />
+                </div>
             </div>
             <Footer container="container" />
         </div>
+        
     );
 }
 
