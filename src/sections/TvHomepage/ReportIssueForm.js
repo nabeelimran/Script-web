@@ -35,6 +35,10 @@ function ReportIssueForm() {
 
     const submitIssue = (data) => {
         if (token && user) {
+            if (data.issueDetail.length > 300) {
+                ToastMessage('Issue detail must be 300 character only');
+                return;
+            }
             setLoading(true);
             const req = {
                 browser: data.browser,
@@ -132,10 +136,10 @@ function ReportIssueForm() {
                             ...register("issueDetail", {required: true}),
                             maxLength: {
                                 value: 300,
-                                message: "Issue Detail have at most 300 characters",
+                                message: "Issue detail have at most 300 characters",
                             },
                         }}
-                        error={errorShow(errors.issueDetail)} />
+                        error={errorShow(errors.issueDetail)}/>
                     </div>
                     <div className="sm:col-span-2">
                         <FloatingLabelSelect
