@@ -502,4 +502,68 @@ export default class Api {
 			options
 		);
 	}
+
+	static getPastSchedulingDetails(channelId, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getPastSchedulingDetails?channelId=${channelId}`,
+			options
+		);
+	}
+
+	static getSchedulingDetailsByDate(channelId, date, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getSchedulingDetailsByDate?channelId=${channelId}&date=${date}`,
+			options
+		);
+	}
+
+	static getCannelListByCategoryId(categoryId, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}channel/details?categoryId=${categoryId}`,
+			options
+		);
+	}
+
+	static reportIssue(req, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.post(
+			`${APIPATH.BASEURL}reportIssue`, req,
+			options
+		);
+	}
 }

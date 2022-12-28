@@ -3,7 +3,7 @@ import StreamComment from "components/StreamComment";
 import StreamForm from "components/StreamForm";
 import Title from "components/Title";
 import VideoPlayer from "components/VideoPlayer";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import videojs from "video.js";
 import "videojs-contrib-ads";
@@ -25,24 +25,39 @@ function AllTvChannels({
 	let userId = LocalServices.getServices("user")?.userId || null;
 	const [isPlayerReady, setIsPlayerReady] = React.useState(false);
 	const [isChatShow, setIsChatShow] = useState(true);
+	const showchatRef = useRef(null)
+	const hidechatRef = useRef(null)
+	const videoClassRef = useRef(null)
+	const videoHeightRef = useRef(null)
 
+	const chatHideHandler = () => {
+		hidechatRef.current.classList.add("hidden");
+		showchatRef.current.classList.remove("hidden")
+		videoClassRef.current.classList.remove("lg:grid-cols-[1fr_340px]")
+		videoClassRef.current.classList.remove("xl:grid-cols-[1fr_420px]")
+		videoClassRef.current.classList.add("xl:grid-cols-1")
+		videoClassRef.current.classList.add("lg:grid-cols-1")
+		videoHeightRef.current.classList.remove("h-[200px]")
+		videoHeightRef.current.classList.remove("md:h-[100%]")
+		videoHeightRef.current.classList.remove("lg:h-auto")
+		videoHeightRef.current.classList.add("h-[200px]")
+		videoHeightRef.current.classList.add("md:h-[450px]")
+	};
 	const chatDisplayHandler = () => {
-		setIsChatShow(!isChatShow);
+		hidechatRef.current.classList.remove("hidden");
+		showchatRef.current.classList.add("hidden")
+		videoClassRef.current.classList.add("lg:grid-cols-[1fr_340px]")
+		videoClassRef.current.classList.add("xl:grid-cols-[1fr_420px]")
+		videoClassRef.current.classList.remove("xl:grid-cols-1")
+		videoClassRef.current.classList.remove("lg:grid-cols-1")
+		videoHeightRef.current.classList.add("h-[200px]")
+		videoHeightRef.current.classList.add("md:h-[100%]")
+		videoHeightRef.current.classList.add("lg:h-auto")
+		videoHeightRef.current.classList.remove("h-[200px]")
+		videoHeightRef.current.classList.remove("md:h-[450px]")
 	};
-	const returnVideoClass = () => {
-		if (isChatShow ) {
-			return "lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px]";
-		} else {
-			return "lg:grid-cols-1 xl:grid-cols-1";
-		}
-	};
-	const returnVideoHeightClass = () => {
-		if (isChatShow ) {
-			return "h-[200px] md:h-[100%] lg:h-auto"
-		} else {
-			return "h-[200px] md:h-[450px] ";
-		}
-	};
+
+
 
 	let durationcheckinterval;
 
@@ -145,37 +160,20 @@ function AllTvChannels({
 		let videoWatchInterval;
 		let durationcheckinterval;
 		console.log(playerRef, "REFFF");
-		if (show && playerRef && playerRef.current) {
-			// playerRef.current.ads()
-			// playerRef.current.on('readyforpreroll', () => {
-			//   playerRef.current.ads.startLinearAdMode();
-			//   playerRef.current.src({
-			//     src: getRandomAds() ? getRandomAds().adsS3Url : `https://scripttv.s3.eu-central-1.amazonaws.com/1648445836148-1c4e85894a244a128646d57c0646edd7.mp4`,
-			//     type: 'video/mp4'
-			//   })
-			//   // send event when ad is playing to remove loading spinner
-			//   playerRef.current.one('adplaying', () => {
-			//     playerRef.current.trigger('ads-ad-started');
-			//   });
-
-			//   // resume content when all your linear ads have finished
-			//   playerRef.current.one('adended', () => {
-			//       playerRef.current.ads.endLinearAdMode();
-			//   });
-			// })
+		if (isPlayerReady&&show && playerRef && playerRef.current) {
 
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
-					// durationcheckinterval = setInterval(() => {
-					// 	// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
-					// 	if (
-					// 		playerRef.current?.currentTime() &&
-					// 		playerRef.current.currentTime() ===
-					// 			playerRef.current.duration()
-					// 	) {
-					// 		dispatch(refreshChannel(true));
-					// 	}
-					// }, 10000);
+					durationcheckinterval = setInterval(() => {
+						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
+						if (
+							playerRef.current?.currentTime() &&
+							playerRef.current.currentTime() ===
+								playerRef.current.duration()
+						) {
+							dispatch(refreshChannel(true));
+						}
+					}, 10000);
 				}
 			});
 
@@ -187,20 +185,6 @@ function AllTvChannels({
 				type: "application/x-mpegURL",
 			});
 			playerRef.current.load();
-
-		}
-		return () => {
-			clearInterval(videoWatchInterval);
-
-		};
-		console.log('PLAYER REF',playerRef)
-	}, [show,isPlayerReady,playerRef]);
-
-	useEffect(()=>{
-		let videoWatchInterval;
-		let durationcheckinterval;
-		console.log(playerRef, "second ref");
-		if (show && playerRef && playerRef.current) {
 			playerRef.current.on("play", () => {
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
 			clearInterval(videoWatchInterval);
@@ -230,14 +214,22 @@ function AllTvChannels({
 						//checkVideoWatchTime(videoWatchTime)
 					}
 				}, 60000);
+				
+
+
 			});
 		}
 		return () => {
-
+			clearInterval(videoWatchInterval);
 			clearInterval(durationcheckinterval);
+
 		};
 		
-	},[show])
+	}, [show,isPlayerReady,playerRef.current]);
+
+	
+
+
 
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;
@@ -313,18 +305,18 @@ function AllTvChannels({
 			<div className='bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0'>
 				<div className='container'>
 					<div
-						className={`sm:bg-shade-darkest-blue grid ${returnVideoClass()} gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden `}>
+						className={`sm:bg-shade-darkest-blue grid gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px]`} ref={videoClassRef}>
 						<div
-							className={` ${returnVideoHeightClass()} pt-5 pb-5`} 
-							id='video-wrapper'>
+							className={`pt-5 pb-5 h-[200px] md:h-[100%] lg:h-auto`} 
+							id='video-wrapper' ref={videoHeightRef}>
 							<VideoPlayer
 							options={videoJsOptions}
 							onReady={handlePlayerReady}
 							/>
-							{!isChatShow && (
-								<div className='absolute sm:top-4 lg:right-[6.8rem] md:right-[1rem] right-3 top-16 bg-shade-grayis flex p-2'>
+							
+								<div className='absolute sm:top-4 lg:right-[6.8rem] md:right-[1rem] right-3 top-16 bg-shade-grayis flex p-2 hidden' ref={showchatRef}>
 									<button
-										className='text-2xl'
+										className='t ext-2xl'
 										onClick={chatDisplayHandler}>
 										<Icon
 											icon='material-symbols:arrow-right-alt-rounded'
@@ -332,11 +324,11 @@ function AllTvChannels({
 										/>
 									</button>
 								</div>
-							)}
+							
 						</div>
 
-						{isChatShow && (
-							<div className='sm:py-5 sm:px-8 lg:px-0'>
+						
+							<div className='sm:py-5 sm:px-8 lg:px-0' ref={hidechatRef}>
 								<div className='flex items-center justify-between mb-6'>
 									<div className='flex items-center space-x-2'>
 										<img
@@ -352,7 +344,7 @@ function AllTvChannels({
 									<div className='flex items-center space-x-4'>
 										<button
 											className='text-2xl'
-											onClick={chatDisplayHandler}>
+											onClick={chatHideHandler}>
 											<Icon
 												icon='material-symbols:arrow-right-alt-rounded'
 												className='rotate-180'
@@ -378,7 +370,7 @@ function AllTvChannels({
 									<LiveChat currentShow={show} />
 								</div>
 							</div>
-						)}
+						
 					</div>
 				</div>
 			</div>

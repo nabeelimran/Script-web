@@ -11,7 +11,7 @@ function ExistingProducts() {
 
       <div className="research-list">
         <div className="research-list pb-8">
-          <BulletPoint point="Script TV: Simply head to our web app <a href='https://get.script.tv/' class='text-primary'>(get.script.tv)</a> to watch television across a range of channels, and get rewarded for it." />
+          <BulletPoint point="Script TV: Simply head to our web app <a href='https://get.script.tv/' className='text-primary'>(get.script.tv)</a> to watch television across a range of channels, and get rewarded for it." />
 
           <img
             src="images/abc.png"
@@ -29,13 +29,13 @@ function ExistingProducts() {
         />
 
         <BulletPoint
-          point="Head to <a href='https://whitepaper.script.tv/spay-tokenomics#overview' class='text-primary'>https://whitepaper.script.tv/spay-tokenomics#overview</a> to learn more about how the mechanism works."
+          point="Head to <a href='https://whitepaper.script.tv/spay-tokenomics#overview' className='text-primary'>https://whitepaper.script.tv/spay-tokenomics#overview</a> to learn more about how the mechanism works."
           variant="bulletNone"
         />
 
-        <BulletPoint point="Script Points: Points are awarded on the basis of tasks being completed across the ecosystem, similar to achievements you collect in a game. These points and tasks vary and will change over time, so users are encouraged to check their dashboard for current tasks and the rewards as much as possible. <br/><br/> Head to <a href='https://get.script.tv/' class='text-primary'>https://get.script.tv/</a> and click sign up in the top right hand corner to create an account and start earning points" />
+        <BulletPoint point="Script Points: Points are awarded on the basis of tasks being completed across the ecosystem, similar to achievements you collect in a game. These points and tasks vary and will change over time, so users are encouraged to check their dashboard for current tasks and the rewards as much as possible. <br/><br/> Head to <a href='https://get.script.tv/' className='text-primary'>https://get.script.tv/</a> and click sign up in the top right hand corner to create an account and start earning points" />
 
-        <BulletPoint point="Script Blockchain: Run a lightning node, and help secure and scale Script Network whilst getting rewarded per block, or, run a Script Edge node, and get rewarded for transcoding jobs on chain. <br/><br/> Head to <a href='https://faucet.script.tv/' class='text-primary'>https://faucet.script.tv/</a> to get started" />
+        <BulletPoint point="Script Blockchain: Run a lightning node, and help secure and scale Script Network whilst getting rewarded per block, or, run a Script Edge node, and get rewarded for transcoding jobs on chain. <br/><br/> Head to <a href='https://faucet.script.tv/' className='text-primary'>https://faucet.script.tv/</a> to get started" />
       </div>
     </section>
   );
