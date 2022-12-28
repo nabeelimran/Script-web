@@ -46,6 +46,7 @@ import AllChannels from "pages/AllChannels";
 import AllCategory from "pages/AllCategory";
 import ChannelDetail from "pages/ChannelDetail";
 import CategoryDetail from "pages/CategoryDetail";
+import ReportIssue from "pages/ReportIssue";
 
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
         <Route path="/all-categories" element={<AllCategory />} />
         <Route path="/channel-detail" element={<ChannelDetail />} />
         <Route path="/category-detail" element={<CategoryDetail />} />
+        <Route path="/report-issue" element={<ReportIssue />} />
         
         <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
