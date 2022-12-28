@@ -158,7 +158,9 @@ function ReportIssueForm() {
                         />
                     </div>
                 </div>
+                <div className='flex justify-center'>
                     <Button label="Submit Issue" type="submit" loader={loading} />
+                </div>
             </form>
         </div>
     )
