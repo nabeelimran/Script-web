@@ -534,4 +534,20 @@ export default class Api {
 			options
 		);
 	}
+
+	static getCannelListByCategoryId(categoryId, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}channel/details?categoryId=${categoryId}`,
+			options
+		);
+	}
 }
