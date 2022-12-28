@@ -1,3 +1,4 @@
+import Title from "components/Title";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -29,6 +30,13 @@ function ChannelList({ channels }) {
               <div className="w-[70%]">
                 <img src={channel?.image || channel?.channelImageLink} alt="" className="w-full h-auto" />
               </div>
+              {/* {
+                channel?.channelImageLink ? <>
+                  <Title children={channel.channelName} ></Title>
+                  <p>{channel.subscriberCount} Subscriber</p>
+                </>
+                 : null
+              } */}
             </div>
           ))
         : null}
