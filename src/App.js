@@ -45,6 +45,7 @@ import LeaderBoard from "pages/Leaderboard";
 import AllChannels from "pages/AllChannels";
 import AllCategory from "pages/AllCategory";
 import ChannelDetail from "pages/ChannelDetail";
+import CategoryDetail from "pages/CategoryDetail";
 
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
         <Route path="/all-channels" element={<AllChannels />} />
         <Route path="/all-categories" element={<AllCategory />} />
         <Route path="/channel-detail" element={<ChannelDetail />} />
+        <Route path="/category-detail" element={<CategoryDetail />} />
         
         <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />

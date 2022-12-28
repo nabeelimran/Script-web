@@ -27,7 +27,7 @@ function ChannelList({ channels }) {
               onClick={() => viewChannelDetail(channel.id)}
             >
               <div className="w-[70%]">
-                <img src={channel.image} alt="" className="w-full h-auto" />
+                <img src={channel?.image || channel?.channelImageLink} alt="" className="w-full h-auto" />
               </div>
             </div>
           ))

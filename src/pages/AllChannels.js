@@ -2,7 +2,6 @@ import Footer from "components/Footer";
 import Title from "components/Title";
 import TvNavbar from "components/TvNavbar";
 import React, { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
 import ChannelList from "sections/TvHomepage/ChannelList";
 import Api from "services/api";
 import { helper } from "utils/helper";
