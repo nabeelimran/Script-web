@@ -154,11 +154,13 @@ function AllTvChannels({
 		(new Date().getTime() - new Date(startTime).getTime()) / 1000;
 	let timer;
 
+
+
 	useEffect(() => {
 		let videoWatchInterval;
 		let durationcheckinterval;
 		console.log(playerRef, "REFFF");
-		if (show && playerRef && playerRef.current) {
+		if (isPlayerReady&&show && playerRef && playerRef.current) {
 
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
@@ -183,46 +185,49 @@ function AllTvChannels({
 				type: "application/x-mpegURL",
 			});
 			playerRef.current.load();
+			playerRef.current.on("play", () => {
+				const videoStartTime = getVideoCurrentTimePace(show.startTime);
+			clearInterval(videoWatchInterval);
 
-			
-				playerRef.current.on("play", () => {
-					const videoStartTime = getVideoCurrentTimePace(show.startTime);
-					videoWatchInterval = setInterval(() => {
-						const videoWatchTime = {
-							startTime: videoStartTime,
-							endTime: playerRef.current.duration(),
-							videoPlayTime:
-								(new Date().getTime() -
-									new Date(show.startTime).getTime()) /
-								1000,
-						};
-	
-						if (
-							show.startTime &&
-							videoWatchTime &&
-							videoWatchTime.endTime
-						) {
-							// let eToken = earnedToken + 0.05
-							dispatch(getVideoTimeWatch(videoWatchTime));
-							if (userId) {
-								dispatch(earnedTokenRed(0.05));
-							}
-	
-							//checkVideoWatchTime(videoWatchTime)
+				videoWatchInterval = setInterval(() => {
+					const videoWatchTime = {
+						startTime: videoStartTime,
+						endTime: playerRef.current.duration(),
+						videoPlayTime:
+							(new Date().getTime() -
+								new Date(show.startTime).getTime()) /
+							1000,
+					};
+
+					if (
+						show.startTime &&
+						videoWatchTime &&
+						videoWatchTime.endTime
+					) {
+						// let eToken = earnedToken + 0.05
+						dispatch(getVideoTimeWatch(videoWatchTime));
+						if (userId ) {
+							console.log("DISPATCH FROM HERE",isPlayerReady)
+							dispatch(earnedTokenRed(0.05));
 						}
-					}, 60000);
-				});
-			
-				clearInterval(durationcheckinterval);
-			
+
+						//checkVideoWatchTime(videoWatchTime)
+					}
+				}, 60000);
+				
+
+
+			});
 		}
 		return () => {
 			clearInterval(videoWatchInterval);
-			
-
 			clearInterval(durationcheckinterval);
+
 		};
+		
 	}, [show,isPlayerReady,playerRef.current]);
+
+	
 
 
 
@@ -259,11 +264,13 @@ function AllTvChannels({
 		player.on("play", () => {});
 
 		player.on("dispose", () => {
+			
 			videojs.log("player will dispose");
 			playerRef.current = null;
 		});
-		if (playerRef) {
+		if (playerRef ) {
 			setIsPlayerReady(true);
+			
 		}
 	};
 
@@ -305,7 +312,6 @@ function AllTvChannels({
 							<VideoPlayer
 							options={videoJsOptions}
 							onReady={handlePlayerReady}
-							
 							/>
 							
 								<div className='absolute sm:top-4 lg:right-[6.8rem] md:right-[1rem] right-3 top-16 bg-shade-grayis flex p-2 hidden' ref={showchatRef}>

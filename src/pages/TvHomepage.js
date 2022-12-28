@@ -59,7 +59,7 @@ function TvHomepage() {
 			if (currentChannel[0]) {
 				//console.log("currentChannel[0].liveShows",currentChannel[0].liveShows)
 				currentChannel[0].liveShows.map((c, i) => {
-					console.log(currentVideo.startTime, c.startTime);
+					console.log(c.videoId , currentVideo.videoId,currentVideo.startTime, c.startTime);
 					if (
 						c.videoId === currentVideo.videoId &&
 						currentVideo.startTime === c.startTime
