@@ -4,7 +4,7 @@ import FloatingLabelSelect from 'components/FloatingLabelSelect';
 import FloatingLabelTextarea from 'components/FloatingLabelTextarea';
 import Title from 'components/Title';
 import { ToastMessage } from 'components/ToastMessage';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Api from 'services/api';
@@ -18,15 +18,20 @@ function ReportIssueForm() {
     const user = LocalServices.getServices('user') || null;
     const navigate = useNavigate();
 
-    const { register, handleSubmit, watch, formState: { errors }, } = useForm({
-        reporterName:  "",
-        reporterEmail: "",
+    const { register, handleSubmit, watch, setValue, formState: { errors }, } = useForm({
+        reporterName:  user?.userName || "",
+        reporterEmail: user?.email || "",
         issueFound: "",
         issueDetail: "",
         deviceUsed: "",
         browser: "",
         operatingSystem: ""
     });
+
+    useEffect(() => {
+        setValue('reporterName',  user?.userName || "")
+        setValue('reporterEmail', user?.email || "",);
+    }, [])
 
     const submitIssue = (data) => {
         if (token && user) {
@@ -98,6 +103,7 @@ function ReportIssueForm() {
                                 ...register("reporterName", { required: true }),
                             }}
                             error={errorShow(errors.reporterName)}
+                            disabledInput={true}
                         />
                     </div>
                     <div>
@@ -109,6 +115,7 @@ function ReportIssueForm() {
                         error={
                             errorShow(errors.reporterEmail)
                         }
+                        disabledInput={true}
                         />
                     </div>
                     <div className="sm:col-span-2">

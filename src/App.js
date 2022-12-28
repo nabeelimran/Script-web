@@ -86,7 +86,7 @@ function App() {
         <Route path="/all-categories" element={<AllCategory />} />
         <Route path="/channel-detail" element={<ChannelDetail />} />
         <Route path="/category-detail" element={<CategoryDetail />} />
-        <Route path="/report-issue" element={<ReportIssue />} />
+        <Route path="/report-issue" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
         
         <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
