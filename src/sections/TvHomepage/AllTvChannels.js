@@ -154,43 +154,24 @@ function AllTvChannels({
 		(new Date().getTime() - new Date(startTime).getTime()) / 1000;
 	let timer;
 
-
-
 	useEffect(() => {
 		let videoWatchInterval;
 		let durationcheckinterval;
 		console.log(playerRef, "REFFF");
 		if (show && playerRef && playerRef.current) {
-			// playerRef.current.ads()
-			// playerRef.current.on('readyforpreroll', () => {
-			//   playerRef.current.ads.startLinearAdMode();
-			//   playerRef.current.src({
-			//     src: getRandomAds() ? getRandomAds().adsS3Url : `https://scripttv.s3.eu-central-1.amazonaws.com/1648445836148-1c4e85894a244a128646d57c0646edd7.mp4`,
-			//     type: 'video/mp4'
-			//   })
-			//   // send event when ad is playing to remove loading spinner
-			//   playerRef.current.one('adplaying', () => {
-			//     playerRef.current.trigger('ads-ad-started');
-			//   });
-
-			//   // resume content when all your linear ads have finished
-			//   playerRef.current.one('adended', () => {
-			//       playerRef.current.ads.endLinearAdMode();
-			//   });
-			// })
 
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
-					// durationcheckinterval = setInterval(() => {
-					// 	// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
-					// 	if (
-					// 		playerRef.current?.currentTime() &&
-					// 		playerRef.current.currentTime() ===
-					// 			playerRef.current.duration()
-					// 	) {
-					// 		dispatch(refreshChannel(true));
-					// 	}
-					// }, 10000);
+					durationcheckinterval = setInterval(() => {
+						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
+						if (
+							playerRef.current?.currentTime() &&
+							playerRef.current.currentTime() ===
+								playerRef.current.duration()
+						) {
+							dispatch(refreshChannel(true));
+						}
+					}, 10000);
 				}
 			});
 
@@ -203,56 +184,47 @@ function AllTvChannels({
 			});
 			playerRef.current.load();
 
-		}
-		return () => {
-			clearInterval(videoWatchInterval);
-
-		};
-		console.log('PLAYER REF',playerRef)
-	}, [show,isPlayerReady,playerRef]);
-
-	useEffect(()=>{
-		let videoWatchInterval;
-		let durationcheckinterval;
-		console.log(playerRef, "second ref");
-		if (show && playerRef && playerRef.current) {
-			playerRef.current.on("play", () => {
-				const videoStartTime = getVideoCurrentTimePace(show.startTime);
-			clearInterval(videoWatchInterval);
-
-				videoWatchInterval = setInterval(() => {
-					const videoWatchTime = {
-						startTime: videoStartTime,
-						endTime: playerRef.current.duration(),
-						videoPlayTime:
-							(new Date().getTime() -
-								new Date(show.startTime).getTime()) /
-							1000,
-					};
-
-					if (
-						show.startTime &&
-						videoWatchTime &&
-						videoWatchTime.endTime
-					) {
-						// let eToken = earnedToken + 0.05
-						dispatch(getVideoTimeWatch(videoWatchTime));
-						if (userId ) {
-							console.log("DISPATCH FROM HERE",isPlayerReady)
-							dispatch(earnedTokenRed(0.05));
+			
+				playerRef.current.on("play", () => {
+					const videoStartTime = getVideoCurrentTimePace(show.startTime);
+					videoWatchInterval = setInterval(() => {
+						const videoWatchTime = {
+							startTime: videoStartTime,
+							endTime: playerRef.current.duration(),
+							videoPlayTime:
+								(new Date().getTime() -
+									new Date(show.startTime).getTime()) /
+								1000,
+						};
+	
+						if (
+							show.startTime &&
+							videoWatchTime &&
+							videoWatchTime.endTime
+						) {
+							// let eToken = earnedToken + 0.05
+							dispatch(getVideoTimeWatch(videoWatchTime));
+							if (userId) {
+								dispatch(earnedTokenRed(0.05));
+							}
+	
+							//checkVideoWatchTime(videoWatchTime)
 						}
-
-						//checkVideoWatchTime(videoWatchTime)
-					}
-				}, 60000);
-			});
+					}, 60000);
+				});
+			
+				clearInterval(durationcheckinterval);
+			
 		}
 		return () => {
+			clearInterval(videoWatchInterval);
+			
 
 			clearInterval(durationcheckinterval);
 		};
-		
-	},[show])
+	}, [show,isPlayerReady,playerRef.current]);
+
+
 
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;
@@ -287,13 +259,11 @@ function AllTvChannels({
 		player.on("play", () => {});
 
 		player.on("dispose", () => {
-			
 			videojs.log("player will dispose");
 			playerRef.current = null;
 		});
-		if (playerRef ) {
+		if (playerRef) {
 			setIsPlayerReady(true);
-			
 		}
 	};
 
@@ -335,6 +305,7 @@ function AllTvChannels({
 							<VideoPlayer
 							options={videoJsOptions}
 							onReady={handlePlayerReady}
+							
 							/>
 							
 								<div className='absolute sm:top-4 lg:right-[6.8rem] md:right-[1rem] right-3 top-16 bg-shade-grayis flex p-2 hidden' ref={showchatRef}>
