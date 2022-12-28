@@ -5,6 +5,7 @@ import FloatingLabelTextarea from 'components/FloatingLabelTextarea';
 import Title from 'components/Title';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { helper } from 'utils/helper';
 
 function ReportIssueForm() {
 
@@ -21,7 +22,7 @@ function ReportIssueForm() {
     });
 
     const submitIssue = (data) => {
-
+        helper.comingSoonNotification();
     }
 
     const errorShow = (type) => {
