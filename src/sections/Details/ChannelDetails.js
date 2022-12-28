@@ -30,8 +30,17 @@ function ChannelDetails({
     
     return (
         <div className="bg-shade-grayis rounded-2xl h-autho w-auto">
+            <div className="mb-4 sm:mb-6 relative z-50 pl-5 py-5">
+                <p>
+                {channel.channelName}
+                </p>
+            </div>
             <div className="mb-4 sm:mb-6 relative z-50">
-                <Tabs tabsOptions={tabsOptions}></Tabs>
+                {
+                    (pastShows && pastShows.length > 0) || (currentShows && currentShows.length > 0) ? 
+                        <Tabs tabsOptions={tabsOptions} pastShows={pastShows} currentShows={currentShows} /> : null
+                }
+                
             </div>
         </div>
     );
