@@ -30,7 +30,7 @@ function AllChannels() {
                     <TvNavbar />
                 </div>
                 <div className="mb-4 sm:mb-6 relative z-50">
-                    <Title className="font-medium mb-3">All Categories</Title>
+                    <Title className="font-medium mb-3">All Channels</Title>
                 </div>
                 <div className="mb-4 sm:mb-6 relative z-50">
                     <ChannelList channels={channels} />
