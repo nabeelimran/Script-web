@@ -1,6 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function ChannelList({ channels }) {
+
+  const navigate = useNavigate();
+
+  const viewChannelDetail = (channelId) => {
+    navigate({
+      pathname: "/channel-detail",
+      search: `?channelId=${channelId}`,
+    });
+  }
+  
+
   return (
     <div className="flex flex-wrap">
       {channels && channels.length > 0
@@ -12,6 +24,7 @@ function ChannelList({ channels }) {
             <div
               className="bg-shade-grayis rounded-2xl mr-5 mb-5 w-1/5 h-[150px] flex justify-center items-center"
               key={index}
+              onClick={() => viewChannelDetail(channel.id)}
             >
               <div className="w-[70%]">
                 <img src={channel.image} alt="" className="w-full h-auto" />

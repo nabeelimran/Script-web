@@ -502,4 +502,36 @@ export default class Api {
 			options
 		);
 	}
+
+	static getPastSchedulingDetails(channelId, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getPastSchedulingDetails?channelId=${channelId}`,
+			options
+		);
+	}
+
+	static getSchedulingDetailsByDate(channelId, date, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getSchedulingDetailsByDate?channelId=${channelId}&date=${date}`,
+			options
+		);
+	}
 }
