@@ -154,6 +154,8 @@ function AllTvChannels({
 		(new Date().getTime() - new Date(startTime).getTime()) / 1000;
 	let timer;
 
+
+
 	useEffect(() => {
 		let videoWatchInterval;
 		let durationcheckinterval;
@@ -179,16 +181,16 @@ function AllTvChannels({
 
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
-					durationcheckinterval = setInterval(() => {
-						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
-						if (
-							playerRef.current?.currentTime() &&
-							playerRef.current.currentTime() ===
-								playerRef.current.duration()
-						) {
-							dispatch(refreshChannel(true));
-						}
-					}, 10000);
+					// durationcheckinterval = setInterval(() => {
+					// 	// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
+					// 	if (
+					// 		playerRef.current?.currentTime() &&
+					// 		playerRef.current.currentTime() ===
+					// 			playerRef.current.duration()
+					// 	) {
+					// 		dispatch(refreshChannel(true));
+					// 	}
+					// }, 10000);
 				}
 			});
 
@@ -201,8 +203,23 @@ function AllTvChannels({
 			});
 			playerRef.current.load();
 
+		}
+		return () => {
+			clearInterval(videoWatchInterval);
+
+		};
+		console.log('PLAYER REF',playerRef)
+	}, [show,isPlayerReady,playerRef]);
+
+	useEffect(()=>{
+		let videoWatchInterval;
+		let durationcheckinterval;
+		console.log(playerRef, "second ref");
+		if (show && playerRef && playerRef.current) {
 			playerRef.current.on("play", () => {
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
+			clearInterval(videoWatchInterval);
+
 				videoWatchInterval = setInterval(() => {
 					const videoWatchTime = {
 						startTime: videoStartTime,
@@ -220,7 +237,8 @@ function AllTvChannels({
 					) {
 						// let eToken = earnedToken + 0.05
 						dispatch(getVideoTimeWatch(videoWatchTime));
-						if (userId) {
+						if (userId ) {
+							console.log("DISPATCH FROM HERE",isPlayerReady)
 							dispatch(earnedTokenRed(0.05));
 						}
 
@@ -230,11 +248,11 @@ function AllTvChannels({
 			});
 		}
 		return () => {
-			clearInterval(videoWatchInterval);
 
 			clearInterval(durationcheckinterval);
 		};
-	}, [show, isPlayerReady, playerRef.current]);
+		
+	},[show])
 
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;
@@ -269,11 +287,13 @@ function AllTvChannels({
 		player.on("play", () => {});
 
 		player.on("dispose", () => {
+			
 			videojs.log("player will dispose");
 			playerRef.current = null;
 		});
-		if (playerRef) {
+		if (playerRef ) {
 			setIsPlayerReady(true);
+			
 		}
 	};
 

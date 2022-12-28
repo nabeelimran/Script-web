@@ -326,7 +326,7 @@ export default class Api {
 		return axios.get(`${APIPATH.BASEURL}getCountries`, options);
 	}
 
-	getCategory(pageNo, screenName) {
+	static getCategory(pageNo, screenName) {
 		const options = {
 			headers: {
 				ipAddress: "dummyData",
@@ -419,6 +419,118 @@ export default class Api {
 		};
 		return axios.get(
 			`${APIPATH.BASEURL}getVideoComment?videoId=${vdoId}&pageNo=${pageNo}`,
+			options
+		);
+	}
+
+	static getLeaderboardData(pageNo, pageSize, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getLeaderBoardLists?page=${pageNo}&size=${pageSize}`,
+			options
+		);
+	}
+
+	static getLatestDayReward(walletAddress, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getLatestDayRewardOfUser?walletAddress=${walletAddress}`,
+			options
+		);
+	}
+
+	static collectReward(req, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.post(
+			`${APIPATH.BASEURL}createReward`, req,
+			options
+		);
+	}
+
+	static subscribeChannel(req, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.post(
+			`${APIPATH.BASEURL}subscribeChannel`, req,
+			options
+		);
+	}
+
+	static getChannelDetailByChannelId(channelId, isOwner, userId, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getChannelByChannelId?channelId=${channelId}&isOwner=${isOwner}&userId=${userId}`,
+			options
+		);
+	}
+
+	static getPastSchedulingDetails(channelId, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getPastSchedulingDetails?channelId=${channelId}`,
+			options
+		);
+	}
+
+	static getSchedulingDetailsByDate(channelId, date, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getSchedulingDetailsByDate?channelId=${channelId}&date=${date}`,
 			options
 		);
 	}

@@ -3,7 +3,10 @@ import Button from "components/Button";
 import Title from "components/Title";
 import React from "react";
 
-function Hero() {
+function Hero({
+  handleCollectReward
+}) {
+
   return (
     <section className="container grid lg:grid-cols-2 gap-10 lg:gap-20">
       <div className="">
@@ -15,7 +18,12 @@ function Hero() {
         </p>
 
         <div className="flex items-center space-x-4">
-          <Button label="MarketPlace" />
+          <Button label="Collect Reward" 
+            buttonProps={{
+              onClick: () => {
+                handleCollectReward()
+              }
+            }}/>
           <Button label="History" variant={3} />
         </div>
       </div>
