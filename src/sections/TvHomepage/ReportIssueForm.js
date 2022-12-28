@@ -6,12 +6,17 @@ import Title from 'components/Title';
 import { ToastMessage } from 'components/ToastMessage';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import Api from 'services/api';
+import LocalServices from 'services/LocalServices';
 import { helper } from 'utils/helper';
 
 function ReportIssueForm() {
 
     const [loading, setLoading] = useState(false);
+    const token = LocalServices.getServices('token') || null;
+    const user = LocalServices.getServices('user') || null;
+    const navigate = useNavigate();
 
     const { register, handleSubmit, watch, formState: { errors }, } = useForm({
         reporterName:  "",
@@ -24,51 +29,55 @@ function ReportIssueForm() {
     });
 
     const submitIssue = (data) => {
-        debugger
-        setLoading(true);
-        const req = {
-            browser: "",
-            deviceUsed: "",
-            issueDetail: "",
-            issueFound: "",
-            operatingSystem: "",
-            reporterEmail: "",
-            reporterName: "",
-            userId: 0
-        };
+        if (token && user) {
+            setLoading(true);
+            const req = {
+                browser: data.browser,
+                deviceUsed: data.deviceUsed,
+                issueDetail: data.issueDetail,
+                issueFound: data.issueFound,
+                operatingSystem: data.operatingSystem,
+                reporterEmail: data.reporterEmail,
+                reporterName: data.reporterName,
+                userId: user.userId
+            };
+    
+            Api.reportIssue(req, 'report-issue').then((res) => {
+                if (res && res.status === 200) {
+                    ToastMessage(res?.data?.message || 'Success', true);
+                    setLoading(false);
+                    navigate({
+                        pathname: "/tv",
+                    })
+                } else {
+                    ToastMessage(res?.data?.message || 'Something went wrong');
+                    setLoading(false);
+                }
+            }).catch((err) => {
+                ToastMessage(err?.response?.data?.message || 'Something went wrong');
+                setLoading(false);
+            })    
+        } else {
 
-        Api.reportIssue(req, 'report-issue').then((res) => {
-            if (res && res.status === 200) {
-                ToastMessage(res?.data?.message || 'Success', true);
-                setLoading(false);
-            } else {
-                ToastMessage(res?.data?.message || 'Something went wrong');
-                setLoading(false);
-            }
-        }).catch((err) => {
-            ToastMessage(err?.error?.message || 'Something went wrong');
-            setLoading(false);
-        })
+        }
+        
     }
 
     const errorShow = (type) => {
         let error;
         if (type) {
-          switch (type.type) {
-            case "required":
-              error = "This field is requird. Please enter password";
-              break;
-            case "minLength":
-              error = "Password must have at least 8 characters";
-              break;
-            case "pattern":
-              error =
-                "Password Should be eight characters long and alphanumeric with special characters";
-              break;
-    
-            default:
-              break;
-          }
+            console.log(type)
+            switch (type.type) {
+                case "required":
+                error = "This field is requird.";
+                break;
+                case "pattern":
+                error = "Invalid Email"
+                break;
+        
+                default:
+                break;
+            }
         }
     
         return error;
@@ -95,9 +104,11 @@ function ReportIssueForm() {
                         <FloatingLabelInput
                             lable="Email"
                             other={{
-                            ...register("reporterEmail", { required: true }),
+                            ...register("reporterEmail", { required: true, pattern: /^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/}),
                         }}
-                        error={errors.reporterEmail && "This field is requird. Please enter email."}
+                        error={
+                            errorShow(errors.reporterEmail)
+                        }
                         />
                     </div>
                     <div className="sm:col-span-2">
@@ -116,7 +127,8 @@ function ReportIssueForm() {
                                 value: 300,
                                 message: "Issue Detail have at most 300 characters",
                             },
-                        }} />
+                        }}
+                        error={errorShow(errors.issueDetail)} />
                     </div>
                     <div className="sm:col-span-2">
                         <FloatingLabelSelect
@@ -124,6 +136,7 @@ function ReportIssueForm() {
                             other={{
                                 ...register("deviceUsed", { required: true }),
                             }}
+                            error={errorShow(errors.deviceUsed)}
                         />
                     </div>
                     <div className="sm:col-span-2 text-white">
@@ -132,6 +145,7 @@ function ReportIssueForm() {
                             other={{
                                 ...register("browser", { required: true }),
                             }}
+                            error={errorShow(errors.browser)}
                         />
                     </div>
                     <div className="sm:col-span-2">
@@ -140,12 +154,11 @@ function ReportIssueForm() {
                             other={{
                                 ...register("operatingSystem", { required: true }),
                             }}
+                            error={errorShow(errors.operatingSystem)}
                         />
                     </div>
                 </div>
-                <div className='flex justify-center'>
                     <Button label="Submit Issue" type="submit" loader={loading} />
-                </div>
             </form>
         </div>
     )
