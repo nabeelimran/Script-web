@@ -38,7 +38,7 @@ function Welcome({
 
               <div className="">
                 <p className="fs-16px font-medium mb-1">Nice Work!</p>
-                <p className="text-sm">You have earned 13.5 SPAY this week!</p>
+                <p className="text-sm">You have earned N/A SPAY this week!</p>
               </div>
             </div>
           </div>
