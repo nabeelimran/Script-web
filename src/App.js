@@ -84,7 +84,7 @@ function App() {
         <Route path="/tv" element={<TvHomepage />} />
         <Route path="/all-channels" element={<AllChannels />} />
         <Route path="/all-categories" element={<AllCategory />} />
-        <Route path="/channel-detail" element={<ChannelDetail />} />
+        {/* <Route path="/channel-detail" element={<ChannelDetail />} /> */}
         <Route path="/category-detail" element={<CategoryDetail />} />
         <Route path="/report-issue" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
         

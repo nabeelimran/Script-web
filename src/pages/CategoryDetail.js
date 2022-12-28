@@ -25,12 +25,15 @@ function CategoryDetail() {
     }, [])
     
     return (
-        <div className="container">
-            <div className="mb-4 sm:mb-6 relative z-50">
-                <TvNavbar />
-            </div>
-            <div className="mb-4 sm:mb-6 relative z-50">
-                <ChannelList channels={channelList} />
+        <div>
+            <div className="container">
+                <div className="mb-4 sm:mb-6 relative z-50">
+                    <TvNavbar />
+                </div>
+                <div className="mb-4 sm:mb-6 relative z-50">
+                    <ChannelList channels={channelList} />
+                </div>
+                
             </div>
             <Footer container="container" />
         </div>
