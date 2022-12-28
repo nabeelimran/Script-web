@@ -1,6 +1,6 @@
 import React from "react";
 
-function FloatingLabelInput({ lable, value, other, error }) {
+function FloatingLabelInput({ lable, value, other, error, disabledInput = false }) {
   return (
     <div
       className="did-floating-label-content text-sm xl:text-base"
@@ -12,6 +12,7 @@ function FloatingLabelInput({ lable, value, other, error }) {
         placeholder=" "
         value={value}
         {...other}
+        disabled={disabledInput}
       />
       <label className="did-floating-label left-2 xl:left-3 bg-black">
         {lable}

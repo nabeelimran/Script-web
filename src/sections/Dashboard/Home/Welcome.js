@@ -19,7 +19,7 @@ function Welcome({
         <Title variant="20" className="font-semibold text-center mb-3">
           Welcome Back, {profile?.firstName || ''}
         </Title>
-        <h1 onClick={goToTVSite} class="text-base lg:text-base xl:text-xl text-center text-primary font-semibold mb-7">Head back to TV</h1>
+        <h1 onClick={goToTVSite} className="text-base lg:text-base xl:text-xl text-center text-primary font-semibold mb-7">Head back to TV</h1>
 
         <div className="space-y-1 mb-8 lg:mb-12">
           <p className="fs-20px font-medium">
@@ -38,7 +38,7 @@ function Welcome({
 
               <div className="">
                 <p className="fs-16px font-medium mb-1">Nice Work!</p>
-                <p className="text-sm">You have earned 13.5 SPAY this week!</p>
+                <p className="text-sm">You have earned N/A SPAY this week!</p>
               </div>
             </div>
           </div>

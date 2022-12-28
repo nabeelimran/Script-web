@@ -25,7 +25,32 @@ export const helper = {
   
       return timeStops;
     },
-  
+    osList: [
+      {value: 'window', title: 'Window'},
+      {value: 'macOS', title: 'macOS'},
+      {value: 'linux', title: 'Linux'},
+      {value: 'iOS', title: 'iOS'},
+      {value: 'android', title: 'Android'},
+      {value: 'chromeOS', title: 'ChromeOS'},
+      {value: 'ubuntu', title: 'Ubuntu'},
+      {value: 'other', title: 'Other'}
+    ],
+    deviceList: [
+      {value: 'desktop', title: 'Desktop'},
+      {value: 'laptop', title: 'Laptop'},
+      {value: 'iPhone', title: 'Apple iPhone'},
+      {value: 'androidPhone', title: 'Android Phone'},
+      {value: 'other', title: 'Other'}
+    ],
+    browserList: [
+      {value: 'chrome', title: 'Google Chrome'},
+      {value: 'firefox', title: 'Firefox'},
+      {value: 'brave', title: 'Brave'},
+      {value: 'safari', title: 'Safari'},
+      {value: 'microsoft-edge', title: 'Microsoft Edge'},
+      {value: 'internet-explorer', title: 'Internet Explorer'},
+      {value: 'other', title: 'Other'}
+    ],  
     getDiffInMinfromCurrent:(startDate, dateType) => moment(startDate).diff(moment(new Date()), 'minutes'),
     getDiffInMin:(startDate, endDate)=> moment(startDate).diff(moment(endDate), 'minutes'),
     getIn12HoursFormat:(date)=>{

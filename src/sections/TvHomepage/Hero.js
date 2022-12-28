@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Navigation, Pagination } from "swiper";
@@ -6,6 +6,7 @@ import { Icon } from "@iconify/react";
 import DividerLine from "components/DividerLine";
 import HeadingSmall from "components/HeadingSmall";
 import LocalServices from "services/LocalServices";
+import Api from "services/api";
 
 const SliderContent = ({
   img
@@ -23,14 +24,41 @@ const SliderContent = ({
   );
 };
 
-function Hero({
-  videoWatchDuration,
-  lastVideoHistory,
-  lastDayWatchVideoDuration,
-}) {
+function Hero() {
   const prevRef = useRef();
   const nextRef = useRef();
   const token = LocalServices.getServices("token");
+  const [videoWatchDuration, setVideoWatchDuration] = React.useState(0);
+  const [lastDayWatchVideoDuration, setLastDayWatchVideoDuration] = React.useState(0);
+  const [lastVideoHistory, setLastVideoHistory] = React.useState(null);
+  let userId = LocalServices.getServices("user")?.userId || null;
+
+
+  React.useEffect(()=>{
+    if (userId) {
+      getVideoWatchDuration(userId);
+      getLastShowWatchHistory(userId);
+    }
+  },[userId])
+
+  const getVideoWatchDuration = (userId) => {
+    Api.getVideoWatchDuration(userId, "watch").then((res) => {
+      if (res && res.status === 200) {
+        setVideoWatchDuration(res.data.data.totalWatchVideoDuration);
+        setLastDayWatchVideoDuration(res.data.data.lastDayWatchVideoDuration);
+      }
+    });
+  };
+
+
+
+  const getLastShowWatchHistory = (userId) => {
+    Api.getLastWatchShowHistory(userId, "watch").then((res) => {
+      if (res && res.status === 200) {
+        setLastVideoHistory(res.data.data);
+      }
+    });
+  };
 
   const bannerImgages = [
     "images/christmas.png",

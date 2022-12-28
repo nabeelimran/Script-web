@@ -39,8 +39,8 @@ function FloatingLabelSelect({
       >
         {options &&
           options.map((item, i) => (
-            <option key={i} value={item.id}>
-              {item.countryName}
+            <option key={i} value={item?.id || item?.value}>
+              {item?.countryName || item?.title}
             </option>
           ))}
         {!options &&

@@ -44,6 +44,9 @@ import MixPanelService from "services/mixPanelService";
 import LeaderBoard from "pages/Leaderboard";
 import AllChannels from "pages/AllChannels";
 import AllCategory from "pages/AllCategory";
+import ChannelDetail from "pages/ChannelDetail";
+import CategoryDetail from "pages/CategoryDetail";
+import ReportIssue from "pages/ReportIssue";
 
 
 function App() {
@@ -81,6 +84,10 @@ function App() {
         <Route path="/tv" element={<TvHomepage />} />
         <Route path="/all-channels" element={<AllChannels />} />
         <Route path="/all-categories" element={<AllCategory />} />
+        {/* <Route path="/channel-detail" element={<ChannelDetail />} /> */}
+        <Route path="/category-detail" element={<CategoryDetail />} />
+        <Route path="/report-issue" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
+        
         <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

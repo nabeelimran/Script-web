@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "How much can i earn staking?",
     content:
-      "This depends on various factors, but fortunately, we have made it easy for you to estimate this, through our staking calculator. This can be found on the footer of the token website. <br/> <br/> I am confused on how to take part in testnet, what do I do? We understand for many that’s it’s a totally new experience, so we have written out guides to explain further. Please head <a class='underline' href='https://whitepaper.script.tv/guides/how-to-sign-up-+-sign-in-to-script-tv'>here</a> for further explanation.",
+      "This depends on various factors, but fortunately, we have made it easy for you to estimate this, through our staking calculator. This can be found on the footer of the token website. <br/> <br/> I am confused on how to take part in testnet, what do I do? We understand for many that’s it’s a totally new experience, so we have written out guides to explain further. Please head <a className='underline' href='https://whitepaper.script.tv/guides/how-to-sign-up-+-sign-in-to-script-tv'>here</a> for further explanation.",
   },
   {
     question: "I want to become a guardian or edge node, what do I do?",
@@ -58,11 +58,11 @@ const faqs = [
     question:
       "Where is the best place to stay up to date and in touch with the community?",
     content:
-      "We recommend you to join the discord <a class='underline' href='discord.gg/scriptnetwork' target='_blank'> here </a> for up to date information on what is happening, or the discord here where you can interact with the community and the team. <br/><br/> I want to partner with Script Network, how can I get in contact? Please email <a class='underline' href='https://discord.gg/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a class='underline' href='https://t.me/scriptnetwork' target='_blank'>here</a> or use the form on the contact us page.",
+      "We recommend you to join the discord <a className='underline' href='discord.gg/scriptnetwork' target='_blank'> here </a> for up to date information on what is happening, or the discord here where you can interact with the community and the team. <br/><br/> I want to partner with Script Network, how can I get in contact? Please email <a className='underline' href='https://discord.gg/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a className='underline' href='https://t.me/scriptnetwork' target='_blank'>here</a> or use the form on the contact us page.",
   },
   {
     question: "Where can I view the whitepaper and the tokenomics?",
-    content: `You can view the tokenomics and the whitepaper, <a class='underline' href='${ScriptWPJAN2022}' target='_blank'>here.</a>`,
+    content: `You can view the tokenomics and the whitepaper, <a className='underline' href='${ScriptWPJAN2022}' target='_blank'>here.</a>`,
   },
   {
     question: "Why are there two different tokens?",
@@ -72,7 +72,7 @@ const faqs = [
   {
     question: "What is ScriptGLASS?",
     content: 
-      "ScriptGLASS is the NFT collection which is directly integrated to the watch-to-earn protocol within ScriptTV. At least 1 pair of ScriptGLASS must be equipped to watch and earn on a day to day basis. Beyond each glasses being aesthetically unique in color and design, each has a specific rarity which affects how much a users could possibly earn on a day to day basis. When watching content, users will need to re-charge their glasses, upgrade to higher levels (to earn more per day), buy a gem (for multiplier and raffle opportunities), and loot boxes (which is only available to glasses who reach an advanced level). More on this, <a class='underline' href='https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained' target='_blank'>here</a>"
+      "ScriptGLASS is the NFT collection which is directly integrated to the watch-to-earn protocol within ScriptTV. At least 1 pair of ScriptGLASS must be equipped to watch and earn on a day to day basis. Beyond each glasses being aesthetically unique in color and design, each has a specific rarity which affects how much a users could possibly earn on a day to day basis. When watching content, users will need to re-charge their glasses, upgrade to higher levels (to earn more per day), buy a gem (for multiplier and raffle opportunities), and loot boxes (which is only available to glasses who reach an advanced level). More on this, <a className='underline' href='https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained' target='_blank'>here</a>"
   },
   // {
   //   question: "I want to partner with Script Network, how can i get in conact?",

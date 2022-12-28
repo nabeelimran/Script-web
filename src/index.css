@@ -384,6 +384,11 @@
     font-size: var(--float-font-size);
     transform: translateY(0%);
   }
+  .did-floating-select:not(:placeholder-shown) ~ .did-floating-label {
+    bottom: 82%;
+    font-size: var(--float-font-size);
+    transform: translateY(0%);
+  }
   /* .did-error-input .did-floating-input,
   .did-error-input .did-floating-select {
     border: 2px solid #9d3b3b;
