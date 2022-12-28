@@ -43,7 +43,7 @@ function Hero() {
               }}
               
             />
-            <Button label="Launch app" variant={2} arrowVisible={true} />
+            <Button link="/tv" label="Launch app" variant={2} arrowVisible={true} />
           </div>
 
           <p className="fs-16px font-medium text-white mb-9">
