@@ -59,10 +59,6 @@ function Rewards() {
         <DailyTasks />
       </div>
 
-      <div className="mb-16 lg:mb-20">
-        <Tip />
-      </div>
-
       <Footer />
     </div>
   );

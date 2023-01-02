@@ -18,7 +18,24 @@ const Row = ({ title, score, subtitle }) => {
       </div>
     </div>
   );
-};
+}; 
+
+const ActiveRow = ({ title, score, subtitle }) => {
+  return (
+    <div className="flex flex-col md:flex-row space-y-4 lg:space-y-0 items-center justify-between">
+      <p className="fs-16px">{title}</p>
+
+      <div className="flex items-center space-x-2">
+        <img src="../images/trophy.png" className="h-[16px]" alt="" />
+        <p className="fs-16px">{score}</p>
+      </div>
+
+      <div className='rounded bg-primary py-1 px-4 w-full lg:w-auto'>
+        <p className="fs-16px text-center text-black">{subtitle}</p>
+      </div>
+    </div>
+  );
+}; 
 
 function DailyTasks() {
   return (
@@ -49,7 +66,7 @@ function DailyTasks() {
       <DividerLine />
 
       <div className="py-4">
-        <Row title="Login Everyday" score="10" subtitle="0/1 completed" />
+        <ActiveRow title="Login Everyday" score="10" subtitle="0/1 completed" />
       </div>
 
       <DividerLine />

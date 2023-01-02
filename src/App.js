@@ -110,7 +110,7 @@ function App() {
           <Route path="edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
           <Route path="share-referral" element={<PrivateRoute><ShareRefferal /></PrivateRoute>} />
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
-          <Route path="reward" element={<Rewards />} />
+          {/* <Route path="reward" element={<Rewards />} /> */}
           <Route path="leaderboard" element={<LeaderBoard />} />
           <Route
             path="analytics"
