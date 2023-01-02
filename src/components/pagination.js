@@ -54,7 +54,7 @@ function Pagination({
         </ul>
       </nav> */}
 
-      <div >
+      <div className="flex justify-end">
         <nav
           className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
           aria-label='Pagination'
