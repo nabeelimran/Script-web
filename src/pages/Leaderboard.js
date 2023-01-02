@@ -7,11 +7,24 @@ function LeaderBoard() {
   const [dataPerPage, setDataPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalData, setTotalData] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const indexOfLastPost = currentPage * dataPerPage;
   const indexOfFirstPost = indexOfLastPost - dataPerPage;
   const currentPosts = leaderBoardData.slice(indexOfFirstPost, indexOfLastPost);
+  const paginateFront = () => {
+    if (currentPage >= totalPages - 1) {
+      return;
+    }
+    setCurrentPage(currentPage + 1);
+  } 
+  const paginateBack = () => {
+    if (currentPage <= 0) {
+      return;
+    }
+    setCurrentPage(currentPage - 1);
+  } 
 
   const getLeaderBoardData = () => {
     Api.getLeaderboardData(currentPage, dataPerPage, "reward-management").then(
@@ -19,6 +32,7 @@ function LeaderBoard() {
         if (res && res.status === 200) {
           setLeaderBoardData(res.data.data.content);
           setTotalData(res.data.data.totalrecords);
+          setTotalPages(res.data.data.totalPages);
         }
       }
     );
@@ -69,7 +83,8 @@ function LeaderBoard() {
         <Pagination
           dataPerPage={dataPerPage}
           totalData={totalData}
-          paginate={paginate}
+          paginateBack={paginateBack}
+          paginateFront={paginateFront}
           currentPage={currentPage}
         />
       </div>
