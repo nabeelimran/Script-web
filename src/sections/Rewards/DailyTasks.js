@@ -39,7 +39,8 @@ const ActiveRow = ({ title, score, subtitle }) => {
 
 function DailyTasks() {
   return (
-    <section className="container">
+    // <section className="container">
+    <section className="dashboard-layout">
       <Title className="text-primary font-semibold mb-6">Daily Tasks</Title>
 
       <DividerLine />

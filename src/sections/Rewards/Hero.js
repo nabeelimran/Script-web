@@ -9,7 +9,8 @@ function Hero({
 }) {
 
   return (
-    <section className="container grid lg:grid-cols-2 gap-10 lg:gap-20">
+    // <section className="container grid lg:grid-cols-2 gap-10 lg:gap-20">
+    <section className="dashboard-layout grid lg:grid-cols-2 gap-10 lg:gap-20">
       <div className="">
         <Title className="font-semibold text-primary mb-4">My Rewards</Title>
 
