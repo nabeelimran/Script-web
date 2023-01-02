@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import videojs from "video.js";
 import "videojs-contrib-ads";
-import { refreshChannel } from "redux/reducers/connectWalletModal_State";
+import { refreshChannel } from "redux/reducers/refresh_state";
 import { earnedTokenRed, getVideoTimeWatch } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import { helper } from "utils/helper";
@@ -157,6 +157,7 @@ function AllTvChannels({
 
 
 	useEffect(() => {
+		
 		let videoWatchInterval;
 		let durationcheckinterval;
 		console.log(playerRef, "REFFF");
@@ -173,7 +174,7 @@ function AllTvChannels({
 						) {
 							dispatch(refreshChannel(true));
 						}
-					}, 10000);
+					}, 5000);
 				}
 			});
 
@@ -184,40 +185,8 @@ function AllTvChannels({
 				src: show?.hlsUrl ? show?.hlsUrl : show?.s3VideoUrl,
 				type: "application/x-mpegURL",
 			});
-			playerRef.current.load();
-			playerRef.current.on("play", () => {
-				const videoStartTime = getVideoCurrentTimePace(show.startTime);
-			clearInterval(videoWatchInterval);
-
-				videoWatchInterval = setInterval(() => {
-					const videoWatchTime = {
-						startTime: videoStartTime,
-						endTime: playerRef.current.duration(),
-						videoPlayTime:
-							(new Date().getTime() -
-								new Date(show.startTime).getTime()) /
-							1000,
-					};
-
-					if (
-						show.startTime &&
-						videoWatchTime &&
-						videoWatchTime.endTime
-					) {
-						// let eToken = earnedToken + 0.05
-						dispatch(getVideoTimeWatch(videoWatchTime));
-						if (userId ) {
-							console.log("DISPATCH FROM HERE",isPlayerReady)
-							dispatch(earnedTokenRed(0.05));
-						}
-
-						//checkVideoWatchTime(videoWatchTime)
-					}
-				}, 60000);
-				
-
-
-			});
+			
+			
 		}
 		return () => {
 			clearInterval(videoWatchInterval);
@@ -227,11 +196,57 @@ function AllTvChannels({
 		
 	}, [show,isPlayerReady,playerRef.current]);
 
-	
+useEffect(()=>{
+	let videoWatchInterval;
+
+	if(isPlayerReady && playerRef.current){
+		playerRef.current.load();
+					playerRef.current.on("play", () => {
+						const videoStartTime = getVideoCurrentTimePace(show.startTime);
+					clearInterval(videoWatchInterval);
+						
+						  videoWatchInterval = setInterval(() => {
+							const videoWatchTime = {
+								startTime: videoStartTime,
+								endTime: playerRef.current.duration(),
+								videoPlayTime:
+									(new Date().getTime() -
+										new Date(show.startTime).getTime()) /
+									1000,
+							};
+		
+							if (
+								show.startTime &&
+								videoWatchTime &&
+								videoWatchTime.endTime
+							) {
+								// let eToken = earnedToken + 0.05
+								
+								dispatch(getVideoTimeWatch(videoWatchTime));
+								if (userId ) {
+									console.log("DISPATCH FROM HERE")
+									dispatch(earnedTokenRed(0.05));
+								}
+		
+								//checkVideoWatchTime(videoWatchTime)
+							}
+						}, 60000);
+						
+		
+		
+					});
+	}
+	return () => {
+		clearInterval(videoWatchInterval);
+		
+
+	};
+},[isPlayerReady,playerRef.current])
 
 
 
 	const handlePlayerReady = (player) => {
+		
 		playerRef.current = player;
 		createShareButton();
 		window.addEventListener("scroll", function () {
@@ -261,7 +276,7 @@ function AllTvChannels({
 			videojs.log("player is waiting");
 		});
 
-		player.on("play", () => {});
+
 
 		player.on("dispose", () => {
 			
@@ -282,7 +297,6 @@ function AllTvChannels({
             All your Tv <span className="text-primary">channels in one</span>{" "}
             place
           </Title>
-
           <p className="fs-16px text-primary text-center max-w-[38rem] mx-auto">
             Watch content from thousands of tv shows, films and more. Choose
             from genres below - there are shows and films for every taste.
@@ -296,22 +310,24 @@ function AllTvChannels({
 					<Title
 						variant='24'
 						className='font-medium text-center sm:text-left'>
-						Decentralized television,{" "}
-						<span className='text-primary'>for free</span>
+						Decentralized television,
+						<span className='text-primary'> for free</span>
 					</Title>
 				</div>
 			</div>
 
-			<div className='bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0'>
+			<div className='bg-shade-darkest-blue md:py-4 sm:bg-transparent sm:py-0'>
 				<div className='container'>
 					<div
 						className={`sm:bg-shade-darkest-blue grid gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px]`} ref={videoClassRef}>
 						<div
 							className={`pt-5 pb-5 h-[200px] md:h-[100%] lg:h-auto`} 
 							id='video-wrapper' ref={videoHeightRef}>
+								
 							<VideoPlayer
 							options={videoJsOptions}
 							onReady={handlePlayerReady}
+							show={show}
 							/>
 							
 								<div className='absolute sm:top-4 lg:right-[6.8rem] md:right-[1rem] right-3 top-16 bg-shade-grayis flex p-2 hidden' ref={showchatRef}>

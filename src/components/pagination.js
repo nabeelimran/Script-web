@@ -1,6 +1,14 @@
 import React from "react";
 
-function Pagination({ dataPerPage, totalData, paginate, currentPage }) {
+function Pagination({
+  dataPerPage,
+  totalData,
+  paginate,
+  currentPage,
+  paginateFront,
+  paginateBack, 
+  totalPages
+}) {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalData / dataPerPage); i++) {
@@ -23,7 +31,7 @@ function Pagination({ dataPerPage, totalData, paginate, currentPage }) {
           results
         </p>
       </div> */}
-      <nav className="block">
+      {/* <nav className="block">
         <ul className="flex justify-end">
           <li>
             {pageNumbers.map((number, index) => (
@@ -44,7 +52,44 @@ function Pagination({ dataPerPage, totalData, paginate, currentPage }) {
             ))}
           </li>
         </ul>
-      </nav>
+      </nav> */}
+
+      <div className="flex justify-end">
+        <nav
+          className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
+          aria-label='Pagination'
+        >
+          <a
+            onClick={() => {
+              paginateBack();
+            }}
+            href='#'
+            className= {
+              currentPage === 0 ? 
+              'page-disabled relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50' :
+              'relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+            }
+            
+            
+          >
+            <span className="text-black">Previous</span>
+          </a>
+
+          <a
+            onClick={() => {
+              paginateFront();
+            }}
+            href='#'
+            className= {
+              currentPage >= totalPages - 1 ? 
+              'page-disabled relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50' :
+              'relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+            }
+          >
+            <span className="text-black">Next</span>
+          </a>
+        </nav>
+      </div>
     </div>
   );
 }

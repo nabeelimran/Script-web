@@ -653,3 +653,19 @@ video-js .vjs-picture-in-picture-control {
 .active-class {
   border: 1px solid #ffcc00;
 }
+
+@media only screen and (max-width: 600px) {
+  #vjs_video_3 {
+    margin-left: 0;
+  }
+  #video-wrapper {
+    padding-top: 0;
+  }
+}
+
+.page-disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #e2e2e2;
+  color: #e2e2e2;
+}
