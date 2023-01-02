@@ -61,16 +61,15 @@ function TvHomepage() {
 			if (currentChannel[0]) {
 				//console.log("currentChannel[0].liveShows",currentChannel[0].liveShows)
 				currentChannel[0].liveShows.map((c, i) => {
-					if (
-						c.videoId === currentVideo.videoId &&
-						currentVideo.startTime === c.startTime
-					) {
-						nextIndex = i;
+					if(currentVideo.startTime!==c.startTime){
+						nextIndex = 0
+					}else{
+						nextIndex = i
 					}
 					
 				});
 				if(nextIndex){
-					
+					console.log("DISPATCH NEXT VIDEO")
 					let nextVideo = currentChannel[0].liveShows[nextIndex + 1];
 				dispatch(updateEpgData(nextVideo));
 				dispatch(updateCurrentVideo(true));
