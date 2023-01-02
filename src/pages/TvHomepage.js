@@ -70,12 +70,14 @@ function TvHomepage() {
 					
 				});
 				if(nextIndex){
-					
+					console.log("DISPATCH NEXT VIDEO")
 					let nextVideo = currentChannel[0].liveShows[nextIndex + 1];
 				dispatch(updateEpgData(nextVideo));
 				dispatch(updateCurrentVideo(true));
 				}else{
 					getChannels()
+					dispatch(updateEpgData(currentVideo));
+				dispatch(updateCurrentVideo(true));
 				}
 
 				

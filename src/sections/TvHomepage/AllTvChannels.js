@@ -185,7 +185,22 @@ function AllTvChannels({
 				src: show?.hlsUrl ? show?.hlsUrl : show?.s3VideoUrl,
 				type: "application/x-mpegURL",
 			});
-			playerRef.current.load();
+			
+			
+		}
+		return () => {
+			clearInterval(videoWatchInterval);
+			clearInterval(durationcheckinterval);
+
+		};
+		
+	}, [show,isPlayerReady,playerRef.current]);
+
+useEffect(()=>{
+	let videoWatchInterval;
+
+	if(isPlayerReady && playerRef.current){
+		playerRef.current.load();
 					playerRef.current.on("play", () => {
 						const videoStartTime = getVideoCurrentTimePace(show.startTime);
 					clearInterval(videoWatchInterval);
@@ -220,17 +235,13 @@ function AllTvChannels({
 		
 		
 					});
-			
-		}
-		return () => {
-			clearInterval(videoWatchInterval);
-			clearInterval(durationcheckinterval);
-
-		};
+	}
+	return () => {
+		clearInterval(videoWatchInterval);
 		
-	}, [show,isPlayerReady,playerRef.current]);
 
-
+	};
+},[isPlayerReady,playerRef.current])
 
 
 
