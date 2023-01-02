@@ -52,6 +52,7 @@ import ReportIssue from "pages/ReportIssue";
 function App() {
 
   useEffect(() => {
+    
     try {
       console.log('init mixpanel');
       MixPanelService.init();
