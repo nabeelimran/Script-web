@@ -18,11 +18,29 @@ const Row = ({ title, score, subtitle }) => {
       </div>
     </div>
   );
-};
+}; 
+
+const ActiveRow = ({ title, score, subtitle }) => {
+  return (
+    <div className="flex flex-col md:flex-row space-y-4 lg:space-y-0 items-center justify-between">
+      <p className="fs-16px">{title}</p>
+
+      <div className="flex items-center space-x-2">
+        <img src="../images/trophy.png" className="h-[16px]" alt="" />
+        <p className="fs-16px">{score}</p>
+      </div>
+
+      <div className='rounded bg-primary py-1 px-4 w-full lg:w-auto'>
+        <p className="fs-16px text-center text-black">{subtitle}</p>
+      </div>
+    </div>
+  );
+}; 
 
 function DailyTasks() {
   return (
-    <section className="container">
+    // <section className="container">
+    <section className="dashboard-layout">
       <Title className="text-primary font-semibold mb-6">Daily Tasks</Title>
 
       <DividerLine />
@@ -49,7 +67,30 @@ function DailyTasks() {
       <DividerLine />
 
       <div className="py-4">
-        <Row title="Login Everyday" score="10" subtitle="0/1 completed" />
+        <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
+            Login Everyday
+        </Title>
+        <Row title="Please login" score="10" subtitle="0/1 completed" />
+      </div>
+
+      <DividerLine />
+
+      <div className="py-4">
+        <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
+            Share Referral
+        </Title>
+        <Row
+          score="30"
+          subtitle="0/1 joined to collect 30 rewards"
+          title={
+            <>
+              Head to the Share Referral {" "}
+              <Link to="/dashboard/share-referral" className="text-primary underline">
+                here
+              </Link>
+            </>
+          }
+        />
       </div>
 
       <DividerLine />

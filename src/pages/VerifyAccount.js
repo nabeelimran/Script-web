@@ -7,11 +7,14 @@ import Title from "components/Title";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Api from "services/api";
 import { ToastMessage } from "components/ToastMessage";
+import { useDispatch } from "react-redux";
+import { isLogin } from "redux/reducers/login_state";
 
 const VerifyAccount = () => {
   const [OTP, setOTP] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setOTP("");
@@ -44,6 +47,7 @@ const VerifyAccount = () => {
                 walletAddress: otpVerify.data.data.walletAddress,
               })
             );
+						dispatch(isLogin(true))
             navigate("/tv")
             ToastMessage(`${otpVerify.data.message}`, true);
           } else {

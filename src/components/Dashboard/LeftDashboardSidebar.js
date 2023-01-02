@@ -3,7 +3,10 @@ import { ToastMessage } from "components/ToastMessage";
 import UpperRoot from "components/UpperRoot";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { isLogin } from "redux/reducers/login_state";
+import { earnedTokenRed, resetEarnedToken } from "redux/reducers/video_State";
 import Api from "services/api";
 import MixPanelService from "services/mixPanelService";
 import PageLink from "./PageLink";
@@ -12,6 +15,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
   const { getter, setter } = state;
   const sidebarRef = OutsideClickDetector(() => setter && setter(false));
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const logout = () => {
     const user = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -27,6 +31,8 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
     ).then(() => {});
     sessionStorage.clear();
     ToastMessage("Logout successfully", true);
+dispatch(resetEarnedToken(0))
+dispatch(isLogin(false))
     navigate({
       pathname: "/tv",
     });
@@ -97,12 +103,12 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
             img="token.svg"
             onClick={() => setter(false)}
           />
-          <PageLink
+          {/* <PageLink
             link="reward"
             label="Rewards"
             img="token.svg"
             onClick={() => setter(false)}
-          />
+          /> */}
           <PageLink
             link="leaderboard"
             label="Leaderboard"

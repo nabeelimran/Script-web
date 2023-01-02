@@ -223,6 +223,10 @@ function Channels({
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
+  const {isLogin} = useSelector(state => state.login_state)
+    const { refreshChannel } = useSelector(
+		(state) => state.refresh_state
+	);
 
   useEffect(() => {
    
@@ -248,7 +252,7 @@ function Channels({
       setSelectedChannel(chData[0]);
       setTimeout(() => {
         if(userId) {
-          getChannelByChannelId();
+          getChannelByChannelId(chData[0]);
         }
       }, 1000)
       setChannels(chData);
@@ -256,11 +260,15 @@ function Channels({
   }, [timeline]);
 
   useEffect(()=>{
-    
+        
     if(userId && earnedToken===0) {
       
       getVideoTokenEarned(userId)
     }
+  },[isLogin])
+
+  useEffect(()=>{
+
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
     
@@ -358,11 +366,18 @@ function Channels({
       "userId": userId ? userId : 0,
       "videoDuration": +watchTime.toFixed()  // duration in minute
     };
-
+    
     if (+watchTime.toFixed() > 0) {
+      helper.trackByMixpanel('Stream Duration', {
+        "channel_id": latestVideo.channelId,
+        "email" : user.email,
+        "channel_name" : latestVideo.channelName,
+        "stream_name" : latestVideo.title,
+        "stream_duration" : "STREAM_DURATION(Hours)",
+        "seconds" : req.videoDuration
+      })
       Api.saveVideoDuration(req, 'watch').then((res) => {
         if (res && res.isSuccess) {
-
         } else {
 
         }
@@ -409,7 +424,7 @@ function Channels({
               
             }
             
-            helper.trackByMixpanel("Channel Subscribed",{
+            helper.trackByMixpanel("Follow Button Clicked",{
               "channel_id": req.channelId,
               "email" : user?.email || 'not-detect',
               "channel_name": selectedChananel?.channelName || ""
@@ -422,8 +437,9 @@ function Channels({
     }
   }
 
-  const getChannelByChannelId = async () => {
-    return await Api.getChannelDetailByChannelId(selectedChananel.id, false, userId, 'watch').then((res) => {
+  const getChannelByChannelId = async (chn=undefined) => {
+  
+    return await Api.getChannelDetailByChannelId(chn ? chn.id : selectedChananel.id, false, userId, 'watch').then((res) => {
       if(res && res.status === 200) {
         const channelInfo = res.data.data;
         if(channelInfo) {

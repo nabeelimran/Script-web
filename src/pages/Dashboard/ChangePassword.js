@@ -76,7 +76,7 @@ function ChangePassword() {
 
   const changePassword = (data) => {
     setLoading(true);
-    console.log(data);
+    
     const req = {
       email: user.email || '',
       oldPassword: data.oldPassword,

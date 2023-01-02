@@ -36,7 +36,7 @@ function Footer({ container = "container-two" }) {
         },
         {
           title: "Telegram",
-          to: "https://t.me/+Vu1gbwyoksZORzAG",
+          to: "https://t.me/scriptnetworkann",
           target: "_blank",
           anchorTag: true,
         },
