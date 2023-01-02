@@ -32,17 +32,17 @@ function Rewards() {
   }
 
   const handleCollectReward = async () => {
-    const latestDayReward = await getLatestDayReward();
-    console.log(latestDayReward, '==>>');
-    if(latestDayReward && latestDayReward.isSuccess) {
-      if (latestDayReward.data) {
+    // const latestDayReward = await getLatestDayReward();
+    // console.log(latestDayReward, '==>>');
+    // if(latestDayReward && latestDayReward.isSuccess) {
+    //   if (latestDayReward.data) {
         
-      } else {
+    //   } else {
 
-      }
-    } else {
+    //   }
+    // } else {
 
-    }
+    // }
     // helper.trackByMixpanel("Collect Reward Button Clicked",{
     //   "day": DAY_NUMBER,
     //   "email" : EMAIL,
