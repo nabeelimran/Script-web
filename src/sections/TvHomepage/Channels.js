@@ -366,11 +366,18 @@ function Channels({
       "userId": userId ? userId : 0,
       "videoDuration": +watchTime.toFixed()  // duration in minute
     };
-
+    
     if (+watchTime.toFixed() > 0) {
       Api.saveVideoDuration(req, 'watch').then((res) => {
         if (res && res.isSuccess) {
-
+          helper.trackByMixpanel('Stream Duration', {
+            "channel_id": latestVideo.channelId,
+            "email" : user.email,
+            "channel_name" : latestVideo.channelName,
+            "stream_name" : latestVideo.title,
+            "stream_duration" : "STREAM_DURATION(Hours)",
+            "seconds" : req.videoDuration
+          })
         } else {
 
         }
