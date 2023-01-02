@@ -150,7 +150,7 @@ function Hero() {
           <div className="space-y-4">
             <div className="px-6">
               <HeadingSmall className="mb-1">
-                Minutes watched in total
+                Minutes watched in total (as of yesterday)
               </HeadingSmall>
               <p className="text-sm xl:text-base font-bold">
                 {token
@@ -163,7 +163,7 @@ function Hero() {
 
             <div className="px-6">
               <HeadingSmall className="mb-1">
-                Minutes watched in the last 24 hours
+                Minutes watched yesterday
               </HeadingSmall>
 
               <p className="text-sm xl:text-base font-bold">

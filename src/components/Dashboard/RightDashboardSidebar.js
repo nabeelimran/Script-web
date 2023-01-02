@@ -91,7 +91,7 @@ function RightDashboardSidebar({
 
           <div className="px-6">
             <HeadingSmall className="mb-2">
-              Minutes watched in total
+              Minutes watched in total (as of yesterday)
             </HeadingSmall>
             <p className="text-sm xl:text-base font-bold">
               { token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : `N/A` }
@@ -102,7 +102,7 @@ function RightDashboardSidebar({
 
           <div className="px-6">
             <HeadingSmall className="mb-2">
-              Minutes watched in the last 24 hours
+              Minutes watched yesterday
             </HeadingSmall>
 
             <p className="text-sm xl:text-base font-bold">
