@@ -63,7 +63,7 @@ function Hero() {
   };
 
   const bannerImgages = [
-    "images/christmas.png",
+    "images/test-launch.png",
     "images/test-launch.png"
   ]
 
