@@ -409,7 +409,7 @@ function Channels({
               
             }
             
-            helper.trackByMixpanel("Channel Subscribed",{
+            helper.trackByMixpanel("Follow Button Clicked",{
               "channel_id": req.channelId,
               "email" : user?.email || 'not-detect',
               "channel_name": selectedChananel?.channelName || ""

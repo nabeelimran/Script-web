@@ -48,7 +48,6 @@ function Tabs({ pastShows, currentShows, tabsOptions }) {
                 role="tabpanel"
                 aria-labelledby="tabs-home-tab"
               >
-                {console.log(pastShows, currentShows, "show")}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {option.tagIdLabel === "upcomingPrograms" &&
                   currentShows &&
