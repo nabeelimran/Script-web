@@ -10,7 +10,7 @@ function PopupClose({ open, setOpen, children, className, glass = false }) {
   const modalRef = OutsideClickDetector(() => setOpen(false));
 
   useEffect(() => {
-    console.log(glass);
+    
     if (open) {
       document.body.style.overflowY = "hidden";
     } else {

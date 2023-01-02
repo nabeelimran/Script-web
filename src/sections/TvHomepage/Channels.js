@@ -223,6 +223,10 @@ function Channels({
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
+  const {isLogin} = useSelector(state => state.login_state)
+    const { refreshChannel } = useSelector(
+		(state) => state.refresh_state
+	);
 
   useEffect(() => {
    
@@ -248,7 +252,7 @@ function Channels({
       setSelectedChannel(chData[0]);
       setTimeout(() => {
         if(userId) {
-          getChannelByChannelId();
+          getChannelByChannelId(chData[0]);
         }
       }, 1000)
       setChannels(chData);
@@ -256,11 +260,15 @@ function Channels({
   }, [timeline]);
 
   useEffect(()=>{
-    
+        
     if(userId && earnedToken===0) {
       
       getVideoTokenEarned(userId)
     }
+  },[isLogin])
+
+  useEffect(()=>{
+
     let timelinedata= helper.createTimeSlot(new Date());
     setTimeline(timelinedata)
     
@@ -422,8 +430,9 @@ function Channels({
     }
   }
 
-  const getChannelByChannelId = async () => {
-    return await Api.getChannelDetailByChannelId(selectedChananel.id, false, userId, 'watch').then((res) => {
+  const getChannelByChannelId = async (chn=undefined) => {
+  
+    return await Api.getChannelDetailByChannelId(chn ? chn.id : selectedChananel.id, false, userId, 'watch').then((res) => {
       if(res && res.status === 200) {
         const channelInfo = res.data.data;
         if(channelInfo) {

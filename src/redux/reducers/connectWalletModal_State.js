@@ -7,7 +7,7 @@ const initialState = {
   isEpgModalVisible:false,
   data:{},
   changecurrentVideo:false,
-  refreshChannel:false
+  
 
 };
 
@@ -33,13 +33,11 @@ export const connectWalletModal_State = createSlice({
     updateCurrentVideo:(state,action)=>{
       state.changecurrentVideo=action.payload;
     },
-    refreshChannel:(state,action)=>{
-      state.refreshChannel=action.payload;
-    }
+
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { toggleModalVisibility,toggleEmailModalVisibility,togglePasswordModalVisibility ,toggleEpgModalVisibility,updateEpgData,updateCurrentVideo,refreshChannel} = connectWalletModal_State.actions;
+export const { toggleModalVisibility,toggleEmailModalVisibility,togglePasswordModalVisibility ,toggleEpgModalVisibility,updateEpgData,updateCurrentVideo} = connectWalletModal_State.actions;
 
 export default connectWalletModal_State.reducer;
