@@ -1,10 +1,12 @@
 import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ChannelBox from "./ChannelBox";
 
 function ChannelsRow({ channels, channleDetails,changeVideo }) {
   const [activeCard, setActiveCard] = useState("");
   const [currenChannels, setCurrentChannels] = useState([]);
+
 
   const selector = (show) => {
     // const newArr = currenChannels.map((item) =>

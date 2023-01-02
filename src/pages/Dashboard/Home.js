@@ -1,3 +1,4 @@
+import Rewards from "pages/Rewards";
 import React, { useEffect, useState } from "react";
 import Gems from "sections/Dashboard/Home/Gems";
 import InventoryTrade from "sections/Dashboard/Home/InventoryTrade";
@@ -40,7 +41,8 @@ function Home() {
         <Gems />
       </div>
 
-      <Tip />
+      <Rewards />
+      {/* <Tip /> */}
     </div>
   );
 }

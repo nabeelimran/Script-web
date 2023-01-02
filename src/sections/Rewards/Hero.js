@@ -4,11 +4,13 @@ import Title from "components/Title";
 import React from "react";
 
 function Hero({
-  handleCollectReward
+  handleCollectReward,
+  totalRewardPoints
 }) {
 
   return (
-    <section className="container grid lg:grid-cols-2 gap-10 lg:gap-20">
+    // <section className="container grid lg:grid-cols-2 gap-10 lg:gap-20">
+    <section className="dashboard-layout grid lg:grid-cols-2 gap-10 lg:gap-20">
       <div className="">
         <Title className="font-semibold text-primary mb-4">My Rewards</Title>
 
@@ -39,7 +41,7 @@ function Hero({
             </button>
           </div>
 
-          <Title className="font-semibold">0</Title>
+          <Title className="font-semibold">{totalRewardPoints}</Title>
         </div>
         <div className="flex items-end">
           <img src="../images/reward-coins.png" className="w-full" alt="" />

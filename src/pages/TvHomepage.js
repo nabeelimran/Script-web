@@ -33,25 +33,27 @@ function TvHomepage() {
 
 	let userId = LocalServices.getServices("user")?.userId || null;
 	const { refreshChannel } = useSelector(
-		(state) => state.connectWalletModal_State
+		(state) => state.refresh_state
 	);
 	const getChannels = () => {
 		Api.getChannels("watch").then((res) => {
 			setchannels(res.data.data);
 			setCurrentVideo(res.data.data[0].liveShows[0]);
+	
 			//dispatch(videoShows(res.data.data[0].liveShows[0]))
 			//setAdsList(res.data.data[0].adsData)
 		});
 	};
 
 	useEffect(() => {
+		
 		getChannels();
 	}, []);
 	useEffect(() => {
-		// console.log("REFRESH CHANNEL")
+		
 		// getChannels();
 		if (refreshChannel) {
-			console.log("refrace");
+			console.log("refresh");
 			let nextIndex;
 			const currentChannel = channel.filter(
 				(ch) => ch.id === currentVideo.channelId
@@ -59,18 +61,24 @@ function TvHomepage() {
 			if (currentChannel[0]) {
 				//console.log("currentChannel[0].liveShows",currentChannel[0].liveShows)
 				currentChannel[0].liveShows.map((c, i) => {
-					console.log(c.videoId , currentVideo.videoId,currentVideo.startTime, c.startTime);
 					if (
 						c.videoId === currentVideo.videoId &&
 						currentVideo.startTime === c.startTime
 					) {
 						nextIndex = i;
 					}
+					
 				});
-
-				let nextVideo = currentChannel[0].liveShows[nextIndex + 1];
+				if(nextIndex){
+					
+					let nextVideo = currentChannel[0].liveShows[nextIndex + 1];
 				dispatch(updateEpgData(nextVideo));
 				dispatch(updateCurrentVideo(true));
+				}else{
+					getChannels()
+				}
+
+				
 			}
 		}
 	}, [refreshChannel]);
@@ -130,6 +138,7 @@ function TvHomepage() {
 
 	return (
 		<div>
+			{console.log("FROM HERE")}
 			<div className='mb-4 sm:mb-6 relative z-50'>
 				<TvNavbar />
 			</div>

@@ -7,11 +7,24 @@ function LeaderBoard() {
   const [dataPerPage, setDataPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalData, setTotalData] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const indexOfLastPost = currentPage * dataPerPage;
   const indexOfFirstPost = indexOfLastPost - dataPerPage;
   const currentPosts = leaderBoardData.slice(indexOfFirstPost, indexOfLastPost);
+  const paginateFront = () => {
+    if (currentPage >= totalPages - 1) {
+      return;
+    }
+    setCurrentPage(currentPage + 1);
+  } 
+  const paginateBack = () => {
+    if (currentPage <= 0) {
+      return;
+    }
+    setCurrentPage(currentPage - 1);
+  } 
 
   const getLeaderBoardData = () => {
     Api.getLeaderboardData(currentPage, dataPerPage, "reward-management").then(
@@ -19,6 +32,7 @@ function LeaderBoard() {
         if (res && res.status === 200) {
           setLeaderBoardData(res.data.data.content);
           setTotalData(res.data.data.totalrecords);
+          setTotalPages(res.data.data.totalPages);
         }
       }
     );
@@ -35,18 +49,18 @@ function LeaderBoard() {
   return (
     <>
       <h2 className="text-center text-4xl py-10">LeaderBoard</h2>
-      <div className="bg-[#161616] container rounded-xl py-8 px-8">
-        <table className="text-left w-full">
+      <div className="bg-[#161616] container rounded-xl">
+        <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
           <thead>
-            <tr className="border-b border-t">
+            <tr>
               <th className="text-[#ffef00] text-xl w-3/4 py-4">
                 Top Accounts
               </th>
-              <th className="text-[#ffef00] py-4">Total Accounts: 93</th>
+              <th className="text-[#ffef00] py-4">Total Accounts: {totalData || 0}</th>
             </tr>
           </thead>
           <thead>
-            <tr className="border-b">
+            <tr>
               <th className="text-[#ffef00] py-4">Address</th>
               <th className="text-[#ffef00] py-4">Reward Point</th>
             </tr>
@@ -54,7 +68,7 @@ function LeaderBoard() {
           <tbody>
             {leaderBoardData && leaderBoardData.length > 0
               ? leaderBoardData.map((data, index) => (
-                  <tr className="border-b" key={index}>
+                  <tr key={index}>
                     {console.log(data)}
                     <td className="py-4">{data?.walletAddress || ""}</td>
                     <td className="py-4">{data?.totalReward || 0}</td>
@@ -69,8 +83,10 @@ function LeaderBoard() {
         <Pagination
           dataPerPage={dataPerPage}
           totalData={totalData}
-          paginate={paginate}
+          paginateBack={paginateBack}
+          paginateFront={paginateFront}
           currentPage={currentPage}
+          totalPages={totalPages}
         />
       </div>
     </>

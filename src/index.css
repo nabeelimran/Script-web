@@ -662,3 +662,10 @@ video-js .vjs-picture-in-picture-control {
     padding-top: 0;
   }
 }
+
+.page-disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #e2e2e2;
+  color: #e2e2e2;
+}

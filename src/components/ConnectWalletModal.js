@@ -22,6 +22,7 @@ import auth from "auth/firebase";
 import {GoogleAuthProvider,signInWithPopup,getAuth,TwitterAuthProvider} from "firebase/auth"
 import { detectBrowser, helper } from "utils/helper";
 import MixPanelService from "services/mixPanelService";
+import { isLogin } from "redux/reducers/login_state";
 
 function ConnectWalletModal() {
 	const navigate = useNavigate();
@@ -120,6 +121,7 @@ function ConnectWalletModal() {
 							"method": "metamask",
 							"email" : loginW.data.data.email
 						});
+						dispatch(isLogin(true))
 						navigate({
 							pathname: "/tv",
 						});
@@ -135,7 +137,7 @@ function ConnectWalletModal() {
 		helper.trackByMixpanel('Google Social Button Clicked', {})
 	  	const provider = new GoogleAuthProvider();
 		signInWithPopup(getAuth(auth),provider).then((res) => {
-			console.log(res);
+		
 			const gBody = {
 				login: {
             		email:res?.user?.email,
@@ -190,21 +192,22 @@ function ConnectWalletModal() {
 							"email" : loginRes.data.data.email
 						});
             			dispatch(toggleModalVisibility(false))
+						dispatch(isLogin(true))
 						navigate({
 							pathname: "/tv",
 						});
 					}
 				} else {
-					ToastMessage(loginRes?.data?.message || 'Something went wrong1')
+					ToastMessage(loginRes?.data?.message || 'Something went wrong')
 				}
 
         	}).catch(err => {
-				ToastMessage(err?.error?.message || 'Something went wrong2')
+				ToastMessage(err?.error?.message || 'Something went wrong')
 			})
 
 			})
 			.catch((err) => {
-				ToastMessage(err?.error?.message || 'Something went wrong3')
+				ToastMessage(err?.error?.message || 'Something went wrong')
 			});
 	};
 	const twitterLoginHandler =  (e) => {
@@ -215,7 +218,7 @@ function ConnectWalletModal() {
 		signInWithPopup(getAuth(auth),provider).then((res) => {
 		
 			
-			console.log(res)
+			
 			const gBody = {
 				login: {
             		email:res?.user?.email,
@@ -265,6 +268,7 @@ function ConnectWalletModal() {
 							})
 						);
             dispatch(toggleModalVisibility(false))
+			dispatch(isLogin(true))
 						navigate({
 							pathname: "/tv",
 						});

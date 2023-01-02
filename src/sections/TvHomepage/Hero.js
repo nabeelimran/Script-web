@@ -7,6 +7,7 @@ import DividerLine from "components/DividerLine";
 import HeadingSmall from "components/HeadingSmall";
 import LocalServices from "services/LocalServices";
 import Api from "services/api";
+import { useSelector } from "react-redux";
 
 const SliderContent = ({
   img
@@ -32,6 +33,7 @@ function Hero() {
   const [lastDayWatchVideoDuration, setLastDayWatchVideoDuration] = React.useState(0);
   const [lastVideoHistory, setLastVideoHistory] = React.useState(null);
   let userId = LocalServices.getServices("user")?.userId || null;
+  const {isLogin} = useSelector(state => state.login_state)
 
 
   React.useEffect(()=>{
@@ -39,7 +41,7 @@ function Hero() {
       getVideoWatchDuration(userId);
       getLastShowWatchHistory(userId);
     }
-  },[userId])
+  },[userId,isLogin])
 
   const getVideoWatchDuration = (userId) => {
     Api.getVideoWatchDuration(userId, "watch").then((res) => {

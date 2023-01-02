@@ -50,6 +50,7 @@ import ReportIssue from "pages/ReportIssue";
 
 function App() {
   useEffect(() => {
+    
     try {
       console.log("init mixpanel");
       MixPanelService.init();
@@ -151,7 +152,7 @@ function App() {
             }
           />
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
-          <Route path="reward" element={<Rewards />} />
+          {/* <Route path="reward" element={<Rewards />} /> */}
           <Route path="leaderboard" element={<LeaderBoard />} />
           <Route
             path="analytics"
