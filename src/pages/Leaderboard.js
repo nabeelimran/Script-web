@@ -86,6 +86,7 @@ function LeaderBoard() {
           paginateBack={paginateBack}
           paginateFront={paginateFront}
           currentPage={currentPage}
+          totalPages={totalPages}
         />
       </div>
     </>

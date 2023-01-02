@@ -7,6 +7,7 @@ function Pagination({
   currentPage,
   paginateFront,
   paginateBack, 
+  totalPages
 }) {
   const pageNumbers = [];
 
@@ -53,7 +54,7 @@ function Pagination({
         </ul>
       </nav> */}
 
-      <div className="flex justify-end">
+      <div >
         <nav
           className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
           aria-label='Pagination'
@@ -63,7 +64,13 @@ function Pagination({
               paginateBack();
             }}
             href='#'
-            className='relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+            className= {
+              currentPage === 0 ? 
+              'page-disabled relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50' :
+              'relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+            }
+            
+            
           >
             <span className="text-black">Previous</span>
           </a>
@@ -73,7 +80,11 @@ function Pagination({
               paginateFront();
             }}
             href='#'
-            className='relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+            className= {
+              currentPage >= totalPages - 1 ? 
+              'page-disabled relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50' :
+              'relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+            }
           >
             <span className="text-black">Next</span>
           </a>
