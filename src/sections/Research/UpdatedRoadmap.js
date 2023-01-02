@@ -174,7 +174,7 @@ function UpdatedRoadmap() {
                 <BulletPoint point="Twitter" />
               </a>
               <a
-                href="https://t.me/+Vu1gbwyoksZORzAG"
+                href="https://t.me/scriptnetworkann"
                 className="w-fit block"
                 target="_blank"
                 rel="noreferrer"

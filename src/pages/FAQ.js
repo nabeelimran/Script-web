@@ -58,7 +58,7 @@ const faqs = [
     question:
       "Where is the best place to stay up to date and in touch with the community?",
     content:
-      "We recommend you to join the discord <a className='underline' href='discord.gg/scriptnetwork' target='_blank'> here </a> for up to date information on what is happening, or the discord here where you can interact with the community and the team. <br/><br/> I want to partner with Script Network, how can I get in contact? Please email <a className='underline' href='https://discord.gg/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a className='underline' href='https://t.me/scriptnetwork' target='_blank'>here</a> or use the form on the contact us page.",
+      "We recommend you to join the discord <a className='underline' href='discord.gg/scriptnetwork' target='_blank'> here </a> for up to date information on what is happening, or the discord here where you can interact with the community and the team. <br/><br/> I want to partner with Script Network, how can I get in contact? Please email <a className='underline' href='https://discord.gg/scriptnetwork' target='_blank'>here</a> – for up to date information on what is happening, or the discord <a className='underline' href='https://t.me/scriptnetworkann' target='_blank'>here</a> or use the form on the contact us page.",
   },
   {
     question: "Where can I view the whitepaper and the tokenomics?",
