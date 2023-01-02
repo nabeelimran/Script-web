@@ -49,10 +49,10 @@ function LeaderBoard() {
   return (
     <>
       <h2 className="text-center text-4xl py-10">LeaderBoard</h2>
-      <div className="bg-[#161616] container rounded-xl py-8 px-8">
-        <table className="text-left w-full">
+      <div className="bg-[#161616] container rounded-xl">
+        <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
           <thead>
-            <tr className="border-b border-t">
+            <tr>
               <th className="text-[#ffef00] text-xl w-3/4 py-4">
                 Top Accounts
               </th>
@@ -60,7 +60,7 @@ function LeaderBoard() {
             </tr>
           </thead>
           <thead>
-            <tr className="border-b">
+            <tr>
               <th className="text-[#ffef00] py-4">Address</th>
               <th className="text-[#ffef00] py-4">Reward Point</th>
             </tr>
@@ -68,7 +68,7 @@ function LeaderBoard() {
           <tbody>
             {leaderBoardData && leaderBoardData.length > 0
               ? leaderBoardData.map((data, index) => (
-                  <tr className="border-b" key={index}>
+                  <tr key={index}>
                     {console.log(data)}
                     <td className="py-4">{data?.walletAddress || ""}</td>
                     <td className="py-4">{data?.totalReward || 0}</td>
