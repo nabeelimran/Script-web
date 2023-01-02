@@ -26,14 +26,16 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
   return (
     <div className="bg-shade-grayis rounded-2xl h-autho w-auto">
       <div className="relative z-50 px-5 py-5 flex items-center justify-between">
+        {console.log(channel)}
         <div className="flex items-center">
           <img
-            src="images/channels/cultured-one.svg"
+            src={channel.channelImageLink}
             className="h-[45px] mr-7"
+            alt={channel?.channelImageLink || 'channel-logo'}
           />
           <div>
-            <p className="text-2xl mb-1 font-medium">{channel.channelName}</p>
-            <p>13 Subscribers</p>
+            <p className="text-2xl mb-1 font-medium">{channel?.channelName || 'N/A'}</p>
+            <p>{channel?.subscribersCount || 0} Subscribers</p>
           </div>
         </div>
 

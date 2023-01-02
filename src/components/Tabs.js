@@ -16,7 +16,7 @@ function Tabs({ pastShows, currentShows, tabsOptions }) {
               <li className="nav-item" role="presentation" key={index}>
                 <a
                   href={option.tagId}
-                  className="nav-link block capitalize mr-8 py-5 hover:no-underline text-primary"
+                  className="nav-link block capitalize mr-8 py-5 hover:no-underline focus:text-primary"
                   id="tabs-home-tab"
                   data-bs-toggle="pill"
                   data-bs-target={option.tagId}
