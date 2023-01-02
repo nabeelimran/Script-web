@@ -4,7 +4,8 @@ import Title from "components/Title";
 import React from "react";
 
 function Hero({
-  handleCollectReward
+  handleCollectReward,
+  totalRewardPoints
 }) {
 
   return (
@@ -39,7 +40,7 @@ function Hero({
             </button>
           </div>
 
-          <Title className="font-semibold">0</Title>
+          <Title className="font-semibold">{totalRewardPoints}</Title>
         </div>
         <div className="flex items-end">
           <img src="../images/reward-coins.png" className="w-full" alt="" />

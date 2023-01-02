@@ -66,7 +66,30 @@ function DailyTasks() {
       <DividerLine />
 
       <div className="py-4">
-        <ActiveRow title="Login Everyday" score="10" subtitle="0/1 completed" />
+        <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
+            Login Everyday
+        </Title>
+        <Row title="Please login" score="10" subtitle="0/1 completed" />
+      </div>
+
+      <DividerLine />
+
+      <div className="py-4">
+        <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
+            Share Referral
+        </Title>
+        <Row
+          score="30"
+          subtitle="0/1 joined to collect 30 rewards"
+          title={
+            <>
+              Head to the Share Referral {" "}
+              <Link to="/dashboard/share-referral" className="text-primary underline">
+                here
+              </Link>
+            </>
+          }
+        />
       </div>
 
       <DividerLine />

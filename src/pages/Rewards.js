@@ -1,6 +1,6 @@
 import Footer from "components/Footer";
 import TvNavbar from "components/TvNavbar";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Tip from "sections/Dashboard/Home/Tip";
 import Collect from "sections/Rewards/Collect";
 import DailyTasks from "sections/Rewards/DailyTasks";
@@ -13,22 +13,36 @@ import { helper } from "utils/helper";
 function Rewards() {
 
   const user = LocalServices.getServices('user');
+  const [totalRewardPoints, setTotalRewardPoints] = useState(0);
+
+  const getTotalRewardPoints = () => {
+    if(user && user.walletAddress) {
+      Api.getMyRewardPointTotal(user.walletAddress, 'reward-management').then(res => {
+        if (res && res.status === 200) {
+          setTotalRewardPoints(res.data.data.myRewards);
+        }
+      });
+    }
+  }
 
   const getLatestDayReward = async () => {
     if(user && user.walletAddress) {
       return await Api.getLatestDayReward(user.walletAddress, 'reward-management').then(res => res.data);
     }
-    
   }
 
   const handleCollectReward = async () => {
-    // const latestDayReward = await getLatestDayReward();
-    // console.log(latestDayReward, '==>>');
-    // if(latestDayReward && latestDayReward.isSuccess) {
+    const latestDayReward = await getLatestDayReward();
+    console.log(latestDayReward, '==>>');
+    if(latestDayReward && latestDayReward.isSuccess) {
+      if (latestDayReward.data) {
+        
+      } else {
 
-    // } else {
+      }
+    } else {
 
-    // }
+    }
     // helper.trackByMixpanel("Collect Reward Button Clicked",{
     //   "day": DAY_NUMBER,
     //   "email" : EMAIL,
@@ -39,6 +53,7 @@ function Rewards() {
   useEffect(() => {
     MixPanelService.init();
     helper.trackByMixpanel('Reward Page View', {});
+    getTotalRewardPoints();
   }, [])
   
   return (
@@ -48,7 +63,8 @@ function Rewards() {
       </div> */}
 
       <div className="mb-16 lg:mb-20 mt-5">
-        <Hero handleCollectReward={handleCollectReward} />
+        <Hero handleCollectReward={handleCollectReward} 
+        totalRewardPoints={totalRewardPoints}/>
       </div>
 
       {/* <div className="mb-14">
