@@ -56,7 +56,7 @@ function LeaderBoard() {
               <th className="text-[#ffef00] text-xl w-3/4 py-4">
                 Top Accounts
               </th>
-              <th className="text-[#ffef00] py-4">Total Accounts: 93</th>
+              <th className="text-[#ffef00] py-4">Total Accounts: {totalData || 0}</th>
             </tr>
           </thead>
           <thead>
