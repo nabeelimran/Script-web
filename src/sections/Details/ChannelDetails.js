@@ -33,7 +33,7 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
   const [channelFollowed, setChannelFollow] = useState(false);
 
   const handleWatchLive = () => {
-
+    helper.comingSoonNotification();
   }
 
   const getChannelByChannelId = async () => {
