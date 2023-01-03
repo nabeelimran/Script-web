@@ -8,7 +8,7 @@ import LocalServices from "services/LocalServices";
 import { ToastMessage } from "./ToastMessage";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-const LiveChat = ({ currentShow }) => {
+const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	const { message, sendMessage } = useLiveChat(currentShow);
 	const [profileImg,setProfile] = useState(null);
 	const [tokenEarnedByMessage, setTokenEarnedByMessage] = useState(0);
@@ -37,6 +37,7 @@ const LiveChat = ({ currentShow }) => {
 		setTimeout(() => {
 			console.log(tokenEarnedByMessage, 'tokenEarnedByMessage');
 			saveTokenEarnedByChat();
+			getRewardEarningAmount(tokenEarnedByMessage)
 		}, 1000)
 	}
 

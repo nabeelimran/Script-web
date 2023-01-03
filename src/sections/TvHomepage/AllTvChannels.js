@@ -25,6 +25,7 @@ function AllTvChannels({
 	let userId = LocalServices.getServices("user")?.userId || null;
 	const [isPlayerReady, setIsPlayerReady] = React.useState(false);
 	const [isChatShow, setIsChatShow] = useState(true);
+	const [chattingToken, setChattingToken] = useState(0);
 	const showchatRef = useRef(null);
 	const hidechatRef = useRef(null);
 	const videoClassRef = useRef(null);
@@ -187,6 +188,10 @@ function AllTvChannels({
 		};
 	}, [show, isPlayerReady, playerRef.current]);
 
+	const getRewardEarningAmount = (tokenEarnedByMessage) => {
+		setChattingToken(tokenEarnedByMessage);
+	}
+
 	useEffect(() => {
 		let videoWatchInterval;
 
@@ -335,7 +340,7 @@ function AllTvChannels({
 										alt=''
 									/>
 									<p className='text-sm font-medium'>
-										0.0000
+										{chattingToken ? chattingToken.toFixed(4) : '0.0000'}
 									</p>
 								</div>
 
@@ -363,7 +368,7 @@ function AllTvChannels({
 									Stream Chat
 								</Title>
 
-								<LiveChat currentShow={show} />
+								<LiveChat currentShow={show} getRewardEarningAmount={getRewardEarningAmount} />
 							</div>
 						</div>
 					</div>
