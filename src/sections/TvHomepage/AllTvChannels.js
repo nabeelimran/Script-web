@@ -78,7 +78,7 @@ function AllTvChannels({
 		const videoDurationInMin = Math.ceil(
 			(videDurationInSec && videDurationInSec > 0
 				? videDurationInSec
-				: document.getElementsByTagName("video")[0].duration) / 60
+				: document.getElementsByTagName("video")[0]?.duration) / 60
 		);
 		console.log(videoDurationInMin, 'videoDurationInMin');
 		const currentTimeInMin = Math.ceil(
