@@ -157,6 +157,7 @@ function AllTvChannels({
 		let durationcheckinterval;
 		console.log(playerRef, "REFFF");
 		if (isPlayerReady && show && playerRef && playerRef.current) {
+			console.log('show', show)
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
 					durationcheckinterval = setInterval(() => {

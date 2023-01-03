@@ -23,13 +23,15 @@ function Watch() {
     const [metamaskBalance, setMetamaskBalance] = useState(0);
     const [recaptchaCode, setReCaptchaCode] = useState("");
     const location = useLocation();
+    const queryParam = new URLSearchParams(location.search);
+    const channelId = queryParam.get('channelId');
 
     let userId = LocalServices.getServices("user")?.userId || null;
 
     const { refreshChannel } = useSelector(
         (state) => state.connectWalletModal_State
       );
-    const getChannels = (channelId) => {
+    const getChannels = () => {
         Api.getChannels("watch").then((res) => {
           
           setchannels(res.data.data);
@@ -84,9 +86,7 @@ function Watch() {
 
     useEffect(() => {
         MixPanelService.init();
-        const queryParam = new URLSearchParams(location.search);
-        const channelId = queryParam.get('channelId');
-        getChannels(channelId);
+        getChannels();
         getMetamaskBalance();
         setReCaptchaCode(helper.getRandomNumber(8));
         if (userId) {
@@ -132,6 +132,7 @@ function Watch() {
                     videoTokenEarned={videoTokenEarned}
                     metamaskBalance={metamaskBalance}
                     recaptchaCode={recaptchaCode}
+                    queryChannelId={channelId}
                 />
                 }
             </div>
