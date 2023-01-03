@@ -1,6 +1,7 @@
 import Tabs from "components/Tabs";
 import { ToastMessage } from "components/ToastMessage";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import MixPanelService from "services/mixPanelService";
@@ -31,15 +32,26 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
 
   const user = LocalServices.getServices("user") || null
   const [channelFollowed, setChannelFollow] = useState(false);
+  const navigate = useNavigate();
 
-  const handleWatchLive = () => {
-    helper.comingSoonNotification();
+  const handleWatchLive = (channelId) => {
+    if(user) {
+      navigate({
+        pathname:  "/watch",
+        search: `?channelId=${channelId}`,
+      })
+    }
   }
 
   const getChannelByChannelId = async () => {
     return await Api.getChannelDetailByChannelId(channel.id, false, user.userId, 'channel-detail').then((res) => {
       if(res && res.status === 200) {
         const channelInfo = res.data.data;
+        helper.trackByMixpanel("Channel Page View",{
+          "email" : user?.email || 'N/A',
+          "title" : 'Channel Detail',
+          "channel_title": channelInfo?.channelName ||  'N/A'
+        })
         if(channelInfo) {
           setChannelFollow(channelInfo.channelSubscribed);
         } else {
@@ -109,7 +121,7 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
           <button className="border border-[#ffef00] rounded-md w-[150px] h-[45px] flex justify-center items-center"
            onClick={
             () => {
-              handleWatchLive()
+              handleWatchLive(channel.id)
             }
            }>
             <i

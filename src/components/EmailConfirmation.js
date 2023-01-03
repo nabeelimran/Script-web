@@ -23,6 +23,7 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import MetamaskService from "services/metamask";
 import LoaderGif from "../assets/Loading_icon.gif";
+import { helper } from "utils/helper";
 
 function EmailConfirmation() {
   const {
@@ -73,6 +74,12 @@ function EmailConfirmation() {
         // );
         const signeture = "dummySignature";
         if (signeture) {
+          if(data.referal) {
+            helper.trackByMixpanel('Referral Shared By', {
+              email: data?.email || 'N/A',
+              referral_code: data?.refral || 'N/A'
+            })
+          }
           dispatch(userInfo({email:data.email,username:data.nickname,referal:data.refral}))
           dispatch(metamaskSignature(signeture));
           dispatch(toggleEmailModalVisibility(false));

@@ -582,4 +582,37 @@ export default class Api {
 			options
 		);
 	}
+
+	static getChatRewardByUserId(userId, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+		return axios.get(
+			`${APIPATH.BASEURL}getChatRewardByUserId/${userId}`,
+			options
+		);
+	}
+
+	static saveTokenEarnedByChat(req, screenName) {
+		const options = {
+			headers: {
+				ipAddress: "dummyData",
+				latitude: "dummyData",
+				longitude: "dummyData",
+				countryName: "dummyData",
+				screenName: screenName,
+			},
+		};
+
+		return axios.post(
+			`${APIPATH.BASEURL}saveOrUpdateChatReward`, req,
+			options
+		);
+	}
 }
