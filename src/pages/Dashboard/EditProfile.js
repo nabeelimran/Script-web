@@ -162,10 +162,11 @@ function EditProfile() {
                   ...register("username", { required: true }),
                 }}
                 error={errorShow(errors.username)}
+                disabledInput={true}
               />
-              <p className="text-xs xl:text-sm mt-2 opacity-70">
+              {/* <p className="text-xs xl:text-sm mt-2 opacity-70">
                 You may update your username again 2 month
-              </p>
+              </p> */}
             </div>
             {/* <div>
               <FloatingLabelInput
@@ -184,6 +185,7 @@ function EditProfile() {
                 ...register("email", { required: true }),
               }}
               error={errors.email && "This field is requird. Please enter email."}
+              disabledInput={true}
               />
             <FloatingLabelSelect
               label="Country" options={countryList}
