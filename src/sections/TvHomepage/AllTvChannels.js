@@ -25,6 +25,7 @@ function AllTvChannels({
 	let slots = [];
 	let userId = LocalServices.getServices("user")?.userId || null;
 	const [isPlayerReady, setIsPlayerReady] = React.useState(false);
+	const [isSlotCreated, setIsSlotCreated] = useState(false);
 	const [isChatShow, setIsChatShow] = useState(true);
 	const [chattingToken, setChattingToken] = useState(0);
 	const showchatRef = useRef(null);
@@ -70,18 +71,22 @@ function AllTvChannels({
 	};
 
 	const createMidRollSlots = () => {
-		const videDurationInSec = playerRef.current.duration;
-		const videoCurrentTimeInSec = playerRef.current.currentTime;
+		const videDurationInSec = playerRef.current.duration();
+		console.log(videDurationInSec, 'videoDurationInSec');
+		const videoCurrentTimeInSec = playerRef.current.currentTime();
+		console.log(videoCurrentTimeInSec, 'videoCurrentTimeInSec');
 		const videoDurationInMin = Math.ceil(
 			(videDurationInSec && videDurationInSec > 0
 				? videDurationInSec
 				: document.getElementsByTagName("video")[0].duration) / 60
 		);
+		console.log(videoDurationInMin, 'videoDurationInMin');
 		const currentTimeInMin = Math.ceil(
 			(videoCurrentTimeInSec && videoCurrentTimeInSec > 0
-				? playerRef.current.currentTime
-				: playerRef.current.currentTime) / 60
+				? playerRef.current.currentTime()
+				: playerRef.current.currentTime()) / 60
 		);
+		console.log(currentTimeInMin, 'currenttime');
 		const interval = 20;
 		slots = [];
 
@@ -93,7 +98,7 @@ function AllTvChannels({
 		}
 		if (slots.length > 0) {
 			console.log(slots, "slots of ads");
-			// isSlotCreated = true;
+			setIsSlotCreated(true);
 		}
 	};
 
@@ -160,7 +165,13 @@ function AllTvChannels({
 		console.log(playerRef, "REFFF");
 		if (isPlayerReady && show && playerRef && playerRef.current) {
 			console.log('show', show)
-			playerRef.current.on("timeupdate", (evt) => {
+			playerRef.current.ads()
+			playerRef.current.on('contentchanged', () => {
+                // in a real plugin, you might fetch new ad inventory here
+                playerRef.current.trigger('adsready');
+            });
+            
+            playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
 					durationcheckinterval = setInterval(() => {
 						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
@@ -172,12 +183,74 @@ function AllTvChannels({
 							dispatch(refreshChannel(true));
 						}
 					}, 5000);
+
 				}
+				const adTime = 900 // sec
+				if (!isSlotCreated) {
+					setTimeout(() => {
+						getVideoCurrentTimePace();
+						createMidRollSlots();
+					}, 2000)
+				}
+				if (slots && slots.length > 0) {
+					const availableSlot = slots.filter(s => !s.isPassed)[0];
+					if (availableSlot && !availableSlot.isPassed) {
+					  const playerCT = playerRef.current.currentTime();
+					  // console.log('time updating', playerCT);
+					  // console.log('ct', Math.floor(playerCT/60),' slot', availableSlot.slot, 'adtime', (availableSlot.slot + (this.getRandomAds() ? this.getRandomAds().duration : 30/60)));
+			
+					  // console.log('statement',Math.floor(playerCT/60) > availableSlot.slot && availableSlot.slot < (availableSlot.slot + (this.getRandomAds().duration ? this.getRandomAds().duration : 30/60)));
+			
+					  if (Math.floor(playerCT / 60) >= availableSlot.slot && availableSlot.slot < (availableSlot.slot + (getRandomAds() ? getRandomAds().duration : 30 / 60))) {
+						playerRef.current.ads.startLinearAdMode();
+						playerRef.current.src({
+						  src: getRandomAds() ? getRandomAds().adsS3Url : `https://scripttv.s3.eu-central-1.amazonaws.com/1648445836148-1c4e85894a244a128646d57c0646edd7.mp4`,
+						  type: 'video/mp4'
+						});
+						playerRef.current.one('adplaying', () => {
+						  playerRef.current.trigger('ads-ad-started');
+						});
+						playerRef.current.one('adended', () => {
+						  playerRef.current.ads.endLinearAdMode();
+						  slots = slots.map(s => {
+							if (s.slot === availableSlot.slot) {
+							  s.isPassed = true;
+							}
+							return s;
+						  })
+						});
+						console.log(slots);
+					  }
+					}
+				}
+			});
+
+			playerRef.current.on('readyforpostroll', () => {
+				playerRef.current.ads.startLinearAdMode();
+				// play your linear ad content
+				// in this example, we use a static mp4
+				playerRef.current.src({
+				  src: getRandomAds() ? getRandomAds().adsS3Url : `https://scripttv.s3.eu-central-1.amazonaws.com/1648445836148-1c4e85894a244a128646d57c0646edd7.mp4`,
+				  type: 'video/mp4'
+				});
+		  
+				// send event when ad is playing to remove loading spinner
+				playerRef.current.one('adplaying', () => {
+				  playerRef.current.trigger('ads-ad-started');
+				});
+		  
+				// resume content when all your linear ads have finished
+				playerRef.current.one('adended', () => {
+				  playerRef.current.ads.endLinearAdMode();
+				});
 			});
 
 			playerRef.current.currentTime(
 				getVideoCurrentTimePace(show.startTime)
 			);
+
+			playerRef.current.trigger('adsready');
+
 			playerRef.current.src({
 				src: show?.hlsUrl ? show?.hlsUrl : show?.s3VideoUrl,
 				type: "application/x-mpegURL",

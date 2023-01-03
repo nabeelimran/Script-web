@@ -57,10 +57,12 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	}, [message]);
 
 	const getProfile = async () => {
-		Api.viewUserProfile(user.userId,'edit-profile').then(result => {
-			console.log(result)
-			setProfile(result.data.data.profile.urlProfileImage)
-		}).catch(err => console.warn(err))
+		if (user && user.userId) {
+			Api.viewUserProfile(user.userId,'edit-profile').then(result => {
+				console.log(result)
+				setProfile(result.data.data.profile.urlProfileImage)
+			}).catch(err => console.warn(err))	
+		}
 	}
 
 	const getFormData = ({ typedMessage }) => {
