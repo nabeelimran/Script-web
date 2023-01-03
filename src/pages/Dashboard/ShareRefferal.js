@@ -4,6 +4,7 @@ import { ToastMessage } from "components/ToastMessage";
 import React, { useEffect, useState } from "react";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import { helper } from "utils/helper";
 
 function ShareRefferal() {
 
@@ -26,6 +27,10 @@ function ShareRefferal() {
       textField.select()
       document.execCommand('copy')
       ToastMessage('Copied!', true);
+      helper.trackByMixpanel('Referral Shared By', {
+        email: profile?.email || 'N/A',
+        referral_code: profile?.referralCode || 'N/A'
+      })
       textField.remove()
     }
   }
