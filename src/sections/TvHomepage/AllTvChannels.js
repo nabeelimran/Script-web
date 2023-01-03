@@ -71,9 +71,9 @@ function AllTvChannels({
 	};
 
 	const createMidRollSlots = () => {
-		const videDurationInSec = playerRef.current.duration();
+		const videDurationInSec = playerRef.current?.duration();
 		console.log(videDurationInSec, 'videoDurationInSec');
-		const videoCurrentTimeInSec = playerRef.current.currentTime();
+		const videoCurrentTimeInSec = playerRef.current?.currentTime();
 		console.log(videoCurrentTimeInSec, 'videoCurrentTimeInSec');
 		const videoDurationInMin = Math.ceil(
 			(videDurationInSec && videDurationInSec > 0
@@ -165,7 +165,7 @@ function AllTvChannels({
 		console.log(playerRef, "REFFF");
 		if (isPlayerReady && show && playerRef && playerRef.current) {
 			console.log('show', show)
-			playerRef.current.ads()
+			playerRef.current?.ads()
 			playerRef.current.on('contentchanged', () => {
                 // in a real plugin, you might fetch new ad inventory here
                 playerRef.current.trigger('adsready');
