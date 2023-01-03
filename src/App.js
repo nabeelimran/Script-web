@@ -48,18 +48,16 @@ import ChannelDetail from "pages/ChannelDetail";
 import CategoryDetail from "pages/CategoryDetail";
 import ReportIssue from "pages/ReportIssue";
 
-
 function App() {
-
   useEffect(() => {
     
     try {
-      console.log('init mixpanel');
+      console.log("init mixpanel");
       MixPanelService.init();
     } catch (error) {
-      console.log('error while connecting mixpanel', error);
+      console.log("error while connecting mixpanel", error);
     }
-  }, [])
+  }, []);
 
   return (
     <Router>
@@ -85,10 +83,17 @@ function App() {
         <Route path="/tv" element={<TvHomepage />} />
         <Route path="/all-channels" element={<AllChannels />} />
         <Route path="/all-categories" element={<AllCategory />} />
-        {/* <Route path="/channel-detail" element={<ChannelDetail />} /> */}
+        <Route path="/channel-detail" element={<ChannelDetail />} />
         <Route path="/category-detail" element={<CategoryDetail />} />
-        <Route path="/report-issue" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
-        
+        <Route
+          path="/report-issue"
+          element={
+            <PrivateRoute>
+              <ReportIssue />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -96,7 +101,7 @@ function App() {
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="account-details" element={<AccountDetails />} />
-        
+
         <Route path="connect-wallet" element={<ConnectWallet />} />
 
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
@@ -105,13 +110,49 @@ function App() {
           <Route path="private-key" element={<PrivateKey />} />
         </Route>
 
-        <Route path="dashboard" element={<PrivateRoute><DashboardLayout /></PrivateRoute>}>
-          <Route path="" index element={<PrivateRoute><Home /></PrivateRoute>} />
-          <Route path="change-password" element={<PrivateRoute><ChangePassword /></PrivateRoute>} />
-          <Route path="edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
-          <Route path="share-referral" element={<PrivateRoute><ShareRefferal /></PrivateRoute>} />
+        <Route
+          path="dashboard"
+          element={
+            <PrivateRoute>
+              <DashboardLayout />
+            </PrivateRoute>
+          }
+        >
+          <Route
+            path=""
+            index
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="change-password"
+            element={
+              <PrivateRoute>
+                <ChangePassword />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="edit-profile"
+            element={
+              <PrivateRoute>
+                <EditProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="share-referral"
+            element={
+              <PrivateRoute>
+                <ShareRefferal />
+              </PrivateRoute>
+            }
+          />
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
-          <Route path="reward" element={<Rewards />} />
+          {/* <Route path="reward" element={<Rewards />} /> */}
           <Route path="leaderboard" element={<LeaderBoard />} />
           <Route
             path="analytics"

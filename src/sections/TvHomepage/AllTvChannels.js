@@ -275,7 +275,6 @@ function AllTvChannels({
             All your Tv <span className="text-primary">channels in one</span>{" "}
             place
           </Title>
-
           <p className="fs-16px text-primary text-center max-w-[38rem] mx-auto">
             Watch content from thousands of tv shows, films and more. Choose
             from genres below - there are shows and films for every taste.
@@ -289,13 +288,13 @@ function AllTvChannels({
 					<Title
 						variant='24'
 						className='font-medium text-center sm:text-left'>
-						Decentralized television,{" "}
-						<span className='text-primary'>for free</span>
+						Decentralized television,
+						<span className='text-primary'> for free</span>
 					</Title>
 				</div>
 			</div>
 
-			<div className='bg-shade-darkest-blue sm:bg-transparent py-4 sm:py-0'>
+			<div className='bg-shade-darkest-blue md:py-4 sm:bg-transparent sm:py-0'>
 				<div className='container'>
 					<div
 						className={`sm:bg-shade-darkest-blue grid gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px]`}

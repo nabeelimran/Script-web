@@ -30,7 +30,7 @@ function JoinOurCommunity() {
             IconComponent={() => <Icon icon="ic:outline-discord" />}
           />
           <SocialCard
-            link="https://t.me/+Vu1gbwyoksZORzAG"
+            link="https://t.me/scriptnetworkann"
             title="Telegram"
             IconComponent={() => <Icon icon="file-icons:telegram" />}
           />
