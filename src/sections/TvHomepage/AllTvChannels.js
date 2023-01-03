@@ -166,6 +166,7 @@ function AllTvChannels({
 							playerRef.current.currentTime() ===
 								playerRef.current.duration()
 						) {
+							console.log("kfdjghkjgkfjkdh")
 							dispatch(refreshChannel(true));
 						}
 					}, 5000);

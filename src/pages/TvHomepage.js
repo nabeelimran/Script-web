@@ -10,7 +10,7 @@ import HowToEarn from "sections/TvHomepage/HowToEarn";
 import KeyStats from "sections/TvHomepage/KeyStats";
 import React, { useEffect, useState } from "react";
 import Api from "../services/api";
-import { videoShows } from "../redux/reducers/video_State";
+import { allChannel, playingChannel, playingVideo, videoShows } from "../redux/reducers/video_State";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MetamaskService from "services/metamask";
@@ -39,7 +39,8 @@ function TvHomepage() {
 		Api.getChannels("watch").then((res) => {
 			setchannels(res.data.data);
 			setCurrentVideo(res.data.data[0].liveShows[0]);
-	
+			dispatch(allChannel(res.data.data))
+			dispatch(playingVideo(res.data.data[0].liveShows[0]))
 			//dispatch(videoShows(res.data.data[0].liveShows[0]))
 			//setAdsList(res.data.data[0].adsData)
 		});
@@ -59,6 +60,7 @@ function TvHomepage() {
 			const currentChannel = channel.filter(
 				(ch) => ch.id === currentVideo.channelId
 			);
+			dispatch(playingChannel(currentChannel))
 			if (currentChannel[0]) {
 				currentChannel[0].liveShows.map((c, i) => {
 					
@@ -75,6 +77,7 @@ function TvHomepage() {
 				if(nextIndex>=0){
 					console.log("DISPATCH NEXT VIDEO")
 					let nextVideo = currentChannel[0].liveShows[nextIndex + 1];
+					dispatch(playingVideo(nextVideo))
 				dispatch(updateEpgData(nextVideo));
 				setCurrentVideo(nextVideo)
 				dispatch(updateCurrentVideo(true));
@@ -132,7 +135,7 @@ function TvHomepage() {
 	}, []);
 
 	const changeVideo = (show) => {
-		dispatch(videoShows(show));
+		dispatch(playingVideo(show));
 		setCurrentVideo(show);
 
 		if (channel && channel.length > 0) {
