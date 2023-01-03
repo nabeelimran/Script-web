@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { videoShows } from "redux/reducers/video_State";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
@@ -21,17 +22,24 @@ function Watch() {
     const [videoTokenEarned, setVideoTokenEarned] = useState(0);
     const [metamaskBalance, setMetamaskBalance] = useState(0);
     const [recaptchaCode, setReCaptchaCode] = useState("");
+    const location = useLocation();
 
     let userId = LocalServices.getServices("user")?.userId || null;
 
     const { refreshChannel } = useSelector(
         (state) => state.connectWalletModal_State
       );
-    const getChannels = () => {
+    const getChannels = (channelId) => {
         Api.getChannels("watch").then((res) => {
           
           setchannels(res.data.data);
-          setCurrentVideo(res.data.data[0].liveShows[0])
+          if (channelId) {
+            const activeChannelData = res.data.data.filter(d => d.id === +channelId)[0];
+            console.log(activeChannelData, 'activeChannelData');
+            setCurrentVideo(activeChannelData?.liveShows[0] || []) 
+          } else {
+            setCurrentVideo(res.data.data[0].liveShows[0])
+          }
           //dispatch(videoShows(res.data.data[0].liveShows[0]))
           //setAdsList(res.data.data[0].adsData)
         })
@@ -76,7 +84,9 @@ function Watch() {
 
     useEffect(() => {
         MixPanelService.init();
-        getChannels();
+        const queryParam = new URLSearchParams(location.search);
+        const channelId = queryParam.get('channelId');
+        getChannels(channelId);
         getMetamaskBalance();
         setReCaptchaCode(helper.getRandomNumber(8));
         if (userId) {
