@@ -30,6 +30,8 @@ function TvHomepage() {
 	const [metamaskBalance, setMetamaskBalance] = useState(0);
 	const [recaptchaCode, setReCaptchaCode] = useState("");
 	const [twitterPost, setTwitterPost] = useState([]);
+	const [latestChaneelID,setLatestChaneelID] = useState(null)
+	const [latestVideIdx,setLatestVideoIdx] = useState(null)
 
 	let userId = LocalServices.getServices("user")?.userId || null;
 	const { refreshChannel } = useSelector(
@@ -39,8 +41,8 @@ function TvHomepage() {
 		Api.getChannels("watch").then((res) => {
 			setchannels(res.data.data);
 			setCurrentVideo(res.data.data[0].liveShows[0]);
-			dispatch(allChannel(res.data.data))
-			dispatch(playingVideo(res.data.data[0].liveShows[0]))
+			// dispatch(allChannel(res.data.data))
+			// dispatch(playingVideo(res.data.data[0].liveShows[0]))
 			//dispatch(videoShows(res.data.data[0].liveShows[0]))
 			//setAdsList(res.data.data[0].adsData)
 		});
@@ -56,11 +58,16 @@ function TvHomepage() {
 		//console.log(refreshChannel)
 		if (refreshChannel) {
 			console.log("refresh");
-			let nextIndex;
+			let nextIndex =0;
+			let channelIndex = 0
 			const currentChannel = channel.filter(
-				(ch) => ch.id === currentVideo.channelId
+				(ch,i) => {
+					if(ch.id === currentVideo.channelId)
+					{channelIndex = i}
+					return ch.id === currentVideo.channelId
+				}
 			);
-			dispatch(playingChannel(currentChannel))
+			//dispatch(playingChannel(currentChannel))
 			if (currentChannel[0]) {
 				currentChannel[0].liveShows.map((c, i) => {
 					
@@ -75,12 +82,15 @@ function TvHomepage() {
 				});
 				//console.log("nextIndex",nextIndex)
 				if(nextIndex>=0){
-					console.log("DISPATCH NEXT VIDEO")
-					let nextVideo = currentChannel[0].liveShows[nextIndex + 1];
-					dispatch(playingVideo(nextVideo))
+					console.log("DISPATCH NEXT VIDEO",)
+					let nextVideo = currentChannel[0].liveShows[nextIndex +1];
+					console.log(nextVideo)
+					//dispatch(playingVideo(nextVideo))
 				dispatch(updateEpgData(nextVideo));
 				setCurrentVideo(nextVideo)
-				dispatch(updateCurrentVideo(true));
+				setLatestChaneelID(channelIndex)
+				setLatestVideoIdx(nextIndex +1)
+				//dispatch(updateCurrentVideo(true));
 				}else{
 					getChannels()
 					dispatch(updateEpgData(currentVideo));
@@ -175,6 +185,8 @@ function TvHomepage() {
 						videoTokenEarned={videoTokenEarned}
 						metamaskBalance={metamaskBalance}
 						recaptchaCode={recaptchaCode}
+						latestChaneelID={latestChaneelID}
+						latestVideIdx={latestVideIdx}
 					/>
 				)}
 			</div>

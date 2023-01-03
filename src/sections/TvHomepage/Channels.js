@@ -206,7 +206,9 @@ function Channels({
   metamaskBalance,
   recaptchaCode,
   latestVideo,
-  queryChannelId
+  queryChannelId,
+  latestChaneelID,
+  latestVideIdx
 }) {
   const [channels, setChannels] = useState([]);
   const [cursorposition, setCursonPosition] = useState({ marginLeft: 0 });
@@ -230,8 +232,8 @@ function Channels({
 	);
 
   useEffect(() => {
-   
-    let chData = channeldata.map((ch) => {
+   let chData = JSON.parse(JSON.stringify(channeldata));
+     chData = chData.map((ch) => {
       let liveshows = ch.liveShows.filter(
         (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
       );
@@ -241,6 +243,7 @@ function Channels({
           show.duration = res.duration;
           show.time = res.time;
           show.selected = false;
+          show.isVisible = res.isVisible
           return show;
         });
         return ch;
@@ -259,19 +262,33 @@ function Channels({
           }
       }, 1000)
       } else {
-        chData[0].liveShows[0].selected = true;
-        setLiveShow(chData[0].liveShows[0]);
-        setSelectedChannel(chData[0]);
-        setTimeout(() => {
-          if(userId) {
-            getChannelByChannelId(chData[0]);
-          }
-        }, 1000)
+        console.log("CHAN REF",latestChaneelID , latestVideIdx)
+        if(latestChaneelID && latestVideIdx){
+          console.log("CHANNEL REFRESH")
+          chData[latestChaneelID].liveShows[latestVideIdx].selected = true;
+          setLiveShow(chData[latestChaneelID].liveShows[latestVideIdx]);
+          setSelectedChannel(chData[latestChaneelID]);
+          setTimeout(() => {
+            if(userId) {
+              getChannelByChannelId(chData[latestChaneelID]);
+            }
+          }, 1000)
+        }else{
+          chData[0].liveShows[0].selected = true;
+          setLiveShow(chData[0].liveShows[0]);
+          setSelectedChannel(chData[0]);
+          setTimeout(() => {
+            if(userId) {
+              getChannelByChannelId(chData[0]);
+            }
+          }, 1000)
+        }
+       
       }
       
       setChannels(chData);
     // }
-  }, [timeline]);
+  }, [timeline,latestChaneelID]);
 
   useEffect(()=>{
         
@@ -290,8 +307,20 @@ function Channels({
       let style={marginLeft:0}
       const todayDate= new Date();
       let timelinemin=Number(timelinedata[0]?.split(':')[1]);
+      let timelineHour=Number(timelinedata[0]?.split(':')[0]);
+
       let min=todayDate.getMinutes()-timelinemin;
-      style.marginLeft=min;
+      
+      if(min>=30 || timelineHour!=todayDate.getHours()) {
+        let timelinedata= helper.createTimeSlot(new Date());
+        setTimeline(timelinedata)
+         timelinemin=Number(timelinedata[0]?.split(':')[1]);
+         min=todayDate.getMinutes()-timelinemin;
+
+      }
+      style.marginLeft=min * 5;
+
+      
       setCursonPosition(style)
     },10000)
     
@@ -316,7 +345,10 @@ function Channels({
     const timelinemin = Number(timeline[0]?.split(":")[1]);
     const duration = helper.getDiffInMin(endDate, startDate);
     let diff = helper.getDiffInMinfromCurrent(startDate);
+    let diffFromEnd = helper.getDiffInMinfromCurrent(endDate);
+    
     const curdatemin = new Date().getMinutes();
+ 
     if (diff < 0) {
       diff = diff + curdatemin - timelinemin; //adjust duration according to timeline
     } else {
@@ -325,6 +357,7 @@ function Channels({
     return {
       duration: duration + diff,
       time: `${helper.getIn12HoursFormat(startDate)}-${helper.getIn12HoursFormat(endDate)}`,
+      isVisible: diffFromEnd < 0 ? false:true 
     };
   };
 

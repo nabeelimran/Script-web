@@ -138,6 +138,7 @@ function AllTvChannels({
 			playToggle: false,
 		},
 		responsive: true,
+		nativeControlsForTouch: false,
 		muted: true,
 		fluid: true,
 		sources: [
@@ -170,7 +171,7 @@ function AllTvChannels({
 							console.log("kfdjghkjgkfjkdh")
 							dispatch(refreshChannel(true));
 						}
-					}, 5000);
+					}, 10000);
 				}
 			});
 
