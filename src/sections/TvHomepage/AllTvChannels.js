@@ -13,6 +13,7 @@ import LocalServices from "services/LocalServices";
 import { helper } from "utils/helper";
 import LiveChat from "components/LiveChat";
 import useLiveChat from "hooks/useLiveChat";
+import postcss from "postcss";
 
 function AllTvChannels({
 	show,
@@ -243,13 +244,13 @@ function AllTvChannels({
 			}
 			timer = setTimeout(() => {
 				const element = document.querySelector("#videoTag");
-				const position = element.getBoundingClientRect();
+				const position = element?.getBoundingClientRect() || null;
 
 				// checking whether fully visible
 				let pipEl = document.getElementById("video-container");
 				// if(position.top >= 0 && position.bottom <= window.innerHeight) {
 				if (pipEl) {
-					if (position.top >= 0 && position.bottom >= 0) {
+					if (postcss && position.top >= 0 && position.bottom >= 0) {
 						pipEl.classList.remove("custom-pip-window");
 						// player.requestPictureInPicture()
 					} else {
