@@ -51,7 +51,7 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
           "email" : user?.email || 'N/A',
           "title" : 'Channel Detail',
           "channel_title": channelInfo?.channelName ||  'N/A'
-          })
+        })
         if(channelInfo) {
           setChannelFollow(channelInfo.channelSubscribed);
         } else {
