@@ -10,11 +10,42 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 const LiveChat = ({ currentShow }) => {
 	const { message, sendMessage } = useLiveChat(currentShow);
-	const [profileImg,setProfile] = useState(null)
+	const [profileImg,setProfile] = useState(null);
+	const [tokenEarnedByMessage, setTokenEarnedByMessage] = useState(0);
 
 	const scroll = useRef(null);
-
 	const user = LocalServices.getServices("user");
+
+	const getTokenEarnedByChat = () => {
+		Api.getChatRewardByUserId(user.userId).then((res) => {
+			if(res && res.status === 200) {
+				setTokenEarnedByMessage(res.data.data.earnedToken)
+			}
+		})
+	}
+
+	const saveTokenEarnedByChat = () => {
+		const req = {
+			earnedToken: tokenEarnedByMessage.toFixed(4),
+			userId: user.userId
+		};
+		Api.saveTokenEarnedByChat(req, 'watch').then((res) => {})
+	}
+
+	const calculateRewardByChat = () => {
+		setTokenEarnedByMessage(tokenEarnedByMessage + 0.0001);
+		setTimeout(() => {
+			console.log(tokenEarnedByMessage, 'tokenEarnedByMessage');
+			saveTokenEarnedByChat();
+		}, 1000)
+	}
+
+	useEffect(() => {
+		if(user && user.userId) {
+			getTokenEarnedByChat();
+		}
+	}, []);
+
 	useEffect(() => {
 		const domNode = scroll.current;
 		getProfile()
@@ -68,7 +99,7 @@ const LiveChat = ({ currentShow }) => {
 			emote: "",
 			badgeType: "",
 		};
-
+		calculateRewardByChat();
 		sendMessage(sentMessage);
 	};
 
