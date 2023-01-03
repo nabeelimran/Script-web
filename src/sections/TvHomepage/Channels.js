@@ -205,7 +205,8 @@ function Channels({
   videoTokenEarned,
   metamaskBalance,
   recaptchaCode,
-  latestVideo
+  latestVideo,
+  queryChannelId
 }) {
   const [channels, setChannels] = useState([]);
   const [cursorposition, setCursonPosition] = useState({ marginLeft: 0 });
@@ -247,14 +248,27 @@ function Channels({
       // } 
     });
     // if(chData && chData.length > 0 && chData[0] && chData[0].liveShows && chData[0].liveShows.length > 0) {
-      chData[0].liveShows[0].selected = true;
-      setLiveShow(chData[0].liveShows[0]);
-      setSelectedChannel(chData[0]);
-      setTimeout(() => {
-        if(userId) {
-          getChannelByChannelId(chData[0]);
-        }
+      if (queryChannelId) {
+        let activeChannel = chData.filter(ch => ch.id === +queryChannelId);
+        activeChannel[0].liveShows[0].selected = true;
+        setLiveShow(activeChannel[0].liveShows[0]);
+        setSelectedChannel(activeChannel[0]);
+        setTimeout(() => {
+          if(userId) {
+            getChannelByChannelId(activeChannel[0]);
+          }
       }, 1000)
+      } else {
+        chData[0].liveShows[0].selected = true;
+        setLiveShow(chData[0].liveShows[0]);
+        setSelectedChannel(chData[0]);
+        setTimeout(() => {
+          if(userId) {
+            getChannelByChannelId(chData[0]);
+          }
+        }, 1000)
+      }
+      
       setChannels(chData);
     // }
   }, [timeline]);
