@@ -8,19 +8,62 @@ import LocalServices from "services/LocalServices";
 import { ToastMessage } from "./ToastMessage";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-const LiveChat = ({ currentShow }) => {
+const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	const { message, sendMessage } = useLiveChat(currentShow);
+	const [profileImg,setProfile] = useState(null);
+	const [tokenEarnedByMessage, setTokenEarnedByMessage] = useState(0);
 
 	const scroll = useRef(null);
-
 	const user = LocalServices.getServices("user");
+
+	const getTokenEarnedByChat = () => {
+		Api.getChatRewardByUserId(user.userId).then((res) => {
+			if(res && res.status === 200) {
+				setTokenEarnedByMessage(res.data.data.earnedToken)
+			}
+		})
+	}
+
+	const saveTokenEarnedByChat = () => {
+		const req = {
+			earnedToken: tokenEarnedByMessage.toFixed(4),
+			userId: user.userId
+		};
+		Api.saveTokenEarnedByChat(req, 'watch').then((res) => {})
+	}
+
+	const calculateRewardByChat = () => {
+		setTokenEarnedByMessage(tokenEarnedByMessage + 0.0001);
+		setTimeout(() => {
+			console.log(tokenEarnedByMessage, 'tokenEarnedByMessage');
+			saveTokenEarnedByChat();
+			getRewardEarningAmount(tokenEarnedByMessage)
+		}, 1000)
+	}
+
+	useEffect(() => {
+		if(user && user.userId) {
+			getTokenEarnedByChat();
+		}
+	}, []);
+
 	useEffect(() => {
 		const domNode = scroll.current;
+		getProfile()
 
-		if (domNode) {
-			domNode.scrollIntoView({ behavior: "smooth" });
-		}
+		// if (domNode) {
+		// 	domNode.scrollIntoView({ behavior: "smooth" });
+		// }
 	}, [message]);
+
+	const getProfile = async () => {
+		if(user && user.userId) {
+			Api.viewUserProfile(user.userId,'edit-profile').then(result => {
+				console.log(result)
+				setProfile(result.data.data.profile.urlProfileImage)
+			}).catch(err => console.warn(err))
+		}
+	}
 
 	const getFormData = ({ typedMessage }) => {
 		const modifyTime = moment
@@ -54,12 +97,12 @@ const LiveChat = ({ currentShow }) => {
 			commentDate: moment().toISOString(),
 			userName: user.userName,
 			userId: user.userId,
-			urlProfileImage: null,
+			urlProfileImage: profileImg ? profileImg : null,
 			videoId: currentShow.videoId,
 			emote: "",
 			badgeType: "",
 		};
-
+		calculateRewardByChat();
 		sendMessage(sentMessage);
 	};
 

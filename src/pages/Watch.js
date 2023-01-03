@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { videoShows } from "redux/reducers/video_State";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
@@ -21,6 +22,9 @@ function Watch() {
     const [videoTokenEarned, setVideoTokenEarned] = useState(0);
     const [metamaskBalance, setMetamaskBalance] = useState(0);
     const [recaptchaCode, setReCaptchaCode] = useState("");
+    const location = useLocation();
+    const queryParam = new URLSearchParams(location.search);
+    const channelId = queryParam.get('channelId');
 
     let userId = LocalServices.getServices("user")?.userId || null;
 
@@ -31,7 +35,13 @@ function Watch() {
         Api.getChannels("watch").then((res) => {
           
           setchannels(res.data.data);
-          setCurrentVideo(res.data.data[0].liveShows[0])
+          if (channelId) {
+            const activeChannelData = res.data.data.filter(d => d.id === +channelId)[0];
+            console.log(activeChannelData, 'activeChannelData');
+            setCurrentVideo(activeChannelData?.liveShows[0] || []) 
+          } else {
+            setCurrentVideo(res.data.data[0].liveShows[0])
+          }
           //dispatch(videoShows(res.data.data[0].liveShows[0]))
           //setAdsList(res.data.data[0].adsData)
         })
@@ -122,6 +132,7 @@ function Watch() {
                     videoTokenEarned={videoTokenEarned}
                     metamaskBalance={metamaskBalance}
                     recaptchaCode={recaptchaCode}
+                    queryChannelId={channelId}
                 />
                 }
             </div>

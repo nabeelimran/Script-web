@@ -13,6 +13,7 @@ import LocalServices from "services/LocalServices";
 import { helper } from "utils/helper";
 import LiveChat from "components/LiveChat";
 import useLiveChat from "hooks/useLiveChat";
+import postcss from "postcss";
 
 function AllTvChannels({
 	show,
@@ -25,39 +26,38 @@ function AllTvChannels({
 	let userId = LocalServices.getServices("user")?.userId || null;
 	const [isPlayerReady, setIsPlayerReady] = React.useState(false);
 	const [isChatShow, setIsChatShow] = useState(true);
-	const showchatRef = useRef(null)
-	const hidechatRef = useRef(null)
-	const videoClassRef = useRef(null)
-	const videoHeightRef = useRef(null)
+	const [chattingToken, setChattingToken] = useState(0);
+	const showchatRef = useRef(null);
+	const hidechatRef = useRef(null);
+	const videoClassRef = useRef(null);
+	const videoHeightRef = useRef(null);
 
 	const chatHideHandler = () => {
 		hidechatRef.current.classList.add("hidden");
-		showchatRef.current.classList.remove("hidden")
-		videoClassRef.current.classList.remove("lg:grid-cols-[1fr_340px]")
-		videoClassRef.current.classList.remove("xl:grid-cols-[1fr_420px]")
-		videoClassRef.current.classList.add("xl:grid-cols-1")
-		videoClassRef.current.classList.add("lg:grid-cols-1")
-		videoHeightRef.current.classList.remove("h-[200px]")
-		videoHeightRef.current.classList.remove("md:h-[100%]")
-		videoHeightRef.current.classList.remove("lg:h-auto")
-		videoHeightRef.current.classList.add("h-[200px]")
-		videoHeightRef.current.classList.add("md:h-[450px]")
+		showchatRef.current.classList.remove("hidden");
+		videoClassRef.current.classList.remove("lg:grid-cols-[1fr_340px]");
+		videoClassRef.current.classList.remove("xl:grid-cols-[1fr_420px]");
+		videoClassRef.current.classList.add("xl:grid-cols-1");
+		videoClassRef.current.classList.add("lg:grid-cols-1");
+		videoHeightRef.current.classList.remove("h-[200px]");
+		videoHeightRef.current.classList.remove("md:h-[100%]");
+		videoHeightRef.current.classList.remove("lg:h-auto");
+		videoHeightRef.current.classList.add("h-[200px]");
+		videoHeightRef.current.classList.add("md:h-[450px]");
 	};
 	const chatDisplayHandler = () => {
 		hidechatRef.current.classList.remove("hidden");
-		showchatRef.current.classList.add("hidden")
-		videoClassRef.current.classList.add("lg:grid-cols-[1fr_340px]")
-		videoClassRef.current.classList.add("xl:grid-cols-[1fr_420px]")
-		videoClassRef.current.classList.remove("xl:grid-cols-1")
-		videoClassRef.current.classList.remove("lg:grid-cols-1")
-		videoHeightRef.current.classList.add("h-[200px]")
-		videoHeightRef.current.classList.add("md:h-[100%]")
-		videoHeightRef.current.classList.add("lg:h-auto")
-		videoHeightRef.current.classList.remove("h-[200px]")
-		videoHeightRef.current.classList.remove("md:h-[450px]")
+		showchatRef.current.classList.add("hidden");
+		videoClassRef.current.classList.add("lg:grid-cols-[1fr_340px]");
+		videoClassRef.current.classList.add("xl:grid-cols-[1fr_420px]");
+		videoClassRef.current.classList.remove("xl:grid-cols-1");
+		videoClassRef.current.classList.remove("lg:grid-cols-1");
+		videoHeightRef.current.classList.add("h-[200px]");
+		videoHeightRef.current.classList.add("md:h-[100%]");
+		videoHeightRef.current.classList.add("lg:h-auto");
+		videoHeightRef.current.classList.remove("h-[200px]");
+		videoHeightRef.current.classList.remove("md:h-[450px]");
 	};
-
-
 
 	let durationcheckinterval;
 
@@ -136,6 +136,7 @@ function AllTvChannels({
 	const videoJsOptions = {
 		autoplay: true,
 		controls: true,
+		nativeControlsForTouch: false,
 		controlBar: {
 			playToggle: false,
 		},
@@ -154,15 +155,12 @@ function AllTvChannels({
 		(new Date().getTime() - new Date(startTime).getTime()) / 1000;
 	let timer;
 
-
-
 	useEffect(() => {
-		
 		let videoWatchInterval;
 		let durationcheckinterval;
 		console.log(playerRef, "REFFF");
-		if (isPlayerReady&&show && playerRef && playerRef.current) {
-
+		if (isPlayerReady && show && playerRef && playerRef.current) {
+			console.log('show', show)
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
 					durationcheckinterval = setInterval(() => {
@@ -185,68 +183,60 @@ function AllTvChannels({
 				src: show?.hlsUrl ? show?.hlsUrl : show?.s3VideoUrl,
 				type: "application/x-mpegURL",
 			});
-			
-			
 		}
 		return () => {
 			clearInterval(videoWatchInterval);
 			clearInterval(durationcheckinterval);
-
 		};
-		
-	}, [show,isPlayerReady,playerRef.current]);
+	}, [show, isPlayerReady, playerRef.current]);
 
-useEffect(()=>{
-	let videoWatchInterval;
-
-	if(isPlayerReady && playerRef.current){
-		playerRef.current.load();
-					playerRef.current.on("play", () => {
-						const videoStartTime = getVideoCurrentTimePace(show.startTime);
-					clearInterval(videoWatchInterval);
-						
-						  videoWatchInterval = setInterval(() => {
-							const videoWatchTime = {
-								startTime: videoStartTime,
-								endTime: playerRef.current.duration(),
-								videoPlayTime:
-									(new Date().getTime() -
-										new Date(show.startTime).getTime()) /
-									1000,
-							};
-		
-							if (
-								show.startTime &&
-								videoWatchTime &&
-								videoWatchTime.endTime
-							) {
-								// let eToken = earnedToken + 0.05
-								
-								dispatch(getVideoTimeWatch(videoWatchTime));
-								if (userId ) {
-									console.log("DISPATCH FROM HERE")
-									dispatch(earnedTokenRed(0.05));
-								}
-		
-								//checkVideoWatchTime(videoWatchTime)
-							}
-						}, 60000);
-						
-		
-		
-					});
+	const getRewardEarningAmount = (tokenEarnedByMessage) => {
+		setChattingToken(tokenEarnedByMessage);
 	}
-	return () => {
-		clearInterval(videoWatchInterval);
-		
 
-	};
-},[isPlayerReady,playerRef.current])
+	useEffect(() => {
+		let videoWatchInterval;
 
+		if (isPlayerReady && playerRef.current) {
+			playerRef.current.load();
+			playerRef.current.on("play", () => {
+				const videoStartTime = getVideoCurrentTimePace(show.startTime);
+				clearInterval(videoWatchInterval);
 
+				videoWatchInterval = setInterval(() => {
+					const videoWatchTime = {
+						startTime: videoStartTime,
+						endTime: playerRef.current.duration(),
+						videoPlayTime:
+							(new Date().getTime() -
+								new Date(show.startTime).getTime()) /
+							1000,
+					};
+
+					if (
+						show.startTime &&
+						videoWatchTime &&
+						videoWatchTime.endTime
+					) {
+						// let eToken = earnedToken + 0.05
+
+						dispatch(getVideoTimeWatch(videoWatchTime));
+						if (userId) {
+							console.log("DISPATCH FROM HERE");
+							dispatch(earnedTokenRed(0.05));
+						}
+
+						//checkVideoWatchTime(videoWatchTime)
+					}
+				}, 60000);
+			});
+		}
+		return () => {
+			clearInterval(videoWatchInterval);
+		};
+	}, [isPlayerReady, playerRef.current]);
 
 	const handlePlayerReady = (player) => {
-		
 		playerRef.current = player;
 		createShareButton();
 		window.addEventListener("scroll", function () {
@@ -255,13 +245,13 @@ useEffect(()=>{
 			}
 			timer = setTimeout(() => {
 				const element = document.querySelector("#videoTag");
-				const position = element.getBoundingClientRect();
+				const position = element?.getBoundingClientRect() || null;
 
 				// checking whether fully visible
 				let pipEl = document.getElementById("video-container");
 				// if(position.top >= 0 && position.bottom <= window.innerHeight) {
 				if (pipEl) {
-					if (position.top >= 0 && position.bottom >= 0) {
+					if (postcss && position.top >= 0 && position.bottom >= 0) {
 						pipEl.classList.remove("custom-pip-window");
 						// player.requestPictureInPicture()
 					} else {
@@ -276,21 +266,17 @@ useEffect(()=>{
 			videojs.log("player is waiting");
 		});
 
-
-
 		player.on("dispose", () => {
-			
 			videojs.log("player will dispose");
 			playerRef.current = null;
 		});
-		if (playerRef ) {
+		if (playerRef) {
 			setIsPlayerReady(true);
-			
 		}
 	};
 
 	return (
-		<section className="relative">
+		<section className='relative'>
 			<div className='container mb-8'>
 				{/* <div className="text-center space-y-5 mb-8">
           <Title>
@@ -319,74 +305,74 @@ useEffect(()=>{
 			<div className='bg-shade-darkest-blue md:py-4 sm:bg-transparent sm:py-0'>
 				<div className='container'>
 					<div
-						className={`sm:bg-shade-darkest-blue grid gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px]`} ref={videoClassRef}>
+						className={`sm:bg-shade-darkest-blue grid gap-8 sm:gap-3 lg:gap-10 lg:pr-10 rounded-lg overflow-hidden lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_420px]`}
+						ref={videoClassRef}>
 						<div
-							className={`pt-5 pb-5 h-[200px] md:h-[100%] lg:h-auto`} 
-							id='video-wrapper' ref={videoHeightRef}>
-								
+							className={`pt-5 pb-5 h-[200px] md:h-[100%] lg:h-auto`}
+							id='video-wrapper'
+							ref={videoHeightRef}>
 							<VideoPlayer
-							options={videoJsOptions}
-							onReady={handlePlayerReady}
-							show={show}
+								options={videoJsOptions}
+								onReady={handlePlayerReady}
+								show={show}
 							/>
-							
-								<div className='absolute sm:top-4 lg:right-[6.8rem] md:right-[1rem] right-3 top-16 bg-shade-grayis flex p-2 hidden' ref={showchatRef}>
+
+							<div
+								className='absolute sm:top-4 lg:right-[6.8rem] md:right-[1rem] right-3 top-16 bg-shade-grayis flex p-2 hidden'
+								ref={showchatRef}>
+								<button
+									className='t ext-2xl'
+									onClick={chatDisplayHandler}>
+									<Icon
+										icon='material-symbols:arrow-right-alt-rounded'
+										className='rotate-180'
+									/>
+								</button>
+							</div>
+						</div>
+
+						<div
+							className='sm:py-5 sm:px-8 lg:px-0'
+							ref={hidechatRef}>
+							<div className='flex items-center justify-between mb-6'>
+								<div className='flex items-center space-x-2'>
+									<img
+										src='images/blockchain/stake.png'
+										className='w-4 sm:w-6'
+										alt=''
+									/>
+									<p className='text-sm font-medium'>
+										{chattingToken ? chattingToken.toFixed(4) : '0.0000'}
+									</p>
+								</div>
+
+								<div className='flex items-center space-x-4'>
 									<button
-										className='t ext-2xl'
-										onClick={chatDisplayHandler}>
+										className='text-2xl'
+										onClick={chatHideHandler}>
 										<Icon
 											icon='material-symbols:arrow-right-alt-rounded'
 											className='rotate-180'
 										/>
 									</button>
-								</div>
-							
-						</div>
-
-						
-							<div className='sm:py-5 sm:px-8 lg:px-0' ref={hidechatRef}>
-								<div className='flex items-center justify-between mb-6'>
-									<div className='flex items-center space-x-2'>
-										<img
-											src='images/blockchain/stake.png'
-											className='w-4 sm:w-6'
-											alt=''
-										/>
-										<p className='text-sm font-medium'>
-											0.0000
-										</p>
-									</div>
-
-									<div className='flex items-center space-x-4'>
-										<button
-											className='text-2xl'
-											onClick={chatHideHandler}>
-											<Icon
-												icon='material-symbols:arrow-right-alt-rounded'
-												className='rotate-180'
-											/>
-										</button>
-										<button
-											className='text-xl'
-											onClick={
-												helper.comingSoonNotification
-											}>
-											<Icon icon='ep:setting' />
-										</button>
-									</div>
-								</div>
-
-								<div className='space-y-6'>
-									<Title
-										variant='24'
-										className='text-left font-medium'>
-										Stream Chat
-									</Title>
-
-									<LiveChat currentShow={show} />
+									<button
+										className='text-xl'
+										onClick={helper.comingSoonNotification}>
+										<Icon icon='ep:setting' />
+									</button>
 								</div>
 							</div>
-						
+
+							<div className='space-y-6'>
+								<Title
+									variant='24'
+									className='text-left font-medium'>
+									Stream Chat
+								</Title>
+
+								<LiveChat currentShow={show} getRewardEarningAmount={getRewardEarningAmount} />
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

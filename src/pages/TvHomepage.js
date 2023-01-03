@@ -52,6 +52,7 @@ function TvHomepage() {
 	useEffect(() => {
 		
 		// getChannels();
+		//console.log(refreshChannel)
 		if (refreshChannel) {
 			console.log("refresh");
 			let nextIndex;
@@ -59,20 +60,23 @@ function TvHomepage() {
 				(ch) => ch.id === currentVideo.channelId
 			);
 			if (currentChannel[0]) {
-				//console.log("currentChannel[0].liveShows",currentChannel[0].liveShows)
 				currentChannel[0].liveShows.map((c, i) => {
+					
 					if (
 						c.videoId === currentVideo.videoId &&
-						currentVideo.startTime === c.startTime
-					) {
+						new Date().getTime() > new Date(c.endTime).getTime()
+						) {
+						//console.log("currentChannel[0].liveShows",new Date().getTime() > new Date(c.endTime).getTime(),new Date().getTime() , new Date(c.endTime).getTime())
 						nextIndex = i;
 					}
 					
 				});
-				if(nextIndex){
+				//console.log("nextIndex",nextIndex)
+				if(nextIndex>=0){
 					console.log("DISPATCH NEXT VIDEO")
 					let nextVideo = currentChannel[0].liveShows[nextIndex + 1];
 				dispatch(updateEpgData(nextVideo));
+				setCurrentVideo(nextVideo)
 				dispatch(updateCurrentVideo(true));
 				}else{
 					getChannels()
