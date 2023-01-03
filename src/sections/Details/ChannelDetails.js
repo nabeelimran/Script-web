@@ -47,6 +47,11 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
     return await Api.getChannelDetailByChannelId(channel.id, false, user.userId, 'channel-detail').then((res) => {
       if(res && res.status === 200) {
         const channelInfo = res.data.data;
+        helper.trackByMixpanel("Channel Page View",{
+          "email" : user?.email || 'N/A',
+          "title" : 'Channel Detail',
+          "channel_title": channelInfo?.channelName ||  'N/A'
+          })
         if(channelInfo) {
           setChannelFollow(channelInfo.channelSubscribed);
         } else {
