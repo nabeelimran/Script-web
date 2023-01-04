@@ -271,6 +271,10 @@ function AllTvChannels({
 		}
 	};
 
+	const getRewardEarningAmount = (token) => {
+		chatToken.current.innerText = token
+	}
+
 	return (
 		<section className='relative'>
 			<div className='container mb-8'>
@@ -366,7 +370,7 @@ function AllTvChannels({
 									Stream Chat
 								</Title>
 
-								<LiveChat currentShow={show} />
+								<LiveChat currentShow={show} getRewardEarningAmount={getRewardEarningAmount}/>
 							</div>
 						</div>
 					</div>
