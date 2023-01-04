@@ -351,10 +351,10 @@ function AllTvChannels({
 										src='images/blockchain/stake.png'
 										className='w-4 sm:w-6'
 										alt=''
-									/>
-									<p className='text-sm font-medium' ref={chatToken}>
+									/> */}
+									<p className='text-sm font-medium hidden' ref={chatToken}>
 										0.0000
-									</p> */}
+									</p> 
 								</div>
 
 								<div className='flex items-center space-x-4'>

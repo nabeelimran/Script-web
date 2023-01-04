@@ -89,7 +89,7 @@ console.log("sfsdf",tokenEarnedByMessage)
 			})
 			.catch((err) => {
 				console.log("ERR", err);
-				ToastMessage("Message not sent");
+				// ToastMessage("Message not sent");
 			});
 
 		const sentMessage = {
