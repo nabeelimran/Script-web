@@ -14,11 +14,10 @@ function ChannelsRow({ channels, channleDetails, changeVideo }) {
 		//     : { ...item, selected: false }
 		// );
 		// setCurrentChannels(newArr);
-	
+
 		changeVideo(show);
 	};
 	useEffect(() => {
-		
 		setCurrentChannels(channels);
 	}, [channels]);
 	return (
@@ -39,23 +38,19 @@ function ChannelsRow({ channels, channleDetails, changeVideo }) {
 			{currenChannels && (
 				<div className='flex space-x-3 overflow-x-scroll hide-scrollbar'>
 					{currenChannels.map((channel, index) => (
-						<>
-							{channel.isVisible ? (
-								<ChannelBox
-									onClick={() => selector(channel)}
-									state={{
-										setter: setActiveCard,
-										getter: activeCard,
-									}}
-									key={index}
-									indexnum={index}
-									title={channel.title}
-									time={channel.time}
-									id={channel.id}
-									data={channel}
-								/>
-							) : null}
-						</>
+						<ChannelBox
+							onClick={() => selector(channel)}
+							state={{
+								setter: setActiveCard,
+								getter: activeCard,
+							}}
+							key={index}
+							indexnum={index}
+							title={channel.title}
+							time={channel.time}
+							id={channel.id}
+							data={channel}
+						/>
 					))}
 				</div>
 			)}

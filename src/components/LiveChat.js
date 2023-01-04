@@ -17,9 +17,10 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	const user = LocalServices.getServices("user");
 
 	const getTokenEarnedByChat = () => {
-		Api.getChatRewardByUserId(user.userId).then((res) => {
+		Api.getChatRewardByUserId(user.userId,'chat').then((res) => {
 			if(res && res.status === 200) {
 				setTokenEarnedByMessage(res.data.data.earnedToken)
+				getRewardEarningAmount(tokenEarnedByMessage)
 			}
 		})
 	}
@@ -32,14 +33,15 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 		Api.saveTokenEarnedByChat(req, 'watch').then((res) => {})
 	}
 
-	const calculateRewardByChat = () => {
-		setTokenEarnedByMessage(tokenEarnedByMessage + 0.0001);
-		setTimeout(() => {
-			console.log(tokenEarnedByMessage, 'tokenEarnedByMessage');
-			saveTokenEarnedByChat();
-			getRewardEarningAmount(tokenEarnedByMessage)
-		}, 1000)
-	}
+
+
+	useEffect(()=>{
+		if(user?.userId){
+
+			saveTokenEarnedByChat()
+		}
+		getRewardEarningAmount(tokenEarnedByMessage)
+	},[tokenEarnedByMessage])
 
 	useEffect(() => {
 		if(user && user.userId) {
@@ -50,7 +52,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	useEffect(() => {
 		const domNode = scroll.current;
 		getProfile()
-
+console.log("sfsdf",tokenEarnedByMessage)
 		// if (domNode) {
 		// 	domNode.scrollIntoView({ behavior: "smooth" });
 		// }
@@ -102,7 +104,12 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 			emote: "",
 			badgeType: "",
 		};
-		calculateRewardByChat();
+		
+		setTokenEarnedByMessage(prevState => {
+			let rf = (prevState +  0.0001).toFixed(4)
+			return parseFloat(rf)
+		});
+		
 		sendMessage(sentMessage);
 	};
 

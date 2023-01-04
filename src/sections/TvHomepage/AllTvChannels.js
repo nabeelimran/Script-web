@@ -21,6 +21,7 @@ function AllTvChannels({
 }) {
 	const playerRef = React.useRef(null);
 	const chatToken = React.useRef(null);
+	
 	const dispatch = useDispatch();
 	let slots = [];
 	let userId = LocalServices.getServices("user")?.userId || null;
@@ -272,7 +273,14 @@ function AllTvChannels({
 	};
 
 	const getRewardEarningAmount = (token) => {
-		chatToken.current.innerText = token
+		console.log("TOKENNN",token)
+		if(token===0){
+			chatToken.current.innerText = "0.0000"
+
+		}else{
+
+			chatToken.current.innerText = token
+		}
 	}
 
 	return (

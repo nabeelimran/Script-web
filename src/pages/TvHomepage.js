@@ -75,26 +75,30 @@ function TvHomepage() {
 						c.videoId === currentVideo.videoId &&
 						new Date().getTime() > new Date(c.endTime).getTime()
 						) {
+							
 						//console.log("currentChannel[0].liveShows",new Date().getTime() > new Date(c.endTime).getTime(),new Date().getTime() , new Date(c.endTime).getTime())
 						nextIndex = i;
 					}
 					
 				});
-				//console.log("nextIndex",nextIndex)
+				console.log("nextIndex",nextIndex)
 				if(nextIndex>=0){
 					console.log("DISPATCH NEXT VIDEO",)
 					let nextVideo = currentChannel[0].liveShows[nextIndex +1];
-					console.log(nextVideo)
+					
 					//dispatch(playingVideo(nextVideo))
 				dispatch(updateEpgData(nextVideo));
 				setCurrentVideo(nextVideo)
 				setLatestChaneelID(channelIndex)
-				setLatestVideoIdx(nextIndex +1)
+				setLatestVideoIdx(nextIndex)
 				//dispatch(updateCurrentVideo(true));
 				}else{
+					console.log("FRESH CHANNEL")
 					getChannels()
 					dispatch(updateEpgData(currentVideo));
 				dispatch(updateCurrentVideo(true));
+				setLatestChaneelID(0)
+				setLatestVideoIdx(0)
 				}
 
 				
@@ -157,7 +161,7 @@ function TvHomepage() {
 
 	return (
 		<div>
-			{console.log("FROM HERE")}
+			
 			<div className='mb-4 sm:mb-6 relative z-50'>
 				<TvNavbar />
 			</div>

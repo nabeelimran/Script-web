@@ -234,6 +234,12 @@ function Channels({
 		(state) => state.refresh_state
 	);
 
+  useEffect(()=>{
+    if(channelIndex){
+      setChannelIndex(0)
+    }
+  },[latestChaneelID])
+
 
   useEffect(() => {
     Api.getChannels("watch").then((res) => {
@@ -267,8 +273,8 @@ function Channels({
            }
        }, 1000)
        } else {
-         console.log("CHAN REF",latestChaneelID , latestVideIdx)
-         if(latestVideIdx && latestChaneelID && latestChaneelID>=0 && latestVideIdx>=0){
+         
+         if(channelIndex !=0 && channelIndex > 0 && latestVideIdx !== null && latestChaneelID!==null && latestChaneelID>=0 && latestVideIdx>=0){
            console.log("CHANNEL REFRESH")
            chData[latestChaneelID].liveShows[latestVideIdx].selected = true;
            setLiveShow(chData[latestChaneelID].liveShows[latestVideIdx]);
@@ -279,6 +285,7 @@ function Channels({
              }
            }, 1000)
          }else{
+          console.log("default")
            chData[channelIndex].liveShows[videoIndex].selected = true;
            setLiveShow(chData[channelIndex].liveShows[videoIndex]);
            setSelectedChannel(chData[channelIndex]);
