@@ -21,6 +21,8 @@ function AllTvChannels({
 	// checkVideoWatchTime
 }) {
 	const playerRef = React.useRef(null);
+	const chatToken = React.useRef(null);
+	
 	const dispatch = useDispatch();
 	let slots = [];
 	let userId = LocalServices.getServices("user")?.userId || null;
@@ -141,6 +143,7 @@ function AllTvChannels({
 			playToggle: false,
 		},
 		responsive: true,
+		nativeControlsForTouch: false,
 		muted: true,
 		fluid: true,
 		sources: [
@@ -170,9 +173,10 @@ function AllTvChannels({
 							playerRef.current.currentTime() ===
 								playerRef.current.duration()
 						) {
+							
 							dispatch(refreshChannel(true));
 						}
-					}, 5000);
+					}, 10000);
 				}
 			});
 
@@ -189,10 +193,6 @@ function AllTvChannels({
 			clearInterval(durationcheckinterval);
 		};
 	}, [show, isPlayerReady, playerRef.current]);
-
-	const getRewardEarningAmount = (tokenEarnedByMessage) => {
-		setChattingToken(tokenEarnedByMessage);
-	}
 
 	useEffect(() => {
 		let videoWatchInterval;
@@ -275,6 +275,17 @@ function AllTvChannels({
 		}
 	};
 
+	const getRewardEarningAmount = (token) => {
+		console.log("TOKENNN",token)
+		if(token===0){
+			chatToken.current.innerText = "0.0000"
+
+		}else{
+
+			chatToken.current.innerText = token
+		}
+	}
+
 	return (
 		<section className='relative'>
 			<div className='container mb-8'>
@@ -336,14 +347,14 @@ function AllTvChannels({
 							ref={hidechatRef}>
 							<div className='flex items-center justify-between mb-6'>
 								<div className='flex items-center space-x-2'>
-									<img
+									{/* <img
 										src='images/blockchain/stake.png'
 										className='w-4 sm:w-6'
 										alt=''
-									/>
-									<p className='text-sm font-medium'>
-										{chattingToken ? chattingToken.toFixed(4) : '0.0000'}
-									</p>
+									/> */}
+									<p className='text-sm font-medium hidden' ref={chatToken}>
+										0.0000
+									</p> 
 								</div>
 
 								<div className='flex items-center space-x-4'>
@@ -370,7 +381,7 @@ function AllTvChannels({
 									Stream Chat
 								</Title>
 
-								<LiveChat currentShow={show} getRewardEarningAmount={getRewardEarningAmount} />
+								<LiveChat currentShow={show} getRewardEarningAmount={getRewardEarningAmount}/>
 							</div>
 						</div>
 					</div>

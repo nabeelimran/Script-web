@@ -140,7 +140,7 @@ function Navbar() {
                   subtitle="Calculate your earnings through staking and rewards"
                 />
                 <DropdownCard
-                  to="/calculator"
+                  to="/node"
                   title="Run a Node"
                   subtitle="Help secure and grow the ecosystem - and get rewarded"
                 />
