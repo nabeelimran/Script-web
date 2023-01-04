@@ -225,6 +225,7 @@ function Channels({
   const [channelIndex,setChannelIndex] = useState(0);
   const [videoIndex,setVideoIndex] = useState(0);
   
+  
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
@@ -233,62 +234,68 @@ function Channels({
 		(state) => state.refresh_state
 	);
 
+
   useEffect(() => {
-   let chData = JSON.parse(JSON.stringify(channeldata));
-     chData = chData.map((ch) => {
-      let liveshows = ch.liveShows.filter(
-        (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
-      );
-      // if(liveshows && liveshows.length > 0) {
-        ch.liveShows = liveshows.map((show) => {
-          let res = getDurationInMinute(show.startTime, show.endTime);
-          show.duration = res.duration;
-          show.time = res.time;
-          show.selected = false;
-          show.isVisible = res.isVisible
-          return show;
-        });
-        return ch;
-    
-      // } 
-    });
-    // if(chData && chData.length > 0 && chData[0] && chData[0].liveShows && chData[0].liveShows.length > 0) {
-      if (queryChannelId) {
-        let activeChannel = chData.filter(ch => ch.id === +queryChannelId);
-        activeChannel[0].liveShows[0].selected = true;
-        setLiveShow(activeChannel[0].liveShows[0]);
-        setSelectedChannel(activeChannel[0]);
-        setTimeout(() => {
-          if(userId) {
-            getChannelByChannelId(activeChannel[0]);
-          }
-      }, 1000)
-      } else {
-        console.log("CHAN REF",latestChaneelID , latestVideIdx)
-        if(latestVideIdx && latestChaneelID && latestChaneelID>=0 && latestVideIdx>=0){
-          console.log("CHANNEL REFRESH")
-          chData[latestChaneelID].liveShows[latestVideIdx].selected = true;
-          setLiveShow(chData[latestChaneelID].liveShows[latestVideIdx]);
-          setSelectedChannel(chData[latestChaneelID]);
-          setTimeout(() => {
-            if(userId) {
-              getChannelByChannelId(chData[latestChaneelID]);
-            }
-          }, 1000)
-        }else{
-          chData[channelIndex].liveShows[videoIndex].selected = true;
-          setLiveShow(chData[channelIndex].liveShows[videoIndex]);
-          setSelectedChannel(chData[channelIndex]);
-          setTimeout(() => {
-            if(userId) {
-              getChannelByChannelId(chData[channelIndex]);
-            }
-          }, 1000)
-        }
+    Api.getChannels("watch").then((res) => {
+      let chData = JSON.parse(JSON.stringify(res.data.data));
+      chData = chData.map((ch) => {
+       let liveshows = ch.liveShows.filter(
+         (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
+       );
+       // if(liveshows && liveshows.length > 0) {
+         ch.liveShows = liveshows.map((show) => {
+           let res = getDurationInMinute(show.startTime, show.endTime);
+           show.duration = res.duration;
+           show.time = res.time;
+           show.selected = false;
+           show.isVisible = res.isVisible
+           return show;
+         });
+         return ch;
+     
+       // } 
+     });
+     // if(chData && chData.length > 0 && chData[0] && chData[0].liveShows && chData[0].liveShows.length > 0) {
+       if (queryChannelId) {
+         let activeChannel = chData.filter(ch => ch.id === +queryChannelId);
+         activeChannel[0].liveShows[0].selected = true;
+         setLiveShow(activeChannel[0].liveShows[0]);
+         setSelectedChannel(activeChannel[0]);
+         setTimeout(() => {
+           if(userId) {
+             getChannelByChannelId(activeChannel[0]);
+           }
+       }, 1000)
+       } else {
+         console.log("CHAN REF",latestChaneelID , latestVideIdx)
+         if(latestVideIdx && latestChaneelID && latestChaneelID>=0 && latestVideIdx>=0){
+           console.log("CHANNEL REFRESH")
+           chData[latestChaneelID].liveShows[latestVideIdx].selected = true;
+           setLiveShow(chData[latestChaneelID].liveShows[latestVideIdx]);
+           setSelectedChannel(chData[latestChaneelID]);
+           setTimeout(() => {
+             if(userId) {
+               getChannelByChannelId(chData[latestChaneelID]);
+             }
+           }, 1000)
+         }else{
+           chData[channelIndex].liveShows[videoIndex].selected = true;
+           setLiveShow(chData[channelIndex].liveShows[videoIndex]);
+           setSelectedChannel(chData[channelIndex]);
+           setTimeout(() => {
+             if(userId) {
+               getChannelByChannelId(chData[channelIndex]);
+             }
+           }, 1000)
+         }
+        
+       }
        
-      }
-      
-      setChannels(chData);
+       setChannels(chData);
+
+
+		});
+
     // }
   }, [timeline,latestChaneelID,latestVideIdx]);
 

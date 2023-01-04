@@ -20,6 +20,7 @@ function AllTvChannels({
 	// checkVideoWatchTime
 }) {
 	const playerRef = React.useRef(null);
+	const chatToken = React.useRef(null);
 	const dispatch = useDispatch();
 	let slots = [];
 	let userId = LocalServices.getServices("user")?.userId || null;
@@ -168,7 +169,7 @@ function AllTvChannels({
 							playerRef.current.currentTime() ===
 								playerRef.current.duration()
 						) {
-							console.log("kfdjghkjgkfjkdh")
+							
 							dispatch(refreshChannel(true));
 						}
 					}, 10000);
@@ -336,7 +337,7 @@ function AllTvChannels({
 										className='w-4 sm:w-6'
 										alt=''
 									/>
-									<p className='text-sm font-medium'>
+									<p className='text-sm font-medium' ref={chatToken}>
 										0.0000
 									</p>
 								</div>
