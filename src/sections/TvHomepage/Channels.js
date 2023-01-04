@@ -222,6 +222,8 @@ function Channels({
   const [selectedChananel, setSelectedChannel] = useState({});
   const [channelFollowed, setChannelFollow] = useState(false);
   const dispatch = useDispatch();
+  const [channelIndex,setChannelIndex] = useState(0);
+  const [videoIndex,setVideoIndex] = useState(0);
   
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
@@ -263,7 +265,7 @@ function Channels({
       }, 1000)
       } else {
         console.log("CHAN REF",latestChaneelID , latestVideIdx)
-        if(latestChaneelID && latestVideIdx){
+        if(latestVideIdx && latestChaneelID && latestChaneelID>=0 && latestVideIdx>=0){
           console.log("CHANNEL REFRESH")
           chData[latestChaneelID].liveShows[latestVideIdx].selected = true;
           setLiveShow(chData[latestChaneelID].liveShows[latestVideIdx]);
@@ -274,12 +276,12 @@ function Channels({
             }
           }, 1000)
         }else{
-          chData[0].liveShows[0].selected = true;
-          setLiveShow(chData[0].liveShows[0]);
-          setSelectedChannel(chData[0]);
+          chData[channelIndex].liveShows[videoIndex].selected = true;
+          setLiveShow(chData[channelIndex].liveShows[videoIndex]);
+          setSelectedChannel(chData[channelIndex]);
           setTimeout(() => {
             if(userId) {
-              getChannelByChannelId(chData[0]);
+              getChannelByChannelId(chData[channelIndex]);
             }
           }, 1000)
         }
@@ -288,7 +290,7 @@ function Channels({
       
       setChannels(chData);
     // }
-  }, [timeline,latestChaneelID]);
+  }, [timeline,latestChaneelID,latestVideIdx]);
 
   useEffect(()=>{
         
@@ -382,13 +384,16 @@ function Channels({
   const changeSelectedVideo = (show) => {
     setLiveShow(show);
     let chdata = JSON.parse(JSON.stringify(channels));
-    chdata = chdata.map((ch) => {
+    let chIndex;
+    chdata = chdata.map((ch,i) => {
       ch.liveShows = ch.liveShows.map((ls) => {
         if (ls && ls.selected) {
           ls.selected = false;
         }
         if (ls && show && ls.id === show.id) {
           ls.selected = true;
+          chIndex = i
+
         }
         return ls;
       });
@@ -400,6 +405,10 @@ function Channels({
       }, 1000)
       return ch;
     });
+
+
+  
+    setChannelIndex(chIndex)
     setChannels([...chdata]);
     currentVideo(show);
   };

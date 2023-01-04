@@ -14,11 +14,11 @@ function ChannelsRow({ channels, channleDetails, changeVideo }) {
 		//     : { ...item, selected: false }
 		// );
 		// setCurrentChannels(newArr);
-		console.log("CHANKK", show);
+	
 		changeVideo(show);
 	};
 	useEffect(() => {
-		console.log("SHOWSS");
+		
 		setCurrentChannels(channels);
 	}, [channels]);
 	return (
