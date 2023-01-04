@@ -347,14 +347,14 @@ function AllTvChannels({
 							ref={hidechatRef}>
 							<div className='flex items-center justify-between mb-6'>
 								<div className='flex items-center space-x-2'>
-									<img
+									{/* <img
 										src='images/blockchain/stake.png'
 										className='w-4 sm:w-6'
 										alt=''
 									/>
 									<p className='text-sm font-medium' ref={chatToken}>
 										0.0000
-									</p>
+									</p> */}
 								</div>
 
 								<div className='flex items-center space-x-4'>
