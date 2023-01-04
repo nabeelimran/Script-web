@@ -10,7 +10,7 @@ import HowToEarn from "sections/TvHomepage/HowToEarn";
 import KeyStats from "sections/TvHomepage/KeyStats";
 import React, { useEffect, useState } from "react";
 import Api from "../services/api";
-import { videoShows } from "../redux/reducers/video_State";
+import { allChannel, playingChannel, playingVideo, videoShows } from "../redux/reducers/video_State";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MetamaskService from "services/metamask";
@@ -30,6 +30,8 @@ function TvHomepage() {
 	const [metamaskBalance, setMetamaskBalance] = useState(0);
 	const [recaptchaCode, setReCaptchaCode] = useState("");
 	const [twitterPost, setTwitterPost] = useState([]);
+	const [latestChaneelID,setLatestChaneelID] = useState(null)
+	const [latestVideIdx,setLatestVideoIdx] = useState(null)
 
 	let userId = LocalServices.getServices("user")?.userId || null;
 	const { refreshChannel } = useSelector(
@@ -39,7 +41,8 @@ function TvHomepage() {
 		Api.getChannels("watch").then((res) => {
 			setchannels(res.data.data);
 			setCurrentVideo(res.data.data[0].liveShows[0]);
-	
+			// dispatch(allChannel(res.data.data))
+			// dispatch(playingVideo(res.data.data[0].liveShows[0]))
 			//dispatch(videoShows(res.data.data[0].liveShows[0]))
 			//setAdsList(res.data.data[0].adsData)
 		});
@@ -55,10 +58,16 @@ function TvHomepage() {
 		//console.log(refreshChannel)
 		if (refreshChannel) {
 			console.log("refresh");
-			let nextIndex;
+			let nextIndex =0;
+			let channelIndex = 0
 			const currentChannel = channel.filter(
-				(ch) => ch.id === currentVideo.channelId
+				(ch,i) => {
+					if(ch.id === currentVideo.channelId)
+					{channelIndex = i}
+					return ch.id === currentVideo.channelId
+				}
 			);
+			//dispatch(playingChannel(currentChannel))
 			if (currentChannel[0]) {
 				currentChannel[0].liveShows.map((c, i) => {
 					
@@ -66,22 +75,30 @@ function TvHomepage() {
 						c.videoId === currentVideo.videoId &&
 						new Date().getTime() > new Date(c.endTime).getTime()
 						) {
+							
 						//console.log("currentChannel[0].liveShows",new Date().getTime() > new Date(c.endTime).getTime(),new Date().getTime() , new Date(c.endTime).getTime())
 						nextIndex = i;
 					}
 					
 				});
-				//console.log("nextIndex",nextIndex)
+				console.log("nextIndex",nextIndex)
 				if(nextIndex>=0){
-					console.log("DISPATCH NEXT VIDEO")
-					let nextVideo = currentChannel[0].liveShows[nextIndex + 1];
+					console.log("DISPATCH NEXT VIDEO",)
+					let nextVideo = currentChannel[0].liveShows[nextIndex +1];
+					
+					//dispatch(playingVideo(nextVideo))
 				dispatch(updateEpgData(nextVideo));
 				setCurrentVideo(nextVideo)
-				dispatch(updateCurrentVideo(true));
+				setLatestChaneelID(channelIndex)
+				setLatestVideoIdx(nextIndex)
+				//dispatch(updateCurrentVideo(true));
 				}else{
+					console.log("FRESH CHANNEL")
 					getChannels()
 					dispatch(updateEpgData(currentVideo));
 				dispatch(updateCurrentVideo(true));
+				setLatestChaneelID(0)
+				setLatestVideoIdx(0)
 				}
 
 				
@@ -132,7 +149,7 @@ function TvHomepage() {
 	}, []);
 
 	const changeVideo = (show) => {
-		dispatch(videoShows(show));
+		dispatch(playingVideo(show));
 		setCurrentVideo(show);
 
 		if (channel && channel.length > 0) {
@@ -144,7 +161,7 @@ function TvHomepage() {
 
 	return (
 		<div>
-			{console.log("FROM HERE")}
+			
 			<div className='mb-4 sm:mb-6 relative z-50'>
 				<TvNavbar />
 			</div>
@@ -172,6 +189,8 @@ function TvHomepage() {
 						videoTokenEarned={videoTokenEarned}
 						metamaskBalance={metamaskBalance}
 						recaptchaCode={recaptchaCode}
+						latestChaneelID={latestChaneelID}
+						latestVideIdx={latestVideIdx}
 					/>
 				)}
 			</div>
