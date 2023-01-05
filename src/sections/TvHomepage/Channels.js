@@ -371,7 +371,7 @@ function Channels({
       diff = 0;
     }
     return {
-      duration: duration + diff,
+      duration: (duration + diff) ? (duration + diff) : 1,
       time: `${helper.getIn12HoursFormat(startDate)}-${helper.getIn12HoursFormat(endDate)}`,
       isVisible: diffFromEnd < 0 ? false:true 
     };
