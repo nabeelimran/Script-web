@@ -27,9 +27,9 @@ function Form() {
         <FloatingInput
           id="email"
           type="email"
-          label="Username or Email  Adress*"
-          placeholder="Enter username or email adress"
-          error={errors.email && "This field is requird. Please enter email."}
+          label="Email address*"
+          placeholder="Enter your email adress"
+          error={errors.email && "This field is requird. Please enter e-mail address."}
           other={{
             ...register("email", { required: true }),
           }}

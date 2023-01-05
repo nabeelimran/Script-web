@@ -103,7 +103,7 @@ function EmailConfirmation() {
     if(type){
       switch (type.type) {
         case "required":
-          error = "This field is requird. Please enter email"
+          error = "This field is requird. Please enter e-mail address."
           break;
         case "pattern":
           error = "Invalid Email"
@@ -145,8 +145,8 @@ function EmailConfirmation() {
                 <FloatingInput
                   id="email"
                   type="email"
-                  label=""
-                  placeholder="Enter username or email address"
+                  label="E-mail address"
+                  placeholder="Enter your email address"
                   error={
                     errorShow(errors.email)
                   }
