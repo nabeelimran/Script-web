@@ -4,7 +4,7 @@ import "toastify-js/src/toastify.css";
 export const ToastMessage = (message, type = undefined) => {
   Toastify({
     text: message,
-    duration: 3000,
+    duration: 6000,
     // destination: "https://github.com/apvarun/toastify-js",
     // newWindow: true,
     close: false,

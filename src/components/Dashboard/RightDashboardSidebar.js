@@ -72,10 +72,10 @@ function RightDashboardSidebar({
         <div className="space-y-4">
           <div className="px-6 space-y-1">
             <p className="text-sm xl:text-base font-medium">
-              Your Action Items
+              Your action items
             </p>
             <p className="text-sm xl:text-base font-medium">
-              Your Journey Start Here!
+              Your journey start here!
             </p>
           </div>
 
