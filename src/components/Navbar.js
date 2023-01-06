@@ -190,7 +190,7 @@ function Navbar() {
             <div className="flex">
               <Button
                 className="mt-8 mr-4 lg:mt-0 flex justify-center text-center"
-                customizationClassName="space-x-3 px-0 py-2 w-[150px] rounded-lg font-semibold"
+                customizationClassName="space-x-3 px-0 py-2 w-[120px] rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
                 label={
                   <span className="text-xs xl:text-sm text-black">
@@ -207,7 +207,7 @@ function Navbar() {
               />
               <Button
                 className="mt-8 lg:mt-0 flex justify-center text-center"
-                customizationClassName="space-x-3 px-0 py-2 w-[120px] rounded-lg font-semibold"
+                customizationClassName="space-x-3 px-0 py-2 w-[100px] rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
                 label={
                   <span className="text-xs xl:text-sm text-black">

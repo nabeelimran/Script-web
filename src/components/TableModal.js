@@ -9,7 +9,7 @@ import HistoryTable from "pages/HistoryTable";
 const TableModal = () => {
   const dispatch = useDispatch();
 
-  const { isModalVisible } = useSelector(
+  const { isHistoryTableModal } = useSelector(
     (state) => state.connectWalletModal_State
   );
 
@@ -19,13 +19,13 @@ const TableModal = () => {
 
   return (
     <>
-      <BlackScreen zIndex="1000000" show={isModalVisible} />
+      <BlackScreen zIndex="1000000" show={isHistoryTableModal} />
 
       <UpperRoot>
         <section
           ref={modalRef}
           className={`fixed left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-[90%] max-w-[900px] h-[90vh] max-h-[600px] z-[10000000] overflow-x-hidden overflow-y-auto rounded-xl md:rounded-3xl py-6 md:py-10 px-8 md:px-14 hide-scrollbar transition-all duration-300 shadow-sm shadow-primary ${
-            isModalVisible
+            isHistoryTableModal
               ? "pointer-events-auto top-1/2 opacity-100"
               : "opacity-0 pointer-events-none top-[40%]"
           }`}

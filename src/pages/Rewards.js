@@ -71,7 +71,6 @@ function Rewards() {
     MixPanelService.init();
     helper.trackByMixpanel("Reward Page View", {});
     getTotalRewardPoints();
-    getRewardHistoryList();
   }, []);
 
   return (

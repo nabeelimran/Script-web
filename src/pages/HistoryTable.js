@@ -7,7 +7,7 @@ function HistoryTable() {
   const user = LocalServices.getServices("user");
   const [rewardHistory, setRewardHistory] = useState([]);
 
-  const [dataPerPage, setDataPerPage] = useState(5);
+  const [dataPerPage, setDataPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalData, setTotalData] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -70,7 +70,6 @@ function HistoryTable() {
             {rewardHistory && rewardHistory.length > 0
               ? rewardHistory.map((data, index) => (
                   <tr key={index}>
-                    {console.log(data)}
                     <td className="py-4">{data?.username || ""}</td>
                     <td className="py-4">{data?.walletAddress || ""}</td>
                     <td className="py-4">{data?.rewardPoint || 0}</td>
