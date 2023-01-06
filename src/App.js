@@ -47,10 +47,10 @@ import AllCategory from "pages/AllCategory";
 import ChannelDetail from "pages/ChannelDetail";
 import CategoryDetail from "pages/CategoryDetail";
 import ReportIssue from "pages/ReportIssue";
+import TableModal from "components/TableModal";
 
 function App() {
   useEffect(() => {
-    
     try {
       console.log("init mixpanel");
       MixPanelService.init();
@@ -63,6 +63,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <ConnectWalletModal />
+      <TableModal />
       <EpgModal />
       <EmailConfirmation />
       <CreatePasswordForm />
