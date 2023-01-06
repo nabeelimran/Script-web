@@ -11,51 +11,68 @@ import MixPanelService from "services/mixPanelService";
 import { helper } from "utils/helper";
 
 function Rewards() {
-
-  const user = LocalServices.getServices('user');
+  const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
+  const [rewardHistory, setRewardHistory] = useState([]);
 
-  const getTotalRewardPoints = () => {
-    if(user && user.walletAddress) {
-      Api.getMyRewardPointTotal(user.walletAddress, 'reward-management').then(res => {
+  const getRewardHistoryList = () => {
+    if (user && user.walletAddress) {
+      Api.getAllUserRewardsData(
+        user.walletAddress,
+        0,
+        10,
+        "reward-management"
+      ).then((res) => {
         if (res && res.status === 200) {
-          setTotalRewardPoints(res.data.data.myRewards);
+          setRewardHistory(res.data.data.content);
         }
       });
     }
-  }
+  };
+
+  const getTotalRewardPoints = () => {
+    if (user && user.walletAddress) {
+      Api.getMyRewardPointTotal(user.walletAddress, "reward-management").then(
+        (res) => {
+          if (res && res.status === 200) {
+            setTotalRewardPoints(res.data.data.myRewards);
+          }
+        }
+      );
+    }
+  };
 
   const getLatestDayReward = async () => {
-    if(user && user.walletAddress) {
-      return await Api.getLatestDayReward(user.walletAddress, 'reward-management').then(res => res.data);
+    if (user && user.walletAddress) {
+      return await Api.getLatestDayReward(
+        user.walletAddress,
+        "reward-management"
+      ).then((res) => res.data);
     }
-  }
+  };
 
   const handleCollectReward = async () => {
     // const latestDayReward = await getLatestDayReward();
     // console.log(latestDayReward, '==>>');
     // if(latestDayReward && latestDayReward.isSuccess) {
     //   if (latestDayReward.data) {
-        
     //   } else {
-
     //   }
     // } else {
-
     // }
     // helper.trackByMixpanel("Collect Reward Button Clicked",{
     //   "day": DAY_NUMBER,
     //   "email" : EMAIL,
     //   "amount" : REWARD_AMOUNT
     //   })
-  }
+  };
 
   useEffect(() => {
     MixPanelService.init();
-    helper.trackByMixpanel('Reward Page View', {});
+    helper.trackByMixpanel("Reward Page View", {});
     getTotalRewardPoints();
-  }, [])
-  
+  }, []);
+
   return (
     <div>
       {/* <div className="mb-4 sm:mb-6 relative z-50">
@@ -63,8 +80,10 @@ function Rewards() {
       </div> */}
 
       <div className="mb-16 lg:mb-20 mt-5">
-        <Hero handleCollectReward={handleCollectReward} 
-        totalRewardPoints={totalRewardPoints}/>
+        <Hero
+          handleCollectReward={handleCollectReward}
+          totalRewardPoints={totalRewardPoints}
+        />
       </div>
 
       {/* <div className="mb-14">

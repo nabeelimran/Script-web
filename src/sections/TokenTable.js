@@ -1,9 +1,31 @@
 import Button from "components/Button";
 import Title from "components/Title";
 import TokenTableCard from "components/TokenTableCard";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Api from '../services/api';
 
 function TokenTable() {
+
+  const [supplyData, setSupplyData] = useState({
+    totalScptWeiValue: 0,
+    totalSpayWeiValue: 0
+  });
+
+  const getSupplyData = () => {
+    Api.getSupplyData().then((res) => {
+      if(res) {
+        setSupplyData({
+          totalScptWeiValue: res.totalScptWeiValue.toFixed(4),
+          totalSpayWeiValue: res.totalSpayWeiValue.toFixed(4),
+        })
+      }
+    })
+  }
+
+  useEffect(() => {
+    getSupplyData();
+  }, [])
+
   return (
     <div className="sm:bg-shade-dark-blue sm:rounded-[60px] pb-12 sm:pb-16 pt-8 sm:px-12">
       <div className="flex items-center justify-between mb-6 px-5">
@@ -15,8 +37,8 @@ function TokenTable() {
         <TokenTableCard
           texts={["1,000,000,000", "Total Supply", "5,000,000,000"]}
         />
-        <TokenTableCard texts={["NA", "Circulating Supply", "NA"]} />
-        <TokenTableCard texts={["$0.0.25", "Price At Launch", "TBA"]} />
+        <TokenTableCard texts={[`${supplyData.totalScptWeiValue}`, "Circulating Supply", `${supplyData.totalSpayWeiValue}`]} />
+        <TokenTableCard texts={["$0.01", "Price At Launch", "$0.005"]} />
         <TokenTableCard texts={["Governance", "Use Case", "Transactions"]} />
       </div>
 

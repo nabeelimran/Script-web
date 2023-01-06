@@ -2,12 +2,11 @@ import { Icon } from "@iconify/react";
 import Button from "components/Button";
 import Title from "components/Title";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleHistoryModalVisibility } from "redux/reducers/connectWalletModal_State";
 
-function Hero({
-  handleCollectReward,
-  totalRewardPoints
-}) {
-
+function Hero({ handleCollectReward, totalRewardPoints }) {
+  const dispatch = useDispatch();
   return (
     // <section className="container grid lg:grid-cols-2 gap-10 lg:gap-20">
     <section className="dashboard-layout grid lg:grid-cols-2 gap-10 lg:gap-20">
@@ -20,13 +19,24 @@ function Hero({
         </p>
 
         <div className="flex items-center space-x-4">
-          <Button label="Collect Reward" 
+          <Button
+            label="Collect Reward"
             buttonProps={{
               onClick: () => {
-                handleCollectReward()
-              }
-            }}/>
-          <Button label="History" variant={3} />
+                handleCollectReward();
+              },
+            }}
+          />
+          <Button
+            label="History"
+            variant={3}
+            buttonProps={{
+              onClick: () => {
+                handleCollectReward();
+                dispatch(toggleHistoryModalVisibility(true));
+              },
+            }}
+          />
         </div>
       </div>
 

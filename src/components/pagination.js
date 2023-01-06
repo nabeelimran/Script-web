@@ -6,8 +6,8 @@ function Pagination({
   paginate,
   currentPage,
   paginateFront,
-  paginateBack, 
-  totalPages
+  paginateBack,
+  totalPages,
 }) {
   const pageNumbers = [];
 
@@ -56,34 +56,34 @@ function Pagination({
 
       <div className="flex justify-end">
         <nav
-          className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
-          aria-label='Pagination'
+          className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+          aria-label="Pagination"
         >
           <a
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               paginateBack();
             }}
-            href='#'
-            className= {
-              currentPage === 0 ? 
-              'page-disabled relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50' :
-              'relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+            href="#"
+            className={
+              currentPage === 0
+                ? "page-disabled relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                : "relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
             }
-            
-            
           >
             <span className="text-black">Previous</span>
           </a>
 
           <a
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               paginateFront();
             }}
-            href='#'
-            className= {
-              currentPage >= totalPages - 1 ? 
-              'page-disabled relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50' :
-              'relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+            href="#"
+            className={
+              currentPage >= totalPages - 1
+                ? "page-disabled relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                : "relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
             }
           >
             <span className="text-black">Next</span>
