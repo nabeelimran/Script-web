@@ -18,7 +18,7 @@ export const connectWalletModal_State = createSlice({
       state.isModalVisible = action.payload;
     },
     toggleHistoryModalVisibility: (state, action) => {
-      state.isModalVisible = action.payload;
+      state.isHistoryTableModal = action.payload;
     },
     toggleEmailModalVisibility: (state, action) => {
       state.isEmailModal = action.payload;
