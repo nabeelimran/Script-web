@@ -163,12 +163,12 @@ function Navbar() {
               >
                 Technology
               </Link>
-              <Link
+              {/* <Link
                 to="/explorer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Explorer
-              </Link>
+              </Link> */}
               {/* <a
                 href="https://explorer.script.tv/"
                 target="_blank"
