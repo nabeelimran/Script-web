@@ -216,7 +216,7 @@ function Navbar() {
                 }
                 buttonProps={{
                   onClick: () => {
-                    helper.openLink('')
+                    helper.openLink('https://form.jotform.com/212032981906353')
                   },
                 }}
               />
