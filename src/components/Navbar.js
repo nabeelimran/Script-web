@@ -188,8 +188,23 @@ function Navbar() {
               </a>
             </div>
             <div className="flex">
-              <Button
+            <Button
                 className="mt-8 mr-4 lg:mt-0 flex justify-center text-center"
+                customizationClassName="space-x-3 px-0 py-2 w-[100px] rounded-lg font-semibold"
+                buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
+                label={
+                  <span className="text-xs xl:text-sm text-black">
+                    Join Presale
+                  </span>
+                }
+                buttonProps={{
+                  onClick: () => {
+                    helper.openLink('https://form.jotform.com/212032981906353')
+                  },
+                }}
+              />
+              <Button
+                className="mt-8 lg:mt-0 flex justify-center text-center"
                 customizationClassName="space-x-3 px-0 py-2 w-[120px] rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
                 label={
@@ -205,21 +220,7 @@ function Navbar() {
                   },
                 }}
               />
-              <Button
-                className="mt-8 lg:mt-0 flex justify-center text-center"
-                customizationClassName="space-x-3 px-0 py-2 w-[100px] rounded-lg font-semibold"
-                buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
-                label={
-                  <span className="text-xs xl:text-sm text-black">
-                    Join Presale
-                  </span>
-                }
-                buttonProps={{
-                  onClick: () => {
-                    helper.openLink('https://form.jotform.com/212032981906353')
-                  },
-                }}
-              />
+              
             </div>
           </div>
         </div>
