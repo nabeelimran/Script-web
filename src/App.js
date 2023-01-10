@@ -48,6 +48,7 @@ import ChannelDetail from "pages/ChannelDetail";
 import CategoryDetail from "pages/CategoryDetail";
 import ReportIssue from "pages/ReportIssue";
 import TableModal from "components/TableModal";
+import GlassListingPopup from "components/GlassListingPopup";
 
 function App() {
   useEffect(() => {
@@ -64,6 +65,7 @@ function App() {
       <ScrollToTop />
       <ConnectWalletModal />
       <TableModal />
+      <GlassListingPopup />
       <EpgModal />
       <EmailConfirmation />
       <CreatePasswordForm />

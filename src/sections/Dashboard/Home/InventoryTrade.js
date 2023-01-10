@@ -3,41 +3,35 @@ import InventoryTradeCard from "components/InventoryTradeCard";
 import React, { useRef } from "react";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-const glassImages = [
-  'images/blue-glasses.png',
-  'images/yellow-glasses.png',
-  'images/green-glasses.png',
-  'images/orange-glasses.png'
-]
+import { helper } from "utils/helper";
 
 const glasses = [
   {
-    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    img: helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)],
     id: '#535435'
   },
   {
-    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    img: helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)],
     id: '#535436'
   },
   {
-    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    img: helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)],
     id: '#535437'
   },
   {
-    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    img: helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)],
     id: '#535438'
   },
   {
-    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    img: helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)],
     id: '#535439'
   },
   {
-    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    img: helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)],
     id: '#535440'
   },
   {
-    img: glassImages[Math.floor(Math.random() * glassImages.length)],
+    img: helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)],
     id: '#535441'
   }
 ]

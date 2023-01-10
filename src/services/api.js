@@ -603,4 +603,20 @@ export default class Api {
       options
     );
   }
+
+  static getGlassesList(screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      },
+    };
+    return axios.get(
+      `${APIPATH.BASEURL}getGlasses`,
+      options
+    );
+  }
 }

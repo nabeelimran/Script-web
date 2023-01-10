@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import Api from "services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { helper } from "utils/helper";
-import { updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
+import { toggleGlassListingVisibility, updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
@@ -233,6 +233,25 @@ function Channels({
     const { refreshChannel } = useSelector(
 		(state) => state.refresh_state
 	);
+
+  const getGlassesList = () => {
+    Api.getGlassesList("watch").then((res) => {
+      if(res && res.status === 200) {
+        console.log(res, 'glass');
+        if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
+          const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
+          dispatch(toggleGlassListingVisibility(true));
+          dispatch(toggleGlassListingVisibility(glassListing || []))
+        }
+      }
+    })
+  }
+
+  useEffect(() => {
+    if(userId) {
+      // getGlassesList();
+    }
+  }, [])
 
   useEffect(()=>{
     if(channelIndex){

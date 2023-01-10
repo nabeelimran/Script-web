@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isModalVisible: false,
+  isGlassListingModalVisible: false,
+  glassListingData: [],
   isEmailModal: false,
   isHistoryTableModal: false,
   isPasswordModal: false,
@@ -16,6 +18,10 @@ export const connectWalletModal_State = createSlice({
   reducers: {
     toggleModalVisibility: (state, action) => {
       state.isModalVisible = action.payload;
+    },
+    toggleGlassListingVisibility: (state, action) => {
+      state.isGlassListingModalVisible = action.payload;
+      state.glassListingData = action.payload;
     },
     toggleHistoryModalVisibility: (state, action) => {
       state.isHistoryTableModal = action.payload;
@@ -41,6 +47,7 @@ export const connectWalletModal_State = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   toggleModalVisibility,
+  toggleGlassListingVisibility,
   toggleHistoryModalVisibility,
   toggleEmailModalVisibility,
   togglePasswordModalVisibility,
