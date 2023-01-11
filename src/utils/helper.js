@@ -85,7 +85,13 @@ export const helper = {
       } catch (error) {
         console.log(error, `on ${event} event`);
       }
-    } 
+    },
+    glassImages: [
+      'images/blue-glasses.png',
+      'images/yellow-glasses.png',
+      'images/green-glasses.png',
+      'images/orange-glasses.png'
+    ]
 }
 
 export const metamaskNetwork = {

@@ -5,11 +5,11 @@ import BlackScreen from "./BlackScreen";
 import UpperRoot from "./UpperRoot";
 
 function Popup({ open, setOpen, children, className, glass = false }) {
-  const shouldModalRender = useDelayUnmount(open, 400);
-  //   const shouldModalRender = open;
-  // const modalRef = OutsideClickDetector(() =>
-  //   setOpen(glass === true ? true : false)
-  // );
+  // const shouldModalRender = useDelayUnmount(open, 400);
+  const shouldModalRender = open;
+  const modalRef = OutsideClickDetector(() =>
+    setOpen(glass === true ? true : false)
+  );
 
   useEffect(() => {
     if (open) {
@@ -26,6 +26,7 @@ function Popup({ open, setOpen, children, className, glass = false }) {
       <UpperRoot>
         {shouldModalRender && (
           <div
+            ref={modalRef}
             className={`popup-in fixed -translate-x-1/2 -translate-y-1/2  z-[10000000] hide-scrollbar transition-all duration-300 w-full ${
               open
                 ? "popup-in pointer-events-auto opacity-100"
