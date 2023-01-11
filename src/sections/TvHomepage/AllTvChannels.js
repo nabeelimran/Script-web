@@ -173,7 +173,6 @@ function AllTvChannels({
 							playerRef.current.currentTime() ===
 								playerRef.current.duration()
 						) {
-							
 							dispatch(refreshChannel(true));
 						}
 					}, 10000);
@@ -202,7 +201,6 @@ function AllTvChannels({
 			playerRef.current.on("play", () => {
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
 				clearInterval(videoWatchInterval);
-
 				videoWatchInterval = setInterval(() => {
 					const videoWatchTime = {
 						startTime: videoStartTime,
@@ -212,20 +210,17 @@ function AllTvChannels({
 								new Date(show.startTime).getTime()) /
 							1000,
 					};
-
 					if (
 						show.startTime &&
 						videoWatchTime &&
 						videoWatchTime.endTime
 					) {
 						// let eToken = earnedToken + 0.05
-
 						dispatch(getVideoTimeWatch(videoWatchTime));
 						if (userId) {
 							console.log("DISPATCH FROM HERE");
 							dispatch(earnedTokenRed(0.05));
 						}
-
 						//checkVideoWatchTime(videoWatchTime)
 					}
 				}, 60000);
@@ -234,7 +229,7 @@ function AllTvChannels({
 		return () => {
 			clearInterval(videoWatchInterval);
 		};
-	}, [isPlayerReady, playerRef.current]);
+	}, [isPlayerReady, playerRef.current,show]);
 
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;
