@@ -15,7 +15,7 @@ function HistoryTable() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const indexOfLastPost = currentPage * dataPerPage;
   const indexOfFirstPost = indexOfLastPost - dataPerPage;
-  const currentPosts = rewardHistory.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = rewardHistory && rewardHistory.length > 0 && rewardHistory.slice(indexOfFirstPost, indexOfLastPost);
   const paginateFront = () => {
     if (currentPage >= totalPages - 1) {
       return;

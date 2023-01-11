@@ -12,7 +12,7 @@ function LeaderBoard() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const indexOfLastPost = currentPage * dataPerPage;
   const indexOfFirstPost = indexOfLastPost - dataPerPage;
-  const currentPosts = leaderBoardData.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = leaderBoardData && leaderBoardData.length > 0 && leaderBoardData.slice(indexOfFirstPost, indexOfLastPost);
   const paginateFront = () => {
     if (currentPage >= totalPages - 1) {
       return;

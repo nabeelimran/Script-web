@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import Api from "services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { helper } from "utils/helper";
-import { updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
+import { toggleGlassListingVisibility, updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
@@ -234,6 +234,25 @@ function Channels({
 		(state) => state.refresh_state
 	);
 
+  const getGlassesList = () => {
+    Api.getGlassesList("watch").then((res) => {
+      if(res && res.status === 200) {
+        console.log(res, 'glass');
+        if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
+          const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
+          dispatch(toggleGlassListingVisibility(true));
+          dispatch(toggleGlassListingVisibility(glassListing || []))
+        }
+      }
+    })
+  }
+
+  useEffect(() => {
+    if(userId) {
+      // getGlassesList();
+    }
+  }, [])
+
   useEffect(()=>{
     if(channelIndex){
       setChannelIndex(0)
@@ -446,13 +465,18 @@ function Channels({
         "stream_duration" : "STREAM_DURATION(Hours)",
         "seconds" : req.videoDuration
       })
+      let watchApiCalled=false;
+      if(!watchApiCalled){
+        watchApiCalled=true;
       Api.saveVideoDuration(req, 'watch').then((res) => {
         if (res && res.isSuccess) {
+          watchApiCalled=false;
         } else {
-
+          watchApiCalled=false;
         }
       })
     }
+  }
   }
 
   // this is used to save token earned by watch
