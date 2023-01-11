@@ -465,13 +465,18 @@ function Channels({
         "stream_duration" : "STREAM_DURATION(Hours)",
         "seconds" : req.videoDuration
       })
+      let watchApiCalled=false;
+      if(!watchApiCalled){
+        watchApiCalled=true;
       Api.saveVideoDuration(req, 'watch').then((res) => {
         if (res && res.isSuccess) {
+          watchApiCalled=false;
         } else {
-
+          watchApiCalled=false;
         }
       })
     }
+  }
   }
 
   // this is used to save token earned by watch

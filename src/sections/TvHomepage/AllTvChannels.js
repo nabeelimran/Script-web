@@ -195,13 +195,18 @@ function AllTvChannels({
 
 	useEffect(() => {
 		let videoWatchInterval;
-
-		if (isPlayerReady && playerRef.current) {
+		if(videoWatchInterval){
+			clearInterval(videoWatchInterval);
+		}
+		if (isPlayerReady && playerRef.current && show) {
 			playerRef.current.load();
 			playerRef.current.on("play", () => {
+
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
 				clearInterval(videoWatchInterval);
-				videoWatchInterval = setInterval(() => {
+				if(!videoWatchInterval){
+					videoWatchInterval = setInterval(() => {
+					console.log('interval started')
 					const videoWatchTime = {
 						startTime: videoStartTime,
 						endTime: playerRef.current.duration(),
@@ -223,7 +228,8 @@ function AllTvChannels({
 						}
 						//checkVideoWatchTime(videoWatchTime)
 					}
-				}, 60000);
+					}, 60000);
+				}
 			});
 		}
 		return () => {
