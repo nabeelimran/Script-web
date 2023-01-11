@@ -22,12 +22,14 @@ function EditProfile() {
   const [videoWatchDuration, setVideoWatchDuration] = useState(0);
   const [profileImageFile, setProfileImageFile] = useState(null);
   const navigate = useNavigate();
+  const [profileImage, setProfileImage] = useState('')
 
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, 'dashboard').then((res) => {
       if(res && res.status === 200) {
         console.log(res.data.data);
         setProfile(res.data.data);
+        setProfileImage(res?.data?.data?.profile?.urlProfileImage)
         setValue('username', res?.data?.data?.userName || "")
         setValue('email', res?.data?.data?.email || "")
         setValue('country', res?.data?.data?.profile?.country?.id || "")
@@ -66,9 +68,10 @@ function EditProfile() {
     if (e) {
       const file = e?.target?.files[0] || null;
       if(file) {
-        const imagePreviewEl = document.getElementById('imagePreview');
-        imagePreviewEl.src = URL.createObjectURL(file);
-        setProfileImageFile(file,);
+        // const imagePreviewEl = document.getElementById('imagePreview');
+        // imagePreviewEl.src = URL.createObjectURL(file);
+        setProfileImageFile(file);
+        setProfileImage(URL.createObjectURL(file))
       }
     }
   }
@@ -111,7 +114,7 @@ function EditProfile() {
     req.append("isAccountLocked", profile?.accountLocked);
     req.append("displayName", data.username);
     req.append("dateOfBirth", null);
-    req.append("countryId", data.country);
+    req.append("countryId", +data.country);
     req.append("walletId", null);
     req.append("terms", data.privacyPolicy);
     if(profileImageFile && profileImageFile.name) {
@@ -145,7 +148,8 @@ function EditProfile() {
   return (
     <div className="dashboard-top-spacing dashboard-bottom-spacing dashboard-layout">
       <div className="flex justify-center mb-8">
-        <Avatar selectImage={onSelectFile} image={profile?.profile?.urlProfileImage} />
+        {console.log(profileImage)}
+        <Avatar selectImage={onSelectFile} image={profileImage} />
       </div>
 
       <div>
@@ -192,6 +196,7 @@ function EditProfile() {
               other={{
                 ...register("country", { required: true }),
               }}
+              valueSelected={profile?.profile?.country?.id}
               />
             <div className="sm:col-span-2">
               <FloatingLabelTextarea placeholder="Bio" other={{
