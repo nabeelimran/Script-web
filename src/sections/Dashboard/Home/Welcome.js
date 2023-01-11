@@ -62,6 +62,15 @@ function Welcome({
             <p className="text-xs mb-2">Connect on live chat 5x a week</p>
             <FillBar progress="100%" />
           </div>
+          <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
+            <div className="flex items-center space-x-3 flex-1 mb-2">
+              <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
+              <p className="fs-18px font-semibold">N/A POINTS</p>
+            </div>
+
+            <p className="text-xs mb-2">Accumulate Script Points</p>
+            <FillBar progress="100%" />
+          </div>
         </div>
       </div>
 

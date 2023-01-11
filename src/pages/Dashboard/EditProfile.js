@@ -111,7 +111,7 @@ function EditProfile() {
     req.append("description", null);
     req.append("userName", data.username);
     req.append("email", data.email);
-    req.append("isAccountLocked", profile?.accountLocked);
+    req.append("isAccountLocked", true);
     req.append("displayName", data.username);
     req.append("dateOfBirth", null);
     req.append("countryId", +data.country);
