@@ -100,6 +100,10 @@ function EditProfile() {
   };
 
   const updateProfile = (data) => {
+    if(!userId) {
+      ToastMessage('User Id not found');
+      return;
+    }
     // if(data && !data.privacyPolicy) {
     //   ToastMessage('Please accpet terms and condition');
     //   return;
