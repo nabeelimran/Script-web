@@ -1,11 +1,12 @@
 import { Icon } from "@iconify/react";
 import Button from "components/Button";
 import Title from "components/Title";
+import { ToastMessage } from "components/ToastMessage";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleHistoryModalVisibility } from "redux/reducers/connectWalletModal_State";
 
-function Hero({ handleCollectReward, totalRewardPoints }) {
+function Hero({ handleCollectReward, totalRewardPoints, isLoading, getTotalRewardPoints }) {
   const dispatch = useDispatch();
   return (
     // <section className="container grid lg:grid-cols-2 gap-10 lg:gap-20">
@@ -26,6 +27,8 @@ function Hero({ handleCollectReward, totalRewardPoints }) {
                 handleCollectReward();
               },
             }}
+            loader={isLoading}
+            disable={isLoading === true ? true : false}
           />
           <Button
             label="History"
@@ -46,7 +49,12 @@ function Hero({ handleCollectReward, totalRewardPoints }) {
             <Title className="font-semibold text-primary" variant={24}>
               My Rewards
             </Title>
-            <button>
+            <button onClick={() => {
+              getTotalRewardPoints()
+              setTimeout(() => {
+                ToastMessage('Reward updated!', true);
+              }, 1000)
+              }}>
               <Icon icon="oi:reload" />
             </button>
           </div>
@@ -54,7 +62,7 @@ function Hero({ handleCollectReward, totalRewardPoints }) {
           <Title className="font-semibold">{totalRewardPoints}</Title>
         </div>
         <div className="flex items-end">
-          <img src="../images/reward-coins.png" className="w-full" alt="" />
+          <img src="../images/reward-coins.png" className="w-full" alt=""/>
         </div>
       </div>
     </section>

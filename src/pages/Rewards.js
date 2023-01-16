@@ -1,4 +1,5 @@
 import Footer from "components/Footer";
+import { ToastMessage } from "components/ToastMessage";
 import TvNavbar from "components/TvNavbar";
 import React, { useEffect, useState } from "react";
 import Tip from "sections/Dashboard/Home/Tip";
@@ -14,6 +15,8 @@ function Rewards() {
   const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
   const [rewardHistory, setRewardHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  
 
   const getRewardHistoryList = () => {
     if (user && user.walletAddress) {
@@ -52,20 +55,60 @@ function Rewards() {
   };
 
   const handleCollectReward = async () => {
-    // const latestDayReward = await getLatestDayReward();
-    // console.log(latestDayReward, '==>>');
-    // if(latestDayReward && latestDayReward.isSuccess) {
-    //   if (latestDayReward.data) {
-    //   } else {
-    //   }
-    // } else {
-    // }
-    // helper.trackByMixpanel("Collect Reward Button Clicked",{
-    //   "day": DAY_NUMBER,
-    //   "email" : EMAIL,
-    //   "amount" : REWARD_AMOUNT
-    //   })
+    const latestDayReward = await getLatestDayReward();
+    setIsLoading(true);
+    if(latestDayReward && latestDayReward.isSuccess) {
+      if (latestDayReward.data) {
+        const rewardCollectTimestamp = latestDayReward.data.createdAt;
+        const currentTimestamp = new Date().getTime();
+        if((rewardCollectTimestamp - currentTimestamp) / 3600000 > 24) {
+          collectLoginReward()
+        } else {
+          ToastMessage('Reward is already collected. Please try again after 24 hour.');  
+          setIsLoading(false);
+        }
+      } else {
+        ToastMessage('Unable to fetch user rewards');
+        setIsLoading(false);
+      }
+    } else {
+      collectLoginReward()
+    }
   };
+
+  const collectLoginReward = () => {
+    if(!user) {
+      ToastMessage('User not found');
+      setIsLoading(false);
+      return;
+    }
+    const req = {
+      "dayType": null,
+      "rewardCollected": true,
+      "rewardPoint": 10,
+      "rewardType": "DAILY_SIGN_IN",
+      "userId": user.userId,
+      "username": user.userName,
+      "walletAddress": user.walletAddress,
+    };
+    Api.collectDailyReward(req, "reward-management").then((res) => {
+      if(res && res.status === 200) {
+        setIsLoading(false);
+        helper.trackByMixpanel("Collect Reward Button Clicked",{
+          "day": new Date().getDay() + 1,
+          "email" : user.email,
+          "amount" : 10
+        })
+        getTotalRewardPoints();
+        ToastMessage('Reward collected successfully', true);
+      } else {
+        ToastMessage('Error while collecting reward');
+        setIsLoading(false);
+      }
+    }).catch((err) => {
+      setIsLoading(false);
+    })
+  }
 
   useEffect(() => {
     MixPanelService.init();
@@ -83,6 +126,8 @@ function Rewards() {
         <Hero
           handleCollectReward={handleCollectReward}
           totalRewardPoints={totalRewardPoints}
+          isLoading={isLoading}
+          getTotalRewardPoints={getTotalRewardPoints}
         />
       </div>
 
