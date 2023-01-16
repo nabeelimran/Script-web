@@ -2,13 +2,23 @@ import { APIPATH } from "../constants/index";
 import axios from "axios";
 import { helper } from "../utils/helper";
 import LocalServices from "./LocalServices";
+import * as moment from 'moment';
+import CryptoService from "./CryptoService";
 
 axios.interceptors.request.use(
   (config) => {
     const token = LocalServices.getServices("token");
+    let user = 'scriptNetwork';
+    let nonce = 'ff271e44dd667385581151162f7e71d49e2740f6465f929fd948d12d30fd17bb6a9898b848596960555aa1a020888f7be39b65bad9b82c61d988eb0b0545387a';
+    let currentDate = `${moment().format('DD/MM/YYYY HH:mm:ss.SSS')}`
+    let rawDigest = String.raw`${currentDate}\n${window.location.origin}\n${user}\n${nonce}\n`
+    let digest = CryptoService.encryptHmacSHA256(rawDigest);
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
+    config.headers["userAuth"] = `HmacSHA512 ${user}:${nonce}:${digest}`;
+    config.headers["requestDate"] = currentDate;
+    config.headers["url"] = window.location.origin;
     // config.headers['Content-Type'] = 'application/json';
     return config;
   },

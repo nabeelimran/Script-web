@@ -1,6 +1,6 @@
 export const APIPATH = {
 	// BASEURL: "https://backend.script.tv/api/v1/",
-	BASEURL: "https://stagebackend.script.tv/api/v1/",
+	BASEURL: "https://d432-2405-204-140b-36de-4325-80a5-a2a5-904f.ngrok.io/api/v1/",
 	MARKETURL: "https://api.coingecko.com/api/v3/coins/markets",
 	EXPLORERURL: "https://explorerapi.script.tv/api/",
 	googleFaceId: "project-875901092274",
@@ -22,3 +22,6 @@ export const mixPanelConfig = {
     mixPanelUserToken: 'a17b31503c22481ea191d20c528b3ca1', // for dev
     // mixPanelUserToken: 'dd2031b06ecdcb6925dfbab8a15b501d', // for prod
 }
+
+export const scriptSecret = 'zL1l33JaQSdhX4BIbA76pYYmS3wpx3RXUgIGNSE+Oyc=';
+
