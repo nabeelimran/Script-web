@@ -449,7 +449,7 @@ export default class Api {
     );
   }
 
-  static collectReward(req, screenName) {
+  static collectDailyReward(req, screenName) {
     const options = {
       headers: {
         ipAddress: "dummyData",

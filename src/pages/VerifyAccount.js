@@ -45,6 +45,7 @@ const VerifyAccount = () => {
                 email: otpVerify.data.data.email,
                 userId: otpVerify.data.data.id,
                 walletAddress: otpVerify.data.data.walletAddress,
+                userName: otpVerify.data.data.userName,
               })
             );
 						dispatch(isLogin(true))

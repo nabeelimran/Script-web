@@ -1,4 +1,5 @@
 import Footer from "components/Footer";
+import { ToastMessage } from "components/ToastMessage";
 import TvNavbar from "components/TvNavbar";
 import React, { useEffect, useState } from "react";
 import Tip from "sections/Dashboard/Home/Tip";
@@ -52,20 +53,52 @@ function Rewards() {
   };
 
   const handleCollectReward = async () => {
-    // const latestDayReward = await getLatestDayReward();
-    // console.log(latestDayReward, '==>>');
-    // if(latestDayReward && latestDayReward.isSuccess) {
-    //   if (latestDayReward.data) {
-    //   } else {
-    //   }
-    // } else {
-    // }
+    const latestDayReward = await getLatestDayReward();
+    console.log(latestDayReward, '==>>');
+    if(latestDayReward && latestDayReward.isSuccess) {
+      if (latestDayReward.data) {
+        const rewardCollectTimestamp = latestDayReward.data.createdAt;
+        const currentTimestamp = new Date().getTime();
+        if((rewardCollectTimestamp - currentTimestamp) / 3600000 > 24) {
+          collectLoginReward()
+        } else {
+          ToastMessage('Reward is already collected. Please try again after 24 hour.');  
+        }
+      } else {
+        ToastMessage('Unable to fetch user rewards');
+      }
+    } else {
+      collectLoginReward()
+    }
     // helper.trackByMixpanel("Collect Reward Button Clicked",{
-    //   "day": DAY_NUMBER,
-    //   "email" : EMAIL,
-    //   "amount" : REWARD_AMOUNT
+    //   "day": 'N/A',
+    //   "email" : user.email,
+    //   "amount" : 10
     //   })
   };
+
+  const collectLoginReward = () => {
+    if(!user) {
+      ToastMessage('User not found');
+      return;
+    }
+    const req = {
+      "dayType": null,
+      "rewardCollected": true,
+      "rewardPoint": 10,
+      "rewardType": "DAILY_SIGN_IN",
+      "userId": user.userId,
+      "username": user.userName,
+      "walletAddress": user.walletAddress,
+    };
+    Api.collectDailyReward(req, "reward-management").then((res) => {
+      if(res && res.status === 200) {
+
+      } else {
+
+      }
+    })
+  }
 
   useEffect(() => {
     MixPanelService.init();
