@@ -53,6 +53,10 @@ function HistoryTable() {
         return 'Daily Sign In';
       case 'VIDEO_WATCH': 
         return 'Video Watch'
+      case 'REFERRAL': 
+        return 'Referral'
+      case 'CHAT': 
+        return 'Chat'
       default:
         return rewardType;
     }
