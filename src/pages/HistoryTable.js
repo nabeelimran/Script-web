@@ -2,6 +2,7 @@ import Pagination from "components/pagination";
 import { useEffect, useState } from "react";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import { helper } from "utils/helper";
 
 function HistoryTable() {
   const user = LocalServices.getServices("user");
@@ -46,6 +47,17 @@ function HistoryTable() {
     }
   };
 
+  const transfromRewardType = (rewardType) => {
+    switch (rewardType) {
+      case 'DAILY_SIGN_IN':
+        return 'Daily Sign In';
+      case 'VIDEO_WATCH': 
+        return 'Video Watch'
+      default:
+        return rewardType;
+    }
+  }
+
   useEffect(() => {
     getRewardHistoryList();
   }, [currentPage]);
@@ -61,18 +73,19 @@ function HistoryTable() {
         <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
           <thead>
             <tr>
-              <th className="text-[#ffef00] py-4">Username</th>
-              <th className="text-[#ffef00] py-4">Address</th>
+              <th className="text-[#ffef00] py-4">Reward Type</th>
               <th className="text-[#ffef00] py-4">Reward Point</th>
+              <th className="text-[#ffef00] py-4">Earned At</th>
             </tr>
           </thead>
           <tbody>
             {rewardHistory && rewardHistory.length > 0
               ? rewardHistory.map((data, index) => (
                   <tr key={index}>
-                    <td className="py-4">{data?.username || ""}</td>
-                    <td className="py-4">{data?.walletAddress || ""}</td>
+                    <td className="py-4">{transfromRewardType(data?.rewardType)}</td>
                     <td className="py-4">{data?.rewardPoint || 0}</td>
+                    <td className="py-4">{helper.formatDate(data?.createdAt, 'MMM D/YYYY')}</td>
+                    
                   </tr>
                 ))
               : null}
