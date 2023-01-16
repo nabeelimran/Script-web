@@ -15,6 +15,8 @@ function Rewards() {
   const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
   const [rewardHistory, setRewardHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  
 
   const getRewardHistoryList = () => {
     if (user && user.walletAddress) {
@@ -54,7 +56,7 @@ function Rewards() {
 
   const handleCollectReward = async () => {
     const latestDayReward = await getLatestDayReward();
-    console.log(latestDayReward, '==>>');
+    setIsLoading(true);
     if(latestDayReward && latestDayReward.isSuccess) {
       if (latestDayReward.data) {
         const rewardCollectTimestamp = latestDayReward.data.createdAt;
@@ -63,23 +65,21 @@ function Rewards() {
           collectLoginReward()
         } else {
           ToastMessage('Reward is already collected. Please try again after 24 hour.');  
+          setIsLoading(false);
         }
       } else {
         ToastMessage('Unable to fetch user rewards');
+        setIsLoading(false);
       }
     } else {
       collectLoginReward()
     }
-    // helper.trackByMixpanel("Collect Reward Button Clicked",{
-    //   "day": 'N/A',
-    //   "email" : user.email,
-    //   "amount" : 10
-    //   })
   };
 
   const collectLoginReward = () => {
     if(!user) {
       ToastMessage('User not found');
+      setIsLoading(false);
       return;
     }
     const req = {
@@ -93,10 +93,20 @@ function Rewards() {
     };
     Api.collectDailyReward(req, "reward-management").then((res) => {
       if(res && res.status === 200) {
-
+        setIsLoading(false);
+        helper.trackByMixpanel("Collect Reward Button Clicked",{
+          "day": new Date().getDay() + 1,
+          "email" : user.email,
+          "amount" : 10
+        })
+        getTotalRewardPoints();
+        ToastMessage('Reward collected successfully', true);
       } else {
-
+        ToastMessage('Error while collecting reward');
+        setIsLoading(false);
       }
+    }).catch((err) => {
+      setIsLoading(false);
     })
   }
 
@@ -116,6 +126,8 @@ function Rewards() {
         <Hero
           handleCollectReward={handleCollectReward}
           totalRewardPoints={totalRewardPoints}
+          isLoading={isLoading}
+          getTotalRewardPoints={getTotalRewardPoints}
         />
       </div>
 
