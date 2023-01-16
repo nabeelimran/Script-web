@@ -35,7 +35,6 @@ function Hero({ handleCollectReward, totalRewardPoints, isLoading, getTotalRewar
             variant={3}
             buttonProps={{
               onClick: () => {
-                handleCollectReward();
                 dispatch(toggleHistoryModalVisibility(true));
               },
             }}
