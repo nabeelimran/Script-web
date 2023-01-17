@@ -48,6 +48,10 @@ function ConnectWalletModal() {
 		helper.trackByMixpanel('Wallet Connect Button Clicked', {});
 	}
 
+	const spaceIdConnectHandler = () => {
+
+	}
+
 	const metaMaskHandler = async () => {
 		helper.trackByMixpanel('Metamask Button Clicked', {});
 		
@@ -330,6 +334,11 @@ function ConnectWalletModal() {
 								img='images/wallet-connect.svg'
 								title='Walletconnet'
 								clickEvent={walletConnectHandler}
+							/>
+							<ConnectWalletButton
+								img='images/space_id_logo.png'
+								title='Space ID'
+								clickEvent={spaceIdConnectHandler}
 							/>
 						</div>
 
