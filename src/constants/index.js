@@ -5,6 +5,7 @@ export const APIPATH = {
 	EXPLORERURL: "https://explorerapi.script.tv/api/",
 	googleFaceId: "project-875901092274",
 	SOCKETURL: "https://chat.script.tv/",
+    SIDURL: "https://api.prd.space.id/v1/"
 };
 
 export const  firebaseConfig = {

@@ -20,9 +20,10 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import auth from "auth/firebase";
 import {GoogleAuthProvider,signInWithPopup,getAuth,TwitterAuthProvider} from "firebase/auth"
-import { detectBrowser, helper } from "utils/helper";
+import { detectBrowser, helper, metamaskNetwork } from "utils/helper";
 import MixPanelService from "services/mixPanelService";
 import { isLogin } from "redux/reducers/login_state";
+import SpaceID from "services/SpaceIDService";
 
 function ConnectWalletModal() {
 	const navigate = useNavigate();
@@ -48,7 +49,27 @@ function ConnectWalletModal() {
 		helper.trackByMixpanel('Wallet Connect Button Clicked', {});
 	}
 
-	const spaceIdConnectHandler = () => {
+	const spaceIdConnectHandler = async () => {
+		helper.comingSoonNotification();
+		return;
+		if (!window.ethereum) {
+			ToastMessage("Install Metamask");
+			return;
+		}
+		const walletAddress = await MetamaskService.connectHandler();
+		if(walletAddress) {
+			const chainId = await MetamaskService.getChainId();
+			if(chainId && chainId !== metamaskNetwork.spaceID.chainId) {
+				await MetamaskService.changeChain("spaceID");
+			}
+			SpaceID.getSIDName(walletAddress).then((res) => {
+				if(res && res.status === 200) {
+					console.log(res);
+				}
+			});
+			// console.log(bnbName);
+		}
+
 
 	}
 

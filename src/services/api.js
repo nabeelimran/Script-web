@@ -16,9 +16,11 @@ axios.interceptors.request.use(
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
-    config.headers["userAuth"] = `HmacSHA512 ${user}:${nonce}:${digest}`;
-    config.headers["requestDate"] = currentDate;
-    config.headers["url"] = window.location.origin;
+    if(!config.url.includes(APIPATH.SIDURL)) {
+      config.headers["userAuth"] = `HmacSHA512 ${user}:${nonce}:${digest}`;
+      config.headers["requestDate"] = currentDate;
+      config.headers["url"] = window.location.origin;
+    }
     // config.headers['Content-Type'] = 'application/json';
     return config;
   },
