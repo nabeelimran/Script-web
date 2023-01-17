@@ -11,7 +11,7 @@ function StreamComment({item}) {
       <div className="space-y-1 md:space-y-[2px] flex-1">
         <div className="flex items-center justify-between">
           <p className="text-xs md:text-sm font-medium">{item.userName}</p>
-          <p className="text-xs">{moment(new Date(item.commentDate)).format("hh:mm A")}</p>
+          <p className="text-xs">{moment(new Date(item.commentDate)).format("MM/D/YY HH:mm")}</p>
         </div>
 
         <p className="text-xs md:text-sm text-ellipsis">{item.msg || item.comment}</p>

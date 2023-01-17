@@ -138,6 +138,17 @@ export const metamaskNetwork = {
         decimals: 18
       },
       blockExplorerUrls: ['https://explorer.script.tv/']
+    },
+    spaceID: {
+      chainName: 'Smart Chain',
+      rpcUrls: ['https://bsc-dataseed.binance.org/'],
+      chainId: `0x${Number(56).toString(16)}`,
+      nativeCurrency: {
+        name: 'BNB',
+        symbol: 'BNB',
+        decimals: 18
+      },
+      blockExplorerUrls: ['https://bscscan.com']
     }
 }
 
