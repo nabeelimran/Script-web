@@ -51,6 +51,12 @@ import TableModal from "components/TableModal";
 import GlassListingPopup from "components/GlassListingPopup";
 
 function App() {
+  try {
+    console.log("init mixpanel");
+    MixPanelService.init();
+  } catch (error) {
+    console.log("error while connecting mixpanel", error);
+  }
   useEffect(() => {
     try {
       console.log("init mixpanel");

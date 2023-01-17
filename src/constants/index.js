@@ -22,3 +22,6 @@ export const mixPanelConfig = {
     // mixPanelUserToken: 'a17b31503c22481ea191d20c528b3ca1', // for dev
     mixPanelUserToken: 'dd2031b06ecdcb6925dfbab8a15b501d', // for prod
 }
+
+export const scriptSecret = 'zL1l33JaQSdhX4BIbA76pYYmS3wpx3RXUgIGNSE+Oyc=';
+

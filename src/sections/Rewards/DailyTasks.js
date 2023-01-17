@@ -13,9 +13,9 @@ const Row = ({ title, score, subtitle }) => {
         <p className="fs-16px">{score}</p>
       </div>
 
-      <div className="rounded bg-[#161616] py-1 px-4 w-full lg:w-auto">
+      {/* <div className="rounded bg-[#161616] py-1 px-4 w-full lg:w-auto">
         <p className="fs-16px text-center">{subtitle}</p>
-      </div>
+      </div> */}
     </div>
   );
 }; 
