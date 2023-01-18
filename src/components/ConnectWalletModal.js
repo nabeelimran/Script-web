@@ -23,7 +23,6 @@ import {GoogleAuthProvider,signInWithPopup,getAuth,TwitterAuthProvider} from "fi
 import { detectBrowser, helper, metamaskNetwork } from "utils/helper";
 import MixPanelService from "services/mixPanelService";
 import { isLogin } from "redux/reducers/login_state";
-import SpaceID from "services/SpaceIDService";
 
 function ConnectWalletModal() {
 	const navigate = useNavigate();
