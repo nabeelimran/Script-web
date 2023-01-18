@@ -20,7 +20,7 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import auth from "auth/firebase";
 import {GoogleAuthProvider,signInWithPopup,getAuth,TwitterAuthProvider} from "firebase/auth"
-import { detectBrowser, helper } from "utils/helper";
+import { detectBrowser, helper, metamaskNetwork } from "utils/helper";
 import MixPanelService from "services/mixPanelService";
 import { isLogin } from "redux/reducers/login_state";
 
@@ -46,6 +46,61 @@ function ConnectWalletModal() {
 
 	const walletConnectHandler = () => {
 		helper.trackByMixpanel('Wallet Connect Button Clicked', {});
+	}
+
+	const spaceIdConnectHandler = async () => {
+		if (!window.ethereum) {
+			ToastMessage("Install Metamask");
+			return;
+		}
+		const walletAddress = await MetamaskService.connectHandler();
+		if(walletAddress) {
+			const chainId = await MetamaskService.getChainId();
+			if(chainId && chainId !== metamaskNetwork.spaceID.chainId) {
+				await MetamaskService.changeChain("spaceID");
+			}
+			Api.getSpaceIDName(walletAddress).then((res) => {
+				if(res && res.status === 200) {
+					if(!res?.data?.data?.name) {
+						ToastMessage('BNB username is not found');
+						return;
+					}
+					const req = {
+						walletAddress,
+						username: res.data.data.name
+					}
+					Api.loginWithSpaceID(req).then((resp) => {
+						if(resp && resp.status === 200) {
+							ToastMessage(`${resp?.data?.data?.message}`, true);
+							if (resp.data.data.authToken) {
+								sessionStorage.setItem(
+									"script-token",
+									JSON.stringify(resp.data.data.authToken)
+								);
+							}
+	
+							sessionStorage.setItem(
+								"userInfo",
+								JSON.stringify({
+									email: resp?.data?.data?.email || '',
+									userId: resp.data.data.id,
+									walletAddress: resp.data.data.walletAddress,
+									userName:resp.data.data.userName
+								})
+							);
+							dispatch(isLogin(true))
+							navigate({
+								pathname: "/tv",
+							});
+						} else {
+							ToastMessage('Unable to login');
+						}
+					})
+				}
+			})
+		}
+
+
 	}
 
 	const metaMaskHandler = async () => {
@@ -331,6 +386,11 @@ function ConnectWalletModal() {
 								title='Walletconnet'
 								clickEvent={walletConnectHandler}
 							/>
+							{/* <ConnectWalletButton
+								img='images/space_id_logo.png'
+								title='Space ID'
+								clickEvent={spaceIdConnectHandler}
+							/> */}
 						</div>
 
 						<div>

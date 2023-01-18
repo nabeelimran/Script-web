@@ -16,9 +16,11 @@ axios.interceptors.request.use(
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
-    config.headers["userAuth"] = `HmacSHA512 ${user}:${nonce}:${digest}`;
-    config.headers["requestDate"] = currentDate;
-    config.headers["url"] = window.location.origin;
+    if(!config.url.includes(APIPATH.SIDURL)) {
+      config.headers["userAuth"] = `HmacSHA512 ${user}:${nonce}:${digest}`;
+      config.headers["requestDate"] = currentDate;
+      config.headers["url"] = window.location.origin;
+    }
     // config.headers['Content-Type'] = 'application/json';
     return config;
   },
@@ -627,6 +629,18 @@ export default class Api {
     return axios.get(
       `${APIPATH.BASEURL}getGlasses`,
       options
+    );
+  }
+
+  static getSpaceIDName(walletAddress) {
+    return axios.get(
+      `${APIPATH.BASEURL}getNameBySpaceId?walletAddress=${walletAddress}`
+    );
+  }
+
+  static loginWithSpaceID(req) {
+    return axios.post(
+      `${APIPATH.BASEURL}loginWithSpaceId`, req
     );
   }
 }

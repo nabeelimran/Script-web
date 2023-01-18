@@ -20,6 +20,10 @@ const useLiveChat = (currentShow) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		getMessages();
+	}, [])
+
+	useEffect(() => {
 		if (token) {
 			socketRef.current = socketIOClient(APIPATH.SOCKETURL, {});
 			//socketRef.current.connect()

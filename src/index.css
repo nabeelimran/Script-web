@@ -669,3 +669,9 @@ video-js .vjs-picture-in-picture-control {
   background-color: #e2e2e2;
   color: #e2e2e2;
 }
+
+aside.EmojiPickerReact.epr-main {
+  position: absolute !important;
+  z-index: 1000 !important;
+  bottom: 15% !important;
+}
