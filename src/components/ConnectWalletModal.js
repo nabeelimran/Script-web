@@ -388,7 +388,7 @@ function ConnectWalletModal() {
 							/>
 							<ConnectWalletButton
 								img='images/space_id_logo.png'
-								title='Space ID'
+								title='.BNB Domain'
 								clickEvent={spaceIdConnectHandler}
 							/>
 						</div>
