@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { helper } from "utils/helper";
 
 const channels = [
@@ -31,6 +31,15 @@ const ChannelBox = ({ img, label, to = "/" }) => {
 
 const ChannelsDropdownBody = (
   ) => {
+
+  const navigate = useNavigate();
+
+  const handleWatchLive = (channelId) => {
+    navigate({
+      pathname:  "/watch",
+      search: `?channelId=${channelId}`,
+    })
+  }
   
   return (
     // <div className="bg-blue-3 rounded-lg grid lg:grid-cols-[230px,1fr] lg:p-0 gap-6 lg:gap-0 py-4 lg:py-0">
@@ -60,6 +69,9 @@ const ChannelsDropdownBody = (
                   key={i}
                   alt="abc"
                   className={`lg:mx-3 lg:my-3 ${item.className}`}
+                  // onClick={() => {
+                  //   handleWatchLive(item.id)
+                  // }}
                 />
               ))
             : null}

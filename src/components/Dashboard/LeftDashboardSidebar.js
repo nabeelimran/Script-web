@@ -31,8 +31,8 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
     ).then(() => {});
     sessionStorage.clear();
     ToastMessage("Logout successfully", true);
-dispatch(resetEarnedToken(0))
-dispatch(isLogin(false))
+    dispatch(resetEarnedToken(0))
+    dispatch(isLogin(false))
     navigate({
       pathname: "/tv",
     });
