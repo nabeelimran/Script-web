@@ -49,6 +49,7 @@ import CategoryDetail from "pages/CategoryDetail";
 import ReportIssue from "pages/ReportIssue";
 import TableModal from "components/TableModal";
 import GlassListingPopup from "components/GlassListingPopup";
+import Download from "pages/Download";
 
 function App() {
   try {
@@ -78,6 +79,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
+        <Route path="/download" element={<Download />} />
         <Route path="/token" element={<TokenPage />} />
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/node" element={<Validator />} />
