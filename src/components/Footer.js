@@ -23,6 +23,7 @@ function Footer({ container = "container-two" }) {
         { title: "Run a node", to: "/node" },
         { title: "FAQ", to: "/faq" },
         { title: "Report Issue", to: "/report-issue" },
+        { title: "Download", to: "/download" },
       ],
     },
     {

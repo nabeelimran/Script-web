@@ -53,7 +53,7 @@ function ConnectWalletModal() {
 			ToastMessage("Install Metamask");
 			return;
 		}
-		const walletAddress = await MetamaskService.connectHandler();
+		let walletAddress = await MetamaskService.connectHandler();
 		if(walletAddress) {
 			const chainId = await MetamaskService.getChainId();
 			if(chainId && chainId !== metamaskNetwork.spaceID.chainId) {
@@ -72,6 +72,7 @@ function ConnectWalletModal() {
 					Api.loginWithSpaceID(req).then((resp) => {
 						if(resp && resp.status === 200) {
 							ToastMessage(`${resp?.data?.data?.message}`, true);
+							dispatch(toggleModalVisibility(false));
 							if (resp.data.data.authToken) {
 								sessionStorage.setItem(
 									"script-token",
