@@ -384,7 +384,7 @@ function ConnectWalletModal() {
 							/>
 							<ConnectWalletButton
 								img='images/wallet-connect.svg'
-								title='Walletconnet'
+								title='Wallet Connect'
 								clickEvent={walletConnectHandler}
 							/>
 							<ConnectWalletButton
