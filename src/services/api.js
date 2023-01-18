@@ -639,9 +639,8 @@ export default class Api {
   }
 
   static loginWithSpaceID(req) {
-    const {walletAddress, username} = req;
     return axios.post(
-      `${APIPATH.BASEURL}loginWithSpaceId?walletAddress=${walletAddress}&username=${username}`, {}
+      `${APIPATH.BASEURL}loginWithSpaceId`, req
     );
   }
 }
