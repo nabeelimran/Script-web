@@ -48,7 +48,6 @@ const useLiveChat = (currentShow) => {
 	//Function to get previous messages from db
 	const getMessages = () => {
 		if (currentShow.videoId) {
-			debugger
 			Api.getCommentByVideoId(currentShow.videoId, 1, "video-details")
 				.then((result) => {
                    
