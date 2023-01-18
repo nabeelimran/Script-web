@@ -81,7 +81,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
           />
           <PageLink
             link="share-referral"
-            label="Share Referral"
+            label="Share Referral Code"
             img="share.svg"
             onClick={() => setter(false)}
           />

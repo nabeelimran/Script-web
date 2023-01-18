@@ -30,7 +30,7 @@ const TableModal = () => {
               : "opacity-0 pointer-events-none top-[40%]"
           }`}
         >
-          <HistoryTable />
+          <HistoryTable isHistoryTableModal={isHistoryTableModal}/>
         </section>
       </UpperRoot>
     </>

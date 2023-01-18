@@ -4,7 +4,9 @@ import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { helper } from "utils/helper";
 
-function HistoryTable() {
+function HistoryTable({
+  isHistoryTableModal
+}) {
   const user = LocalServices.getServices("user");
   const [rewardHistory, setRewardHistory] = useState([]);
 
@@ -64,11 +66,8 @@ function HistoryTable() {
 
   useEffect(() => {
     getRewardHistoryList();
-  }, [currentPage]);
+  }, [currentPage, isHistoryTableModal]);
 
-  useEffect(() => {
-    getRewardHistoryList();
-  }, []);
 
   return (
     <>

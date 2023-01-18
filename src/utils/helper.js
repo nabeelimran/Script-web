@@ -71,7 +71,7 @@ export const helper = {
       }
       return result;
     },
-    formatDate: (date, format) => moment(date).format(format),
+    formatDate: (date, format) => moment(date).utc().format(format),
     getISOString: () => moment().toISOString(),
     comingSoonNotification: (e) => {
       if(e) {
