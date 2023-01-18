@@ -47,11 +47,11 @@ function DailyTasks() {
 
       <div className="py-4">
         <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
-          Watch 1 hour of content per day
+          Watch 3 hour of content per day
         </Title>
 
         <Row
-          score="30"
+          score="100"
           subtitle="0/1 joined to collect 10 rewards"
           title={
             <>
@@ -80,7 +80,7 @@ function DailyTasks() {
             Share Referral
         </Title>
         <Row
-          score="30"
+          score="20"
           subtitle="0/1 joined to collect 30 rewards"
           title={
             <>
@@ -100,7 +100,7 @@ function DailyTasks() {
           Speak in the live chat room
         </Title>
 
-        <Row score="10" subtitle="0/3 completed" title="available soon" />
+        <Row score="2" subtitle="0/3 completed" title="available soon" />
       </div>
     </section>
   );

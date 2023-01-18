@@ -50,8 +50,6 @@ function ConnectWalletModal() {
 	}
 
 	const spaceIdConnectHandler = async () => {
-		helper.comingSoonNotification();
-		return;
 		if (!window.ethereum) {
 			ToastMessage("Install Metamask");
 			return;
@@ -62,12 +60,45 @@ function ConnectWalletModal() {
 			if(chainId && chainId !== metamaskNetwork.spaceID.chainId) {
 				await MetamaskService.changeChain("spaceID");
 			}
-			SpaceID.getSIDName(walletAddress).then((res) => {
+			Api.getSpaceIDName(walletAddress).then((res) => {
 				if(res && res.status === 200) {
-					console.log(res);
+					if(!res?.data?.data?.name) {
+						ToastMessage('BNB username is not found');
+						return;
+					}
+					const req = {
+						walletAddress,
+						username: res.data.data.name
+					}
+					Api.loginWithSpaceID(req).then((resp) => {
+						if(resp && resp.status === 200) {
+							ToastMessage(`${resp?.data?.data?.message}`, true);
+							if (resp.data.data.authToken) {
+								sessionStorage.setItem(
+									"script-token",
+									JSON.stringify(resp.data.data.authToken)
+								);
+							}
+	
+							sessionStorage.setItem(
+								"userInfo",
+								JSON.stringify({
+									email: resp?.data?.data?.email || '',
+									userId: resp.data.data.id,
+									walletAddress: resp.data.data.walletAddress,
+									userName:resp.data.data.userName
+								})
+							);
+							dispatch(isLogin(true))
+							navigate({
+								pathname: "/tv",
+							});
+						} else {
+							ToastMessage('Unable to login');
+						}
+					})
 				}
-			});
-			// console.log(bnbName);
+			})
 		}
 
 

@@ -631,4 +631,17 @@ export default class Api {
       options
     );
   }
+
+  static getSpaceIDName(walletAddress) {
+    return axios.get(
+      `${APIPATH.BASEURL}getNameBySpaceId?walletAddress=${walletAddress}`
+    );
+  }
+
+  static loginWithSpaceID(req) {
+    const {walletAddress, username} = req;
+    return axios.post(
+      `${APIPATH.BASEURL}loginWithSpaceId?walletAddress=${walletAddress}&username=${username}`, {}
+    );
+  }
 }
