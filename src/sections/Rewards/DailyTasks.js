@@ -97,6 +97,26 @@ function DailyTasks() {
 
       <div className="py-4">
         <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
+            Receiver of referral
+        </Title>
+        <Row
+          score="2"
+          subtitle="0/1 joined to collect 30 rewards"
+          title={
+            <>
+              Head to the Share Referral {" "}
+              <Link to="/dashboard/share-referral" className="text-primary underline">
+                here
+              </Link>
+            </>
+          }
+        />
+      </div>
+
+      <DividerLine />
+
+      <div className="py-4">
+        <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
           Speak in the live chat room
         </Title>
 
