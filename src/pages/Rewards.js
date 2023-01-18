@@ -64,7 +64,7 @@ function Rewards() {
         if((rewardCollectTimestamp - currentTimestamp) / 3600000 > 24) {
           collectLoginReward()
         } else {
-          ToastMessage('Reward is already collected. Please try again after 24 hour.');  
+          ToastMessage('Reward is already collected. Please try again after 24 hours.');  
           setIsLoading(false);
         }
       } else {
