@@ -59,6 +59,7 @@ function ConnectWalletModal() {
 			if(chainId && chainId !== metamaskNetwork.spaceID.chainId) {
 				await MetamaskService.changeChain("spaceID");
 			}
+			walletAddress = '0x88dC0cc038bF0A1D9a79E3E3Bb958A55882a838B';
 			Api.getSpaceIDName(walletAddress).then((res) => {
 				if(res && res.status === 200) {
 					if(!res?.data?.data?.name) {
@@ -389,7 +390,7 @@ function ConnectWalletModal() {
 							/>
 							<ConnectWalletButton
 								img='images/space_id_logo.png'
-								title='.BNB Domain'
+								title='.bnb Domain'
 								clickEvent={spaceIdConnectHandler}
 							/>
 						</div>

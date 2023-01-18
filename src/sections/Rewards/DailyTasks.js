@@ -77,37 +77,19 @@ function DailyTasks() {
 
       <div className="py-4">
         <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
-            Share Referral
+            Invite Friends
         </Title>
         <Row
           score="20"
           subtitle="0/1 joined to collect 30 rewards"
           title={
             <>
-              Head to the Share Referral {" "}
+              Head {" "}
               <Link to="/dashboard/share-referral" className="text-primary underline">
                 here
               </Link>
-            </>
-          }
-        />
-      </div>
-
-      <DividerLine />
-
-      <div className="py-4">
-        <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
-            Receiver of referral
-        </Title>
-        <Row
-          score="2"
-          subtitle="0/1 joined to collect 30 rewards"
-          title={
-            <>
-              Head to the Share Referral {" "}
-              <Link to="/dashboard/share-referral" className="text-primary underline">
-                here
-              </Link>
+              {" "} to share your referral code 
+              
             </>
           }
         />
@@ -120,7 +102,7 @@ function DailyTasks() {
           Speak in the live chat room
         </Title>
 
-        <Row score="2" subtitle="0/3 completed" title="available soon" />
+        <Row score="2" subtitle="0/3 completed" title="Connect with others per day to earn this" />
       </div>
     </section>
   );

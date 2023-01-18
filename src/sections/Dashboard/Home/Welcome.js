@@ -1,17 +1,37 @@
 import FillBar from "components/FillBar";
 import Title from "components/Title";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Api from "services/api";
+import LocalServices from "services/LocalServices";
 
 function Welcome({
   profile
 }) {
-
+  const user = LocalServices.getServices("user");
+  const [totalRewardPoints, setTotalRewardPoints] = useState(0);
   const navigate = useNavigate();
 
   const goToTVSite = () => navigate({
     pathname: '/tv',
   });
+
+
+  const getTotalRewardPoints = () => {
+    if (user && user.walletAddress) {
+      Api.getMyRewardPointTotal(user.walletAddress, "reward-management").then(
+        (res) => {
+          if (res && res.status === 200) {
+            setTotalRewardPoints(res.data.data.myRewards);
+          }
+        }
+      );
+    }
+  };
+
+  useEffect(() => {
+    getTotalRewardPoints();
+  }, []);
 
   return (
     <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10">
@@ -65,7 +85,9 @@ function Welcome({
           <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
             <div className="flex items-center space-x-3 flex-1 mb-2">
               <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
-              <p className="fs-18px font-semibold">N/A POINTS</p>
+              <p className="fs-18px font-semibold">
+                { totalRewardPoints ? `${totalRewardPoints} POINTS` : `N/A POINTS` }
+              </p>
             </div>
 
             <p className="text-xs mb-2">Accumulate Script Points</p>
