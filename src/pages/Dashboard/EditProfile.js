@@ -199,13 +199,13 @@ function EditProfile() {
               error={errors.email && "This field is requird. Please enter e-mail address."}
               disabledInput={true}
               />
-            <FloatingLabelSelect
+            {/* <FloatingLabelSelect
               label="Country" options={countryList}
               other={{
                 ...register("country", { required: true }),
               }}
               valueSelected={profile?.profile?.country?.id}
-              />
+              /> */}
             <div className="sm:col-span-2">
               <FloatingLabelTextarea placeholder="Bio" other={{
                 ...register("bio"),
