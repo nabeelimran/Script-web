@@ -51,14 +51,14 @@ function LeaderBoard() {
       <h2 className="text-center text-4xl py-10">LeaderBoard</h2>
       <div className="bg-[#161616] container rounded-xl">
         <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
-          <thead>
+          {/* <thead>
             <tr>
               <th className="text-[#ffef00] text-xl w-3/4 py-4">
                 Top Accounts
               </th>
               <th className="text-[#ffef00] py-4">Total Accounts: {totalData || 0}</th>
             </tr>
-          </thead>
+          </thead> */}
           <thead>
             <tr>
               <th className="text-[#ffef00] py-4">Address</th>
