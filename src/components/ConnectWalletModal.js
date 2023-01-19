@@ -387,11 +387,11 @@ function ConnectWalletModal() {
 								title='Wallet Connect'
 								clickEvent={walletConnectHandler}
 							/>
-							{/* <ConnectWalletButton
+							<ConnectWalletButton
 								img='images/space_id_logo.png'
 								title='.bnb Domain'
 								clickEvent={spaceIdConnectHandler}
-							/> */}
+							/>
 						</div>
 
 						<div>
