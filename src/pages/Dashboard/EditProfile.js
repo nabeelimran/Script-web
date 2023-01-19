@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "components/ToastMessage";
+import { isBnbUser } from "utils/helper";
 
 function EditProfile() {
 
@@ -27,9 +28,12 @@ function EditProfile() {
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, 'dashboard').then((res) => {
       if(res && res.status === 200) {
-        console.log(res.data.data);
         setProfile(res.data.data);
-        setProfileImage(res?.data?.data?.profile?.urlProfileImage)
+        if(isBnbUser()) {
+          setProfileImage("/images/bnb-default-avatar.png");
+        } else {
+          setProfileImage(res?.data?.data?.profile?.urlProfileImage)
+        }
         setValue('username', res?.data?.data?.userName || "")
         setValue('email', res?.data?.data?.email || "")
         setValue('country', res?.data?.data?.profile?.country?.id || "")
