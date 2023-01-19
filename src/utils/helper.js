@@ -1,5 +1,6 @@
 import { ToastMessage } from 'components/ToastMessage';
 import moment from 'moment'
+import LocalServices from 'services/LocalServices';
 import MixPanelService from 'services/mixPanelService';
 export const helper = {
     percentFormat: (num) => num.toFixed(4).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1'),
@@ -178,3 +179,11 @@ export const detectBrowser = () => {
     return 'unknown';
   }
 }
+
+export const isBnbUser = () => {
+  const user = LocalServices.getServices('user') || null;
+  if(user && user.userName && user.userName.includes('.bnb')) {
+    return true;
+  }
+  return false
+};
