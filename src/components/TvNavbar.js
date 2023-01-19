@@ -14,7 +14,8 @@ import HelpDropdown from "./HelpDropdown";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import { useDispatch } from "react-redux";
 import Api from "services/api";
-import { helper } from "utils/helper";
+import { helper, isBnbUser } from "utils/helper";
+import LocalServices from "services/LocalServices";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -42,6 +43,7 @@ function TvNavbar({ className }) {
   }, [isSidebarVisible]);
 
   const checkToken = () => sessionStorage.getItem('script-token') || null;
+  
   const goToDashboard = () => navigate({
     pathname: '/dashboard',
   });
@@ -179,7 +181,9 @@ function TvNavbar({ className }) {
                 checkToken() ? (
                   <div className="w-[34px] rounded-full h-[34px] relative" onClick={goToDashboard}>
                     <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
-                    <img src="/images/dashboard/user.png" className="rounded-full w-full" alt="" />
+                    <img src={
+                      isBnbUser() ? "/images/bnb-default-avatar.png" : "/images/dashboard/user.png"
+                    } className="rounded-full w-full" alt="" />
                   </div>
                 ) : (
                   <Button

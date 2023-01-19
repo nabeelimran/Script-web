@@ -71,7 +71,7 @@ function ConnectWalletModal() {
 					}
 					Api.loginWithSpaceID(req).then((resp) => {
 						if(resp && resp.status === 200) {
-							ToastMessage(`${resp?.data?.data?.message}`, true);
+							ToastMessage(`${resp?.data?.message}`, true);
 							dispatch(toggleModalVisibility(false));
 							if (resp.data.data.authToken) {
 								sessionStorage.setItem(
@@ -86,7 +86,7 @@ function ConnectWalletModal() {
 									email: resp?.data?.data?.email || '',
 									userId: resp.data.data.id,
 									walletAddress: resp.data.data.walletAddress,
-									userName:resp.data.data.userName
+									userName:resp.data.data.username
 								})
 							);
 							dispatch(isLogin(true))
