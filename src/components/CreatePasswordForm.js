@@ -24,6 +24,7 @@ function CreatePasswordForm() {
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors },
   } = useForm({
@@ -73,6 +74,10 @@ function CreatePasswordForm() {
     if (loginW.data.message === "Please verify your account.") {
       setLoading(false);
       dispatch(togglePasswordModalVisibility(false));
+      reset({
+        password: "",
+        confirm_password: "",
+      })
       navigate({
         pathname: "/verify-account",
         search: `?email=${user.email}`,
@@ -97,6 +102,10 @@ function CreatePasswordForm() {
         ToastMessage(`${loginW.data.message}`, true);
 
         dispatch(togglePasswordModalVisibility(false));
+        reset({
+          password: "",
+          confirm_password: "",
+        })
       } else {
         ToastMessage("something went wrong");
         loading(false);
