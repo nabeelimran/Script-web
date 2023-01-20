@@ -12,6 +12,8 @@ import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "components/ToastMessage";
 import { isBnbUser } from "utils/helper";
+import { useDispatch } from "react-redux";
+import { updateProfileImage } from "redux/reducers/Profile_State";
 
 function EditProfile() {
 
@@ -24,6 +26,7 @@ function EditProfile() {
   const [profileImageFile, setProfileImageFile] = useState(null);
   const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState('')
+  const dispatch = useDispatch();
 
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, 'dashboard').then((res) => {
@@ -131,6 +134,7 @@ function EditProfile() {
     
     Api.updateProfile(req, 'edit-profile').then(res => {
       if(res && res.status === 200) {
+        dispatch(updateProfileImage(true))
         navigate({
           pathname: "/dashboard",
         })

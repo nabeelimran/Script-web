@@ -18,6 +18,7 @@ function RightDashboardSidebar({
   const { getter, setter } = state;
   const sidebarRef = OutsideClickDetector(() => setter && setter(false));
   const token = LocalServices.getServices("token");
+  
 
   return (
     <UpperRoot>
