@@ -12,7 +12,7 @@ import UpperRoot from "./UpperRoot";
 import ChannelsDropdown from "./ChannelsDropdown";
 import HelpDropdown from "./HelpDropdown";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Api from "services/api";
 import { helper, isBnbUser } from "utils/helper";
 import LocalServices from "services/LocalServices";
@@ -20,7 +20,10 @@ import LocalServices from "services/LocalServices";
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
+  const userId = LocalServices.getServices("user")?.userId || null;
+  const {updateProfileState} = useSelector(state => state.Profile_State);
   const location = useLocation();
+  const [profile, setProfile] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [channels,  setChannels] = useState([]);
@@ -32,6 +35,20 @@ function TvNavbar({ className }) {
       }
     })
   }
+
+  const viewUserProfile = (userId) => {
+    Api.viewUserProfile(userId, 'dashboard').then((res) => {
+      if(res && res.status === 200) {
+        setProfile(res.data.data);
+      }
+    })
+  }
+
+  useEffect(() => {
+    if(userId) {
+      viewUserProfile(userId)
+    }
+  }, [updateProfileState])
 
   useEffect(() => {
     getChannels();
@@ -182,7 +199,7 @@ function TvNavbar({ className }) {
                   <div className="w-[34px] rounded-full h-[34px] relative" onClick={goToDashboard}>
                     <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
                     <img src={
-                      isBnbUser() ? "/images/bnb-default-avatar.png" : "/images/dashboard/user.png"
+                      isBnbUser() ? "/images/bnb-default-avatar.png" : profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/dashboard/user.png"
                     } className="rounded-full w-full" alt="" />
                   </div>
                 ) : (

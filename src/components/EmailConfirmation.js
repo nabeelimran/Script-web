@@ -30,6 +30,7 @@ function EmailConfirmation() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm({
     email: "",
@@ -83,6 +84,11 @@ function EmailConfirmation() {
           dispatch(userInfo({email:data.email,username:data.nickname,referal:data.refral}))
           dispatch(metamaskSignature(signeture));
           dispatch(toggleEmailModalVisibility(false));
+          reset({
+            email: "",
+            nickname: "",
+            refral: "",
+          });
           dispatch(togglePasswordModalVisibility(true));
         setLoading(false)
 

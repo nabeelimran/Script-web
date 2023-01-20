@@ -3,6 +3,7 @@ import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import Title from "components/Title";
 import React from "react";
+import JoinOurCommunity from "sections/HomePage/JoinOurCommunity";
 import CoreTeam from "sections/Research/CoreTeam";
 import ExistingProducts from "sections/Research/ExistingProducts";
 import Hero from "sections/Research/Hero";
@@ -129,6 +130,10 @@ function Research() {
 
       <div className="mb-20 lg:mb-20">
         <UpdatedRoadmap />
+      </div>
+
+      <div className="mb-20 lg:mb-24 container">
+        <JoinOurCommunity />
       </div>
 
       <Footer />

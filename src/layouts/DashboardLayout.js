@@ -6,6 +6,7 @@ import useMediaQuery from "hooks/useMediaQuery";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
@@ -24,6 +25,7 @@ function DashboardLayout() {
   const rightSidebar_Width = "270px";
 
   const userId = LocalServices.getServices("user")?.userId || null;
+  const {updateProfileState} = useSelector(state => state.Profile_State);
 
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, 'dashboard').then((res) => {
@@ -49,6 +51,13 @@ function DashboardLayout() {
       }
     })
   }
+
+  useEffect(() => {
+    if(userId) {
+      viewUserProfile(userId)
+    }
+  }, [updateProfileState])
+  
 
   useEffect(() => {
     MixPanelService.init();

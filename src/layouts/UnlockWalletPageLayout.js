@@ -32,7 +32,7 @@ function UnlockWalletPageLayout() {
               textClassName="text-sm lg:text-lg xl:text-xl lh-1_2 text-primary"
               title={
                 <>
-                  Script <br /> Network
+                  script <br /> network
                 </>
               }
             />

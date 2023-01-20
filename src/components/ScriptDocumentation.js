@@ -14,7 +14,7 @@ function ScriptDocumentation() {
           lineHeight={1.2}
         >
           <span className="text-blue-link">Script</span> <br />
-          Documentaton
+          Documentation
         </Title>
 
         <p className="fs-16px font-medium mb-8">

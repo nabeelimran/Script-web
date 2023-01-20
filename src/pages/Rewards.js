@@ -2,6 +2,8 @@ import Footer from "components/Footer";
 import { ToastMessage } from "components/ToastMessage";
 import TvNavbar from "components/TvNavbar";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateRewardPoint } from "redux/reducers/RewardPoint_State";
 import Tip from "sections/Dashboard/Home/Tip";
 import Collect from "sections/Rewards/Collect";
 import DailyTasks from "sections/Rewards/DailyTasks";
@@ -12,6 +14,7 @@ import MixPanelService from "services/mixPanelService";
 import { helper } from "utils/helper";
 
 function Rewards() {
+  const dispatch = useDispatch();
   const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
   const [rewardHistory, setRewardHistory] = useState([]);
@@ -99,6 +102,7 @@ function Rewards() {
           "email" : user.email,
           "amount" : 10
         })
+        dispatch(updateRewardPoint(true))
         getTotalRewardPoints();
         ToastMessage('Reward collected successfully', true);
       } else {

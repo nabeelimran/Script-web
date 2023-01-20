@@ -95,7 +95,7 @@ function Result({
         <div className="grid lg:grid-cols-2">
           <div></div>
           <div>
-            <Button label="Clear from" />
+            <Button label="Clear Form" />
           </div>
         </div>
       </div>
