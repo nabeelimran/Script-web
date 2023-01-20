@@ -1,6 +1,7 @@
 import FillBar from "components/FillBar";
 import Title from "components/Title";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
@@ -10,6 +11,7 @@ function Welcome({
 }) {
   const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
+  const {updateRewardPointState} = useSelector(state => state.RewardPoint_State);
   const navigate = useNavigate();
 
   const goToTVSite = () => navigate({
@@ -31,7 +33,7 @@ function Welcome({
 
   useEffect(() => {
     getTotalRewardPoints();
-  }, []);
+  }, [updateRewardPointState]);
 
   return (
     <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10">
