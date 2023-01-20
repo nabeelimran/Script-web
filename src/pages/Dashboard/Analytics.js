@@ -79,7 +79,9 @@ function Analytics() {
           </Card>
           <Card className="col-span-2 sm:col-span-1">
             <div className="flex items-center space-x-5">
-              <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-lg bg-[#171717]"></div>
+              <div className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-lg bg-[#171717]">
+                <img src={lastVideoHistory?.videoTumbnailUrl} className="w-full h-full" alt="" />
+              </div>
               <div>
                 <p className="text-xs sm:text-sm xl:text-base font-semibold mb-1">
                   {lastVideoHistory?.videoTitle}
