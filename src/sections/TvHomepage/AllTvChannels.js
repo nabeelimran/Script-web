@@ -43,7 +43,7 @@ function AllTvChannels({
 		videoClassRef.current.classList.add("xl:grid-cols-1");
 		videoClassRef.current.classList.add("lg:grid-cols-1");
 		videoWrapperEl.classList.add("md:h-full")
-		videoWrapperEl.classList.remove("md:h-[100%]")
+		videoWrapperEl.classList.remove("md:h-[450px]")
 		videoHeightRef.current.classList.remove("h-[200px]");
 		videoHeightRef.current.classList.remove("md:h-[100%]");
 		videoHeightRef.current.classList.remove("lg:h-auto");
@@ -59,7 +59,7 @@ function AllTvChannels({
 		videoClassRef.current.classList.remove("xl:grid-cols-1");
 		videoClassRef.current.classList.remove("lg:grid-cols-1");
 		videoWrapperEl.classList.remove("md:h-full")
-		videoWrapperEl.classList.add("md:h-[100%]")
+		videoWrapperEl.classList.add("md:h-[450px]")
 		videoHeightRef.current.classList.add("h-[200px]");
 		videoHeightRef.current.classList.add("md:h-[100%]");
 		videoHeightRef.current.classList.add("lg:h-auto");
