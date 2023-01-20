@@ -7,7 +7,7 @@ function StreamComment({item}) {
   return (
     <div className="flex space-x-3 md:space-x-4">
       <div className="w-8 md:w-10 h-8 md:h-10 rounded-full overflow-hidden">
-        <img src={ item.userName.includes('.bnb') ? '/images/bnb-default-avatar.png' : item.urlProfileImage ? item.urlProfileImage : "logo-black.png"} className="w-full h-full" alt="" />
+        <img src={ item.userName.includes('.bnb') ? '/images/bnb-default-avatar.png' : item.urlProfileImage ? item.urlProfileImage : "/images/logo-beta.svg"} className="w-full h-full" alt="" />
       </div>
       <div className="space-y-1 md:space-y-[2px] flex-1">
         <div className="flex items-center justify-between">
