@@ -250,7 +250,7 @@ function Channels({
 
   useEffect(() => {
     if(userId) {
-      openGlassesList();
+      // openGlassesList();
     }
   }, [])
 
