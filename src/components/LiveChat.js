@@ -68,6 +68,7 @@ console.log("sfsdf",tokenEarnedByMessage)
 	}
 
 	const getFormData = ({ typedMessage }) => {
+		const user = LocalServices.getServices("user");
 		const modifyTime = moment
 			.utc(new Date().getTime() * 1000)
 			.format("HH:mm:ss");

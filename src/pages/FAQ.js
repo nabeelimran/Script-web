@@ -149,14 +149,14 @@ function FAQ() {
         <div className="container grid lg:grid-cols-2 gap-4 lg:gap-6 items-start">
           <div className="grid gap-4 lg:gap-6">
             {leftFAQ.map((item, i) => (
-              <Accordion title={item.question}>
+              <Accordion title={item.question} key={i}>
                 {ReactHtmlParser(item.content)}
               </Accordion>
             ))}
           </div>
           <div className="grid gap-4 lg:gap-6">
             {RightFAQ.map((item, i) => (
-              <Accordion title={item.question}>
+              <Accordion title={item.question} key={i}>
                 {ReactHtmlParser(item.content)}
               </Accordion>
             ))}

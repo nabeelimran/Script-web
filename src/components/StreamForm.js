@@ -23,8 +23,9 @@ function StreamForm({submitHandler}) {
   });
   const dispatch = useDispatch()
   const [isEmoji,setIsEmoji] = React.useState(false)
-const user = LocalServices.getServices("user")
+  
   const onSubmit = (data) => {
+    const user = LocalServices.getServices("user")
     if(user && user.userId){
 
       submitHandler(data)

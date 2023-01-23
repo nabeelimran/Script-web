@@ -39,6 +39,7 @@ function Tabs({ pastShows, currentShows, tabsOptions }) {
         {tabsOptions && tabsOptions.length > 0
           ? tabsOptions.map((option, index) => (
               <div
+                key={index}
                 className={
                   openTab === option.id
                     ? "block tab-pane fade show active"
