@@ -52,13 +52,13 @@ const VerifyAccount = () => {
             navigate("/tv")
             ToastMessage(`${otpVerify.data.message}`, true);
           } else {
-            ToastMessage(`${otpVerify.message}`);
+            ToastMessage(`${otpVerify?.data?.message || "Invalid OTP"}`);
           } 
         } else {
           ToastMessage("Invalid OTP");  
         }
       }).catch(err => {
-        ToastMessage(`${err.message}`);
+        ToastMessage(`${err?.response?.data?.message || "Invalid OTP"}`);
         setOTP('');
       });
     } else {

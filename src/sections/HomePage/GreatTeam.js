@@ -206,6 +206,7 @@ function GreatTeam() {
         <div className="grid w-fit mx-auto md:w-full md:mx-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1fr_1fr_1fr_1fr] gap-y-10 gap-x-8">
           {team.map((item, i) => (
             <TeamCard
+              key={i}
               title={item.name}
               subtitle={item.designation}
               img={item.img}

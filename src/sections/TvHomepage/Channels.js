@@ -223,7 +223,7 @@ function Channels({
   const [channelFollowed, setChannelFollow] = useState(false);
   const dispatch = useDispatch();
   const [channelIndex,setChannelIndex] = useState(0);
-  const [videoIndex,setVideoIndex] = useState(0);
+  const [videoIndex, setVideoIndex] = useState(0);
   
   
   const { changecurrentVideo,data } = useSelector(
@@ -234,14 +234,15 @@ function Channels({
 		(state) => state.refresh_state
 	);
 
-  const getGlassesList = () => {
-    Api.getGlassesList("watch").then((res) => {
+  const openGlassesList = () => {
+    Api.getGlassesList(user?.walletAddress, 0, 5, "watch").then((res) => {
       if(res && res.status === 200) {
         console.log(res, 'glass');
         if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
           const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
-          dispatch(toggleGlassListingVisibility(true));
-          dispatch(toggleGlassListingVisibility(glassListing || []))
+          if(glassListing && glassListing.length > 0) {
+            dispatch(toggleGlassListingVisibility(true));
+          }
         }
       }
     })
@@ -249,7 +250,7 @@ function Channels({
 
   useEffect(() => {
     if(userId) {
-      // getGlassesList();
+      // openGlassesList();
     }
   }, [])
 

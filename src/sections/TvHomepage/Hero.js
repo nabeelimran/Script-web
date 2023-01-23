@@ -63,7 +63,7 @@ function Hero() {
   };
 
   const bannerImgages = [
-    "images/test-launch.png",
+    "images/reward_pool.png",
     "images/test-launch.png"
   ]
 

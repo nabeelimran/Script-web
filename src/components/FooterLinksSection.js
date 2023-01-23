@@ -12,6 +12,7 @@ const FooterLinksSection = ({ title, links = [] }) => {
             ({ title, to = "/", target = "_self", anchorTag = false }, i) =>
               anchorTag ? (
                 <a
+                  key={i}
                   href={to}
                   target={target}
                   className="block text-xs xl:text-sm cursor-pointer w-fit"
@@ -20,6 +21,7 @@ const FooterLinksSection = ({ title, links = [] }) => {
                 </a>
               ) : (
                 <Link
+                  key={i}
                   to={to}
                   target={target}
                   className="block text-xs xl:text-sm cursor-pointer w-fit"
