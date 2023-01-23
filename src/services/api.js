@@ -626,9 +626,8 @@ export default class Api {
         screenName: screenName,
       },
     };
-    // walletAddress=${walletAddress}&
     return axios.get(
-      `${APIPATH.BASEURL}getGlasses?page=${pageNo}&size=${pageSize}`,
+      `${APIPATH.BASEURL}getGlasses?walletAddress=${walletAddress}&page=${pageNo}&size=${pageSize}`,
       options
     );
   }

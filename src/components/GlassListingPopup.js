@@ -40,7 +40,7 @@ function GlassListingPopup() {
   };
 
   const getGlassesList = () => {
-    Api.getGlassesList(walletAddress, pageNo, 5, "watch").then((res) => {
+    Api.getGlassesList(walletAddress, pageNo, 10, "watch").then((res) => {
       if(res && res.status === 200) {
         if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
           if(res?.data?.data?.content?.length !== 0  || res?.data?.data?.content?.length === 10) {

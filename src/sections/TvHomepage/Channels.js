@@ -235,7 +235,7 @@ function Channels({
 	);
 
   const openGlassesList = () => {
-    Api.getGlassesList("", 0, 5, "watch").then((res) => {
+    Api.getGlassesList(user?.walletAddress, 0, 5, "watch").then((res) => {
       if(res && res.status === 200) {
         console.log(res, 'glass');
         if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
