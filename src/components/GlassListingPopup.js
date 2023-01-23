@@ -11,7 +11,7 @@ import UpperRoot from "./UpperRoot";
 
 
 function GlassListingPopup() {
-  const { userId, walletAddress } = LocalServices.getServices("user") || null;
+  const user = LocalServices.getServices("user") || null;
   const dispatch = useDispatch();
   const { isGlassListingModalVisible } = useSelector(
 		(state) => state.connectWalletModal_State
@@ -40,7 +40,7 @@ function GlassListingPopup() {
   };
 
   const getGlassesList = () => {
-    Api.getGlassesList(walletAddress, pageNo, 10, "watch").then((res) => {
+    Api.getGlassesList(user?.walletAddress, pageNo, 10, "watch").then((res) => {
       if(res && res.status === 200) {
         if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
           if(res?.data?.data?.content?.length !== 0  || res?.data?.data?.content?.length === 10) {
@@ -76,7 +76,7 @@ function GlassListingPopup() {
 	}, [isGlassListingModalVisible]);
 
   useEffect(() => {
-    if(userId) {
+    if(user?.userId) {
       getGlassesList();
     }
   }, [isGlassListingModalVisible, pageNo])
