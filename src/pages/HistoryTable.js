@@ -57,6 +57,8 @@ function HistoryTable({
         return 'Video Watch'
       case 'REFERRAL': 
         return 'Referral'
+      case 'OTHER_REFERRAL': 
+        return 'Referral'
       case 'CHAT': 
         return 'Chat'
       default:
