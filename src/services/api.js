@@ -616,7 +616,7 @@ export default class Api {
     );
   }
 
-  static getGlassesList(screenName) {
+  static getGlassesList(walletAddress, pageNo, pageSize, screenName) {
     const options = {
       headers: {
         ipAddress: "dummyData",
@@ -626,8 +626,9 @@ export default class Api {
         screenName: screenName,
       },
     };
+    // walletAddress=${walletAddress}&
     return axios.get(
-      `${APIPATH.BASEURL}getGlasses`,
+      `${APIPATH.BASEURL}getGlasses?page=${pageNo}&size=${pageSize}`,
       options
     );
   }
