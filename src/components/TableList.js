@@ -13,7 +13,7 @@ function TableList({
         <thead>
           <tr>
             {headings.map((heading, i) => (
-              <th className={thClassName}>{heading}</th>
+              <th className={thClassName} key={i}>{heading}</th>
             ))}
           </tr>
         </thead>
@@ -22,9 +22,9 @@ function TableList({
       {data && (
         <tbody>
           {data.map((row, rowIndex) => (
-            <tr>
+            <tr key={rowIndex}>
               {row.map((item, i) => (
-                <td>{item}</td>
+                <td key={i}>{item}</td>
               ))}
             </tr>
           ))}

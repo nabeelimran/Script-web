@@ -96,7 +96,7 @@ function PartnersSlider() {
         direction="left"
       >
         {companies.map(({ iconImg, className = "h-6 xl:h-10" }, i) => (
-          <div className="flex justify-center mx-4 lg:mx-8">
+          <div className="flex justify-center mx-4 lg:mx-8" key={i}>
             <img
               src={iconImg}
               className={`${className} grayscale-[100%]`}
