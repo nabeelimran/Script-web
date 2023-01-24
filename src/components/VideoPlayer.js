@@ -28,7 +28,7 @@ function VideoPlayer(props) {
     
       player.autoplay(options.autoplay);
       player.src(options.sources);
-      player.controls(false)
+     
       
 
     }
