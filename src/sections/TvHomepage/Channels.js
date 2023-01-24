@@ -263,6 +263,13 @@ function Channels({
 
   useEffect(() => {
     Api.getChannels("watch").then((res) => {
+      // for suffal channel
+      res.data.data.forEach((d, i) => {
+				if(d.id === 621730) {
+					res.data.data.splice(i, 1);
+    				res.data.data.unshift(d);
+				}
+			});
       let chData = JSON.parse(JSON.stringify(res.data.data));
       chData = chData.map((ch) => {
        let liveshows = ch.liveShows.filter(

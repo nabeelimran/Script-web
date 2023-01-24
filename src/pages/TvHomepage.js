@@ -39,6 +39,14 @@ function TvHomepage() {
 	);
 	const getChannels = () => {
 		Api.getChannels("watch").then((res) => {
+			// for suffal channel
+			res.data.data.forEach((d, i) => {
+				if(d.id === 621730) {
+					res.data.data.splice(i, 1);
+    				res.data.data.unshift(d);
+				}
+			});
+			console.log(res.data.data);
 			setchannels(res.data.data);
 			setCurrentVideo(res.data.data[0].liveShows[0]);
 			// dispatch(allChannel(res.data.data))
