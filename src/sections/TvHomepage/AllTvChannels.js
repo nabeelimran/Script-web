@@ -143,7 +143,7 @@ function AllTvChannels({
 
 	const videoJsOptions = {
 		autoplay: "any",
-		controls: false,
+		controls: true,
 		nativeControlsForTouch: false,
 		controlBar: {
 			playToggle: false,
