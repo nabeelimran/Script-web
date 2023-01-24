@@ -47,7 +47,7 @@ function DailyTasks() {
 
       <div className="py-4">
         <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
-          Watch 3 hour of content per day
+          Watch 3 hours of content per day
         </Title>
 
         <Row

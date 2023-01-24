@@ -142,14 +142,13 @@ function AllTvChannels({
 	};
 
 	const videoJsOptions = {
-		autoplay: true,
+		autoplay: 'any',
 		controls: true,
 		nativeControlsForTouch: false,
 		controlBar: {
 			playToggle: false,
 		},
 		responsive: true,
-		nativeControlsForTouch: false,
 		muted: true,
 		fluid: true,
 		sources: [
