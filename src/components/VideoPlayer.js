@@ -21,8 +21,6 @@ function VideoPlayer(props) {
         videojs.log("player is ready");
         onReady && onReady(player);
       });
-      
-
       // You could update an existing player in the `else` block here
       // on prop change, for example:
     } else {
@@ -30,6 +28,7 @@ function VideoPlayer(props) {
     
       player.autoplay(options.autoplay);
       player.src(options.sources);
+     
       
 
     }
