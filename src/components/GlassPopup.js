@@ -1,12 +1,16 @@
+import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useState } from "react";
 import FillBar from "./FillBar";
 import Popup from "./Popup";
 
 function GlassPopup({ open, setOpen }) {
 
+  const modalRef = OutsideClickDetector(() => setOpen(false));
+
   return (
     <>
       <Popup
+        ref={modalRef}
         open={open}
         setOpen={setOpen}
         className="max-w-[260px] w-full bg-primary py-4 px-8 rounded-lg mx-auto"

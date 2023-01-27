@@ -5,7 +5,7 @@ import FillBar from "components/FillBar";
 import GlassModalButton from "components/GlassModalButton";
 import Popup from "components/Popup";
 import SquareBox from "components/SquareBox";
-import React, { useEffect, useState } from "react";
+import React, { useDeferredValue, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Api from "services/api";
 import { useDispatch, useSelector } from "react-redux";
@@ -224,6 +224,7 @@ function Channels({
   const dispatch = useDispatch();
   const [channelIndex,setChannelIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
+  const [selectedGlass, setselectedGlass] = useState({});
   
   
   const { changecurrentVideo,data } = useSelector(
@@ -234,25 +235,23 @@ function Channels({
 		(state) => state.refresh_state
 	);
 
-  const openGlassesList = () => {
-    Api.getGlassesList(user?.walletAddress, 0, 5, "watch").then((res) => {
+  const getSelectedGlass = () => {
+    Api.getSelectGlass(userId, "watch").then((res) => {
       if(res && res.status === 200) {
-        console.log(res, 'glass');
-        if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
-          const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
-          if(glassListing && glassListing.length > 0) {
-            dispatch(toggleGlassListingVisibility(true));
-          }
+        if(res.data.data) {
+          setselectedGlass(res.data.data);
+        } else {
+          setselectedGlass({});
         }
       }
     })
   }
-
-  useEffect(() => {
+  
+  useEffect(()=>{
     if(userId) {
-      // openGlassesList();
+      getSelectedGlass()
     }
-  }, [])
+  },[isLogin, toggleGlassListingVisibility])
 
   useEffect(()=>{
     if(channelIndex){
@@ -665,7 +664,7 @@ function Channels({
           <div className="grid xl:grid-cols-[1fr_340px] gap-10 items-center">
             <div className="xl:flex items-center space-y-12 xl:space-y-0 xl:space-x-6">
               <div className="grid grid-cols-2 xl:grid-cols-[110px_110px] gap-4 xl:gap-6">
-                <GlassModalButton selectedChananel={selectedChananel} user={user} />
+                <GlassModalButton selectedChananel={selectedChananel} user={user} selectedGlass={selectedGlass}/>
 
                 <SquareBox className="flex-1 xl:flex-auto">
                   <img

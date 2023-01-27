@@ -643,4 +643,68 @@ export default class Api {
       `${APIPATH.BASEURL}loginWithSpaceId`, req
     );
   }
+
+  static selectGlass(req, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      }
+    };
+
+    return axios.post(
+      `${APIPATH.BASEURL}chooseGlass`, req, options
+    );
+  }
+
+  static getSelectGlass(userId, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      }
+    };
+
+    return axios.get(
+      `${APIPATH.BASEURL}getUserActiveGlassDetail?userId=${userId}`, options
+    );
+  }
+
+  static startSession(req, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      }
+    };
+
+    return axios.post(
+      `${APIPATH.BASEURL}startSession`, req, options
+    );
+  }
+
+  static endSession(req, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      }
+    };
+
+    return axios.post(
+      `${APIPATH.BASEURL}closeSession`, req, options
+    );
+  }
 }
