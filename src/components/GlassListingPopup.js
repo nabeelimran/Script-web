@@ -26,8 +26,12 @@ function GlassListingPopup() {
   const [pageNo, setPageNo] =  useState(0);
 
   const changeActiveState = (id, glass) => {
-    setActive(id);
-    setActiveGlass(glass);
+    if(glass && !glass.drained) {
+      setActive(id);
+      setActiveGlass(glass);
+    } else {
+      ToastMessage('Glass is drained. Please recharge it to use again.');
+    }
   };
 
   const modalRef = OutsideClickDetector(() => {
@@ -40,10 +44,9 @@ function GlassListingPopup() {
       userId: user.userId
     }
     Api.selectGlass(req, 'watch').then((res) => {
-      debugger
       if(res && res.status === 200) {
         dispatch(toggleGlassListingVisibility(false));
-        ToastMessage(res.data.data.message, true);
+        ToastMessage(res?.data?.message, true);
       }
     })
   }  
@@ -61,8 +64,8 @@ function GlassListingPopup() {
       if(res && res.status === 200) {
         if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
           if(res?.data?.data?.content?.length !== 0  || res?.data?.data?.content?.length === 10) {
-            const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
-            const unDrainedList = [...glassListingData, ...glassListing];
+            // const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
+            const unDrainedList = [...glassListingData, ...res?.data?.data?.content];
             const uniqueUnDrainedList = [...unDrainedList.reduce((list, o) => {
               if(!list.some(obj => obj.id === o.id)) {
                 list.push(o);

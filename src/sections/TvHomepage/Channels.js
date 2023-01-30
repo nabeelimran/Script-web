@@ -230,6 +230,9 @@ function Channels({
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
+  const { isGlassListingModalVisible } = useSelector(
+		(state) => state.connectWalletModal_State
+	);
   const {isLogin} = useSelector(state => state.login_state)
     const { refreshChannel } = useSelector(
 		(state) => state.refresh_state
@@ -251,7 +254,7 @@ function Channels({
     if(userId) {
       getSelectedGlass()
     }
-  },[isLogin, toggleGlassListingVisibility])
+  },[isLogin, isGlassListingModalVisible])
 
   useEffect(()=>{
     if(channelIndex){
@@ -693,14 +696,16 @@ function Channels({
 
               <div className="flex-1 flex flex-col justify-center space-y-3">
                 <div className="space-y-2">
-                  <FillBar />
-                  <div className="text-xs font-medium text-center">47/100</div>
+                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(selectedGlass?.glass?.maxEarnableTime || 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
+                  <div className="text-xs font-medium text-center">
+                    {selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <FillBar barColor="#3C58EE" progress="40%" />
                   <div className="text-xs font-medium text-center">
-                    Level 01
+                    Level {selectedGlass?.glass?.level || 0}
                   </div>
                 </div>
               </div>
