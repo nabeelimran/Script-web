@@ -29,9 +29,9 @@ const faqs = [
       "This depends on various factors, but fortunately, we have made it easy for you to estimate this, through our staking calculator. This can be found on the footer of the token website. <br/> <br/> I am confused on how to take part in testnet, what do I do? We understand for many that’s it’s a totally new experience, so we have written out guides to explain further. Please head <a className='underline' href='https://whitepaper.script.tv/guides/how-to-sign-up-+-sign-in-to-script-tv'>here</a> for further explanation.",
   },
   {
-    question: "I want to become a guardian or edge node, what do I do?",
+    question: "I want to become a lightning or edge node, what do I do?",
     content:
-      "Firstly, you ensure you fit the requirements of token allocation and system minimum quality, then you fill in the validator / guardian sign up form here – You will then be contacted by one of the team via email to progress.",
+      "Firstly, you ensure you fit the requirements of token allocation and system minimum quality, then you fill in the validator / lightning sign up form here – You will then be contacted by one of the team via email to progress.",
   },
   {
     question: "How can I take part in the presale or early rounds?",
@@ -140,7 +140,7 @@ function FAQ() {
       <div className="mb-12 lg:mb-16">
         <div className="container">
           <Title variant="44" className="font-semibold text-center">
-            Question?we have answers!
+            Have a question? we have answers!
           </Title>
         </div>
       </div>
