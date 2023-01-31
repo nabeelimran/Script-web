@@ -652,7 +652,7 @@ function Channels({
               />
 
               <>
-                <RecaptchaPopup open={modal} setOpen={setModal} />
+                <RecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode}/>
                 <Button
                   type="button"
                   label={recaptchaCode}
