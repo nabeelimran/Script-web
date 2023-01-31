@@ -12,9 +12,6 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
   };
 
   const verifyCaptcha = () => {
-    setOpen(false)
-    helper.comingSoonNotification();
-    return;
     const enteredCode = document.getElementById('captchaCode').value
     if(!enteredCode) {
       ToastMessage('Please enter captcha code');

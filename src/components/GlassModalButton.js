@@ -14,8 +14,6 @@ function GlassModalButton({ selectedChananel, user, selectedGlass }) {
   const dispatch = useDispatch();
 
   const handleGlassModal = () => {
-    setModal((val) => !val);
-    return;
     if(token) {
       if(selectedGlass && JSON.stringify(selectedGlass) !== '{}') {
         setModal((val) => !val);
