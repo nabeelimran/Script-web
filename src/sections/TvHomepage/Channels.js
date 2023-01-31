@@ -225,8 +225,7 @@ function Channels({
   const [channelIndex,setChannelIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
   const [selectedGlass, setselectedGlass] = useState({});
-  
-  
+
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
   );
@@ -254,7 +253,7 @@ function Channels({
     if(userId) {
       getSelectedGlass()
     }
-  },[isLogin, isGlassListingModalVisible])
+  },[isLogin, isGlassListingModalVisible, modal])
 
   useEffect(()=>{
     if(channelIndex){
@@ -652,7 +651,7 @@ function Channels({
               />
 
               <>
-                <RecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode}/>
+                <RecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode} selectedGlass={selectedGlass} user={user} />
                 <Button
                   type="button"
                   label={recaptchaCode}

@@ -4,7 +4,7 @@ import { helper } from "utils/helper";
 import PopupClose from "./PopupClose";
 import { ToastMessage } from "./ToastMessage";
 
-function RecaptchaPopup({ open, setOpen, recaptchaCode }) {
+function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
   const [active, setActive] = useState(1);
 
   const changeActiveState = (id) => {
@@ -12,6 +12,9 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode }) {
   };
 
   const verifyCaptcha = () => {
+    setOpen(false)
+    helper.comingSoonNotification();
+    return;
     const enteredCode = document.getElementById('captchaCode').value
     if(!enteredCode) {
       ToastMessage('Please enter captcha code');
@@ -22,13 +25,21 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode }) {
       return;
     }
 
-    const req = {
+    if(!selectedGlass?.glassId && !user?.userId) {
+      ToastMessage('Unable to start session');
+      return;
+    }
 
+    const req = {
+      glassId: selectedGlass.glassId,
+      userId: user.userId,
+      sessionId: enteredCode
     }
 
     Api.startSession(req, 'watch').then((res) => {
       if(res && res.status === 200) {
         ToastMessage('Captcha code verified successfully. Session has been started', true);
+        localStorage.setItem('sessionId', enteredCode);
         setOpen(false)
       } else {
         ToastMessage(res?.data?.message || 'Unable to start session', true);
