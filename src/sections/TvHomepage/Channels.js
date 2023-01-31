@@ -16,6 +16,7 @@ import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
 import { ToastMessage } from "components/ToastMessage";
 import MixPanelService from "services/mixPanelService";
+import EndRecaptchaPopup from "components/EndRecaptchaPopup";
 
 const channels = [
   {
@@ -651,10 +652,13 @@ function Channels({
               />
 
               <>
-                <RecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode} selectedGlass={selectedGlass} user={user} />
+                {
+                    userId && selectedGlass && selectedGlass?.sessionId ? <EndRecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode} selectedGlass={selectedGlass} user={user} /> : 
+                    <RecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode} selectedGlass={selectedGlass} user={user} />
+                }
                 <Button
                   type="button"
-                  label={recaptchaCode}
+                  label={selectedGlass && selectedGlass?.sessionId ? 'End Session' : recaptchaCode}
                   customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
                   variant={4}
                   buttonProps={{ onClick: () => setModal((val) => !val) }}
