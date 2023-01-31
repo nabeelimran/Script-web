@@ -226,6 +226,7 @@ function Channels({
   const [channelIndex,setChannelIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
   const [selectedGlass, setselectedGlass] = useState({});
+  const [saveDurationRes, setSaveDurationRes] = useState({});
 
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
@@ -463,7 +464,8 @@ function Channels({
       "showId": latestVideo.id, // show id
       "videoId": latestVideo.videoId, // video id
       "userId": userId ? userId : 0,
-      "videoDuration": +watchTime.toFixed()  // duration in minute
+      "videoDuration": +watchTime.toFixed(),  // duration in minute
+      "glassId": selectedGlass?.glassId || null
     };
     
     if (+watchTime.toFixed() > 0) {
@@ -480,6 +482,24 @@ function Channels({
         watchApiCalled=true;
       Api.saveVideoDuration(req, 'watch').then((res) => {
         if (res && res.isSuccess) {
+          console.log(res.data, 'save duration')
+          setSaveDurationRes(res.data)
+          if(res.data.drained) {
+            const endSessionReq = {
+              glassId: selectedGlass.glassId,
+              userId: user.userId,
+              sessionId: selectedGlass?.sessionId
+            }
+            Api.endSession(endSessionReq, 'watch').then((res) => {
+              if(res && res.status === 200) {
+                ToastMessage('Session has been ended successfully', true);
+                localStorage.removeItem('sessionId');
+                getSelectedGlass();
+              } else {
+                ToastMessage(res?.data?.message || 'Unable to close session');
+              }
+            })
+          }
           watchApiCalled=false;
         } else {
           watchApiCalled=false;
