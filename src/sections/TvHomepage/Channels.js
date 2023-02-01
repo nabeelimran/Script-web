@@ -465,7 +465,7 @@ function Channels({
       "videoId": latestVideo.videoId, // video id
       "userId": userId ? userId : 0,
       "videoDuration": +watchTime.toFixed(),  // duration in minute
-      "glassId": selectedGlass?.glassId || null
+      "glassId": selectedGlass?.glassId || 0
     };
     
     if (+watchTime.toFixed() > 0) {
@@ -481,10 +481,10 @@ function Channels({
       if(!watchApiCalled){
         watchApiCalled=true;
       Api.saveVideoDuration(req, 'watch').then((res) => {
-        if (res && res.isSuccess) {
-          console.log(res.data, 'save duration')
-          setSaveDurationRes(res.data)
-          if(res.data.drained) {
+        if (res && res.status === 200) {
+          console.log(res.data.data, 'save duration')
+          setSaveDurationRes(res.data.data)
+          if(res.data.data.drained) {
             const endSessionReq = {
               glassId: selectedGlass.glassId,
               userId: user.userId,
@@ -493,7 +493,6 @@ function Channels({
             Api.endSession(endSessionReq, 'watch').then((res) => {
               if(res && res.status === 200) {
                 ToastMessage('Session has been ended successfully', true);
-                localStorage.removeItem('sessionId');
                 getSelectedGlass();
               } else {
                 ToastMessage(res?.data?.message || 'Unable to close session');
@@ -690,7 +689,7 @@ function Channels({
           <div className="grid xl:grid-cols-[1fr_340px] gap-10 items-center">
             <div className="xl:flex items-center space-y-12 xl:space-y-0 xl:space-x-6">
               <div className="grid grid-cols-2 xl:grid-cols-[110px_110px] gap-4 xl:gap-6">
-                <GlassModalButton selectedChananel={selectedChananel} user={user} selectedGlass={selectedGlass}/>
+                <GlassModalButton selectedChananel={selectedChananel} user={user} selectedGlass={selectedGlass} saveDurationRes={saveDurationRes}/>
 
                 <SquareBox className="flex-1 xl:flex-auto">
                   <img
@@ -719,9 +718,9 @@ function Channels({
 
               <div className="flex-1 flex flex-col justify-center space-y-3">
                 <div className="space-y-2">
-                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(selectedGlass?.glass?.maxEarnableTime || 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
+                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
                   <div className="text-xs font-medium text-center">
-                    {selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
+                    {saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
                   </div>
                 </div>
 

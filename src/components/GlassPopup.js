@@ -4,7 +4,7 @@ import { helper } from "utils/helper";
 import FillBar from "./FillBar";
 import Popup from "./Popup";
 
-function GlassPopup({ open, setOpen, selectedGlass }) {
+function GlassPopup({ open, setOpen, selectedGlass, saveDurationRes }) {
 
   return (
     <>
@@ -27,9 +27,9 @@ function GlassPopup({ open, setOpen, selectedGlass }) {
 
         <div className="space-y-2 mb-3">
           <div className="space-y-1 w-full">
-            <FillBar barColor="#FF0015" bgColor="#434242" progress= {`${selectedGlass?.glass?.maxEarnableTime || 0 / selectedGlass?.glass?.maxEarnableTime || 0 * 100}%`} />
+            <FillBar barColor="#FF0015" bgColor="#434242" progress= {`${saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 / selectedGlass?.glass?.maxEarnableTime || 0 * 100}%`} />
             <p className="text-center font-medium text-sm text-black">
-              {selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
+              {saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
             </p>
           </div>
           <div className="space-y-1 w-full">

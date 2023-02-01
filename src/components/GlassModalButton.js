@@ -8,7 +8,7 @@ import { helper } from "utils/helper";
 import GlassPopup from "./GlassPopup";
 import SquareBox from "./SquareBox";
 
-function GlassModalButton({ selectedChananel, user, selectedGlass }) {
+function GlassModalButton({ selectedChananel, user, selectedGlass, saveDurationRes }) {
   const [modal, setModal] = useState(false);
   const token = LocalServices.getServices('token');
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ function GlassModalButton({ selectedChananel, user, selectedGlass }) {
 
   return (
     <>
-      <GlassPopup open={modal} setOpen={setModal} selectedGlass={selectedGlass} />
+      <GlassPopup open={modal} setOpen={setModal} selectedGlass={selectedGlass} saveDurationRes={saveDurationRes} />
 
       <SquareBox
         buttonProps={{

@@ -36,7 +36,6 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
     Api.startSession(req, 'watch').then((res) => {
       if(res && res.status === 200) {
         ToastMessage('Captcha code verified successfully. Session has been started', true);
-        localStorage.setItem('sessionId', enteredCode);
         setOpen(false)
       } else {
         ToastMessage(res?.data?.message || 'Unable to start session', true);

@@ -39,16 +39,21 @@ function GlassListingPopup() {
   });
 
   const selectGlass = () => {
-    const req = {
-      glassId: activeGlass.id,
-      userId: user.userId
-    }
-    Api.selectGlass(req, 'watch').then((res) => {
-      if(res && res.status === 200) {
-        dispatch(toggleGlassListingVisibility(false));
-        ToastMessage(res?.data?.message, true);
+    if(activeGlass && activeGlass.id && user && user.userId) {
+      const req = {
+        glassId: activeGlass.id,
+        userId: user.userId
       }
-    })
+      Api.selectGlass(req, 'watch').then((res) => {
+        if(res && res.status === 200) {
+          dispatch(toggleGlassListingVisibility(false));
+          ToastMessage(res?.data?.message, true);
+        }
+      })
+    } else {
+      ToastMessage('Please select glass');
+    }
+    
   }  
 
   const returnClasses = (id) => {

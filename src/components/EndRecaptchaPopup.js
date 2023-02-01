@@ -22,7 +22,6 @@ function EndRecaptchaPopup({ open, setOpen, selectedGlass, user }) {
       Api.endSession(req, 'watch').then((res) => {
         if(res && res.status === 200) {
           ToastMessage('Session has been ended successfully', true);
-          localStorage.removeItem('sessionId');
           setOpen(false)
         } else {
           ToastMessage(res?.data?.message || 'Unable to close session');
