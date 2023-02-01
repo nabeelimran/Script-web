@@ -159,14 +159,16 @@ function GlassListingPopup() {
               }
             </InfiniteScroll>
           </div>
-          <div className="text-center mt-5">
-            <button
-              className="px-5 py-1 rounded bg-[#131313]"
-              onClick={() => selectGlass()}
-            >
-              Continue
-            </button>
-          </div>
+          {glassListingData && glassListingData.length > 0 ? <div className="text-center mt-5">
+              <button
+                className="px-5 py-1 rounded bg-[#131313]"
+                onClick={() => selectGlass()}
+              >
+                Continue
+              </button>
+            </div> : null
+          }
+          
         </section>
       </UpperRoot>
     </>
