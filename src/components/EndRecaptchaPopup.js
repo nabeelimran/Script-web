@@ -3,15 +3,18 @@ import Api from "services/api";
 import { helper } from "utils/helper";
 import PopupClose from "./PopupClose";
 import { ToastMessage } from "./ToastMessage";
+import LoaderGif from "../assets/Loading_icon.gif"
 
 function EndRecaptchaPopup({ open, setOpen, selectedGlass, user }) {
   const [active, setActive] = useState(1);
+  const [loader, setLoader] = useState(false);
 
   const changeActiveState = (id) => {
     setActive(id);
   };
 
   const endSession = () => {
+    setLoader(true);
     if(selectedGlass && selectedGlass.sessionId) {
       const req = {
         glassId: selectedGlass.glassId,
@@ -23,12 +26,15 @@ function EndRecaptchaPopup({ open, setOpen, selectedGlass, user }) {
         if(res && res.status === 200) {
           ToastMessage('Session has been ended successfully', true);
           setOpen(false)
+          setLoader(false);
         } else {
           ToastMessage(res?.data?.message || 'Unable to close session');
+          setLoader(false);
         }
       })
     } else {
       ToastMessage('Unable to close the session');
+      setLoader(false);
     }
   }
 
@@ -61,8 +67,9 @@ function EndRecaptchaPopup({ open, setOpen, selectedGlass, user }) {
         <button
           className="bg-primary text-black w-full rounded-xl py-2.5 mt-5"
           onClick={() => endSession()}
+          disabled={loader}
         >
-          Confirm
+          {loader ? (<img src={LoaderGif} alt="loader" style={{height:"16px", margin: "auto"}}/>) : 'Confirm'}
         </button>
       </div>
     </PopupClose>
