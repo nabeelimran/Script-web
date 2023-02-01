@@ -1,39 +1,44 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { toggleGlassListingVisibility } from "redux/reducers/connectWalletModal_State";
+import { toggleGlassListingVisibility, toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+import LocalServices from "services/LocalServices";
 import MixPanelService from "services/mixPanelService";
 import { helper } from "utils/helper";
 import GlassPopup from "./GlassPopup";
 import SquareBox from "./SquareBox";
 
-function GlassModalButton({ selectedChananel, user, selectedGlass }) {
+function GlassModalButton({ selectedChananel, user, selectedGlass, saveDurationRes }) {
   const [modal, setModal] = useState(false);
+  const token = LocalServices.getServices('token');
   const dispatch = useDispatch();
 
   const handleGlassModal = () => {
-    if(selectedGlass && JSON.stringify(selectedGlass) !== '{}') {
-      setModal((val) => !val);
+    if(token) {
+      if(selectedGlass && JSON.stringify(selectedGlass) !== '{}') {
+        setModal((val) => !val);
+      } else {
+        dispatch(toggleGlassListingVisibility(true));
+      }
+      try {
+        MixPanelService.setIdentifier(user.email);
+      } catch (error) {
+        console.log("set identifier");
+      }
+  
+      helper.trackByMixpanel("Glasses Button Click", {
+        channel_id: selectedChananel?.id || 0,
+        email: user?.email || "N/A",
+        channel_name: selectedChananel?.channelName || "N/A",
+      });
     } else {
-      dispatch(toggleGlassListingVisibility(true));
+      dispatch(toggleModalVisibility(true));  
     }
-    
-    try {
-      MixPanelService.setIdentifier(user.email);
-    } catch (error) {
-      console.log("set identifier");
-    }
-
-    helper.trackByMixpanel("Glasses Button Click", {
-      channel_id: selectedChananel?.id || 0,
-      email: user?.email || "N/A",
-      channel_name: selectedChananel?.channelName || "N/A",
-    });
   }
 
   return (
     <>
-      <GlassPopup open={modal} setOpen={setModal} />
+      <GlassPopup open={modal} setOpen={setModal} selectedGlass={selectedGlass} saveDurationRes={saveDurationRes} />
 
       <SquareBox
         buttonProps={{

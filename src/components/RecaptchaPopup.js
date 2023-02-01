@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import Api from "services/api";
 import { helper } from "utils/helper";
 import PopupClose from "./PopupClose";
+import { ToastMessage } from "./ToastMessage";
 
-function RecaptchaPopup({ open, setOpen }) {
+function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
   const [active, setActive] = useState(1);
 
   const changeActiveState = (id) => {
@@ -10,8 +12,35 @@ function RecaptchaPopup({ open, setOpen }) {
   };
 
   const verifyCaptcha = () => {
-    setOpen(false)
-    helper.comingSoonNotification();
+    const enteredCode = document.getElementById('captchaCode').value
+    if(!enteredCode) {
+      ToastMessage('Please enter captcha code');
+      return;
+    }
+    if(recaptchaCode !== enteredCode) {
+      ToastMessage('Invalid captcha code. Please enter valid code');
+      return;
+    }
+
+    if(!selectedGlass?.glassId && !user?.userId) {
+      ToastMessage('Unable to start session');
+      return;
+    }
+
+    const req = {
+      glassId: selectedGlass.glassId,
+      userId: user.userId,
+      sessionId: enteredCode
+    }
+
+    Api.startSession(req, 'watch').then((res) => {
+      if(res && res.status === 200) {
+        ToastMessage('Captcha code verified successfully. Session has been started', true);
+        setOpen(false)
+      } else {
+        ToastMessage(res?.data?.message || 'Unable to start session', true);
+      }
+    })
   }
 
   const returnClasses = (id) => {
