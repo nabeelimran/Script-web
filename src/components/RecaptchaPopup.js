@@ -22,8 +22,13 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
       return;
     }
 
-    if(!selectedGlass?.glassId && !user?.userId) {
+    if(!user?.userId) {
       ToastMessage('Unable to start session');
+      return;
+    }
+
+    if(!selectedGlass?.glassId) {
+      ToastMessage('Unable to start session. Please select glass first');
       return;
     }
 
