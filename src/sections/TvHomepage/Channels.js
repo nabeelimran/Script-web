@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import Api from "services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { helper } from "utils/helper";
-import { toggleGlassListingVisibility, updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
+import { toggleGlassListingVisibility, toggleModalVisibility, updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
@@ -575,6 +575,14 @@ function Channels({
     } );
   }
 
+  const openCaptchModal = () => {
+    if(user && user.id) {
+      setModal((val) => !val)
+    } else {
+      dispatch(toggleModalVisibility(true));  
+    }
+  }
+
   // end of follow and unfollow channel code
 
   useEffect(() => {
@@ -680,7 +688,7 @@ function Channels({
                   label={selectedGlass && selectedGlass?.sessionId ? 'End Session' : recaptchaCode}
                   customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
                   variant={4}
-                  buttonProps={{ onClick: () => setModal((val) => !val) }}
+                  buttonProps={{ onClick: () => openCaptchModal }}
                 />
               </>
             </div>

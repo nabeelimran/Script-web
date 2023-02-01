@@ -23,7 +23,7 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
     }
 
     if(!user?.userId) {
-      ToastMessage('Unable to start session');
+      ToastMessage('Unable to start session. User detail is missing');
       return;
     }
 
