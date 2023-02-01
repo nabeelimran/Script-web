@@ -726,9 +726,9 @@ function Channels({
 
               <div className="flex-1 flex flex-col justify-center space-y-3">
                 <div className="space-y-2">
-                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
+                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
                   <div className="text-xs font-medium text-center">
-                    {saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
+                    {selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
                   </div>
                 </div>
 
