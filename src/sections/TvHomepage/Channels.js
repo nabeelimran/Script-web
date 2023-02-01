@@ -586,6 +586,10 @@ function Channels({
   // end of follow and unfollow channel code
 
   useEffect(() => {
+    setSaveDurationRes({});
+  }, [modal])
+
+  useEffect(() => {
     
     if (changecurrentVideo) {
       dispatch(updateCurrentVideo(false));
