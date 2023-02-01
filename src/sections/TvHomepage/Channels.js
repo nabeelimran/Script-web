@@ -235,7 +235,7 @@ function Channels({
 		(state) => state.connectWalletModal_State
 	);
   const {isLogin} = useSelector(state => state.login_state)
-    const { refreshChannel } = useSelector(
+  const { refreshChannel } = useSelector(
 		(state) => state.refresh_state
 	);
 

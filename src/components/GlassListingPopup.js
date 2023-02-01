@@ -24,6 +24,7 @@ function GlassListingPopup() {
   const [active, setActive] = useState(1);
   const [totalGlasses, setTotalGlasses] = useState(0);
   const [pageNo, setPageNo] =  useState(0);
+  const {isLogin} = useSelector(state => state.login_state)
 
   const changeActiveState = (id, glass) => {
     if(glass && !glass.drained) {
@@ -109,6 +110,10 @@ function GlassListingPopup() {
 	}, [isGlassListingModalVisible]);
 
   useEffect(() => {
+    setGlassListingData([]);
+  }, [isLogin, isGlassListingModalVisible])
+
+  useEffect(() => {
     if(user?.userId) {
       getGlassesList();
     }
@@ -150,7 +155,7 @@ function GlassListingPopup() {
                       </p> */}
                     </div>
                   </div>
-                )  : null
+                )  : <div className="flex justify-center items-center h-[100%]"><p className="text-xl">No Glass Found</p></div>
               }
             </InfiniteScroll>
           </div>
