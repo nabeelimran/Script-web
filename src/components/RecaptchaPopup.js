@@ -12,9 +12,6 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
   };
 
   const verifyCaptcha = () => {
-    setOpen(false)
-    helper.comingSoonNotification();
-    return;
     const enteredCode = document.getElementById('captchaCode').value
     if(!enteredCode) {
       ToastMessage('Please enter captcha code');
@@ -39,7 +36,6 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
     Api.startSession(req, 'watch').then((res) => {
       if(res && res.status === 200) {
         ToastMessage('Captcha code verified successfully. Session has been started', true);
-        localStorage.setItem('sessionId', enteredCode);
         setOpen(false)
       } else {
         ToastMessage(res?.data?.message || 'Unable to start session', true);

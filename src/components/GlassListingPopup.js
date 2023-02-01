@@ -24,6 +24,7 @@ function GlassListingPopup() {
   const [active, setActive] = useState(1);
   const [totalGlasses, setTotalGlasses] = useState(0);
   const [pageNo, setPageNo] =  useState(0);
+  const {isLogin} = useSelector(state => state.login_state)
 
   const changeActiveState = (id, glass) => {
     if(glass && !glass.drained) {
@@ -39,16 +40,25 @@ function GlassListingPopup() {
   });
 
   const selectGlass = () => {
-    const req = {
-      glassId: activeGlass.id,
-      userId: user.userId
-    }
-    Api.selectGlass(req, 'watch').then((res) => {
-      if(res && res.status === 200) {
-        dispatch(toggleGlassListingVisibility(false));
-        ToastMessage(res?.data?.message, true);
+    if(activeGlass && activeGlass.id && user && user.userId) {
+      const req = {
+        glassId: activeGlass.id,
+        userId: user.userId
       }
-    })
+      Api.selectGlass(req, 'watch').then((res) => {
+        if(res && res.status === 200) {
+          if(res.data.isSuccess) {
+            dispatch(toggleGlassListingVisibility(false));
+            ToastMessage(res?.data?.message, true);
+          } else {
+            ToastMessage(res?.data?.message || "Glass already drained.");
+          }
+        }
+      })
+    } else {
+      ToastMessage('Please select glass');
+    }
+    
   }  
 
   const returnClasses = (id) => {
@@ -66,12 +76,14 @@ function GlassListingPopup() {
           if(res?.data?.data?.content?.length !== 0  || res?.data?.data?.content?.length === 10) {
             // const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
             const unDrainedList = [...glassListingData, ...res?.data?.data?.content];
+            console.log(unDrainedList, 'unDrainedList');
             const uniqueUnDrainedList = [...unDrainedList.reduce((list, o) => {
               if(!list.some(obj => obj.id === o.id)) {
                 list.push(o);
               }
               return list;
             }, [])]
+            console.log(uniqueUnDrainedList, 'uniqueUnDrainedList');
             setActive(uniqueUnDrainedList[0]);
             setGlassListingData(uniqueUnDrainedList);
             setTotalGlasses(res?.data?.data?.totalrecords);
@@ -96,6 +108,10 @@ function GlassListingPopup() {
 			document.body.style.overflowY = "auto";
 		}
 	}, [isGlassListingModalVisible]);
+
+  useEffect(() => {
+    setGlassListingData([]);
+  }, [isLogin, isGlassListingModalVisible])
 
   useEffect(() => {
     if(user?.userId) {
@@ -139,18 +155,20 @@ function GlassListingPopup() {
                       </p> */}
                     </div>
                   </div>
-                )  : null
+                )  : <div className="flex justify-center items-center h-[100%]"><p className="text-xl">No Glass Found</p></div>
               }
             </InfiniteScroll>
           </div>
-          <div className="text-center mt-5">
-            <button
-              className="px-5 py-1 rounded bg-[#131313]"
-              onClick={() => selectGlass()}
-            >
-              Continue
-            </button>
-          </div>
+          {glassListingData && glassListingData.length > 0 ? <div className="text-center mt-5">
+              <button
+                className="px-5 py-1 rounded bg-[#131313]"
+                onClick={() => selectGlass()}
+              >
+                Continue
+              </button>
+            </div> : null
+          }
+          
         </section>
       </UpperRoot>
     </>

@@ -16,6 +16,7 @@ import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
 import { ToastMessage } from "components/ToastMessage";
 import MixPanelService from "services/mixPanelService";
+import EndRecaptchaPopup from "components/EndRecaptchaPopup";
 
 const channels = [
   {
@@ -225,6 +226,7 @@ function Channels({
   const [channelIndex,setChannelIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
   const [selectedGlass, setselectedGlass] = useState({});
+  const [saveDurationRes, setSaveDurationRes] = useState({});
 
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
@@ -233,7 +235,7 @@ function Channels({
 		(state) => state.connectWalletModal_State
 	);
   const {isLogin} = useSelector(state => state.login_state)
-    const { refreshChannel } = useSelector(
+  const { refreshChannel } = useSelector(
 		(state) => state.refresh_state
 	);
 
@@ -462,7 +464,8 @@ function Channels({
       "showId": latestVideo.id, // show id
       "videoId": latestVideo.videoId, // video id
       "userId": userId ? userId : 0,
-      "videoDuration": +watchTime.toFixed()  // duration in minute
+      "videoDuration": +watchTime.toFixed(),  // duration in minute
+      "glassId": selectedGlass?.glassId || 0
     };
     
     if (+watchTime.toFixed() > 0) {
@@ -478,7 +481,24 @@ function Channels({
       if(!watchApiCalled){
         watchApiCalled=true;
       Api.saveVideoDuration(req, 'watch').then((res) => {
-        if (res && res.isSuccess) {
+        if (res && res.status === 200) {
+          console.log(res.data.data, 'save duration')
+          setSaveDurationRes(res.data.data)
+          if(res.data.data.drained) {
+            const endSessionReq = {
+              glassId: selectedGlass.glassId,
+              userId: user.userId,
+              sessionId: selectedGlass?.sessionId
+            }
+            Api.endSession(endSessionReq, 'watch').then((res) => {
+              if(res && res.status === 200) {
+                ToastMessage('Session has been ended successfully', true);
+                getSelectedGlass();
+              } else {
+                ToastMessage(res?.data?.message || 'Unable to close session');
+              }
+            })
+          }
           watchApiCalled=false;
         } else {
           watchApiCalled=false;
@@ -651,10 +671,13 @@ function Channels({
               />
 
               <>
-                <RecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode} selectedGlass={selectedGlass} user={user} />
+                {
+                    userId && selectedGlass && selectedGlass?.sessionId ? <EndRecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode} selectedGlass={selectedGlass} user={user} /> : 
+                    <RecaptchaPopup open={modal} setOpen={setModal} recaptchaCode={recaptchaCode} selectedGlass={selectedGlass} user={user} />
+                }
                 <Button
                   type="button"
-                  label={recaptchaCode}
+                  label={selectedGlass && selectedGlass?.sessionId ? 'End Session' : recaptchaCode}
                   customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
                   variant={4}
                   buttonProps={{ onClick: () => setModal((val) => !val) }}
@@ -666,7 +689,7 @@ function Channels({
           <div className="grid xl:grid-cols-[1fr_340px] gap-10 items-center">
             <div className="xl:flex items-center space-y-12 xl:space-y-0 xl:space-x-6">
               <div className="grid grid-cols-2 xl:grid-cols-[110px_110px] gap-4 xl:gap-6">
-                <GlassModalButton selectedChananel={selectedChananel} user={user} selectedGlass={selectedGlass}/>
+                <GlassModalButton selectedChananel={selectedChananel} user={user} selectedGlass={selectedGlass} saveDurationRes={saveDurationRes}/>
 
                 <SquareBox className="flex-1 xl:flex-auto">
                   <img
@@ -695,9 +718,9 @@ function Channels({
 
               <div className="flex-1 flex flex-col justify-center space-y-3">
                 <div className="space-y-2">
-                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(selectedGlass?.glass?.maxEarnableTime || 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
+                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
                   <div className="text-xs font-medium text-center">
-                    {selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
+                    {saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
                   </div>
                 </div>
 
