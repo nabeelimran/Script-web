@@ -688,7 +688,7 @@ function Channels({
                   label={selectedGlass && selectedGlass?.sessionId ? 'End Session' : recaptchaCode}
                   customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
                   variant={4}
-                  buttonProps={{ onClick: () => openCaptchModal }}
+                  buttonProps={{ onClick: () => openCaptchModal() }}
                 />
               </>
             </div>
