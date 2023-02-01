@@ -465,7 +465,7 @@ function Channels({
       "videoId": latestVideo.videoId, // video id
       "userId": userId ? userId : 0,
       "videoDuration": +watchTime.toFixed(),  // duration in minute
-      "glassId": selectedGlass?.glassId || 0
+      "glassId": selectedGlass && selectedGlass?.sessionId ? selectedGlass?.glassId : 0
     };
     
     if (+watchTime.toFixed() > 0) {
