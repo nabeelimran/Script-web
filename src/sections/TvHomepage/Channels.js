@@ -576,7 +576,7 @@ function Channels({
   }
 
   const openCaptchModal = () => {
-    if(user && user.id) {
+    if(user && user.userId) {
       setModal((val) => !val)
     } else {
       dispatch(toggleModalVisibility(true));  
