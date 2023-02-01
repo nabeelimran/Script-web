@@ -46,8 +46,12 @@ function GlassListingPopup() {
       }
       Api.selectGlass(req, 'watch').then((res) => {
         if(res && res.status === 200) {
-          dispatch(toggleGlassListingVisibility(false));
-          ToastMessage(res?.data?.message, true);
+          if(res.data.isSuccess) {
+            dispatch(toggleGlassListingVisibility(false));
+            ToastMessage(res?.data?.message, true);
+          } else {
+            ToastMessage(res?.data?.message || "Glass already drained.");
+          }
         }
       })
     } else {
@@ -71,12 +75,14 @@ function GlassListingPopup() {
           if(res?.data?.data?.content?.length !== 0  || res?.data?.data?.content?.length === 10) {
             // const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
             const unDrainedList = [...glassListingData, ...res?.data?.data?.content];
+            console.log(unDrainedList, 'unDrainedList');
             const uniqueUnDrainedList = [...unDrainedList.reduce((list, o) => {
               if(!list.some(obj => obj.id === o.id)) {
                 list.push(o);
               }
               return list;
             }, [])]
+            console.log(uniqueUnDrainedList, 'uniqueUnDrainedList');
             setActive(uniqueUnDrainedList[0]);
             setGlassListingData(uniqueUnDrainedList);
             setTotalGlasses(res?.data?.data?.totalrecords);
