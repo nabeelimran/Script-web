@@ -205,8 +205,6 @@ function Channels({
   currentVideo,
   videoTokenEarned,
   metamaskBalance,
-  recaptchaCode,
-  changeRecatpchaCode,
   latestVideo,
   queryChannelId,
   latestChaneelID,
@@ -228,6 +226,9 @@ function Channels({
   const [videoIndex, setVideoIndex] = useState(0);
   const [selectedGlass, setselectedGlass] = useState({});
   const [saveDurationRes, setSaveDurationRes] = useState({});
+  const [recaptchaCode, setReCaptchaCode] = useState("");
+
+  const changeRecatpchaCode = () => setReCaptchaCode(helper.getRandomNumber(8));
 
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
@@ -343,6 +344,7 @@ function Channels({
       
       getVideoTokenEarned(userId)
     }
+    changeRecatpchaCode();
   },[isLogin])
 
   useEffect(()=>{
@@ -370,14 +372,15 @@ function Channels({
       
       setCursonPosition(style)
     },10000)
-    
+    changeRecatpchaCode();
     return( ()=>{
       clearInterval(cursorint)
     })
+    
     },[])
 
   useEffect(()=>{
-    
+    console.log('earned token', earnedToken);
     if(earnedToken>0) {
   
 
