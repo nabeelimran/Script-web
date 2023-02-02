@@ -114,11 +114,12 @@ function GlassListingPopup() {
 		} else {
 			document.body.style.overflowY = "auto";
 		}
+    setGlassListingData([]);
 	}, [isGlassListingModalVisible]);
 
   useEffect(() => {
     setGlassListingData([]);
-  }, [isLogin, isGlassListingModalVisible])
+  }, [isLogin])
 
   useEffect(() => {
     if(user?.userId) {

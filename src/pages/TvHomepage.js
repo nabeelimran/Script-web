@@ -156,6 +156,8 @@ function TvHomepage() {
 
 	}, []);
 
+	const changeRecatpchaCode = () => setReCaptchaCode(helper.getRandomNumber(8));
+
 	const changeVideo = (show) => {
 		dispatch(playingVideo(show));
 		setCurrentVideo(show);
@@ -197,6 +199,7 @@ function TvHomepage() {
 						videoTokenEarned={videoTokenEarned}
 						metamaskBalance={metamaskBalance}
 						recaptchaCode={recaptchaCode}
+						changeRecatpchaCode={changeRecatpchaCode}
 						latestChaneelID={latestChaneelID}
 						latestVideIdx={latestVideIdx}
 					/>
