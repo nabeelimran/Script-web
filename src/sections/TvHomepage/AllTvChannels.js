@@ -210,7 +210,9 @@ function AllTvChannels({
 
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
 				clearInterval(videoWatchInterval);
+				console.log('interval cleared');
 				if(!videoWatchInterval){
+					console.log('new interval started');
 					videoWatchInterval = setInterval(() => {
 					console.log('interval started')
 					const videoWatchTime = {
@@ -228,6 +230,7 @@ function AllTvChannels({
 					) {
 						// let eToken = earnedToken + 0.05
 						dispatch(getVideoTimeWatch(videoWatchTime));
+						console.log('dispatch video time');
 						if (userId) {
 							console.log("DISPATCH FROM HERE");
 							dispatch(earnedTokenRed(0.05));
