@@ -27,7 +27,9 @@ function GlassPopup({ open, setOpen, selectedGlass, saveDurationRes }) {
 
         <div className="space-y-2 mb-3">
           <div className="space-y-1 w-full">
-            <FillBar barColor="#FF0015" bgColor="#434242" progress= {`${(selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
+            <FillBar barColor="#FF0015" bgColor="#434242" progress= {
+              selectedGlass.glassId || saveDurationRes.maxEarnableTime ? `${(selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%` : '0%'
+              } />
             <p className="text-center font-medium text-sm text-black">
               {selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
             </p>

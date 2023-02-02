@@ -206,6 +206,7 @@ function Channels({
   videoTokenEarned,
   metamaskBalance,
   recaptchaCode,
+  changeRecatpchaCode,
   latestVideo,
   queryChannelId,
   latestChaneelID,
@@ -587,6 +588,7 @@ function Channels({
 
   useEffect(() => {
     setSaveDurationRes({});
+    changeRecatpchaCode();
   }, [modal])
 
   useEffect(() => {
@@ -730,7 +732,10 @@ function Channels({
 
               <div className="flex-1 flex flex-col justify-center space-y-3">
                 <div className="space-y-2">
-                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
+                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F"
+                    progress= {
+                      selectedGlass.glassId || saveDurationRes.maxEarnableTime ? `${(selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%` : `0%`
+                      } />
                   <div className="text-xs font-medium text-center">
                     {selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
                   </div>
