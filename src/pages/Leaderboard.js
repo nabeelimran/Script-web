@@ -70,7 +70,7 @@ function LeaderBoard() {
               ? leaderBoardData.map((data, index) => (
                   <tr key={index}>
                     {console.log(data)}
-                    <td className="py-4">{data?.walletAddress || ""}</td>
+                    <td className="py-4">{data?.walletAddress || data?.username || ""}</td>
                     <td className="py-4">{data?.totalReward || 0}</td>
                   </tr>
                 ))
