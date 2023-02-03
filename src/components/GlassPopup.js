@@ -8,7 +8,6 @@ function GlassPopup({ open, setOpen, selectedGlass, saveDurationRes }) {
 
   return (
     <>
-    {console.log(selectedGlass, 'selectedGlass')}
       <Popup
         open={open}
         setOpen={setOpen}
