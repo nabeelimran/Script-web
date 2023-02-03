@@ -462,7 +462,7 @@ function Channels({
   };
 
   // this is used to save the watch time of user
-  const saveVideoDuration = (e) => {
+  const saveVideoDuration = async (e) => {
     const watchTime = (e.videoPlayTime - e.startTime) / 60
     const req = {
       "showId": latestVideo.id, // show id
@@ -484,30 +484,53 @@ function Channels({
       let watchApiCalled=false;
       if(!watchApiCalled){
         watchApiCalled=true;
-      Api.saveVideoDuration(req, 'watch').then((res) => {
-        if (res && res.status === 200) {
-          console.log(res.data.data, 'save duration')
-          setSaveDurationRes(res.data.data)
-          if(res.data.data.drained) {
-            const endSessionReq = {
-              glassId: selectedGlass.glassId,
-              userId: user.userId,
-              sessionId: selectedGlass?.sessionId
-            }
-            Api.endSession(endSessionReq, 'watch').then((res) => {
-              if(res && res.status === 200) {
-                ToastMessage('Session has been ended successfully', true);
-                getSelectedGlass();
-              } else {
-                ToastMessage(res?.data?.message || 'Unable to close session');
-              }
-            })
+      const res = await Api.saveVideoDuration(req, 'watch')
+      if (res && res.status === 200) {
+        console.log(res.data.data, 'save duration')
+        setSaveDurationRes(res.data.data)
+        if(res.data.data.drained) {
+          const endSessionReq = {
+            glassId: selectedGlass.glassId,
+            userId: user.userId,
+            sessionId: selectedGlass?.sessionId
           }
-          watchApiCalled=false;
-        } else {
-          watchApiCalled=false;
+          Api.endSession(endSessionReq, 'watch').then((res) => {
+            if(res && res.status === 200) {
+              ToastMessage('Session has been ended successfully', true);
+              getSelectedGlass();
+            } else {
+              ToastMessage(res?.data?.message || 'Unable to close session');
+            }
+          })
         }
-      })
+        watchApiCalled=false;
+      } else {
+        watchApiCalled=false;
+      }
+      // .then((res) => {
+      //   if (res && res.status === 200) {
+      //     console.log(res.data.data, 'save duration')
+      //     setSaveDurationRes(res.data.data)
+      //     if(res.data.data.drained) {
+      //       const endSessionReq = {
+      //         glassId: selectedGlass.glassId,
+      //         userId: user.userId,
+      //         sessionId: selectedGlass?.sessionId
+      //       }
+      //       Api.endSession(endSessionReq, 'watch').then((res) => {
+      //         if(res && res.status === 200) {
+      //           ToastMessage('Session has been ended successfully', true);
+      //           getSelectedGlass();
+      //         } else {
+      //           ToastMessage(res?.data?.message || 'Unable to close session');
+      //         }
+      //       })
+      //     }
+      //     watchApiCalled=false;
+      //   } else {
+      //     watchApiCalled=false;
+      //   }
+      // })
     }
   }
   }
