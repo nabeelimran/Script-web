@@ -25,7 +25,6 @@ function AllTvChannels({
 	
 	const dispatch = useDispatch();
 	let slots = [];
-	let userId = LocalServices.getServices("user")?.userId || null;
 	const [isPlayerReady, setIsPlayerReady] = React.useState(false);
 	const [isChatShow, setIsChatShow] = useState(true);
 	const [chattingToken, setChattingToken] = useState(0);
@@ -214,6 +213,7 @@ function AllTvChannels({
 				if(!videoWatchInterval){
 					console.log('new interval started');
 					videoWatchInterval = setInterval(() => {
+					let userId = LocalServices.getServices("user")?.userId || null;
 					console.log('interval started')
 					const videoWatchTime = {
 						startTime: videoStartTime,
