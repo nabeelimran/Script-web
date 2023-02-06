@@ -150,7 +150,7 @@ function TvHomepage() {
 	useEffect(() => {
 		getTwitterPost();
 		getChannels();
-		getMetamaskBalance();
+		// getMetamaskBalance();
 	}, []);
 
 	const changeVideo = (show) => {
