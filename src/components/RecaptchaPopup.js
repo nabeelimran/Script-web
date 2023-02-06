@@ -3,9 +3,11 @@ import Api from "services/api";
 import { helper } from "utils/helper";
 import PopupClose from "./PopupClose";
 import { ToastMessage } from "./ToastMessage";
+import LoaderGif from "../assets/Loading_icon.gif"
 
 function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
   const [active, setActive] = useState(1);
+  const [loader, setLoader] = useState(false);
 
   const changeActiveState = (id) => {
     setActive(id);
@@ -13,17 +15,27 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
 
   const verifyCaptcha = () => {
     const enteredCode = document.getElementById('captchaCode').value
+    setLoader(true);
     if(!enteredCode) {
       ToastMessage('Please enter captcha code');
+      setLoader(false);
       return;
     }
     if(recaptchaCode !== enteredCode) {
       ToastMessage('Invalid captcha code. Please enter valid code');
+      setLoader(false);
       return;
     }
 
-    if(!selectedGlass?.glassId && !user?.userId) {
-      ToastMessage('Unable to start session');
+    if(!user?.userId) {
+      ToastMessage('Unable to start session. User detail is missing');
+      setLoader(false);
+      return;
+    }
+
+    if(!selectedGlass?.glassId) {
+      ToastMessage('Unable to start session. Please select glass first');
+      setLoader(false);
       return;
     }
 
@@ -36,9 +48,11 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
     Api.startSession(req, 'watch').then((res) => {
       if(res && res.status === 200) {
         ToastMessage('Captcha code verified successfully. Session has been started', true);
+        setLoader(false);
         setOpen(false)
       } else {
         ToastMessage(res?.data?.message || 'Unable to start session', true);
+        setLoader(false);
       }
     })
   }
@@ -78,9 +92,10 @@ function RecaptchaPopup({ open, setOpen, recaptchaCode, selectedGlass, user }) {
         />
         <button
           className="bg-primary text-black w-full rounded-xl py-2.5 mt-5"
+          disabled={loader}
           onClick={() => verifyCaptcha()}
         >
-          Verify
+          {loader ? (<img src={LoaderGif} alt="loader" style={{height:"16px", margin: "auto"}}/>) : 'Verify'}
         </button>
       </div>
     </PopupClose>

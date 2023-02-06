@@ -4,6 +4,7 @@ import Logo from "components/Logo";
 import useMediaQuery from "hooks/useMediaQuery";
 import React from "react";
 import { Link } from "react-router-dom";
+import { isBnbUser } from "utils/helper";
 
 function Header({
   setRightSidebarVisibility,
@@ -11,13 +12,14 @@ function Header({
   profile
 }) {
   const isAbove768px = useMediaQuery("(min-width : 768px)");
+  const isBelow768px = useMediaQuery("(max-width : 768px)");
 
   return (
     <div className="bg-[#0E0E0F]">
       <div className="dashboard-layout h-[64px] md:h-[80px] flex items-center justify-between">
         <div className="flex items-center space-x-3 md:space-x-6">
           <Logo
-            title={isAbove768px && "Script Network"}
+            title={isAbove768px ? "Script Network" : isBelow768px ? "Script Network" : ""}
             variant="yellow"
             imgClassName="w-8 md:w-9"
             textClassName="text-sm"
@@ -29,11 +31,9 @@ function Header({
             <div className="flex items-center space-x-2 md:space-x-4">
               <div className="w-[30px] md:w-[34px] rounded-full h-[30px] md:h-[34px] relative">
                 <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
-                <img
-                  src="/images/dashboard/user.png"
-                  className="rounded-full w-full h-full"
-                  alt="img"
-                />
+                <img src={
+                      isBnbUser() ? "/images/bnb-default-avatar.png" : profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/yellow-dot.png"
+                    } className="rounded-full w-full h-full" alt="" />
               </div>
 
               {isAbove768px && (

@@ -28,7 +28,6 @@ function TvHomepage() {
 	const [adsList, setAdsList] = useState([]);
 	const [videoTokenEarned, setVideoTokenEarned] = useState(0);
 	const [metamaskBalance, setMetamaskBalance] = useState(0);
-	const [recaptchaCode, setReCaptchaCode] = useState("");
 	const [twitterPost, setTwitterPost] = useState([]);
 	const [latestChaneelID,setLatestChaneelID] = useState(null)
 	const [latestVideIdx,setLatestVideoIdx] = useState(null)
@@ -151,9 +150,7 @@ function TvHomepage() {
 	useEffect(() => {
 		getTwitterPost();
 		getChannels();
-		getMetamaskBalance();
-		setReCaptchaCode(helper.getRandomNumber(8));
-
+		// getMetamaskBalance();
 	}, []);
 
 	const changeVideo = (show) => {
@@ -196,7 +193,6 @@ function TvHomepage() {
 						latestVideo={currentVideo}
 						videoTokenEarned={videoTokenEarned}
 						metamaskBalance={metamaskBalance}
-						recaptchaCode={recaptchaCode}
 						latestChaneelID={latestChaneelID}
 						latestVideIdx={latestVideIdx}
 					/>

@@ -10,10 +10,12 @@ import FillBar from "./FillBar";
 import Popup from "./Popup";
 import { ToastMessage } from "./ToastMessage";
 import UpperRoot from "./UpperRoot";
+import LoaderGif from "../assets/Loading_icon.gif"
 
 
 function GlassListingPopup() {
   const user = LocalServices.getServices("user") || null;
+  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const { isGlassListingModalVisible } = useSelector(
 		(state) => state.connectWalletModal_State
@@ -40,6 +42,7 @@ function GlassListingPopup() {
   });
 
   const selectGlass = () => {
+    setLoader(true);
     if(activeGlass && activeGlass.id && user && user.userId) {
       const req = {
         glassId: activeGlass.id,
@@ -50,13 +53,17 @@ function GlassListingPopup() {
           if(res.data.isSuccess) {
             dispatch(toggleGlassListingVisibility(false));
             ToastMessage(res?.data?.message, true);
+            setLoader(false);
+            setActiveGlass({});
           } else {
             ToastMessage(res?.data?.message || "Glass already drained.");
+            setLoader(false);
           }
         }
       })
     } else {
       ToastMessage('Please select glass');
+      setLoader(false);
     }
     
   }  
@@ -107,11 +114,12 @@ function GlassListingPopup() {
 		} else {
 			document.body.style.overflowY = "auto";
 		}
+    setGlassListingData([]);
 	}, [isGlassListingModalVisible]);
 
   useEffect(() => {
     setGlassListingData([]);
-  }, [isLogin, isGlassListingModalVisible])
+  }, [isLogin])
 
   useEffect(() => {
     if(user?.userId) {
@@ -163,8 +171,9 @@ function GlassListingPopup() {
               <button
                 className="px-5 py-1 rounded bg-[#131313]"
                 onClick={() => selectGlass()}
+                disabled={loader}
               >
-                Continue
+                {loader ? (<img src={LoaderGif} alt="loader" style={{height:"16px", margin: "10px 50px"}}/>) : 'Continue'}
               </button>
             </div> : null
           }

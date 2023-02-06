@@ -87,7 +87,7 @@ function Watch() {
     useEffect(() => {
         MixPanelService.init();
         getChannels();
-        getMetamaskBalance();
+        // getMetamaskBalance();
         setReCaptchaCode(helper.getRandomNumber(8));
         if (userId) {
           getVideoTokenEarned(userId);

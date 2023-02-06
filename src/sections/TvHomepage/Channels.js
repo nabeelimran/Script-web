@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import Api from "services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { helper } from "utils/helper";
-import { toggleGlassListingVisibility, updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
+import { toggleGlassListingVisibility, toggleModalVisibility, updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import RecaptchaPopup from "components/RecaptchaPopup";
@@ -205,7 +205,6 @@ function Channels({
   currentVideo,
   videoTokenEarned,
   metamaskBalance,
-  recaptchaCode,
   latestVideo,
   queryChannelId,
   latestChaneelID,
@@ -227,6 +226,9 @@ function Channels({
   const [videoIndex, setVideoIndex] = useState(0);
   const [selectedGlass, setselectedGlass] = useState({});
   const [saveDurationRes, setSaveDurationRes] = useState({});
+  const [recaptchaCode, setReCaptchaCode] = useState("");
+
+  const changeRecatpchaCode = () => setReCaptchaCode(helper.getRandomNumber(8));
 
   const { changecurrentVideo,data } = useSelector(
     (state) => state.connectWalletModal_State
@@ -342,6 +344,7 @@ function Channels({
       
       getVideoTokenEarned(userId)
     }
+    changeRecatpchaCode();
   },[isLogin])
 
   useEffect(()=>{
@@ -369,14 +372,15 @@ function Channels({
       
       setCursonPosition(style)
     },10000)
-    
+    changeRecatpchaCode();
     return( ()=>{
       clearInterval(cursorint)
     })
+    
     },[])
 
   useEffect(()=>{
-    
+    console.log('earned token', earnedToken);
     if(earnedToken>0) {
   
 
@@ -458,14 +462,14 @@ function Channels({
   };
 
   // this is used to save the watch time of user
-  const saveVideoDuration = (e) => {
+  const saveVideoDuration = async (e) => {
     const watchTime = (e.videoPlayTime - e.startTime) / 60
     const req = {
       "showId": latestVideo.id, // show id
       "videoId": latestVideo.videoId, // video id
       "userId": userId ? userId : 0,
       "videoDuration": +watchTime.toFixed(),  // duration in minute
-      "glassId": selectedGlass?.glassId || 0
+      "glassId": selectedGlass && selectedGlass?.sessionId ? selectedGlass?.glassId : 0
     };
     
     if (+watchTime.toFixed() > 0) {
@@ -480,30 +484,53 @@ function Channels({
       let watchApiCalled=false;
       if(!watchApiCalled){
         watchApiCalled=true;
-      Api.saveVideoDuration(req, 'watch').then((res) => {
-        if (res && res.status === 200) {
-          console.log(res.data.data, 'save duration')
-          setSaveDurationRes(res.data.data)
-          if(res.data.data.drained) {
-            const endSessionReq = {
-              glassId: selectedGlass.glassId,
-              userId: user.userId,
-              sessionId: selectedGlass?.sessionId
-            }
-            Api.endSession(endSessionReq, 'watch').then((res) => {
-              if(res && res.status === 200) {
-                ToastMessage('Session has been ended successfully', true);
-                getSelectedGlass();
-              } else {
-                ToastMessage(res?.data?.message || 'Unable to close session');
-              }
-            })
+      const res = await Api.saveVideoDuration(req, 'watch')
+      if (res && res.status === 200) {
+        console.log(res.data.data, 'save duration')
+        setSaveDurationRes(res.data.data)
+        if(res.data.data.drained) {
+          const endSessionReq = {
+            glassId: selectedGlass.glassId,
+            userId: user.userId,
+            sessionId: selectedGlass?.sessionId
           }
-          watchApiCalled=false;
-        } else {
-          watchApiCalled=false;
+          Api.endSession(endSessionReq, 'watch').then((res) => {
+            if(res && res.status === 200) {
+              ToastMessage('Session has been ended successfully', true);
+              getSelectedGlass();
+            } else {
+              ToastMessage(res?.data?.message || 'Unable to close session');
+            }
+          })
         }
-      })
+        watchApiCalled=false;
+      } else {
+        watchApiCalled=false;
+      }
+      // .then((res) => {
+      //   if (res && res.status === 200) {
+      //     console.log(res.data.data, 'save duration')
+      //     setSaveDurationRes(res.data.data)
+      //     if(res.data.data.drained) {
+      //       const endSessionReq = {
+      //         glassId: selectedGlass.glassId,
+      //         userId: user.userId,
+      //         sessionId: selectedGlass?.sessionId
+      //       }
+      //       Api.endSession(endSessionReq, 'watch').then((res) => {
+      //         if(res && res.status === 200) {
+      //           ToastMessage('Session has been ended successfully', true);
+      //           getSelectedGlass();
+      //         } else {
+      //           ToastMessage(res?.data?.message || 'Unable to close session');
+      //         }
+      //       })
+      //     }
+      //     watchApiCalled=false;
+      //   } else {
+      //     watchApiCalled=false;
+      //   }
+      // })
     }
   }
   }
@@ -575,7 +602,20 @@ function Channels({
     } );
   }
 
+  const openCaptchModal = () => {
+    if(user && user.userId) {
+      setModal((val) => !val)
+    } else {
+      dispatch(toggleModalVisibility(true));  
+    }
+  }
+
   // end of follow and unfollow channel code
+
+  useEffect(() => {
+    setSaveDurationRes({});
+    changeRecatpchaCode();
+  }, [modal])
 
   useEffect(() => {
     
@@ -680,7 +720,7 @@ function Channels({
                   label={selectedGlass && selectedGlass?.sessionId ? 'End Session' : recaptchaCode}
                   customizationClassName="bg-green text-black px-6 rounded-lg font-semibold justify-center"
                   variant={4}
-                  buttonProps={{ onClick: () => setModal((val) => !val) }}
+                  buttonProps={{ onClick: () => openCaptchModal() }}
                 />
               </>
             </div>
@@ -718,9 +758,12 @@ function Channels({
 
               <div className="flex-1 flex flex-col justify-center space-y-3">
                 <div className="space-y-2">
-                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F" progress= {`${(saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%`} />
+                  <FillBar barColor = "#FFEF00" bgColor = "#1F1F1F"
+                    progress= {
+                      selectedGlass.glassId || saveDurationRes.maxEarnableTime ? `${(selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%` : `0%`
+                      } />
                   <div className="text-xs font-medium text-center">
-                    {saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
+                    {selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
                   </div>
                 </div>
 
