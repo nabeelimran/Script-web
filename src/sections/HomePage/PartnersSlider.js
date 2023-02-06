@@ -15,10 +15,10 @@ const companies = [
     iconImg: "images/partners/chainlink.svg",
     className: "invert-[100%] brightness-0 h-8 xl:h-12",
   },
-  {
-    iconImg: "images/partners/dwf.svg",
-    className: "invert-[100%] brightness-0 h-6 xl:h-14",
-  },
+  // {
+  //   iconImg: "images/partners/dwf.svg",
+  //   className: "invert-[100%] brightness-0 h-6 xl:h-14",
+  // },
   {
     iconImg: "images/partners/arcana-network.svg",
     className: "invert-[100%] brightness-0 h-6 xl:h-10",
