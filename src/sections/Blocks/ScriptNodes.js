@@ -54,7 +54,7 @@ const table1 = {
   ],
 };
 
-function ScriptNodes() {
+function ScriptNodes({ topBlockList }) {
   return (
     <section className="container">
       <div className="space-y-6 xl:space-y-8 mb-14">
