@@ -50,6 +50,8 @@ import ReportIssue from "pages/ReportIssue";
 import TableModal from "components/TableModal";
 import GlassListingPopup from "components/GlassListingPopup";
 import Download from "pages/Download";
+import Blocks from "pages/Blocks";
+import Transactions from "pages/Transactions";
 
 function App() {
   try {
@@ -111,6 +113,8 @@ function App() {
         <Route path="/verify-account" element={<VerifyAccount />} />
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
+        <Route path="blocks" element={<Blocks />} />
+        <Route path="txs" element={<Transactions />} />
         <Route path="account-details" element={<AccountDetails />} />
 
         <Route path="connect-wallet" element={<ConnectWallet />} />

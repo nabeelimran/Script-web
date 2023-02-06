@@ -78,8 +78,12 @@ const companies = [
     className: "w-[24vh] invert-[100%] brightness-0",
   },
   {
-    iconImg: "images/partners/ibc.png",
-    className: "w-[11vh] invert-[100%] brightness-0",
+    iconImg: "images/partners/space-id.png",
+    className: "w-[18vh]",
+  },
+  {
+    iconImg: "images/partners/bitcoin-trading.png",
+    className: "w-[25vh] invert-[100%] brightness-0",
   },
 ];
 
