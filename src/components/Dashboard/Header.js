@@ -12,14 +12,14 @@ function Header({
   profile
 }) {
   const isAbove768px = useMediaQuery("(min-width : 768px)");
-  const isAbove375px = useMediaQuery("(min-width : 375px)");
+  const isBelow768px = useMediaQuery("(max-width : 768px)");
 
   return (
     <div className="bg-[#0E0E0F]">
       <div className="dashboard-layout h-[64px] md:h-[80px] flex items-center justify-between">
         <div className="flex items-center space-x-3 md:space-x-6">
           <Logo
-            title={isAbove375px && "Script Network"}
+            title={isAbove768px ? "Script Network" : isBelow768px ? "Script Network" : ""}
             variant="yellow"
             imgClassName="w-8 md:w-9"
             textClassName="text-sm"
@@ -36,13 +36,13 @@ function Header({
                     } className="rounded-full w-full h-full" alt="" />
               </div>
 
-              {isAbove375px && (
+              {isAbove768px && (
                 <p className="font-medium text-xs md:text-sm">
                   {profile?.firstName ? profile?.firstName : ''}
                 </p>
               )}
             </div>
-            {isAbove375px && (
+            {isAbove768px && (
               <div className="flex items-center space-x-3">
                 <Link className="block w-[14px]">
                   <img
