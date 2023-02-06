@@ -11,7 +11,7 @@ function Header({
   setLeftSidebarVisibility,
   profile
 }) {
-  const isAbove768px = useMediaQuery("(min-width : 768px)");
+  const isAbove768px = useMediaQuery("(min-width : 320px)");
 
   return (
     <div className="bg-[#0E0E0F]">
