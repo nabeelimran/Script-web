@@ -29,8 +29,8 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 
 	const saveTokenEarnedByChat = () => {
 		const req = {
-			earnedToken: tokenEarnedByMessage.toFixed(4),
-			userId: user.userId
+			earnedToken: tokenEarnedByMessage?.toFixed(4) || 0,
+			userId: user?.userId
 		};
 		Api.saveTokenEarnedByChat(req, 'watch').then((res) => {})
 	}
