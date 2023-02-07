@@ -10,10 +10,12 @@ import FillBar from "./FillBar";
 import Popup from "./Popup";
 import { ToastMessage } from "./ToastMessage";
 import UpperRoot from "./UpperRoot";
+import LoaderGif from "../assets/Loading_icon.gif"
 
 
 function GlassListingPopup() {
   const user = LocalServices.getServices("user") || null;
+  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const { isGlassListingModalVisible } = useSelector(
 		(state) => state.connectWalletModal_State
@@ -24,6 +26,7 @@ function GlassListingPopup() {
   const [active, setActive] = useState(1);
   const [totalGlasses, setTotalGlasses] = useState(0);
   const [pageNo, setPageNo] =  useState(0);
+  const {isLogin} = useSelector(state => state.login_state)
 
   const changeActiveState = (id, glass) => {
     if(glass && !glass.drained) {
@@ -39,16 +42,30 @@ function GlassListingPopup() {
   });
 
   const selectGlass = () => {
-    const req = {
-      glassId: activeGlass.id,
-      userId: user.userId
-    }
-    Api.selectGlass(req, 'watch').then((res) => {
-      if(res && res.status === 200) {
-        dispatch(toggleGlassListingVisibility(false));
-        ToastMessage(res?.data?.message, true);
+    setLoader(true);
+    if(activeGlass && activeGlass.id && user && user.userId) {
+      const req = {
+        glassId: activeGlass.id,
+        userId: user.userId
       }
-    })
+      Api.selectGlass(req, 'watch').then((res) => {
+        if(res && res.status === 200) {
+          if(res.data.isSuccess) {
+            dispatch(toggleGlassListingVisibility(false));
+            ToastMessage(res?.data?.message, true);
+            setLoader(false);
+            setActiveGlass({});
+          } else {
+            ToastMessage(res?.data?.message || "Glass already drained.");
+            setLoader(false);
+          }
+        }
+      })
+    } else {
+      ToastMessage('Please select glass');
+      setLoader(false);
+    }
+    
   }  
 
   const returnClasses = (id) => {
@@ -66,12 +83,14 @@ function GlassListingPopup() {
           if(res?.data?.data?.content?.length !== 0  || res?.data?.data?.content?.length === 10) {
             // const glassListing = res?.data?.data?.content.filter((d) => !d.drained);
             const unDrainedList = [...glassListingData, ...res?.data?.data?.content];
+            console.log(unDrainedList, 'unDrainedList');
             const uniqueUnDrainedList = [...unDrainedList.reduce((list, o) => {
               if(!list.some(obj => obj.id === o.id)) {
                 list.push(o);
               }
               return list;
             }, [])]
+            console.log(uniqueUnDrainedList, 'uniqueUnDrainedList');
             setActive(uniqueUnDrainedList[0]);
             setGlassListingData(uniqueUnDrainedList);
             setTotalGlasses(res?.data?.data?.totalrecords);
@@ -95,7 +114,12 @@ function GlassListingPopup() {
 		} else {
 			document.body.style.overflowY = "auto";
 		}
+    setGlassListingData([]);
 	}, [isGlassListingModalVisible]);
+
+  useEffect(() => {
+    setGlassListingData([]);
+  }, [isLogin])
 
   useEffect(() => {
     if(user?.userId) {
@@ -139,18 +163,21 @@ function GlassListingPopup() {
                       </p> */}
                     </div>
                   </div>
-                )  : null
+                )  : <div className="flex justify-center items-center h-[100%]"><p className="text-xl">No Glass Found</p></div>
               }
             </InfiniteScroll>
           </div>
-          <div className="text-center mt-5">
-            <button
-              className="px-5 py-1 rounded bg-[#131313]"
-              onClick={() => selectGlass()}
-            >
-              Continue
-            </button>
-          </div>
+          {glassListingData && glassListingData.length > 0 ? <div className="text-center mt-5">
+              <button
+                className="px-5 py-1 rounded bg-[#131313]"
+                onClick={() => selectGlass()}
+                disabled={loader}
+              >
+                {loader ? (<img src={LoaderGif} alt="loader" style={{height:"16px", margin: "10px 50px"}}/>) : 'Continue'}
+              </button>
+            </div> : null
+          }
+          
         </section>
       </UpperRoot>
     </>

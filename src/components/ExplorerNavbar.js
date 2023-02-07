@@ -3,52 +3,45 @@ import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
-import DropdownCard from "./DropdownCard";
-import NavDropdown from "./NavDropdown";
-import { Link as ScrollLink } from "react-scroll";
-import Logo from "./Logo";
-import LinkScroller from "./LinkScroller";
 import UpperRoot from "./UpperRoot";
-import ChannelsDropdown from "./ChannelsDropdown";
-import HelpDropdown from "./HelpDropdown";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import { useDispatch, useSelector } from "react-redux";
 import Api from "services/api";
 import { helper, isBnbUser } from "utils/helper";
 import LocalServices from "services/LocalServices";
 
-function TvNavbar({ className }) {
+function ExplorerNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const userId = LocalServices.getServices("user")?.userId || null;
-  const {updateProfileState} = useSelector(state => state.Profile_State);
+  const { updateProfileState } = useSelector((state) => state.Profile_State);
   const location = useLocation();
   const [profile, setProfile] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [channels,  setChannels] = useState([]);
+  const [channels, setChannels] = useState([]);
 
   const getChannels = () => {
-    Api.getAllChannels(5, 'header').then((res) => {
-      if(res && res.status === 200) {
+    Api.getAllChannels(5, "header").then((res) => {
+      if (res && res.status === 200) {
         setChannels(res.data.data);
       }
-    })
-  }
+    });
+  };
 
   const viewUserProfile = (userId) => {
-    Api.viewUserProfile(userId, 'dashboard').then((res) => {
-      if(res && res.status === 200) {
+    Api.viewUserProfile(userId, "dashboard").then((res) => {
+      if (res && res.status === 200) {
         setProfile(res.data.data);
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    if(userId) {
-      viewUserProfile(userId)
+    if (userId) {
+      viewUserProfile(userId);
     }
-  }, [updateProfileState])
+  }, [updateProfileState]);
 
   useEffect(() => {
     getChannels();
@@ -59,24 +52,17 @@ function TvNavbar({ className }) {
     }
   }, [isSidebarVisible]);
 
-  const checkToken = () => sessionStorage.getItem('script-token') || null;
-  
-  const goToDashboard = () => navigate({
-    pathname: '/dashboard',
-  });
+  const checkToken = () => sessionStorage.getItem("script-token") || null;
+
+  const goToDashboard = () =>
+    navigate({
+      pathname: "/dashboard",
+    });
 
   return (
     <UpperRoot>
       <div className="container py-5 xl:py-7 flex items-center justify-between z-[200] relative">
-        {/* <Logo
-          to="/tv"
-          variant="yellow"
-          imgClassName="w-10"
-          textClassName="text-sm xl:text-base lh-1"
-          title={<>script.tv</>}
-        /> */}
-
-        <Link to="/tv">
+        <Link to="/explorer">
           <img
             src="images/logo-beta.svg"
             className="w-[100px] xl:w-[144px]"
@@ -116,64 +102,32 @@ function TvNavbar({ className }) {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
-              <LinkScroller
-                id="homepage-community-section"
-                to="/watch"
-                wait={location.pathname === "/" ? 0 : 200}
+              <Link
+                to="/blocks"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
-                scrollerOptions={{
-                  smooth: true,
-                  offset: -50,
-                }}
               >
-                Watch
-              </LinkScroller>
+                Blocks
+              </Link>
 
-              <ChannelsDropdown channels={channels} />
+              <Link
+                to="/txs"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Transactions
+              </Link>
 
-              <HelpDropdown />
-
-              <LinkScroller
-                id="tv-community"
+              <Link
+                to="/stake"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Staking
+              </Link>
+              <Link
                 to="/tv"
-                wait={location.pathname === "/tv" ? 0 : 200}
-                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
-                scrollerOptions={{
-                  smooth: true,
-                  offset: -50,
-                }}
-              >
-                Community
-              </LinkScroller>
-
-              <Link
-                to="/unlock-wallet/key-store"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
-                Wallet
+                More
               </Link>
-              {/* <a
-                href="https://wallet.script.tv/"
-                target="_blank"
-                rel="noreferrer"
-                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
-              >
-                Wallet
-              </a> */}
-              <Link
-                to="/explorer"
-                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
-              >
-                Explorer
-              </Link>
-              {/* <a
-                href="https://explorer.script.tv/"
-                target="_blank"
-                rel="noreferrer"
-                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
-              >
-                Explorer
-              </a> */}
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">
@@ -188,40 +142,49 @@ function TvNavbar({ className }) {
                   </span>
                 }
                 buttonProps={{
-                  onClick:() => {
+                  onClick: () => {
                     helper.comingSoonNotification();
-                    helper.trackByMixpanel('Market Place Button Clicked', {});
-                  } 
-                }}
-              />
-              {
-                checkToken() ? (
-                  <div className="w-[34px] rounded-full h-[34px] relative" onClick={goToDashboard}>
-                    <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
-                    <img src={
-                      isBnbUser() ? "/images/bnb-default-avatar.png" : profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/yellow-dot.png"
-                    } className="rounded-full w-full" alt="" />
-                  </div>
-                ) : (
-                  <Button
-                    buttonProps={{
-                    onClick: () => {
-                    setSidebarVisibility(false);
-                    dispatch(toggleModalVisibility(true));
-                    helper.trackByMixpanel('Sign In Button Clicked', {});
+                    helper.trackByMixpanel("Market Place Button Clicked", {});
                   },
                 }}
-                label={
-                  <span className="text-xs xl:text-sm text-black">
-                    Sign in / Sign up
-                  </span>
-                }
-                className="mt-8 lg:mt-0 flex justify-center text-center"
-                customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
-                buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
               />
-                )
-              }
+              {checkToken() ? (
+                <div
+                  className="w-[34px] rounded-full h-[34px] relative"
+                  onClick={goToDashboard}
+                >
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
+                  <img
+                    src={
+                      isBnbUser()
+                        ? "/images/bnb-default-avatar.png"
+                        : profile?.profile?.urlProfileImage
+                        ? profile?.profile?.urlProfileImage
+                        : "/images/yellow-dot.png"
+                    }
+                    className="rounded-full w-full"
+                    alt=""
+                  />
+                </div>
+              ) : (
+                <Button
+                  buttonProps={{
+                    onClick: () => {
+                      setSidebarVisibility(false);
+                      dispatch(toggleModalVisibility(true));
+                      helper.trackByMixpanel("Sign In Button Clicked", {});
+                    },
+                  }}
+                  label={
+                    <span className="text-xs xl:text-sm text-black">
+                      Sign in / Sign up
+                    </span>
+                  }
+                  className="mt-8 lg:mt-0 flex justify-center text-center"
+                  customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
+                  buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
+                />
+              )}
             </div>
           </div>
         </div>
@@ -232,4 +195,4 @@ function TvNavbar({ className }) {
   );
 }
 
-export default TvNavbar;
+export default ExplorerNavbar;

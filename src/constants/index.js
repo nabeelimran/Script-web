@@ -8,15 +8,24 @@ export const APIPATH = {
     SIDURL: "https://api.prd.space.id/v1/"
 };
 
+export const roomId = 167567;
+
 export const  firebaseConfig = {
-    apiKey: "AIzaSyDdkArTAHa3GcxXDqEGKjj7rcwtMzEE-t8",
-    authDomain: "react-git-eb2aa.firebaseapp.com",
-    databaseURL: "https://react-git-eb2aa.firebaseio.com",
-    projectId: "react-git-eb2aa",
-    storageBucket: "react-git-eb2aa.appspot.com",
-    messagingSenderId: "875901092274",
-    appId: "1:875901092274:web:df9823fb0cbbacf118a4ab",
-    measurementId: "G-G819P98MG1"
+    apiKey: "AIzaSyApNoRWmRHe4_5E9BVpIpnGSMWj0w6aOBo",
+    authDomain: "script-network.firebaseapp.com",
+    projectId: "script-network",
+    storageBucket: "script-network.appspot.com",
+    messagingSenderId: "961447351106",
+    appId: "1:961447351106:web:ef7fc89236a60d89d22edb",
+    measurementId: "G-X0DLQFHPT2"
+    // apiKey: "AIzaSyDdkArTAHa3GcxXDqEGKjj7rcwtMzEE-t8",
+    // authDomain: "react-git-eb2aa.firebaseapp.com",
+    // databaseURL: "https://react-git-eb2aa.firebaseio.com",
+    // projectId: "react-git-eb2aa",
+    // storageBucket: "react-git-eb2aa.appspot.com",
+    // messagingSenderId: "875901092274",
+    // appId: "1:875901092274:web:df9823fb0cbbacf118a4ab",
+    // measurementId: "G-G819P98MG1"
 };
 
 export const mixPanelConfig = {

@@ -1,18 +1,17 @@
-import ExplorerNavbar from "components/ExplorerNavbar";
 import Footer from "components/Footer";
 import React, { useState, useEffect } from "react";
-import Hero from "sections/Stake/Hero";
-import ScriptNodes from "sections/Stake/ScriptNodes";
+import ScriptNodes from "sections/Transactions/ScriptNodes";
+import ExplorerNavbar from "components/ExplorerNavbar";
 import ExplorerService from "services/explorer";
 import { ToastMessage } from "components/ToastMessage";
 
-function Stake() {
-  const [stakingList, setStakingList] = useState([]);
+function Transactions() {
+  const [transactionList, setTransactionList] = useState([]);
 
-  const getStakingList = () => {
-    ExplorerService.getStaking(1, 50).then((res) => {
+  const getTransactionList = () => {
+    ExplorerService.getTransactions(1, 50).then((res) => {
       if (res && res.body) {
-        setStakingList(res.body);
+        setTransactionList(res.body);
       } else {
         ToastMessage("No Block Found");
       }
@@ -20,7 +19,7 @@ function Stake() {
   };
 
   useEffect(() => {
-    getStakingList();
+    getTransactionList();
   }, []);
 
   return (
@@ -32,12 +31,8 @@ function Stake() {
       </div>
 
       <main className="flex-1">
-        <div className="mb-10 lg:mb-20">
-          <Hero />
-        </div>
-
         <div className="mb-20 lg:mb-24">
-          <ScriptNodes stakingList={stakingList} />
+          <ScriptNodes transactionList={transactionList} />
         </div>
       </main>
 
@@ -46,4 +41,4 @@ function Stake() {
   );
 }
 
-export default Stake;
+export default Transactions;

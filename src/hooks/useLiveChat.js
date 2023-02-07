@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
-import { APIPATH } from "../constants";
+import { APIPATH, roomId } from "../constants";
 import { useDispatch } from "react-redux";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "components/ToastMessage";
@@ -36,7 +36,7 @@ const useLiveChat = (currentShow) => {
 		// All socket events and function call against them
 		socketRef.current.on("new message", receiveMessage);
 
-		joinRoom(currentShow.videoId);
+		joinRoom(roomId);
         getMessages()
 		// Destroys the socket reference
 		// when the connection is closed
@@ -48,10 +48,10 @@ const useLiveChat = (currentShow) => {
 	//Function to get previous messages from db
 	const getMessages = () => {
 		if (currentShow.videoId) {
-			Api.getCommentByVideoId(currentShow.videoId, 1, "video-details")
+			Api.getIndividualChat("watch")
 				.then((result) => {
                    
-                    setMessage(oldArry => [...result.data.data.comment])
+                    setMessage(oldArry => [...result.data.data])
                 })
 				.catch((err) => {
 					// ToastMessage("Chat not recieved")

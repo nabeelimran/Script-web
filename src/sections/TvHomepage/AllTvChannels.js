@@ -25,7 +25,6 @@ function AllTvChannels({
 	
 	const dispatch = useDispatch();
 	let slots = [];
-	let userId = LocalServices.getServices("user")?.userId || null;
 	const [isPlayerReady, setIsPlayerReady] = React.useState(false);
 	const [isChatShow, setIsChatShow] = useState(true);
 	const [chattingToken, setChattingToken] = useState(0);
@@ -177,7 +176,7 @@ function AllTvChannels({
 						if (
 							playerRef.current?.currentTime() &&
 							playerRef.current.currentTime() ===
-								playerRef.current.duration()
+								(playerRef?.current?.duration() || document.getElementsByTagName('video')[0].duration)
 						) {
 							dispatch(refreshChannel(true));
 						}
@@ -210,12 +209,15 @@ function AllTvChannels({
 
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
 				clearInterval(videoWatchInterval);
+				console.log('interval cleared');
 				if(!videoWatchInterval){
+					console.log('new interval started');
 					videoWatchInterval = setInterval(() => {
+					let userId = LocalServices.getServices("user")?.userId || null;
 					console.log('interval started')
 					const videoWatchTime = {
 						startTime: videoStartTime,
-						endTime: playerRef.current.duration(),
+						endTime: playerRef?.current?.duration() || document.getElementsByTagName('video')[0].duration,
 						videoPlayTime:
 							(new Date().getTime() -
 								new Date(show.startTime).getTime()) /
@@ -228,6 +230,7 @@ function AllTvChannels({
 					) {
 						// let eToken = earnedToken + 0.05
 						dispatch(getVideoTimeWatch(videoWatchTime));
+						console.log('dispatch video time');
 						if (userId) {
 							console.log("DISPATCH FROM HERE");
 							dispatch(earnedTokenRed(0.05));

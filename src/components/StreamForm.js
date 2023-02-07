@@ -10,7 +10,9 @@ import EmojiPicker from 'emoji-picker-react';
 
 
 
-function StreamForm({submitHandler}) {
+function StreamForm({
+  submitHandler, 
+  messageForReply}) {
   const {
     register,
     handleSubmit,
@@ -45,8 +47,16 @@ function StreamForm({submitHandler}) {
     {
       isEmoji && <EmojiPicker onEmojiClick={(res)=> emojiHandler(res)}/>
     }
-    <form className="flex space-x-4 mt-7" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex space-x-4 mt-7 items-end" onSubmit={handleSubmit(onSubmit)}>
       <div className="h-10 w-full relative bg-shade-grayis rounded-lg overflow-hidden">
+        {/* <div className="border-b-4 border-white p-10">
+          <p>
+            In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
+          </p>
+          <p>
+            Dheeraj
+          </p>
+        </div> */}
         <input
           autoComplete="off"
           type="text"

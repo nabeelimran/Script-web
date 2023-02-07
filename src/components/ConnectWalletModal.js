@@ -263,7 +263,8 @@ function ConnectWalletModal() {
 
 			})
 			.catch((err) => {
-				ToastMessage(err?.error?.message || 'Something went wrong')
+				console.log(err);
+				ToastMessage(err?.error?.message || 'Google login popup closed by user.')
 			});
 	};
 	const twitterLoginHandler =  (e) => {

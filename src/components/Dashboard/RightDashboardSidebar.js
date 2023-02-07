@@ -64,7 +64,7 @@ function RightDashboardSidebar({
             <div className="w-[34px] rounded-full h-[34px] relative">
               <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
               <img
-                src={isBnbUser() ? "/images/bnb-default-avatar.png" : profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/dashboard/user.png"} 
+                src={isBnbUser() ? "/images/bnb-default-avatar.png" : profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/yellow-dot.png"} 
                 className="rounded-full w-full h-1.8 w-1.8"
                 alt=""
               />

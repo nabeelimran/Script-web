@@ -707,4 +707,49 @@ export default class Api {
       `${APIPATH.BASEURL}closeSession`, req, options
     );
   }
+
+  static saveIndividualChat(req, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      }
+    };
+
+    return axios.post(
+      `${APIPATH.BASEURL}saveIndividualChat`, req, options
+    );
+  }
+
+  static getIndividualChat(screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      }
+    };
+
+    return axios.get(
+      `${APIPATH.BASEURL}getIndividualChats`, options
+    );
+  }
+
+  static updateWalletAddress(userId, walletAddress, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      },
+    };
+    return axios.put(`${APIPATH.BASEURL}updateWalletAddress?userId=${userId}&walletAddress=${walletAddress}`, {}, options);
+  }
 }
