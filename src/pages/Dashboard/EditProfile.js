@@ -201,7 +201,7 @@ function EditProfile() {
                 ...register("email", { required: true }),
               }}
               error={errors.email && "This field is requird. Please enter e-mail address."}
-              disabledInput={true}
+              disabledInput={isBnbUser() ? false : true}
               />
             {/* <FloatingLabelSelect
               label="Country" options={countryList}
