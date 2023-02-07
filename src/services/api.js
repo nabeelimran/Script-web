@@ -739,4 +739,17 @@ export default class Api {
       `${APIPATH.BASEURL}getIndividualChats`, options
     );
   }
+
+  static updateWalletAddress(userId, walletAddress, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      },
+    };
+    return axios.put(`${APIPATH.BASEURL}updateWalletAddress?userId=${userId}&walletAddress=${walletAddress}`, {}, options);
+  }
 }
