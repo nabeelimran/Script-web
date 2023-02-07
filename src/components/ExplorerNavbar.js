@@ -160,7 +160,7 @@ function ExplorerNavbar({ className }) {
                         ? "/images/bnb-default-avatar.png"
                         : profile?.profile?.urlProfileImage
                         ? profile?.profile?.urlProfileImage
-                        : "/images/dashboard/user.png"
+                        : "/images/yellow-dot.png"
                     }
                     className="rounded-full w-full"
                     alt=""
