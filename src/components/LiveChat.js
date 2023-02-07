@@ -7,9 +7,11 @@ import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "./ToastMessage";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { roomId } from "constants";
 
 const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	const { message, sendMessage } = useLiveChat(currentShow);
+	const [messageForReply, setMessageForReply] = useState({});
 	const [profileImg,setProfile] = useState(null);
 	const [tokenEarnedByMessage, setTokenEarnedByMessage] = useState(0);
 
@@ -73,30 +75,12 @@ console.log("sfsdf",tokenEarnedByMessage)
 			.utc(new Date().getTime() * 1000)
 			.format("HH:mm:ss");
 
-		const body = {
-			comment: typedMessage,
-			commentDate: moment().toISOString(),
-			id: 0,
-			isEdited: false,
-			userId: user.userId,
-			videoId: currentShow.videoId,
-			videoTime: modifyTime,
-			emote: "",
-		};
-
-		Api.addComment(body, "watch")
-			.then((result) => {
-				console.log("RESULT");
-			})
-			.catch((err) => {
-				console.log("ERR", err);
-				// ToastMessage("Message not sent");
-			});
-
 		const sentMessage = {
 			comment: typedMessage,
-			room: currentShow.videoId,
+			room: roomId,
 			msg: typedMessage,
+			messageId: new Date().getTime(),
+			reply: messageForReply && JSON.stringify(messageForReply) !== '{}' ? messageForReply : null,
 			commentDate: moment().toISOString(),
 			userName: user.userName,
 			userId: user.userId,
@@ -105,6 +89,37 @@ console.log("sfsdf",tokenEarnedByMessage)
 			emote: "",
 			badgeType: "",
 		};
+
+		const body = {
+			comment: typedMessage,
+			commentDate: moment().toISOString(),
+			messageId: sentMessage.messageId,
+			reply: messageForReply && JSON.stringify(messageForReply) !== '{}' ? messageForReply : null,
+			id: 0,
+			isEdited: false,
+			userId: user.userId,
+			videoId: currentShow.videoId,
+			videoTime: modifyTime,
+			emote: "",
+		};
+
+		// Api.addComment(body, "watch")
+		// 	.then((result) => {
+		// 		console.log("RESULT");
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log("ERR", err);
+		// 		// ToastMessage("Message not sent");
+		// });
+
+		Api.saveIndividualChat(body, "watch")
+			.then((result) => {
+				console.log("RESULT");
+			})
+			.catch((err) => {
+				console.log("ERR", err);
+				// ToastMessage("Message not sent");
+		});
 		
 		setTokenEarnedByMessage(prevState => {
 			let rf = (prevState +  0.0001).toFixed(4)
@@ -112,7 +127,15 @@ console.log("sfsdf",tokenEarnedByMessage)
 		});
 		
 		sendMessage(sentMessage);
+		if(messageForReply && JSON.stringify(messageForReply) !== '{}') {
+			setMessageForReply({});
+		}
 	};
+
+	const chooseMessage = (msg) => {
+		console.log(msg);
+		setMessageForReply(msg);
+	}
 
 	return (
 		<div className='rounded-2xl py-5 sm:py-7 px-6 sm:px-8 bg-[#010101]'>
@@ -123,7 +146,8 @@ console.log("sfsdf",tokenEarnedByMessage)
 							{message.map((item) => {
 								return (
 									<Fragment key={item}>
-										<StreamComment item={item} />
+										{/* chooseMessage={chooseMessage} */}
+										<StreamComment item={item}  />
 									</Fragment>
 								);
 							})}
@@ -133,7 +157,7 @@ console.log("sfsdf",tokenEarnedByMessage)
 				</div>
 			</ScrollToBottom>
 
-			<StreamForm submitHandler={getFormData} />
+			<StreamForm submitHandler={getFormData} messageForReply={messageForReply} />
 		</div>
 	);
 };

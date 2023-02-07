@@ -8,6 +8,8 @@ export const APIPATH = {
     SIDURL: "https://api.prd.space.id/v1/"
 };
 
+export const roomId = 167567;
+
 export const  firebaseConfig = {
     apiKey: "AIzaSyApNoRWmRHe4_5E9BVpIpnGSMWj0w6aOBo",
     authDomain: "script-network.firebaseapp.com",
