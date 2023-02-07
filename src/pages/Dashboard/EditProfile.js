@@ -14,6 +14,8 @@ import { ToastMessage } from "components/ToastMessage";
 import { isBnbUser } from "utils/helper";
 import { useDispatch } from "react-redux";
 import { updateProfileImage } from "redux/reducers/Profile_State";
+import LoaderGif from "../../assets/Loading_icon.gif"
+import MetamaskService from "services/metamask";
 
 function EditProfile() {
 
@@ -22,6 +24,7 @@ function EditProfile() {
   const userId = user ? user?.userId : null;
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [walletButtonLoader, setWalletButtonLoader] = useState(false);
   const [videoWatchDuration, setVideoWatchDuration] = useState(0);
   const [profileImageFile, setProfileImageFile] = useState(null);
   const navigate = useNavigate();
@@ -105,6 +108,33 @@ function EditProfile() {
 
     return error;
   };
+
+  const updateWalletAddress = async () => {
+    setWalletButtonLoader(true);
+    const accAddres = await MetamaskService.connectHandler();
+    if(accAddres && userId) {
+      Api.updateWalletAddress(userId, accAddres, 'dashboard').then((res) => {
+        if(res && res.status === 200) {
+          navigate({
+            pathname: "/dashboard",
+          })
+          ToastMessage(res.data.message, true);
+          setWalletButtonLoader(false);
+        } else {
+          ToastMessage(res.data.message);
+          setWalletButtonLoader(false);
+        }
+      }).catch(err => {
+        ToastMessage(err?.response?.data?.message || 'Something went wrong.');
+        setWalletButtonLoader(false);
+      })
+    } else {
+      ToastMessage('Unable to fetch wallet address');
+      setWalletButtonLoader(false);
+    }
+    
+    
+  }
 
   const updateProfile = (data) => {
     if(!userId) {
@@ -254,6 +284,16 @@ function EditProfile() {
             <p className="fs-18px font-medium">Total Earn : 0.00 Script Points</p>
             <p className="fs-18px font-medium">Watch Time (min) {videoWatchDuration}</p>
           </div>
+          {
+            profile && !profile.walletAddress ? <button
+            className="bg-primary text-black rounded-xl w-[140px] py-2.5 mt-2 mb-5"
+            onClick={() => updateWalletAddress()}
+            disabled={walletButtonLoader}
+          >
+            {walletButtonLoader ? (<img src={LoaderGif} alt="loader" style={{height:"16px", margin: "auto"}}/>) : 'Connect Wallet'}
+          </button> : null
+          }
+          
 
           <p className="fs-16px font-medium mb-6">
             To open a Script Network wallet, head here{" "}

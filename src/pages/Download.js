@@ -9,17 +9,17 @@ function Download() {
     {
       title: 'Windows',
       image: '/images/os/windows.svg',
-      link: 'https://drive.google.com/file/d/1jH1ngy9tZO2nmB4YJYehrXXW0m0_kWNe/view?usp=sharing',
+      link: 'https://drive.google.com/file/d/1osZgaMgbKYLc4th_H3cjmKDvRcKruaLu/view?usp=sharing',
     },
     {
       title: 'Linux',
       image: '/images/os/linux.svg',
-      link: 'https://drive.google.com/file/d/1kZ6jWI3lTwGQns9N_2RpSm3MtYiAvNej/view?usp=sharing'
+      link: 'https://drive.google.com/file/d/1HbWPiboxizfQlZoB7zut-QYnJbx0dGCN/view?usp=sharing'
     },
     {
       title: 'Apple Mac',
       image: '/images/os/mac.svg',
-      link: 'https://drive.google.com/file/d/1UIf_H8DBHOLXt4mhCBUQeKYBUTsmFWX6/view?usp=sharing'
+      link: 'https://drive.google.com/file/d/1C-9ZRd0VBCM3YnH6eBLGZRq8krIjnYtX/view?usp=sharing'
     }
   ]
 
