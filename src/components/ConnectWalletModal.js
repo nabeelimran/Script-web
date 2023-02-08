@@ -263,6 +263,7 @@ function ConnectWalletModal() {
 
 			})
 			.catch((err) => {
+				console.log(err);
 				ToastMessage(err?.error?.message || 'Google login popup closed by user.')
 			});
 	};
