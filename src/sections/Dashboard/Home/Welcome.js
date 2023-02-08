@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import { helper } from "utils/helper";
 
 function Welcome({
   profile
@@ -14,10 +15,11 @@ function Welcome({
   const {updateRewardPointState} = useSelector(state => state.RewardPoint_State);
   const navigate = useNavigate();
 
-  const goToTVSite = () => navigate({
-    pathname: '/tv',
-  });
-
+  // const goToTVSite = () => navigate({
+  //   pathname: '/',
+  // });
+  
+  const goToTVSite = () => helper.openLink(helper.generateTvHrefLink(''));
 
   const getTotalRewardPoints = () => {
     if (user && user.walletAddress) {

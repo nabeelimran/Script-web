@@ -91,7 +91,7 @@ function ConnectWalletModal() {
 							);
 							dispatch(isLogin(true))
 							navigate({
-								pathname: "/tv",
+								pathname: helper.generateTvHrefLink(''),
 							});
 						} else {
 							ToastMessage('Unable to login');
@@ -179,7 +179,7 @@ function ConnectWalletModal() {
 						});
 						dispatch(isLogin(true))
 						navigate({
-							pathname: "/tv",
+							pathname: helper.generateTvHrefLink(''),
 						});
 					}
 				} else {
@@ -250,7 +250,7 @@ function ConnectWalletModal() {
             			dispatch(toggleModalVisibility(false))
 						dispatch(isLogin(true))
 						navigate({
-							pathname: "/tv",
+							pathname: helper.generateTvHrefLink(''),
 						});
 					}
 				} else {
@@ -327,7 +327,7 @@ function ConnectWalletModal() {
             dispatch(toggleModalVisibility(false))
 			dispatch(isLogin(true))
 						navigate({
-							pathname: "/tv",
+							pathname: helper.generateTvHrefLink(''),
 						});
 					}
 				} else {

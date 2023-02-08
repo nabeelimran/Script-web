@@ -122,12 +122,20 @@ function ExplorerNavbar({ className }) {
               >
                 Staking
               </Link>
-              <Link
+              <a
+                href={helper.generateTvHrefLink('')}
+                target="_blank"
+                rel="noreferrer"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                More
+              </a>
+              {/* <Link
                 to="/tv"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 More
-              </Link>
+              </Link> */}
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">

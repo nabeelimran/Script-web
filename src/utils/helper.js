@@ -1,4 +1,5 @@
 import { ToastMessage } from 'components/ToastMessage';
+import { env } from 'constants';
 import moment from 'moment'
 import LocalServices from 'services/LocalServices';
 import MixPanelService from 'services/mixPanelService';
@@ -92,7 +93,8 @@ export const helper = {
       'images/yellow-glasses.png',
       'images/green-glasses.png',
       'images/orange-glasses.png'
-    ]
+    ],
+    generateTvHrefLink: (path) => env === 'stage' ? `https://stage.script.tv/${path}` : `https://get.script.tv/${path}`
 }
 
 export const metamaskNetwork = {

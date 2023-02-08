@@ -93,7 +93,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
 
         {/* TV ROUTES */}
-        <Route path="/tv" element={<TvHomepage />} />
+        {/* <Route path="/tv" element={<TvHomepage />} />
         <Route path="/all-channels" element={<AllChannels />} />
         <Route path="/all-categories" element={<AllCategory />} />
         <Route path="/channel-detail" element={<ChannelDetail />} />
@@ -115,7 +115,7 @@ function App() {
         <Route path="stake" element={<Stake />} />
         <Route path="blocks" element={<Blocks />} />
         <Route path="txs" element={<Transactions />} />
-        <Route path="account-details" element={<AccountDetails />} />
+        <Route path="account-details" element={<AccountDetails />} /> */}
 
         <Route path="connect-wallet" element={<ConnectWallet />} />
 
@@ -125,7 +125,7 @@ function App() {
           <Route path="private-key" element={<PrivateKey />} />
         </Route>
 
-        <Route
+        {/* <Route
           path="dashboard"
           element={
             <PrivateRoute>
@@ -165,10 +165,10 @@ function App() {
                 <ShareRefferal />
               </PrivateRoute>
             }
-          />
+          /> */}
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
           {/* <Route path="reward" element={<Rewards />} /> */}
-          <Route path="leaderboard" element={<LeaderBoard />} />
+          {/* <Route path="leaderboard" element={<LeaderBoard />} />
           <Route
             path="analytics"
             element={
@@ -176,9 +176,8 @@ function App() {
                 <Analytics />
               </PrivateRoute>
             }
-          />
+          /> */}
           <Route path="coming-soon" element={<ComingSoon />} />
-        </Route>
 
         {/* MARKETPLACE */}
         <Route path="marketplace" element={<Marketplace />} />

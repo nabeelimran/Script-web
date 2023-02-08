@@ -1,4 +1,5 @@
 import React from "react";
+import { helper } from "utils/helper";
 import FooterLinksSection from "./FooterLinksSection";
 
 function Footer({ container = "container-two" }) {
@@ -6,7 +7,7 @@ function Footer({ container = "container-two" }) {
     {
       title: "PRODUCTS",
       links: [
-        { title: "Script TV", to: "/tv" },
+        { title: "Script TV", to: helper.generateTvHrefLink(''), target: "_blank", anchorTag: true },
         { title: "Script Glass", to: "/research" },
         { title: "Marketplace", to: "/marketplace" },
         { title: "dStorage", to: "/" },
