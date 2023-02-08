@@ -35,12 +35,12 @@ function Footer({ container = "container-two" }) {
           target: "_blank",
           anchorTag: true,
         },
-        {
-          title: "Telegram",
-          to: "https://t.me/scriptnetworkann",
-          target: "_blank",
-          anchorTag: true,
-        },
+        // {
+        //   title: "Telegram",
+        //   to: "https://t.me/scriptnetworkann",
+        //   target: "_blank",
+        //   anchorTag: true,
+        // },
         {
           title: "Twitter",
           to: "https://twitter.com/script_network",
@@ -53,12 +53,12 @@ function Footer({ container = "container-two" }) {
           target: "_blank",
           anchorTag: true,
         },
-        {
-          title: "Facebook",
-          to: "https://www.facebook.com/scriptnetwork",
-          target: "_blank",
-          anchorTag: true,
-        },
+        // {
+        //   title: "Facebook",
+        //   to: "https://www.facebook.com/scriptnetwork",
+        //   target: "_blank",
+        //   anchorTag: true,
+        // },
         {
           title: "Instagram",
           to: "https://www.instagram.com/script_network/",
