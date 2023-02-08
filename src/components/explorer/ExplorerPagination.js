@@ -8,8 +8,8 @@ function ExplorerPagination({ handlePageChange, activePage, itemsCountPerPage, t
             activePage={activePage}
             itemsCountPerPage={itemsCountPerPage}
             totalItemsCount={totalItemsCount}
-            pageRangeDisplayed={10}
-            onChange={() => handlePageChange()}
+            pageRangeDisplayed={pageRangeDisplayed}
+            onChange={(e) => handlePageChange(e)}
           />
         </div>
       );

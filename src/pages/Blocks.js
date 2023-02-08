@@ -24,7 +24,7 @@ function Blocks() {
 
   const handlePageChange = (e) => {
     console.log(e)
-    // setActivePage(pageNumber);
+    setActivePage(e);
   }
 
   useEffect(() => {
@@ -49,6 +49,7 @@ function Blocks() {
             activePage={activePage}
             itemsCountPerPage={50}
             totalItemsCount={totalBlocks}
+            pageRangeDisplayed={10}
           />
         </div>
       </main>
