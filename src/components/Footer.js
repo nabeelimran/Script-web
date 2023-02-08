@@ -31,7 +31,7 @@ function Footer({ container = "container-two" }) {
       links: [
         {
           title: "Discord",
-          to: "https://discord.com/invite/hmhdWV6EVK",
+          to: " https://discord.gg/scriptnetwork",
           target: "_blank",
           anchorTag: true,
         },
