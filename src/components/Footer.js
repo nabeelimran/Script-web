@@ -23,7 +23,7 @@ function Footer({ container = "container-two" }) {
         { title: "Calculator", to: "/calculator" },
         { title: "Run a node", to: "/node" },
         { title: "FAQ", to: "/faq" },
-        { title: "Report Issue", to: "/report-issue" },
+        { title: "Report Issue", to: helper.generateTvHrefLink('/report-issue'), target: "_blank", anchorTag: true },
         { title: "Download", to: "/download" },
       ],
     },
