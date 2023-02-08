@@ -23,7 +23,7 @@ function Blocks() {
   };
 
   const handlePageChange = (e) => {
-    console.log(e)
+    console.log(e, 'change password')
     setActivePage(e);
   }
 

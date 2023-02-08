@@ -1,57 +1,9 @@
 import TableList from "components/TableList";
 import Title from "components/Title";
 import React from "react";
-import { Link } from "react-router-dom";
 
 const table1 = {
-  heading: ["Height", "Block Hash", "Age", "Avg Fee", "Txns"],
-  data: [
-    [
-      "2230011",
-      <Link to="/" className="hover:text-blue-link">
-        0x7bd2cdf1f65610be3e7a667f6004efc3cbd...
-      </Link>,
-      "a few seconds",
-      "0 Gwei",
-      "1",
-    ],
-    [
-      "2230011",
-      <Link to="/" className="hover:text-blue-link">
-        0x7bd2cdf1f65610be3e7a667f6004efc3cbd...
-      </Link>,
-      "a few seconds",
-      "0 Gwei",
-      "1",
-    ],
-    [
-      "2230011",
-      <Link to="/" className="hover:text-blue-link">
-        0x7bd2cdf1f65610be3e7a667f6004efc3cbd...
-      </Link>,
-      "a few seconds",
-      "0 Gwei",
-      "1",
-    ],
-    [
-      "2230011",
-      <Link to="/" className="hover:text-blue-link">
-        0x7bd2cdf1f65610be3e7a667f6004efc3cbd...
-      </Link>,
-      "a few seconds",
-      "0 Gwei",
-      "1",
-    ],
-    [
-      "2230011",
-      <Link to="/" className="hover:text-blue-link">
-        0x7bd2cdf1f65610be3e7a667f6004efc3cbd...
-      </Link>,
-      "a few seconds",
-      "0 Gwei",
-      "1",
-    ],
-  ],
+  heading: ["Height", "Block Hash", "Age", "Avg Fee", "Txns"]
 };
 
 function ScriptNodes({ topBlockList }) {
