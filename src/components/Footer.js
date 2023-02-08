@@ -1,4 +1,5 @@
 import React from "react";
+import { helper } from "utils/helper";
 import FooterLinksSection from "./FooterLinksSection";
 
 function Footer({ container = "container-two" }) {
@@ -23,7 +24,7 @@ function Footer({ container = "container-two" }) {
         { title: "Run a node", to: "/node" },
         { title: "FAQ", to: "/faq" },
         { title: "Report Issue", to: "/report-issue" },
-        { title: "Download", to: "/download" },
+        { title: "Download", to: helper.generateTokenHrefLink("download"), target: "_blank", anchorTag: true },
       ],
     },
     {
