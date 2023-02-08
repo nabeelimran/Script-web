@@ -70,15 +70,19 @@ console.log("sfsdf",tokenEarnedByMessage)
 	}
 
 	const getFormData = ({ typedMessage }) => {
+		if(!typedMessage.trim()) {
+			ToastMessage('Invalid message');
+			return;
+		}
 		const user = LocalServices.getServices("user");
 		const modifyTime = moment
 			.utc(new Date().getTime() * 1000)
 			.format("HH:mm:ss");
 
 		const sentMessage = {
-			comment: typedMessage,
+			comment: typedMessage.trim(),
 			room: roomId,
-			msg: typedMessage,
+			msg: typedMessage.trim(),
 			messageId: new Date().getTime(),
 			reply: messageForReply && JSON.stringify(messageForReply) !== '{}' ? messageForReply : null,
 			commentDate: moment().toISOString(),
@@ -91,7 +95,7 @@ console.log("sfsdf",tokenEarnedByMessage)
 		};
 
 		const body = {
-			comment: typedMessage,
+			comment: typedMessage.trim(),
 			commentDate: moment().toISOString(),
 			messageId: sentMessage.messageId,
 			reply: messageForReply && JSON.stringify(messageForReply) !== '{}' ? messageForReply : null,
