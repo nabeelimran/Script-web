@@ -15,7 +15,7 @@ function Welcome({
   const navigate = useNavigate();
 
   const goToTVSite = () => navigate({
-    pathname: '/tv',
+    pathname: '/',
   });
 
 

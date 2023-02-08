@@ -56,7 +56,7 @@ function ReportIssueForm() {
                     ToastMessage(res?.data?.message || 'Success', true);
                     setLoading(false);
                     navigate({
-                        pathname: "/tv",
+                        pathname: "/",
                     })
                 } else {
                     ToastMessage(res?.data?.message || 'Something went wrong');

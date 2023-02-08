@@ -6,7 +6,7 @@ function Footer({ container = "container-two" }) {
     {
       title: "PRODUCTS",
       links: [
-        { title: "Script TV", to: "/tv" },
+        { title: "Script TV", to: "/" },
         { title: "Script Glass", to: "/research" },
         { title: "Marketplace", to: "/marketplace" },
         { title: "dStorage", to: "/" },

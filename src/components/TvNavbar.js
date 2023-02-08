@@ -65,7 +65,7 @@ function TvNavbar({ className }) {
     <UpperRoot>
       <div className="container py-5 xl:py-7 flex items-center justify-between z-[200] relative">
         {/* <Logo
-          to="/tv"
+          to="/"
           variant="yellow"
           imgClassName="w-10"
           textClassName="text-sm xl:text-base lh-1"
