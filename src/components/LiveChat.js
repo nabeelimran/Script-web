@@ -70,6 +70,10 @@ console.log("sfsdf",tokenEarnedByMessage)
 	}
 
 	const getFormData = ({ typedMessage }) => {
+		if(!typedMessage.trim()) {
+			ToastMessage('Invalid message');
+			return;
+		}
 		const user = LocalServices.getServices("user");
 		const modifyTime = moment
 			.utc(new Date().getTime() * 1000)
