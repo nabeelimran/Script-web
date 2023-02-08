@@ -182,7 +182,7 @@ function UpdatedRoadmap() {
                 <BulletPoint point="Telegram" />
               </a>
               <a
-                href="https://discord.com/invite/hmhdWV6EVK"
+                href=" https://discord.gg/scriptnetwork"
                 className="w-fit block"
                 target="_blank"
                 rel="noreferrer"
