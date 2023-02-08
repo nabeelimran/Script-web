@@ -168,6 +168,7 @@ export default class Api {
         screenName: screenName,
       },
     };
+    console.log('get channel called')
     return axios.get(
       `${APIPATH.BASEURL}show/details?zoneId=${helper.getTimeZone()}`,
       options

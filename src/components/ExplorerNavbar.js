@@ -45,6 +45,7 @@ function ExplorerNavbar({ className }) {
 
   useEffect(() => {
     getChannels();
+    console.log('get channel from explorer nav bar')
     if (isSidebarVisible) {
       document.body.style.overflowY = "hidden";
     } else {

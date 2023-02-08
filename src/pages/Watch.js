@@ -87,6 +87,7 @@ function Watch() {
     useEffect(() => {
         MixPanelService.init();
         getChannels();
+        console.log('use effect watch js')
         // getMetamaskBalance();
         setReCaptchaCode(helper.getRandomNumber(8));
         if (userId) {
@@ -106,6 +107,8 @@ function Watch() {
     };
 
     useEffect(()=>{
+        console.log('use effect watch jsrefresh channel')
+
         getChannels();
         helper.trackByMixpanel('Watch Live Now Button Clicked', {})
         
