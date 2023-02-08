@@ -79,7 +79,7 @@ function App() {
       <EmailConfirmation />
       <CreatePasswordForm />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/download" element={<Download />} />
         <Route path="/token" element={<TokenPage />} />
@@ -90,10 +90,10 @@ function App() {
         <Route path="/terms-condition" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
-        <Route path="/faq" element={<FAQ />} />
+        <Route path="/faq" element={<FAQ />} /> */}
 
         {/* TV ROUTES */}
-        <Route path="/tv" element={<TvHomepage />} />
+        <Route path="/" element={<TvHomepage />} />
         <Route path="/all-channels" element={<AllChannels />} />
         <Route path="/all-categories" element={<AllCategory />} />
         <Route path="/channel-detail" element={<ChannelDetail />} />
@@ -111,19 +111,19 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-account" element={<VerifyAccount />} />
-        <Route path="explorer" element={<Explorer />} />
+        {/* <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="blocks" element={<Blocks />} />
         <Route path="txs" element={<Transactions />} />
-        <Route path="account-details" element={<AccountDetails />} />
+        <Route path="account-details" element={<AccountDetails />} /> */}
 
-        <Route path="connect-wallet" element={<ConnectWallet />} />
+        {/* <Route path="connect-wallet" element={<ConnectWallet />} />
 
         <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
           <Route path="key-store" element={<KeyStore />} />
           <Route path="mnemonics" element={<Mnemonics />} />
           <Route path="private-key" element={<PrivateKey />} />
-        </Route>
+        </Route> */}
 
         <Route
           path="dashboard"
