@@ -3,10 +3,6 @@ import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
-import DropdownCard from "./DropdownCard";
-import NavDropdown from "./NavDropdown";
-import { Link as ScrollLink } from "react-scroll";
-import Logo from "./Logo";
 import LinkScroller from "./LinkScroller";
 import UpperRoot from "./UpperRoot";
 import ChannelsDropdown from "./ChannelsDropdown";
@@ -16,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Api from "services/api";
 import { helper, isBnbUser } from "utils/helper";
 import LocalServices from "services/LocalServices";
-import { env } from "constants";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -154,7 +149,7 @@ function TvNavbar({ className }) {
                 Wallet
               </Link> */}
               <a
-                href={env === 'stage' ? "https://stagetoken.script.tv/unlock-wallet/key-store" : "https://token.script.tv/unlock-wallet/key-store"}
+                href={helper.generateTokenHrefLink('unlock-wallet/key-store')}
                 target="_blank"
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
@@ -168,7 +163,7 @@ function TvNavbar({ className }) {
                 Explorer
               </Link> */}
               <a
-                href={env === 'stage' ? "https://stagetoken.script.tv/explorer" : "https://token.script.tv/explorer"}
+                href={helper.generateTokenHrefLink('explorer')}
                 target="_blank"
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
