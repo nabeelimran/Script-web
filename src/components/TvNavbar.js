@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Api from "services/api";
 import { helper, isBnbUser } from "utils/helper";
 import LocalServices from "services/LocalServices";
+import { env } from "constants";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -146,34 +147,34 @@ function TvNavbar({ className }) {
                 Community
               </LinkScroller>
 
-              <Link
+              {/* <Link
                 to="/unlock-wallet/key-store"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Wallet
-              </Link>
-              {/* <a
-                href="https://wallet.script.tv/"
+              </Link> */}
+              <a
+                href={env === 'stage' ? "https://stagetoken.script.tv/unlock-wallet/key-store" : "https://token.script.tv/unlock-wallet/key-store"}
                 target="_blank"
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Wallet
-              </a> */}
-              <Link
+              </a>
+              {/* <Link
                 to="/explorer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Explorer
-              </Link>
-              {/* <a
-                href="https://explorer.script.tv/"
+              </Link> */}
+              <a
+                href={env === 'stage' ? "https://stagetoken.script.tv/explorer" : "https://token.script.tv/explorer"}
                 target="_blank"
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Explorer
-              </a> */}
+              </a>
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">

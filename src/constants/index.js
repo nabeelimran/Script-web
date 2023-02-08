@@ -35,3 +35,5 @@ export const mixPanelConfig = {
 
 export const scriptSecret = 'zL1l33JaQSdhX4BIbA76pYYmS3wpx3RXUgIGNSE+Oyc=';
 
+export const env = 'stage';
+
