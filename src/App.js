@@ -110,12 +110,13 @@ function App() {
         <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/verify-account" element={<VerifyAccount />} />
+        <Route path="/verify-account" element={<VerifyAccount />} /> */}
+
         <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="blocks" element={<Blocks />} />
         <Route path="txs" element={<Transactions />} />
-        <Route path="account-details" element={<AccountDetails />} /> */}
+        <Route path="account-details" element={<AccountDetails />} /> 
 
         <Route path="connect-wallet" element={<ConnectWallet />} />
 

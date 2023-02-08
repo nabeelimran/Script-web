@@ -55,6 +55,9 @@ const table1 = {
 };
 
 function ScriptNodes({ topBlockList }) {
+
+  console.log(topBlockList, 'data');
+
   return (
     <section className="container">
       <div className="space-y-6 xl:space-y-8 mb-14">
@@ -70,7 +73,7 @@ function ScriptNodes({ topBlockList }) {
         <TableList
           className="stake-nodes-table evenBg min-w-[700px] lg:min-w-full rounded-lg xl:table-fixed"
           headings={table1.heading}
-          data={table1.data}
+          data={topBlockList}
         />
       </div>
     </section>
