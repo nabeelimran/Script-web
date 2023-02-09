@@ -435,7 +435,7 @@ export default class Api {
     );
   }
 
-  static getLatestDayReward(walletAddress, screenName) {
+  static getLatestDayReward(userId, screenName) {
     const options = {
       headers: {
         ipAddress: "dummyData",
@@ -446,7 +446,7 @@ export default class Api {
       },
     };
     return axios.get(
-      `${APIPATH.BASEURL}getLatestDayRewardOfUser?walletAddress=${walletAddress}`,
+      `${APIPATH.BASEURL}getLatestDayRewardOfUser?userId=${userId}`,
       options
     );
   }
@@ -554,7 +554,7 @@ export default class Api {
     return axios.post(`${APIPATH.BASEURL}reportIssue`, req, options);
   }
 
-  static getMyRewardPointTotal(walletAddress, screenName) {
+  static getMyRewardPointTotal(userId, screenName) {
     const options = {
       headers: {
         ipAddress: "dummyData",
@@ -565,7 +565,7 @@ export default class Api {
       },
     };
     return axios.get(
-      `${APIPATH.BASEURL}getMyRewardsTotal?walletAddress=${walletAddress}`,
+      `${APIPATH.BASEURL}getMyRewardsTotal?userId=${userId}`,
       options
     );
   }

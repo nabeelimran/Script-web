@@ -37,8 +37,8 @@ function Rewards() {
   };
 
   const getTotalRewardPoints = () => {
-    if (user && user.walletAddress) {
-      Api.getMyRewardPointTotal(user.walletAddress, "reward-management").then(
+    if (user && user.userId) {
+      Api.getMyRewardPointTotal(user.userId, "reward-management").then(
         (res) => {
           if (res && res.status === 200) {
             setTotalRewardPoints(res.data.data.myRewards);
@@ -49,9 +49,9 @@ function Rewards() {
   };
 
   const getLatestDayReward = async () => {
-    if (user && user.walletAddress) {
+    if (user && user.userId) {
       return await Api.getLatestDayReward(
-        user.walletAddress,
+        user.userId,
         "reward-management"
       ).then((res) => res.data);
     }
