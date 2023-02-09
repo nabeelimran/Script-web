@@ -565,7 +565,7 @@ export default class Api {
       },
     };
     return axios.get(
-      `${APIPATH.BASEURL}getMyRewardsTotal?userId=${userId}`,
+      `${APIPATH.BASEURL}getMyRewardsTotal?userId=${20241222}`,
       options
     );
   }
@@ -600,7 +600,7 @@ export default class Api {
     return axios.post(`${APIPATH.BASEURL}saveOrUpdateChatReward`, req, options);
   }
 
-  static getAllUserRewardsData(walletAddress, pageNo, pageSize, screenName) {
+  static getAllUserRewardsData(userId, pageNo, pageSize, screenName) {
     const options = {
       headers: {
         ipAddress: "dummyData",
@@ -611,7 +611,7 @@ export default class Api {
       },
     };
     return axios.get(
-      `${APIPATH.BASEURL}getAllUserRewardsData?walletAddress=${walletAddress}&page=${pageNo}&limit=${pageSize}`,
+      `${APIPATH.BASEURL}getAllUserRewardsData?userId=${userId}&page=${pageNo}&limit=${pageSize}`,
       options
     );
   }

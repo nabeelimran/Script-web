@@ -17,25 +17,8 @@ function Rewards() {
   const dispatch = useDispatch();
   const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
-  const [rewardHistory, setRewardHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   
-
-  const getRewardHistoryList = () => {
-    if (user && user.walletAddress) {
-      Api.getAllUserRewardsData(
-        user.walletAddress,
-        0,
-        10,
-        "reward-management"
-      ).then((res) => {
-        if (res && res.status === 200) {
-          setRewardHistory(res.data.data.content);
-        }
-      });
-    }
-  };
-
   const getTotalRewardPoints = () => {
     if (user && user.userId) {
       Api.getMyRewardPointTotal(user.userId, "reward-management").then(
