@@ -8,21 +8,21 @@ function Footer({ container = "container-two" }) {
       title: "PRODUCTS",
       links: [
         { title: "Script TV", to: "/" },
-        { title: "Script Glass", to: "/research" },
-        { title: "Marketplace", to: "/marketplace" },
+        { title: "Script Glass", to: helper.generateTokenHrefLink("research"), target: "_blank", anchorTag: true },
+        { title: "Marketplace", to: helper.generateTokenHrefLink("marketplace"), target: "_blank", anchorTag: true },
         { title: "dStorage", to: "/" },
-        { title: "Script Blockchain", to: "/node" },
+        { title: "Script Blockchain", to: helper.generateTokenHrefLink("node"), target: "_blank", anchorTag: true },
         { title: "sADs", to: "/" },
       ],
     },
     {
       title: "INFORMATION",
       links: [
-        { title: "ScriptGLASS Explained", to: "/research" },
-        { title: "Script Tokens", to: "/token" },
-        { title: "Calculator", to: "/calculator" },
-        { title: "Run a node", to: "/node" },
-        { title: "FAQ", to: "/faq" },
+        { title: "ScriptGLASS Explained", to: helper.generateTokenHrefLink("research"), target: "_blank", anchorTag: true },
+        { title: "Script Tokens", to: helper.generateTokenHrefLink("token"), target: "_blank", anchorTag: true },
+        { title: "Calculator", to: helper.generateTokenHrefLink("calculator"), target: "_blank", anchorTag: true },
+        { title: "Run a node", to: helper.generateTokenHrefLink("node"), target: "_blank", anchorTag: true },
+        { title: "FAQ", to: helper.generateTokenHrefLink("faq"), target: "_blank", anchorTag: true },
         { title: "Report Issue", to: "/report-issue" },
         { title: "Download", to: helper.generateTokenHrefLink("download"), target: "_blank", anchorTag: true },
       ],
@@ -77,9 +77,9 @@ function Footer({ container = "container-two" }) {
     {
       title: "TERMS",
       links: [
-        { title: "Terms of Service", to: "/terms-condition" },
-        { title: "Privacy Policy", to: "/privacy-policy" },
-        { title: "Cookies Policy", to: "/cookies-policy" },
+        { title: "Terms of Service", to: helper.generateTokenHrefLink("terms-condition"), target: "_blank", anchorTag: true },
+        { title: "Privacy Policy", to: helper.generateTokenHrefLink("privacy-policy"), target: "_blank", anchorTag: true },
+        { title: "Cookies Policy", to: helper.generateTokenHrefLink("cookies-policy"), target: "_blank", anchorTag: true },
       ],
     },
   ];
