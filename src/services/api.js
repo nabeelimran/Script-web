@@ -565,7 +565,7 @@ export default class Api {
       },
     };
     return axios.get(
-      `${APIPATH.BASEURL}getMyRewardsTotal?userId=${20241222}`,
+      `${APIPATH.BASEURL}getMyRewardsTotal?userId=${userId}`,
       options
     );
   }
