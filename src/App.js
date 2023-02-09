@@ -52,6 +52,7 @@ import GlassListingPopup from "components/GlassListingPopup";
 import Download from "pages/Download";
 import Blocks from "pages/Blocks";
 import Transactions from "pages/Transactions";
+import PageNotFound from "pages/PageNotFound";
 
 function App() {
   try {
@@ -183,6 +184,8 @@ function App() {
         {/* MARKETPLACE */}
         <Route path="marketplace" element={<Marketplace />} />
         <Route path="details" element={<Details />} />
+        
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );
