@@ -20,8 +20,8 @@ function Welcome({
 
 
   const getTotalRewardPoints = () => {
-    if (user && user.walletAddress) {
-      Api.getMyRewardPointTotal(user.walletAddress, "reward-management").then(
+    if (user && user.userId) {
+      Api.getMyRewardPointTotal(user.userId, "reward-management").then(
         (res) => {
           if (res && res.status === 200) {
             setTotalRewardPoints(res.data.data.myRewards);
