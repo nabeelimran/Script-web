@@ -9,17 +9,31 @@ import { Link as ScrollLink } from "react-scroll";
 import Logo from "./Logo";
 import LinkScroller from "./LinkScroller";
 import UpperRoot from "./UpperRoot";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import MixPanelService from "services/mixPanelService";
-import { helper } from "utils/helper";
+import { helper, isBnbUser } from "utils/helper";
+import Api from "services/api";
+import LocalServices from "services/LocalServices";
 
 function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();
   const dispatch = useDispatch();
+  const checkToken = () => sessionStorage.getItem('script-token') || null;
+  const [profile, setProfile] = useState(null);
+  const userId = LocalServices.getServices("user")?.userId || null;
+  const {updateProfileState} = useSelector(state => state.Profile_State);
 
+  const viewUserProfile = (userId) => {
+    Api.viewUserProfile(userId, 'dashboard').then((res) => {
+      if(res && res.status === 200) {
+        setProfile(res.data.data);
+      }
+    })
+  }
+  
   useEffect(() => {
     if (isSidebarVisible) {
       document.body.style.overflowY = "hidden";
@@ -27,6 +41,12 @@ function Navbar() {
       document.body.style.overflowY = "auto";
     }
   }, [isSidebarVisible]);
+
+  useEffect(() => {
+    if(userId) {
+      viewUserProfile(userId)
+    }
+  }, [updateProfileState])
 
   return (
     <UpperRoot>
@@ -36,7 +56,7 @@ function Navbar() {
           imgClassName="w-10"
           textClassName="text-sm xl:text-base"
         /> */}
-        <Link to="/tv">
+        <Link to="/">
           <img
             src="images/logo-beta.svg"
             className="w-[100px] xl:w-[144px]"
@@ -84,7 +104,7 @@ function Navbar() {
                   subtitle="Our user first watch to earn television platform."
                   anchor={true}
                   others={{
-                    href: "/tv",
+                    href: helper.generateTvHrefLink(''),
                   }}
                 />
                 <DropdownCard
@@ -203,23 +223,34 @@ function Navbar() {
                   },
                 }}
               />
-              <Button
-                className="mt-8 lg:mt-0 flex justify-center text-center"
-                customizationClassName="space-x-3 px-0 py-2 w-[120px] rounded-lg font-semibold"
-                buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
-                label={
-                  <span className="text-xs xl:text-sm text-black">
-                    Sign in / Sign up
-                  </span>
-                }
-                buttonProps={{
-                  onClick: () => {
-                    setSidebarVisibility(false);
-                    dispatch(toggleModalVisibility(true));
-                    helper.trackByMixpanel('Sign In Button Clicked', {});
-                  },
-                }}
-              />
+              {
+                checkToken() ? (
+                  <div className="w-[34px] rounded-full h-[34px] relative">
+                    <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
+                    <img src={
+                      isBnbUser() ? "/images/bnb-default-avatar.png" : profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/yellow-dot.png"
+                    } className="rounded-full w-full" alt="" />
+                  </div>
+                ) : (
+                  <Button
+                  className="mt-8 lg:mt-0 flex justify-center text-center"
+                  customizationClassName="space-x-3 px-0 py-2 w-[120px] rounded-lg font-semibold"
+                  buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
+                  label={
+                    <span className="text-xs xl:text-sm text-black">
+                      Sign in / Sign up
+                    </span>
+                  }
+                  buttonProps={{
+                    onClick: () => {
+                      setSidebarVisibility(false);
+                      dispatch(toggleModalVisibility(true));
+                      helper.trackByMixpanel('Sign In Button Clicked', {});
+                    },
+                  }}
+                />  
+                )
+              }
               
             </div>
           </div>
