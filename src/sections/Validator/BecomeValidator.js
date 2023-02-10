@@ -59,7 +59,7 @@ things to look out for."
           <ValidatorCard
             title="Deposit SCPT."
             desc="Once you're all set up, deposit tokens to stake to begin running a validator or lightning node. "
-            linkTitle="Hardware Checklist"
+            linkTitle="Deposit and Stake"
             img="images/validator/time.png"
           />
         </div>
