@@ -33,9 +33,9 @@ function HistoryTable({
   };
 
   const getRewardHistoryList = () => {
-    if (user && user.walletAddress) {
+    if (user && user.userId) {
       Api.getAllUserRewardsData(
-        user.walletAddress,
+        user.userId,
         currentPage,
         dataPerPage,
         "reward-management"

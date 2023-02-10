@@ -31,10 +31,11 @@ function StreamForm({
     if(user && user.userId){
 
       submitHandler(data)
+      reset();
     }else{
       dispatch(toggleModalVisibility(true))
+      reset();
     }
-    reset();
   }
 
   const emojiHandler = (res) => {
