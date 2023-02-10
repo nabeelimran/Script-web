@@ -50,7 +50,7 @@ function ScriptNetwork() {
             title="Total Validators"
             subtitle={`${totalValidatorNode} Validators`}
           />
-          <ScriptNetworkCard title="Current APR" subtitle="5.1% APR" />
+          <ScriptNetworkCard title="Current APR" subtitle="N/A APR" />
         </div>
       </div>
     </section>
