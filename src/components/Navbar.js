@@ -56,7 +56,7 @@ function Navbar() {
           imgClassName="w-10"
           textClassName="text-sm xl:text-base"
         /> */}
-        <Link to="/">
+        <Link to="/tv">
           <img
             src="images/logo-beta.svg"
             className="w-[100px] xl:w-[144px]"
