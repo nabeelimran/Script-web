@@ -104,7 +104,7 @@ function Navbar() {
                   subtitle="Our user first watch to earn television platform."
                   anchor={true}
                   others={{
-                    href: helper.generateTvHrefLink(''),
+                    href: "/tv",
                   }}
                 />
                 <DropdownCard
