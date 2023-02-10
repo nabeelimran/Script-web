@@ -17,7 +17,9 @@ const stakingData = [
   { title: "Daliy Active Wallets", value: "0.025", active: false },
 ];
 
-function Staking() {
+function Staking({
+  totalStakeNode
+}) {
   return (
     <section>
       <div className="container">
