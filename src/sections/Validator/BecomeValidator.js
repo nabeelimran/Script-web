@@ -29,7 +29,7 @@ function BecomeValidator() {
           <ValidatorCard
             title="Run a Node."
             desc="To run a node you'll need to have a system beyond the minimum requirements, amongst a few other things. View more information on there, here"
-            linkTitle="Heardware Checklist"
+            linkTitle="Hardware Checklist"
             img="images/validator/prep.png"
           />
 
@@ -59,7 +59,7 @@ things to look out for."
           <ValidatorCard
             title="Deposit SCPT."
             desc="Once you're all set up, deposit tokens to stake to begin running a validator or lightning node. "
-            linkTitle="Heardware Checklist"
+            linkTitle="Deposit and Stake"
             img="images/validator/time.png"
           />
         </div>

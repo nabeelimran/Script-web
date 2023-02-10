@@ -31,10 +31,10 @@ function Hero() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] border-2 rounded-full bg-[#600991] blur-[140px] -z-20"></div>
           </div>
 
-          <div className="grid max-w-[16rem] lg:max-w-none mx-auto lg:mx-0 lg:grid-cols-2 gap-4 lg:gap-6">
+          <div className="grid max-w-[16rem] lg:max-w-none mx-auto lg:mx-0 lg:grid-cols-3 gap-4 lg:gap-6">
             <Button
-              label="Run a lightning node"
-              className="justify-center"
+              label="Run a Lightning Node"
+              className="justify-center xl:px-5 py-[10px]"
               buttonProps={{
                 onClick: () =>
                   window.open("https://whitepaper.script.tv/nodes", "_blank"),
@@ -42,13 +42,19 @@ function Hero() {
             />
             <Button
               variant={1}
-              label="How to run a node?"
-              className="justify-center"
+              label="Run an Edge Node"
+              className="justify-center xl:px-5 py-[10px] text-center"
+              link={"/download"}
+            />
+            <Button
+              label="How to run a Node?"
+              className="justify-center xl:px-5 py-[10px] text-center"
               buttonProps={{
                 onClick: () =>
                   window.open("https://whitepaper.script.tv/nodes", "_blank"),
               }}
             />
+            
           </div>
         </div>
       </div>

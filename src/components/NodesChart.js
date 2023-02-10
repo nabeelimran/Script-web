@@ -34,18 +34,30 @@ export const Data = [
   },
 ];
 
-function NodesChart({ className = "w-[157px]", value = "97.04%" }) {
+function NodesChart({ className = "w-[157px]", value = "97.04%", holders, percentage }) {
   const chartData = {
     datasets: [
-      {
-        label: "Users Gained",
-        data: [100, 23],
+      // {
+      //   label: "Users Gained",
+      //   data: [100, 23],
+      //   backgroundColor: ["#FFEF00", "white"],
+      //   borderColor: "transparent",
+      //   borderWidth: 0,
+      // },
+    ],
+  };
+
+  if(holders && holders.length > 0) {
+    for (let index = 0; index < holders.length; index++) {
+      chartData.datasets.push({
+        label: `${percentage[index]}% ${holders[index]}`,
+        data: [percentage[index]],
         backgroundColor: ["#FFEF00", "white"],
         borderColor: "transparent",
         borderWidth: 0,
-      },
-    ],
-  };
+      });
+    }
+  }
 
   return (
     <div className={`${className} relative flex`}>
@@ -66,9 +78,9 @@ function NodesChart({ className = "w-[157px]", value = "97.04%" }) {
         }}
       />
 
-      <p className="fs-16px font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      {/* <p className="fs-16px font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         {value}
-      </p>
+      </p> */}
     </div>
   );
 }
