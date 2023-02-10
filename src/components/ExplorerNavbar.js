@@ -19,15 +19,7 @@ function ExplorerNavbar({ className }) {
   const [profile, setProfile] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [channels, setChannels] = useState([]);
-
-  const getChannels = () => {
-    Api.getAllChannels(5, "header").then((res) => {
-      if (res && res.status === 200) {
-        setChannels(res.data.data);
-      }
-    });
-  };
+  
 
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, "dashboard").then((res) => {
@@ -44,7 +36,6 @@ function ExplorerNavbar({ className }) {
   }, [updateProfileState]);
 
   useEffect(() => {
-    getChannels();
     if (isSidebarVisible) {
       document.body.style.overflowY = "hidden";
     } else {

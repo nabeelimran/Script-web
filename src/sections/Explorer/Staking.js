@@ -17,9 +17,12 @@ const stakingData = [
   { title: "Daliy Active Wallets", value: "0.025", active: false },
 ];
 
-function Staking() {
+function Staking({
+  stakeProps
+}) {
   return (
     <section>
+      {console.log(stakeProps)}
       <div className="container">
         <div className="flex items-end space-x-4 mb-10 lg:mb-14">
           <Title className="text-primary font-semibold lh-1">Staking</Title>
