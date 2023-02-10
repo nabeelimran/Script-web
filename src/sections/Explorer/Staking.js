@@ -18,10 +18,11 @@ const stakingData = [
 ];
 
 function Staking({
-  totalStakeNode
+  stakeProps
 }) {
   return (
     <section>
+      {console.log(stakeProps)}
       <div className="container">
         <div className="flex items-end space-x-4 mb-10 lg:mb-14">
           <Title className="text-primary font-semibold lh-1">Staking</Title>

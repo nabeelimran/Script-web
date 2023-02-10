@@ -113,7 +113,17 @@ function Explorer() {
       </div>
 
       <div className="mb-20 lg:mb-24">
-        <Staking totalStakeNode={totalStakeNode} />
+        <Staking stakeProps={{
+          totalStakeNode,
+          oneDayTransactionCount,
+          oneDayBlockCount,
+          ...supplyData,
+          ...marketValues,
+          totalLightningNode,
+          totalValidatorNode,
+          totalOnChainWallet,
+          totalActiveWallet
+        }} />
       </div>
 
       <div className="mb-20 lg:mb-24">
