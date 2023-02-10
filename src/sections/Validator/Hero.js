@@ -41,13 +41,13 @@ function Hero() {
               }}
             />
             <Button
-              variant={1}
               label="Run an Edge Node"
               className="justify-center xl:px-5 py-[10px] text-center"
               link={"/download"}
             />
             <Button
               label="How to run a Node?"
+              variant={1}
               className="justify-center xl:px-5 py-[10px] text-center"
               buttonProps={{
                 onClick: () =>
