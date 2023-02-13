@@ -2,6 +2,7 @@ import Button from "components/Button";
 import Title from "components/Title";
 import ValidatorCard from "components/ValidatorCard";
 import React from "react";
+import { helper } from "utils/helper";
 
 function BecomeValidator() {
   return (
@@ -25,12 +26,14 @@ function BecomeValidator() {
             desc="Script Network requires validators and lightning nodes to understand the ecosystem, reward mechanism and the risks. "
             linkTitle="Validator Information"
             img="images/validator/faq.png"
+            link={"https://whitepaper.script.tv/validators"}
           />
           <ValidatorCard
             title="Run a Node."
             desc="To run a node you'll need to have a system beyond the minimum requirements, amongst a few other things. View more information on there, here"
             linkTitle="Hardware Checklist"
             img="images/validator/prep.png"
+            link={"https://whitepaper.script.tv/nodes/lightning-node-overview"}
           />
 
           <ValidatorCard
@@ -38,6 +41,7 @@ function BecomeValidator() {
             desc="Head to our Testnet and take part in buying, selling and trading tokens before our launch, alongside running a node. "
             linkTitle="Try the testnet"
             img="images/validator/practice.png"
+            link={"https://whitepaper.script.tv/getting-started-guides/testnet-explorer-+-creating-a-wallet-test-phase"}
           />
           {/* <ValidatorCard
             title="Avoid Phishing"
@@ -61,11 +65,17 @@ things to look out for."
             desc="Once you're all set up, deposit tokens to stake to begin running a validator or lightning node. "
             linkTitle="Deposit and Stake"
             img="images/validator/time.png"
+            link={"https://whitepaper.script.tv/nodes/lightning-node-overview/lightning-staking-process/staking-through-web-wallet"}
           />
         </div>
 
         <div className="flex justify-center">
-          <Button label="Become a lightning node" />
+          <Button label="Become a lightning node"
+            buttonProps={{
+              onClick: () => {
+                helper.openLink("https://whitepaper.script.tv/nodes/lightning-node-overview/validator-lightning-node-installation")  
+              },
+            }}/>
         </div>
       </div>
     </section>
