@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Navigation, Pagination } from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper";
 import { Icon } from "@iconify/react";
 import DividerLine from "components/DividerLine";
 import HeadingSmall from "components/HeadingSmall";
@@ -9,17 +9,26 @@ import LocalServices from "services/LocalServices";
 import Api from "services/api";
 import { useSelector } from "react-redux";
 
-const SliderContent = ({
-  img
-}) => {
+const SliderContent = ({ img, link }) => {
   return (
     <div className="h-[auto] md:h-full relative z-10 rounded-xl overflow-hidden">
-      <img
-        // src="images/tv/hero-banner.png"
-        src={img}
-        className="w-full md:h-full"
-        alt=""
-      />
+      {link ? (
+        <a href={link} target="_blank">
+          <img
+            // src="images/tv/hero-banner.png"
+            src={img}
+            className="w-full md:h-full"
+            alt=""
+          />
+        </a>
+      ) : (
+        <img
+          // src="images/tv/hero-banner.png"
+          src={img}
+          className="w-full md:h-full"
+          alt=""
+        />
+      )}
       {/* <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,.6)] z-20"></div> */}
     </div>
   );
@@ -30,18 +39,18 @@ function Hero() {
   const nextRef = useRef();
   const token = LocalServices.getServices("token");
   const [videoWatchDuration, setVideoWatchDuration] = React.useState(0);
-  const [lastDayWatchVideoDuration, setLastDayWatchVideoDuration] = React.useState(0);
+  const [lastDayWatchVideoDuration, setLastDayWatchVideoDuration] =
+    React.useState(0);
   const [lastVideoHistory, setLastVideoHistory] = React.useState(null);
   let userId = LocalServices.getServices("user")?.userId || null;
-  const {isLogin} = useSelector(state => state.login_state)
+  const { isLogin } = useSelector((state) => state.login_state);
 
-
-  React.useEffect(()=>{
+  React.useEffect(() => {
     if (userId) {
       getVideoWatchDuration(userId);
       getLastShowWatchHistory(userId);
     }
-  },[userId,isLogin])
+  }, [userId, isLogin]);
 
   const getVideoWatchDuration = (userId) => {
     Api.getVideoWatchDuration(userId, "watch").then((res) => {
@@ -52,8 +61,6 @@ function Hero() {
     });
   };
 
-
-
   const getLastShowWatchHistory = (userId) => {
     Api.getLastWatchShowHistory(userId, "watch").then((res) => {
       if (res && res.status === 200) {
@@ -63,9 +70,19 @@ function Hero() {
   };
 
   const bannerImgages = [
-    "images/reward_pool.png",
-    "images/test-launch.png"
-  ]
+    {
+      image: "images/allocation.png",
+      link: "https://daomaker.com/company/script-network",
+    },
+    {
+      image: "images/reward_pool.png",
+      link: "",
+    },
+    {
+      image: "images/test-launch.png",
+      link: "",
+    },
+  ];
 
   return (
     <div>
@@ -74,10 +91,15 @@ function Hero() {
           <Swiper
             className="rounded-xl overflow-hidden h-[auto] md:h-full"
             spaceBetween={30}
-            modules={[Navigation, Pagination]}
+            modules={[Navigation, Pagination, Autoplay]}
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,
+            }}
+            loop={true}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
             }}
             pagination={{
               el: ".bullet-pagination",
@@ -100,15 +122,13 @@ function Hero() {
               });
             }}
           >
-            {
-              bannerImgages && bannerImgages.map((img, index) => (
-                  <SwiperSlide key={index}>
-                    <SliderContent img={img}/>
-                  </SwiperSlide>
-                )
-              )
-            }
-            
+            {bannerImgages &&
+              bannerImgages.map((img, index) => (
+                <SwiperSlide key={index}>
+                  <SliderContent img={img.image} link={img.link} />
+                </SwiperSlide>
+              ))}
+
             {/* <SwiperSlide>
               <SliderContent />
             </SwiperSlide>
