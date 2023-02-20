@@ -21,19 +21,19 @@ function Navbar() {
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();
   const dispatch = useDispatch();
-  const checkToken = () => sessionStorage.getItem('script-token') || null;
+  const checkToken = () => sessionStorage.getItem("script-token") || null;
   const [profile, setProfile] = useState(null);
   const userId = LocalServices.getServices("user")?.userId || null;
-  const {updateProfileState} = useSelector(state => state.Profile_State);
+  const { updateProfileState } = useSelector((state) => state.Profile_State);
 
   const viewUserProfile = (userId) => {
-    Api.viewUserProfile(userId, 'dashboard').then((res) => {
-      if(res && res.status === 200) {
+    Api.viewUserProfile(userId, "dashboard").then((res) => {
+      if (res && res.status === 200) {
         setProfile(res.data.data);
       }
-    })
-  }
-  
+    });
+  };
+
   useEffect(() => {
     if (isSidebarVisible) {
       document.body.style.overflowY = "hidden";
@@ -43,10 +43,10 @@ function Navbar() {
   }, [isSidebarVisible]);
 
   useEffect(() => {
-    if(userId) {
-      viewUserProfile(userId)
+    if (userId) {
+      viewUserProfile(userId);
     }
-  }, [updateProfileState])
+  }, [updateProfileState]);
 
   return (
     <UpperRoot>
@@ -178,10 +178,10 @@ function Navbar() {
                 Community
               </LinkScroller>
               <Link
-                to="/technology"
+                to="/faq"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
-                Technology
+                FAQ
               </Link>
               {/* <Link
                 to="/explorer"
@@ -208,7 +208,7 @@ function Navbar() {
               </a>
             </div>
             <div className="flex">
-            <Button
+              <Button
                 className="mt-8 mr-4 lg:mt-0 flex justify-center text-center"
                 customizationClassName="space-x-3 px-0 py-2 w-[100px] rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
@@ -219,20 +219,27 @@ function Navbar() {
                 }
                 buttonProps={{
                   onClick: () => {
-                    helper.openLink('https://form.jotform.com/212032981906353')
+                    helper.openLink("https://form.jotform.com/212032981906353");
                   },
                 }}
               />
-              {
-                checkToken() ? (
-                  <div className="w-[34px] rounded-full h-[34px] relative">
-                    <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
-                    <img src={
-                      isBnbUser() ? "/images/bnb-default-avatar.png" : profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/yellow-dot.png"
-                    } className="rounded-full w-full" alt="" />
-                  </div>
-                ) : (
-                  <Button
+              {checkToken() ? (
+                <div className="w-[34px] rounded-full h-[34px] relative">
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
+                  <img
+                    src={
+                      isBnbUser()
+                        ? "/images/bnb-default-avatar.png"
+                        : profile?.profile?.urlProfileImage
+                        ? profile?.profile?.urlProfileImage
+                        : "/images/yellow-dot.png"
+                    }
+                    className="rounded-full w-full"
+                    alt=""
+                  />
+                </div>
+              ) : (
+                <Button
                   className="mt-8 lg:mt-0 flex justify-center text-center"
                   customizationClassName="space-x-3 px-0 py-2 w-[120px] rounded-lg font-semibold"
                   buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
@@ -245,13 +252,11 @@ function Navbar() {
                     onClick: () => {
                       setSidebarVisibility(false);
                       dispatch(toggleModalVisibility(true));
-                      helper.trackByMixpanel('Sign In Button Clicked', {});
+                      helper.trackByMixpanel("Sign In Button Clicked", {});
                     },
                   }}
-                />  
-                )
-              }
-              
+                />
+              )}
             </div>
           </div>
         </div>
