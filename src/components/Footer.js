@@ -21,7 +21,7 @@ function Footer({ container = "container-two" }) {
         { title: "Script Tokens", to: "/token" },
         { title: "Calculator", to: "/calculator" },
         { title: "Run a node", to: "/node" },
-        { title: "FAQ", to: "/faq" },
+        { title: "Technology", to: "/technology" },
         { title: "Report Issue", to: "/report-issue" },
         { title: "Download", to: "/download" },
       ],

@@ -158,10 +158,10 @@ function Navbar() {
                 Community
               </LinkScroller>
               <Link
-                to="/technology"
+                to="/faq"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
-                Technology
+                FAQ
               </Link>
               {/* <Link
                 to="/explorer"
@@ -188,7 +188,7 @@ function Navbar() {
               </a>
             </div>
             <div className="flex">
-            <Button
+              <Button
                 className="mt-8 mr-4 lg:mt-0 flex justify-center text-center"
                 customizationClassName="space-x-3 px-0 py-2 w-[100px] rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
@@ -199,7 +199,7 @@ function Navbar() {
                 }
                 buttonProps={{
                   onClick: () => {
-                    helper.openLink('https://form.jotform.com/212032981906353')
+                    helper.openLink("https://form.jotform.com/212032981906353");
                   },
                 }}
               />
@@ -216,11 +216,10 @@ function Navbar() {
                   onClick: () => {
                     setSidebarVisibility(false);
                     dispatch(toggleModalVisibility(true));
-                    helper.trackByMixpanel('Sign In Button Clicked', {});
+                    helper.trackByMixpanel("Sign In Button Clicked", {});
                   },
                 }}
               />
-              
             </div>
           </div>
         </div>
