@@ -51,8 +51,8 @@ function TvNavbar({ className }) {
   }, [updateProfileState])
 
   useEffect(() => {
-    getChannels();
     if (isSidebarVisible) {
+      getChannels();
       document.body.style.overflowY = "hidden";
     } else {
       document.body.style.overflowY = "auto";

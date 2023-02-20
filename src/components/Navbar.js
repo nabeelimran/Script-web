@@ -178,10 +178,10 @@ function Navbar() {
                 Community
               </LinkScroller>
               <Link
-                to="/technology"
+                to="/faq"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
-                Technology
+                FAQ
               </Link>
               {/* <Link
                 to="/explorer"
