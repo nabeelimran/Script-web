@@ -150,6 +150,17 @@ export const metamaskNetwork = {
         decimals: 18
       },
       blockExplorerUrls: ['https://bscscan.com']
+    },
+    okc:{
+      chainName: 'OKC',
+      rpcUrls: ['https://exchainrpc.okex.org/'],
+      chainId: `0x${Number(66).toString(16)}`,
+      nativeCurrency: {
+        name: 'OKT',
+        symbol: 'OKT',
+        decimals: 18
+      },
+      blockExplorerUrls: ['https://www.oklink.com/en/okc']
     }
 }
 
