@@ -58,20 +58,20 @@ function ConnectWalletModal() {
       ToastMessage("Install Metamask");
       return;
     }
-//const walletAddress = await MetamaskService.connectHandler();
-    if (true) {
-      // const chainId = await MetamaskService.getChainId();
-      // if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
-      //   await MetamaskService.changeChain("spaceID");
-      // }
-      Api.getSpaceIDName("0xad88A579f501a37b616E172F82178723EED3898E").then((res) => {
+    const walletAddress = await MetamaskService.connectHandler();
+    if (walletAddress) {
+      const chainId = await MetamaskService.getChainId();
+      if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
+        await MetamaskService.changeChain("spaceID");
+      }
+      Api.getSpaceIDName(walletAddress).then((res) => {
         if (res && res.status === 200) {
           if (!res?.data?.data?.name) {
             ToastMessage("BNB username is not found");
             return;
           }
           const req = {
-            walletAddress:"0xad88A579f501a37b616E172F82178723EED3898E",
+            walletAddress,
             username: res.data.data.name,
           };
           Api.loginWithSpaceID(req).then((resp) => {
