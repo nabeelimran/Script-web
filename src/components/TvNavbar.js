@@ -51,12 +51,12 @@ function TvNavbar({ className }) {
   }, [updateProfileState])
 
   useEffect(() => {
-    getChannels();
     if (isSidebarVisible) {
       document.body.style.overflowY = "hidden";
     } else {
       document.body.style.overflowY = "auto";
     }
+    getChannels();
   }, [isSidebarVisible]);
 
   const checkToken = () => sessionStorage.getItem('script-token') || null;
