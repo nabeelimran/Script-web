@@ -76,6 +76,10 @@ const companies = [
     iconImg: "images/partners/jin.png",
     className: "h-6 xl:h-12 invert-[100%] brightness-0",
   },
+  {
+    iconImg: "images/partners/infinity-pad.svg",
+    className: "h-6 xl:h-12 invert-[100%] brightness-0",
+  },
   // { iconImg: "images/partners/d.png" ,className : "invert-[100%] brightness-0"},
   // { iconImg: "images/partners/Do.png" },
   // { iconImg: "images/partners/C.png" },
