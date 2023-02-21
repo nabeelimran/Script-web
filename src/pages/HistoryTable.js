@@ -14,6 +14,7 @@ function HistoryTable({
   const [currentPage, setCurrentPage] = useState(0);
   const [totalData, setTotalData] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  // const [show, setShow] = useState(false);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const indexOfLastPost = currentPage * dataPerPage;
@@ -33,23 +34,27 @@ function HistoryTable({
   };
 
   const getRewardHistoryList = () => {
-    if (user && user.userId) {
-      Api.getAllUserRewardsData(
-        user.userId,
-        currentPage,
-        dataPerPage,
-        "reward-management"
-      ).then((res) => {
-        if (res && res.status === 200) {
-          setRewardHistory(res.data.data.content);
-          setTotalData(res.data.data.totalrecords);
-          setTotalPages(res.data.data.totalPages);
-        }
-      });
-    }
+      if (user && user.userId) {
+        Api.getAllUserRewardsData(
+          user.userId,
+          currentPage,
+          dataPerPage,
+          "reward-management"
+        ).then((res) => {
+          if (res && res.status === 200) {
+            // if(show) {
+              // console.log("Res Data Data ",res.data.data.totalPages);
+              setRewardHistory(res.data.data.content);
+              setTotalData(res.data.data.totalrecords);
+              setTotalPages(res.data.data.totalPages);
+            // }
+          }
+        });
+      }
   };
 
   const transfromRewardType = (rewardType) => {
+    // console.log("RewardType ",rewardType);
     switch (rewardType) {
       case 'DAILY_SIGN_IN':
         return 'Daily Sign In';
@@ -67,7 +72,9 @@ function HistoryTable({
   }
 
   useEffect(() => {
-    getRewardHistoryList();
+    if(isHistoryTableModal) {
+      getRewardHistoryList();
+    }
   }, [currentPage, isHistoryTableModal]);
 
 

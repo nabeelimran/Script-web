@@ -106,9 +106,10 @@ function Watch() {
     };
 
     useEffect(()=>{
-        getChannels();
-        helper.trackByMixpanel('Watch Live Now Button Clicked', {})
-        
+        if (refreshChannel) {
+            getChannels();
+            helper.trackByMixpanel('Watch Live Now Button Clicked', {})
+        }
     }, [refreshChannel]);
 
     return (

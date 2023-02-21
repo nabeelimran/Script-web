@@ -101,11 +101,11 @@ function TvHomepage() {
 				//dispatch(updateCurrentVideo(true));
 				}else{
 					console.log("FRESH CHANNEL")
-					getChannels()
+					getChannels();
 					dispatch(updateEpgData(currentVideo));
-				dispatch(updateCurrentVideo(true));
-				setLatestChaneelID(0)
-				setLatestVideoIdx(0)
+					dispatch(updateCurrentVideo(true));
+					setLatestChaneelID(0);
+					setLatestVideoIdx(0);
 				}
 
 				

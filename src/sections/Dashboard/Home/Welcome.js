@@ -32,7 +32,9 @@ function Welcome({
   };
 
   useEffect(() => {
-    getTotalRewardPoints();
+    if (updateRewardPointState) {
+      getTotalRewardPoints();
+    }
   }, [updateRewardPointState]);
 
   return (
