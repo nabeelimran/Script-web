@@ -85,6 +85,10 @@ const companies = [
     iconImg: "images/partners/bitcoin-trading.png",
     className: "w-[25vh] invert-[100%] brightness-0",
   },
+  {
+    iconImg: "images/partners/infinity-pad.svg",
+    className: "w-[30vh] invert-[100%] brightness-0",
+  },
 ];
 
 const team = [
@@ -227,7 +231,7 @@ function GreatTeam() {
           </Title>
         </div>
 
-        <div className="container grid-cols-2 sm:grid-cols-3 grid md:grid-cols-5 items-center gap-x-12 gap-y-6 sm:gap-x-8 sm:gap-y-10">
+        <div className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 items-center gap-x-12 gap-y-6 sm:gap-x-8 sm:gap-y-10">
           {companies.map(({ iconImg, className }, i) => (
             <div className="flex justify-center">
               <img
