@@ -64,7 +64,7 @@ function ConnectWalletModal() {
       if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
         await MetamaskService.changeChain("spaceID");
       }
-      Api.getSpaceIDName("walletAddress").then((res) => {
+      Api.getSpaceIDName(walletAddress).then((res) => {
         if (res && res.status === 200) {
           if (!res?.data?.data?.name) {
             ToastMessage("BNB username is not found");
