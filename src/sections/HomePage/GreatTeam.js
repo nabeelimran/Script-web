@@ -83,7 +83,7 @@ const companies = [
   },
   {
     iconImg: "images/partners/bitcoin-trading.png",
-    className: "w-[25vh] invert-[100%] brightness-0",
+    className: "w-[30vh] invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/infinity-pad.svg",
