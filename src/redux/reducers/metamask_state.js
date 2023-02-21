@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   accountAddress: "",
   signature:"",
+  isOkc:false,
   user:{
     email:"",
     password:"",
@@ -19,6 +20,9 @@ export const metamask_state = createSlice({
     metamaskCred: (state, action) => {
       state.accountAddress = action.payload;
     },
+    setIsOkc: (state, action) => {
+      state.isOkc = action.payload;
+    },
     metamaskSignature: (state, action) => {
       state.signature = action.payload;
     },
@@ -29,6 +33,6 @@ export const metamask_state = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { metamaskCred,metamaskSignature,userInfo } = metamask_state.actions;
+export const { metamaskCred,metamaskSignature,userInfo,setIsOkc } = metamask_state.actions;
 
 export default metamask_state.reducer;
