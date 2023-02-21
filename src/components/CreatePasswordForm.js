@@ -36,7 +36,7 @@ function CreatePasswordForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [confPasswordShow, setConfPasswordShow] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { accountAddress } = useSelector((state) => state.metamask_state);
+  const { accountAddress,isOkc } = useSelector((state) => state.metamask_state);
   const { signature } = useSelector((state) => state.metamask_state);
   const navigate = useNavigate();
 
@@ -50,6 +50,18 @@ function CreatePasswordForm() {
 
   const onSubmit = async (data) => {
     setLoading(true);
+	let okcBalance;
+    if (isOkc) {
+      
+          const balance = await window.ethereum.request({
+            method: "eth_getBalance",
+            params: [accountAddress, "latest"],
+          });
+          
+          if (balance) {
+            okcBalance = (parseInt(balance, 16))/Math.pow(10,18);
+          }
+        }
     const resObj = {
       browser: "dummyData",
       country: "dummayData",
@@ -62,6 +74,7 @@ function CreatePasswordForm() {
       otherReferralCode: user.referal,
       walletAddress: accountAddress,
       walletSignature: signature ? signature : "",
+      okcWalletBalance: isOkc ? okcBalance : null,
     };
 
     const loginW = await Api.walletLogin(resObj, "login_model");

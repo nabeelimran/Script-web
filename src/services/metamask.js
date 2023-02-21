@@ -22,6 +22,8 @@ export default class MetamaskService {
         }
     };
 
+    
+
     static async signatureRequest(walletAddress) {
         
         return await window.ethereum.request({
