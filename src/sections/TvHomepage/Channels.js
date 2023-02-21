@@ -420,7 +420,7 @@ function Channels({
       getVideoTokenEarned(userId)
     }
     changeRecatpchaCode();
-  },[isLogin])
+  },[isLogin,channels])
 
   useEffect(()=>{
 
