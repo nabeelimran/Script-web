@@ -110,18 +110,12 @@ function Roadmap() {
   return (
     <section>
       <div className="container">
-        <div className="mb-14 lg:mb-16">
-          <div className="mb-5">
+        <div className="mb-8">
+          <div>
             <Title>
               The <span className="text-primary">Roadmap</span>
             </Title>
           </div>
-
-          <p className="heading-sub text-white text-center font-medium mx-auto max-w-[50rem] opacity-50">
-            Roadmap items listed below are susceptible to change based on
-            dynamics in the market and feedback and proposal from the Gummys TV
-            community.
-          </p>
         </div>
 
         <div className="flex items-center justify-center space-x-4">
