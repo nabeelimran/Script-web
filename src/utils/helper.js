@@ -151,7 +151,7 @@ export const metamaskNetwork = {
       },
       blockExplorerUrls: ['https://bscscan.com']
     },
-    okc:{
+    OKC:{
       chainName: 'OKC',
       rpcUrls: ['https://exchainrpc.okex.org/'],
       chainId: `0x${Number(66).toString(16)}`,
