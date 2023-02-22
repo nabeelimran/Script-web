@@ -51,6 +51,7 @@ import TableModal from "components/TableModal";
 import GlassListingPopup from "components/GlassListingPopup";
 import Download from "pages/Download";
 import Blocks from "pages/Blocks";
+import Wallet from "pages/Wallet/Wallet";
 import Transactions from "pages/Transactions";
 
 function App() {
@@ -106,6 +107,8 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        <Route path="/wallet" element={<Wallet />} />
 
         <Route path="/watch" element={<Watch />} />
         <Route path="/login" element={<Login />} />
