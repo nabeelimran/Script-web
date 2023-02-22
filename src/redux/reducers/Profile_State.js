@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	updateProfileState: false
+	updateProfileState: false,
+    glasses:[]
 };
 
 export const Profile_State = createSlice({
@@ -10,12 +11,15 @@ export const Profile_State = createSlice({
     reducers: {
         updateProfileImage: (state, action) => {
             state.updateProfileState = { ...action.payload };
+        },
+        setGlasses:(state,action)=>{
+            state.glasses = action.payload
         }
     }
 })
 
 export const {
-	updateProfileImage
+	updateProfileImage,setGlasses
 } = Profile_State.actions;
 
 export default Profile_State.reducer;
