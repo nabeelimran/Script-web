@@ -58,7 +58,8 @@ export default class MetamaskService {
     };
 
     static async changeChain(networkName) {
-        let result = await window.ethereum.request({
+      let result;
+        result = await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
           params: [
             {

@@ -32,7 +32,12 @@ import { isLogin } from "redux/reducers/login_state";
 function ConnectWalletModal() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({
+    metamask: false,
+    wallet: false,
+    bnb: false,
+    okc: false,
+  });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
   );
@@ -58,6 +63,7 @@ function ConnectWalletModal() {
       ToastMessage("Install Metamask");
       return;
     }
+    setLoading({ ...loading, bnb: true });
     const walletAddress = await MetamaskService.connectHandler();
     if (walletAddress) {
       const chainId = await MetamaskService.getChainId();
@@ -68,6 +74,7 @@ function ConnectWalletModal() {
         if (res && res.status === 200) {
           if (!res?.data?.data?.name) {
             ToastMessage("BNB username is not found");
+            setLoading({ ...loading, bnb: false });
             return;
           }
           const req = {
@@ -76,6 +83,7 @@ function ConnectWalletModal() {
           };
           Api.loginWithSpaceID(req).then((resp) => {
             if (resp && resp.status === 200) {
+              setLoading({ ...loading, bnb: false });
               ToastMessage(`${resp?.data?.message}`, true);
               dispatch(toggleModalVisibility(false));
               if (resp.data.data.authToken) {
@@ -99,6 +107,7 @@ function ConnectWalletModal() {
                 pathname: "/tv",
               });
             } else {
+              setLoading({ ...loading, bnb: false });
               ToastMessage("Unable to login");
             }
           });
@@ -110,9 +119,11 @@ function ConnectWalletModal() {
   const metaMaskHandler = async (isokc = false) => {
     let okcBalance;
     if (isokc) {
-    setLoading(true);
+      setLoading({ ...loading, okc: true });
       helper.trackByMixpanel("OKC Button Clicked", {});
     } else {
+      setLoading({ ...loading, metamask: true });
+
       helper.trackByMixpanel("Metamask Button Clicked", {});
     }
 
@@ -127,6 +138,10 @@ function ConnectWalletModal() {
       dispatch(metamaskCred(accAddres));
       if (isokc) {
         dispatch(setIsOkc(true));
+        const chainId = await MetamaskService.getChainId();
+        if (chainId && chainId !== metamaskNetwork.OKC.chainId) {
+          await MetamaskService.changeChain("OKC");
+        }
         const balance = await window.ethereum.request({
           method: "eth_getBalance",
           params: [accAddres, "latest"],
@@ -177,7 +192,7 @@ function ConnectWalletModal() {
               search: `?email=${loginW.data.data.email}`,
             });
           } else {
-            setLoading(false);
+            setLoading({ ...loading, okc: false, metamask: false });
             ToastMessage(`${loginW.data.message}`, true);
             if (loginW.data.data.authToken) {
               sessionStorage.setItem(
@@ -205,7 +220,7 @@ function ConnectWalletModal() {
             });
           }
         } else {
-          setLoading(false);
+          setLoading({ ...loading, okc: false, metamask: false });
           ToastMessage("Somthing went wrong");
         }
       }
@@ -410,8 +425,9 @@ function ConnectWalletModal() {
 
             <div className="grid grid-cols-1 gap-4 mb-7">
               <ConnectWalletButton
-                clickEvent={()=>metaMaskHandler(false)}
+                clickEvent={() => metaMaskHandler(false)}
                 img="images/metamask.svg"
+                loader={loading.metamask}
                 title={
                   <>
                     Metamask <span className="text-sm">( Recommended )</span>
@@ -421,17 +437,19 @@ function ConnectWalletModal() {
               <ConnectWalletButton
                 img="images/wallet-connect.svg"
                 title="Wallet Connect"
+                loader={loading.wallet}
                 clickEvent={walletConnectHandler}
               />
               <ConnectWalletButton
                 img="images/space_id_logo.png"
                 title=".bnb Domain"
+                loader={loading.bnb}
                 clickEvent={spaceIdConnectHandler}
               />
               <ConnectWalletButton
                 img="images/okc_logo.png"
                 title="OKC"
-                loader={loading}
+                loader={loading.okc}
                 clickEvent={() => metaMaskHandler(true)}
               />
             </div>
