@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleGlassListingVisibility } from "redux/reducers/connectWalletModal_State";
+import { setGlasses } from "redux/reducers/Profile_State";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { helper } from "utils/helper";
@@ -77,6 +78,7 @@ function GlassListingPopup() {
   };
 
   const getGlassesList = () => {
+    console.log("pipiuouoo")
     Api.getGlassesList(user?.walletAddress, pageNo, 10, "watch").then((res) => {
       if(res && res.status === 200) {
         if(res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
@@ -94,6 +96,7 @@ function GlassListingPopup() {
             setActive(uniqueUnDrainedList[0]);
             setGlassListingData(uniqueUnDrainedList);
             setTotalGlasses(res?.data?.data?.totalrecords);
+            dispatch(setGlasses(res.data.data.content))
           } else {
             setHasMoreData(false);
           }
