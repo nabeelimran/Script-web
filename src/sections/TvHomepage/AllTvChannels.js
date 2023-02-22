@@ -196,7 +196,7 @@ function AllTvChannels({
 			clearInterval(videoWatchInterval);
 			clearInterval(durationcheckinterval);
 		};
-	}, [show, isPlayerReady,dispatch]);
+	}, [show, isPlayerReady,playerRef.current]);
 
 	useEffect(() => {
 		let videoWatchInterval;
@@ -244,7 +244,7 @@ function AllTvChannels({
 		return () => {
 			clearInterval(videoWatchInterval);
 		};
-	}, [isPlayerReady, dispatch,show]);
+	}, [isPlayerReady,show,dispatch]);
 
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;

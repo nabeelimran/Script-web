@@ -71,12 +71,12 @@ function Hero() {
 
   const bannerImgages = [
     {
-      image: "images/allocation.png",
-      link: "https://daomaker.com/company/script-network",
+      image: "images/community-ama.png",
+      link: "",
     },
     {
       image: "images/reward_pool.png",
-      link: "",
+      link: "https://app.space.id/?inviter=scriptnetwork.bnb",
     },
     {
       image: "images/test-launch.png",

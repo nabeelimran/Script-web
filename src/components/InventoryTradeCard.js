@@ -1,11 +1,11 @@
 import React from "react";
 
-function InventoryTradeCard({ glass }) {
+function InventoryTradeCard({ glass,img }) {
   return (
     <div className="bg-[#0E0E0F] rounded-2xl py-6 px-7 transition-all duration-200 hover:bg-primary group hover:scale-[1.12]">
       <div className="mb-8">
         <img
-          src={glass.img}
+          src={img}
           className="w-full h-[70px] lg:h-[70px] object-contain"
           alt=""
         />
