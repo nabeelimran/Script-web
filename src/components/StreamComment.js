@@ -14,8 +14,22 @@ function StreamComment({item, chooseMessage}) {
           <p className="text-xs md:text-sm font-medium">{item.userName}</p>
           <p className="text-xs">{moment(new Date(item.commentDate)).format("MM/D/YY HH:mm")}</p>
         </div>
-
+      {
+        item.reply ? (
+          <>
+          <div className="p-2 bg-slate-600" style={{background:"#1e1e1e"}}>
+            <p className="text-xs font-sm mb-1">Reply</p>
+              <p className="text-xs md:text-sm text-ellipsis pl-2">{item.msg || item.comment}</p>
+          </div>
+          <hr/>
+        <p className="text-xs md:text-sm text-ellipsis">{item.reply.msg || item.reply.comment}</p>
+        </>
+        ) : (
+          <>
         <p className="text-xs md:text-sm text-ellipsis">{item.msg || item.comment}</p>
+          </>
+        )
+      }
       </div>
     </div>
   );
