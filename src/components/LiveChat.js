@@ -10,12 +10,13 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import { roomId } from "constants";
 
 const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
-	const { message, sendMessage } = useLiveChat(currentShow);
+	const { message, sendMessage,page,setPage,totalCount } = useLiveChat(currentShow);
 	const [messageForReply, setMessageForReply] = useState({});
 	const [profileImg,setProfile] = useState(null);
 	const [tokenEarnedByMessage, setTokenEarnedByMessage] = useState(0);
 
 	const scroll = useRef(null);
+	const scrTop = useRef(null)
 	const user = LocalServices.getServices("user");
 
 	const getTokenEarnedByChat = () => {
@@ -51,14 +52,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 		}
 	}, []);
 
-	useEffect(() => {
-		const domNode = scroll.current;
-		getProfile()
-console.log("sfsdf",tokenEarnedByMessage)
-		// if (domNode) {
-		// 	domNode.scrollIntoView({ behavior: "smooth" });
-		// }
-	}, [message]);
+
 
 	const getProfile = async () => {
 		if (user && user.userId) {
@@ -141,10 +135,33 @@ console.log("sfsdf",tokenEarnedByMessage)
 		setMessageForReply(msg);
 	}
 
+	useEffect(() => {
+        function updateScrollPosition(e) {
+            // update the scroll position
+			let scrolT = e.target.scrollTop;
+			if(scrolT <= 0 && message.length<totalCount) {
+		console.log("totalCount",totalCount,message.length)
+
+				setPage((prevState) => prevState+1)
+			}
+        }
+
+        if (scrTop && scrTop.current) {
+			let parentN = scrTop.current.parentNode
+		
+            parentN.addEventListener("scroll", updateScrollPosition, false);
+            return function cleanup() {
+				parentN.removeEventListener("scroll", updateScrollPosition, false);
+            };
+        }
+    }, [scrTop,totalCount,message]);
+
+
+
 	return (
 		<div className='rounded-2xl py-5 sm:py-7 px-6 sm:px-8 bg-[#010101]'>
 			<ScrollToBottom>
-				<div className='space-y-4 mb-6 h-[300px] pr-2 pb-2'>
+				<div className='space-y-4 mb-6 h-[300px] pr-2 pb-2'  ref={scrTop}>
 					{message.length > 0 && (
 						<>
 							{message.map((item) => {
@@ -157,7 +174,7 @@ console.log("sfsdf",tokenEarnedByMessage)
 							})}
 						</>
 					)}
-					<div ref={scroll} />
+					
 				</div>
 			</ScrollToBottom>
 
