@@ -10,7 +10,7 @@ const useLiveChat = (currentShow) => {
 	const [name, setName] = useState("");
 	const [page,setPage] = useState(0)
 	const [totalCount,setTotalCount] = useState(0)
-
+	const [loading,setLoading] = useState(false)
 	const [emailId, setEmailId] = useState("");
 
 	const [room, setRoom] = useState("");
@@ -50,9 +50,10 @@ const useLiveChat = (currentShow) => {
 	//Function to get previous messages from db
 	const getMessages = () => {
 		if (currentShow.videoId) {
+			setLoading(true)
 			Api.getIndividualChat("watch",page)
 				.then((result) => {
-                   
+                   setLoading(false)
                     setMessage(oldArry => [...result.data.data.content,...oldArry])
 					setTotalCount(result.data.data.totalrecords)
                 })
@@ -89,7 +90,8 @@ const useLiveChat = (currentShow) => {
 		sendMessage,
 		setPage,
 		page,
-		totalCount
+		totalCount,
+		loading
 	};
 };
 
