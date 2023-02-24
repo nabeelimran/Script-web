@@ -11,6 +11,7 @@ import { roomId } from "constants";
 import LoaderGif from "../assets/Loading_icon.gif"
 
 
+
 const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	const { message, sendMessage,page,setPage,totalCount,loading } = useLiveChat(currentShow);
 	const [messageForReply, setMessageForReply] = useState({});
@@ -137,6 +138,10 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 		setMessageForReply(msg);
 	}
 
+	const removeReplyMessage = () => {
+		setMessageForReply({})
+	}
+
 	useEffect(() => {
         function updateScrollPosition(e) {
             // update the scroll position
@@ -171,12 +176,25 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 				) : null}
 					{message.length > 0 && (
 						<>
-							{message.map((item) => {
+						{console.log(message)}
+							{message.map((item,index) => {
 								return (
-									<Fragment key={item}>
+									<Fragment key={item.commentDate}>
 										{/* chooseMessage={chooseMessage} */}
-										
-										<StreamComment item={item}  />
+										<div className="flex flex-row justify-center">
+											{console.log("NOW",moment().format("DD/MM/YYYY"))}
+											<p className="text-xs md:text-sm font-medium px-2 py-1 rounded-xl" style={{background:"#f9ff00",color:"#000"}}>{item.commentDate === moment().format("DD/MM/YYYY") ? "Today" : item.commentDate}</p>
+										</div>
+										{
+											item.chats.map(chat => {
+												return (
+													<Fragment key={chat.commentDate}>
+										               <StreamComment item={chat}  chooseMessage={chooseMessage}/>
+
+													</Fragment>
+												)
+											})
+										}
 									</Fragment>
 								);
 							})}
@@ -186,7 +204,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 				</div>
 			</ScrollToBottom>
 
-			<StreamForm submitHandler={getFormData} messageForReply={messageForReply} />
+			<StreamForm submitHandler={getFormData} messageForReply={messageForReply} removeReplyMessage={removeReplyMessage}/>
 		</div>
 	);
 };
