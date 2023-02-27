@@ -115,7 +115,9 @@ const useLiveChat = (currentShow) => {
   //Function to send new message
   function receiveMessage(arg) {
     //
-    
+   // debugger
+   console.log("new messgae",message)
+
     console.log("receive message", arg);
     
     const msgFormat = {
@@ -128,12 +130,14 @@ const useLiveChat = (currentShow) => {
       }
       return item
     })
+    console.log(newMessgae,"FIRST")
    let findOne = newMessgae.find(item => item.commentDate === msgFormat.commentDate)
    if(!findOne){
     newMessgae.push(msgFormat)
    }
+   console.log("new messgae",message)
    console.log("new messgae",newMessgae)
-     setMessage([...newMessgae]);
+     setMessage([...newMessgae,...message]);
    
 
   }

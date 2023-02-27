@@ -161,6 +161,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	useEffect(() => {
         function updateScrollPosition(e) {
             // update the scroll position
+			//debugger
 			let scrolT = e.target.scrollTop;
 			if(scrolT <= 0 && message.length<totalCount) {
 				console.log("targetChild",e.target.childNodes[0].childNodes[0].id)
@@ -180,7 +181,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 				parentN.removeEventListener("scroll", updateScrollPosition, false);
             };
         }
-    }, [scrTop,totalCount,message]);
+    }, [scrTop]);
 
 
 
