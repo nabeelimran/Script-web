@@ -92,7 +92,7 @@ const useLiveChat = (currentShow) => {
 
   //Function to send new message
   function sendMessage(data) {
-   debugger
+ 
     const msgFormat = {
       commentDate:moment(data.commentDate).format("DD/MM/YYYY"),
       chats:[data]
@@ -115,6 +115,7 @@ const useLiveChat = (currentShow) => {
   //Function to send new message
   function receiveMessage(arg) {
     //
+    
     console.log("receive message", arg);
     
     const msgFormat = {
@@ -130,11 +131,9 @@ const useLiveChat = (currentShow) => {
    let findOne = newMessgae.find(item => item.commentDate === msgFormat.commentDate)
    if(!findOne){
     newMessgae.push(msgFormat)
-    setMessage((oldMsg) =>[newMessgae,...oldMsg]);
-
    }
-
-     setMessage(newMessgae);
+   console.log("new messgae",newMessgae)
+     setMessage([...newMessgae]);
    
 
   }
