@@ -26,6 +26,7 @@ function StreamComment({ item, chooseMessage }) {
   return (
    
     <div
+    id={item.id || null}
       className="flex space-x-3 md:space-x-4 relative"
       onMouseEnter={ handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -65,16 +66,17 @@ function StreamComment({ item, chooseMessage }) {
               replyPopup ? "block" : "hidden"
             }`}
           >
-            <p className="text-black cursor-pointer" onClick={()=>handleReply(item)}>Reply</p>
+            <p className="text-black cursor-pointer" onClick={()=>handleReply(item)}>Reply
+            </p>
           </div>
           </div>
 
         </div>
         {item.reply ? (
           <>
-            <div className="p-2 bg-slate-600" style={{ background: "#1e1e1e" }}>
-              <p className="text-xs font-sm mb-1">Reply</p>
-              <p className="text-xs md:text-sm text-ellipsis pl-2">
+            <div className="p-2 bg-slate-600 rounded-sm" style={{ background: "#1e1e1e" }}>
+              <Icon icon="gg:mail-reply" />
+              <p className="text-xs md:text-sm text-ellipsis pl-2 italic">
                 {item.reply.msg || item.reply.comment}
               </p>
             </div>

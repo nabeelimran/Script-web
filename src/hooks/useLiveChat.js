@@ -23,8 +23,11 @@ const useLiveChat = (currentShow) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
     getMessages();
   }, [page]);
+
+  
 
   useEffect(() => {
     if (token) {
@@ -37,7 +40,7 @@ const useLiveChat = (currentShow) => {
 
     console.log("socketRef", socketRef);
     // All socket events and function call against them
-
+		socketRef.current.on("new message", receiveMessage);
 
     joinRoom(roomId);
     // getMessages()
@@ -106,7 +109,7 @@ const useLiveChat = (currentShow) => {
    }
  
     setMessage(newMessgae);
-    socketRef.current.emit("send message", msgFormat);
+    socketRef.current.emit("send message", data);
   }
 
   //Function to send new message
@@ -127,9 +130,13 @@ const useLiveChat = (currentShow) => {
    let findOne = newMessgae.find(item => item.commentDate === msgFormat.commentDate)
    if(!findOne){
     newMessgae.push(msgFormat)
+    setMessage((oldMsg) =>[newMessgae,...oldMsg]);
+
+   }else{
+
+     setMessage(newMessgae);
    }
 
-    setMessage(newMessgae);
   }
 
   function groupArray(arr){
