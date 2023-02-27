@@ -8,7 +8,9 @@ import Api from "services/api";
 
 const useLiveChat = (currentShow) => {
 	const [name, setName] = useState("");
-
+	const [page,setPage] = useState(0)
+	const [totalCount,setTotalCount] = useState(0)
+	const [loading,setLoading] = useState(false)
 	const [emailId, setEmailId] = useState("");
 
 	const [room, setRoom] = useState("");
@@ -21,7 +23,7 @@ const useLiveChat = (currentShow) => {
 
 	useEffect(() => {
 		getMessages();
-	}, [])
+	}, [page])
 
 	useEffect(() => {
 		if (token) {
@@ -37,7 +39,7 @@ const useLiveChat = (currentShow) => {
 		socketRef.current.on("new message", receiveMessage);
 
 		joinRoom(roomId);
-        getMessages()
+        // getMessages()
 		// Destroys the socket reference
 		// when the connection is closed
 		return () => {
@@ -48,10 +50,12 @@ const useLiveChat = (currentShow) => {
 	//Function to get previous messages from db
 	const getMessages = () => {
 		if (currentShow.videoId) {
-			Api.getIndividualChat("watch")
+			setLoading(true)
+			Api.getIndividualChat("watch",page)
 				.then((result) => {
-                   
-                    setMessage(oldArry => [...result.data.data])
+                   setLoading(false)
+                    setMessage(oldArry => [...result.data.data.content,...oldArry])
+					setTotalCount(result.data.data.totalrecords)
                 })
 				.catch((err) => {
 					// ToastMessage("Chat not recieved")
@@ -84,6 +88,10 @@ const useLiveChat = (currentShow) => {
 	return {
 		message,
 		sendMessage,
+		setPage,
+		page,
+		totalCount,
+		loading
 	};
 };
 

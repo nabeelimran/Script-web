@@ -724,7 +724,7 @@ export default class Api {
     );
   }
 
-  static getIndividualChat(screenName) {
+  static getIndividualChat(screenName,page) {
     const options = {
       headers: {
         ipAddress: "dummyData",
@@ -736,7 +736,7 @@ export default class Api {
     };
 
     return axios.get(
-      `${APIPATH.BASEURL}getIndividualChats`, options
+      `${APIPATH.BASEURL}getIndividualChats?page=${page}`, options
     );
   }
 
