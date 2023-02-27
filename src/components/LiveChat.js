@@ -11,11 +11,13 @@ import { roomId } from "constants";
 import LoaderGif from "../assets/Loading_icon.gif"
 
 
+
 const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 	const { message, sendMessage,page,setPage,totalCount,loading } = useLiveChat(currentShow);
 	const [messageForReply, setMessageForReply] = useState({});
 	const [profileImg,setProfile] = useState(null);
 	const [tokenEarnedByMessage, setTokenEarnedByMessage] = useState(0);
+	const [lastEle,setLastEle] = useState("")
 
 	const scroll = useRef(null);
 	const scrTop = useRef(null)
@@ -137,14 +139,36 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 		setMessageForReply(msg);
 	}
 
+	const removeReplyMessage = () => {
+		setMessageForReply({})
+	}
+
+	useEffect(()=>{
+		console.log("page",page)
+		if(page>0){
+			console.log("page",`${lastEle.id}`)
+			let id = lastEle.id
+			setTimeout(()=>{
+				document.getElementById(id).scrollIntoView({
+  behavior: 'smooth'
+			},300)
+			
+});
+			//lastEle.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+		}
+	},[page])
+
 	useEffect(() => {
         function updateScrollPosition(e) {
             // update the scroll position
 			let scrolT = e.target.scrollTop;
 			if(scrolT <= 0 && message.length<totalCount) {
+				console.log("targetChild",e.target.childNodes[0].childNodes[0].id)
 		console.log("totalCount",totalCount,message.length)
-
+				
+				setLastEle(e.target.childNodes[0].childNodes[0])
 				setPage((prevState) => prevState+1)
+				
 			}
         }
 
@@ -171,11 +195,25 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 				) : null}
 					{message.length > 0 && (
 						<>
-							{message.map((item) => {
+					
+							{message.map((item,index) => {
 								return (
-									<Fragment key={item}>
+									<Fragment key={index}>
 										{/* chooseMessage={chooseMessage} */}
-										<StreamComment item={item}  />
+										<div id={item.commentDate} className="flex flex-row justify-center">
+											{console.log("NOW",moment().format("DD/MM/YYYY"))}
+											<p className="text-xs md:text-sm font-medium px-2 py-1 rounded-xl" style={{background:"#f9ff00",color:"#000"}}>{item.commentDate === moment().format("DD/MM/YYYY") ? "Today" : item.commentDate}</p>
+										</div>
+										{
+											item?.chats?.map(chat => {
+												return (
+													<Fragment key={chat.commentDate+chat.comment+Math.random(4)}>
+										               <StreamComment item={chat}  chooseMessage={chooseMessage}/>
+
+													</Fragment>
+												)
+											})
+										}
 									</Fragment>
 								);
 							})}
@@ -185,7 +223,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 				</div>
 			</ScrollToBottom>
 
-			<StreamForm submitHandler={getFormData} messageForReply={messageForReply} />
+			<StreamForm submitHandler={getFormData} messageForReply={messageForReply} removeReplyMessage={removeReplyMessage}/>
 		</div>
 	);
 };
