@@ -27,6 +27,9 @@ const useLiveChat = (currentShow) => {
     getMessages();
   }, [page]);
 
+  useEffect(()=>{
+    console.log("EFFMESSAG",message)
+  },[message])
   
 
   useEffect(() => {
@@ -124,8 +127,11 @@ const useLiveChat = (currentShow) => {
       commentDate:moment(arg.commentDate).format("DD/MM/YYYY"),
       chats:[arg]
     }
-    let newMessgae = message.map(item => {
+    let msg = message
+    let newMessgae = msg.map(item => {
+      console.log(item)
       if(item.commentDate === msgFormat.commentDate){
+        console.log("APAPAPAPAPAP")
         item.chats.push(arg)
       }
       return item
@@ -137,7 +143,7 @@ const useLiveChat = (currentShow) => {
    }
    console.log("new messgae",message)
    console.log("new messgae",newMessgae)
-     setMessage([...newMessgae,...message]);
+     setMessage((oldMsg) => [...newMessgae]);
    
 
   }
