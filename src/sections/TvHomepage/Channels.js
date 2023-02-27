@@ -267,7 +267,9 @@ function Channels({
 
 
   useEffect(() => {
-    if(timeline) {
+   
+    if(timeline.length) {
+     
       Api.getChannels("watch").then((res) => {
         // for suffal channel
         res.data.data.forEach((d, i) => {
@@ -433,9 +435,9 @@ function Channels({
       let timelinemin=Number(timelinedata[0]?.split(':')[1]);
       let timelineHour=Number(timelinedata[0]?.split(':')[0]);
 
-      let min=todayDate.getMinutes()-timelinemin;
+      let min=parseInt(todayDate.getMinutes()-timelinemin);
       
-      if(min>=30 || timelineHour!=todayDate.getHours()) {
+      if(todayDate.getMinutes()===30 || todayDate.getMinutes()=="00" || todayDate.getMinutes() ===0 ) {
         let timelinedata= helper.createTimeSlot(new Date());
         setTimeline(timelinedata)
          timelinemin=Number(timelinedata[0]?.split(':')[1]);
@@ -446,7 +448,7 @@ function Channels({
 
       
       setCursonPosition(style)
-    },10000)
+    },30000)
     changeRecatpchaCode();
     return( ()=>{
       clearInterval(cursorint)

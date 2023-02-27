@@ -23,7 +23,7 @@ const useLiveChat = (currentShow) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
+    console.log("EFFECTSSS")
     getMessages();
   }, [page]);
 
@@ -92,7 +92,7 @@ const useLiveChat = (currentShow) => {
 
   //Function to send new message
   function sendMessage(data) {
-   
+   debugger
     const msgFormat = {
       commentDate:moment(data.commentDate).format("DD/MM/YYYY"),
       chats:[data]
@@ -116,7 +116,7 @@ const useLiveChat = (currentShow) => {
   function receiveMessage(arg) {
     //
     console.log("receive message", arg);
-
+    
     const msgFormat = {
       commentDate:moment(arg.commentDate).format("DD/MM/YYYY"),
       chats:[arg]
@@ -132,10 +132,10 @@ const useLiveChat = (currentShow) => {
     newMessgae.push(msgFormat)
     setMessage((oldMsg) =>[newMessgae,...oldMsg]);
 
-   }else{
+   }
 
      setMessage(newMessgae);
-   }
+   
 
   }
 

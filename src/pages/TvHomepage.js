@@ -57,10 +57,6 @@ function TvHomepage() {
 
 	useEffect(() => {
 		
-		getChannels();
-	}, []);
-	useEffect(() => {
-		
 		// getChannels();
 		//console.log(refreshChannel)
 		if (refreshChannel) {

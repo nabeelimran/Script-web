@@ -105,7 +105,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 			emote: "",
 		};
 
-		// Api.addComment(body, "watch")
+		// Api.addComment(body, "watch")use
 		// 	.then((result) => {
 		// 		console.log("RESULT");
 		// 	})
@@ -186,6 +186,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 
 	return (
 		<div className='rounded-2xl py-5 sm:py-7 px-6 sm:px-8 bg-[#010101]'>
+			{console.log("message",message)}
 			<ScrollToBottom>
 				<div className='space-y-4 mb-6 h-[300px] pr-2 pb-2'  ref={scrTop}>
 				{loading ? (
