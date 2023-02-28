@@ -21,7 +21,7 @@ function StreamForm({ submitHandler, messageForReply, removeReplyMessage }) {
   });
   const dispatch = useDispatch();
   const [isEmoji, setIsEmoji] = React.useState(false);
-  console.log(messageForReply)
+  
 
   const onSubmit = (data) => {
     const user = LocalServices.getServices("user");
@@ -60,7 +60,7 @@ function StreamForm({ submitHandler, messageForReply, removeReplyMessage }) {
 
         <div className="flex space-x-4 items-end">
           <div className="h-10 w-full relative bg-shade-grayis rounded-lg overflow-hidden">
-            <div className="border-b-4 border-white p-10">
+            {/* <div className="border-b-4 border-white p-10">
               <p>
                 In publishing and graphic design, Lorem ipsum is a placeholder
                 text commonly used to demonstrate the visual form of a document
@@ -68,7 +68,7 @@ function StreamForm({ submitHandler, messageForReply, removeReplyMessage }) {
                 may be used as a placeholder before final copy is available.
               </p>
               <p>Dheeraj</p>
-            </div>
+            </div> */}
             <input
               autoComplete="off"
               type="text"

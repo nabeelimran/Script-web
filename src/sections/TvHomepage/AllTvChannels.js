@@ -332,11 +332,11 @@ function AllTvChannels({
 							className={`pt-5 pb-5 h-[200px] md:h-[100%] lg:h-auto`}
 							id='video-wrapper'
 							ref={videoHeightRef}>
-							{/* <VideoPlayer
+							<VideoPlayer
 								options={videoJsOptions}
 								onReady={handlePlayerReady}
 								show={show}
-							/> */}
+							/>
 
 							<div
 								className='absolute sm:top-4 lg:right-[6.8rem] md:right-[1rem] right-3 top-16 bg-shade-grayis flex p-2 hidden'
