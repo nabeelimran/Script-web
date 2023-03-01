@@ -526,7 +526,7 @@ const Wallet = () => {
       </div>
 
       {/* Receive */}
-      {/* <div className="bg-[#151515] rounded-2xl container pl-5 flex mt-5 mb-20">
+      <div className="bg-[#151515] rounded-2xl container pl-5 flex mt-5 mb-20">
         <div className="bg-black pt-4 pb-8 space-y-1 w-[16%]">
           <PageLink
             link=""
@@ -589,10 +589,10 @@ const Wallet = () => {
             <img src="images/qr-code.svg" alt="" className="mx-auto mt-6" />
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Stakes */}
-      {/* <div className="bg-[#151515] rounded-2xl container pl-5 flex mt-5 mb-20">
+      <div className="bg-[#151515] rounded-2xl container pl-5 flex mt-5 mb-20">
         <div className="bg-black pt-4 pb-8 space-y-1 w-[16%]">
           <PageLink
             link=""
@@ -672,7 +672,7 @@ const Wallet = () => {
             />
           </div>
         </div>
-      </div> */}
+      </div>
 
       <Footer />
     </div>
