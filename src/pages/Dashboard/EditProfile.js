@@ -249,8 +249,8 @@ function EditProfile() {
                 },
               }} />
               <p className="text-xs xl:text-sm mt-2 opacity-70">
-                Description for the About panel on your channel page in under
-                300 Characters
+                Description for the about panel on your channel page in under
+                300 characters
               </p>
             </div>
           </div>

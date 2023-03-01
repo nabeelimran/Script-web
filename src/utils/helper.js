@@ -161,7 +161,19 @@ export const metamaskNetwork = {
         decimals: 18
       },
       blockExplorerUrls: ['https://www.oklink.com/en/okc']
+    },
+    bitgret:{
+      chainName: 'Bitgert Mainnet',
+      rpcUrls: ['https://rpc.icecreamswap.com/'],
+      chainId: `0x${Number(32520).toString(16)}`,
+      nativeCurrency: {
+        name: 'Bitgert Mainnet',
+        symbol: 'Brise',
+        decimals: 18
+      },
+      blockExplorerUrls: ['https://brisescan.com']
     }
+
 }
 
 export const STORAGEENUM =  {
@@ -198,3 +210,13 @@ export const isBnbUser = () => {
   }
   return false
 };
+
+export const loginTypes = {
+  metamask:"METAMASK_SIGNUP",
+  wallet:"WALLET_CONNECT",
+  bnb:"BNB_SIGNUP",
+  okc:"OKC_SIGNUP",
+  bitgret:"BITGERT_SIGNUP",
+  gmail:"GMAIL_SIGNUP",
+  twitter:"TWITTER_SIGNUP"
+}
