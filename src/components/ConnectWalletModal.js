@@ -475,7 +475,7 @@ function ConnectWalletModal() {
               />
               <ConnectWalletButton
                 img="images/bitgret_logo.png"
-                title="Bitgret"
+                title="Bitgert"
                 loader={loading.bitgret}
                 clickEvent={() => metaMaskHandler(loginTypes.bitgret)}
               />
