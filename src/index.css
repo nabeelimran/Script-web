@@ -683,3 +683,8 @@ aside.EmojiPickerReact.epr-main {
 .explorer-pagination ul li {
   padding: 5px 15px;
 }
+
+.rewardsContract .active {
+  color: #fff;
+  border-bottom: 1px solid #ffef00;
+}

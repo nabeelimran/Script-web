@@ -15,7 +15,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
   const { getter, setter } = state;
   const sidebarRef = OutsideClickDetector(() => setter && setter(false));
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const logout = () => {
     const user = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -31,8 +31,8 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
     ).then(() => {});
     sessionStorage.clear();
     ToastMessage("Logout successfully", true);
-    dispatch(resetEarnedToken(0))
-    dispatch(isLogin(false))
+    dispatch(resetEarnedToken(0));
+    dispatch(isLogin(false));
     navigate({
       pathname: "/tv",
     });
