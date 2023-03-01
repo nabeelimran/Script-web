@@ -19,6 +19,7 @@ import UpperRoot from "./UpperRoot";
 import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import MixPanelService from "services/mixPanelService";
+import { loginTypes } from "utils/helper";
 
 function CreatePasswordForm() {
   const {
@@ -51,7 +52,7 @@ function CreatePasswordForm() {
   const onSubmit = async (data) => {
     setLoading(true);
 	let okcBalance;
-    if (isOkc) {
+    if (isOkc===loginTypes.okc || isOkc===loginTypes.bitgret) {
       
           const balance = await window.ethereum.request({
             method: "eth_getBalance",
@@ -74,7 +75,11 @@ function CreatePasswordForm() {
       otherReferralCode: user.referal,
       walletAddress: accountAddress,
       walletSignature: signature ? signature : "",
-      okcWalletBalance: isOkc ? okcBalance : null,
+      okcWalletBalance: isOkc===loginTypes.okc ? okcBalance : null,
+      briseBalance: isOkc===loginTypes.bitgret ? okcBalance : null,
+      signupType:isOkc
+
+
     };
 
     const loginW = await Api.walletLogin(resObj, "login_model");

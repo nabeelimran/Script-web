@@ -58,7 +58,12 @@ const useLiveChat = (currentShow) => {
 			Api.getIndividualChat("watch", page)
 				.then((result) => {
 					setLoading(false);
-					const group = groupBy(result.data.data.content, (result) =>
+					let oldChats = []
+					let chta = message?.map(item =>  {
+						oldChats.push(...item.chats)
+					})
+					
+					const group = groupBy([...result.data.data.content,...oldChats], (result) =>
 						moment(result.commentDate).format("DD/MM/YYYY")
 					);
 
@@ -72,7 +77,7 @@ const useLiveChat = (currentShow) => {
 						rows.push(arr);
 					});
 
-					setMessage((oldArry) => [...rows, ...oldArry]);
+					setMessage(rows);
 					setTotalCount(result.data.data.totalrecords);
 				})
 				.catch((err) => {
