@@ -66,6 +66,8 @@ function HistoryTable({
         return 'Referral'
       case 'CHAT': 
         return 'Chat'
+      case 'EDIT_PROFILE': 
+        return 'Profile Image'
       default:
         return rewardType;
     }

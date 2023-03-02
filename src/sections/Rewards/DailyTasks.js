@@ -104,6 +104,14 @@ function DailyTasks() {
 
         <Row score="2" subtitle="0/3 completed" title="Connect with others per day to earn this" />
       </div>
+      <DividerLine/>
+      <div className="py-4">
+        <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
+          Updating profile picture
+        </Title>
+
+        <Row score="5" subtitle="0/3 completed" title="Change your profile picture to earn this" />
+      </div>
     </section>
   );
 }

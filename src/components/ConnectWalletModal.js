@@ -456,12 +456,6 @@ function ConnectWalletModal() {
                 }
               />
               <ConnectWalletButton
-                img="images/wallet-connect.svg"
-                title="Wallet Connect"
-                loader={loading.wallet}
-                clickEvent={walletConnectHandler}
-              />
-              <ConnectWalletButton
                 img="images/space_id_logo.png"
                 title=".bnb Domain"
                 loader={loading.bnb}
@@ -490,11 +484,11 @@ function ConnectWalletModal() {
                   click={googleLoginHandler}
                   icon={<Icon icon="ri:google-fill" className="text-lg" />}
                 />
-                <SocialLoginCard
+                {/* <SocialLoginCard
                   title="Twitter"
                   click={twitterLoginHandler}
                   icon={<Icon icon="mdi:twitter" className="text-lg" />}
-                />
+                /> */}
               </div>
 
               <Link to="/" className="block w-fit mx-auto text-center text-sm">

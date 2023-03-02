@@ -75,10 +75,6 @@ function Hero() {
       link: "",
     },
     {
-      image: "images/reward_pool.png",
-      link: "https://app.space.id/?inviter=scriptnetwork.bnb",
-    },
-    {
       image: "images/test-launch.png",
       link: "",
     },
