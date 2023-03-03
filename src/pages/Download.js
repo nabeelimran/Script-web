@@ -3,6 +3,7 @@ import Title from "components/Title";
 import TvNavbar from "components/TvNavbar";
 import React from "react";
 import { helper } from "utils/helper";
+import NodeAgrement from "../files/Script-Network-Node-Operator-Agreement-2.pdf"
 
 function Download() {
 	const [isAllow, setIsAllow] = React.useState(false);
@@ -75,9 +76,10 @@ function Download() {
 						"by downloading, you agree to our node operator agreement"
 					}
 					className='flex items-center justify-center gap-3 mt-3'
-					labelClassName='text-md cursor-pointer'
+					labelClassName='text-md cursor-pointer text-primary'
 					checkboxClassName='min-w-[16px] h-4 outline-none rounded-[2px] transition-all duration-200 bg-transparent border-2 checked:border-primary border-[rgba(255,255,255,.6)] text-primary'
 					other={{ onChange: (e) => handleAccept(e) }}
+					link={NodeAgrement}
 				/>
 			</div>
 		</div>

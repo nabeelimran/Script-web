@@ -281,7 +281,7 @@
 
   .checkbox input.show-tick[type="checkbox"]::before {
     content: "\2713";
-    font-size: 0.7rem;
+    font-size: 1rem;
     /* color: white; */
     transition: all 0.25s ease;
     scale: 0;
