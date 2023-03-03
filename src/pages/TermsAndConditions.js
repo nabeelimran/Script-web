@@ -4,537 +4,811 @@ import Title from "components/Title";
 import React from "react";
 
 function TermsAndConditions() {
-  return (
-    <div>
-      <div className="mb-4 sm:mb-6 lg:mb-10 z-50 relative">
-        <Navbar />
-      </div>
+	return (
+		<div>
+			<div className='mb-4 sm:mb-6 lg:mb-10 z-50 relative'>
+				<Navbar />
+			</div>
 
-      <div className="container-two mb-20">
-        <div className="mb-14 lg:mb-20">
-          <Title variant="44">Terms & Conditions</Title>
-        </div>
+			<div className='container-two mb-20'>
+				<div className='mb-14 lg:mb-20'>
+					<Title variant='44'>Terms & Conditions</Title>
+				</div>
 
-        <div className="dictator-content">
-          <div className="dictator-section">
-            <h4 className="dictator-title">1. About the Website</h4>
-            <p className="dictator-desc">
-              1.1. Welcome to www.script.tv (the 'Website'). The Website for the
-              Script TV (the 'Services').
-            </p>
-            <p className="dictator-desc">
-              1.2. The Website is operated by Script Technologies ltd (Script
-              TV). Access to and use of the Website, or any of its associated
-              Products or Services, is provided by Script TV. Please read these
-              terms and conditions (the 'Terms') carefully. By using, browsing
-              and/or reading the Website, this signifies that you have read,
-              understood and agree to be bound by the Terms. If you do not agree
-              with the Terms, you must cease usage of the Website, or any of our
-              Services, immediately.
-            </p>
-            <p className="dictator-desc">
-              1.3. Script TV reserves the right to review and change any of the
-              Terms by updating this page at its sole discretion. When Script TV
-              updates the Terms, it will use reasonable endeavors to provide you
-              with notice of updates to the Terms. Any changes to the Terms take
-              immediate effect from the date of their publication. Before you
-              continue, we recommend you keep a copy of the Terms for your
-              records.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">2. Acceptance of the Terms</h4>
-            <p className="dictator-desc">
-              2.1. You accept the Terms by remaining on the Website. You may
-              also accept the Terms by clicking to accept or agree to the Terms
-              where this option is made available to you by Script TV in the
-              user interface.
-            </p>
-            <p className="dictator-desc">
-              2.2. The “Terms” is defined as the following:
-            </p>
-            <p className="ml-5 dictator-desc">(A) These Terms and Conditions</p>
-            <p className="ml-5 dictator-desc">(B) Our Privacy Policy</p>
-            <p className="ml-5 dictator-desc">(C) Our Cookie Policy</p>
-            <p className="dictator-desc">
-              2.3. Script TV is operating under the legislation of England and
-              Wales. The services provided by the Website are not considered to
-              be financial or custodian services under this jurisdiction, and
-              therefore does not require any licenses to operate. As laws and
-              regulations are different in other countries the right to access
-              and/or use the Website (including any, or all of, the products
-              offered via the Website) may be illegal in certain countries. You
-              are responsible for determining whether your accessing and/or use
-              of the Website is compliant with applicable laws in your
-              jurisdiction and that the service offered on this Website is not
-              illegal in the territory where you reside,
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">
-              3. Registration to use the Services
-            </h4>
-            <p className="dictator-desc">
-              3.1. In order to access the Services, you may need to register for
-              an account through the Website (the 'Account').
-            </p>
-            <p className="dictator-desc">
-              3.2. As part of the registration process, or as part of your
-              continued use of the Services, you may be required to provide
-              personal information about yourself (such as identification or
-              contact details), including:
-            </p>
-            <p className="ml-5 dictator-desc">(A) an email address</p>
-            <p className="ml-5 dictator-desc">(B) a mailing address</p>
-            <p className="ml-5 dictator-desc">(C) a password</p>
-            <p className="dictator-desc">
-              3.3. You warrant that any information you give to Script TV in the
-              course of completing the registration process will always be
-              accurate, correct and up to date.
-            </p>
-            <p className="dictator-desc">
-              3.4. Once you have completed the registration process, you will be
-              a registered user of the Website ('User') and agree to be bound by
-              the Terms.
-            </p>
-            <p className="dictator-desc">
-              3.5. You may not use the Services and may not accept the Terms if:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) you are not of legal age to form a binding contract with
-              Script TV; or
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) you are a person barred from receiving the Services under the
-              laws of the England and Wales, United States or other countries
-              including the country in which you are resident or from which you
-              use the Services.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">4. Your obligations as a User</h4>
-            <p className="dictator-desc">
-              4.1. As a User, you agree to comply with the following:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) you will use the Services only for purposes that are permitted
-              by:
-            </p>
-            <p className="ml-5 dictator-desc">(i) he Terms; and</p>
-            <p className="ml-5 dictator-desc">
-              (ii) any applicable law, regulation or generally accepted
-              practices or guidelines in the relevant jurisdictions;
-            </p>
-            <p className="ml-5 dictator-desc">(B) a mailing address</p>
-            <p className="ml-5 dictator-desc">(C) a password</p>
-            <p className="dictator-desc">
-              3.2. As part of the registration process, or as part of your
-              continued use of the Services, you may be required to provide
-              personal information about yourself (such as identification or
-              contact details), including:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) you have the sole responsibility for protecting the
-              confidentiality of your password, email address, and keys to the
-              wallet. Use of your password by any other person may result in the
-              immediate cancellation of the Services;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (C) any use of your registration information by any other person,
-              or third parties, is strictly prohibited. You agree to immediately
-              notify Script TV of any unauthorized use of your password or email
-              address or any breach of security of which you have become aware;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (D) access and use of the Services are limited, non-transferable
-              and allows for the sole use of the Website by you for the purposes
-              of Script TV providing the Services;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (E) you will not use the Services or the Website in connection
-              with any commercial endeavors except those that are specifically
-              endorsed or approved by the management of Script TV;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (F) you will not use the Services or Website for any illegal
-              and/or unauthorized use which includes collecting email addresses
-              of Members by electronic or other means for the purpose of sending
-              unsolicited email or unauthorized framing of or linking to the
-              Website;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (G) you agree that commercial advertisements, affiliate links, and
-              other forms of solicitation may be removed from the Website
-              without notice and may result in termination of the Services.
-              Appropriate legal action will be taken by Script TV for any
-              illegal or unauthorized use of the Website; and
-            </p>
-            <p className="ml-5 dictator-desc">
-              (H) you acknowledge and agree that any automated use of the
-              Website or its Services is prohibited.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">5. The Services</h4>
-            <p className="dictator-desc">
-              5.1. Script TV will offer a range of services within decentralized
-              film and TV. The services are based on the blockchain. The exact
-              range of the services and how the services can be accessed will be
-              disclosed at a later stage.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">
-              6. Third-Party Service and Content
-            </h4>
-            <p className="dictator-desc">
-              6.1. In no event shall a description or reference to a third
-              party’s product or service (including, but not limited to,
-              providing a description or reference via hyperlink) be construed
-              as an endorsement or promotion of such third-party products or
-              services by Script TV. Script TV retains the exclusive right to
-              add to, modify, or cancel the availability of any Third-Party
-              Service. Script TV does not control, endorse, or adopt any
-              Third-Party Content and will have no responsibility for
-              Third-Party Content including, but not limited to, token
-              availability and/or sales.
-            </p>
-            <p className="dictator-desc">
-              6.2. If, to the extent permitted by Script TV, the User grant
-              express permission to a third party to access or connect to the
-              Users Script TV account, either through the third party’s product
-              or service or through Script TV, the User acknowledges that
-              granting permission to a third party to take specific actions on
-              the Users behalf does not relieve the User of any of the Users
-              responsibilities under this Agreement. The User is fully
-              responsible for all acts or omissions of any third-party with
-              access to the Users Script TV account.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">
-              7. Copyright and Intellectual Property
-            </h4>
-            <p className="dictator-desc">
-              7.1. The Website, the Services and all the related products of
-              Script TV are subject to copyright. The material on the Website is
-              protected by copyright under the laws of England and Wales and
-              through international treaties. Unless otherwise indicated, all
-              rights (including copyright) in the Services and compilation of
-              the Website (including but not limited to text, graphics, logos,
-              button icons, video images, audio clips, Website, code, scripts,
-              design elements and interactive features) or the Services are
-              owned or controlled for these purposes and are reserved by Script
-              TV or its contributors.
-            </p>
-            <p className="dictator-desc">
-              7.2. All trademarks, service marks and trade names are owned,
-              registered and/or licensed by Script TV, who grants to you a
-              worldwide, non-exclusive, royalty-free, revocable license whilst
-              you are a User to:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) use the Website pursuant to the Terms;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) copy and store the Website and the material contained on the
-              Website in your device's cache memory; and
-            </p>
-            <p className="ml-5 dictator-desc">
-              (C) print pages from the Website and for your own personal and
-              non-commercial use. Script TV does not grant you any other rights
-              whatsoever in relation to the Website or the Services. All other
-              rights are expressly reserved by Script TV.
-            </p>
-            <p className="dictator-desc">
-              7.3. Script TV retains all rights, title and interest in and to
-              the Website and all related Services. Nothing you do on or in
-              relation to the Website will transfer any:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) business name, trading name, domain name, trademark,
-              industrial design, patent, registered design or copyright, or
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) a right to use or exploit a business name, trading name,
-              domain name, trademark or industrial design, or
-            </p>
-            <p className="ml-5 dictator-desc">
-              (C) a thing, system or process that is the subject of a patent,
-              registered design or copyright (or an adaptation or modification
-              of such a thing, system or process), to you.
-            </p>
-          </div>
-          <p className="dictator-desc">
-            7.4. You may not, without the prior written permission of Script TV
-            and the permission of any other relevant rights owners: broadcast,
-            republish, up-load to a third party, transmit, post, distribute,
-            show or play in public, adapt or change in any way the Services or
-            third-party Services for any purpose unless otherwise provided by
-            these Terms. This prohibition does not extend to materials on the
-            Website which are freely available for re-use or are in the public
-            domain.
-          </p>
-          <div className="dictator-section">
-            <h4 className="dictator-title">8. Privacy</h4>
-            <p className="dictator-desc">
-              8.1. Script TV takes your privacy seriously and any information
-              provided through your use of the Website and/or Services are
-              subject to Script TV's Privacy Policy, which is available on the
-              Website.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">9. General Disclaimer</h4>
-            <p className="dictator-desc">
-              9.1. Nothing in the Terms limits or excludes any guarantees,
-              warranties, representations or conditions implied or imposed by
-              law, including the Consumer Rights Act 2015 (or any liability
-              under them) which by law may not be limited or excluded.
-            </p>
-            <p className="dictator-desc">
-              9.2. Subject to this clause, and to the extent permitted by law:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) all terms, guarantees, warranties, representations or
-              conditions which are not expressly stated in the Terms are
-              excluded; and
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) Script TV will not be liable for any special, indirect or
-              consequential loss or damage (unless such loss or damage is
-              reasonably foreseeable resulting from our failure to meet an
-              applicable Consumer Guarantee), loss of profit or opportunity, or
-              damage to goodwill arising out of or in connection with the
-              Services or these Terms (including as a result of not being able
-              to use the Services or the late supply of the Services), whether
-              at common law, under contract, tort (including negligence), in
-              equity, pursuant to statute or otherwise.
-            </p>
-            <p className="dictator-desc">
-              9.3. Use of the Website and the Services is at your own risk.
-              Everything on the Website and the Services is provided to you "as
-              is" and "as available" without warranty or condition of any kind.
-              None of the affiliates, directors, officers, employees, agents,
-              contributors and licensors of Script TV makes any express or
-              implied representation or warranty about the Services or any
-              products or Services (including the products or Services of Script
-              TV) referred to on the Website. This includes (but is not
-              restricted to) loss or damage you might suffer as a result of any
-              of the following:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) failure of performance, error, omission, interruption,
-              deletion, defect, failure to correct defects, delay in operation
-              or transmission, computer virus or other harmful components, loss
-              of data, communication line failure, unlawful third-party conduct,
-              or theft, destruction, alteration or unauthorized access to
-              records;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) the accuracy, suitability or currency of any information on
-              the Website, the Services, or any of its Services related products
-              (including third party material and advertisements on the
-              Website);
-            </p>
-            <p className="ml-5 dictator-desc">
-              (C) costs incurred as a result of you using the Website, the
-              Services or any of the products of Script TV; and
-            </p>
-            <p className="ml-5 dictator-desc">
-              (D) the Services or operation in respect to links which are
-              provided for your convenience.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">10. Limitation of liability</h4>
-            <p className="dictator-desc">
-              10.1. Script TV's total liability arising out of or in connection
-              with the Services or these Terms, however arising, including under
-              contract, tort (including negligence), in equity, under statute or
-              otherwise, will not exceed the resupply of the Services to you.
-            </p>
-            <p className="dictator-desc">
-              10.2. You expressly understand and agree that Script TV, its
-              affiliates, employees, agents, contributors and licensors shall
-              not be liable to you for any direct, indirect, incidental, special
-              consequential or exemplary damages which may be incurred by you,
-              however, caused and under any theory of liability. This shall
-              include, but is not limited to, any loss of profit (whether
-              incurred directly or indirectly), any loss of goodwill or business
-              reputation and any other intangible loss.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">11. Termination of Contract</h4>
-            <p className="dictator-desc">
-              11.1. The Terms will continue to apply until terminated by either
-              you or by Script TV as set out below.
-            </p>
-            <p className="dictator-desc">
-              11.2. If you want to terminate the Terms, you may do so by:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) providing Script TV with 1 days' notice of your intention to
-              terminate; and
-            </p>
-            <p className="ml-5 dictator-desc">
-              losing your accounts for all of the services which you use, where
-              Script TV has made this option available to you.
-            </p>
-            <p className="dictator-desc">
-              Your notice should be sent, in writing, to Script TV via the
-              'Contact Us' link on our homepage.
-            </p>
-            <p className="dictator-desc">
-              11.3. Script TV may at any time, terminate the Terms with you if:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) you have breached any provision of the Terms or intend to
-              breach any provision;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) Script TV is required to do so by law;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (C) the provision of the Services to you by Script TV is, in the
-              opinion of Script TV, no longer commercially viable.
-            </p>
-            <p className="dictator-desc">
-              11.4. Subject to local applicable laws, Script TV reserves the
-              right to discontinue or cancel your account at any time and may
-              suspend or deny, in its sole discretion, your access to all or any
-              portion of the Website or the Services without notice if you
-              breach any provision of the Terms or any applicable law or if your
-              conduct impacts Script TV's name or reputation or violates the
-              rights of those of another party.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">12. Indemnity</h4>
-            <p className="dictator-desc">
-              12.1. You agree to indemnify Script TV, its affiliates, employees,
-              agents, contributors, third party content providers and licensors
-              from and against:
-            </p>
-            <p className="ml-5 dictator-desc ">
-              (A) all actions, suits, claims, demands, liabilities, costs,
-              expenses, loss and damage (including legal fees on a full
-              indemnity basis) incurred, suffered or arising out of or in
-              connection with Your Content;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) any direct or indirect consequences of you accessing, using or
-              transacting on the Website or attempt to do so; and/or
-            </p>
-            <p className="ml-5 dictator-desc">(C) any breach of the Terms.</p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">13. Dispute Resolution</h4>
-            <p className="dictator-desc">13.1. Compulsory:</p>
-            <p className="dictator-desc">
-              If a dispute arises out of or relates to the Terms, either party
-              may not commence any Tribunal or Court proceedings in relation to
-              the dispute, unless the following clauses have been complied with
-              (except where urgent interlocutory relief is sought).
-            </p>
-            <p className="dictator-desc">13.2. Notice:</p>
-            <p className="dictator-desc">
-              A party to the Terms claiming a dispute ('Dispute') has arisen
-              under the Terms, must give written notice to the other party
-              detailing the nature of the dispute, the desired outcome and the
-              action required to settle the Dispute.
-            </p>
-            <p className="dictator-desc">13.3. Resolution:</p>
-            <p className="dictator-desc">
-              On receipt of that notice ('Notice') by that other party, the
-              parties to the Terms ('Parties') must:
-            </p>
-            <p className="ml-5 dictator-desc">
-              (A) Within 14 days of the Notice endeavour in good faith to
-              resolve the Dispute expeditiously by negotiation or such other
-              means upon which they may mutually agree;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (B) If for any reason whatsoever, 14 days after the date of the
-              Notice, the Dispute has not been resolved, the Parties must either
-              agree upon selection of a mediator or initiate or request one
-              appointed by LCIA in London.
-            </p>
-            <p className="ml-5 dictator-desc">
-              (C) The Parties are equally liable for the fees and reasonable
-              expenses of a mediator and the cost of the venue of the mediation
-              and without limiting the foregoing undertake to pay any amounts
-              requested by the mediator as a pre-condition to the mediation
-              commencing. The Parties must each pay their own costs associated
-              with the mediation;
-            </p>
-            <p className="ml-5 dictator-desc">
-              (D) The mediation will be held in London.
-            </p>
-            <p className="dictator-desc">13.4. Confidential</p>
-            <p className="dictator-desc">
-              All communications concerning negotiations made by the Parties
-              arising out of and in connection with this dispute resolution
-              clause are confidential and to the extent possible, must be
-              treated as "without prejudice" negotiations for the purpose of
-              applicable laws of evidence.
-            </p>
-            <p className="dictator-desc">13.5. Termination of Mediation:</p>
-            <p className="dictator-desc">
-              If 2 weeks have elapsed after the start of a mediation of the
-              Dispute and the Dispute has not been resolved, either Party may
-              ask the mediator to terminate the mediation and the mediator must
-              do so.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">14. Venue and Jurisdiction</h4>
-            <p className="dictator-desc">
-              The Services offered by Script TV is intended to be viewed by
-              residents of the UK. In the event of any dispute arising out of or
-              in relation to the Website, you agree that the exclusive venue for
-              resolving any dispute shall be in the courts of England and Wales.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">15. Governing Law</h4>
-            <p className="dictator-desc">
-              The Terms are governed by the laws of England and Wales. Any
-              dispute, controversy, proceeding or claim of whatever nature
-              arising out of or in any way relating to the Terms and the rights
-              created hereby shall be governed, interpreted and construed by,
-              under and pursuant to the laws of England and Wales, without
-              reference to conflict of law principles, notwithstanding mandatory
-              rules. The validity of this governing law clause is not contested.
-              The Terms shall be binding to the benefit of the parties hereto
-              and their successors and assigns.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">16. Independent Legal Advice</h4>
-            <p className="dictator-desc">
-              Both parties confirm and declare that the provisions of the Terms
-              are fair and reasonable, and both parties having taken the
-              opportunity to obtain independent legal advice and declare the
-              Terms are not against public policy on the grounds of inequality
-              or bargaining power or general grounds of restraint of trade.
-            </p>
-          </div>
-          <div className="dictator-section">
-            <h4 className="dictator-title">17. Severance</h4>
-            <p className="dictator-desc">
-              If any part of these Terms is found to be void or unenforceable by
-              a court of competent jurisdiction, that part shall be severed, and
-              the rest of the Terms shall remain in force.
-            </p>
-          </div>
-        </div>
-      </div>
+				<div className='dictator-content'>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							1. Introduction to the Terms
+						</h4>
+						<p className='dictator-desc'>
+							Welcome to token.script.tv, owned and operated by{" "}
+							<strong className='text-primary'>
+								Script Network and Script Technologies Ltd
+							</strong>
+							. This Terms of Service is a binding contract
+							between you, individual or entity user ("you") and{" "}
+							<strong className='text-primary'>
+								Script Network ("https://token.script.tv")
+							</strong>{" "}
+							(also herein referred to as "we," "us" or "our")
+							(together, the "Parties" and each a "Party").
+						</p>
+						<p className='dictator-desc'>
+							These Terms {`{Agreement}`} govern your access to
+							and use of the{" "}
+							<strong className='text-primary'>
+								Script Network
+							</strong>{" "}
+							services provided on or in connection with our
+							website; including without limitation using and
+							exploring our various network and all related
+							products offered by Script Network, for users' to
+							view, participate and/or watch to earn reward on the{" "}
+							<strong className='text-primary'>
+								Script Network
+							</strong>{" "}
+							site. The date on which you first log in your
+							Account (as defined herein) is referred to as the
+							"Effective Date".
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>2. About us</h4>
+						<p className='dictator-desc'>
+							We are located and registered in London England
+							under company number: {`{ }`} add registered company
+							number. Our registered office is at:{" "}
+							{`{20-22 Wenlock Road, London, N1 7GU}`}. Script
+							Network offers a complete ecosystem for television
+							and film on blockchain. Script Network Users can
+							earn by viewing content, or by being a node on the
+							Script Network. If you have any questions please
+							send us a message. We will be happy to help you.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>3. How to contact us</h4>
+						<p className='dictator-desc'>
+							You can contact us by sending an email to{" "}
+							<strong className='text-primary'>
+								hello@token.script.tv{" "}
+							</strong>
+						</p>
+					</div>
+					<div className=''>
+						<h4 className='dictator-title text-center'>
+							Table of Contents{" "}
+						</h4>
+						<p className='mt-3'>1) Welcome</p>
+						<p className='mt-1'>2) About Us</p>
+						<p className='mt-1'>3) How to contact us</p>
+						<p className='mt-1'>4) Use of the Service</p>
+						<p className='mt-1'>5) Eligibility</p>
+						<p className='mt-1'>6) Internet Protocol-Delivered Video Programming</p>
+						<p className='mt-1'>7) The Platform</p>
+						<p className='mt-1'>8) User Login</p>
+						<p className='mt-1'>9) Script Network Token, Campaigns</p>
+						<p className='mt-1'>10) Transaction and Other Fees</p>
+						<p className='mt-1'>11) Submissions</p>
+						<p className='mt-1'>12) Viral Distribution</p>
+						<p className='mt-1'>13) Storage Space</p>
+						<p className='mt-1'>14) Risk Assumption</p>
+						<p className='mt-1'>15) Disclaimer</p>
+						<p className='mt-1'>16) Limitations</p>
+						<p className='mt-1'>17) Revisions and errata</p>
+						<p className='mt-1'>18) No Ongoing Management</p>
+						<p className='mt-1'>19) Regulatory and Legal</p>
+						<p className='mt-1'>20) Canada PIPEDA Compliance</p>
+						<p className='mt-1'>21) For European Union (EU) Users</p>
+						<p className='mt-1'>22) United States Legal Compliance</p>
+						<p className='mt-1'>23) Site Terms of Use Modifications</p>
+						<p className='mt-1'>24) Governing Law</p>
+						<p className='mt-1'>25) Disputes</p>
+						<p className='mt-1'>26) Electronic Communications</p>
+						<p className='mt-1'>27) Copyright License</p>
+						<p className='mt-1'>28) Complaints</p>
+					</div>
 
-      <Footer />
-    </div>
-  );
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							4. Use of the Service
+						</h4>
+						<p className='dictator-desc'>
+							For purposes of these Terms, "user", "you", and
+							"your" means you as the user of the Service. If you
+							use the Service on behalf of a company or other
+							entity then "you" includes you and that entity, and
+							you represent and warrant that (a) you are an
+							authorized representative of the entity with the
+							authority to bind the entity to these Terms, and (b)
+							you agree to these Terms on the entity's behalf.
+						</p>
+						<p className='dictator-desc'>
+							BY CLICKING TO ACCEPT AND/OR USING OUR SERVICE, YOU
+							AGREE TO BE BOUND BY THESE TERMS AND ALL OF THE
+							TERMS INCORPORATED HEREIN BY REFERENCE. IF YOU DO
+							NOT AGREE TO THESE TERMS, YOU MAY NOT ACCESS OR USE
+							THE SERVICE.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>5. Eligibility</h4>
+						<p className='dictator-desc'>
+							You may not create, access or participate in any of{" "}
+							<strong className='text-primary'>
+								Script Network Services
+							</strong>
+							, Events or Campaigns if you are not eligible or
+							lawfully permitted to do so. The{" "}
+							<strong className='text-primary'>
+								Script Network
+							</strong>{" "}
+							is open only to individuals who are 18 years and
+							above and have the right and authority to enter into
+							this Agreement, and are fully able and competent to
+							satisfy the terms, conditions, and obligations
+							herein.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							6. Internet Protocol-Delivered Video Programming
+						</h4>
+						<p className='dictator-desc'>
+							In accordance with the 21st, Century Communications
+							and Video Accessibility Act of 2010, all video
+							programming distributors that make video programming
+							available directly to end users through a
+							distribution method that uses the internet protocol
+							are required to provide contact information to end
+							users for the receipt and handling of written closed
+							captioning complaints. As regards to these
+							regulations, users’ hold the right to send a
+							complaints about the services at your own
+							discretion.
+						</p>
+						<p className='dictator-desc'>
+							If you have a complaint regarding the Services’
+							compliance with the closed captioning requirements
+							of the 21st, Century Communications and Video
+							Accessibility Act of 2010, please send us a message,
+							we will be happy to help.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>7. The Platform</h4>
+						<p className='dictator-desc'>
+							<strong className='text-primary'>
+								Script Network
+							</strong>{" "}
+							offers a wide range of services within decentralized
+							film and TV including an open source live tv
+							platform, protocol, and video storage network. The
+							services are based on full interaction for users and
+							content partners in the Cryptocurrency blockchain.
+							On the Script Network site, Users can earn by
+							viewing content, or by being a node on the Script
+							Network.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>8. User Login</h4>
+						<p className='dictator-desc'>
+							To use this website, you may be asked to register
+							for an account and provide private information such
+							as email address, Password etc. You agree to be
+							responsible for ensuring the accuracy of your
+							information, and maintaining the safety and security
+							of your identifying information. You are also
+							responsible for all activities that occur under your
+							account or password. If you think there are any
+							possible issues regarding the security of your
+							account on the website, inform us immediately so we
+							may address it accordingly.
+							<br />
+							<br />
+							We reserve all rights to terminate accounts, edit or
+							remove content and cancel orders in our sole
+							discretion.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							9. Script Network Tokens, Campaigns
+						</h4>
+						<p className='dictator-desc'>
+							Script Network provides’ various token rewards for
+							contributors to stake tokens and earn rewards or run
+							nodes through various contests, rewarding
+							opportunities, challenges and events (all together
+							collectively “Campaigns”) to encourage eligible
+							Users to use their creativity, promote, watch to
+							earn tv, the Node Network and vote towards further
+							development, functionalities and designs of Script{" "}
+							<strong className='text-primary'>
+								Network services
+							</strong>
+							. All token rewards are based on chance. There can
+							be no guarantee or assurance of the uniqueness,
+							originality or quality of any Script Network Tokens
+							or rewards available on the site.
+						</p>
+						<p className='dictator-desc'>
+							<strong className='text-primary'>
+								Script Network
+							</strong>{" "}
+							makes no representations or warranties as to the
+							quality, origin, or ownership of any content found
+							on the site. Script Network shall not be liable for
+							any errors, misrepresentations, or omissions in, of,
+							and about, the content, nor for the availability of
+							the content. Script Network Company shall not be
+							liable for any losses, injuries, or damages from the
+							purchase, inability to purchase, display, or use of
+							content.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							10. Transaction and Other Fees
+						</h4>
+						<p className='dictator-desc'>
+							Most cryptocurrencies allow market participants to
+							offer miners (i.e., parties that process
+							transactions and record them on a blockchain or
+							distributed ledger) the ability to earn a fee. While
+							not mandatory, a fee is generally necessary to
+							ensure that a transaction is promptly recorded on a
+							blockchain or distributed ledger. The amounts of
+							these fees are subject to market forces, and it is
+							possible that the fees could increase substantially
+							during a period of increased activity or volatility.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>11. Submissions</h4>
+						<p className='dictator-desc'>
+							Where applicable and unless otherwise defined in
+							specific terms and conditions, Users and their
+							submissions to the site will have to meet the
+							following criteria ("
+							<strong className='text-primary'>
+								Script Network Submission Requirements
+							</strong>
+							"):
+						</p>
+						<ul className='dictator-desc list-[lower-roman] ml-8'>
+							<li>
+								Submissions must not be derogatory, offensive,
+								threatening, defamatory, disparaging, libellous
+								or contain any content that is inappropriate,
+								indecent, sexual, profane, tortuous, slanderous,
+								discriminatory in any way, or that promotes
+								hatred or harm against any group or person, or
+								otherwise does not comply with the theme and
+								website.
+							</li>
+							<li>
+								Submissions must not contain content, material
+								or any element that is unlawful, or otherwise in
+								violation of or contrary to all applicable
+								federal, state, or local laws and regulation
+								including the laws or regulations in any state
+								where the{" "}
+								<strong className='text-primary'>
+									Script Network
+								</strong>{" "}
+								Campaign, Rewards, Contest and supporting
+								statements and NFTs are created.
+							</li>
+							<li>
+								Submissions must not contain any content,
+								material or element that displays any third
+								party advertising, slogan, logo, trademark,
+								representation of characters indicating a
+								sponsorship or endorsement by a third party,
+								commercial entity or that is not within the
+								spirit of the Contest, as determined by Sponsor,
+								in its sole discretion.
+							</li>
+							<li>
+								Submissions must be original, unpublished works
+								that do not contain, incorporate or otherwise
+								use any content, material or element that is
+								owned by a third party or entity.
+							</li>
+							<li>
+								Submissions cannot contain any content, element,
+								or material that violates a third party's
+								publicity, privacy or intellectual property
+								rights.
+							</li>
+							<li>
+								Users’ submission is not subject to any actual
+								or threatened litigation or claim.
+							</li>
+							<li>
+								User does not include any disparaging remarks
+								relating to the Sponsor or a third party.
+							</li>
+							<li>
+								User’s artwork is submitted in prescribed form
+								and made available through channels indicated in
+								Campaign Information.
+							</li>
+						</ul>
+
+						<p className='dictator-desc'>
+							By entering and submitting what's required for
+							participating in a specific Network as described in
+							Campaign Information, you understand and agree that
+							Script Network and anyone else acting on behalf of
+							the Script Network or its respective licensees,
+							successors, affiliates and assigns, shall have the
+							right, where permitted by law, to print, publish,
+							broadcast, distribute, exhibit and use in any media
+							now known or hereafter developed, in perpetuity and
+							throughout the world, without limitation, your
+							submission and entry, name, portrait, picture,
+							voice, likeness, image, statements about the
+							Campaign, and biographical information for news,
+							publicity, information, trade, advertising, public
+							relations, and promotional purposes without any
+							further compensation, notice, review, or consent.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							12. Viral Distribution
+						</h4>
+						<p className='dictator-desc'>
+							We may expressly authorize you to redistribute (NFTs
+							projects to build, and distribute through Script
+							Network) (collectively, “Viral Features”) certain
+							Content on a personal, non-commercial basis. While
+							we can change how, to whom and to what extent we
+							make these Viral Features available at any time
+							without any notice and in our sole discretion, so
+							long as they are available to you, whenever you
+							visit our Services or take advantage of any of these
+							Viral Features, you agree not to download any
+							Content or User Submissions (as defined below) made
+							available as part of the Viral Features and
+							acknowledge that such content is available only for
+							streaming viewing (except as may be set forth in a
+							set of Additional Terms) and, further, that you are
+							bound by the applicable provisions of these Terms
+							and our Privacy Policy. As determined by us in our
+							sole discretion, we reserve the right to prevent
+							embedding to any website or other location that we
+							find inappropriate or otherwise objectionable as
+							determined by us in our sole discretion.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>13. Storage Space</h4>
+						<p className='dictator-desc'>
+							<strong className='text-primary'>
+								Script Network
+							</strong>{" "}
+							grants users storage space on servers and networks
+							for storing its data. Users may store digital files
+							on these servers and networks.{" "}
+							<strong className='text-primary'>
+								Script Network
+							</strong>{" "}
+							will ensure that the stored data is accessible via
+							the Internet within the scope of the functioning of
+							the Platform. The user is not entitled to transfer
+							this storage space to a third party for use, either
+							in part or in full, against payment or free of
+							charge.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>14. Risk Assumption</h4>
+						<p className='dictator-desc'>
+							You accept and acknowledge: The value of an NFTs is
+							subjective. Prices of NFTs are subject to volatility
+							and fluctuations in the price of cryptocurrency can
+							also materially and adversely affect NFT prices. You
+							acknowledge that you fully understand this
+							subjectivity and volatility and that you may lose
+							money. You also agree that:
+						</p>
+						<ul className='dictator-desc list-[lower-roman] ml-8'>
+							<li>
+								A lack of use or public interest in the creation
+								and development of distributed ecosystems could
+								negatively impact the development of those
+								ecosystems and related applications, and could
+								therefore also negatively impact the potential
+								utility of NFTs.
+							</li>
+							<li>
+								The regulatory regime governing blockchain
+								technologies, non-fungible tokens,
+								cryptocurrency, and other crypto-based items is
+								uncertain, and new regulations or policies may
+								materially adversely affect the development of
+								the Service and the utility of NFTs.
+							</li>
+							<li>
+								You are solely responsible for determining what,
+								if any, taxes apply to your transactions.{" "}
+								<strong className='text-primary'>
+									Script Network
+								</strong>{" "}
+								is not responsible for determining the taxes
+								that apply to your NFTs.
+							</li>
+							<li>
+								There are risks associated with purchasing items
+								associated with content created by third parties
+								through peer-to-peer transactions, including but
+								not limited to, the risk of purchasing
+								counterfeit items, mislabeled items, items that
+								are vulnerable to metadata decay, items on smart
+								contracts with bugs, and items that may become
+								untransferable. You represent and warrant that
+								you have done sufficient research before making
+								any decisions to sell, obtain, transfer, or
+								otherwise interact with any NFTs or
+								accounts/collections.
+							</li>
+							<li>
+								We do not control the public blockchains that
+								you are interacting with and we do not control
+								certain smart contracts and protocols that may
+								be integral to your ability to complete
+								transactions on these public blockchains.
+								Additionally, blockchain transactions are
+								irreversible and{" "}
+								<strong className='text-primary'>
+									Script Network
+								</strong>{" "}
+								has no ability to reverse any transactions on
+								the blockchain.
+							</li>
+							<li>
+								There are risks associated with using Internet
+								and blockchain based products, including, but
+								not limited to, the risk associated with
+								hardware, software, and Internet connections,
+								the risk of malicious software introduction, and
+								the risk that third parties may obtain
+								unauthorized access to your third-party wallet
+								or Account. You accept and acknowledge that{" "}
+								<strong className='text-primary'>
+									Script Network
+								</strong>{" "}
+								will not be responsible for any communication
+								failures, disruptions, errors, distortions or
+								delays you may experience when using the Service
+								or any Blockchain network, however caused.
+							</li>
+							<li>
+								The Service relies on third-party platforms
+								and/or vendors. If we are unable to maintain a
+								good relationship with such platform providers
+								and/or vendors; if the terms and conditions or
+								pricing of such platform providers and/or
+								vendors change; if we violate or cannot comply
+								with the terms and conditions of such platforms
+								and/or vendors; or if any of such platforms
+								and/or vendors loses market share or falls out
+								of favor or is unavailable for a prolonged
+								period of time, access to and use of the Service
+								will suffer.
+							</li>
+						</ul>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>15. Disclaimer</h4>
+						<p className='dictator-desc'>
+							The materials on{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							web site are provided "as is".{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							makes no warranties, expressed or implied, and
+							hereby disclaims and negates all other warranties,
+							including without limitation, implied warranties or
+							conditions of merchantability, fitness for a
+							particular purpose, or non-infringement of
+							intellectual property or other violation of rights.
+							further,{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							does not warrant or make any representations
+							concerning the accuracy, likely results, or
+							reliability of the use of the materials on its
+							Internet web site or otherwise relating to such
+							materials or on any sites linked to this site.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>16. Limitations</h4>
+						<p className='dictator-desc'>
+							In no event shall{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							or its suppliers be liable for any damages
+							(including, without limitation, damages for loss of
+							data or profit, or due to business interruption,)
+							arising out of the use or inability to use the
+							materials on{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>
+							's Internet site, even if{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							or a{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							authorized representative has been notified orally
+							or in writing of the possibility of such damage.
+							Because some jurisdictions do not allow limitations
+							on implied warranties, or limitations of liability
+							for consequential or incidental damages, these
+							limitations may not apply to you.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							17. No Ongoing Management
+						</h4>
+						<p className='dictator-desc'>
+							Consistent with the goals of community governance,
+							after the Distribution, neither{" "}
+							<strong className='text-primary'>
+								Script Network
+							</strong>{" "}
+							and its service providers nor any other group,
+							entity, or individual should be expected to have a
+							material ongoing role in maintenance, research,
+							development, or promotion of networks relating to
+							the <strong className='text-primary'>Token</strong>{" "}
+							distributed.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							18. Revisions and Errata
+						</h4>
+						<p className='dictator-desc'>
+							The materials appearing on{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>
+							's web site could include technical, typographical,
+							or photographic errors.{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							does not warrant that any of the materials on its
+							web site are accurate, complete, or current.{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							may make changes to the materials contained on its
+							web site at any time without notice.{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							does not, however, make any commitment to update the
+							materials.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							19. Regulatory and Legal
+						</h4>
+						<p className='dictator-desc'>
+							Legislative and regulatory changes or actions in the
+							London Royal Courts of Justice or elsewhere may
+							adversely affect the use, transfer, exchange, and
+							value of{" "}
+							<strong className='text-primary'>
+								Script Network Tokens
+							</strong>
+							. In addition, cryptocurrency markets and exchanges
+							are not regulated with the same controls or customer
+							protections available in equity, option, futures, or
+							foreign exchange investing. There is no assurance
+							that a person who accepts{" "}
+							<strong className='text-primary'>
+								Script Network Tokens
+							</strong>{" "}
+							as payment today will continue to do so in the
+							future, and there may be few, if any, options
+							regarding legal recourse.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							20. Canada PIPEDA Compliance
+						</h4>
+						<p className='dictator-desc'>
+							If you are a Canadian User. By using the{" "}
+							<strong className='text-primary'>
+								token.script.tv
+							</strong>{" "}
+							website{" "}
+							<strong className='text-primary'>
+								(Owned by Script Technologies Ltd)
+							</strong>
+							, you agree to we will collect and process some data
+							in accordance with our service provision. As a
+							result, the users authorize{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							and its subcontractors to collect and process this
+							data under the legal, regulatory, of the Canadian
+							PIPEDA provisions, (hereinafter "PIPEDA"). To this
+							end, we have put in place a Data Protection Officer
+							(DPO) who shall constantly ensures compliance with
+							all personal data processing in progress within{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							operations.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							21. For European Union (EU) Users
+						</h4>
+						<p className='dictator-desc'>
+							If you are a European Union consumer, you will
+							benefit from any mandatory provisions of the law of
+							the country in which you are resident in including
+							the European Union GDPR.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							22. United States Legal Compliance
+						</h4>
+						<p className='dictator-desc'>
+							You represent and warrant that (i) you are not
+							located in a country that is subject to the United
+							States government embargo, or that has been
+							designated by the United States government as a
+							"terrorist supporting" country, and (ii) you are not
+							listed on any United States government list of
+							prohibited or restricted parties.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							23. Site Terms of Use Modifications
+						</h4>
+						<p className='dictator-desc'>
+							<strong className='text-primary'>
+								Token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							may revise these terms of use for its web site at
+							any time without notice. By using this web site you
+							are agreeing to be bound by the then current version
+							of these Terms of Service of Use.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>24. Governing Law</h4>
+						<p className='dictator-desc'>
+							These terms and the relationship between you and{" "}
+							<strong className='text-primary'>
+								token.script.tv (Owned by Script Technologies
+								Ltd)
+							</strong>{" "}
+							is governed by the laws of England and Wales.
+							<br />
+							<br />
+							You irrevocably agree that the laws of England and
+							Wales, shall have exclusive jurisdiction to settle
+							any dispute or claim arising out of or in connection
+							with this Agreement or its subject matter or
+							formation (including non-contractual disputes or
+							claims). The Customer agree that all claims or
+							dispute shall be subjected to the exclusive
+							jurisdiction of the Courts of England, and Wales.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>25. Disputes</h4>
+						<p className='dictator-desc'>
+							Any Dispute between the Parties in connection with
+							this Agreement must be resolved by arbitration. The
+							relevant Parties shall then seek to agree and
+							jointly appoint the Arbitrator.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							26. Electronic Communications
+						</h4>
+						<p className='dictator-desc'>
+							For the performance of the services, you (a) consent
+							to receive communications from us in an electronic
+							form via the Email address; and (b) agree that all
+							terms and condition, agreements, notices,
+							disclosures, and other communications that we
+							provide to you electronically satisfy any legal
+							requirement that such communications would satisfy
+							if it were in writing. You retain the right to
+							opt-out of receiving Electronic Communication from
+							us; however, opting out may prevent you from
+							receiving messages regarding our services or special
+							offers, by sending us a Opt-out message via our
+							support email{" "}
+							<strong className='text-primary'>
+								hello@token.script.tv
+							</strong>
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>
+							27. Copyright License
+						</h4>
+						<p className='dictator-desc'>
+							Copyright(c) 2023 (s) Script Network website.
+							Subject to the express provisions of these Terms of
+							Service:
+						</p>
+						<p className='dictator-desc ml-5'>
+							• Script Network, together with our Licensors, own
+							and control all the copyright and other intellectual
+							property rights in the website and the material on
+							our site are well reserved.
+						</p>
+					</div>
+					<div className='dictator-section'>
+						<h4 className='dictator-title'>28. Complaints</h4>
+						<p className='dictator-desc'>
+							If you have any questions or complaints regarding
+							your use of the Bot or these Terms of Service,
+							please send a customer support or enquiry to
+							hello@token.script.tv or by post
+							<br />
+							<br />
+							Script Network
+							<br />
+							20-22 Wenlock Road, <br />
+							London, N1 7GU,
+							<br />
+							United Kingdom
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<Footer />
+		</div>
+	);
 }
 
 export default TermsAndConditions;

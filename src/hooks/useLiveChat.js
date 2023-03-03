@@ -63,8 +63,13 @@ const useLiveChat = (currentShow) => {
 						oldChats.push(...item.chats)
 					})
 					
-					const group = groupBy([...result.data.data.content,...oldChats], (result) =>
-						moment(result.commentDate).format("DD/MM/YYYY")
+					const group = groupBy(
+						[...result.data.data.content, ...oldChats],
+						(result) => {
+							if (result.userId !== 20247407) {
+								return moment(result.commentDate).format("DD/MM/YYYY")
+							}
+						}
 					);
 
 					const rows = [];
