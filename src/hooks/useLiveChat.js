@@ -62,16 +62,22 @@ const useLiveChat = (currentShow) => {
 					let chta = message?.map(item =>  {
 						oldChats.push(...item.chats)
 					})
+
+					let refreshChat = result.data.data.content.filter(item => {
+						if(item.userId != 20247407){
+							return item
+						}
+					})
+
+					
 					
 					const group = groupBy(
-						[...result.data.data.content, ...oldChats],
-						(result) => {
-							if (result.userId !== 20247407) {
-								return moment(result.commentDate).format("DD/MM/YYYY")
-							}
-						}
+						[...refreshChat, ...oldChats],
+						(result) => moment(result.commentDate).format("DD/MM/YYYY")
+							
+						
 					);
-
+					
 					const rows = [];
 					Object.keys(group).map((key) => {
 						const arr = {
