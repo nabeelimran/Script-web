@@ -1,5 +1,6 @@
 import Checkbox from "components/Checkbox";
 import Title from "components/Title";
+import { ToastMessage } from "components/ToastMessage";
 import TvNavbar from "components/TvNavbar";
 import React from "react";
 import { helper } from "utils/helper";
@@ -50,7 +51,7 @@ function Download() {
 									onClick={
 										isAllow
 											? () => helper.openLink(build.link)
-											: null
+											: ()=>ToastMessage("Accept our agreement")
 									}>
 									<div className='w-1/4 mb-4'>
 										<img

@@ -12,7 +12,7 @@ function TermsAndConditions() {
 
 			<div className='container-two mb-20'>
 				<div className='mb-14 lg:mb-20'>
-					<Title variant='44'>Terms & Conditions</Title>
+					<Title variant='44'>Script Network TERMS OF USE</Title>
 				</div>
 
 				<div className='dictator-content'>
@@ -21,7 +21,7 @@ function TermsAndConditions() {
 							1. Introduction to the Terms
 						</h4>
 						<p className='dictator-desc'>
-							Welcome to token.script.tv, owned and operated by{" "}
+							Welcome to <strong className='text-primary'>token.script.tv</strong>, owned and operated by{" "}
 							<strong className='text-primary'>
 								Script Network and Script Technologies Ltd
 							</strong>
@@ -58,9 +58,9 @@ function TermsAndConditions() {
 							We are located and registered in London England
 							under company number: {`{ }`} add registered company
 							number. Our registered office is at:{" "}
-							{`{20-22 Wenlock Road, London, N1 7GU}`}. Script
-							Network offers a complete ecosystem for television
-							and film on blockchain. Script Network Users can
+							{`{20-22 Wenlock Road, London, N1 7GU}`}. <strong className='text-primary'>Script
+							Network</strong> offers a complete ecosystem for television
+							and film on blockchain. <strong className='text-primary'>Script Network</strong> Users can
 							earn by viewing content, or by being a node on the
 							Script Network. If you have any questions please
 							send us a message. We will be happy to help you.
@@ -186,9 +186,9 @@ function TermsAndConditions() {
 							platform, protocol, and video storage network. The
 							services are based on full interaction for users and
 							content partners in the Cryptocurrency blockchain.
-							On the Script Network site, Users can earn by
-							viewing content, or by being a node on the Script
-							Network.
+							On the <strong className='text-primary'>Script Network</strong> site, Users can earn by
+							viewing content, or by being a node on the <strong className='text-primary'>Script
+							Network</strong>.
 						</p>
 					</div>
 					<div className='dictator-section'>
@@ -342,8 +342,8 @@ function TermsAndConditions() {
 							By entering and submitting what's required for
 							participating in a specific Network as described in
 							Campaign Information, you understand and agree that
-							Script Network and anyone else acting on behalf of
-							the Script Network or its respective licensees,
+							<strong className="text-primary">Script Network</strong> and anyone else acting on behalf of
+							the <strong className="text-primary">Script Network</strong> or its respective licensees,
 							successors, affiliates and assigns, shall have the
 							right, where permitted by law, to print, publish,
 							broadcast, distribute, exhibit and use in any media
@@ -775,12 +775,12 @@ function TermsAndConditions() {
 							27. Copyright License
 						</h4>
 						<p className='dictator-desc'>
-							Copyright(c) 2023 (s) Script Network website.
+							Copyright(c) 2023 (s) <strong className="text-primary">Script Network</strong> website.
 							Subject to the express provisions of these Terms of
 							Service:
 						</p>
 						<p className='dictator-desc ml-5'>
-							• Script Network, together with our Licensors, own
+							• <strong className="text-primary">Script Network</strong>, together with our Licensors, own
 							and control all the copyright and other intellectual
 							property rights in the website and the material on
 							our site are well reserved.
@@ -791,16 +791,16 @@ function TermsAndConditions() {
 						<p className='dictator-desc'>
 							If you have any questions or complaints regarding
 							your use of the Bot or these Terms of Service,
-							please send a customer support or enquiry to
-							hello@token.script.tv or by post
+							please send a customer support or enquiry to 
+							<strong className="text-primary"> hello@token.script.tv</strong> or by post
 							<br />
 							<br />
-							Script Network
+							<strong className="text-primary">Script Network</strong>
 							<br />
-							20-22 Wenlock Road, <br />
-							London, N1 7GU,
+							<strong className="text-primary">20-22 Wenlock Road,</strong> <br />
+							<strong className="text-primary">London, N1 7GU,</strong>
 							<br />
-							United Kingdom
+							<strong className="text-primary">United Kingdom</strong>
 						</p>
 					</div>
 				</div>
