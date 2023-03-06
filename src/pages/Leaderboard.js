@@ -42,9 +42,6 @@ function LeaderBoard() {
     getLeaderBoardData();
   }, [currentPage]);
 
-  useEffect(() => {
-    getLeaderBoardData();
-  }, []);
 
   return (
     <>

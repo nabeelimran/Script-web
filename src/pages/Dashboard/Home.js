@@ -9,28 +9,10 @@ import LocalServices from "services/LocalServices";
 
 function Home() {
 
-  const userId = LocalServices.getServices("user")?.userId || null;
-  const [profile, setProfile] = useState(null);
-
-  const viewUserProfile = (userId) => {
-    Api.viewUserProfile(userId, 'dashboard').then((res) => {
-      if(res && res.status === 200) {
-        setProfile(res.data.data);
-      }
-    })
-  }
-
-  useEffect(() => {
-    if(userId) {
-      viewUserProfile(userId)
-    }
-  }, [])
-
-
   return (
     <div className="min-h-screen pb-14">
       <div className="mb-8">
-        <Welcome profile={profile}/>
+        <Welcome />
       </div>
 
       <div className="mb-12">

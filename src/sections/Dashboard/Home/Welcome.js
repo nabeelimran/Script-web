@@ -1,18 +1,18 @@
 import FillBar from "components/FillBar";
 import Title from "components/Title";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import { setRewardPoints } from "redux/reducers/RewardPoint_State";
 
-function Welcome({
-  profile
-}) {
+function Welcome() {
   const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
   const {updateRewardPointState} = useSelector(state => state.RewardPoint_State);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const goToTVSite = () => navigate({
     pathname: '/tv',
@@ -25,6 +25,7 @@ function Welcome({
         (res) => {
           if (res && res.status === 200) {
             setTotalRewardPoints(res.data.data.myRewards);
+            dispatch(setRewardPoints(res.data.data.myRewards))
           }
         }
       );
@@ -32,16 +33,16 @@ function Welcome({
   };
 
   useEffect(() => {
-    if (updateRewardPointState) {
+  
       getTotalRewardPoints();
-    }
+    
   }, [updateRewardPointState]);
 
   return (
     <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10">
       <div className="dashboard-layout">
         <Title variant="20" className="font-semibold text-center mb-3">
-          Welcome Back, {profile?.firstName || ''}
+          Welcome Back, {user?.userName || ''}
         </Title>
         <h1 onClick={goToTVSite} className="text-base lg:text-base xl:text-xl text-center text-primary font-semibold mb-7">Head back to TV</h1>
 
