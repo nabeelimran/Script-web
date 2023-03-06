@@ -254,7 +254,9 @@ function Channels({
   }
   
   useEffect(()=>{
-    if(userId) {
+    
+    if(userId && isGlassListingModalVisible) {
+      
       getSelectedGlass()
     }
   },[isLogin, isGlassListingModalVisible, modal])
