@@ -125,7 +125,7 @@ function GlassListingPopup() {
   }, [isLogin])
 
   useEffect(() => {
-    if(user?.userId) {
+    if(user?.userId && isGlassListingModalVisible) {
       getGlassesList();
     }
   }, [isGlassListingModalVisible, pageNo])

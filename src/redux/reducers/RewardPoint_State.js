@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	updateRewardPointState: false
+	updateRewardPointState: false,
+    totalRewardPoint:0,
 };
 
 export const RewardPoint_State = createSlice({
@@ -10,12 +11,15 @@ export const RewardPoint_State = createSlice({
     reducers: {
         updateRewardPoint: (state, action) => {
             state.updateRewardPointState = { ...action.payload };
+        },
+        setRewardPoints: (state, action) => {
+            state.totalRewardPoint = action.payload;
         }
     }
 })
 
 export const {
-	updateRewardPoint
+	updateRewardPoint,setRewardPoints
 } = RewardPoint_State.actions;
 
 export default RewardPoint_State.reducer;

@@ -792,15 +792,8 @@ function TermsAndConditions() {
 							If you have any questions or complaints regarding
 							your use of the Bot or these Terms of Service,
 							please send a customer support or enquiry to 
-							<strong className="text-primary"> hello@token.script.tv</strong> or by post
-							<br />
-							<br />
-							<strong className="text-primary">Script Network</strong>
-							<br />
-							<strong className="text-primary">20-22 Wenlock Road,</strong> <br />
-							<strong className="text-primary">London, N1 7GU,</strong>
-							<br />
-							<strong className="text-primary">United Kingdom</strong>
+							<strong className="text-primary"> hello@token.script.tv</strong>
+
 						</p>
 					</div>
 				</div>

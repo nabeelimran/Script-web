@@ -2,7 +2,7 @@ import Footer from "components/Footer";
 import { ToastMessage } from "components/ToastMessage";
 import TvNavbar from "components/TvNavbar";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateRewardPoint } from "redux/reducers/RewardPoint_State";
 import Tip from "sections/Dashboard/Home/Tip";
 import Collect from "sections/Rewards/Collect";
@@ -18,6 +18,7 @@ function Rewards() {
   const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const {totalRewardPoint} = useSelector(state => state.RewardPoint_State)
   
   const getTotalRewardPoints = () => {
     if (user && user.userId) {
@@ -100,7 +101,7 @@ function Rewards() {
   useEffect(() => {
     MixPanelService.init();
     helper.trackByMixpanel("Reward Page View", {});
-    getTotalRewardPoints();
+   // getTotalRewardPoints();
   }, []);
 
   return (
@@ -112,7 +113,7 @@ function Rewards() {
       <div className="mb-16 lg:mb-20 mt-5">
         <Hero
           handleCollectReward={handleCollectReward}
-          totalRewardPoints={totalRewardPoints}
+          totalRewardPoints={totalRewardPoint ? totalRewardPoint : totalRewardPoints}
           isLoading={isLoading}
           getTotalRewardPoints={getTotalRewardPoints}
         />

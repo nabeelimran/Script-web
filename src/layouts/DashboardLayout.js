@@ -61,8 +61,9 @@ function DashboardLayout() {
 
   useEffect(() => {
     MixPanelService.init();
-    if(userId) {
-      viewUserProfile(userId)
+    console.log("lelelel")
+    if(userId &&  rightSidebarVisible) {
+     // viewUserProfile(userId)
       getVideoWatchDuration(userId)
       getLastShowWatchHistory(userId)
     }
