@@ -79,7 +79,7 @@ function ExplorerNavbar({ className }) {
           >
             <div className="flex items-center justify-between lg:hidden mb-10">
               <img
-                src="images/logo.svg"
+                src="images/logo-beta.svg"
                 className="w-[60%] cursor-pointer block lg:hidden"
                 alt=""
               />
