@@ -78,6 +78,10 @@ function Hero() {
       image: "images/test-launch.png",
       link: "",
     },
+    {
+      image: "images/Partnerships.png",
+      link: "",
+    },
   ];
 
   return (
