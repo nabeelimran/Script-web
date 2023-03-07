@@ -3,8 +3,13 @@ import Marquee from "react-fast-marquee";
 
 const companies = [
   {
-    iconImg: "images/partners/poolz.svg",
-    className: "invert-[100%] brightness-0 h-6 xl:h-10",
+    // iconImg: "images/partners/poolz.svg",
+    iconImg: "images/partners/push-logo.png",
+    className: "invert-[100%] brightness-0 h-6 xl:h-20",
+  },
+  {
+    iconImg: "images/partners/bitgret_logo.png",
+    className: "invert-[100%] brightness-0 h-6 xl:h-14",
   },
   {
     iconImg: "images/partners/NFTrade.svg",

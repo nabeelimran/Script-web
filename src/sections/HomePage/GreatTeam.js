@@ -4,10 +4,6 @@ import React from "react";
 
 const companies = [
   {
-    iconImg: "images/partners/poolz.svg",
-    className: "w-[16vh] invert-[100%] brightness-0",
-  },
-  {
     iconImg: "images/partners/NFTrade.svg",
     className: "w-[20vh] invert-[100%] brightness-0",
   },
@@ -88,6 +84,15 @@ const companies = [
   {
     iconImg: "images/partners/infinity-pad.svg",
     className: "w-[30vh] invert-[100%] brightness-0",
+  },
+  {
+    // iconImg: "images/partners/poolz.svg",
+    iconImg: "images/partners/push-logo.png",
+    className: "w-[9vh] invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/bitgret_logo.png",
+    className: "w-[8vh] invert-[100%] brightness-0",
   },
 ];
 
