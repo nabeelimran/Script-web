@@ -15,6 +15,7 @@ import MixPanelService from "services/mixPanelService";
 import { helper, isBnbUser } from "utils/helper";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import { ToastMessage } from "./ToastMessage";
 
 function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -219,7 +220,8 @@ function Navbar() {
                 }
                 buttonProps={{
                   onClick: () => {
-                    helper.openLink("https://form.jotform.com/212032981906353");
+                    // helper.openLink("https://form.jotform.com/212032981906353");
+                    ToastMessage('Closed')
                   },
                 }}
               />
