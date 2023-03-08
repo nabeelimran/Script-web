@@ -297,20 +297,20 @@ function EditProfile() {
 
           <p className="fs-16px font-medium mb-6">
             To open a Script Network wallet, head here{" "}
-            {/* <a
+            <a
                 href="https://wallet.script.tv/"
                 target="_blank"
                 rel="noreferrer"
                 className="text-primary hover:underline"
               >
                 Wallet
-              </a> */}
-            <Link
+              </a>
+            {/* <Link
               to="/unlock-wallet/key-store"
               className="text-primary hover:underline"
             >
               Wallet
-            </Link>
+            </Link> */}
           </p>
 
           <Button label="Save Changes" type="submit" loader={loading} />

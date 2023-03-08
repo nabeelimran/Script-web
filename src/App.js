@@ -53,6 +53,7 @@ import Download from "pages/Download";
 import Blocks from "pages/Blocks";
 import Wallet from "pages/Wallet/Wallet";
 import Transactions from "pages/Transactions";
+import PageNotFound from "pages/PageNotFound";
 
 function App() {
   try {
@@ -114,7 +115,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-account" element={<VerifyAccount />} />
-        <Route path="explorer" element={<Explorer />} />
+        
+        {/* <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="blocks" element={<Blocks />} />
         <Route path="txs" element={<Transactions />} />
@@ -126,7 +128,7 @@ function App() {
           <Route path="key-store" element={<KeyStore />} />
           <Route path="mnemonics" element={<Mnemonics />} />
           <Route path="private-key" element={<PrivateKey />} />
-        </Route>
+        </Route> */}
 
         <Route
           path="dashboard"
@@ -186,6 +188,8 @@ function App() {
         {/* MARKETPLACE */}
         <Route path="marketplace" element={<Marketplace />} />
         <Route path="details" element={<Details />} />
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

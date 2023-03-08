@@ -146,20 +146,20 @@ function TvNavbar({ className }) {
                 Community
               </LinkScroller>
 
-              <Link
+              {/* <Link
                 to="/unlock-wallet/key-store"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Wallet
-              </Link>
-              {/* <a
+              </Link> */}
+              <a
                 href="https://wallet.script.tv/"
                 target="_blank"
                 rel="noreferrer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 Wallet
-              </a> */}
+              </a>
               {/* <Link
                 to="/explorer"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
