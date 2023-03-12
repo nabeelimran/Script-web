@@ -1,4 +1,7 @@
 import { Icon } from "@iconify/react";
+import GemModal from "components/Dashboard/GemModal";
+import GlassModal from "components/Dashboard/GlassModal";
+import RechargeModal from "components/Dashboard/RechargeModal";
 import InventoryTradeCard from "components/InventoryTradeCard";
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -6,6 +9,7 @@ import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { getGemsEligibility } from "utils/api";
 import { helper } from "utils/helper";
 import LoaderGif from "../../../assets/Loading_icon.gif";
 
@@ -44,7 +48,64 @@ function InventoryTrade() {
   const prevRef = useRef();
   const nextRef = useRef();
 
+  const [index, setIndex] = useState(0);
+  const [openGlassModal, setOpenGlassModal] = useState(false);
+  const [openRechargeModal, setOpenRechargeModal] = useState(false);
+  const [openGemModal, setOpenGemModal] = useState(false);
+  const [gemEligibleGlasses, setGemEligibleGlasses] = useState();
+
   const { glasses } = useSelector((state) => state.Profile_State);
+
+  const { accountAddress } = useSelector((state) => state.metamask_state);
+
+  console.log("InventoryTrade ", glasses);
+
+  useEffect(() => {
+    if (accountAddress && glasses?.length) {
+      getGemEligibleGlasses();
+    }
+  }, [glasses]);
+
+  const getGemEligibleGlasses = async () => {
+    if (accountAddress) {
+      let glasses = await getGemsEligibility(accountAddress);
+      setGemEligibleGlasses(glasses);
+    }
+  };
+
+  const handleClick = (index) => {
+    setIndex(index);
+    setOpenGlassModal(true);
+  };
+
+  const handleSell = () => {};
+
+  const handleAddGem = () => {
+    setOpenGemModal(true);
+  };
+
+  const handleRecharge = () => {
+    setOpenRechargeModal(true);
+  };
+
+  const handleAction = (action) => {
+    switch (action) {
+      case "sell":
+        handleSell();
+        break;
+
+      case "add gem":
+        handleAddGem();
+        break;
+
+      case "recharge":
+        handleRecharge();
+        break;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="dashboard-layout">
@@ -92,16 +153,17 @@ function InventoryTrade() {
             </div>
           ) : (
             <>
-              {glasses.map((glass) => {
+              {glasses.map((glass, index) => {
                 return (
                   <SwiperSlide>
                     <InventoryTradeCard
+                      onClick={() => handleClick(index)}
                       glass={glass}
-                      img={
-                        helper.glassImages[
-                          Math.floor(Math.random() * helper.glassImages.length)
-                        ]
-                      }
+                      // img={
+                      //   helper.glassImages[
+                      //     Math.floor(Math.random() * helper.glassImages.length)
+                      //   ]
+                      // }
                     />
                   </SwiperSlide>
                 );
@@ -146,6 +208,32 @@ function InventoryTrade() {
           />
         </button>
       </div>
+
+      <GlassModal
+        id={glasses[index]?.id}
+        img={glasses[index]?.img}
+        open={openGlassModal}
+        setOpen={setOpenGlassModal}
+        handleAction={handleAction}
+        gemEligible={
+          !!gemEligibleGlasses?.length &&
+          !!gemEligibleGlasses.includes(glasses[index]?.id)
+        }
+      />
+
+      <GemModal
+        id={glasses[index]?.id}
+        img={glasses[index]?.img}
+        open={openGemModal}
+        setOpen={setOpenGemModal}
+        setGemEligibleGlasses={setGemEligibleGlasses}
+      />
+
+      <RechargeModal
+        glass={glasses[index]}
+        open={openRechargeModal}
+        setOpen={setOpenRechargeModal}
+      />
     </div>
   );
 }

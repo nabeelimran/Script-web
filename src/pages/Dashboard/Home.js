@@ -1,8 +1,8 @@
-import { glassesOfOwnerServer } from "contract/functions";
+import { balanceOf, glassesOfOwnerServer } from "contract/functions";
 import Rewards from "pages/Rewards";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setGlasses } from "redux/reducers/Profile_State";
+import { fetchBalanceAsync, setGlasses } from "redux/reducers/Profile_State";
 import Gems from "sections/Dashboard/Home/Gems";
 import InventoryTrade from "sections/Dashboard/Home/InventoryTrade";
 import Tip from "sections/Dashboard/Home/Tip";
@@ -16,7 +16,9 @@ function Home() {
 
   useEffect(() => {
     (async () => {
+      if (!accountAddress) return;
       await getGlasses();
+      await getBalance();
     })();
   }, [accountAddress]);
 
@@ -24,6 +26,13 @@ function Home() {
     const response = await glassesOfOwnerServer(accountAddress);
 
     dispatch(setGlasses(response));
+  };
+
+  const getBalance = async () => {
+    const response = await balanceOf(accountAddress);
+    console.log("response", response);
+    // The value we return becomes the `fulfilled` action payload
+    dispatch(fetchBalanceAsync(response));
   };
 
   return (

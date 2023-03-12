@@ -142,6 +142,8 @@ export const getGemsEligibility = async (address) => {
       },
     });
 
+    console.log("/scripts/check-gem-eligibility", response.data);
+
     return response.data;
   } catch (error) {
     console.log("error in getGemsEligibility");
