@@ -144,9 +144,9 @@ function ChangePassword() {
             }}
           />
           <LabelPassword
-            label="Confrim Password"
+            label="Confirm Password"
             id="confirm"
-            placeholder="Confrim Password"
+            placeholder="Confirm Password"
             error={
               errors.confirmPassword && errors.confirmPassword.message
             }
