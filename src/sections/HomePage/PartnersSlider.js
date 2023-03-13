@@ -12,6 +12,14 @@ const companies = [
     className: "invert-[100%] brightness-0 h-6 xl:h-14",
   },
   {
+    iconImg: "images/partners/blockApex.png",
+    className: "w-[24vh]",
+  },
+  {
+    iconImg: "images/partners/xord.jpg",
+    className: "w-[18vh]",
+  },
+  {
     iconImg: "images/partners/NFTrade.svg",
     className: "invert-[100%] brightness-0 h-10 xl:h-16",
   },

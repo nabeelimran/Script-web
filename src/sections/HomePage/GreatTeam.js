@@ -94,6 +94,14 @@ const companies = [
     iconImg: "images/partners/bitgret_logo.png",
     className: "w-[8vh] invert-[100%] brightness-0",
   },
+  {
+    iconImg: "images/partners/blockApex.png",
+    className: "w-[24vh]",
+  },
+  {
+    iconImg: "images/partners/xord.jpg",
+    className: "w-[18vh]",
+  },
 ];
 
 const team = [
