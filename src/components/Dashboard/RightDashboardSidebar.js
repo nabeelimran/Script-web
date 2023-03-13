@@ -84,19 +84,9 @@ function RightDashboardSidebar({
           <DividerLine />
 
           <div className="px-6">
-            {
-              token && lastVideoHistory ? 
-              <>
-                <HeadingSmall> Streaming now on {lastVideoHistory?.channelName}:</HeadingSmall>
-                <div className="h-[30px]">
-                  {`${lastVideoHistory?.duration} Minutes` || 'N/A'}
-                </div>
-              </>
-               : null
-            }
-            
+            <HeadingSmall> Streaming now on IRL:</HeadingSmall>
 
-            
+            <div className="h-[30px]">N/A</div>
           </div>
 
           <DividerLine />
