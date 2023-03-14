@@ -121,141 +121,146 @@ function ConnectWalletModal() {
   };
 
   const metaMaskHandler = async (loginType = "metamask") => {
-    let okcBalance;
-    if (loginType===loginTypes.okc) {
-      setLoading({ ...loading, okc: true });
-      helper.trackByMixpanel("OKC Button Clicked", {});
-    }else if(loginType===loginTypes.bitgret){
-      setLoading({ ...loading, bitgret: true });
-      helper.trackByMixpanel("Bitgret Button Clicked", {});
-    } 
-     else {
-      setLoading({ ...loading, metamask: true });
-      dispatch(setIsOkc(loginTypes.metamask))
-      helper.trackByMixpanel("Metamask Button Clicked", {});
-    }
-
-    if (!window.ethereum) {
-      ToastMessage("Install Metamask");
-      setLoading(false);
-      return false;
-    }
-    const accAddres = await MetamaskService.connectHandler();
-
-    if (accAddres) {
-      dispatch(metamaskCred(accAddres));
+    try {
+      let okcBalance;
       if (loginType===loginTypes.okc) {
-        dispatch(setIsOkc(loginTypes.okc));
-        const chainId = await MetamaskService.getChainId();
-        if (chainId && chainId !== metamaskNetwork.OKC.chainId) {
-          try {
-          await MetamaskService.changeChain("OKC");
-            
-          } catch (error) {
-            setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+        setLoading({ ...loading, okc: true });
+        helper.trackByMixpanel("OKC Button Clicked", {});
+      }else if(loginType===loginTypes.bitgret){
+        setLoading({ ...loading, bitgret: true });
+        helper.trackByMixpanel("Bitgret Button Clicked", {});
+      } 
+      else {
+        setLoading({ ...loading, metamask: true });
+        dispatch(setIsOkc(loginTypes.metamask))
+        helper.trackByMixpanel("Metamask Button Clicked", {});
+      }
 
-            console.log(error)
+      if (!window.ethereum) {
+        ToastMessage("Install Metamask");
+        setLoading(false);
+        return false;
+      }
+      const accAddres = await MetamaskService.connectHandler();
+
+      if (accAddres) {
+        dispatch(metamaskCred(accAddres));
+        if (loginType===loginTypes.okc) {
+          dispatch(setIsOkc(loginTypes.okc));
+          const chainId = await MetamaskService.getChainId();
+          if (chainId && chainId !== metamaskNetwork.OKC.chainId) {
+            try {
+            await MetamaskService.changeChain("OKC");
+              
+            } catch (error) {
+              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+
+              console.log(error)
+            }
+          }
+          const balance = await window.ethereum.request({
+            method: "eth_getBalance",
+            params: [accAddres, "latest"],
+          });
+
+          if (balance) {
+            okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
           }
         }
-        const balance = await window.ethereum.request({
-          method: "eth_getBalance",
-          params: [accAddres, "latest"],
-        });
+        if(loginType===loginTypes.bitgret){
+          dispatch(setIsOkc(loginTypes.bitgret));
+          const chainId = await MetamaskService.getChainId();
+          if (chainId && chainId !== metamaskNetwork.bitgret.chainId) {
+            await MetamaskService.changeChain("bitgret");
+          }
+          const balance = await window.ethereum.request({
+            method: "eth_getBalance",
+            params: [accAddres, "latest"],
+          });
 
-        if (balance) {
-          okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
+          if (balance) {
+            okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
+          }
         }
-      }
-      if(loginType===loginTypes.bitgret){
-        dispatch(setIsOkc(loginTypes.bitgret));
-        const chainId = await MetamaskService.getChainId();
-        if (chainId && chainId !== metamaskNetwork.bitgret.chainId) {
-          await MetamaskService.changeChain("bitgret");
-        }
-        const balance = await window.ethereum.request({
-          method: "eth_getBalance",
-          params: [accAddres, "latest"],
-        });
-
-        if (balance) {
-          okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
-        }
-      }
-      const isUser = await Api.getUserDetailsByWalletAddress(
-        accAddres,
-        "login-modal"
-      );
-      if (!isUser.data.isSuccess) {
-        dispatch(toggleModalVisibility(false));
-        dispatch(toggleEmailModalVisibility(true));
-        setLoading(false);
-      }
-
-      if (isUser.data.data.userExist) {
-        const resObj = {
-          browser: "dummyData",
-          country: "dummayData",
-          device: "Web",
-          loginIp: "dummyData",
-          loginLocation: "dummmyData",
-          email: "",
-          userName: "",
-          password: "",
-          walletAddress: accAddres,
-          walletSignature: "",
-          otherReferralCode: "",
-          okcWalletBalance: loginType===loginTypes.okc ? okcBalance : null,
-          briseBalance: loginType===loginTypes.bitgret ? okcBalance : null,
-        };
-
-        const loginW = await Api.walletLogin(resObj, "");
-
-        if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
+        const isUser = await Api.getUserDetailsByWalletAddress(
+          accAddres,
+          "login-modal"
+        );
+        if (!isUser.data.isSuccess) {
           dispatch(toggleModalVisibility(false));
-          try {
-            MixPanelService.setIdentifier(loginW?.data?.data?.email);
-            MixPanelService.track("login", loginW?.data?.data);
-          } catch (error) {}
-          if (loginW.data.message === "Please verify your account.") {
-            setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
-            ToastMessage(`${loginW.data.message}`);
-            navigate({
-              pathname: "/verify-account",
-              search: `?email=${loginW.data.data.email}`,
-            });
+          dispatch(toggleEmailModalVisibility(true));
+          setLoading(false);
+        }
+
+        if (isUser.data.data.userExist) {
+          const resObj = {
+            browser: "dummyData",
+            country: "dummayData",
+            device: "Web",
+            loginIp: "dummyData",
+            loginLocation: "dummmyData",
+            email: "",
+            userName: "",
+            password: "",
+            walletAddress: accAddres,
+            walletSignature: "",
+            otherReferralCode: "",
+            okcWalletBalance: loginType===loginTypes.okc ? okcBalance : null,
+            briseBalance: loginType===loginTypes.bitgret ? okcBalance : null,
+          };
+          
+          const loginW = await Api.walletLogin(resObj, "");
+
+          if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
+            dispatch(toggleModalVisibility(false));
+            try {
+              MixPanelService.setIdentifier(loginW?.data?.data?.email);
+              MixPanelService.track("login", loginW?.data?.data);
+            } catch (error) {}
+            if (loginW.data.message === "Please verify your account.") {
+              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+              ToastMessage(`${loginW.data.message}`);
+              navigate({
+                pathname: "/verify-account",
+                search: `?email=${loginW.data.data.email}`,
+              });
+            } else {
+              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+              ToastMessage(`${loginW.data.message}`, true);
+              if (loginW.data.data.authToken) {
+                sessionStorage.setItem(
+                  "script-token",
+                  JSON.stringify(loginW.data.data.authToken)
+                );
+              }
+
+              sessionStorage.setItem(
+                "userInfo",
+                JSON.stringify({
+                  email: loginW.data.data.email,
+                  userId: loginW.data.data.id,
+                  walletAddress: loginW.data.data.walletAddress,
+                  userName: loginW.data.data.userName,
+                })
+              );
+              helper.trackByMixpanel("User Signed In", {
+                method: "metamask",
+                email: loginW.data.data.email,
+              });
+              dispatch(isLogin(true));
+              navigate({
+                pathname: "/tv",
+              });
+            }
           } else {
             setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
-            ToastMessage(`${loginW.data.message}`, true);
-            if (loginW.data.data.authToken) {
-              sessionStorage.setItem(
-                "script-token",
-                JSON.stringify(loginW.data.data.authToken)
-              );
-            }
-
-            sessionStorage.setItem(
-              "userInfo",
-              JSON.stringify({
-                email: loginW.data.data.email,
-                userId: loginW.data.data.id,
-                walletAddress: loginW.data.data.walletAddress,
-                userName: loginW.data.data.userName,
-              })
-            );
-            helper.trackByMixpanel("User Signed In", {
-              method: "metamask",
-              email: loginW.data.data.email,
-            });
-            dispatch(isLogin(true));
-            navigate({
-              pathname: "/tv",
-            });
+            ToastMessage("Somthing went wrong");
           }
-        } else {
-          setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
-          ToastMessage("Somthing went wrong");
         }
-      }
+      }  
+    } catch (error) {
+      setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+      ToastMessage("Somthing went wrong");
     }
   };
 
