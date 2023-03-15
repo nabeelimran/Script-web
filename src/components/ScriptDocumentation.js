@@ -31,13 +31,13 @@ function ScriptDocumentation() {
               },
             }} />
           </div>
-          <div className="m-2">
+          {/* <div className="m-2">
             <Button label="Summary" variant={3} buttonProps={{
               onClick: () => {
                 helper.openLink(Summary)
               },
             }}/>
-          </div>
+          </div> */}
           {/* <div className="m-2">
             <Button label="One Pager" variant={3} />
           </div> */}

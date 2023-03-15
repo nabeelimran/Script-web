@@ -65,8 +65,8 @@ function Calculator() {
     setAmount(e.target.value);
     setMarketValues({
       circInPercent: (e.target.value / 1000000000) * 100,
-      spayPriceUSD: 0.01,
-      scptPriceUSD: 0.025,
+      spayPriceUSD: 0.005,
+      scptPriceUSD: 0.01,
     })
   }
 
@@ -84,8 +84,8 @@ function Calculator() {
         })
         setMarketValues({
           circInPercent: 0,
-          spayPriceUSD: 0.01,
-          scptPriceUSD: 0.025,
+          spayPriceUSD: 0.005,
+          scptPriceUSD: 0.01,
         })
       // }
     // })
