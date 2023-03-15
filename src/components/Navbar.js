@@ -221,7 +221,8 @@ function Navbar() {
                 buttonProps={{
                   onClick: () => {
                     // helper.openLink("https://form.jotform.com/212032981906353");
-                    ToastMessage('Closed')
+                    helper.openLink("https://presale.script.tv/");
+                    // ToastMessage('Closed')
                   },
                 }}
               />
