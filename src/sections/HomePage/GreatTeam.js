@@ -115,11 +115,15 @@ const team = [
     img: "images/team/Akeem-Ojuko.png",
     designation: "Co Founder/Product+Growth",
   },
-
   {
     name: "Roomani Bajaj",
     img: "images/team/Roomani-Bajaj.avif",
     designation: "CTO",
+  },
+  {
+    name: "Adidust",
+    img: "images/team/adidust.png",
+    designation: "Community Lead",
   },
   {
     name: "Antoinette Chaela Icabales",
@@ -146,7 +150,6 @@ const team = [
     img: "images/team/Maxwell-Chan.jpeg",
     designation: "Advisor",
   },
-
   {
     name: "Andrew Fennell",
     img: "images/team/Andrew-Fennell.png",
@@ -157,7 +160,6 @@ const team = [
     img: "images/team/Michael-Terpin.png",
     designation: "Advisor",
   },
-
   {
     name: "Yule Caise",
     img: "images/team/Yule-Caise.png",
