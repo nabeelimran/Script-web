@@ -44,12 +44,12 @@ export default function RechargeModal({ glass, open, setOpen }) {
   };
 
   const handleGetRechargeCost = async () => {
-    let cost = await getRechargeCost(glass.id);
+    let cost = await getRechargeCost(glass?.id);
     setCost(cost);
   };
 
   const handleGetRechargeSignature = async () => {
-    let data = await getRechargeSignature(glass.id);
+    let data = await getRechargeSignature(glass?.id);
     setRechargeData(data);
     return data;
   };
@@ -80,7 +80,7 @@ export default function RechargeModal({ glass, open, setOpen }) {
       onClose={handleClose}
     >
       <GemBox mb={3}>
-        <Typography variant="h1">ID # {glass.id}</Typography>
+        <Typography variant="h1">ID # {glass?.id}</Typography>
       </GemBox>
       <DialogContent sx={{ p: 0, overflow: "hidden" }}>
         <GlassBox>

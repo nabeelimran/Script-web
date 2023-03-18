@@ -83,6 +83,7 @@ export default function VoucherView() {
   const handleFetchVouchers = async () => {
     if (accountAddress) {
       const vouchers = await getVoucherBalance(accountAddress);
+      console.log("vouchers", vouchers);
       setVoucherBalance(vouchers);
     }
   };

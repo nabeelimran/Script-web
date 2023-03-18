@@ -192,6 +192,8 @@ export const getVoucherEligibility = async (address) => {
       },
     });
 
+    console.log("/scripts/check-voucher-eligibility", response.data);
+
     return response.data;
   } catch (error) {
     console.log("error in getVoucherEligibility");
@@ -251,6 +253,51 @@ export const fetchEquippedVouchers = async (address) => {
   let data = await response.json();
   let events = data.data.users.length ? data.data.users[0].vouchers : [];
   return splitByVoucherType(events);
+};
+
+export const getRechargeHistory = async (glassId) => {
+  let query = `{
+    rechargeGlasses(where: {glassId: "${glassId}"}) {
+      glassId
+      amount:value
+      address:from
+      blockTimestamp
+    }
+  }`;
+
+  let response = await fetch(
+    "https://api.thegraph.com/subgraphs/name/nabeelimran/scripttv",
+    {
+      method: "POST",
+      body: JSON.stringify({ query }),
+    }
+  );
+  let data = await response.json();
+  console.log("recharge history", data.data.rechargeGlasses);
+  return data?.data?.rechargeGlasses || [];
+};
+
+export const getRewardsHistory = async (address) => {
+  console.log("address", address);
+  let query = `{
+    earningPayouts(where: {to: "${address.toLowerCase()}"})
+    { 
+      address:to
+      amount 
+      blockTimestamp
+    }
+}`;
+
+  let response = await fetch(
+    "https://api.thegraph.com/subgraphs/name/nabeelimran/scripttv",
+    {
+      method: "POST",
+      body: JSON.stringify({ query }),
+    }
+  );
+  let data = await response.json();
+  console.log("rewards history", data);
+  return data?.data?.earningPayouts || [];
 };
 
 // export const postMethod = async () => {

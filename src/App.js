@@ -56,6 +56,7 @@ import Transactions from "pages/Transactions";
 import PageNotFound from "pages/PageNotFound";
 import Mint from "pages/Dashboard/Mint";
 import Voucher from "pages/Dashboard/Voucher";
+import RewardHistory from "pages/Dashboard/RewardHistory";
 
 function App() {
   try {
@@ -178,6 +179,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Voucher />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="reward-history"
+            element={
+              <PrivateRoute>
+                <RewardHistory />
               </PrivateRoute>
             }
           />

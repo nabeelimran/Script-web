@@ -86,6 +86,12 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
             onClick={() => setter(false)}
           />
           <PageLink
+            link="reward-history"
+            label="Reward History"
+            img="home.svg"
+            onClick={() => setter(false)}
+          />
+          <PageLink
             link="edit-profile"
             label="Edit Profile"
             img="edit.svg"

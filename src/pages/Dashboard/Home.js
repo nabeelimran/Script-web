@@ -9,6 +9,7 @@ import Tip from "sections/Dashboard/Home/Tip";
 import Welcome from "sections/Dashboard/Home/Welcome";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import { getRechargeHistory, getVoucherEligibility } from "utils/api";
 
 function Home() {
   const { accountAddress } = useSelector((state) => state.metamask_state);
@@ -19,6 +20,8 @@ function Home() {
       if (!accountAddress) return;
       await getGlasses();
       await getBalance();
+
+      getVoucherEligibility(accountAddress);
     })();
   }, [accountAddress]);
 

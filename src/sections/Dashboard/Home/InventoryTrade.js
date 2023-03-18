@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import GemModal from "components/Dashboard/GemModal";
 import GlassModal from "components/Dashboard/GlassModal";
 import RechargeModal from "components/Dashboard/RechargeModal";
@@ -49,12 +50,16 @@ function InventoryTrade() {
   const nextRef = useRef();
 
   const [index, setIndex] = useState(0);
+  const [type, setType] = useState(0);
+
   const [openGlassModal, setOpenGlassModal] = useState(false);
   const [openRechargeModal, setOpenRechargeModal] = useState(false);
   const [openGemModal, setOpenGemModal] = useState(false);
   const [gemEligibleGlasses, setGemEligibleGlasses] = useState();
 
   const { glasses } = useSelector((state) => state.Profile_State);
+
+  const [_glasses, _setGlasses] = useState([]);
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
 
@@ -63,6 +68,12 @@ function InventoryTrade() {
   useEffect(() => {
     if (accountAddress && glasses?.length) {
       getGemEligibleGlasses();
+    }
+  }, [glasses]);
+
+  useEffect(() => {
+    if (glasses.length) {
+      _setGlasses(glasses);
     }
   }, [glasses]);
 
@@ -107,9 +118,51 @@ function InventoryTrade() {
     }
   };
 
+  const handleTypeSelect = (e) => {
+    setType(Number(e.target.value));
+    let glassType = e.target.value;
+    if (glassType === 0) {
+      _setGlasses(glasses);
+    } else if (glassType === 1) {
+      _setGlasses(glasses.filter((glass) => glass.type === "COMMON"));
+    } else if (glassType === 2) {
+      _setGlasses(glasses.filter((glass) => glass.type === "RARE"));
+    } else if (glassType === 3) {
+      _setGlasses(glasses.filter((glass) => glass.type === "SUPERSCRIPT"));
+    }
+  };
+
+  console.log("InventoryTrade type ", type);
+
   return (
     <div className="dashboard-layout">
-      <h1 className="fs-20px font-medium mb-7">My Inventory Trade Here</h1>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={2}
+      >
+        <h1 className="fs-20px font-medium mb-7">My Inventory Trade Here</h1>
+        <Box>
+          <FormControl
+            sx={{
+              minWidth: 150,
+            }}
+          >
+            <InputLabel>Glass Type</InputLabel>
+            <Select
+              value={type.toString()}
+              label="Type"
+              onChange={handleTypeSelect}
+            >
+              <MenuItem value={0}>All</MenuItem>
+              <MenuItem value={1}>Common</MenuItem>
+              <MenuItem value={2}>Rare</MenuItem>
+              <MenuItem value={3}>Superscript</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
 
       <div className="relative">
         <Swiper
@@ -145,15 +198,13 @@ function InventoryTrade() {
             },
           }}
         >
-          {glasses.length === 0 ? (
+          {_glasses.length === 0 ? (
             <div className="flex flex-row justify-center">
-              <h1 className="fs-16px font-medium mb-7">
-                Inventory Trade Not Found
-              </h1>
+              <h1 className="fs-16px font-medium mb-7">No Glasses</h1>
             </div>
           ) : (
             <>
-              {glasses.map((glass, index) => {
+              {_glasses.map((glass, index) => {
                 return (
                   <SwiperSlide>
                     <InventoryTradeCard
@@ -170,25 +221,6 @@ function InventoryTrade() {
               })}
             </>
           )}
-
-          {/* <SwiperSlide>
-            <InventoryTradeCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <InventoryTradeCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <InventoryTradeCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <InventoryTradeCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <InventoryTradeCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <InventoryTradeCard />
-          </SwiperSlide> */}
         </Swiper>
 
         <button
@@ -209,31 +241,38 @@ function InventoryTrade() {
         </button>
       </div>
 
-      <GlassModal
-        id={glasses[index]?.id}
-        img={glasses[index]?.img}
-        open={openGlassModal}
-        setOpen={setOpenGlassModal}
-        handleAction={handleAction}
-        gemEligible={
-          !!gemEligibleGlasses?.length &&
-          !!gemEligibleGlasses.includes(glasses[index]?.id)
-        }
-      />
+      {_glasses[index] && (
+        <GlassModal
+          id={_glasses[index]?.id}
+          img={_glasses[index]?.img}
+          glass={_glasses[index]}
+          open={openGlassModal}
+          setOpen={setOpenGlassModal}
+          handleAction={handleAction}
+          gemEligible={
+            !!gemEligibleGlasses?.length &&
+            !!gemEligibleGlasses.includes(_glasses[index]?.id)
+          }
+        />
+      )}
 
-      <GemModal
-        id={glasses[index]?.id}
-        img={glasses[index]?.img}
-        open={openGemModal}
-        setOpen={setOpenGemModal}
-        setGemEligibleGlasses={setGemEligibleGlasses}
-      />
+      {_glasses[index] && (
+        <GemModal
+          id={_glasses[index]?.id}
+          img={_glasses[index]?.img}
+          open={openGemModal}
+          setOpen={setOpenGemModal}
+          setGemEligibleGlasses={setGemEligibleGlasses}
+        />
+      )}
 
-      <RechargeModal
-        glass={glasses[index]}
-        open={openRechargeModal}
-        setOpen={setOpenRechargeModal}
-      />
+      {_glasses[index] && (
+        <RechargeModal
+          glass={_glasses[index]}
+          open={openRechargeModal}
+          setOpen={setOpenRechargeModal}
+        />
+      )}
     </div>
   );
 }
