@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
@@ -33,12 +33,15 @@ import { loginTypes } from "utils/helper";
 function ConnectWalletModal() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const location = useLocation();
+  console.log("pathname", location.pathname);
   const [loading, setLoading] = useState({
     metamask: false,
     wallet: false,
     bnb: false,
     okc: false,
-    bitgret:false
+    bitgret: false,
   });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -66,7 +69,7 @@ function ConnectWalletModal() {
       return;
     }
     setLoading({ ...loading, bnb: true });
-    dispatch(setIsOkc(loginTypes.bnb))
+    dispatch(setIsOkc(loginTypes.bnb));
     const walletAddress = await MetamaskService.connectHandler();
     if (walletAddress) {
       const chainId = await MetamaskService.getChainId();
@@ -83,7 +86,7 @@ function ConnectWalletModal() {
           const req = {
             walletAddress,
             username: res.data.data.name,
-            signupType:loginTypes.bnb
+            signupType: loginTypes.bnb,
           };
           Api.loginWithSpaceID(req).then((resp) => {
             if (resp && resp.status === 200) {
@@ -121,50 +124,43 @@ function ConnectWalletModal() {
   };
 
   const metaMaskHandler = async (loginType = "metamask") => {
-    try {
-      let okcBalance;
-      if (loginType===loginTypes.okc) {
-        setLoading({ ...loading, okc: true });
-        helper.trackByMixpanel("OKC Button Clicked", {});
-      }else if(loginType===loginTypes.bitgret){
-        setLoading({ ...loading, bitgret: true });
-        helper.trackByMixpanel("Bitgret Button Clicked", {});
-      } 
-      else {
-        setLoading({ ...loading, metamask: true });
-        dispatch(setIsOkc(loginTypes.metamask))
-        helper.trackByMixpanel("Metamask Button Clicked", {});
-      }
+    let okcBalance;
+    if (loginType === loginTypes.okc) {
+      setLoading({ ...loading, okc: true });
+      helper.trackByMixpanel("OKC Button Clicked", {});
+    } else if (loginType === loginTypes.bitgret) {
+      setLoading({ ...loading, bitgret: true });
+      helper.trackByMixpanel("Bitgret Button Clicked", {});
+    } else {
+      setLoading({ ...loading, metamask: true });
+      dispatch(setIsOkc(loginTypes.metamask));
+      helper.trackByMixpanel("Metamask Button Clicked", {});
+    }
 
-      if (!window.ethereum) {
-        ToastMessage("Install Metamask");
-        setLoading(false);
-        return false;
-      }
-      const accAddres = await MetamaskService.connectHandler();
+    if (!window.ethereum) {
+      ToastMessage("Install Metamask");
+      setLoading(false);
+      return false;
+    }
+    const accAddres = await MetamaskService.connectHandler();
 
-      if (accAddres) {
-        dispatch(metamaskCred(accAddres));
-        if (loginType===loginTypes.okc) {
-          dispatch(setIsOkc(loginTypes.okc));
-          const chainId = await MetamaskService.getChainId();
-          if (chainId && chainId !== metamaskNetwork.OKC.chainId) {
-            try {
+    if (accAddres) {
+      dispatch(metamaskCred(accAddres));
+      if (loginType === loginTypes.okc) {
+        dispatch(setIsOkc(loginTypes.okc));
+        const chainId = await MetamaskService.getChainId();
+        if (chainId && chainId !== metamaskNetwork.OKC.chainId) {
+          try {
             await MetamaskService.changeChain("OKC");
-              
-            } catch (error) {
-              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+          } catch (error) {
+            setLoading({
+              ...loading,
+              okc: false,
+              metamask: false,
+              bitgret: false,
+            });
 
-              console.log(error)
-            }
-          }
-          const balance = await window.ethereum.request({
-            method: "eth_getBalance",
-            params: [accAddres, "latest"],
-          });
-
-          if (balance) {
-            okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
+            console.log(error);
           }
         }
         if(loginType===loginTypes.bitgret){
@@ -182,80 +178,111 @@ function ConnectWalletModal() {
             okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
           }
         }
-        const isUser = await Api.getUserDetailsByWalletAddress(
-          accAddres,
-          "login-modal"
-        );
-        if (!isUser.data.isSuccess) {
-          dispatch(toggleModalVisibility(false));
-          dispatch(toggleEmailModalVisibility(true));
-          setLoading(false);
+      }
+      if (loginType === loginTypes.bitgret) {
+        dispatch(setIsOkc(loginTypes.bitgret));
+        const chainId = await MetamaskService.getChainId();
+        if (chainId && chainId !== metamaskNetwork.bitgret.chainId) {
+          await MetamaskService.changeChain("bitgret");
         }
+        const balance = await window.ethereum.request({
+          method: "eth_getBalance",
+          params: [accAddres, "latest"],
+        });
 
-        if (isUser.data.data.userExist) {
-          const resObj = {
-            browser: "dummyData",
-            country: "dummayData",
-            device: "Web",
-            loginIp: "dummyData",
-            loginLocation: "dummmyData",
-            email: "",
-            userName: "",
-            password: "",
-            walletAddress: accAddres,
-            walletSignature: "",
-            otherReferralCode: "",
-            okcWalletBalance: loginType===loginTypes.okc ? okcBalance : null,
-            briseBalance: loginType===loginTypes.bitgret ? okcBalance : null,
-          };
-          
-          const loginW = await Api.walletLogin(resObj, "");
+        if (balance) {
+          okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
+        }
+      }
+      const isUser = await Api.getUserDetailsByWalletAddress(
+        accAddres,
+        "login-modal"
+      );
+      if (!isUser.data.isSuccess) {
+        dispatch(toggleModalVisibility(false));
+        dispatch(toggleEmailModalVisibility(true));
+        setLoading(false);
+      }
 
-          if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
-            dispatch(toggleModalVisibility(false));
-            try {
-              MixPanelService.setIdentifier(loginW?.data?.data?.email);
-              MixPanelService.track("login", loginW?.data?.data);
-            } catch (error) {}
-            if (loginW.data.message === "Please verify your account.") {
-              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
-              ToastMessage(`${loginW.data.message}`);
-              navigate({
-                pathname: "/verify-account",
-                search: `?email=${loginW.data.data.email}`,
-              });
-            } else {
-              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
-              ToastMessage(`${loginW.data.message}`, true);
-              if (loginW.data.data.authToken) {
-                sessionStorage.setItem(
-                  "script-token",
-                  JSON.stringify(loginW.data.data.authToken)
-                );
-              }
+      if (isUser.data.data.userExist) {
+        const resObj = {
+          browser: "dummyData",
+          country: "dummayData",
+          device: "Web",
+          loginIp: "dummyData",
+          loginLocation: "dummmyData",
+          email: "",
+          userName: "",
+          password: "",
+          walletAddress: accAddres,
+          walletSignature: "",
+          otherReferralCode: "",
+          okcWalletBalance: loginType === loginTypes.okc ? okcBalance : null,
+          briseBalance: loginType === loginTypes.bitgret ? okcBalance : null,
+        };
 
+        const loginW = await Api.walletLogin(resObj, "");
+
+        if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
+          dispatch(toggleModalVisibility(false));
+          try {
+            MixPanelService.setIdentifier(loginW?.data?.data?.email);
+            MixPanelService.track("login", loginW?.data?.data);
+          } catch (error) {}
+          if (loginW.data.message === "Please verify your account.") {
+            setLoading({
+              ...loading,
+              okc: false,
+              metamask: false,
+              bitgret: false,
+            });
+            ToastMessage(`${loginW.data.message}`);
+            navigate({
+              pathname: "/verify-account",
+              search: `?email=${loginW.data.data.email}`,
+            });
+          } else {
+            setLoading({
+              ...loading,
+              okc: false,
+              metamask: false,
+              bitgret: false,
+            });
+            ToastMessage(`${loginW.data.message}`, true);
+            if (loginW.data.data.authToken) {
               sessionStorage.setItem(
-                "userInfo",
-                JSON.stringify({
-                  email: loginW.data.data.email,
-                  userId: loginW.data.data.id,
-                  walletAddress: loginW.data.data.walletAddress,
-                  userName: loginW.data.data.userName,
-                })
+                "script-token",
+                JSON.stringify(loginW.data.data.authToken)
               );
-              helper.trackByMixpanel("User Signed In", {
-                method: "metamask",
+            }
+
+            sessionStorage.setItem(
+              "userInfo",
+              JSON.stringify({
                 email: loginW.data.data.email,
-              });
-              dispatch(isLogin(true));
+                userId: loginW.data.data.id,
+                walletAddress: loginW.data.data.walletAddress,
+                userName: loginW.data.data.userName,
+              })
+            );
+            helper.trackByMixpanel("User Signed In", {
+              method: "metamask",
+              email: loginW.data.data.email,
+            });
+            dispatch(isLogin(true));
+            if (!location.pathname.includes("dashboard"))
               navigate({
                 pathname: "/tv",
               });
-            }
-          } else {
-            setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
-            ToastMessage("Somthing went wrong");
           }
+        } else {
+          setLoading({
+            ...loading,
+            okc: false,
+            metamask: false,
+            bitgret: false,
+          });
+          ToastMessage("Somthing went wrong");
         }
       }  
     } catch (error) {
@@ -264,11 +291,9 @@ function ConnectWalletModal() {
     }
   };
 
-
-
   const googleLoginHandler = () => {
     helper.trackByMixpanel("Google Social Button Clicked", {});
-    dispatch(setIsOkc(loginTypes.gmail))
+    dispatch(setIsOkc(loginTypes.gmail));
     const provider = new GoogleAuthProvider();
     signInWithPopup(getAuth(auth), provider)
       .then((res) => {
@@ -278,8 +303,7 @@ function ConnectWalletModal() {
             device: "Web",
             password: "",
             browser: detectBrowser(),
-            signupType:loginTypes.gmail
-
+            signupType: loginTypes.gmail,
           },
           user: {
             email: res?.user?.email,
@@ -353,7 +377,7 @@ function ConnectWalletModal() {
     helper.trackByMixpanel("Twitter Social Button Clicked", {});
     helper.comingSoonNotification(e);
     return;
-    dispatch(setIsOkc(loginTypes.twitter))
+    dispatch(setIsOkc(loginTypes.twitter));
     const provider = new TwitterAuthProvider();
     signInWithPopup(getAuth(auth), provider)
       .then((res) => {
@@ -363,8 +387,7 @@ function ConnectWalletModal() {
             device: "Web",
             password: "",
             browser: detectBrowser(),
-            signupType:loginTypes.gmail
-            
+            signupType: loginTypes.gmail,
           },
           user: {
             email: res?.user?.email,

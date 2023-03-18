@@ -54,6 +54,8 @@ import Blocks from "pages/Blocks";
 import Wallet from "pages/Wallet/Wallet";
 import Transactions from "pages/Transactions";
 import PageNotFound from "pages/PageNotFound";
+import Mint from "pages/Dashboard/Mint";
+import Voucher from "pages/Dashboard/Voucher";
 
 function App() {
   try {
@@ -115,7 +117,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-account" element={<VerifyAccount />} />
-        
+
         {/* <Route path="explorer" element={<Explorer />} />
         <Route path="stake" element={<Stake />} />
         <Route path="blocks" element={<Blocks />} />
@@ -160,6 +162,22 @@ function App() {
             element={
               <PrivateRoute>
                 <EditProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="mint"
+            element={
+              <PrivateRoute>
+                <Mint />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="voucher"
+            element={
+              <PrivateRoute>
+                <Voucher />
               </PrivateRoute>
             }
           />
