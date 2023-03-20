@@ -8,6 +8,11 @@ import { calculatePayout, getRewardsHistory } from "utils/api";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
+  const [rewards, setRewards] = useState(null);
+
+  const [commonRewards, setCommonRewards] = useState(null);
+  const [rareRewards, setRareRewards] = useState(null);
+  const [superscriptRewards, setSuperscriptRewards] = useState(null);
   const isAbove768px = useMediaQuery("(min-width: 768px)");
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
@@ -18,8 +23,17 @@ const RewardHistory = () => {
         const _history = await getRewardsHistory(accountAddress);
         setHistory(_history || []);
 
-        const rewards = await calculatePayout(accountAddress.toLowerCase());
-        console.log("rewards", rewards);
+        setCommonRewards(
+          await calculatePayout(accountAddress.toLowerCase(), "COMMON")
+        );
+
+        setRareRewards(
+          await calculatePayout(accountAddress.toLowerCase(), "RARE")
+        );
+
+        setSuperscriptRewards(
+          await calculatePayout(accountAddress.toLowerCase(), "SUPERSCRIPT")
+        );
       })();
     }
   }, [accountAddress]);
@@ -37,62 +51,222 @@ const RewardHistory = () => {
           Rewards
         </h2>
 
-        <Box display="flex" alignItems="center">
-          <h2 className="text-xl my-2 font-semibold text-center mb-5">
-            Claim your rewards
-          </h2>
-          <Button variant="contained" color="primary">
-            Claim
-          </Button>
-        </Box>
-      </Box>
-      <Box width={isAbove768px ? 900 : "100%"}>
-        <h2 className="text-3xl my-2 font-semibold text-center mb-5">
-          Rewards history
-        </h2>
+        {!accountAddress && (
+          <Box
+            margin="0 auto"
+            width={"100%"}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <h2 className="text-xl my-2 font-semibold text-center mb-5">
+              Connect your wallet to claim rewards
+            </h2>
+          </Box>
+        )}
 
-        {history.length > 0 ? (
-          <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
-            <thead>
-              <tr>
-                <th className="text-[#ffef00] py-4">Reward Type</th>
-                <th className="text-[#ffef00] py-4">Reward Point</th>
-                <th className="text-[#ffef00] py-4">Earned At</th>
-              </tr>
-            </thead>
-            <tbody>
-              {history.length > 0
-                ? history.map((data, index) => (
-                    <tr key={index}>
-                      {console.log(data)}
-                      <td className="py-4">Daily Reward</td>
-                      <td className="py-4">
-                        {`${formatEther(data?.amount)} SPAY` || ""}
-                      </td>
-                      <td className="py-4">
-                        {moment(data?.blockTimestamp * 1000).fromNow() || 0}
-                      </td>
-                    </tr>
-                  ))
-                : null}
-              {/* <tr>
+        {(commonRewards || rareRewards || superscriptRewards) && (
+          <>
+            <Box
+              margin="0 auto"
+              width={isAbove768px ? 500 : "100%"}
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-between"
+              mb={5}
+            >
+              <h2 className="text-xl my-2 text-[#FFD700] font-semibold  mb-3">
+                Claimable Rewards
+              </h2>
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+              >
+                <h2
+                  className="text-md  
+              
+                font-semibold text-center"
+                >
+                  COMMON GLASS : {commonRewards?.payout || 0} SPAY
+                </h2>
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={!commonRewards?.payout}
+                >
+                  Claim
+                </Button>
+              </Box>
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+              >
+                <h2
+                  className="text-md  
+                
+                font-semibold text-center"
+                >
+                  RARE GLASS : {rareRewards?.payout || 0} SPAY
+                </h2>
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={!rareRewards?.payout}
+                >
+                  Claim
+                </Button>
+              </Box>
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+              >
+                <h2 className="text-md  font-semibold text-center">
+                  SUPERSCRIPT GLASS : {superscriptRewards?.payout || 0} SPAY
+                </h2>
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={!superscriptRewards?.payout}
+                >
+                  Claim
+                </Button>
+              </Box>
+            </Box>
+            <Box
+              margin="0 auto"
+              width={isAbove768px ? 500 : "100%"}
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-between"
+              mb={5}
+            >
+              <h2 className="text-xl my-2 text-[#FFD700] font-semibold  mb-3">
+                Vested Rewards
+              </h2>
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+              >
+                <h2
+                  className="text-md  
+              
+                font-semibold text-center"
+                >
+                  COMMON GLASS : {commonRewards?.vested || 0} SPAY
+                </h2>
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={!commonRewards?.vested}
+                >
+                  Claim
+                </Button>
+              </Box>
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+              >
+                <h2
+                  className="text-md  
+                
+                font-semibold text-center"
+                >
+                  RARE GLASS : {rareRewards?.vested || 0} SPAY
+                </h2>
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={!rareRewards?.vested}
+                >
+                  Claim
+                </Button>
+              </Box>
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+              >
+                <h2 className="text-md  font-semibold text-center">
+                  SUPERSCRIPT GLASS : {superscriptRewards?.vested || 0} SPAY
+                </h2>
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={!superscriptRewards?.vested}
+                >
+                  Claim
+                </Button>
+              </Box>
+            </Box>
+          </>
+        )}
+      </Box>
+      {history.length > 0 && (
+        <Box width={isAbove768px ? 900 : "100%"}>
+          <h2 className="text-3xl my-2 font-semibold text-center mb-5">
+            Rewards history
+          </h2>
+
+          {history.length > 0 ? (
+            <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
+              <thead>
+                <tr>
+                  <th className="text-[#ffef00] py-4">Reward Type</th>
+                  <th className="text-[#ffef00] py-4">Reward Point</th>
+                  <th className="text-[#ffef00] py-4">Earned At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.length > 0
+                  ? history.map((data, index) => (
+                      <tr key={index}>
+                        {console.log(data)}
+                        <td className="py-4">Daily Reward</td>
+                        <td className="py-4">
+                          {`${formatEther(data?.amount)} SPAY` || ""}
+                        </td>
+                        <td className="py-4">
+                          {moment(data?.blockTimestamp * 1000).fromNow() || 0}
+                        </td>
+                      </tr>
+                    ))
+                  : null}
+                {/* <tr>
                 <td className="py-4">0x123456789</td>
                 <td className="py-4">100</td>
               </tr> */}
-            </tbody>
-          </table>
-        ) : (
-          <div className="text-center">
-            <h2
-              className="text-md my-2 text-center mb-5
+              </tbody>
+            </table>
+          ) : (
+            <div className="text-center">
+              <h2
+                className="text-md my-2 text-center mb-5
             text-[#818589]
             "
-            >
-              No rewards history found
-            </h2>
-          </div>
-        )}
-      </Box>
+              >
+                No rewards history found
+              </h2>
+            </div>
+          )}
+        </Box>
+      )}
     </Box>
   );
 };
