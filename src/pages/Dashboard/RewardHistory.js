@@ -1,10 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { formatEther } from "ethers/lib/utils";
 import useMediaQuery from "hooks/useMediaQuery";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getRewardsHistory } from "utils/api";
+import { calculatePayout, getRewardsHistory } from "utils/api";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
@@ -17,6 +17,9 @@ const RewardHistory = () => {
       (async () => {
         const _history = await getRewardsHistory(accountAddress);
         setHistory(_history || []);
+
+        const rewards = await calculatePayout(accountAddress.toLowerCase());
+        console.log("rewards", rewards);
       })();
     }
   }, [accountAddress]);
@@ -29,6 +32,20 @@ const RewardHistory = () => {
       justifyContent="center"
       alignItems="center"
     >
+      <Box width={isAbove768px ? 900 : "100%"} mb={2}>
+        <h2 className="text-4xl my-2 font-semibold text-center mb-5">
+          Rewards
+        </h2>
+
+        <Box display="flex" alignItems="center">
+          <h2 className="text-xl my-2 font-semibold text-center mb-5">
+            Claim your rewards
+          </h2>
+          <Button variant="contained" color="primary">
+            Claim
+          </Button>
+        </Box>
+      </Box>
       <Box width={isAbove768px ? 900 : "100%"}>
         <h2 className="text-3xl my-2 font-semibold text-center mb-5">
           Rewards history

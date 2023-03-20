@@ -217,6 +217,25 @@ export const getVoucherSignature = async (address, type) => {
   }
 };
 
+export const calculatePayout = async (address, type) => {
+  try {
+    const response = await api.request({
+      url: "/scripts/calculate-payout",
+      method: "GET",
+      params: {
+        address,
+        type,
+      },
+    });
+
+    console.log("/scripts/calculatePayout", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.log("error in calculatePayout");
+  }
+};
+
 export const fetchEquipSignature = async (glassId) => {
   try {
     const response = await api.request({
