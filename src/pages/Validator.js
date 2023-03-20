@@ -31,9 +31,9 @@ function Validator() {
       <div className="mb-20 lg:mb-24">
         <Blockchain />
       </div>
-      <div className="mb-20 lg:mb-24">
+      {/* <div className="mb-20 lg:mb-24">
         <Comparing />
-      </div>
+      </div> */}
       <Footer container="container" />
     </div>
   );
