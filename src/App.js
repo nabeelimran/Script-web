@@ -57,8 +57,12 @@ import PageNotFound from "pages/PageNotFound";
 import Mint from "pages/Dashboard/Mint";
 import Voucher from "pages/Dashboard/Voucher";
 import RewardHistory from "pages/Dashboard/RewardHistory";
+import MetamaskChangeDetectionModal from "components/MetamaskChangeDetectionModal";
+import { toggleMetamaskChangeDetect } from "redux/reducers/MetamaskChangeDetect_State";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
   try {
     console.log("init mixpanel");
     MixPanelService.init();
@@ -74,6 +78,18 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("userInfo"));
+    if(user && user.email) {
+      if (window.ethereum) {
+        window.ethereum.on("accountsChanged", () => {
+          console.log('metmask address changed')
+          dispatch(toggleMetamaskChangeDetect(true))
+        });
+      }
+    }
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
@@ -83,6 +99,7 @@ function App() {
       <EpgModal />
       <EmailConfirmation />
       <CreatePasswordForm />
+      <MetamaskChangeDetectionModal />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
