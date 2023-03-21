@@ -1,9 +1,12 @@
+import Button from "components/Button";
 import DividerLine from "components/DividerLine";
 import HeadingSmall from "components/HeadingSmall";
 import UpperRoot from "components/UpperRoot";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import LocalServices from "services/LocalServices";
 import { isBnbUser } from "utils/helper";
 
@@ -14,11 +17,15 @@ function RightDashboardSidebar({
   profile,
   videoWatchDuration,
   lastDayWatchVideoDuration,
-  lastVideoHistory }) {
+  lastVideoHistory,
+}) {
   const { getter, setter } = state;
   const sidebarRef = OutsideClickDetector(() => setter && setter(false));
   const token = LocalServices.getServices("token");
-  
+
+  const { accountAddress } = useSelector((state) => state.metamask_state);
+
+  const dispatch = useDispatch();
 
   return (
     <UpperRoot>
@@ -57,19 +64,43 @@ function RightDashboardSidebar({
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <p className="font-medium text-sm">
-              {profile?.firstName ? profile?.firstName : profile?.userName}
-            </p>
-            <div className="w-[34px] rounded-full h-[34px] relative">
-              <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
-              <img
-                src={isBnbUser() ? "/images/bnb-default-avatar.png" : profile?.profile?.urlProfileImage ? profile?.profile?.urlProfileImage : "/images/yellow-dot.png"} 
-                className="rounded-full w-full h-1.8 w-1.8"
-                alt=""
-              />
+          {accountAddress && (
+            <div className="flex items-center space-x-4">
+              <p className="font-medium text-sm">
+                {profile?.firstName ? profile?.firstName : profile?.userName}
+              </p>
+              <div className="w-[34px] rounded-full h-[34px] relative">
+                <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0 "></div>
+                <img
+                  src={
+                    isBnbUser()
+                      ? "/images/bnb-default-avatar.png"
+                      : profile?.profile?.urlProfileImage
+                      ? profile?.profile?.urlProfileImage
+                      : "/images/yellow-dot.png"
+                  }
+                  className="rounded-full w-full h-1.8 w-1.8 cursor-pointer"
+                  alt=""
+                />
+              </div>
             </div>
-          </div>
+          )}
+
+          {!accountAddress && (
+            <Button
+              variant={4}
+              buttonHeightClassName="min-h-[28px] lg:min-h-[32px]"
+              customizationClassName="border-2 border-white px-3 lg:px-4 rounded-md"
+              label={
+                <span className="text-xs lg:text-sm text-white">
+                  Connect Wallet
+                </span>
+              }
+              buttonProps={{
+                onClick: () => dispatch(toggleModalVisibility(true)),
+              }}
+            />
+          )}
         </div>
         <div className="space-y-4">
           <div className="px-6 space-y-1">
@@ -96,7 +127,9 @@ function RightDashboardSidebar({
               Minutes watched in total (as of yesterday)
             </HeadingSmall>
             <p className="text-sm xl:text-base font-bold">
-              { token ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes` : `N/A` }
+              {token
+                ? `${videoWatchDuration ? videoWatchDuration : 0} Minutes`
+                : `N/A`}
             </p>
           </div>
 
@@ -108,7 +141,11 @@ function RightDashboardSidebar({
             </HeadingSmall>
 
             <p className="text-sm xl:text-base font-bold">
-            { token ? `${lastDayWatchVideoDuration ? lastDayWatchVideoDuration : 0} Minutes` : `N/A` }
+              {token
+                ? `${
+                    lastDayWatchVideoDuration ? lastDayWatchVideoDuration : 0
+                  } Minutes`
+                : `N/A`}
             </p>
           </div>
 
@@ -118,13 +155,19 @@ function RightDashboardSidebar({
             <HeadingSmall>Most watched channel:</HeadingSmall>
 
             <div className="flex-1">
-            {token && lastVideoHistory?.channelImageLink ? (
+              {token && lastVideoHistory?.channelImageLink ? (
                 <img
                   src={lastVideoHistory?.channelImageLink}
                   className="w-[90px]"
-                  alt={lastVideoHistory?.channelName ? lastVideoHistory?.channelName : 'default'}
+                  alt={
+                    lastVideoHistory?.channelName
+                      ? lastVideoHistory?.channelName
+                      : "default"
+                  }
                 />
-              ) : 'N/A'}
+              ) : (
+                "N/A"
+              )}
             </div>
           </div>
 
