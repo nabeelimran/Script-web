@@ -38,7 +38,7 @@ function ConnectWalletModal() {
     wallet: false,
     bnb: false,
     okc: false,
-    bitgret:false
+    bitgret: false,
   });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -66,7 +66,7 @@ function ConnectWalletModal() {
       return;
     }
     setLoading({ ...loading, bnb: true });
-    dispatch(setIsOkc(loginTypes.bnb))
+    dispatch(setIsOkc(loginTypes.bnb));
     const walletAddress = await MetamaskService.connectHandler();
     if (walletAddress) {
       const chainId = await MetamaskService.getChainId();
@@ -83,7 +83,7 @@ function ConnectWalletModal() {
           const req = {
             walletAddress,
             username: res.data.data.name,
-            signupType:loginTypes.bnb
+            signupType: loginTypes.bnb,
           };
           Api.loginWithSpaceID(req).then((resp) => {
             if (resp && resp.status === 200) {
@@ -123,16 +123,15 @@ function ConnectWalletModal() {
   const metaMaskHandler = async (loginType = "metamask") => {
     try {
       let okcBalance;
-      if (loginType===loginTypes.okc) {
+      if (loginType === loginTypes.okc) {
         setLoading({ ...loading, okc: true });
         helper.trackByMixpanel("OKC Button Clicked", {});
-      }else if(loginType===loginTypes.bitgret){
+      } else if (loginType === loginTypes.bitgret) {
         setLoading({ ...loading, bitgret: true });
         helper.trackByMixpanel("Bitgret Button Clicked", {});
-      } 
-      else {
+      } else {
         setLoading({ ...loading, metamask: true });
-        dispatch(setIsOkc(loginTypes.metamask))
+        dispatch(setIsOkc(loginTypes.metamask));
         helper.trackByMixpanel("Metamask Button Clicked", {});
       }
 
@@ -145,17 +144,21 @@ function ConnectWalletModal() {
 
       if (accAddres) {
         dispatch(metamaskCred(accAddres));
-        if (loginType===loginTypes.okc) {
+        if (loginType === loginTypes.okc) {
           dispatch(setIsOkc(loginTypes.okc));
           const chainId = await MetamaskService.getChainId();
           if (chainId && chainId !== metamaskNetwork.OKC.chainId) {
             try {
-            await MetamaskService.changeChain("OKC");
-              
+              await MetamaskService.changeChain("OKC");
             } catch (error) {
-              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+              setLoading({
+                ...loading,
+                okc: false,
+                metamask: false,
+                bitgret: false,
+              });
 
-              console.log(error)
+              console.log(error);
             }
           }
           const balance = await window.ethereum.request({
@@ -167,7 +170,7 @@ function ConnectWalletModal() {
             okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
           }
         }
-        if(loginType===loginTypes.bitgret){
+        if (loginType === loginTypes.bitgret) {
           dispatch(setIsOkc(loginTypes.bitgret));
           const chainId = await MetamaskService.getChainId();
           if (chainId && chainId !== metamaskNetwork.bitgret.chainId) {
@@ -205,10 +208,10 @@ function ConnectWalletModal() {
             walletAddress: accAddres,
             walletSignature: "",
             otherReferralCode: "",
-            okcWalletBalance: loginType===loginTypes.okc ? okcBalance : null,
-            briseBalance: loginType===loginTypes.bitgret ? okcBalance : null,
+            okcWalletBalance: loginType === loginTypes.okc ? okcBalance : null,
+            briseBalance: loginType === loginTypes.bitgret ? okcBalance : null,
           };
-          
+
           const loginW = await Api.walletLogin(resObj, "");
 
           if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
@@ -218,14 +221,24 @@ function ConnectWalletModal() {
               MixPanelService.track("login", loginW?.data?.data);
             } catch (error) {}
             if (loginW.data.message === "Please verify your account.") {
-              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+              setLoading({
+                ...loading,
+                okc: false,
+                metamask: false,
+                bitgret: false,
+              });
               ToastMessage(`${loginW.data.message}`);
               navigate({
                 pathname: "/verify-account",
                 search: `?email=${loginW.data.data.email}`,
               });
             } else {
-              setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+              setLoading({
+                ...loading,
+                okc: false,
+                metamask: false,
+                bitgret: false,
+              });
               ToastMessage(`${loginW.data.message}`, true);
               if (loginW.data.data.authToken) {
                 sessionStorage.setItem(
@@ -253,22 +266,25 @@ function ConnectWalletModal() {
               });
             }
           } else {
-            setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+            setLoading({
+              ...loading,
+              okc: false,
+              metamask: false,
+              bitgret: false,
+            });
             ToastMessage("Somthing went wrong");
           }
         }
-      }  
+      }
     } catch (error) {
-      setLoading({ ...loading, okc: false, metamask: false,bitgret:false });
+      setLoading({ ...loading, okc: false, metamask: false, bitgret: false });
       ToastMessage("Somthing went wrong");
     }
   };
 
-
-
   const googleLoginHandler = () => {
     helper.trackByMixpanel("Google Social Button Clicked", {});
-    dispatch(setIsOkc(loginTypes.gmail))
+    dispatch(setIsOkc(loginTypes.gmail));
     const provider = new GoogleAuthProvider();
     signInWithPopup(getAuth(auth), provider)
       .then((res) => {
@@ -278,8 +294,7 @@ function ConnectWalletModal() {
             device: "Web",
             password: "",
             browser: detectBrowser(),
-            signupType:loginTypes.gmail
-
+            signupType: loginTypes.gmail,
           },
           user: {
             email: res?.user?.email,
@@ -353,7 +368,7 @@ function ConnectWalletModal() {
     helper.trackByMixpanel("Twitter Social Button Clicked", {});
     helper.comingSoonNotification(e);
     return;
-    dispatch(setIsOkc(loginTypes.twitter))
+    dispatch(setIsOkc(loginTypes.twitter));
     const provider = new TwitterAuthProvider();
     signInWithPopup(getAuth(auth), provider)
       .then((res) => {
@@ -363,8 +378,7 @@ function ConnectWalletModal() {
             device: "Web",
             password: "",
             browser: detectBrowser(),
-            signupType:loginTypes.gmail
-            
+            signupType: loginTypes.gmail,
           },
           user: {
             email: res?.user?.email,
