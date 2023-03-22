@@ -15,6 +15,8 @@ export const getRechargeCost = async (glassId) => {
       },
     });
 
+    console.log("getRechargeCost", response);
+
     return response.data.rechargeCost;
   } catch (error) {
     console.log(error);
@@ -62,6 +64,8 @@ export const getGlasses = async (address) => {
         address,
       },
     });
+
+    console.log("getGlasses", response.data);
 
     return response.data;
   } catch (error) {

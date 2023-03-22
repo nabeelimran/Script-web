@@ -193,7 +193,6 @@ export const glassesOfOwnerServer = async (address) => {
   let glassList = await getGlasses(address);
   return glassList.map((item) => ({
     ...item,
-    id: item.tokenId,
     img: `https://ahram-bucket.s3.eu-central-1.amazonaws.com/assets/${item.tokenId}.png`,
     gem: item.gemsRecords.length ? item.gemsRecords[0].gemType : "",
   }));

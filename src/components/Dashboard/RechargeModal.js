@@ -45,6 +45,7 @@ export default function RechargeModal({ glass, open, setOpen }) {
 
   const handleGetRechargeCost = async () => {
     let cost = await getRechargeCost(glass?.id);
+    console.log("rechargeCost ", cost);
     setCost(cost);
   };
 
@@ -104,7 +105,7 @@ export default function RechargeModal({ glass, open, setOpen }) {
           </Typography>
           <RowBox mt={4} mb={4}>
             <Typography variant="subtitle2">Cost</Typography>
-            <Typography variant="subtitle2">{cost.toFixed(2)} SPAY</Typography>
+            <Typography variant="subtitle2">{cost.toFixed(4)} SPAY</Typography>
           </RowBox>
           <Button
             variant="contained"
