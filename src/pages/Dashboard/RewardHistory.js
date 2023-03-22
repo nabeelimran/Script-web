@@ -1,10 +1,13 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import { earningPayout } from "contract/functions";
 import { formatEther } from "ethers/lib/utils";
 import useMediaQuery from "hooks/useMediaQuery";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { calculatePayout, claimPayout, getRewardsHistory } from "utils/api";
+import LoaderGif from "../../assets/Loading_icon.gif";
+import { ToastMessage } from "components/ToastMessage";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
@@ -14,6 +17,11 @@ const RewardHistory = () => {
   const [rareRewards, setRareRewards] = useState(null);
   const [superscriptRewards, setSuperscriptRewards] = useState(null);
   const isAbove768px = useMediaQuery("(min-width: 768px)");
+  const [loading, setLoading] = useState({
+    common: false,
+    rare: false,
+    superscript: false,
+  });
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
 
@@ -39,6 +47,50 @@ const RewardHistory = () => {
       })();
     }
   }, [accountAddress]);
+
+  const onClaimUpdate = async (type) => {
+    if (type === "COMMON") {
+      setCommonRewards(
+        await calculatePayout(accountAddress.toLowerCase(), "COMMON")
+      );
+    } else if (type === "RARE") {
+      setRareRewards(
+        await calculatePayout(accountAddress.toLowerCase(), "RARE")
+      );
+    } else if (type === "SUPERSCRIPT") {
+      setSuperscriptRewards(
+        await calculatePayout(accountAddress.toLowerCase(), "SUPERSCRIPT")
+      );
+    }
+
+    const _history = await getRewardsHistory(accountAddress);
+    setHistory(_history || []);
+
+    setLoading({ ...loading, [type.toLowerCase()]: false });
+  };
+
+  const onClaimClick = async (type) => {
+    setLoading({ ...loading, [type.toLowerCase()]: true });
+    const apiResponse = await claimPayout(accountAddress.toLowerCase(), type);
+
+    if (apiResponse.signature) {
+      const contractResponse = await earningPayout(
+        apiResponse.amount,
+        apiResponse.nonce,
+        apiResponse.signature,
+        apiResponse.type
+      );
+      console.log("contractResponse ", contractResponse);
+
+      if (contractResponse.blockHash) {
+        ToastMessage("Reward has been cashed out successfully", true);
+        onClaimUpdate(type);
+      } else {
+        ToastMessage("Something went wrong", false);
+        setLoading({ ...loading, [type.toLowerCase()]: false });
+      }
+    }
+  };
 
   return (
     <Box
@@ -98,8 +150,21 @@ const RewardHistory = () => {
                   variant="contained"
                   color="primary"
                   disabled={!commonRewards?.payout}
+                  onClick={() => onClaimClick("COMMON")}
+                  sx={{
+                    width: 80,
+                    height: 35,
+                  }}
                 >
-                  Claim
+                  {loading.common ? (
+                    <img
+                      src={LoaderGif}
+                      alt="loader"
+                      style={{ height: "20px" }}
+                    />
+                  ) : (
+                    <>Claim</>
+                  )}
                 </Button>
               </Box>
               <Box
@@ -120,8 +185,21 @@ const RewardHistory = () => {
                   variant="contained"
                   color="primary"
                   disabled={!rareRewards?.payout}
+                  onClick={() => onClaimClick("RARE")}
+                  sx={{
+                    width: 80,
+                    height: 35,
+                  }}
                 >
-                  Claim
+                  {loading.rare ? (
+                    <img
+                      src={LoaderGif}
+                      alt="loader"
+                      style={{ height: "20px" }}
+                    />
+                  ) : (
+                    <>Claim</>
+                  )}
                 </Button>
               </Box>
               <Box
@@ -139,8 +217,21 @@ const RewardHistory = () => {
                   variant="contained"
                   color="primary"
                   disabled={!superscriptRewards?.payout}
+                  onClick={() => onClaimClick("SUPERSCRIPT")}
+                  sx={{
+                    width: 80,
+                    height: 35,
+                  }}
                 >
-                  Claim
+                  {loading.superscript ? (
+                    <img
+                      src={LoaderGif}
+                      alt="loader"
+                      style={{ height: "20px" }}
+                    />
+                  ) : (
+                    <>Claim</>
+                  )}
                 </Button>
               </Box>
             </Box>

@@ -193,6 +193,8 @@ export const glassesOfOwnerServer = async (address) => {
   let glassList = await getGlasses(address);
   return glassList.map((item) => ({
     ...item,
+    id: item.tokenId,
+    realId: item.id,
     img: `https://ahram-bucket.s3.eu-central-1.amazonaws.com/assets/${item.tokenId}.png`,
     gem: item.gemsRecords.length ? item.gemsRecords[0].gemType : "",
   }));
@@ -222,6 +224,22 @@ export const getBaseUri = async () => {
 export const mintGlasses = async (type, useGlassPass) => {
   try {
     const tx = await scriptTvContract.mintGlasses(type, useGlassPass);
+    const txResponse = await tx.wait();
+    console.log(txResponse);
+    return txResponse;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const earningPayout = async (amount, nonce, signature, type) => {
+  try {
+    const tx = await scriptTvContract.earningPayout(
+      amount,
+      nonce,
+      signature,
+      type
+    );
     const txResponse = await tx.wait();
     console.log(txResponse);
     return txResponse;
