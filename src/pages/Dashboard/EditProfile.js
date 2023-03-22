@@ -115,6 +115,18 @@ function EditProfile() {
     if(accAddres && userId) {
       Api.updateWalletAddress(userId, accAddres, 'dashboard').then((res) => {
         if(res && res.status === 200) {
+          const user = JSON.parse(sessionStorage.getItem("userInfo"));
+          if(user) {
+            sessionStorage.setItem(
+              "userInfo",
+              JSON.stringify({
+                email: user.email,
+                userId: user.userId,
+                walletAddress: accAddres,
+                userName: user.userName,
+              })
+            );
+          }
           navigate({
             pathname: "/dashboard",
           })
