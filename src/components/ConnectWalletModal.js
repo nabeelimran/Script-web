@@ -61,63 +61,69 @@ function ConnectWalletModal() {
   };
 
   const spaceIdConnectHandler = async () => {
-    if (!window.ethereum) {
-      ToastMessage("Install Metamask");
-      return;
-    }
-    setLoading({ ...loading, bnb: true });
-    dispatch(setIsOkc(loginTypes.bnb));
-    const walletAddress = await MetamaskService.connectHandler();
-    if (walletAddress) {
-      const chainId = await MetamaskService.getChainId();
-      if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
-        await MetamaskService.changeChain("spaceID");
+    try {
+      if (!window.ethereum) {
+        ToastMessage("Install Metamask");
+        return;
       }
-      Api.getSpaceIDName(walletAddress).then((res) => {
-        if (res && res.status === 200) {
-          if (!res?.data?.data?.name) {
-            ToastMessage("BNB username is not found");
-            setLoading({ ...loading, bnb: false });
-            return;
-          }
-          const req = {
-            walletAddress,
-            username: res.data.data.name,
-            signupType: loginTypes.bnb,
-          };
-          Api.loginWithSpaceID(req).then((resp) => {
-            if (resp && resp.status === 200) {
-              setLoading({ ...loading, bnb: false });
-              ToastMessage(`${resp?.data?.message}`, true);
-              dispatch(toggleModalVisibility(false));
-              if (resp.data.data.authToken) {
-                sessionStorage.setItem(
-                  "script-token",
-                  JSON.stringify(resp.data.data.authToken)
-                );
-              }
-
-              sessionStorage.setItem(
-                "userInfo",
-                JSON.stringify({
-                  email: resp?.data?.data?.email || "",
-                  userId: resp.data.data.id,
-                  walletAddress: resp.data.data.walletAddress,
-                  userName: resp.data.data.username,
-                })
-              );
-              dispatch(isLogin(true));
-              navigate({
-                pathname: "/tv",
-              });
-            } else {
-              setLoading({ ...loading, bnb: false });
-              ToastMessage("Unable to login");
-            }
-          });
+      setLoading({ ...loading, bnb: true });
+      dispatch(setIsOkc(loginTypes.bnb));
+      const walletAddress = await MetamaskService.connectHandler();
+      if (walletAddress) {
+        const chainId = await MetamaskService.getChainId();
+        if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
+          await MetamaskService.changeChain("spaceID");
         }
-      });
+        Api.getSpaceIDName(walletAddress).then((res) => {
+          if (res && res.status === 200) {
+            if (!res?.data?.data?.name) {
+              ToastMessage("BNB username is not found");
+              setLoading({ ...loading, bnb: false });
+              return;
+            }
+            const req = {
+              walletAddress,
+              username: res.data.data.name,
+              signupType: loginTypes.bnb,
+            };
+            Api.loginWithSpaceID(req).then((resp) => {
+              if (resp && resp.status === 200) {
+                setLoading({ ...loading, bnb: false });
+                ToastMessage(`${resp?.data?.message}`, true);
+                dispatch(toggleModalVisibility(false));
+                if (resp.data.data.authToken) {
+                  sessionStorage.setItem(
+                    "script-token",
+                    JSON.stringify(resp.data.data.authToken)
+                  );
+                }
+  
+                sessionStorage.setItem(
+                  "userInfo",
+                  JSON.stringify({
+                    email: resp?.data?.data?.email || "",
+                    userId: resp.data.data.id,
+                    walletAddress: resp.data.data.walletAddress,
+                    userName: resp.data.data.username,
+                  })
+                );
+                dispatch(isLogin(true));
+                navigate({
+                  pathname: "/tv",
+                });
+              } else {
+                setLoading({ ...loading, bnb: false });
+                ToastMessage("Unable to login");
+              }
+            });
+          }
+        });
+      }  
+    } catch (error) {
+      setLoading({ ...loading, bnb: false });
+      ToastMessage("Wallet address is already registered with another account");
     }
+    
   };
 
   const metaMaskHandler = async (loginType = "metamask") => {
