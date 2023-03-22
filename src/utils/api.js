@@ -236,6 +236,25 @@ export const calculatePayout = async (address, type) => {
   }
 };
 
+export const claimPayout = async (address, type) => {
+  try {
+    const response = await api.request({
+      url: "/scripts/claim-payout",
+      method: "GET",
+      params: {
+        address,
+        type,
+      },
+    });
+
+    console.log("/scripts/claimPayout", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.log("error in claimPayout ", error);
+  }
+};
+
 export const fetchEquipSignature = async (glassId) => {
   try {
     const response = await api.request({

@@ -4,7 +4,7 @@ import useMediaQuery from "hooks/useMediaQuery";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { calculatePayout, getRewardsHistory } from "utils/api";
+import { calculatePayout, claimPayout, getRewardsHistory } from "utils/api";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
@@ -22,6 +22,8 @@ const RewardHistory = () => {
       (async () => {
         const _history = await getRewardsHistory(accountAddress);
         setHistory(_history || []);
+
+        //await claimPayout(accountAddress.toLowerCase(), "RARE");
 
         setCommonRewards(
           await calculatePayout(accountAddress.toLowerCase(), "COMMON")
@@ -89,7 +91,7 @@ const RewardHistory = () => {
               
                 font-semibold text-center"
                 >
-                  COMMON GLASS : {commonRewards?.payout || 0} SPAY
+                  COMMON GLASS : {commonRewards?.payout.toFixed(2) || 0} SPAY
                 </h2>
 
                 <Button
@@ -111,7 +113,7 @@ const RewardHistory = () => {
                 
                 font-semibold text-center"
                 >
-                  RARE GLASS : {rareRewards?.payout || 0} SPAY
+                  RARE GLASS : {rareRewards?.payout.toFixed(2) || 0} SPAY
                 </h2>
 
                 <Button
@@ -129,7 +131,8 @@ const RewardHistory = () => {
                 mb={2}
               >
                 <h2 className="text-md  font-semibold text-center">
-                  SUPERSCRIPT GLASS : {superscriptRewards?.payout || 0} SPAY
+                  SUPERSCRIPT GLASS :{" "}
+                  {superscriptRewards?.payout.toFixed(2) || 0} SPAY
                 </h2>
 
                 <Button
@@ -163,16 +166,16 @@ const RewardHistory = () => {
               
                 font-semibold text-center"
                 >
-                  COMMON GLASS : {commonRewards?.vested || 0} SPAY
+                  COMMON GLASS : {commonRewards?.vested.toFixed(2) || 0} SPAY
                 </h2>
 
-                <Button
+                {/* <Button
                   variant="contained"
                   color="primary"
                   disabled={!commonRewards?.vested}
                 >
                   Claim
-                </Button>
+                </Button> */}
               </Box>
               <Box
                 display="flex"
@@ -185,16 +188,16 @@ const RewardHistory = () => {
                 
                 font-semibold text-center"
                 >
-                  RARE GLASS : {rareRewards?.vested || 0} SPAY
+                  RARE GLASS : {rareRewards?.vested.toFixed(2) || 0} SPAY
                 </h2>
 
-                <Button
+                {/* <Button
                   variant="contained"
                   color="primary"
                   disabled={!rareRewards?.vested}
                 >
                   Claim
-                </Button>
+                </Button> */}
               </Box>
               <Box
                 display="flex"
@@ -203,22 +206,23 @@ const RewardHistory = () => {
                 mb={2}
               >
                 <h2 className="text-md  font-semibold text-center">
-                  SUPERSCRIPT GLASS : {superscriptRewards?.vested || 0} SPAY
+                  SUPERSCRIPT GLASS :{" "}
+                  {superscriptRewards?.vested.toFixed(2) || 0} SPAY
                 </h2>
 
-                <Button
+                {/* <Button
                   variant="contained"
                   color="primary"
                   disabled={!superscriptRewards?.vested}
                 >
                   Claim
-                </Button>
+                </Button> */}
               </Box>
             </Box>
           </>
         )}
       </Box>
-      {history.length > 0 && (
+      {true && (
         <Box width={isAbove768px ? 900 : "100%"}>
           <h2 className="text-3xl my-2 font-semibold text-center mb-5">
             Rewards history
