@@ -15,6 +15,8 @@ export const getRechargeCost = async (glassId) => {
       },
     });
 
+    console.log("getRechargeCost", response);
+
     return response.data.rechargeCost;
   } catch (error) {
     console.log(error);
@@ -62,6 +64,8 @@ export const getGlasses = async (address) => {
         address,
       },
     });
+
+    console.log("getGlasses", response.data);
 
     return response.data;
   } catch (error) {
@@ -214,6 +218,44 @@ export const getVoucherSignature = async (address, type) => {
     return response.data;
   } catch (error) {
     console.log("error in getVoucherSignature");
+  }
+};
+
+export const calculatePayout = async (address, type) => {
+  try {
+    const response = await api.request({
+      url: "/scripts/calculate-payout",
+      method: "GET",
+      params: {
+        address,
+        type,
+      },
+    });
+
+    console.log("/scripts/calculatePayout", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.log("error in calculatePayout");
+  }
+};
+
+export const claimPayout = async (address, type) => {
+  try {
+    const response = await api.request({
+      url: "/scripts/claim-payout",
+      method: "GET",
+      params: {
+        address,
+        type,
+      },
+    });
+
+    console.log("/scripts/claimPayout", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.log("error in claimPayout ", error);
   }
 };
 

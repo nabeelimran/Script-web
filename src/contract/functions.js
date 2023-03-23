@@ -15,38 +15,42 @@ import ScriptPayABI from "./abi/scriptPay.json";
 import ScriptGlassABI from "./abi/scriptGlass.json";
 import ScriptGlassPassABI from "./abi/GlassPass.json";
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
+let scriptTvContract;
+let scriptVoucher;
+let scriptPayContract;
+let scriptGlassContract;
+let scriptPassContract;
 
-const scriptTvContract = new ethers.Contract(
-  scriptTvAddress,
-  ScriptTvABI,
-  signer
-);
+if (window.ethereum) {
+  const provider = new ethers.providers.Web3Provider(window?.ethereum);
+  const signer = provider.getSigner();
 
-const scriptVoucher = new ethers.Contract(
-  scriptVoucherAddress,
-  ScriptVoucherABI,
-  signer
-);
+  scriptTvContract = new ethers.Contract(scriptTvAddress, ScriptTvABI, signer);
 
-const scriptPayContract = new ethers.Contract(
-  scriptPayAddress,
-  ScriptPayABI,
-  signer
-);
+  scriptVoucher = new ethers.Contract(
+    scriptVoucherAddress,
+    ScriptVoucherABI,
+    signer
+  );
 
-const scriptGlassContract = new ethers.Contract(
-  scriptGlassesAddress,
-  ScriptGlassABI,
-  signer
-);
+  scriptPayContract = new ethers.Contract(
+    scriptPayAddress,
+    ScriptPayABI,
+    signer
+  );
 
-const scriptPassContract = new ethers.Contract(
-  glassPassAddress,
-  ScriptGlassABI,
-  signer
-);
+  scriptGlassContract = new ethers.Contract(
+    scriptGlassesAddress,
+    ScriptGlassABI,
+    signer
+  );
+
+  scriptPassContract = new ethers.Contract(
+    glassPassAddress,
+    ScriptGlassABI,
+    signer
+  );
+}
 
 export const approve = async () => {
   const tx = await scriptPayContract.approve(
@@ -194,6 +198,7 @@ export const glassesOfOwnerServer = async (address) => {
   return glassList.map((item) => ({
     ...item,
     id: item.tokenId,
+    realId: item.id,
     img: `https://ahram-bucket.s3.eu-central-1.amazonaws.com/assets/${item.tokenId}.png`,
     gem: item.gemsRecords.length ? item.gemsRecords[0].gemType : "",
   }));
@@ -223,6 +228,22 @@ export const getBaseUri = async () => {
 export const mintGlasses = async (type, useGlassPass) => {
   try {
     const tx = await scriptTvContract.mintGlasses(type, useGlassPass);
+    const txResponse = await tx.wait();
+    console.log(txResponse);
+    return txResponse;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const earningPayout = async (amount, nonce, signature, type) => {
+  try {
+    const tx = await scriptTvContract.earningPayout(
+      amount,
+      nonce,
+      signature,
+      type
+    );
     const txResponse = await tx.wait();
     console.log(txResponse);
     return txResponse;

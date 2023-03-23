@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
@@ -33,6 +33,7 @@ import { loginTypes } from "utils/helper";
 function ConnectWalletModal() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const [loading, setLoading] = useState({
     metamask: false,
     wallet: false,
@@ -267,9 +268,10 @@ function ConnectWalletModal() {
                 email: loginW.data.data.email,
               });
               dispatch(isLogin(true));
-              navigate({
-                pathname: "/tv",
-              });
+              if (!location.pathname.includes("/dashboard"))
+                navigate({
+                  pathname: "/tv",
+                });
             }
           } else {
             setLoading({
