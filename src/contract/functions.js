@@ -15,38 +15,42 @@ import ScriptPayABI from "./abi/scriptPay.json";
 import ScriptGlassABI from "./abi/scriptGlass.json";
 import ScriptGlassPassABI from "./abi/GlassPass.json";
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
+let scriptTvContract;
+let scriptVoucher;
+let scriptPayContract;
+let scriptGlassContract;
+let scriptPassContract;
 
-const scriptTvContract = new ethers.Contract(
-  scriptTvAddress,
-  ScriptTvABI,
-  signer
-);
+if (window.ethereum) {
+  const provider = new ethers.providers.Web3Provider(window?.ethereum);
+  const signer = provider.getSigner();
 
-const scriptVoucher = new ethers.Contract(
-  scriptVoucherAddress,
-  ScriptVoucherABI,
-  signer
-);
+  scriptTvContract = new ethers.Contract(scriptTvAddress, ScriptTvABI, signer);
 
-const scriptPayContract = new ethers.Contract(
-  scriptPayAddress,
-  ScriptPayABI,
-  signer
-);
+  scriptVoucher = new ethers.Contract(
+    scriptVoucherAddress,
+    ScriptVoucherABI,
+    signer
+  );
 
-const scriptGlassContract = new ethers.Contract(
-  scriptGlassesAddress,
-  ScriptGlassABI,
-  signer
-);
+  scriptPayContract = new ethers.Contract(
+    scriptPayAddress,
+    ScriptPayABI,
+    signer
+  );
 
-const scriptPassContract = new ethers.Contract(
-  glassPassAddress,
-  ScriptGlassABI,
-  signer
-);
+  scriptGlassContract = new ethers.Contract(
+    scriptGlassesAddress,
+    ScriptGlassABI,
+    signer
+  );
+
+  scriptPassContract = new ethers.Contract(
+    glassPassAddress,
+    ScriptGlassABI,
+    signer
+  );
+}
 
 export const approve = async () => {
   const tx = await scriptPayContract.approve(
