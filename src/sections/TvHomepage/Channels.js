@@ -345,7 +345,9 @@ function Channels({
   }, [timeline]);
 
   useEffect(() => {
-    if(latestChaneelID && latestVideIdx) {
+    console.log("channel change",latestChaneelID , latestVideIdx)
+    if(latestChaneelID>=0 && latestVideIdx>=0) {
+      console.log("inside channel effect")
       Api.getChannels("watch").then((res) => {
         // for suffal channel
         res.data.data.forEach((d, i) => {

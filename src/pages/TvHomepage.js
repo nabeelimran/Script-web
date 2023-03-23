@@ -11,6 +11,7 @@ import KeyStats from "sections/TvHomepage/KeyStats";
 import React, { useEffect, useState } from "react";
 import Api from "../services/api";
 import { allChannel, playingChannel, playingVideo, videoShows } from "../redux/reducers/video_State";
+import { refreshChannelAction } from "redux/reducers/refresh_state";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MetamaskService from "services/metamask";
@@ -58,7 +59,7 @@ function TvHomepage() {
 	useEffect(() => {
 		
 		// getChannels();
-		//console.log(refreshChannel)
+		console.log("refresh effeced called",refreshChannel)
 		if (refreshChannel) {
 			console.log("refresh");
 			let nextIndex =0;
@@ -78,7 +79,7 @@ function TvHomepage() {
 						c.videoId === currentVideo.videoId &&
 						new Date().getTime() > new Date(c.endTime).getTime()
 						) {
-							
+							console.log("ok")
 						//console.log("currentChannel[0].liveShows",new Date().getTime() > new Date(c.endTime).getTime(),new Date().getTime() , new Date(c.endTime).getTime())
 						nextIndex = i;
 					}
@@ -94,7 +95,8 @@ function TvHomepage() {
 				setCurrentVideo(nextVideo)
 				setLatestChaneelID(channelIndex)
 				setLatestVideoIdx(nextIndex)
-				//dispatch(updateCurrentVideo(true));
+				dispatch(updateCurrentVideo(true));
+				console.log("EXP",channelIndex,nextIndex)
 				}else{
 					console.log("FRESH CHANNEL")
 					getChannels();
@@ -106,6 +108,7 @@ function TvHomepage() {
 
 				
 			}
+			dispatch(refreshChannelAction(false))
 		}
 	}, [refreshChannel]);
 
