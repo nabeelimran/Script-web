@@ -80,7 +80,7 @@ function Hero() {
     },
     {
       image: "images/Partnerships.png",
-      link: "",
+      link: "https://presale.script.tv/",
     },
   ];
 

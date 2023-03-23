@@ -16,6 +16,7 @@ export const connectWalletModal_State = createSlice({
   initialState,
   reducers: {
     toggleModalVisibility: (state, action) => {
+      console.log("action.payload", action.payload);
       state.isModalVisible = action.payload;
     },
     toggleGlassListingVisibility: (state, action) => {
