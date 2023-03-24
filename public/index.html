@@ -31,6 +31,33 @@
     -->
   <link rel="stylesheet" href="videojs.ads.css">
   <title>Script Network</title>
+  <footer>
+    <!-- Quantcast Tag -->
+    <script type="text/javascript">
+      window._qevents = window._qevents || [];
+      
+      (function() {
+      var elem = document.createElement('script');
+      elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+      elem.async = true;
+      elem.type = "text/javascript";
+      var scpt = document.getElementsByTagName('script')[0];
+      scpt.parentNode.insertBefore(elem, scpt);
+      })();
+      
+      window._qevents.push({
+      qacct:"p-9-96FLXge2SKn",
+      uid:"__INSERT_EMAIL_HERE__"
+      });
+      </script>
+      
+      <noscript>
+      <div style="display:none;">
+      <img src="//pixel.quantserve.com/pixel/p-9-96FLXge2SKn.gif" border="0" height="1" width="1" alt="Quantcast"/>
+      </div>
+      </noscript>
+    <!-- End Quantcast tag -->
+  </footer>
 </head>
 
 <body>
@@ -49,31 +76,4 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
-<footer>
-  <!-- Quantcast Tag -->
-<script type="text/javascript">
-  window._qevents = window._qevents || [];
-  
-  (function() {
-  var elem = document.createElement('script');
-  elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-  elem.async = true;
-  elem.type = "text/javascript";
-  var scpt = document.getElementsByTagName('script')[0];
-  scpt.parentNode.insertBefore(elem, scpt);
-  })();
-  
-  window._qevents.push({
-  qacct:"p-9-96FLXge2SKn",
-  uid:"__INSERT_EMAIL_HERE__"
-  });
-  </script>
-  
-  <noscript>
-  <div style="display:none;">
-  <img src="//pixel.quantserve.com/pixel/p-9-96FLXge2SKn.gif" border="0" height="1" width="1" alt="Quantcast"/>
-  </div>
-  </noscript>
-  <!-- End Quantcast tag -->
-</footer>
 </html>
