@@ -43,7 +43,16 @@ function Hero() {
               }}
               
             />
-            <Button link="/tv" label="Launch app" variant={2} arrowVisible={true} />
+            <Button
+              label="Audits"
+              variant={2} arrowVisible={true}
+              iconName="ion:shield-checkmark"
+              buttonProps={{
+                onClick:() => helper.openLink("https://whitepaper.script.tv/security-+-audits")
+              }}
+              
+            />
+            <Button link="/tv" label="Launch app" variant={2} arrowVisible={true} iconName="material-symbols:arrow-right-alt-rounded" />
           </div>
 
           <p className="fs-16px font-medium text-white mb-9">

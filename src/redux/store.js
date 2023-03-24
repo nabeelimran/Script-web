@@ -6,9 +6,11 @@ import refresh_state from "./reducers/refresh_state";
 import login_state from "./reducers/login_state";
 import RewardPoint_State from "./reducers/RewardPoint_State";
 import Profile_State from "./reducers/Profile_State";
+import MetamaskChangeDetect_State from "./reducers/MetamaskChangeDetect_State";
 
 export const store = configureStore({
   reducer: {
+    MetamaskChangeDetect_State: MetamaskChangeDetect_State,
     connectWalletModal_State: connectWalletModal_State,
     metamask_state:metamask_state,
     video_State:video_State,

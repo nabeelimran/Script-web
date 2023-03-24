@@ -23,6 +23,7 @@ function Button({
   className,
   variant = 0,
   arrowVisible = false,
+  iconName,
   link,
   linkProps,
   buttonProps,
@@ -44,10 +45,10 @@ function Button({
       {LeftComponent && <LeftComponent />}
       <span className="text-inherit lh-1">{label}</span>
       {RightComponent && <RightComponent />}
-
+      {console.log(iconName, 'icon', arrowVisible)}
       {arrowVisible && (
         <Icon
-          icon="material-symbols:arrow-right-alt-rounded"
+          icon={iconName}
           className={`text-xl xl:text-2xl ${
             variant === 1 || variant === 2 ? "" : "invert"
           }`}
@@ -59,7 +60,7 @@ function Button({
       type={type}
       {...buttonProps}
       disabled={disable}
-      className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]}`}
+      className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]} ${iconName === 'ion:shield-checkmark' ? "green-icon" : ""}`}
     >
       {loader ? (<img src={LoaderGif} alt="loader" style={{height:"16px"}}/>) : null}
       {LeftComponent && <LeftComponent />}
@@ -68,10 +69,11 @@ function Button({
 
       {arrowVisible && (
         <Icon
-          icon="material-symbols:arrow-right-alt-rounded"
+          icon={iconName}
           className={`text-xl xl:text-2xl ${
             variant === 1 || variant === 2 ? "" : "invert"
           }`}
+          color
         />
       )}
     </button>

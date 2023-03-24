@@ -70,7 +70,7 @@ function DailyTasks() {
         <Title variant="18" className="text-primary font-semibold mb-6 lg:mb-2">
             Login Everyday
         </Title>
-        <Row title="Please login" score="10" subtitle="0/1 completed" />
+        <Row title="Please login, and hit the Collect Reward" score="10" subtitle="0/1 completed" />
       </div>
 
       <DividerLine />
