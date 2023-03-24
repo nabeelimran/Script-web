@@ -9,13 +9,13 @@ export const refresh_state = createSlice({
   name: "refresh_state",
   initialState,
   reducers: {
-    refreshChannel:(state,action)=>{
+    refreshChannelAction:(state,action)=>{
       state.refreshChannel=action.payload;
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { refreshChannel } = refresh_state.actions;
+export const { refreshChannelAction } = refresh_state.actions;
 
 export default refresh_state.reducer;

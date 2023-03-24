@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import videojs from "video.js";
 import "videojs-contrib-ads";
-import { refreshChannel } from "redux/reducers/refresh_state";
+import { refreshChannelAction } from "redux/reducers/refresh_state";
 import { earnedTokenRed, getVideoTimeWatch } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
 import { helper } from "utils/helper";
@@ -172,13 +172,13 @@ function AllTvChannels({
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
 					durationcheckinterval = setInterval(() => {
-						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration())
+						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration(),document.getElementsByTagName('video')[0].duration)
 						if (
 							playerRef.current?.currentTime() &&
 							playerRef.current.currentTime() ===
 								(playerRef?.current?.duration() || document.getElementsByTagName('video')[0].duration)
 						) {
-							dispatch(refreshChannel(true));
+							dispatch(refreshChannelAction(true));
 						}
 					}, 10000);
 				}
@@ -208,8 +208,7 @@ function AllTvChannels({
 			playerRef.current.on("play", () => {
 
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
-				clearInterval(videoWatchInterval);
-				console.log('interval cleared');
+				
 				if(!videoWatchInterval){
 					console.log('new interval started');
 					videoWatchInterval = setInterval(() => {
