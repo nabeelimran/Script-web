@@ -363,7 +363,7 @@ function ConnectWalletModal() {
             }
           })
           .catch((err) => {
-            ToastMessage(err?.error?.message || "Something went wrong");
+            ToastMessage(err?.response?.data?.message || "Something went wrong");
           });
       })
       .catch((err) => {
