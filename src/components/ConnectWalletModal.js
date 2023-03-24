@@ -217,6 +217,7 @@ function ConnectWalletModal() {
             otherReferralCode: "",
             okcWalletBalance: loginType === loginTypes.okc ? okcBalance : null,
             briseBalance: loginType === loginTypes.bitgret ? okcBalance : null,
+            signupType: loginType,
           };
 
           const loginW = await Api.walletLogin(resObj, "");
