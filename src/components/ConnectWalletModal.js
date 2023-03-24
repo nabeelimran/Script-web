@@ -122,7 +122,7 @@ function ConnectWalletModal() {
       }  
     } catch (error) {
       setLoading({ ...loading, bnb: false });
-      ToastMessage("Wallet address is already registered with another account");
+      ToastMessage(error?.response?.data?.message || "Something went wrong.");
     }
     
   };
@@ -286,8 +286,9 @@ function ConnectWalletModal() {
         }
       }
     } catch (error) {
+      console.log(error);
       setLoading({ ...loading, okc: false, metamask: false, bitgret: false });
-      ToastMessage("Somthing went wrong");
+      ToastMessage(error?.response?.data?.message || "Somthing went wrong");
     }
   };
 
@@ -362,7 +363,7 @@ function ConnectWalletModal() {
             }
           })
           .catch((err) => {
-            ToastMessage(err?.error?.message || "Something went wrong");
+            ToastMessage(err?.response?.data?.message || "Something went wrong");
           });
       })
       .catch((err) => {
