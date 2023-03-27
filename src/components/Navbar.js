@@ -120,7 +120,7 @@ function Navbar() {
                   subtitle="Our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."
                   anchor={true}
                   others={{
-                    href: "https://faucet.script.tv/",
+                    href: "https://wallet.script.tv",
                     target: "_blank",
                   }}
                 />
