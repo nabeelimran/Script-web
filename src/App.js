@@ -183,7 +183,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route
+          {/* <Route
             path="mint"
             element={
               <PrivateRoute>
@@ -206,7 +206,7 @@ function App() {
                 <RewardHistory />
               </PrivateRoute>
             }
-          />
+          /> */}
           <Route
             path="share-referral"
             element={
