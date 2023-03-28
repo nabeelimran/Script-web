@@ -12,6 +12,7 @@ import {
 import VoucherCard from "components/Dashboard/VoucherCard";
 import { useSelector } from "react-redux";
 import { OutlinedAccordian } from "components/Accordian";
+import { ToastMessage } from "components/ToastMessage";
 //import { useAppSelector } from "../../app/hooks";
 
 export default function VoucherView() {
@@ -23,9 +24,21 @@ export default function VoucherView() {
   const [expanded, setExpanded] = useState({ 0: true, 1: true, 2: true });
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
-  const [glasses, setGlasses] = useState([]);
 
-  // const glasses = useAppSelector(selectGlasses);
+  const { glasses } = useSelector((state) => state.Profile_State);
+
+  const [rareGlassesState, setRareGlassesState] = useState({
+    loading: false,
+  });
+  const [commonGlassesState, setCommonGlassesState] = useState({
+    loading: false,
+  });
+  const [superscriptGlassesState, setSuperscriptGlassesState] = useState({
+    loading: false,
+  });
+
+  const [currentGlassIndex, setCurrentGlassIndex] = useState(null);
+  const [unequippedLoading, setUnequippedLoading] = useState("none");
 
   useEffect(() => {
     if (accountAddress) {
@@ -91,6 +104,7 @@ export default function VoucherView() {
   const handleFetchEquipped = async () => {
     if (accountAddress) {
       const vouchers = await fetchEquippedVouchers(accountAddress);
+      console.log("handleFetchEquipped", vouchers);
       setEquippedBalance(vouchers);
     }
   };
@@ -109,39 +123,122 @@ export default function VoucherView() {
     }
   };
 
-  const handleEquipCommon = async (tokenId) => {
+  const handleEquipCommon = async (tokenId, index) => {
     if (accountAddress) {
-      if (!isApproved) {
-        await handleApprove();
-      }
-      if (isApproved) {
-        let signature = await getEquipSignature(tokenId);
-        await equipVoucher(0, tokenId, signature, setIsDisabled);
-        handleRefresh();
+      setCurrentGlassIndex(index);
+      setCommonGlassesState({
+        ...commonGlassesState,
+        loading: true,
+      });
+      try {
+        if (!isApproved) {
+          await handleApprove();
+        }
+        if (isApproved) {
+          let signature = await getEquipSignature(tokenId);
+          const response = await equipVoucher(
+            0,
+            tokenId,
+            signature,
+            setIsDisabled
+          );
+
+          if (response.status === 1) {
+            ToastMessage("Voucher equipped successfully", true);
+          }
+          setCommonGlassesState({
+            ...commonGlassesState,
+            loading: false,
+          });
+          handleRefresh();
+        }
+      } catch (error) {
+        console.log("error", error);
+        ToastMessage("Something went wrong");
+        setCommonGlassesState({
+          ...commonGlassesState,
+          loading: false,
+        });
       }
     }
   };
-  const handleEquipRare = async (tokenId) => {
+  const handleEquipRare = async (tokenId, index) => {
     if (accountAddress) {
-      if (!isApproved) {
-        await handleApprove();
-      }
-      if (isApproved) {
-        let signature = await getEquipSignature(tokenId);
-        await equipVoucher(1, tokenId, signature, setIsDisabled);
-        handleRefresh();
+      setCurrentGlassIndex(index);
+      setRareGlassesState({
+        ...rareGlassesState,
+        loading: true,
+      });
+
+      try {
+        if (!isApproved) {
+          await handleApprove();
+        }
+        if (isApproved) {
+          let signature = await getEquipSignature(tokenId);
+          const response = await equipVoucher(
+            1,
+            tokenId,
+            signature,
+            setIsDisabled
+          );
+          console.log("response", response);
+          if (response.status === 1) {
+            ToastMessage("Voucher equipped successfully", true);
+          }
+          setRareGlassesState({
+            ...rareGlassesState,
+            loading: false,
+          });
+
+          handleRefresh();
+        }
+      } catch (error) {
+        console.log("error", error);
+        ToastMessage("Something went wrong");
+        setRareGlassesState({
+          ...rareGlassesState,
+          loading: false,
+        });
       }
     }
   };
-  const handleEquipSuper = async (tokenId) => {
+  const handleEquipSuper = async (tokenId, index) => {
     if (accountAddress) {
-      if (!isApproved) {
-        await handleApprove();
-      }
-      if (isApproved) {
-        let signature = await getEquipSignature(tokenId);
-        await equipVoucher(2, tokenId, signature, setIsDisabled);
-        handleRefresh();
+      setCurrentGlassIndex(index);
+      setSuperscriptGlassesState({
+        ...superscriptGlassesState,
+        loading: true,
+      });
+      try {
+        if (!isApproved) {
+          await handleApprove();
+        }
+        if (isApproved) {
+          let signature = await getEquipSignature(tokenId);
+          const response = await equipVoucher(
+            2,
+            tokenId,
+            signature,
+            setIsDisabled
+          );
+          setSuperscriptGlassesState({
+            ...superscriptGlassesState,
+            loading: false,
+          });
+
+          if (response.status === 1) {
+            ToastMessage("Voucher equipped successfully", true);
+          }
+          handleRefresh();
+        }
+      } catch (error) {
+        console.log("error", error);
+        ToastMessage("Something went wrong");
+        setSuperscriptGlassesState({
+          ...superscriptGlassesState,
+          loading: false,
+        });
       }
     }
   };
@@ -151,12 +248,26 @@ export default function VoucherView() {
     return sig;
   };
 
-  const handleUnEquip = async (tokenId) => {
+  const handleUnEquip = async (tokenId, index, type) => {
     if (accountAddress) {
-      await unequipVoucher(tokenId);
-      handleRefresh();
+      setCurrentGlassIndex(index);
+      setUnequippedLoading(type);
+      try {
+        const response = await unequipVoucher(tokenId);
+        setUnequippedLoading("none");
+        if (response.status === 1) {
+          ToastMessage("Voucher unequipped successfully", true);
+        }
+        handleRefresh();
+      } catch (error) {
+        console.log("error", error);
+        ToastMessage("Something went wrong");
+        setUnequippedLoading("none");
+      }
     }
   };
+
+  console.log("voucherBalance", { voucherBalance, eligibleGlasses });
 
   return (
     <Box sx={{ flexGrow: 1, m: 4 }}>
@@ -168,18 +279,25 @@ export default function VoucherView() {
         {Array.from(Array(voucherBalance[0])).map((_, idx) => (
           <VoucherCard
             key={idx}
+            index={idx}
             disabled={isDisabled}
             eligibleGlasses={eligibleGlasses?.length ? eligibleGlasses[0] : []}
             clickHandler={handleEquipCommon}
+            loading={idx === currentGlassIndex && commonGlassesState.loading}
           />
         ))}
         {equippedBalance?.length &&
-          equippedBalance[0]?.map((glassId) => (
+          equippedBalance[0]?.map((glassId, index) => (
             <VoucherCard
               key={glassId}
+              index={index}
+              type="COMMON"
               equipped={true}
               glassId={glassId}
               clickHandler={handleUnEquip}
+              loading={
+                unequippedLoading === "COMMON" && index === currentGlassIndex
+              }
             />
           ))}
       </OutlinedAccordian>
@@ -191,18 +309,25 @@ export default function VoucherView() {
         {Array.from(Array(voucherBalance[1])).map((_, idx) => (
           <VoucherCard
             key={idx}
+            index={idx}
             disabled={isDisabled}
             eligibleGlasses={eligibleGlasses?.length ? eligibleGlasses[1] : []}
             clickHandler={handleEquipRare}
+            loading={idx === currentGlassIndex && rareGlassesState.loading}
           />
         ))}
         {equippedBalance?.length &&
-          equippedBalance[1]?.map((glassId) => (
+          equippedBalance[1]?.map((glassId, index) => (
             <VoucherCard
               key={glassId}
+              type="RARE"
+              index={index}
               equipped={true}
               glassId={glassId}
               clickHandler={handleUnEquip}
+              loading={
+                unequippedLoading === "RARE" && index === currentGlassIndex
+              }
             />
           ))}
       </OutlinedAccordian>
@@ -215,17 +340,27 @@ export default function VoucherView() {
           <VoucherCard
             key={idx}
             disabled={isDisabled}
+            index={idx}
             eligibleGlasses={eligibleGlasses?.length ? eligibleGlasses[2] : []}
             clickHandler={handleEquipSuper}
+            loading={
+              idx === currentGlassIndex && superscriptGlassesState.loading
+            }
           />
         ))}
         {equippedBalance?.length &&
-          equippedBalance[2]?.map((glassId) => (
+          equippedBalance[2]?.map((glassId, index) => (
             <VoucherCard
               key={glassId}
               equipped={true}
+              type="SUPERSCRIPT"
+              index={index}
               glassId={glassId}
               clickHandler={handleUnEquip}
+              loading={
+                unequippedLoading === "SUPERSCRIPT" &&
+                index === currentGlassIndex
+              }
             />
           ))}
       </OutlinedAccordian>

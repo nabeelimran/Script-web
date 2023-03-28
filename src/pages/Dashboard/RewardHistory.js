@@ -119,7 +119,7 @@ const RewardHistory = () => {
           </Box>
         )}
 
-        {(commonRewards || rareRewards || superscriptRewards) && (
+        {commonRewards || rareRewards || superscriptRewards ? (
           <>
             <Box
               margin="0 auto"
@@ -311,6 +311,12 @@ const RewardHistory = () => {
               </Box>
             </Box>
           </>
+        ) : (
+          accountAddress && (
+            <Box display="flex" justifyContent="center" width="100%">
+              <img src={LoaderGif} alt="loader" style={{ height: "30px" }} />
+            </Box>
+          )
         )}
       </Box>
       {true && (
