@@ -87,7 +87,7 @@ export default function Glass() {
       <MintBox accountAddress={accountAddress} balance={balance} />
 
       <FreeMintBox accountAddress={accountAddress} balance={balance} />
-      <GemMintBox accountAddress={accountAddress} balance={balance} />
+      {/* <GemMintBox accountAddress={accountAddress} balance={balance} /> */}
 
       {/* {contractLoading === "success" && (
         <div>

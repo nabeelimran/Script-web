@@ -168,15 +168,21 @@ const FreeMintBox = ({ accountAddress, balance }) => {
         Freemium glasses
       </Typography>
       <FreeMintBoxStyle>
-        <Typography variant="h5" color="textSecondary" align="center">
-          You are eligible to mint your first glasses for free!{" "}
+        <Typography
+          variant="h5"
+          color={freeMintEligible ? "textSecondary" : "GrayText"}
+          align="center"
+        >
+          {freeMintEligible
+            ? "You are eligible to mint your first glasses for free!"
+            : "You are not eligible for free mint!"}
         </Typography>
 
         <Box>
           {accountAddress ? (
             ResolveIsApproved() ? (
               <Button
-                disabled={contractLoading === "processing"}
+                disabled={contractLoading === "processing" || !freeMintEligible}
                 variant="contained"
                 color="primary"
                 onClick={handleFreeMint}
