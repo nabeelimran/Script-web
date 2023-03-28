@@ -149,10 +149,10 @@ function InventoryTrade() {
               minWidth: 150,
             }}
           >
-            <InputLabel>Glass Type</InputLabel>
+            <InputLabel>Glass Type </InputLabel>
             <Select
               value={type.toString()}
-              label="Type"
+              label="Glass Type"
               onChange={handleTypeSelect}
             >
               <MenuItem value={0}>All</MenuItem>
