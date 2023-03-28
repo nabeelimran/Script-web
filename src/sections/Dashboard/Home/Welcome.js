@@ -6,18 +6,102 @@ import { useNavigate } from "react-router-dom";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { setRewardPoints } from "redux/reducers/RewardPoint_State";
+import Card from "components/Dashboard/Card";
+import CardProgress from "components/Dashboard/CardProgress";
+import { getVoucherEligibility, getVoucherSignature } from "utils/api";
+import {
+  approveVoucher,
+  balanceOf,
+  checkVoucherApproval,
+  mintVoucher,
+} from "contract/functions";
 
-function Welcome() {
+const voucherType = ["COMMON", "RARE", "SUPERSCRIPT"];
+
+function Welcome({}) {
   const user = LocalServices.getServices("user");
   const [totalRewardPoints, setTotalRewardPoints] = useState(0);
-  const {updateRewardPointState} = useSelector(state => state.RewardPoint_State);
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const { updateRewardPointState } = useSelector(
+    (state) => state.RewardPoint_State
+  );
 
-  const goToTVSite = () => navigate({
-    pathname: '/tv',
+  const { accountAddress } = useSelector((state) => state.metamask_state);
+
+  const [isVoucherApproved, setIsVoucherApproved] = useState(false);
+  const [balance, setBalance] = useState(0);
+
+  const [voucherEligible, setVoucherEligible] = useState({
+    eligibility: false,
+    types: [false, false, false],
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    (async () => {
+      if (!accountAddress) return;
+      await checkVoucherEligibility();
+      await handleCheckVoucherApproval();
+      await getBalance();
+    })();
+  }, [accountAddress]);
+
+  const goToTVSite = () =>
+    navigate({
+      pathname: "/tv",
+    });
+
+  const getBalance = async () => {
+    if (accountAddress) {
+      const balance = await balanceOf(accountAddress);
+      setBalance(Number(balance));
+    }
+  };
+
+  const handleCheckVoucherApproval = async () => {
+    if (accountAddress) {
+      let approval = await checkVoucherApproval(accountAddress);
+      setIsVoucherApproved(approval);
+    }
+  };
+
+  const handleApproveVoucher = async () => {
+    if (accountAddress) {
+      await approveVoucher();
+      await handleCheckVoucherApproval();
+    }
+  };
+
+  const checkVoucherEligibility = async () => {
+    if (accountAddress) {
+      let eligibility = await getVoucherEligibility(
+        accountAddress.toLowerCase()
+      );
+      console.log("Eligible >", eligibility);
+      setVoucherEligible(eligibility);
+    }
+  };
+
+  const handleVoucherMint = async (type) => {
+    if (accountAddress && voucherEligible.eligibility) {
+      if (!isVoucherApproved) {
+        await handleApproveVoucher();
+      }
+      if (isVoucherApproved) {
+        const res = await getVoucherSignature(
+          accountAddress.toLowerCase(),
+          type
+        );
+        await mintVoucher(
+          res.address,
+          res.voucherType,
+          res.nonce,
+          res.signature
+        );
+        checkVoucherEligibility();
+      }
+    }
+  };
 
   const getTotalRewardPoints = () => {
     if (user && user.userId) {
@@ -25,26 +109,33 @@ function Welcome() {
         (res) => {
           if (res && res.status === 200) {
             setTotalRewardPoints(res.data.data.myRewards);
-            dispatch(setRewardPoints(res.data.data.myRewards))
+            dispatch(setRewardPoints(res.data.data.myRewards));
           }
         }
       );
     }
   };
 
+  const handlePaidMint = async () => {
+    navigate("/dashboard/mint");
+  };
+
   useEffect(() => {
-  
-      getTotalRewardPoints();
-    
+    getTotalRewardPoints();
   }, [updateRewardPointState]);
 
   return (
     <div className="dashboard-top-spacing pb-8 lg:pb-12 bg-[#18181A] relative z-10">
       <div className="dashboard-layout">
         <Title variant="20" className="font-semibold text-center mb-3">
-          Welcome Back, {user?.userName || ''}
+          Welcome Back, {user?.userName || ""}
         </Title>
-        <h1 onClick={goToTVSite} className="text-base lg:text-base xl:text-xl text-center text-primary font-semibold mb-7">Head back to TV</h1>
+        <h1
+          onClick={goToTVSite}
+          className="text-base lg:text-base xl:text-xl text-center text-primary font-semibold mb-7"
+        >
+          Head back to TV
+        </h1>
 
         <div className="space-y-1 mb-8 lg:mb-12">
           <p className="fs-20px font-medium">
@@ -57,47 +148,68 @@ function Welcome() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-3 md:gap-6">
-          <div className="py-4 px-5 rounded-lg flex items-center bg-[#5815BA]">
-            <div className="flex items-start space-x-3">
-              <div className="min-w-[40px] h-[40px] rounded-full bg-white"></div>
+          <Card
+            color="#5815BA"
+            title="Nice Work!"
+            description="You have earned N/A SPAY this week!"
+          />
 
-              <div className="">
-                <p className="fs-16px font-medium mb-1">Nice Work!</p>
-                <p className="text-sm">You have earned N/A SPAY this week!</p>
-              </div>
-            </div>
-          </div>
+          <CardProgress
+            color="#0E0E0F"
+            title="N/A SPAY"
+            description="Accumulate 10,000 SPAY"
+            barColor="#FF38DC"
+            progress="90%"
+            bgColor="#A6A6A6"
+          />
 
-          <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
-            <div className="flex items-center space-x-3 flex-1 mb-2">
-              <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
-              <p className="fs-18px font-semibold">N/A SPAY</p>
-            </div>
+          <CardProgress
+            color="#0E0E0F"
+            title="N/A SCPT"
+            description="Connect on live chat 5x a week"
+            progress="100%"
+          />
 
-            <p className="text-xs mb-2">Accumulate 10,000 SPAY</p>
-            <FillBar barColor="#FF38DC" progress="90%" bgColor="#A6A6A6" />
-          </div>
+          <CardProgress
+            color="#0E0E0F"
+            title={
+              totalRewardPoints ? `${totalRewardPoints} POINTS` : `N/A POINTS`
+            }
+            description="Accumulate Script Points"
+            progress="100%"
+          />
 
-          <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
-            <div className="flex items-center space-x-3 flex-1 mb-2">
-              <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
-              <p className="fs-18px font-semibold">N/A SCPT</p>
-            </div>
+          {voucherEligible.eligibility && (
+            <>
+              {voucherEligible.types.map(
+                (available, idx) =>
+                  available && (
+                    <Card
+                      key={idx.toString()}
+                      color="#00A12D"
+                      title="MINT VOUCHER!"
+                      description={`You are now eligible to mint a ${voucherType[idx]} voucher!`}
+                      clickHandler={() => {
+                        handleVoucherMint(idx);
+                      }}
+                    />
+                  )
+              )}
+            </>
+          )}
 
-            <p className="text-xs mb-2">Connect on live chat 5x a week</p>
-            <FillBar progress="100%" />
-          </div>
-          <div className="py-4 px-5 rounded-lg bg-[#0E0E0F] flex flex-col">
-            <div className="flex items-center space-x-3 flex-1 mb-2">
-              <div className="w-[24px] h-[24px] rounded-full bg-white"></div>
-              <p className="fs-18px font-semibold">
-                { totalRewardPoints ? `${totalRewardPoints} POINTS` : `N/A POINTS` }
-              </p>
-            </div>
+          <Card
+            color="#5815BA"
+            title="Mint Glasses!"
+            description="Mint glasses to start earning SPAY"
+            clickHandler={handlePaidMint}
+          />
 
-            <p className="text-xs mb-2">Accumulate Script Points</p>
-            <FillBar progress="100%" />
-          </div>
+          <Card
+            title={`${balance.toFixed(2)} SPAY`}
+            color="#0E0E0F"
+            description="watch to earn!"
+          />
         </div>
       </div>
 
