@@ -129,6 +129,8 @@ function InventoryTrade() {
       _setGlasses(glasses.filter((glass) => glass.type === "RARE"));
     } else if (glassType === 3) {
       _setGlasses(glasses.filter((glass) => glass.type === "SUPERSCRIPT"));
+    } else if (glassType === 4) {
+      _setGlasses(glasses.filter((glass) => glass.type === "FREE"));
     }
   };
 
@@ -149,7 +151,7 @@ function InventoryTrade() {
               minWidth: 150,
             }}
           >
-            <InputLabel>Glass Type </InputLabel>
+            <InputLabel>Glass Type</InputLabel>
             <Select
               value={type.toString()}
               label="Glass Type"
@@ -159,6 +161,7 @@ function InventoryTrade() {
               <MenuItem value={1}>Common</MenuItem>
               <MenuItem value={2}>Rare</MenuItem>
               <MenuItem value={3}>Superscript</MenuItem>
+              <MenuItem value={4}>Free</MenuItem>
             </Select>
           </FormControl>
         </Box>
