@@ -160,8 +160,6 @@ const FreeMintBox = ({ accountAddress, balance }) => {
     }
   };
 
-  if (freeMintEligible) return null;
-
   return (
     <Box mb={4}>
       <Typography variant="h4" color="textSecondary" align="center" mb={4}>
