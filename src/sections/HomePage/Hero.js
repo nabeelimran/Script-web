@@ -12,7 +12,7 @@ function Hero() {
 
   return (
     <div>
-      <div className="container grid lg:grid-cols-2 gap-4">
+      <div className="container grid lg:grid-cols-[58%_40%] gap-[2%]">
         <div className="text-center lg:text-left relative z-10">
           <h5 className="text-primary mb-4 font-semibold fs-16px">
             Powering Live TV and Film for the next generation.
@@ -23,46 +23,65 @@ function Hero() {
           </h1>
 
           <img
-            src="images/hero-img.png"
-            className="w-full block lg:hidden max-w-[26rem] mx-auto"
+            src="images/hero-img-1.png"
+            className="w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer"
             alt=""
+            onClick={() => helper.openLink("https://presale.script.tv/")}
           />
 
-          <p className="fs-18px text-white opacity-50 font-normal mb-10 xl:mb-12">
+          <p className="fs-18px text-white opacity-50 font-normal mb-10 xl:mb-12 mt-5 md:mt-0">
             24/7 live television on chain. Earn rewards whilst you watch through
             gameFi and socialFi elements.Join and start earning in minutes!
             Built on Script infrastructure, on Script blockchain.
           </p>
 
-          <div className="flex items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start">
-          
+          <div className="flex flex-col md:flex-row items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start space-y-5 md:space-y-0">
+            <Button
+              label="Presale"
+              buttonProps={{
+                onClick: () => helper.openLink("https://presale.script.tv/"),
+              }}
+            />
             <Button
               label="Whitepaper"
+              variant={2}
               buttonProps={{
-                onClick:() => helper.openLink("https://whitepaper.script.tv/")
+                onClick: () => helper.openLink("https://whitepaper.script.tv/"),
               }}
-              
             />
             <Button
               label="Audits"
-              variant={2} arrowVisible={true}
+              variant={2}
+              arrowVisible={true}
               iconName="ion:shield-checkmark"
               buttonProps={{
-                onClick:() => helper.openLink("https://whitepaper.script.tv/security-+-audits")
+                onClick: () =>
+                  helper.openLink(
+                    "https://whitepaper.script.tv/security-+-audits"
+                  ),
               }}
-              
             />
-            <Button link="/tv" label="Launch app" variant={2} arrowVisible={true} iconName="material-symbols:arrow-right-alt-rounded" />
+            <Button
+              link="/tv"
+              label="Launch app"
+              variant={2}
+              arrowVisible={true}
+              iconName="material-symbols:arrow-right-alt-rounded"
+              className="h-[75px]"
+            />
           </div>
 
           <p className="fs-16px font-medium text-white mb-9">
             <span className="opacity-50">Already using script.tv?</span>{" "}
-            <a href="/" onClick={(e) => {
-              e.preventDefault();
-              setSidebarVisibility(false);
-              dispatch(toggleModalVisibility(true));
-            }}
-            className="text-primary">
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                setSidebarVisibility(false);
+                dispatch(toggleModalVisibility(true));
+              }}
+              className="text-primary"
+            >
               Sign in
             </a>
           </p>
@@ -99,9 +118,10 @@ function Hero() {
             <div className="yellow-center-blob -z-20 w-[200px] h-[200px] blur-[140px]"></div>
 
             <img
-              src="images/hero-img.png"
-              className="w-full hidden lg:block z-10 relative"
+              src="images/hero-img-1.png"
+              className="w-full hidden lg:block z-10 relative cursor-pointer"
               alt=""
+              onClick={() => helper.openLink("https://presale.script.tv/")}
             />
           </div>
         </div>
