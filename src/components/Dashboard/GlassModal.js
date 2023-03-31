@@ -106,12 +106,12 @@ export default function GlassModal({
           <div className="text-md font-semibold mb-2">
             Total Watch Time : {glass.totalWatchTime}
           </div>
-          <div className="text-md font-semibold mb-2">
+          {/* <div className="text-md font-semibold mb-2">
             Max Earnable Time : {glass.maxEarnableTime}
           </div>
           <div className="text-md font-semibold mb-2">
             Unpaid Watch Time : {glass.unpaidWatchTime}
-          </div>
+          </div> */}
           <div className="text-md font-semibold mb-2">
             Drained : {glass.drained ? "Yes" : "No"}
           </div>
