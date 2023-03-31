@@ -3,12 +3,14 @@ import {
   Button,
   FormControl,
   InputLabel,
+  Link,
   MenuItem,
   Select,
   styled,
   Switch,
   Typography,
 } from "@mui/material";
+import { ToastMessage } from "components/ToastMessage";
 import {
   approve,
   approveGlassPass,
@@ -96,6 +98,7 @@ const MintBox = ({ accountAddress, balance }) => {
   const checkIsApproved = async () => {
     if (accountAddress) {
       const isAllowed = await checkApproval(accountAddress);
+      console.log("isAllowed", isAllowed);
       setIsApproved(isAllowed);
     }
   };
@@ -109,15 +112,19 @@ const MintBox = ({ accountAddress, balance }) => {
       setContractLoading("processing");
       const response = await mintGlasses(type, useGlassPass);
 
+      console.log("response", response);
+
       if (response.status === 1) {
         setContractLoading("success");
         setContractResponse(response);
+        ToastMessage("Glass minted successfully", true);
       } else {
         setContractLoading("error");
       }
     } catch (error) {
       console.log(error);
       setContractLoading("error");
+      ToastMessage("Glass minting failed");
     }
   };
 
@@ -212,6 +219,21 @@ const MintBox = ({ accountAddress, balance }) => {
           )}
         </Box>
       </MintBoxStyle>
+      {contractLoading === "success" && (
+        <Box display="flex" mt={2}>
+          Glass Successfully Minted,
+          <Box>
+            Check you transaction on
+            <Link
+              target="_blank"
+              href={`https://goerli.etherscan.io/tx/${contractResponse?.transactionHash}`}
+            >
+              {" "}
+              Etherscan
+            </Link>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };

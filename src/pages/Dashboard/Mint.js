@@ -78,6 +78,7 @@ export default function Glass() {
   const getBalance = async () => {
     if (accountAddress) {
       const balance = await balanceOf(accountAddress);
+      console.log("balance", balance);
       setBalance(Number(balance));
     }
   };
