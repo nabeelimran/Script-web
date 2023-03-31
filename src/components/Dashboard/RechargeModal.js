@@ -20,15 +20,27 @@ import { styled } from "@mui/material/styles";
 import { rechargeGlasees } from "contract/functions";
 import { getRechargeCost, getRechargeSignature } from "utils/api";
 import { useSelector } from "react-redux";
+import { ToastMessage } from "components/ToastMessage";
+import LoaderGif from "../../assets/Loading_icon.gif";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function RechargeModal({ glass, open, setOpen }) {
+export default function RechargeModal({
+  glass,
+  open,
+  setOpen,
+  rechargeDiscountPercentage,
+  onGlassUpdate,
+}) {
   const [cost, setCost] = useState(0);
   const [rechargeData, setRechargeData] = useState();
   const { accountAddress } = useSelector((state) => state.metamask_state);
+
+  const [rechargeStatus, setRechargeStatus] = useState({
+    loading: false,
+  });
 
   // const handleClickOpen = () => {
   //   setOpen(true);
@@ -57,21 +69,34 @@ export default function RechargeModal({ glass, open, setOpen }) {
 
   const handleRechargeGLasses = async () => {
     if (accountAddress) {
-      let data;
-      if (rechargeData) {
-        data = rechargeData;
-      } else {
-        data = await handleGetRechargeSignature();
+      setRechargeStatus({ loading: true });
+      try {
+        let data;
+        if (rechargeData) {
+          data = rechargeData;
+        } else {
+          data = await handleGetRechargeSignature();
+        }
+        await rechargeGlasees(
+          data.amount,
+          data.nonce,
+          data.signature,
+          data.glassId
+        );
+        setRechargeStatus({ loading: false });
+        ToastMessage("Recharge Successful", true);
+        onGlassUpdate();
+        handleClose();
+      } catch (error) {
+        console.log(error);
+        setRechargeStatus({ loading: false });
+        ToastMessage("Recharge Failed", false);
+        handleClose();
       }
-      await rechargeGlasees(
-        data.amount,
-        data.nonce,
-        data.signature,
-        data.glassId
-      );
-      handleClose();
     }
   };
+
+  console.log("rechargeDiscountPercentage", rechargeDiscountPercentage);
 
   return (
     <StyledDialog
@@ -107,12 +132,25 @@ export default function RechargeModal({ glass, open, setOpen }) {
             <Typography variant="subtitle2">Cost</Typography>
             <Typography variant="subtitle2">{cost.toFixed(4)} SPAY</Typography>
           </RowBox>
+          {rechargeDiscountPercentage > 0 && glass.drained && (
+            <RowBox mt={-2} mb={4}>
+              <Typography variant="subtitle2">Cost after Discount</Typography>
+              <Typography variant="subtitle2">
+                {((cost * (100 - rechargeDiscountPercentage)) / 100).toFixed(4)}
+                {" SPAY"}
+              </Typography>
+            </RowBox>
+          )}
           <Button
             variant="contained"
             disabled={!glass.drained}
             onClick={handleRechargeGLasses}
           >
-            Recharge
+            {rechargeStatus.loading ? (
+              <img src={LoaderGif} alt="loader" style={{ height: "30px" }} />
+            ) : (
+              <>Recharge</>
+            )}
           </Button>
         </GlassBox>
       </DialogContent>
