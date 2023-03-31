@@ -1,17 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
-import { earningPayout } from "contract/functions";
+import { earningPayout, glassesOfOwnerServer } from "contract/functions";
 import { formatEther } from "ethers/lib/utils";
 import useMediaQuery from "hooks/useMediaQuery";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { calculatePayout, claimPayout, getRewardsHistory } from "utils/api";
 import LoaderGif from "../../assets/Loading_icon.gif";
 import { ToastMessage } from "components/ToastMessage";
+import { setGlasses } from "redux/reducers/Profile_State";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
   const [rewards, setRewards] = useState(null);
+  const dispatch = useDispatch();
 
   const [commonRewards, setCommonRewards] = useState(null);
   const [rareRewards, setRareRewards] = useState(null);
@@ -47,6 +49,12 @@ const RewardHistory = () => {
       })();
     }
   }, [accountAddress]);
+
+  const onGlassUpdate = async () => {
+    const response = await glassesOfOwnerServer(accountAddress);
+
+    dispatch(setGlasses(response));
+  };
 
   const onClaimUpdate = async (type) => {
     if (type === "COMMON") {

@@ -35,13 +35,16 @@ export default function GlassModal({
   handleAction,
   gemEligible,
   glass,
+  glassTypesWithVouchers,
 }) {
   const handleClose = (e) => {
-    handleAction(e.currentTarget.textContent);
+    handleAction(e.currentTarget.textContent, rechargeDiscountPercentage);
     setOpen(false);
   };
 
   const [history, setHistory] = useState([]);
+  const [rechargeDiscountPercentage, setRechargeDiscountPercentage] =
+    useState(0);
 
   useEffect(() => {
     if (id) {
@@ -51,6 +54,32 @@ export default function GlassModal({
       })();
     }
   }, [id]);
+
+  useEffect(() => {
+    console.log("glassTypesWithVouchers", glassTypesWithVouchers);
+    setRechargeDiscountPercentage(0);
+    if (glassTypesWithVouchers) {
+      if (glass.type === "COMMON") {
+        glassTypesWithVouchers[0].map((glassId) => {
+          if (glassId === glass.id) {
+            setRechargeDiscountPercentage(10);
+          }
+        });
+      } else if (glass.type === "RARE") {
+        glassTypesWithVouchers[1].map((glassId) => {
+          if (glassId == glass.id) {
+            setRechargeDiscountPercentage(20);
+          }
+        });
+      } else if (glass.type === "SUPERSCRIPT") {
+        glassTypesWithVouchers[2].map((glassId) => {
+          if (glassId === glass.id) {
+            setRechargeDiscountPercentage(30);
+          }
+        });
+      }
+    }
+  }, [glassTypesWithVouchers, glass]);
 
   return (
     <StyledDialog
@@ -85,6 +114,9 @@ export default function GlassModal({
           </div>
           <div className="text-md font-semibold mb-2">
             Drained : {glass.drained ? "Yes" : "No"}
+          </div>
+          <div className="text-md font-semibold mb-2">
+            Voucher Equipped : {rechargeDiscountPercentage > 0 ? "Yes" : "No"}
           </div>
         </Box>
         {history.length > 0 && (
