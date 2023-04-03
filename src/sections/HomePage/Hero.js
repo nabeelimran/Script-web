@@ -23,7 +23,7 @@ function Hero() {
           </h1>
 
           <img
-            src="images/hero-img-1.png"
+            src="images/hero-img.png"
             className="w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer"
             alt=""
             onClick={() => helper.openLink("https://presale.script.tv/")}
@@ -118,7 +118,7 @@ function Hero() {
             <div className="yellow-center-blob -z-20 w-[200px] h-[200px] blur-[140px]"></div>
 
             <img
-              src="images/hero-img-1.png"
+              src="images/hero-img.png"
               className="w-full hidden lg:block z-10 relative cursor-pointer"
               alt=""
               onClick={() => helper.openLink("https://presale.script.tv/")}
