@@ -207,15 +207,15 @@ function App() {
                 <RewardHistory />
               </PrivateRoute>
             }
-          /> */}
-          {/* <Route
+          />
+          <Route
             path="notifications"
             element={
               <PrivateRoute>
                 <Notifications />
               </PrivateRoute>
             }
-          /> */}
+          />
           <Route
             path="share-referral"
             element={
