@@ -28,7 +28,7 @@ function StakingInformation({
       <div className="space-y-6 lg:space-y-4">
         <InputRow
           label="Enter Your SCPT Amount:"
-          placeholder={amount}
+          placeholder={0}
           id="amount"
           changeAmount={checkAmount}
           value={amount}
@@ -59,7 +59,7 @@ function StakingInformation({
               label="Calculate earnings"
               buttonProps={{
                 onClick: () => {
-                  console.log("sl")
+                  calculateReward()
                 },
               }}
             />
