@@ -42,8 +42,8 @@ function Rewards() {
   };
 
   const handleCollectReward = async () => {
-    const latestDayReward = await getLatestDayReward();
     setIsLoading(true);
+    const latestDayReward = await getLatestDayReward();
     if(latestDayReward && latestDayReward.isSuccess) {
       if (latestDayReward.data) {
         const rewardCollectTimestamp = latestDayReward.data.createdAt;
@@ -80,7 +80,6 @@ function Rewards() {
     };
     Api.collectDailyReward(req, "reward-management").then((res) => {
       if(res && res.status === 200) {
-        setIsLoading(false);
         helper.trackByMixpanel("Collect Reward Button Clicked",{
           "day": new Date().getDay() + 1,
           "email" : user.email,
@@ -89,6 +88,7 @@ function Rewards() {
         dispatch(updateRewardPoint(true))
         getTotalRewardPoints();
         ToastMessage('Reward collected successfully', true);
+        setIsLoading(false);
       } else {
         ToastMessage('Error while collecting reward');
         setIsLoading(false);
