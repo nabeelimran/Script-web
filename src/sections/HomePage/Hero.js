@@ -1,14 +1,32 @@
 import Button from "components/Button";
+import CountDown from "components/CountDown";
+import Title from "components/Title";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+import Api from "services/api";
 import { helper } from "utils/helper";
 
 function Hero() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const dispatch = useDispatch();
+  const [overAllOrderedToken, setOverAllOrderedToken] = useState(0);
+  const totalPresaleAmount = 70290000;
+
+  const getOverAllOrderedToken = () => {
+    Api.getOverAllOrderedToken().then((res) => {
+      if (res && res.status === 200) {
+        setOverAllOrderedToken(res.data.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getOverAllOrderedToken();
+  }, [])
+  
 
   return (
     <div>
@@ -22,12 +40,45 @@ function Hero() {
             <span className="text-primary">For Free</span>
           </h1>
 
-          <img
+          <div>
+          <div className="bg-shade-grayis rounded p-6 w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer">
+              <Title variants={18} className="mb-3 text-center font-bold">
+                FINAL <span className="ml-2 text-primary">PRESALE</span>
+              </Title>
+              <div className="flex justify-between p-3.5 border border-[#36e6ae91] mb-5 rounded-xl">
+                <CountDown />
+              </div>
+              <div className="flex border border-[#36e6ae91] justify-between p-3.5 rounded-xl">
+                <div className="flex flex-col">
+                  <p className="m-auto text-lg font-bold">{((overAllOrderedToken/totalPresaleAmount)*100).toFixed(2)}% <span className="text-primary">SOLD</span></p>
+                </div>
+                <div className="flex flex-col items-end">
+                  <p className="mb-0 font-bold text-md">{(100 - ((overAllOrderedToken/totalPresaleAmount)*100)).toFixed(2)}%</p>
+                  <p className="text-primary">Remaining</p>
+                </div>
+              </div>
+              <h5 className="font-medium text-lg mb-5">
+                <span className="text-primary">1 SCPT</span> = $ 0.00947
+              </h5>
+              <div className="flex flex-col justify-center items-center border border-[#36e6ae91] mb-5 p-3.5 rounded-xl">
+                  <p className="flex text-3xl font-bold"><span className="text-primary mx-2">{Math.floor(overAllOrderedToken).toLocaleString("en-US")}</span> Token Sold</p>
+                  <p className="flex text-md">only <span className="text-primary mx-2">{(totalPresaleAmount - overAllOrderedToken) > 0 ? Math.floor(totalPresaleAmount - overAllOrderedToken).toLocaleString("en-US") : 0}</span> token remaining</p>
+              </div>
+              <button
+                type="button"
+                className="flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] space-x-3 px-6 xl:px-8 rounded-lg font-semibold w-full justify-center py-4 text-darkGray bg-primary"
+                onClick={() => helper.openLink("https://presale.script.tv/")}>
+                <span className="text-inherit lh-1">Buy Tokens</span>
+              </button>
+            </div>
+          {/* <img
             src="images/hero-img.png"
             className="w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer"
             alt=""
             onClick={() => helper.openLink("https://presale.script.tv/")}
-          />
+          /> */}
+          </div>
+          
 
           <p className="fs-18px text-white opacity-50 font-normal mb-10 xl:mb-12 mt-5 md:mt-0">
             24/7 live television on chain. Earn rewards whilst you watch through
@@ -116,13 +167,36 @@ function Hero() {
         <div className="w-full hidden lg:block">
           <div className="relative z-20">
             <div className="yellow-center-blob -z-20 w-[200px] h-[200px] blur-[140px]"></div>
-
-            <img
-              src="images/hero-img.png"
-              className="w-full hidden lg:block z-10 relative cursor-pointer"
-              alt=""
-              onClick={() => helper.openLink("https://presale.script.tv/")}
-            />
+            <div className="bg-shade-grayis rounded p-6">
+              <Title variants={18} className="mb-3 text-center font-bold">
+                FINAL <span className="ml-2 text-primary">PRESALE</span>
+              </Title>
+              <div className="flex justify-between p-3.5 border border-[#36e6ae91] mb-5 rounded-xl">
+                <CountDown />
+              </div>
+              <div className="flex border border-[#36e6ae91] justify-between p-3.5 rounded-xl">
+                <div className="flex flex-col">
+                  <p className="m-auto text-lg font-bold">{((overAllOrderedToken/totalPresaleAmount)*100).toFixed(2)}% <span className="text-primary">SOLD</span></p>
+                </div>
+                <div className="flex flex-col items-end">
+                  <p className="mb-0 font-bold text-md">{(100 - ((overAllOrderedToken/totalPresaleAmount)*100)).toFixed(2)}%</p>
+                  <p className="text-primary">Remaining</p>
+                </div>
+              </div>
+              <h5 className="font-medium text-lg mb-5">
+                <span className="text-primary">1 SCPT</span> = $ 0.00947
+              </h5>
+              <div className="flex flex-col justify-center items-center border border-[#36e6ae91] mb-5 p-3.5 rounded-xl">
+                  <p className="flex text-3xl font-bold"><span className="text-primary mx-2">{Math.floor(overAllOrderedToken).toLocaleString("en-US")}</span> Token Sold</p>
+                  <p className="flex text-md">only <span className="text-primary mx-2">{(totalPresaleAmount - overAllOrderedToken) > 0 ? Math.floor(totalPresaleAmount - overAllOrderedToken).toLocaleString("en-US") : 0}</span> token remaining</p>
+              </div>
+              <button
+                type="button"
+                className="flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] space-x-3 px-6 xl:px-8 rounded-lg font-semibold w-full justify-center py-4 text-darkGray bg-primary"
+                onClick={() => helper.openLink("https://presale.script.tv/")}>
+                <span className="text-inherit lh-1">Buy Tokens</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
