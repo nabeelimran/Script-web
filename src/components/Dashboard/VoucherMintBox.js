@@ -1,0 +1,295 @@
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  Link,
+  MenuItem,
+  Select,
+  styled,
+  Switch,
+  Typography,
+} from "@mui/material";
+import { ToastMessage } from "components/ToastMessage";
+import {
+  approve,
+  approveGlassPass,
+  approveVoucher,
+  balanceOf,
+  checkApproval,
+  checkVoucherApproval,
+  checkVoucherForTvApproval,
+  getGlassPassBalance,
+  getVoucherBalance,
+  mintGlasses,
+  mintVoucher,
+} from "contract/functions";
+import React, { useEffect, useState } from "react";
+import {
+  fetchEquippedVouchers,
+  getVoucherEligibility,
+  getVoucherSignature,
+} from "utils/api";
+
+const RowBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  maxWidth: 240,
+  width: "100%",
+  height: 40,
+  marginBottom: 4,
+}));
+
+const VoucherMintBoxStyle = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  border: `3px solid ${theme.palette.primary.main}`,
+  borderRadius: "12px",
+  backgroundColor: "#000",
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+    height: "300px",
+    textAlign: "center",
+  },
+}));
+
+const VoucherMintBox = ({ accountAddress }) => {
+  const voucherPrices = [250, 500, 800];
+
+  const [type, setType] = useState(1);
+  const [contractLoading, setContractLoading] = useState(false);
+
+  const [useGlassPass, setUseGlassPass] = useState(false);
+  const [isPassApproved, setIsPassApproved] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
+  const [passBalance, setPassBalance] = useState(0);
+
+  const [voucherBalance, setVoucherBalance] = useState([0, 0, 0]);
+
+  const [equippedBalance, setEquippedBalance] = useState();
+
+  const [contractResponse, setContractResponse] = useState(null);
+
+  const [glassTypePrice, setGlassTypePrice] = useState(10);
+
+  const [balance, setBalance] = useState(0);
+
+  const [isVoucherApproved, setIsVoucherApproved] = useState(false);
+
+  const [voucherEligible, setVoucherEligible] = useState({
+    eligibility: false,
+    types: [false, false, false],
+  });
+
+  useEffect(() => {
+    // setGlassTypePrice(glassesPrice[type]);
+    // setUseGlassPass(false);
+  }, [type]);
+
+  useEffect(() => {
+    (async () => {
+      if (!accountAddress) return;
+      await checkVoucherEligibility();
+      await handleCheckVoucherApproval();
+      await getBalance();
+    })();
+  }, [accountAddress]);
+
+  const getBalance = async () => {
+    if (accountAddress) {
+      const balance = await balanceOf(accountAddress);
+      setBalance(Number(balance));
+    }
+  };
+
+  const handleCheckVoucherApproval = async () => {
+    if (accountAddress) {
+      let approval = await checkVoucherApproval(accountAddress);
+      console.log("Approval >", approval);
+      setIsVoucherApproved(approval);
+    }
+  };
+
+  const checkVoucherEligibility = async () => {
+    if (accountAddress) {
+      let eligibility = await getVoucherEligibility(
+        accountAddress.toLowerCase()
+      );
+      console.log("Eligible >", eligibility);
+      setVoucherEligible(eligibility);
+    }
+  };
+
+  const handleApproveVoucher = async () => {
+    if (accountAddress && voucherEligible.eligibility) {
+      await approveVoucher();
+      await handleCheckVoucherApproval();
+    }
+  };
+
+  const checkIsApproved = async () => {
+    if (accountAddress) {
+      const isAllowed = await checkVoucherForTvApproval(accountAddress);
+      setIsApproved(isAllowed);
+    }
+  };
+
+  const handleFetchVouchers = async () => {
+    if (accountAddress) {
+      const vouchers = await getVoucherBalance(accountAddress);
+      console.log("vouchers", vouchers);
+      setVoucherBalance(vouchers);
+    }
+  };
+
+  const handleFetchEquipped = async () => {
+    if (accountAddress) {
+      const vouchers = await fetchEquippedVouchers(accountAddress);
+      console.log("handleFetchEquipped", vouchers);
+      setEquippedBalance(vouchers);
+    }
+  };
+
+  const ResolveIsApproved = () => {
+    console.log("useGlassPass VoucherMintBox", useGlassPass);
+    if (useGlassPass) {
+      return isPassApproved;
+    } else {
+      return isApproved;
+    }
+  };
+
+  const handleTypeSelect = (e) => {
+    setType(Number(e.target.value));
+  };
+
+  const onVoucherMint = async () => {
+    try {
+      if (isVoucherApproved) {
+        setContractLoading("processing");
+        const res = await getVoucherSignature(
+          accountAddress.toLowerCase(),
+          type
+        );
+        console.log("res", res);
+        const response = await mintVoucher(
+          res.address,
+          res.voucherType,
+          res.nonce,
+          res.signature
+        );
+        checkVoucherEligibility();
+
+        console.log("response", response);
+
+        if (response.status === 1) {
+          setContractLoading("success");
+          setContractResponse(response);
+          ToastMessage("Voucher Minted Successfully", true);
+        } else {
+          setContractLoading("error");
+        }
+      }
+    } catch (error) {
+      console.log("error", error);
+      setContractLoading("error");
+      ToastMessage("Voucher Minting Failed");
+    }
+  };
+
+  return (
+    <Box mb={4}>
+      {" "}
+      <Typography variant="h4" color="textSecondary" align="center" mb={1}>
+        Mint your vouchers
+      </Typography>
+      <RowBox></RowBox>
+      <VoucherMintBoxStyle>
+        <Box>
+          <Typography
+            sx={{ color: "theme.palette.grey[600]", fontSize: "0.8rem" }}
+            variant="overline"
+          >
+            Voucher Mint Price
+          </Typography>
+          <Typography variant="h4">
+            {voucherPrices[type]} <span style={{ fontSize: "1rem" }}>SPAY</span>
+          </Typography>
+        </Box>
+        <Box>
+          <FormControl fullWidth>
+            <InputLabel>Type</InputLabel>
+            <Select
+              value={type.toString()}
+              label="Type"
+              onChange={handleTypeSelect}
+            >
+              <MenuItem value={0}>Common</MenuItem>
+              <MenuItem value={1}>Rare</MenuItem>
+              <MenuItem value={2}>Superscript</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <Box>
+          {accountAddress ? (
+            voucherEligible.types[type] ? (
+              isVoucherApproved ? (
+                <Button
+                  disabled={contractLoading === "processing"}
+                  variant="contained"
+                  color="primary"
+                  onClick={onVoucherMint}
+                >
+                  {contractLoading === "processing"
+                    ? "Minting..."
+                    : balance > 0
+                    ? "Mint"
+                    : "Low balance"}
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleApproveVoucher}
+                >
+                  Approve
+                </Button>
+              )
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {}}
+                disabled
+              >
+                Not Eligible
+              </Button>
+            )
+          ) : (
+            <Typography>Connect your wallet</Typography>
+          )}
+        </Box>
+      </VoucherMintBoxStyle>
+      {contractLoading === "success" && (
+        <Box display="flex" mt={2}>
+          Glass Successfully Minted,
+          <Box>
+            Check you transaction on
+            <Link
+              target="_blank"
+              href={`https://goerli.etherscan.io/tx/${contractResponse?.transactionHash}`}
+            >
+              {" "}
+              Etherscan
+            </Link>
+          </Box>
+        </Box>
+      )}
+    </Box>
+  );
+};
+
+export default VoucherMintBox;
