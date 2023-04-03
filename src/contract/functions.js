@@ -87,6 +87,8 @@ export const checkVoucherApproval = async (user) => {
     user,
     scriptVoucherAddress
   );
+
+  console.log("allowance", allowance);
   return Number(allowance) > 1e18;
 };
 
@@ -172,6 +174,9 @@ export const mintVoucher = async (address, type, nonce, signature) => {
     type,
     nonce,
     signature
+    // {
+    //   gasLimit: 1000000,
+    // }
   );
   return await tx.wait();
 };
