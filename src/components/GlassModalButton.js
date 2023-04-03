@@ -55,7 +55,8 @@ function GlassModalButton({ selectedChananel, user, selectedGlass, saveDurationR
           alt=""
         />
         <div className="py-1 px-3 text-[10px] xl:text-xs bg-black font-medium rounded">
-          {selectedGlass && JSON.stringify(selectedGlass) !== '{}' ? `#${selectedGlass.glassId}` : 'Choose'}
+          {console.log(selectedGlass)}
+          {selectedGlass && JSON.stringify(selectedGlass) !== '{}' ? `#${selectedGlass?.glass?.tokenId}` : 'Choose'}
         </div>
       </SquareBox>
     </>
