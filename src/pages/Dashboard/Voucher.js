@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { Box } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 
 import { fetchEquippedVouchers, fetchEquipSignature } from "utils/api";
 import {
@@ -13,6 +13,7 @@ import VoucherCard from "components/Dashboard/VoucherCard";
 import { useSelector } from "react-redux";
 import { OutlinedAccordian } from "components/Accordian";
 import { ToastMessage } from "components/ToastMessage";
+import VoucherMintBox from "components/Dashboard/VoucherMintBox";
 //import { useAppSelector } from "../../app/hooks";
 
 export default function VoucherView() {
@@ -271,6 +272,13 @@ export default function VoucherView() {
 
   return (
     <Box sx={{ flexGrow: 1, m: 4 }}>
+      <Container maxWidth="md" sx={{ my: 6 }} id="mint">
+        <VoucherMintBox accountAddress={accountAddress} />
+      </Container>
+
+      <Typography variant="h4" color="textSecondary" align="center" mb={2}>
+        Equipable Vouchers
+      </Typography>
       <OutlinedAccordian
         expanded={expanded[0]}
         onChange={handleChange(0)}
