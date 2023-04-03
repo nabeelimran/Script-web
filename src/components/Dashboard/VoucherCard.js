@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import LoaderGif from "../../assets/Loading_icon.gif";
 
 export default function VoucherCard({
   equipped = false,
@@ -17,8 +18,22 @@ export default function VoucherCard({
   eligibleGlasses = [],
   disabled,
   clickHandler = (tokenId) => {},
+  loading = false,
+  equippedLoading = false,
+  index,
+  type,
 }) {
   const [tokenId, setTokenId] = useState();
+
+  // console.log("VoucherCard", {
+  //   equipped,
+  //   glassId,
+  //   eligibleGlasses,
+  //   disabled,
+  //   clickHandler,
+  //   loading,
+  //   index,
+  // });
 
   const handleTypeSelect = (e, child) => {
     setTokenId(Number(e.target.value));
@@ -33,20 +48,24 @@ export default function VoucherCard({
             <Typography>{glassId}</Typography>
           </RowBox>
           <Button
-            disabled={disabled}
+            disabled={disabled || loading}
             variant="contained"
             onClick={() => {
-              glassId && clickHandler(glassId);
+              glassId && clickHandler(glassId, index, type);
             }}
           >
-            UnEquip
+            {loading ? (
+              <img src={LoaderGif} alt="loader" style={{ height: "20px" }} />
+            ) : (
+              <>UnEquip</>
+            )}
           </Button>
         </>
       ) : (
         <>
           <FormControl fullWidth>
             <InputLabel>Select Glass</InputLabel>
-            {eligibleGlasses.length && (
+            {eligibleGlasses.length > 0 && (
               <Select
                 value={tokenId ? tokenId.toString() : ""}
                 label="select-glass"
@@ -61,13 +80,17 @@ export default function VoucherCard({
             )}
           </FormControl>
           <Button
-            disabled={disabled}
+            disabled={disabled || loading}
             variant="contained"
             onClick={() => {
-              tokenId && clickHandler(tokenId);
+              tokenId && clickHandler(tokenId, index);
             }}
           >
-            Equip
+            {loading ? (
+              <img src={LoaderGif} alt="loader" style={{ height: "20px" }} />
+            ) : (
+              <>Equip</>
+            )}
           </Button>
         </>
       )}

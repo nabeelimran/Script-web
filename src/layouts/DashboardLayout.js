@@ -2,12 +2,14 @@ import BlackScreen from "components/BlackScreen";
 import Header from "components/Dashboard/Header";
 import LeftDashboardSidebar from "components/Dashboard/LeftDashboardSidebar";
 import RightDashboardSidebar from "components/Dashboard/RightDashboardSidebar";
+import { glassesOfOwnerServer } from "contract/functions";
 import useMediaQuery from "hooks/useMediaQuery";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import { setGlasses } from "redux/reducers/Profile_State";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import MixPanelService from "services/mixPanelService";
@@ -25,47 +27,63 @@ function DashboardLayout() {
   const rightSidebar_Width = "270px";
 
   const userId = LocalServices.getServices("user")?.userId || null;
-  const {updateProfileState} = useSelector(state => state.Profile_State);
+  const { updateProfileState } = useSelector((state) => state.Profile_State);
+
+  const { accountAddress } = useSelector((state) => state.metamask_state);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      if (!accountAddress) return;
+      await getGlasses();
+    })();
+  }, [accountAddress]);
+
+  const getGlasses = async () => {
+    const response = await glassesOfOwnerServer(accountAddress);
+
+    dispatch(setGlasses(response));
+  };
 
   const viewUserProfile = (userId) => {
-    Api.viewUserProfile(userId, 'dashboard').then((res) => {
-      if(res && res.status === 200) {
+    Api.viewUserProfile(userId, "dashboard").then((res) => {
+      if (res && res.status === 200) {
         setProfile(res.data.data);
       }
-    })
-  }
+    });
+  };
 
   const getVideoWatchDuration = (userId) => {
-    Api.getVideoWatchDuration(userId, 'watch').then((res) => {
-      if(res && res.status === 200) {
+    Api.getVideoWatchDuration(userId, "watch").then((res) => {
+      if (res && res.status === 200) {
         setVideoWatchDuration(res.data.data.totalWatchVideoDuration);
         setLastDayWatchVideoDuration(res.data.data.lastDayWatchVideoDuration);
       }
-    })
-  }
+    });
+  };
 
   const getLastShowWatchHistory = (userId) => {
-    Api.getLastWatchShowHistory(userId, 'watch').then((res) => {
-      if(res && res.status === 200) {
+    Api.getLastWatchShowHistory(userId, "watch").then((res) => {
+      if (res && res.status === 200) {
         setLastVideoHistory(res.data.data);
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    if(userId) {
-      viewUserProfile(userId)
+    if (userId) {
+      viewUserProfile(userId);
     }
-  }, [updateProfileState])
-  
+  }, [updateProfileState]);
 
   useEffect(() => {
     MixPanelService.init();
-    console.log("lelelel", userId, rightSidebarVisible)
-    if(userId || rightSidebarVisible) {
-     // viewUserProfile(userId)
-      getVideoWatchDuration(userId)
-      getLastShowWatchHistory(userId)
+    console.log("lelelel", userId, rightSidebarVisible);
+    if (userId || rightSidebarVisible) {
+      // viewUserProfile(userId)
+      getVideoWatchDuration(userId);
+      getLastShowWatchHistory(userId);
     }
     if (leftSidebarVisible || rightSidebarVisible) {
       document.body.style.overflowY = "hidden";
@@ -84,7 +102,7 @@ function DashboardLayout() {
           <Header
             setLeftSidebarVisibility={setLeftSidebarVisibility}
             setRightSidebarVisibility={setRightSidebarVisibility}
-            profile = {profile}
+            profile={profile}
           />
         </>
       )}

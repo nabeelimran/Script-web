@@ -35,34 +35,44 @@ function Hero() {
           </p>
 
           <div className="flex items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start">
-          
             <Button
               label="Whitepaper"
               buttonProps={{
-                onClick:() => helper.openLink("https://whitepaper.script.tv/")
+                onClick: () => helper.openLink("https://whitepaper.script.tv/"),
               }}
-              
             />
             <Button
               label="Audits"
-              variant={2} arrowVisible={true}
+              variant={2}
+              arrowVisible={true}
               iconName="ion:shield-checkmark"
               buttonProps={{
-                onClick:() => helper.openLink("https://whitepaper.script.tv/security-+-audits")
+                onClick: () =>
+                  helper.openLink(
+                    "https://whitepaper.script.tv/security-+-audits"
+                  ),
               }}
-              
             />
-            <Button link="/tv" label="Launch app" variant={2} arrowVisible={true} iconName="material-symbols:arrow-right-alt-rounded" />
+            <Button
+              link="/tv"
+              label="Launch app"
+              variant={2}
+              arrowVisible={true}
+              iconName="material-symbols:arrow-right-alt-rounded"
+            />
           </div>
 
           <p className="fs-16px font-medium text-white mb-9">
             <span className="opacity-50">Already using script.tv?</span>{" "}
-            <a href="/" onClick={(e) => {
-              e.preventDefault();
-              setSidebarVisibility(false);
-              dispatch(toggleModalVisibility(true));
-            }}
-            className="text-primary">
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                setSidebarVisibility(false);
+                dispatch(toggleModalVisibility(true));
+              }}
+              className="text-primary"
+            >
               Sign in
             </a>
           </p>
