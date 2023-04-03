@@ -44,7 +44,7 @@ function Notifications() {
                                         </p>
                                     </div>
                                 </div>
-                                <div class="px-4 py-6 border-1">
+                                <div className="px-4 py-6 border-1">
                                     <Title
                                         className="text-primary text-left font-semibold mb-1"
                                         variant="20"

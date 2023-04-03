@@ -42,7 +42,7 @@ function GlassPopup({ open, setOpen, selectedGlass, saveDurationRes }) {
         </div>
 
         <div className="py-1 px-3 text-center w-fit mx-auto text-xs xl:text-xs bg-black font-medium rounded">
-          #{selectedGlass.glassId}
+          #{selectedGlass?.glass?.tokenId}
         </div>
       </Popup>
     </>

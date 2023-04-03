@@ -127,7 +127,7 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
             <i
               _ngcontent-serverapp-c122=""
               aria-hidden="true"
-              class="fa fa-circle text-[#ffef00] text-[8px] mr-1.5"
+              className="fa fa-circle text-[#ffef00] text-[8px] mr-1.5"
             ></i>
             Watch Live
           </button>

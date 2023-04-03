@@ -159,7 +159,7 @@ function GlassListingPopup() {
                     <img src={helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)]} alt="" className="w-[60px] xl:w-[80px] mx-4" />
                     <div className="flex items-center">
                       <h6>
-                        #{glass.id}
+                        #{glass.tokenId}
                       </h6>
                       {/* <p className="text-xs">
                         Test

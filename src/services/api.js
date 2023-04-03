@@ -763,4 +763,17 @@ export default class Api {
   static getNotifications() {
     return axios.get(`${APIPATH.NOTIFICATIONURL}/notification/show-notification/0x6B787b16445983197bf4b291016c74363d78979a`);
   }
+
+  static getOverAllOrderedToken(walletAddress, screenName="stfx") {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      },
+    };
+    return axios.get(`${APIPATH.BASEURL}getOverallOrderToken`, options);
+  }
 }
