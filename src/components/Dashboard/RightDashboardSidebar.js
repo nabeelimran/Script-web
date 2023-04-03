@@ -48,7 +48,7 @@ function RightDashboardSidebar({
                 alt=""
               />
             </Link>
-            <Link className="block w-[12px]">
+            <Link className="block w-[12px]" to={"/dashboard/notifications"}>
               <img
                 src="/images/dashboard/notification.svg"
                 className="w-full"

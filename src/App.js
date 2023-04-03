@@ -60,6 +60,7 @@ import RewardHistory from "pages/Dashboard/RewardHistory";
 import MetamaskChangeDetectionModal from "components/MetamaskChangeDetectionModal";
 import { toggleMetamaskChangeDetect } from "redux/reducers/MetamaskChangeDetect_State";
 import { useDispatch } from "react-redux";
+import Notifications from "components/Dashboard/Notifications";
 
 function App() {
   const dispatch = useDispatch();
@@ -207,6 +208,14 @@ function App() {
               </PrivateRoute>
             }
           /> */}
+          <Route
+            path="notifications"
+            element={
+              <PrivateRoute>
+                <Notifications />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="share-referral"
             element={

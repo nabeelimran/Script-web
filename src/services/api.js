@@ -21,6 +21,13 @@ axios.interceptors.request.use(
       config.headers["requestDate"] = currentDate;
       config.headers["url"] = window.location.origin;
     }
+    if(config.url.includes(APIPATH.NOTIFICATIONURL)) {
+      console.log('here');
+      config.headers.delete('userAuth');
+      config.headers.delete('requestDate');
+      config.headers.delete('url');
+      config.headers.delete('Authorization');
+    }
     // config.headers['Content-Type'] = 'application/json';
     return config;
   },
@@ -751,5 +758,9 @@ export default class Api {
       },
     };
     return axios.put(`${APIPATH.BASEURL}updateWalletAddress?userId=${userId}&walletAddress=${walletAddress}`, {}, options);
+  }
+
+  static getNotifications() {
+    return axios.get(`${APIPATH.NOTIFICATIONURL}/notification/show-notification/0x6B787b16445983197bf4b291016c74363d78979a`);
   }
 }
