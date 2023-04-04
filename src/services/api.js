@@ -761,7 +761,7 @@ export default class Api {
   }
 
   static getNotifications() {
-    return axios.get(`${APIPATH.NOTIFICATIONURL}/notification/show-notification/0x6B787b16445983197bf4b291016c74363d78979a`);
+    return axios.get(`${APIPATH.NOTIFICATIONURL}/notification/show-notification/0x70d6DF665395814b923F5d653b9f3E4A86b295FB`);
   }
 
   static getOverAllOrderedToken(walletAddress, screenName="stfx") {
