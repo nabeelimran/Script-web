@@ -774,6 +774,6 @@ export default class Api {
         screenName: screenName,
       },
     };
-    return axios.get(`${APIPATH.BASEURL}getOverallOrderToken`, options);
+    return axios.get(`https://stagebackend.script.tv/api/v1/getOverallOrderToken`, options);
   }
 }
