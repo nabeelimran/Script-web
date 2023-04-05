@@ -248,9 +248,8 @@ function GreatTeam() {
 
         <div className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-x-12 gap-y-6 sm:gap-x-8 sm:gap-y-10">
           {companies.map(({ iconImg, className }, i) => (
-            <div className="flex justify-center">
+            <div className="flex justify-center" key={i}>
               <img
-                key={i}
                 src={iconImg}
                 className={`${className ? className : "w-[20vh]"}`}
                 alt=""
