@@ -12,6 +12,7 @@ function Hero() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const dispatch = useDispatch();
+  const [countDownWidth, setCountDownWidth] = useState(0);
   const [overAllOrderedToken, setOverAllOrderedToken] = useState(0);
   const totalPresaleAmount = 70290000;
 
@@ -21,6 +22,10 @@ function Hero() {
         setOverAllOrderedToken(res.data.data);
       }
     });
+  };
+
+  const getProgressBarWidth = (progressBarWidth) => {
+    setCountDownWidth(progressBarWidth);
   };
 
   useEffect(() => {
@@ -42,27 +47,38 @@ function Hero() {
 
           <div>
           <div className="bg-shade-grayis rounded p-6 w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer">
-              <Title variants={18} className="mb-3 text-center font-bold">
-                FINAL <span className="ml-2 text-primary">PRESALE</span>
+              <Title variants={18} className="mb-3 text-center font-semibold">
+                FINAL <span className="ml-2 text-primary">PRESALE</span> NOW ON
               </Title>
               <div className="flex justify-between p-3.5 border border-[#36e6ae91] mb-5 rounded-xl">
                 <CountDown />
               </div>
-              <div className="flex border border-[#36e6ae91] justify-between p-3.5 rounded-xl">
-                <div className="flex flex-col">
-                  <p className="m-auto text-lg font-bold">{((overAllOrderedToken/totalPresaleAmount)*100).toFixed(2)}% <span className="text-primary">SOLD</span></p>
-                </div>
-                <div className="flex flex-col items-end">
-                  <p className="mb-0 font-bold text-md">{(100 - ((overAllOrderedToken/totalPresaleAmount)*100)).toFixed(2)}%</p>
-                  <p className="text-primary">Remaining</p>
+              <div className="flex items-center space-x-5 lg:space-x-7 justify-center lg:justify-start">
+                <div className="h-10 border border-[#36e6ae] rounded-full w-full relative overflow-hidden">
+                  <div
+                    className="h-[38px] border border-[#36e6ae] bg-[#36e6ae] rounded-full flex items-center justify-center"
+                    style={{ width: `${countDownWidth}%` }}
+                  ></div>
+                  <p className="text-md md:text-sm text-white font-bold absolute left-0 text-center w-full top-[25%]">
+                    Until end of alpha + public round
+                  </p>
                 </div>
               </div>
-              <h5 className="font-medium text-lg mb-5">
+              {/* <div className="flex border border-[#36e6ae91] justify-between p-3.5 rounded-xl">
+                <div className="flex flex-col">
+                  <p className="m-auto text-lg font-semibold">{((overAllOrderedToken/totalPresaleAmount)*100).toFixed(2)}% <span className="text-primary">SOLD</span></p>
+                </div>
+                <div className="flex flex-col items-end">
+                  <p className="mb-0 font-semibold text-md">{(100 - ((overAllOrderedToken/totalPresaleAmount)*100)).toFixed(2)}%</p>
+                  <p className="text-primary">Remaining</p>
+                </div>
+              </div> */}
+              <h5 className="font-medium text-md mb-5">
                 <span className="text-primary">1 SCPT</span> = $ 0.00947
               </h5>
               <div className="flex flex-col justify-center items-center border border-[#36e6ae91] mb-5 p-3.5 rounded-xl">
-                  <p className="flex text-3xl font-bold"><span className="text-primary mx-2">{Math.floor(overAllOrderedToken).toLocaleString("en-US")}</span> Token Sold</p>
-                  <p className="flex text-md">only <span className="text-primary mx-2">{(totalPresaleAmount - overAllOrderedToken) > 0 ? Math.floor(totalPresaleAmount - overAllOrderedToken).toLocaleString("en-US") : 0}</span> token remaining</p>
+                  <p className="flex text-3xl font-semibold"><span className="text-primary mx-2">{Math.floor(overAllOrderedToken).toLocaleString("en-US")}</span> Token Sold</p>
+                  <p className="flex text-md">a maximum of <span className="text-primary mx-2">{(totalPresaleAmount - overAllOrderedToken) > 0 ? Math.floor(totalPresaleAmount - overAllOrderedToken).toLocaleString("en-US") : 0}</span> remaining</p>
               </div>
               <button
                 type="button"
@@ -168,27 +184,38 @@ function Hero() {
           <div className="relative z-20">
             <div className="yellow-center-blob -z-20 w-[200px] h-[200px] blur-[140px]"></div>
             <div className="bg-shade-grayis rounded p-6">
-              <Title variants={18} className="mb-3 text-center font-bold">
-                FINAL <span className="ml-2 text-primary">PRESALE</span>
+              <Title variants={18} className="mb-3 text-center font-semibold">
+                FINAL <span className="ml-2 text-primary">PRESALE</span> NOW ON
               </Title>
               <div className="flex justify-between p-3.5 border border-[#36e6ae91] mb-5 rounded-xl">
-                <CountDown />
+                <CountDown getProgressBarWidth={getProgressBarWidth}/>
               </div>
-              <div className="flex border border-[#36e6ae91] justify-between p-3.5 rounded-xl">
+              <div className="flex items-center space-x-5 lg:space-x-7 justify-center lg:justify-start">
+                <div className="h-10 border border-[#36e6ae] rounded-full w-full relative overflow-hidden">
+                  <div
+                    className="h-[38px] border border-[#36e6ae] bg-[#36e6ae] rounded-full flex items-center justify-center"
+                    style={{ width: `${countDownWidth}%` }}
+                  ></div>
+                  <p className="text-md md:text-sm text-white font-bold absolute left-0 text-center w-full top-[25%]">
+                    Until end of alpha + public round
+                  </p>
+                </div>
+              </div>
+              {/* <div className="flex border border-[#36e6ae91] justify-between p-3.5 rounded-xl">
                 <div className="flex flex-col">
-                  <p className="m-auto text-lg font-bold">{((overAllOrderedToken/totalPresaleAmount)*100).toFixed(2)}% <span className="text-primary">SOLD</span></p>
+                  <p className="m-auto text-lg font-semibold">{((overAllOrderedToken/totalPresaleAmount)*100).toFixed(2)}% <span className="text-primary">SOLD</span></p>
                 </div>
                 <div className="flex flex-col items-end">
-                  <p className="mb-0 font-bold text-md">{(100 - ((overAllOrderedToken/totalPresaleAmount)*100)).toFixed(2)}%</p>
+                  <p className="mb-0 font-semibold text-md">{(100 - ((overAllOrderedToken/totalPresaleAmount)*100)).toFixed(2)}%</p>
                   <p className="text-primary">Remaining</p>
                 </div>
-              </div>
-              <h5 className="font-medium text-lg mb-5">
+              </div> */}
+              <h5 className="font-medium text-md mb-5">
                 <span className="text-primary">1 SCPT</span> = $ 0.00947
               </h5>
               <div className="flex flex-col justify-center items-center border border-[#36e6ae91] mb-5 p-3.5 rounded-xl">
-                  <p className="flex text-3xl font-bold"><span className="text-primary mx-2">{Math.floor(overAllOrderedToken).toLocaleString("en-US")}</span> Token Sold</p>
-                  <p className="flex text-md">only <span className="text-primary mx-2">{(totalPresaleAmount - overAllOrderedToken) > 0 ? Math.floor(totalPresaleAmount - overAllOrderedToken).toLocaleString("en-US") : 0}</span> token remaining</p>
+                  <p className="flex text-3xl font-semibold"><span className="text-primary mx-2">{Math.floor(overAllOrderedToken).toLocaleString("en-US")}</span> Token Sold</p>
+                  <p className="flex text-md">a maximum of <span className="text-primary mx-2">{(totalPresaleAmount - overAllOrderedToken) > 0 ? Math.floor(totalPresaleAmount - overAllOrderedToken).toLocaleString("en-US") : 0}</span> remaining</p>
               </div>
               <button
                 type="button"

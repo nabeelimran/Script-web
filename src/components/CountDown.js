@@ -35,7 +35,7 @@ const CountDown = ({
       setHours(hours > 0 ? hours : 0);
       setMinutes(minutes > 0 ? minutes : 0);
       setSeconds(seconds > 0 ? seconds : 0);
-      // getProgressBarWidth(progressBarWidth >= 100 ? 100 : progressBarWidth);
+      getProgressBarWidth(progressBarWidth >= 100 ? 100 : progressBarWidth);
     });
   };
 
