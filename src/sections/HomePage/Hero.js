@@ -51,7 +51,7 @@ function Hero() {
                 FINAL <span className="ml-2 text-primary">PRESALE</span> NOW ON
               </Title>
               <div className="flex justify-between p-3.5 border border-[#36e6ae91] mb-5 rounded-xl">
-                <CountDown />
+                <CountDown getProgressBarWidth={getProgressBarWidth}/>
               </div>
               <div className="flex items-center space-x-5 lg:space-x-7 justify-center lg:justify-start">
                 <div className="h-10 border border-[#36e6ae] rounded-full w-full relative overflow-hidden">
