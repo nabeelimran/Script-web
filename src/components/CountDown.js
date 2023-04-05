@@ -44,30 +44,30 @@ const CountDown = ({ getProgressBarWidth }) => {
   }, []);
 
   return (
-    <div className="flex justify-center md:justify-start mb-2">
+    <div className="flex justify-center md:justify-start">
       <div className="text-center">
-        <h3 className="font-semibold text-3xl lg:text-5xl">{days}</h3>
+        <h3 className="font-semibold text-3xl lg:text-[40px]">{days}</h3>
         <p className="font-semibold text-sm">Days</p>
       </div>
       <p className="text-4xl md:text-6xl leading-[1.3] md:leading-[0.6] mx-2.5 md:mx-5">
         :
       </p>
       <div className="text-center">
-        <h3 className="font-semibold text-3xl lg:text-5xl">{hours}</h3>
+        <h3 className="font-semibold text-3xl lg:text-[40px]">{hours}</h3>
         <p className="font-semibold text-sm">Hours</p>
       </div>
       <p className="text-4xl md:text-6xl leading-[1.3] md:leading-[0.6] mx-2.5 md:mx-5">
         :
       </p>
       <div className="text-center">
-        <h3 className="font-semibold text-3xl lg:text-5xl">{minutes}</h3>
+        <h3 className="font-semibold text-3xl lg:text-[40px]">{minutes}</h3>
         <p className="font-semibold text-sm">Minutes</p>
       </div>
       <p className="text-4xl md:text-6xl leading-[1.3] md:leading-[0.6] mx-2.5 md:mx-5">
         :
       </p>
       <div className="text-center">
-        <h3 className="font-semibold text-3xl lg:text-5xl text-primary">
+        <h3 className="font-semibold text-3xl lg:text-[40px] text-primary">
           {seconds}
         </h3>
         <p className="font-semibold text-sm">Seconds</p>

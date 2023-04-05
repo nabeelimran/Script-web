@@ -45,11 +45,11 @@ function Hero() {
           </h1>
 
           <div>
-            <div className="bg-shade-grayis rounded p-6 w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer">
+            <div className="bg-transparent rounded p-6 w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer">
               <Title variants={18} className="mb-3 text-center font-semibold">
                 FINAL <span className="ml-2 text-primary">PRESALE</span> NOW ON
               </Title>
-              <div className="flex justify-between p-3.5 border border-[#36e6ae91] mb-5 rounded-xl">
+              <div className="flex justify-center p-3.5 border border-[#36e6ae91] mb-5 rounded-xl">
                 <CountDown getProgressBarWidth={getProgressBarWidth} />
               </div>
               <div className="flex items-center space-x-5 lg:space-x-7 justify-center lg:justify-start">
@@ -72,7 +72,7 @@ function Hero() {
                   <p className="text-primary">Remaining</p>
                 </div>
               </div> */}
-              <h5 className="font-medium text-md mb-5">
+              <h5 className="font-medium text-md mb-5 mt-1">
                 <span className="text-primary">1 SCPT</span> = $ 0.00947
               </h5>
               <div className="flex flex-col justify-center items-center border border-[#36e6ae91] mb-5 p-3.5 rounded-xl">
@@ -202,11 +202,11 @@ function Hero() {
         <div className="w-full hidden lg:block">
           <div className="relative z-20">
             <div className="yellow-center-blob -z-20 w-[200px] h-[200px] blur-[140px]"></div>
-            <div className="bg-shade-grayis rounded p-6">
+            <div className="bg-black rounded p-6">
               <Title variants={18} className="mb-3 text-center font-semibold">
-                FINAL <span className="ml-2 text-primary">PRESALE</span> NOW ON
+                FINAL<span className="ml-2 text-primary">PRESALE</span> NOW ON
               </Title>
-              <div className="flex justify-between p-3.5 border border-[#36e6ae91] mb-5 rounded-xl">
+              <div className="flex justify-center py-5 border border-[#36e6ae91] mb-5 rounded-xl">
                 <CountDown getProgressBarWidth={getProgressBarWidth} />
               </div>
               <div className="flex items-center space-x-5 lg:space-x-7 justify-center lg:justify-start">
@@ -229,7 +229,7 @@ function Hero() {
                   <p className="text-primary">Remaining</p>
                 </div>
               </div> */}
-              <h5 className="font-medium text-md mb-5">
+              <h5 className="font-medium text-md mb-5 mt-1">
                 <span className="text-primary">1 SCPT</span> = $ 0.00947
               </h5>
               <div className="flex flex-col justify-center items-center border border-[#36e6ae91] mb-5 p-3.5 rounded-xl">
