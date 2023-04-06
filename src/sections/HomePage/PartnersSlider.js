@@ -74,8 +74,8 @@ const companies = [
     className: "invert-[100%] brightness-0 h-6 xl:h-10",
   },
   {
-    iconImg: "images/partners/k.png",
-    className: "h-6 xl:h-10 invert-[100%] brightness-0",
+    iconImg: "images/partners/okx.svg",
+    className: "h-6 invert-[100%] brightness-0",
   },
   {
     iconImg: "images/partners/magna.png",
