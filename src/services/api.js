@@ -774,6 +774,10 @@ export default class Api {
         screenName: screenName,
       },
     };
+<<<<<<< HEAD
     return axios.get(`https://stagebackend.script.tv/api/v1/getOverallOrderToken`, options);
+=======
+    return axios.get(`${APIPATH.BASEURL}getOverallOrderToken`, options);
+>>>>>>> e17a88c (merged)
   }
 }
