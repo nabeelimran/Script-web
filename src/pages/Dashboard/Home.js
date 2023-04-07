@@ -48,9 +48,9 @@ function Home() {
         <InventoryTrade />
       </div>
 
-      <div className="mb-12">
+      {/* <div className="mb-12">
         <Gems />
-      </div>
+      </div> */}
 
       <Rewards />
       {/* <Tip /> */}

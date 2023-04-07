@@ -1,6 +1,7 @@
 import moment from "moment";
 import React, { useRef, useState } from "react";
 import { Icon } from "@iconify/react";
+import { helper } from "utils/helper";
 
 function StreamComment({ item, chooseMessage }) {
   const [replyPopup, setReplyPopup] = useState(false);
@@ -86,7 +87,7 @@ function StreamComment({ item, chooseMessage }) {
                 {item.msg || item.comment}
               </p>
               <p className="text-xs">
-                {moment(new Date(item.commentDate)).format("HH:mm")}
+              {helper.formatLocalTime(item.commentDate)}
               </p>
             </div>
           </>
@@ -97,7 +98,8 @@ function StreamComment({ item, chooseMessage }) {
                 {item.msg || item.comment}
               </p>
               <p className="text-xs">
-                {moment(new Date(item.commentDate)).format("HH:mm")}
+                {helper.formatLocalTime(item.commentDate)}
+                {/* {moment(new Date(item.commentDate)).format("HH:mm")} */}
               </p>
             </div>
           </>

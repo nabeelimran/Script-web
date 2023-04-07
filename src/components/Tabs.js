@@ -101,7 +101,7 @@ function Tabs({ pastShows, currentShows, tabsOptions }) {
                               height="20"
                               fill="currentColor"
                               viewBox="0 0 16 16"
-                              class="bi bi-facebook"
+                              className="bi bi-facebook"
                             >
                               <path
                                 _ngcontent-serverApp-c122=""
@@ -118,7 +118,7 @@ function Tabs({ pastShows, currentShows, tabsOptions }) {
                               height="20"
                               fill="currentColor"
                               viewBox="0 0 16 16"
-                              class="bi bi-instagram"
+                              className="bi bi-instagram"
                             >
                               <path
                                 _ngcontent-serverApp-c122=""
@@ -135,7 +135,7 @@ function Tabs({ pastShows, currentShows, tabsOptions }) {
                               height="20"
                               fill="currentColor"
                               viewBox="0 0 16 16"
-                              class="bi bi-twitter"
+                              className="bi bi-twitter"
                             >
                               <path
                                 _ngcontent-serverApp-c122=""

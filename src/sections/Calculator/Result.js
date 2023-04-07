@@ -8,7 +8,8 @@ import { helper } from "utils/helper";
 function Result({
   result,
   amount,
-  marketValues
+  marketValues,
+  clearForm
 }) {
   return (
     <CalculatorLayout>
@@ -17,7 +18,6 @@ function Result({
           <span className="text-primary">Result</span>
         </Title>
       </div>
-
       <div className="space-y-6 lg:space-y-5">
         <InputRow
           readonly={true}
@@ -46,56 +46,56 @@ function Result({
         <InputRow
           readonly={true}
           variant={1}
-          label="$SPAY Rewards Per Day:"
+          label="SPAY Rewards Per Day:"
           value={helper.numberFormat(result.myDailyPayout)}
         />
         <InputRow
           readonly={true}
           variant={1}
-          label="$SPAY Daily Rewards USD Value:"
+          label="SPAY Daily Rewards USD Value:"
           value={helper.currencyFormat(result.myDailyPayoutMoney)}
         />
         <InputRow
           readonly={true}
           variant={1}
-          label="$SPAY Rewards Per Week:"
+          label="SPAY Rewards Per Week:"
           value={helper.numberFormat(result.myWeeklyPayout)}
         />
         <InputRow
           readonly={true}
           variant={1}
-          label="$SPAY Weekly Rewards USD Value:"
+          label="SPAY Weekly Rewards USD Value:"
           value={helper.currencyFormat(result.myWeeklyPayoutMoney)}
         />
         <InputRow
           readonly={true}
           variant={1}
-          label="$SPAY Rewards Per Month:"
+          label="SPAY Rewards Per Month:"
           value= {helper.numberFormat(result.myMonthlyPayout)}
         />
         <InputRow
           readonly={true}
           variant={1}
-          label="$SPAY Monthly Rewards USD Value:"
+          label="SPAY Monthly Rewards USD Value:"
           value={helper.currencyFormat(result.myMonthlyPayoutMoney)}
         />
         <InputRow
           readonly={true}
           variant={1}
-          label="$SPAY Rewards Per Year:"
+          label="SPAY Rewards Per Year:"
           value={helper.numberFormat(result.myAnnualPayout)}
         />
         <InputRow
           readonly={true}
           variant={1}
-          label="$SPAY Yearly Rewards USD Year:"
+          label="SPAY Yearly Rewards USD Year:"
           value={helper.currencyFormat(result.myAnnualPayoutMoney)}
         />
 
         <div className="grid lg:grid-cols-2">
           <div></div>
           <div>
-            <Button label="Clear Form" />
+            <Button label="Clear Form" buttonProps={{onClick:()=>{clearForm()}}}/>
           </div>
         </div>
       </div>

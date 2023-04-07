@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Hero from "sections/Calculator/Hero";
 import Result from "sections/Calculator/Result";
 import StakingInformation from "sections/Calculator/StakingInformation";
+import Api from "services/api";
 
 function Calculator() {
 
@@ -15,8 +16,7 @@ function Calculator() {
     spayPriceUSD: 0,
     scptPriceUSD: 0
   })
-  const [amount, setAmount] = useState(0);
-  const [result, setResult] = useState({
+  const initialState = {
     myTotalPortion: 0,
     myAnnualPayout: 0,
     myStakePercentage: 0,
@@ -29,44 +29,50 @@ function Calculator() {
     myDailyPayoutMoney: 0,
     myWeeklyPayoutMoney: 0,
     _yield: 0,
-  });
+  }
+  const [amount, setAmount] = useState(null);
+  const [result, setResult] = useState(initialState);
 
   const calculateReward = () => {
     const cirSupply = 1000000000;
-    const myTotalPortion = (amount / marketValues.circInPercent * cirSupply);
-    const myAnnualPayout = myTotalPortion * suppyData.totalSCPTVal;
-    const myStakePercentage = myTotalPortion / 10000000000000000 * 100;
+    var valueStaked = marketValues.circInPercent / 100;
+    const upForGrabs = suppyData.totalSCPTVal;
+    const total_staked_num = valueStaked * cirSupply;
+    const myTotalPortion = (amount / total_staked_num);
+    const myAnnualPayout = myTotalPortion * upForGrabs;
+    const myStakePercentage = myTotalPortion * 100;
     const myMonthlyPayout = myAnnualPayout / 12;
     const myWeeklyPayout = myAnnualPayout / 52;
-    const myDailyPayout = (myAnnualPayout / 365) / 1000000000000000000;
+    const myDailyPayout = myAnnualPayout / 365
     const totalInvestment = amount * marketValues.scptPriceUSD;
     const myAnnualPayoutMoney = myAnnualPayout * marketValues.spayPriceUSD;
     const myMonthlyPayoutMoney = myMonthlyPayout * marketValues.spayPriceUSD;
-    const myDailyPayoutMoney = myDailyPayout * marketValues.spayPriceUSD * 0.1;
+    const myDailyPayoutMoney = myDailyPayout * marketValues.spayPriceUSD;
     const myWeeklyPayoutMoney = myWeeklyPayout * marketValues.spayPriceUSD;
-    const _yield = (myAnnualPayoutMoney / totalInvestment) / 10000000000000000000;
-    // setResult({
-    //     myTotalPortion,
-    //     myAnnualPayout,
-    //     myStakePercentage,
-    //     myMonthlyPayout,
-    //     myWeeklyPayout,
-    //     myDailyPayout,
-    //     totalInvestment,
-    //     myAnnualPayoutMoney,
-    //     myMonthlyPayoutMoney,
-    //     myDailyPayoutMoney,
-    //     myWeeklyPayoutMoney,
-    //     _yield,
-    // })
+    const _yield = myAnnualPayoutMoney / totalInvestment;
+  
+    setResult({
+        myTotalPortion,
+        myAnnualPayout,
+        myStakePercentage,
+        myMonthlyPayout,
+        myWeeklyPayout,
+        myDailyPayout,
+        totalInvestment,
+        myAnnualPayoutMoney,
+        myMonthlyPayoutMoney,
+        myDailyPayoutMoney,
+        myWeeklyPayoutMoney,
+        _yield,
+    })
   } 
   
   const checkAmount = (e) => {
     setAmount(e.target.value);
     setMarketValues({
-      circInPercent: (e.target.value / 1000000000) * 100,
-      spayPriceUSD: 0.005,
-      scptPriceUSD: 0.01,
+      circInPercent: (parseInt(e.target.value) / 1000000000) * 100,
+      spayPriceUSD: 0.01,
+      scptPriceUSD: 0.025,
     })
   }
 
@@ -76,19 +82,23 @@ function Calculator() {
   
   
   const getSupplyData = () => {
-    // Api.getSupplyData().then((res) => {
-      // if(res) {
-        // const scptVal = res.totalScptWeiValue.toFixed(4);
+    Api.getSupplyData().then((res) => {
+      if(res) {
+        const scptVal = res.totalScptWeiValue.toFixed(4);
         setSupplyData({
-          totalSCPTVal: 1000000000
+          totalSCPTVal: scptVal
         })
         setMarketValues({
           circInPercent: 0,
-          spayPriceUSD: 0.005,
-          scptPriceUSD: 0.01,
+          spayPriceUSD: 0.01,
+          scptPriceUSD: 0.025,
         })
-      // }
-    // })
+      }
+    })
+  }
+
+  const resetResult = () => {
+    setResult(initialState)
   }
 
   return (
@@ -106,7 +116,7 @@ function Calculator() {
           amount = {amount} />
       </div>
       <div className="mb-20 lg:mb-24">
-        <Result result={result} amount={amount} marketValues={marketValues} />
+        <Result result={result} amount={amount} marketValues={marketValues} clearForm={resetResult}/>
       </div>
       <Footer />
     </div>

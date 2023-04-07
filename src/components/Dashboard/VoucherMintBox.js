@@ -24,6 +24,7 @@ import {
   mintGlasses,
   mintVoucher,
 } from "contract/functions";
+import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import {
   fetchEquippedVouchers,
@@ -56,7 +57,7 @@ const VoucherMintBoxStyle = styled(Box)(({ theme }) => ({
   },
 }));
 
-const VoucherMintBox = ({ accountAddress }) => {
+const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
   const voucherPrices = [250, 500, 800];
 
   const [type, setType] = useState(1);
@@ -87,6 +88,12 @@ const VoucherMintBox = ({ accountAddress }) => {
   useEffect(() => {
     // setGlassTypePrice(glassesPrice[type]);
     // setUseGlassPass(false);
+
+    (async () => {
+      if (!accountAddress) return;
+
+      await handleCheckVoucherApproval();
+    })();
   }, [type]);
 
   useEffect(() => {
@@ -108,8 +115,20 @@ const VoucherMintBox = ({ accountAddress }) => {
   const handleCheckVoucherApproval = async () => {
     if (accountAddress) {
       let approval = await checkVoucherApproval(accountAddress);
-      console.log("Approval >", approval);
-      setIsVoucherApproved(approval);
+
+      console.log(
+        "handleCheckVoucherApproval",
+        voucherPrices[type],
+        Number(ethers.utils.formatEther(approval.toString())),
+        type
+      );
+
+      if (
+        voucherPrices[type] <=
+        Number(Number(ethers.utils.formatEther(approval.toString())))
+      )
+        setIsVoucherApproved(true);
+      else setIsVoucherApproved(false);
     }
   };
 
@@ -125,8 +144,18 @@ const VoucherMintBox = ({ accountAddress }) => {
 
   const handleApproveVoucher = async () => {
     if (accountAddress && voucherEligible.eligibility) {
-      await approveVoucher();
-      await handleCheckVoucherApproval();
+      try {
+        setContractLoading("processing");
+        await approveVoucher();
+        await handleCheckVoucherApproval();
+
+        setContractLoading("approved");
+        ToastMessage("Approved", true);
+      } catch (error) {
+        console.log(error);
+        setContractLoading("error");
+        ToastMessage("Approval failed");
+      }
     }
   };
 
@@ -188,6 +217,7 @@ const VoucherMintBox = ({ accountAddress }) => {
         if (response.status === 1) {
           setContractLoading("success");
           setContractResponse(response);
+          onVoucherMintSuccess();
           ToastMessage("Voucher Minted Successfully", true);
         } else {
           setContractLoading("error");
@@ -254,8 +284,9 @@ const VoucherMintBox = ({ accountAddress }) => {
                   variant="contained"
                   color="primary"
                   onClick={handleApproveVoucher}
+                  disabled={contractLoading === "processing"}
                 >
-                  Approve
+                  {contractLoading === "processing" ? "Approving" : "Approve"}
                 </Button>
               )
             ) : (

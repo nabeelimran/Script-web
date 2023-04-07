@@ -43,11 +43,15 @@ export default function VoucherView() {
 
   useEffect(() => {
     if (accountAddress) {
-      handleFetchVouchers();
-      handleFetchEquipped();
+      fetchVouchers();
       checkIsApproved();
     }
   }, [accountAddress]);
+
+  const fetchVouchers = async () => {
+    handleFetchVouchers();
+    handleFetchEquipped();
+  };
 
   useEffect(() => {
     if (accountAddress && glasses.length && equippedBalance?.length) {
@@ -204,6 +208,7 @@ export default function VoucherView() {
       }
     }
   };
+
   const handleEquipSuper = async (tokenId, index) => {
     if (accountAddress) {
       setCurrentGlassIndex(index);
@@ -273,7 +278,10 @@ export default function VoucherView() {
   return (
     <Box sx={{ flexGrow: 1, m: 4 }}>
       <Container maxWidth="md" sx={{ my: 6 }} id="mint">
-        <VoucherMintBox accountAddress={accountAddress} />
+        <VoucherMintBox
+          accountAddress={accountAddress}
+          onVoucherMintSuccess={fetchVouchers}
+        />
       </Container>
 
       <Typography variant="h4" color="textSecondary" align="center" mb={2}>

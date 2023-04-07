@@ -5,7 +5,8 @@ export const APIPATH = {
 	EXPLORERURL: "https://explorerapi.script.tv/api/",
 	googleFaceId: "project-875901092274",
 	SOCKETURL: "https://chat.script.tv/",
-    SIDURL: "https://api.prd.space.id/v1/"
+    SIDURL: "https://api.prd.space.id/v1/",
+    NOTIFICATIONURL: "https://stagenotification.script.tv/api/v1"
 };
 
 export const roomId = 167567;

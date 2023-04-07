@@ -18,6 +18,7 @@ import {
   getGlassPassBalance,
   mintGlasses,
 } from "contract/functions";
+import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 
 const RowBox = styled(Box)(({ theme }) => ({
@@ -74,6 +75,14 @@ const MintBox = ({ accountAddress, balance }) => {
     })();
   }, [accountAddress]);
 
+  useEffect(() => {
+    (async () => {
+      if (!accountAddress) return;
+
+      checkIsApproved();
+    })();
+  }, [type]);
+
   const getPassBalance = async () => {
     if (accountAddress) {
       const balance = await getGlassPassBalance(accountAddress);
@@ -98,8 +107,20 @@ const MintBox = ({ accountAddress, balance }) => {
   const checkIsApproved = async () => {
     if (accountAddress) {
       const isAllowed = await checkApproval(accountAddress);
-      console.log("isAllowed", isAllowed);
-      setIsApproved(isAllowed);
+      console.log(
+        "isAllowed",
+        glassesPrice[type],
+        Number(ethers.utils.formatEther(isAllowed.toString())),
+        type
+      );
+      if (
+        glassesPrice[type] <=
+        Number(ethers.utils.formatEther(isAllowed.toString()))
+      ) {
+        setIsApproved(true);
+      } else {
+        setIsApproved(false);
+      }
     }
   };
 
@@ -130,15 +151,37 @@ const MintBox = ({ accountAddress, balance }) => {
 
   const handlePassApprove = async () => {
     if (accountAddress) {
-      let receipt = await approveGlassPass();
-      setIsPassApproved(!!receipt.status);
+      try {
+        setContractLoading("processing");
+
+        let receipt = await approveGlassPass();
+        setContractLoading("approved");
+
+        ToastMessage("Approved", true);
+        await checkIsApproved();
+      } catch (error) {
+        console.log(error);
+        setContractLoading("error");
+        ToastMessage("Approval failed");
+      }
     }
   };
 
   const handleApprove = async () => {
     if (accountAddress) {
-      let receipt = await approve();
-      setIsApproved(!!receipt.status);
+      try {
+        setContractLoading("processing");
+
+        let receipt = await approve();
+        setContractLoading("approved");
+
+        ToastMessage("Approved", true);
+        await checkIsApproved();
+      } catch (error) {
+        console.log(error);
+        setContractLoading("error");
+        ToastMessage("Approval failed");
+      }
     }
   };
 
@@ -210,8 +253,9 @@ const MintBox = ({ accountAddress, balance }) => {
                 variant="contained"
                 color="primary"
                 onClick={useGlassPass ? handlePassApprove : handleApprove}
+                disabled={contractLoading === "processing"}
               >
-                Approve
+                {contractLoading === "processing" ? "Approving..." : "Approve"}
               </Button>
             )
           ) : (

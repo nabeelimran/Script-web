@@ -3,6 +3,7 @@ import Navbar from "components/Navbar";
 import mixpanel from "mixpanel-browser";
 import React, { useEffect } from "react";
 import CordCutting from "sections/HomePage/CordCutting";
+import FeaturedIn from "sections/HomePage/FeaturedIn";
 import GreatTeam from "sections/HomePage/GreatTeam";
 import Hero from "sections/HomePage/Hero";
 import JoinOurCommunity from "sections/HomePage/JoinOurCommunity";
@@ -50,6 +51,9 @@ function HomePage() {
       <div className="mb-20 lg:mb-24">
         <GreatTeam />
       </div>
+      {/* <div className="mb-20 lg:mb-24">
+        <FeaturedIn />
+      </div> */}
       <div className="mb-20 lg:mb-24" id="homepage-roadmap">
         <Roadmap />
       </div>
