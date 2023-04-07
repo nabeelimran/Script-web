@@ -216,14 +216,14 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* <Route
+          <Route
             path="share-referral"
             element={
               <PrivateRoute>
                 <ShareRefferal />
               </PrivateRoute>
             }
-          /> */}
+          />
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
           {/* <Route path="reward" element={<Rewards />} /> */}
           <Route path="leaderboard" element={<LeaderBoard />} />
