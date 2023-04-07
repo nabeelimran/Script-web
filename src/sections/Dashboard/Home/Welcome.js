@@ -189,7 +189,8 @@ function Welcome({}) {
                       title="MINT VOUCHER!"
                       description={`You are now eligible to mint a ${voucherType[idx]} voucher!`}
                       clickHandler={() => {
-                        handleVoucherMint(idx);
+                        // handleVoucherMint(idx);
+                        navigate("/dashboard/voucher");
                       }}
                     />
                   )
