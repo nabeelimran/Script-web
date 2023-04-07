@@ -14,6 +14,7 @@ const MuiButton = ({
       variant={variant}
       color={color}
       onClick={onClick}
+      className="custom-btn-mui"
       style={{
         backgroundColor: "#ffef00 !important",
 
