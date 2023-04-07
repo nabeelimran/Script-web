@@ -62,7 +62,8 @@ export const approve = async () => {
 
 export const checkApproval = async (user) => {
   const allowance = await scriptPayContract.allowance(user, scriptTvAddress);
-  return Number(allowance) > 1e18;
+  console.log("allowance", Number(allowance));
+  return Number(allowance);
 };
 
 export const approveVoucherForTv = async () => {
@@ -89,7 +90,7 @@ export const checkVoucherApproval = async (user) => {
   );
 
   console.log("allowance", allowance);
-  return Number(allowance) > 1e18;
+  return Number(allowance);
 };
 
 export const approveGlassPass = async () => {
