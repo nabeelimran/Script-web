@@ -492,7 +492,7 @@ function ConnectWalletModal() {
               />
               <ConnectWalletButton
                 img="images/okc_logo.png"
-                title="OKC"
+                title="OKC Chain"
                 loader={loading.okc}
                 clickEvent={() => metaMaskHandler(loginTypes.okc)}
               />

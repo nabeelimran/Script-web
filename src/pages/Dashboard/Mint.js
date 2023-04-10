@@ -78,6 +78,7 @@ export default function Glass() {
   const getBalance = async () => {
     if (accountAddress) {
       const balance = await balanceOf(accountAddress);
+      console.log("balance", balance);
       setBalance(Number(balance));
     }
   };
@@ -87,7 +88,7 @@ export default function Glass() {
       <MintBox accountAddress={accountAddress} balance={balance} />
 
       <FreeMintBox accountAddress={accountAddress} balance={balance} />
-      <GemMintBox accountAddress={accountAddress} balance={balance} />
+      {/* <GemMintBox accountAddress={accountAddress} balance={balance} /> */}
 
       {/* {contractLoading === "success" && (
         <div>

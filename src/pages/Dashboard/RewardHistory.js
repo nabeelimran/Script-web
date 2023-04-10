@@ -1,17 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
-import { earningPayout } from "contract/functions";
+import { earningPayout, glassesOfOwnerServer } from "contract/functions";
 import { formatEther } from "ethers/lib/utils";
 import useMediaQuery from "hooks/useMediaQuery";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { calculatePayout, claimPayout, getRewardsHistory } from "utils/api";
 import LoaderGif from "../../assets/Loading_icon.gif";
 import { ToastMessage } from "components/ToastMessage";
+import { setGlasses } from "redux/reducers/Profile_State";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
   const [rewards, setRewards] = useState(null);
+  const dispatch = useDispatch();
 
   const [commonRewards, setCommonRewards] = useState(null);
   const [rareRewards, setRareRewards] = useState(null);
@@ -47,6 +49,12 @@ const RewardHistory = () => {
       })();
     }
   }, [accountAddress]);
+
+  const onGlassUpdate = async () => {
+    const response = await glassesOfOwnerServer(accountAddress);
+
+    dispatch(setGlasses(response));
+  };
 
   const onClaimUpdate = async (type) => {
     if (type === "COMMON") {
@@ -319,55 +327,56 @@ const RewardHistory = () => {
           )
         )}
       </Box>
-      {true && (
-        <Box width={isAbove768px ? 900 : "100%"}>
-          <h2 className="text-3xl my-2 font-semibold text-center mb-5">
-            Rewards history
-          </h2>
+      {(commonRewards || rareRewards || superscriptRewards) &&
+        accountAddress && (
+          <Box width={isAbove768px ? 900 : "100%"}>
+            <h2 className="text-3xl my-2 font-semibold text-center mb-5">
+              Rewards history
+            </h2>
 
-          {history.length > 0 ? (
-            <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
-              <thead>
-                <tr>
-                  <th className="text-[#ffef00] py-4">Reward Type</th>
-                  <th className="text-[#ffef00] py-4">Reward Point</th>
-                  <th className="text-[#ffef00] py-4">Earned At</th>
-                </tr>
-              </thead>
-              <tbody>
-                {history.length > 0
-                  ? history.map((data, index) => (
-                      <tr key={index}>
-                        {console.log(data)}
-                        <td className="py-4">Daily Reward</td>
-                        <td className="py-4">
-                          {`${formatEther(data?.amount)} SPAY` || ""}
-                        </td>
-                        <td className="py-4">
-                          {moment(data?.blockTimestamp * 1000).fromNow() || 0}
-                        </td>
-                      </tr>
-                    ))
-                  : null}
-                {/* <tr>
+            {history.length > 0 ? (
+              <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
+                <thead>
+                  <tr>
+                    <th className="text-[#ffef00] py-4">Reward Type</th>
+                    <th className="text-[#ffef00] py-4">Reward Point</th>
+                    <th className="text-[#ffef00] py-4">Earned At</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {history.length > 0
+                    ? history.map((data, index) => (
+                        <tr key={index}>
+                          {console.log(data)}
+                          <td className="py-4">Daily Reward</td>
+                          <td className="py-4">
+                            {`${formatEther(data?.amount)} SPAY` || ""}
+                          </td>
+                          <td className="py-4">
+                            {moment(data?.blockTimestamp * 1000).fromNow() || 0}
+                          </td>
+                        </tr>
+                      ))
+                    : null}
+                  {/* <tr>
                 <td className="py-4">0x123456789</td>
                 <td className="py-4">100</td>
               </tr> */}
-              </tbody>
-            </table>
-          ) : (
-            <div className="text-center">
-              <h2
-                className="text-md my-2 text-center mb-5
+                </tbody>
+              </table>
+            ) : (
+              <div className="text-center">
+                <h2
+                  className="text-md my-2 text-center mb-5
             text-[#818589]
             "
-              >
-                No rewards history found
-              </h2>
-            </div>
-          )}
-        </Box>
-      )}
+                >
+                  No rewards history found
+                </h2>
+              </div>
+            )}
+          </Box>
+        )}
     </Box>
   );
 };
