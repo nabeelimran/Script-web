@@ -227,14 +227,14 @@ function App() {
           {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
           {/* <Route path="reward" element={<Rewards />} /> */}
           <Route path="leaderboard" element={<LeaderBoard />} />
-          <Route
+          {/* <Route
             path="analytics"
             element={
               <PrivateRoute>
                 <Analytics />
               </PrivateRoute>
             }
-          />
+          /> */}
           <Route path="coming-soon" element={<ComingSoon />} />
         </Route>
 
