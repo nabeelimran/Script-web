@@ -4,13 +4,15 @@ import GemModal from "components/Dashboard/GemModal";
 import GlassModal from "components/Dashboard/GlassModal";
 import RechargeModal from "components/Dashboard/RechargeModal";
 import InventoryTradeCard from "components/InventoryTradeCard";
+import { glassesOfOwnerServer } from "contract/functions";
 import React, { useRef, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setGlasses } from "redux/reducers/Profile_State";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { getGemsEligibility } from "utils/api";
+import { fetchEquippedVouchers, getGemsEligibility } from "utils/api";
 import { helper } from "utils/helper";
 import LoaderGif from "../../../assets/Loading_icon.gif";
 
@@ -52,16 +54,22 @@ function InventoryTrade() {
   const [index, setIndex] = useState(0);
   const [type, setType] = useState(0);
 
+  const dispatch = useDispatch();
+
   const [openGlassModal, setOpenGlassModal] = useState(false);
   const [openRechargeModal, setOpenRechargeModal] = useState(false);
   const [openGemModal, setOpenGemModal] = useState(false);
   const [gemEligibleGlasses, setGemEligibleGlasses] = useState();
 
   const { glasses } = useSelector((state) => state.Profile_State);
+  const [glassTypesWithVouchers, setGlassTypesWithVouchers] = useState(null);
 
   const [_glasses, _setGlasses] = useState([]);
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
+
+  const [rechargeDiscountPercentage, setRechargeDiscountPercentage] =
+    useState(0);
 
   console.log("InventoryTrade ", glasses);
 
@@ -76,6 +84,16 @@ function InventoryTrade() {
       _setGlasses(glasses);
     }
   }, [glasses]);
+
+  useEffect(() => {
+    (async () => {
+      if (accountAddress) {
+        const vouchers = await fetchEquippedVouchers(accountAddress);
+        console.log("handleFetchEquipped", vouchers);
+        setGlassTypesWithVouchers(vouchers);
+      }
+    })();
+  }, [accountAddress]);
 
   const getGemEligibleGlasses = async () => {
     if (accountAddress) {
@@ -99,7 +117,7 @@ function InventoryTrade() {
     setOpenRechargeModal(true);
   };
 
-  const handleAction = (action) => {
+  const handleAction = (action, _rechargeDiscountPercentage) => {
     switch (action) {
       case "sell":
         handleSell();
@@ -111,6 +129,7 @@ function InventoryTrade() {
 
       case "recharge":
         handleRecharge();
+        setRechargeDiscountPercentage(_rechargeDiscountPercentage);
         break;
 
       default:
@@ -129,7 +148,15 @@ function InventoryTrade() {
       _setGlasses(glasses.filter((glass) => glass.type === "RARE"));
     } else if (glassType === 3) {
       _setGlasses(glasses.filter((glass) => glass.type === "SUPERSCRIPT"));
+    } else if (glassType === 4) {
+      _setGlasses(glasses.filter((glass) => glass.type === "FREE"));
     }
+  };
+
+  const onGlassUpdate = async () => {
+    const response = await glassesOfOwnerServer(accountAddress);
+
+    dispatch(setGlasses(response));
   };
 
   console.log("InventoryTrade type ", type);
@@ -152,13 +179,14 @@ function InventoryTrade() {
             <InputLabel>Glass Type</InputLabel>
             <Select
               value={type.toString()}
-              label="Type"
+              label="Glass Type"
               onChange={handleTypeSelect}
             >
               <MenuItem value={0}>All</MenuItem>
               <MenuItem value={1}>Common</MenuItem>
               <MenuItem value={2}>Rare</MenuItem>
               <MenuItem value={3}>Superscript</MenuItem>
+              <MenuItem value={4}>Free</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -253,6 +281,7 @@ function InventoryTrade() {
             !!gemEligibleGlasses?.length &&
             !!gemEligibleGlasses.includes(_glasses[index]?.id)
           }
+          glassTypesWithVouchers={glassTypesWithVouchers}
         />
       )}
 
@@ -271,6 +300,8 @@ function InventoryTrade() {
           glass={_glasses[index]}
           open={openRechargeModal}
           setOpen={setOpenRechargeModal}
+          rechargeDiscountPercentage={rechargeDiscountPercentage}
+          onGlassUpdate={onGlassUpdate}
         />
       )}
     </div>

@@ -2,31 +2,32 @@ import { APIPATH } from "../constants/index";
 import axios from "axios";
 import { helper } from "../utils/helper";
 import LocalServices from "./LocalServices";
-import * as moment from 'moment';
+import * as moment from "moment";
 import CryptoService from "./CryptoService";
 
 axios.interceptors.request.use(
   (config) => {
     const token = LocalServices.getServices("token");
-    let user = 'scriptNetwork';
-    let nonce = 'ff271e44dd667385581151162f7e71d49e2740f6465f929fd948d12d30fd17bb6a9898b848596960555aa1a020888f7be39b65bad9b82c61d988eb0b0545387a';
-    let currentDate = `${moment().format('DD/MM/YYYY HH:mm:ss.SSS')}`
-    let rawDigest = String.raw`${currentDate}\n${window.location.origin}\n${user}\n${nonce}\n`
+    let user = "scriptNetwork";
+    let nonce =
+      "ff271e44dd667385581151162f7e71d49e2740f6465f929fd948d12d30fd17bb6a9898b848596960555aa1a020888f7be39b65bad9b82c61d988eb0b0545387a";
+    let currentDate = `${moment().format("DD/MM/YYYY HH:mm:ss.SSS")}`;
+    let rawDigest = String.raw`${currentDate}\n${window.location.origin}\n${user}\n${nonce}\n`;
     let digest = CryptoService.encryptHmacSHA256(rawDigest);
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
-    if(!config.url.includes(APIPATH.SIDURL)) {
+    if (!config.url.includes(APIPATH.SIDURL)) {
       config.headers["userAuth"] = `HmacSHA512 ${user}:${nonce}:${digest}`;
       config.headers["requestDate"] = currentDate;
       config.headers["url"] = window.location.origin;
     }
-    if(config.url.includes(APIPATH.NOTIFICATIONURL)) {
-      console.log('here');
-      config.headers.delete('userAuth');
-      config.headers.delete('requestDate');
-      config.headers.delete('url');
-      config.headers.delete('Authorization');
+    if (config.url.includes(APIPATH.NOTIFICATIONURL)) {
+      console.log("here");
+      config.headers.delete("userAuth");
+      config.headers.delete("requestDate");
+      config.headers.delete("url");
+      config.headers.delete("Authorization");
     }
     // config.headers['Content-Type'] = 'application/json';
     return config;
@@ -646,9 +647,7 @@ export default class Api {
   }
 
   static loginWithSpaceID(req) {
-    return axios.post(
-      `${APIPATH.BASEURL}loginWithSpaceId`, req
-    );
+    return axios.post(`${APIPATH.BASEURL}loginWithSpaceId`, req);
   }
 
   static selectGlass(req, screenName) {
@@ -659,12 +658,10 @@ export default class Api {
         longitude: "dummyData",
         countryName: "dummyData",
         screenName: screenName,
-      }
+      },
     };
 
-    return axios.post(
-      `${APIPATH.BASEURL}chooseGlass`, req, options
-    );
+    return axios.post(`${APIPATH.BASEURL}chooseGlass`, req, options);
   }
 
   static getSelectGlass(userId, screenName) {
@@ -675,11 +672,12 @@ export default class Api {
         longitude: "dummyData",
         countryName: "dummyData",
         screenName: screenName,
-      }
+      },
     };
 
     return axios.get(
-      `${APIPATH.BASEURL}getUserActiveGlassDetail?userId=${userId}`, options
+      `${APIPATH.BASEURL}getUserActiveGlassDetail?userId=${userId}`,
+      options
     );
   }
 
@@ -691,12 +689,10 @@ export default class Api {
         longitude: "dummyData",
         countryName: "dummyData",
         screenName: screenName,
-      }
+      },
     };
 
-    return axios.post(
-      `${APIPATH.BASEURL}startSession`, req, options
-    );
+    return axios.post(`${APIPATH.BASEURL}startSession`, req, options);
   }
 
   static endSession(req, screenName) {
@@ -707,12 +703,10 @@ export default class Api {
         longitude: "dummyData",
         countryName: "dummyData",
         screenName: screenName,
-      }
+      },
     };
 
-    return axios.post(
-      `${APIPATH.BASEURL}closeSession`, req, options
-    );
+    return axios.post(`${APIPATH.BASEURL}closeSession`, req, options);
   }
 
   static saveIndividualChat(req, screenName) {
@@ -723,15 +717,13 @@ export default class Api {
         longitude: "dummyData",
         countryName: "dummyData",
         screenName: screenName,
-      }
+      },
     };
 
-    return axios.post(
-      `${APIPATH.BASEURL}saveIndividualChat`, req, options
-    );
+    return axios.post(`${APIPATH.BASEURL}saveIndividualChat`, req, options);
   }
 
-  static getIndividualChat(screenName,page) {
+  static getIndividualChat(screenName, page) {
     const options = {
       headers: {
         ipAddress: "dummyData",
@@ -739,11 +731,12 @@ export default class Api {
         longitude: "dummyData",
         countryName: "dummyData",
         screenName: screenName,
-      }
+      },
     };
 
     return axios.get(
-      `${APIPATH.BASEURL}getIndividualChats?page=${page}`, options
+      `${APIPATH.BASEURL}getIndividualChats?page=${page}`,
+      options
     );
   }
 
@@ -757,14 +750,20 @@ export default class Api {
         screenName: screenName,
       },
     };
-    return axios.put(`${APIPATH.BASEURL}updateWalletAddress?userId=${userId}&walletAddress=${walletAddress}`, {}, options);
+    return axios.put(
+      `${APIPATH.BASEURL}updateWalletAddress?userId=${userId}&walletAddress=${walletAddress}`,
+      {},
+      options
+    );
   }
 
   static getNotifications() {
-    return axios.get(`${APIPATH.NOTIFICATIONURL}/notification/show-notification/0x6B787b16445983197bf4b291016c74363d78979a`);
+    return axios.get(
+      `${APIPATH.NOTIFICATIONURL}/notification/show-notification/0x6B787b16445983197bf4b291016c74363d78979a`
+    );
   }
 
-  static getOverAllOrderedToken(walletAddress, screenName="stfx") {
+  static getOverAllOrderedToken(walletAddress, screenName = "stfx") {
     const options = {
       headers: {
         ipAddress: "dummyData",
@@ -774,6 +773,9 @@ export default class Api {
         screenName: screenName,
       },
     };
-    return axios.get(`https://stagebackend.script.tv/api/v1/getOverallOrderToken`, options);
+    return axios.get(
+      `https://stagebackend.script.tv/api/v1/getOverallOrderToken`,
+      options
+    );
   }
 }

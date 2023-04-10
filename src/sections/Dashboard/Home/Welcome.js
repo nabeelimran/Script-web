@@ -64,14 +64,6 @@ function Welcome({}) {
       setIsVoucherApproved(approval);
     }
   };
-
-  const handleApproveVoucher = async () => {
-    if (accountAddress) {
-      await approveVoucher();
-      await handleCheckVoucherApproval();
-    }
-  };
-
   const checkVoucherEligibility = async () => {
     if (accountAddress) {
       let eligibility = await getVoucherEligibility(
@@ -79,6 +71,13 @@ function Welcome({}) {
       );
       console.log("Eligible >", eligibility);
       setVoucherEligible(eligibility);
+    }
+  };
+
+  const handleApproveVoucher = async () => {
+    if (accountAddress) {
+      await approveVoucher();
+      await handleCheckVoucherApproval();
     }
   };
 
@@ -156,18 +155,18 @@ function Welcome({}) {
 
           <CardProgress
             color="#0E0E0F"
-            title="N/A SPAY"
+            title={`${balance.toFixed(2)} SPAY`}
             description="Accumulate 10,000 SPAY"
             barColor="#FF38DC"
-            progress="90%"
+            progress={balance > 10000 ? "100%" : `${(balance / 10000) * 100}%`}
             bgColor="#A6A6A6"
           />
 
           <CardProgress
             color="#0E0E0F"
-            title="N/A SCPT"
+            title="0 SCPT"
             description="Connect on live chat 5x a week"
-            progress="100%"
+            progress="0%"
           />
 
           <CardProgress
@@ -190,7 +189,8 @@ function Welcome({}) {
                       title="MINT VOUCHER!"
                       description={`You are now eligible to mint a ${voucherType[idx]} voucher!`}
                       clickHandler={() => {
-                        handleVoucherMint(idx);
+                        // handleVoucherMint(idx);
+                        navigate("/dashboard/voucher");
                       }}
                     />
                   )
