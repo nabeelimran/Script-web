@@ -10,6 +10,7 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
+import MuiButton from "components/MuiButton";
 import { ToastMessage } from "components/ToastMessage";
 import {
   approve,
@@ -236,7 +237,7 @@ const MintBox = ({ accountAddress, balance }) => {
         <Box>
           {accountAddress ? (
             ResolveIsApproved() ? (
-              <Button
+              <MuiButton
                 disabled={contractLoading === "processing"}
                 variant="contained"
                 color="primary"
@@ -247,7 +248,7 @@ const MintBox = ({ accountAddress, balance }) => {
                   : balance > glassTypePrice || useGlassPass
                   ? "Mint"
                   : "Low balance"}
-              </Button>
+              </MuiButton>
             ) : (
               <Button
                 variant="contained"
