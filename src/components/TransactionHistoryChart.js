@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Chart,
   CategoryScale,
@@ -22,35 +22,17 @@ Chart.register(
   T
 );
 
-const data = {
-  labels: [],
-  datasets: [
-    {
-      label: "Dataset",
-      data: [],
-      borderColor: "#FFEF00",
-    },
-  ],
-};
+
 
 function TransactionHistoryChart({
   analyticData
 }) {
 
-  if (analyticData && analyticData.length > 0) {
-    let durationArr = []
-    let videoIdArr = []
-    analyticData.forEach(aData => {
-      durationArr.push(aData.duration);
-      videoIdArr.push(aData.videoId);
-    });
-    data.labels = [...videoIdArr];
-    data.datasets[0].data = durationArr.sort();
-  } 
 
   return (
+    
     <Line
-      data={data}
+      data={analyticData}
       className="line-chart"
       options={{
         // responsive: true,
