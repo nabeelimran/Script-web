@@ -14,12 +14,23 @@ const Card = ({ children, className }) => {
   );
 };
 
+const data = {
+  labels: [],
+  datasets: [
+    {
+      label: "Dataset",
+      data: [],
+      borderColor: "#FFEF00",
+    },
+  ],
+};
+
 function Analytics() {
 
   const userId = LocalServices.getServices("user")?.userId || null;
   const [videoWatchDuration, setVideoWatchDuration] = useState(0);
   const [lastVideoHistory, setLastVideoHistory] = useState(null);
-  const [analyticData, setAnalyticsData] = useState([])
+  const [analyticData, setAnalyticsData] = useState({})
 
   const getVideoWatchDuration = (userId) => {
     Api.getVideoWatchDuration(userId, 'watch').then((res) => {
@@ -40,7 +51,20 @@ function Analytics() {
   const getVideoWatchAnalytics = (userId) => {
     Api.getVideoWatchAnalytics(userId, 'watch').then((res) => {
       if(res && res.status === 200) {
-        setAnalyticsData(res?.data?.data || []);
+        const analyticData = res?.data?.data;
+        if (analyticData && analyticData.length > 0) {
+          console.log('in if condition');
+          let durationArr = []
+          let videoIdArr = []
+          analyticData.forEach(aData => {
+            durationArr.push(aData.duration);
+            videoIdArr.push(aData.videoId);
+          });
+          data.labels = [...videoIdArr];
+          data.datasets[0].data = durationArr.sort();
+          console.log(data);
+        }
+        setAnalyticsData(data);
       }
     })
   }
@@ -94,8 +118,10 @@ function Analytics() {
           </Card>
         </div>
       </div>
-
-      <TransactionHistoryChart analyticData={analyticData} />
+      {
+        Object.keys(analyticData).length > 0 ? <TransactionHistoryChart analyticData={analyticData} /> : null
+      }
+      
     </div>
   );
 }
