@@ -1,6 +1,8 @@
+import Button from "components/Button";
 import Title from "components/Title";
 import { useEffect, useState } from "react";
 import Api from "services/api";
+import { helper } from "utils/helper";
 
 function Notifications() {
 
@@ -57,6 +59,18 @@ function Notifications() {
                                     >
                                         {notification?.message}
                                     </Title>
+                                    {
+                                        notification.cta ? <Button
+                                            label="View Link"
+                                            className="mt-4"
+                                            buttonProps={{
+                                                onClick: () => {
+                                                    helper.openLink(notification.cta)
+                                                },
+                                            }}
+                                        /> : null
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>
