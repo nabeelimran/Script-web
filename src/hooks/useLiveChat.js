@@ -7,6 +7,7 @@ import { ToastMessage } from "components/ToastMessage";
 import Api from "services/api";
 import { groupBy } from "lodash";
 import moment from "moment";
+import { toggleNotification, toggleNotificationBell } from "redux/reducers/Notification_State";
 const useLiveChat = (currentShow) => {
 	const [name, setName] = useState("");
 	const [page, setPage] = useState(0);
@@ -50,6 +51,9 @@ const useLiveChat = (currentShow) => {
 
 	socketRef?.current?.off("new message");
 	socketRef?.current?.on("new message", receiveMessage);
+
+	socketRef?.current?.off("notification-received");
+	socketRef?.current?.on("notification-received", receiveNotification);
 
 	//Function to get previous messages from db
 	const getMessages = () => {
@@ -126,6 +130,11 @@ const useLiveChat = (currentShow) => {
 
 		setMessage(newMessgae);
 		socketRef.current.emit("send message", data);
+	}
+
+	function receiveNotification(arg) {
+		dispatch(toggleNotification(true))
+		dispatch(toggleNotificationBell(true));
 	}
 
 	//Function to send new message

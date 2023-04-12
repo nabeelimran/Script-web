@@ -7,6 +7,7 @@ import login_state from "./reducers/login_state";
 import RewardPoint_State from "./reducers/RewardPoint_State";
 import Profile_State from "./reducers/Profile_State";
 import MetamaskChangeDetect_State from "./reducers/MetamaskChangeDetect_State";
+import Notification_State from "./reducers/Notification_State";
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     refresh_state:refresh_state,
     login_state:login_state,
     RewardPoint_State: RewardPoint_State,
-    Profile_State: Profile_State
+    Profile_State: Profile_State,
+    Notification_State: Notification_State
   },
 });
