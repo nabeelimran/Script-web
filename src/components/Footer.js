@@ -12,6 +12,12 @@ function Footer({ container = "container-two" }) {
         { title: "dStorage", to: "/" },
         { title: "Script Blockchain", to: "/node" },
         { title: "sADs", to: "/" },
+        {
+          title: "Status",
+          to: "https://status.script.tv/",
+          target: "_blank",
+          anchorTag: true
+        },
       ],
     },
     {
