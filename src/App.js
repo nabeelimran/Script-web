@@ -59,17 +59,31 @@ import Voucher from "pages/Dashboard/Voucher";
 import RewardHistory from "pages/Dashboard/RewardHistory";
 import MetamaskChangeDetectionModal from "components/MetamaskChangeDetectionModal";
 import { toggleMetamaskChangeDetect } from "redux/reducers/MetamaskChangeDetect_State";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Notifications from "components/Dashboard/Notifications";
+import { ToastMessage } from "components/ToastMessage";
+import { toggleNotification } from "redux/reducers/Notification_State";
+import { helper } from "utils/helper";
 
 function App() {
   const dispatch = useDispatch();
+  const { isNotificationReceived } = useSelector((state) => state.Notification_State)
   try {
     console.log("init mixpanel");
     MixPanelService.init();
   } catch (error) {
     console.log("error while connecting mixpanel", error);
   }
+
+  useEffect(() => {
+    if(isNotificationReceived) {
+      helper.playSound()
+      ToastMessage('New notification received', true);
+      dispatch(toggleNotification(false))
+    }
+  }, [isNotificationReceived])
+
+
   useEffect(() => {
     try {
       console.log("init mixpanel");

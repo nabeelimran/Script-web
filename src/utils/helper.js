@@ -2,6 +2,7 @@ import { ToastMessage } from 'components/ToastMessage';
 import moment from 'moment'
 import LocalServices from 'services/LocalServices';
 import MixPanelService from 'services/mixPanelService';
+import bell from '../assets/bell.wav';
 export const helper = {
   formatLocalDate:(date) => moment(date).format("DD/MM/YYYY"),
   formatLocalTime:(date) => moment.utc(date).format("HH:mm"),
@@ -94,7 +95,10 @@ export const helper = {
       'images/yellow-glasses.png',
       'images/green-glasses.png',
       'images/orange-glasses.png'
-    ]
+    ],
+    playSound: () => {
+      new Audio(bell).play();
+    }
 }
 
 export const metamaskNetwork = {

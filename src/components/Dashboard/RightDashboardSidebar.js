@@ -1,11 +1,13 @@
 import Button from "components/Button";
 import DividerLine from "components/DividerLine";
 import HeadingSmall from "components/HeadingSmall";
+import { ToastMessage } from "components/ToastMessage";
 import UpperRoot from "components/UpperRoot";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toggleNotificationBell } from "redux/reducers/Notification_State";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import LocalServices from "services/LocalServices";
 import { isBnbUser } from "utils/helper";
@@ -24,8 +26,12 @@ function RightDashboardSidebar({
   const token = LocalServices.getServices("token");
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
-
+  const { isBellShown } = useSelector((state) => state.Notification_State)
   const dispatch = useDispatch();
+
+  const handleBellIcon = () => {
+    dispatch(toggleNotificationBell(false));
+  }
 
   return (
     <UpperRoot>
@@ -48,7 +54,7 @@ function RightDashboardSidebar({
                 alt=""
               />
             </Link>
-            <Link className="block w-[12px]" to={"/dashboard/notifications"}>
+            <Link className="block w-[12px]" to={"/dashboard/notifications"} onClick={handleBellIcon}>
               <img
                 src="/images/dashboard/notification.svg"
                 className="w-full"
