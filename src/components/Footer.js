@@ -11,13 +11,7 @@ function Footer({ container = "container-two" }) {
         { title: "Marketplace", to: "/marketplace" },
         { title: "dStorage", to: "/" },
         { title: "Script Blockchain", to: "/node" },
-        { title: "sADs", to: "/" },
-        {
-          title: "Status",
-          to: "https://status.script.tv/",
-          target: "_blank",
-          anchorTag: true
-        },
+        { title: "sADs", to: "/" }
       ],
     },
     {
@@ -30,6 +24,12 @@ function Footer({ container = "container-two" }) {
         { title: "Technology", to: "/technology" },
         { title: "Report Issue", to: "/report-issue" },
         { title: "Download", to: "/download" },
+        {
+          title: "Status",
+          to: "https://status.script.tv/",
+          target: "_blank",
+          anchorTag: true
+        },
       ],
     },
     {
