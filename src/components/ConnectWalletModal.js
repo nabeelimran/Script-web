@@ -29,6 +29,7 @@ import { detectBrowser, helper, metamaskNetwork } from "utils/helper";
 import MixPanelService from "services/mixPanelService";
 import { isLogin } from "redux/reducers/login_state";
 import { loginTypes } from "utils/helper";
+import { TempleWalletService } from "services/TempleWallet";
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ function ConnectWalletModal() {
     bnb: false,
     okc: false,
     bitgret: false,
+    temple: false
   });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -292,6 +294,23 @@ function ConnectWalletModal() {
     }
   };
 
+  const templateWalletHandler = async () => {
+    setLoading({...loading, temple: true})
+    if (await TempleWalletService.isCheckWalletPlugin()) {
+      const templeWalletData = await TempleWalletService.connectWallet();
+      if (templeWalletData?.isSuccess) {
+        
+      } else {
+        ToastMessage(templeWalletData?.data?.message || 'User rejected')
+      }
+      console.log(templeWalletData);
+      setLoading({...loading, temple: false})
+    } else {
+      ToastMessage("Temple Wallet not installed");
+      setLoading({...loading, temple: false})
+    }
+  }
+
   const googleLoginHandler = () => {
     helper.trackByMixpanel("Google Social Button Clicked", {});
     dispatch(setIsOkc(loginTypes.gmail));
@@ -502,12 +521,18 @@ function ConnectWalletModal() {
                 loader={loading.bitgret}
                 clickEvent={() => metaMaskHandler(loginTypes.bitgret)}
               />
+              <ConnectWalletButton
+                img="images/temple-wallet.png"
+                title="Temple Wallet"
+                loader={loading.temple}
+                clickEvent={() => templateWalletHandler()}
+              />
             </div>
 
             <div>
               <p className="text-center text-sm mb-5">Social</p>
 
-              <div className="flex items-center justify-center space-x-4 mb-6">
+              <div className="flex items-center justify-center space-x-4 mb-2">
                 <SocialLoginCard
                   title="Google"
                   click={googleLoginHandler}
@@ -520,9 +545,9 @@ function ConnectWalletModal() {
                 /> */}
               </div>
 
-              <Link to="/" className="block w-fit mx-auto text-center text-sm">
+              {/* <Link to="/" className="block w-fit mx-auto text-center text-sm">
                 Forget Password?
-              </Link>
+              </Link> */}
             </div>
           </div>
 
