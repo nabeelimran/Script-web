@@ -521,12 +521,12 @@ function ConnectWalletModal() {
                 loader={loading.bitgret}
                 clickEvent={() => metaMaskHandler(loginTypes.bitgret)}
               />
-              <ConnectWalletButton
+              {/* <ConnectWalletButton
                 img="images/temple-wallet.png"
                 title="Temple Wallet"
                 loader={loading.temple}
                 clickEvent={() => templateWalletHandler()}
-              />
+              /> */}
             </div>
 
             <div>
