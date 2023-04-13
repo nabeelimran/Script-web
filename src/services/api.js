@@ -776,4 +776,11 @@ export default class Api {
       options
     );
   }
+
+  static saveUserVisitNotificationPage(userId) {
+    return axios.post(
+      `${APIPATH.BASEURL}saveUserNotificationViewHistory/${userId}`,
+      {}
+    );
+  }
 }

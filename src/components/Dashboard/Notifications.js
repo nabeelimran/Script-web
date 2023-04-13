@@ -1,6 +1,7 @@
 import Button from "components/Button";
 import Title from "components/Title";
 import { useEffect, useState } from "react";
+import LocalServices from "services/LocalServices";
 import Api from "services/api";
 import { helper } from "utils/helper";
 
@@ -19,8 +20,23 @@ function Notifications() {
         }
     }
 
+    const saveUserVisitNotificationPage = () => {
+        try {
+            const userId = LocalServices.getServices("user")?.userId || null;
+            if (userId) {
+                Api.saveUserVisitNotificationPage(userId).then(res => {
+
+                })    
+            }
+            
+        } catch (error) {
+            
+        }
+    }
+
     useEffect(() => {
       getNotifications();
+      saveUserVisitNotificationPage();
     }, [])
     
 

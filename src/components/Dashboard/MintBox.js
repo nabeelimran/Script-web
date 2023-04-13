@@ -190,7 +190,7 @@ const MintBox = ({ accountAddress, balance }) => {
     <Box mb={4}>
       {" "}
       <Typography variant="h4" color="textSecondary" align="center" mb={4}>
-        Mint your glasses
+        Mint your glass
       </Typography>
       <RowBox>
         {type === 2 && passBalance ? (
@@ -250,14 +250,14 @@ const MintBox = ({ accountAddress, balance }) => {
                   : "Low balance"}
               </MuiButton>
             ) : (
-              <Button
+              <MuiButton
                 variant="contained"
                 color="primary"
                 onClick={useGlassPass ? handlePassApprove : handleApprove}
                 disabled={contractLoading === "processing"}
               >
                 {contractLoading === "processing" ? "Approving..." : "Approve"}
-              </Button>
+              </MuiButton>
             )
           ) : (
             <Typography>Connect your wallet</Typography>

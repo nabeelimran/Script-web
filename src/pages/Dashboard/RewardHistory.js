@@ -9,6 +9,7 @@ import { calculatePayout, claimPayout, getRewardsHistory } from "utils/api";
 import LoaderGif from "../../assets/Loading_icon.gif";
 import { ToastMessage } from "components/ToastMessage";
 import { setGlasses } from "redux/reducers/Profile_State";
+import MuiButton from "components/MuiButton";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
@@ -154,7 +155,7 @@ const RewardHistory = () => {
                   COMMON GLASS : {commonRewards?.payout.toFixed(2) || 0} SPAY
                 </h2>
 
-                <Button
+                <MuiButton
                   variant="contained"
                   color="primary"
                   disabled={!commonRewards?.payout}
@@ -173,7 +174,7 @@ const RewardHistory = () => {
                   ) : (
                     <>Claim</>
                   )}
-                </Button>
+                </MuiButton>
               </Box>
               <Box
                 display="flex"
@@ -189,7 +190,7 @@ const RewardHistory = () => {
                   RARE GLASS : {rareRewards?.payout.toFixed(2) || 0} SPAY
                 </h2>
 
-                <Button
+                <MuiButton
                   variant="contained"
                   color="primary"
                   disabled={!rareRewards?.payout}
@@ -208,7 +209,7 @@ const RewardHistory = () => {
                   ) : (
                     <>Claim</>
                   )}
-                </Button>
+                </MuiButton>
               </Box>
               <Box
                 display="flex"
@@ -221,7 +222,7 @@ const RewardHistory = () => {
                   {superscriptRewards?.payout.toFixed(2) || 0} SPAY
                 </h2>
 
-                <Button
+                <MuiButton
                   variant="contained"
                   color="primary"
                   disabled={!superscriptRewards?.payout}
@@ -240,7 +241,7 @@ const RewardHistory = () => {
                   ) : (
                     <>Claim</>
                   )}
-                </Button>
+                </MuiButton>
               </Box>
             </Box>
             <Box
@@ -268,13 +269,13 @@ const RewardHistory = () => {
                   COMMON GLASS : {commonRewards?.vested.toFixed(2) || 0} SPAY
                 </h2>
 
-                {/* <Button
+                {/* <MuiButton
                   variant="contained"
                   color="primary"
                   disabled={!commonRewards?.vested}
                 >
                   Claim
-                </Button> */}
+                </MuiButton> */}
               </Box>
               <Box
                 display="flex"
@@ -290,13 +291,13 @@ const RewardHistory = () => {
                   RARE GLASS : {rareRewards?.vested.toFixed(2) || 0} SPAY
                 </h2>
 
-                {/* <Button
+                {/* <MuiButton
                   variant="contained"
                   color="primary"
                   disabled={!rareRewards?.vested}
                 >
                   Claim
-                </Button> */}
+                </MuiButton> */}
               </Box>
               <Box
                 display="flex"
