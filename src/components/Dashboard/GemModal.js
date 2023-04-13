@@ -22,6 +22,7 @@ import gem from "../../assets/images/gem.png";
 import { equipgem } from "contract/functions";
 import { useDispatch, useSelector } from "react-redux";
 import { getGemPrice, getGemSignature } from "utils/api";
+import MuiButton from "components/MuiButton";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -114,13 +115,13 @@ export default function GemModal({
               <Typography variant="subtitle2">Time</Typography>
               <Typography variant="subtitle2">{time} Mins</Typography>
             </RowBox> */}
-          <Button
+          <MuiButton
             variant="contained"
             disabled={balance <= price}
             onClick={handleEquipGem}
           >
             Add Gem
-          </Button>
+          </MuiButton>
         </GlassBox>
       </DialogContent>
       {/* <DialogActions>

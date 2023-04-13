@@ -9,6 +9,7 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
+import MuiButton from "components/MuiButton";
 import {
   approve,
   approveGlassPass,
@@ -179,7 +180,7 @@ const FreeMintBox = ({ accountAddress, balance }) => {
         <Box>
           {accountAddress ? (
             ResolveIsApproved() ? (
-              <Button
+              <MuiButton
                 disabled={contractLoading === "processing" || !freeMintEligible}
                 variant="contained"
                 color="primary"
@@ -190,15 +191,15 @@ const FreeMintBox = ({ accountAddress, balance }) => {
                   : balance > 0
                   ? "Mint"
                   : "Low balance"}
-              </Button>
+              </MuiButton>
             ) : (
-              <Button
+              <MuiButton
                 variant="contained"
                 color="primary"
                 onClick={handleApprove}
               >
                 Approve
-              </Button>
+              </MuiButton>
             )
           ) : (
             <Typography>Connect your wallet</Typography>

@@ -22,6 +22,7 @@ import { getRechargeCost, getRechargeSignature } from "utils/api";
 import { useSelector } from "react-redux";
 import { ToastMessage } from "components/ToastMessage";
 import LoaderGif from "../../assets/Loading_icon.gif";
+import MuiButton from "components/MuiButton";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -141,7 +142,7 @@ export default function RechargeModal({
               </Typography>
             </RowBox>
           )}
-          <Button
+          <MuiButton
             variant="contained"
             disabled={!glass.drained}
             onClick={handleRechargeGLasses}
@@ -151,7 +152,7 @@ export default function RechargeModal({
             ) : (
               <>Recharge</>
             )}
-          </Button>
+          </MuiButton>
         </GlassBox>
       </DialogContent>
       {/* <DialogActions>

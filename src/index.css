@@ -708,3 +708,15 @@ aside.EmojiPickerReact.epr-main {
 .green-icon > svg > path {
   fill: green !important;
 }
+
+
+/* Dashboard Styles */
+.custom-btn-mui{
+  background-color: #ffef00 !important;
+  
+}
+
+.custom-btn-mui:hover {
+  background-color: rgb(178, 167, 0) !important;
+
+}

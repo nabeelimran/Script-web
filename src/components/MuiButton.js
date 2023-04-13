@@ -7,6 +7,7 @@ const MuiButton = ({
   variant = "contained",
   color = "primary",
   onClick,
+  sx,
 }) => {
   return (
     <Button
@@ -14,12 +15,15 @@ const MuiButton = ({
       variant={variant}
       color={color}
       onClick={onClick}
+      className={!disabled && "custom-btn-mui"}
       style={{
         backgroundColor: "#ffef00 !important",
 
         "&:hover": {
           backgroundColor: "rgb(178, 167, 0) !important",
         },
+
+        ...sx,
       }}
     >
       {children}

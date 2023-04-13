@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import LoaderGif from "../../assets/Loading_icon.gif";
+import MuiButton from "components/MuiButton";
 
 export default function VoucherCard({
   equipped = false,
@@ -47,7 +48,7 @@ export default function VoucherCard({
             <Typography>Equipped In:</Typography>
             <Typography>{glassId}</Typography>
           </RowBox>
-          <Button
+          <MuiButton
             disabled={disabled || loading}
             variant="contained"
             onClick={() => {
@@ -59,7 +60,7 @@ export default function VoucherCard({
             ) : (
               <>UnEquip</>
             )}
-          </Button>
+          </MuiButton>
         </>
       ) : (
         <>
@@ -79,7 +80,7 @@ export default function VoucherCard({
               </Select>
             )}
           </FormControl>
-          <Button
+          <MuiButton
             disabled={disabled || loading}
             variant="contained"
             onClick={() => {
@@ -91,7 +92,7 @@ export default function VoucherCard({
             ) : (
               <>Equip</>
             )}
-          </Button>
+          </MuiButton>
         </>
       )}
     </StyledBox>

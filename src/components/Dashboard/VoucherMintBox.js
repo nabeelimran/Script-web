@@ -10,6 +10,7 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
+import MuiButton from "components/MuiButton";
 import { ToastMessage } from "components/ToastMessage";
 import {
   approve,
@@ -265,9 +266,9 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
         </Box>
         <Box>
           {accountAddress ? (
-            voucherEligible.types[type] ? (
+            voucherEligible.types && voucherEligible.types[type] ? (
               isVoucherApproved ? (
-                <Button
+                <MuiButton
                   disabled={contractLoading === "processing"}
                   variant="contained"
                   color="primary"
@@ -278,26 +279,26 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
                     : balance > 0
                     ? "Mint"
                     : "Low balance"}
-                </Button>
+                </MuiButton>
               ) : (
-                <Button
+                <MuiButton
                   variant="contained"
                   color="primary"
                   onClick={handleApproveVoucher}
                   disabled={contractLoading === "processing"}
                 >
                   {contractLoading === "processing" ? "Approving" : "Approve"}
-                </Button>
+                </MuiButton>
               )
             ) : (
-              <Button
+              <MuiButton
                 variant="contained"
                 color="primary"
                 onClick={() => {}}
                 disabled
               >
                 Not Eligible
-              </Button>
+              </MuiButton>
             )
           ) : (
             <Typography>Connect your wallet</Typography>

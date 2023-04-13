@@ -22,6 +22,7 @@ import { styled } from "@mui/material/styles";
 import { getRechargeHistory } from "utils/api";
 import { formatEther } from "ethers/lib/utils";
 import moment from "moment";
+import MuiButton from "components/MuiButton";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -154,17 +155,17 @@ export default function GlassModal({
         )}
       </DialogContent>
       <StyledDialogAction>
-        <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
+        <MuiButton sx={buttonStyle} variant="outlined" onClick={handleClose}>
           recharge
-        </Button>
+        </MuiButton>
         {gemEligible && (
-          <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
+          <MuiButton sx={buttonStyle} variant="outlined" onClick={handleClose}>
             add gem
-          </Button>
+          </MuiButton>
         )}
-        <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
+        <MuiButton sx={buttonStyle} variant="outlined" onClick={handleClose}>
           sell
-        </Button>
+        </MuiButton>
       </StyledDialogAction>
     </StyledDialog>
   );
