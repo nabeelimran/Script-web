@@ -61,7 +61,7 @@ function HowToBuy() {
             </p>
             <p className="text-lg">You Will Then Have 3 Options:</p>
 
-            <div className="flex flex-row gap-10 mt-20 mb-10">
+            <div className="flex flex-row gap-5 mt-20 mb-10">
               <div className="bg-shade-grayis rounded-xl w-full p-5 text-center border border-[#999] hover:border-[#fff]">
                 <h2 className="mb-4 text-center font-semibold text-primary text-2xl">
                   Buy SCPT with ETH
@@ -112,7 +112,40 @@ function HowToBuy() {
 
               <div className="bg-shade-grayis rounded-xl w-full p-5 text-center border border-[#999] hover:border-[#fff]">
                 <h2 className="mb-4 text-center font-semibold text-primary text-2xl">
-                  Buy SCPT with Card
+                  Buy SCPT with BNB
+                </h2>
+                <p className="text-md text-[#999] mb-4">
+                  Although this option is not visible on our website, new DeFi
+                  users can purchase SCPT with credit/debit card as well. (No
+                  verification or KYC is needed for this process)
+                </p>
+                <p className="text-md text-[#999] mb-4">
+                  Visit{" "}
+                  <a href="/" target="_blank">
+                    https://www.moonpay.com/buy
+                  </a>{" "}
+                  this will allow you to purchase ETH that will be sent to your
+                  wallet. You will then be able to use this ETH to purchase
+                  SCPT.
+                </p>
+                <p className="text-md text-[#999] mb-4">
+                  Visit{" "}
+                  <a href="/" target="_blank">
+                    https://www.moonpay.com/buy
+                  </a>{" "}
+                  to begin and follow the on screen steps. We recommend
+                  purchasing a minimum of $20 worth of ETH to cover the all
+                  expenses including gas fees to buy SCPT.
+                </p>
+                <p className="text-md text-[#999] mb-4">
+                  Once you have acquired ETH, you can buy SCPT using the same
+                  wallet.
+                </p>
+              </div>
+
+              <div className="bg-shade-grayis rounded-xl w-full p-5 text-center border border-[#999] hover:border-[#fff]">
+                <h2 className="mb-4 text-center font-semibold text-primary text-2xl">
+                  Buy SCPT with BUSD
                 </h2>
                 <p className="text-md text-[#999] mb-4">
                   Although this option is not visible on our website, new DeFi
