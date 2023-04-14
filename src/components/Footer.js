@@ -30,6 +30,7 @@ function Footer({ container = "container-two" }) {
           target: "_blank",
           anchorTag: true
         },
+        { title: "How to buy", to: "/how-to-buy" },
       ],
     },
     {

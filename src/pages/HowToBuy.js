@@ -25,7 +25,7 @@ function HowToBuy() {
         </div>
       </div>
       <div className="mb-4 sm:mb-6 lg:mb-10">
-        <h2 className="mb-5 text-center font-semibold text-4xl">
+        <h2 className="mb-5 text-center font-semibold text-4xl text-primary">
           How To Buy Script Network tokens (SCPT)
         </h2>
         <p className="text-lg text-center text-[#999]">
@@ -34,35 +34,44 @@ function HowToBuy() {
 
         <ul className="container mt-20">
           <li className="mb-20">
-            <p className="text-2xl font-semibold mb-1">Step 1:</p>
+            <p className="text-2xl font-semibold mb-1 text-primary">Step 1:</p>
             <p className="text-lg">
               The First Step Is To Ensure You Have MetaMask and an associated
               wallet.
             </p>
 
-            <p className="text-2xl font-semibold mb-1 mt-6">For Desktop:</p>
+            <p className="text-2xl font-semibold mb-1 mt-6 text-primary">
+              For Desktop:
+            </p>
             <p className="text-lg">
-              We Recommend Using MetaMask Browser Plugin For Chrome, Brave Or
-              Firefox.
+              We Recommend Using MetaMask Browser{" "}
+              <span className="text-primary">
+                Plugin For Chrome, Brave Or Firefox
+              </span>
+              .
             </p>
 
-            <p className="text-2xl font-semibold mb-1 mt-6">For Mobile:</p>
+            <p className="text-2xl font-semibold mb-1 mt-6 text-primary">
+              For Mobile:
+            </p>
             <p className="text-lg">
-              We Recommend Using Metamask And Connecting Through The In Built
-              Browser.
+              We Recommend Using <span className="text-primary">Metamask</span>{" "}
+              And Connecting Through The In Built Browser.
             </p>
           </li>
 
           <li className="mb-10">
-            <p className="text-2xl font-semibold mb-1">Step 2:</p>
+            <p className="text-2xl font-semibold mb-1 text-primary">Step 2:</p>
             <p className="text-lg">
-              Once You Have Metamask Ready, Click “Connect Wallet” And Select
+              Once You Have Metamask Ready, Click{" "}
+              <span className="text-primary">“Connect Wallet”</span> And Select
               The Appropriate token you wish to buy in. For Mobile Wallet Apps
-              You Will Need To Select “Metamask”.
+              You Will Need To Select{" "}
+              <span className="text-primary">“Metamask”</span>.
             </p>
             <p className="text-lg">
-              You Will Then Have 4 Options to buy through ETH, BNB, USDT or
-              BUSD:
+              You Will Then Have 4 Options to buy through{" "}
+              <span className="text-primary">ETH, BNB, USDT or BUSD:</span>
             </p>
 
             <div className="flex flex-row gap-5 mt-20 mb-10">
@@ -137,7 +146,11 @@ function HowToBuy() {
                 </p>
                 <p className="text-md text-[#999] mb-4">
                   Visit{" "}
-                  <a href="/" target="_blank">
+                  <a
+                    href="/"
+                    target="_blank"
+                    className="text-primary cursor-pointer"
+                  >
                     https://www.moonpay.com/buy
                   </a>{" "}
                   this will allow you to purchase ETH that will be sent to your
@@ -146,7 +159,11 @@ function HowToBuy() {
                 </p>
                 <p className="text-md text-[#999] mb-4">
                   Visit{" "}
-                  <a href="/" target="_blank">
+                  <a
+                    href="/"
+                    target="_blank"
+                    className="text-primary cursor-pointer"
+                  >
                     https://www.moonpay.com/buy
                   </a>{" "}
                   to begin and follow the on screen steps. We recommend
@@ -161,10 +178,11 @@ function HowToBuy() {
             </div>
           </li>
           <li className="mb-10">
-            <p className="text-2xl font-semibold mb-1">Step 3:</p>
+            <p className="text-2xl font-semibold mb-1 text-primary">Step 3:</p>
             <p className="text-lg mb-6">
-              You Can Now Check Your Bought SCPT Tokens Onondaga the right hand
-              side of the presale page where it will say ‘Ordered Tokens’. These
+              You Can Now Check Your Bought SCPT Tokens On the right hand side
+              of the presale page where it will say{" "}
+              <span className="text-primary">‘Ordered Tokens’</span>. These
               tokens will then be claimable prior to launch through the same
               wallet address used on the week of launch.
             </p>
