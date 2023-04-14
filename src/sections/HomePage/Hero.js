@@ -4,6 +4,7 @@ import Title from "components/Title";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import Api from "services/api";
 import { helper } from "utils/helper";
@@ -258,6 +259,11 @@ function Hero() {
               >
                 <span className="text-inherit lh-1">Buy Tokens</span>
               </button>
+              <h2 className="text-center mt-4 text-lg hover:text-primary hover:underline">
+              <Link to="/how-to-buy" className="text-sm">
+                How to Buy
+              </Link>
+              </h2>
             </div>
           </div>
         </div>

@@ -11,8 +11,8 @@ function HowToBuy() {
         <Navbar />
       </div>
       <div className="mb-4 sm:mb-6 lg:mb-20">
-        <h2 className="text-center font-semibold text-4xl mb-6">
-          SCPT <span className="ml-2 text-primary">FINANCE</span>
+        <h2 className="text-center font-semibold text-4xl mb-6 text-primary">
+          SCRIPT NETWORK <span className="text-white">(SCPT)</span> PRESALE
         </h2>
         <div className="flex justify-center">
           <Button
@@ -25,10 +25,11 @@ function HowToBuy() {
         </div>
       </div>
       <div className="mb-4 sm:mb-6 lg:mb-10">
-        <h2 className="mb-5 text-center font-semibold text-4xl text-primary">
-          How To Buy Script Network tokens (SCPT)
+        <h2 className="mb-5 text-center font-semibold text-4xl">
+          <span className="text-primary">How To Buy Script Network tokens</span>{" "}
+          (SCPT)
         </h2>
-        <p className="text-lg text-center text-[#999]">
+        <p className="text-lg text-center">
           Beginners guide on how to buy $SCPT tokens.
         </p>
 
@@ -76,8 +77,13 @@ function HowToBuy() {
 
             <div className="flex flex-row gap-5 mt-20 mb-10">
               <div className="bg-shade-grayis rounded-xl w-full p-5 text-center border border-[#999] hover:border-[#fff]">
-                <div className="buy-icon-box">
-                  <img src="images/eth.png" alt="" />
+                <div className="flex eth-bsd justify-center">
+                  <div className="buy-icon-box">
+                    <img src="images/eth.png" alt="" />
+                  </div>
+                  <div className="buy-icon-box">
+                    <img src="images/bsd.svg" alt="" />
+                  </div>
                 </div>
                 <h2 className="mb-4 text-center font-semibold text-primary text-2xl">
                   Buy SCPT With ETH/BNB
@@ -102,8 +108,13 @@ function HowToBuy() {
               </div>
 
               <div className="bg-shade-grayis rounded-xl w-full p-5 text-center border border-[#999] hover:border-[#fff]">
-                <div className="buy-icon-box">
-                  <img src="images/usdt.png" alt="" />
+                <div className="flex eth-bsd justify-center">
+                  <div className="buy-icon-box">
+                    <img src="images/usdt.png" alt="" />
+                  </div>
+                  <div className="buy-icon-box">
+                    <img src="images/busd.png" alt="" />
+                  </div>
                 </div>
                 <h2 className="mb-4 text-center font-semibold text-primary text-2xl">
                   Buy SCPT With USDT/BUSD
@@ -179,7 +190,7 @@ function HowToBuy() {
           </li>
           <li className="mb-10">
             <p className="text-2xl font-semibold mb-1 text-primary">Step 3:</p>
-            <p className="text-lg mb-6">
+            <p className="text-lg mb-20">
               You Can Now Check Your Bought SCPT Tokens On the right hand side
               of the presale page where it will say{" "}
               <span className="text-primary">‘Ordered Tokens’</span>. These
@@ -206,7 +217,7 @@ function HowToBuy() {
         </ul>
       </div>
 
-      <div className="mb-4 sm:mb-6 lg:mb-10 mt-20 pb-10">
+      {/* <div className="mb-4 sm:mb-6 lg:mb-10 mt-20 pb-10">
         <h2 className="mb-6 text-center font-semibold text-4xl">
           SCPT <span className="text-primary">FINANCE</span>
         </h2>
@@ -224,13 +235,13 @@ function HowToBuy() {
             label="Win $250K"
             buttonProps={
               {
-                // onClick: () => helper.openLink("https://presale.script.tv/"),
+                onClick: () => helper.openLink("https://presale.script.tv/"),
               }
             }
             className="w-[200px] h-[60px] justify-center"
           />
         </div>
-      </div>
+      </div> */}
       <Footer container="container-two" />
     </>
   );
