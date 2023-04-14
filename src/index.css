@@ -735,3 +735,6 @@ aside.EmojiPickerReact.epr-main {
   transform: rotate(-45deg);
   width: 40px;
 }
+.eth-bsd .buy-icon-box {
+  margin: -52px 20px 36px;
+}
