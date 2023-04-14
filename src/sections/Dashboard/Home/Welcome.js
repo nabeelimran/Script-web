@@ -198,12 +198,12 @@ function Welcome({}) {
             </>
           )}
 
-          <Card
+          {/* <Card
             color="#5815BA"
             title="Mint Glasses!"
             description="Mint glasses to start earning SPAY"
             clickHandler={handlePaidMint}
-          />
+          /> */}
 
           <Card
             title={`${balance.toFixed(2)} SPAY`}
