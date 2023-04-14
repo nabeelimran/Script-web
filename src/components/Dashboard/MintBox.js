@@ -16,6 +16,7 @@ import {
   approve,
   approveGlassPass,
   checkApproval,
+  checkGlassPassApproval,
   getGlassPassBalance,
   mintGlasses,
 } from "contract/functions";
@@ -73,6 +74,7 @@ const MintBox = ({ accountAddress, balance }) => {
 
       getPassBalance();
       checkIsApproved();
+      checkPassIsApproved();
     })();
   }, [accountAddress]);
 
@@ -84,10 +86,18 @@ const MintBox = ({ accountAddress, balance }) => {
     })();
   }, [type]);
 
+  const checkPassIsApproved = async () => {
+    if (accountAddress) {
+      const isAllowed = await checkGlassPassApproval(accountAddress);
+      console.log("checkPassIsApproved", isAllowed);
+      setIsPassApproved(isAllowed);
+    }
+  };
+
   const getPassBalance = async () => {
     if (accountAddress) {
       const balance = await getGlassPassBalance(accountAddress);
-      console.log("balance", balance);
+      console.log("passBalance", balance);
       setPassBalance(Number(balance));
     }
   };
@@ -139,6 +149,7 @@ const MintBox = ({ accountAddress, balance }) => {
       if (response.status === 1) {
         setContractLoading("success");
         setContractResponse(response);
+        getPassBalance();
         ToastMessage("Glass minted successfully", true);
       } else {
         setContractLoading("error");
@@ -156,10 +167,11 @@ const MintBox = ({ accountAddress, balance }) => {
         setContractLoading("processing");
 
         let receipt = await approveGlassPass();
+
         setContractLoading("approved");
 
         ToastMessage("Approved", true);
-        await checkIsApproved();
+        await checkPassIsApproved();
       } catch (error) {
         console.log(error);
         setContractLoading("error");
