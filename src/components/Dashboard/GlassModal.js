@@ -155,17 +155,17 @@ export default function GlassModal({
         )}
       </DialogContent>
       <StyledDialogAction>
-        <MuiButton sx={buttonStyle} variant="outlined" onClick={handleClose}>
+        <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
           recharge
-        </MuiButton>
+        </Button>
         {gemEligible && (
-          <MuiButton sx={buttonStyle} variant="outlined" onClick={handleClose}>
+          <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
             add gem
-          </MuiButton>
+          </Button>
         )}
-        <MuiButton sx={buttonStyle} variant="outlined" onClick={handleClose}>
+        <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
           sell
-        </MuiButton>
+        </Button>
       </StyledDialogAction>
     </StyledDialog>
   );
