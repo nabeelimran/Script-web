@@ -4,6 +4,7 @@ const initialState = {
   accountAddress: "",
   signature:"",
   isOkc:"",
+  isTemple: "",
   user:{
     email:"",
     password:"",
@@ -23,6 +24,9 @@ export const metamask_state = createSlice({
     setIsOkc: (state, action) => {
       state.isOkc = action.payload;
     },
+    setIsTemple: (state, action) => {
+      state.isTemple = action.payload;
+    },
     metamaskSignature: (state, action) => {
       state.signature = action.payload;
     },
@@ -33,6 +37,6 @@ export const metamask_state = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { metamaskCred,metamaskSignature,userInfo,setIsOkc } = metamask_state.actions;
+export const { metamaskCred,metamaskSignature,userInfo,setIsOkc, setIsTemple } = metamask_state.actions;
 
 export default metamask_state.reducer;

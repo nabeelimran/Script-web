@@ -9,7 +9,7 @@ import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
 } from "redux/reducers/connectWalletModal_State";
-import { metamaskCred, setIsOkc } from "redux/reducers/metamask_state";
+import { metamaskCred, setIsOkc, setIsTemple } from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
 import ConnectWalletButton from "./ConnectWalletButton";
 import SocialLoginCard from "./SocialLoginCard";
@@ -138,18 +138,40 @@ function ConnectWalletModal() {
       } else if (loginType === loginTypes.bitgret) {
         setLoading({ ...loading, bitgret: true });
         helper.trackByMixpanel("Bitgret Button Clicked", {});
+      } else if (loginType === loginTypes.temple) {
+        setLoading({ ...loading, temple: true });
+        helper.trackByMixpanel("Temple Button Clicked", {});
       } else {
         setLoading({ ...loading, metamask: true });
         dispatch(setIsOkc(loginTypes.metamask));
         helper.trackByMixpanel("Metamask Button Clicked", {});
       }
-
-      if (!window.ethereum) {
-        ToastMessage("Install Metamask");
-        setLoading(false);
-        return false;
+      let accAddres;
+      if(loginType === loginTypes.temple) {
+        if (await TempleWalletService.isCheckWalletPlugin()) {
+          const templeWalletData = await TempleWalletService.connectWallet();
+          if (templeWalletData?.isSuccess) {
+            accAddres = templeWalletData.data.accountPkh;
+            setLoading({...loading, temple: false})
+          } else {
+            ToastMessage(templeWalletData?.data?.message || 'User rejected')
+            setLoading({...loading, temple: false})
+            return;
+          }
+        } else {
+          ToastMessage("Temple Wallet not installed");
+          setLoading({...loading, temple: false})
+          return;
+        }
+      } else {
+        if (!window.ethereum) {
+          ToastMessage("Install Metamask");
+          setLoading(false);
+          return false;
+        }
+        accAddres = await MetamaskService.connectHandler();
       }
-      const accAddres = await MetamaskService.connectHandler();
+      
 
       if (accAddres) {
         dispatch(metamaskCred(accAddres));
@@ -193,6 +215,10 @@ function ConnectWalletModal() {
           if (balance) {
             okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
           }
+        }
+        if (loginType === loginTypes.temple) {
+          dispatch(setIsTemple(loginTypes.temple));
+          
         }
         const isUser = await Api.getUserDetailsByWalletAddress(
           accAddres,
@@ -294,22 +320,6 @@ function ConnectWalletModal() {
     }
   };
 
-  const templateWalletHandler = async () => {
-    setLoading({...loading, temple: true})
-    if (await TempleWalletService.isCheckWalletPlugin()) {
-      const templeWalletData = await TempleWalletService.connectWallet();
-      if (templeWalletData?.isSuccess) {
-        
-      } else {
-        ToastMessage(templeWalletData?.data?.message || 'User rejected')
-      }
-      console.log(templeWalletData);
-      setLoading({...loading, temple: false})
-    } else {
-      ToastMessage("Temple Wallet not installed");
-      setLoading({...loading, temple: false})
-    }
-  }
 
   const googleLoginHandler = () => {
     helper.trackByMixpanel("Google Social Button Clicked", {});
@@ -521,12 +531,12 @@ function ConnectWalletModal() {
                 loader={loading.bitgret}
                 clickEvent={() => metaMaskHandler(loginTypes.bitgret)}
               />
-              {/* <ConnectWalletButton
+              <ConnectWalletButton
                 img="images/temple-wallet.png"
                 title="Temple Wallet"
                 loader={loading.temple}
-                clickEvent={() => templateWalletHandler()}
-              /> */}
+                clickEvent={() => metaMaskHandler(loginTypes.temple)}
+              />
             </div>
 
             <div>
