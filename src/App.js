@@ -64,6 +64,7 @@ import Notifications from "components/Dashboard/Notifications";
 import { ToastMessage } from "components/ToastMessage";
 import { toggleNotification } from "redux/reducers/Notification_State";
 import { helper } from "utils/helper";
+import HowToBuy from "pages/HowToBuy";
 
 function App() {
   const dispatch = useDispatch();
@@ -117,6 +118,7 @@ function App() {
       <MetamaskChangeDetectionModal />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/how-to-buy" element={<HowToBuy/>} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/download" element={<Download />} />
         <Route path="/token" element={<TokenPage />} />

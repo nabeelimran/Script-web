@@ -16,8 +16,14 @@ function InventoryTradeCard({ glass, onClick }) {
       </div>
 
       <div className="bg-primary w-fit py-1 px-3 rounded-md lg:rounded-xl mx-auto mb-3 lg:mb-8 transition-all duration-200 group-hover:bg-[#0E0E0F]">
-        <p className="text-sm xl:text-base text-black transition-all duration-200 group-hover:text-white">
-          {glass.tokenId}
+        <p className="text-sm xl:text-base text-black transition-all duration-200 group-hover:text-white text-center">
+          #{glass.tokenId}
+        </p>
+        <p className="text-sm xl:text-base text-black transition-all duration-200 group-hover:text-white text-center">
+          Level: {glass.level}
+        </p>
+        <p className="text-sm xl:text-base text-black transition-all duration-200 group-hover:text-white text-center">
+          Type: {glass.type}
         </p>
       </div>
     </div>

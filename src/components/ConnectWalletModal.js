@@ -9,7 +9,7 @@ import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
 } from "redux/reducers/connectWalletModal_State";
-import { metamaskCred, setIsOkc } from "redux/reducers/metamask_state";
+import { metamaskCred, setIsOkc, setIsTemple } from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
 import ConnectWalletButton from "./ConnectWalletButton";
 import SocialLoginCard from "./SocialLoginCard";
@@ -29,6 +29,7 @@ import { detectBrowser, helper, metamaskNetwork } from "utils/helper";
 import MixPanelService from "services/mixPanelService";
 import { isLogin } from "redux/reducers/login_state";
 import { loginTypes } from "utils/helper";
+import { TempleWalletService } from "services/TempleWallet";
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ function ConnectWalletModal() {
     bnb: false,
     okc: false,
     bitgret: false,
+    temple: false
   });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -136,18 +138,40 @@ function ConnectWalletModal() {
       } else if (loginType === loginTypes.bitgret) {
         setLoading({ ...loading, bitgret: true });
         helper.trackByMixpanel("Bitgret Button Clicked", {});
+      } else if (loginType === loginTypes.temple) {
+        setLoading({ ...loading, temple: true });
+        helper.trackByMixpanel("Temple Button Clicked", {});
       } else {
         setLoading({ ...loading, metamask: true });
         dispatch(setIsOkc(loginTypes.metamask));
         helper.trackByMixpanel("Metamask Button Clicked", {});
       }
-
-      if (!window.ethereum) {
-        ToastMessage("Install Metamask");
-        setLoading(false);
-        return false;
+      let accAddres;
+      if(loginType === loginTypes.temple) {
+        if (await TempleWalletService.isCheckWalletPlugin()) {
+          const templeWalletData = await TempleWalletService.connectWallet();
+          if (templeWalletData?.isSuccess) {
+            accAddres = templeWalletData.data.accountPkh;
+            setLoading({...loading, temple: false})
+          } else {
+            ToastMessage(templeWalletData?.data?.message || 'User rejected')
+            setLoading({...loading, temple: false})
+            return;
+          }
+        } else {
+          ToastMessage("Temple Wallet not installed");
+          setLoading({...loading, temple: false})
+          return;
+        }
+      } else {
+        if (!window.ethereum) {
+          ToastMessage("Install Metamask");
+          setLoading(false);
+          return false;
+        }
+        accAddres = await MetamaskService.connectHandler();
       }
-      const accAddres = await MetamaskService.connectHandler();
+      
 
       if (accAddres) {
         dispatch(metamaskCred(accAddres));
@@ -191,6 +215,10 @@ function ConnectWalletModal() {
           if (balance) {
             okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
           }
+        }
+        if (loginType === loginTypes.temple) {
+          dispatch(setIsTemple(loginTypes.temple));
+          
         }
         const isUser = await Api.getUserDetailsByWalletAddress(
           accAddres,
@@ -291,6 +319,7 @@ function ConnectWalletModal() {
       ToastMessage(error?.response?.data?.message || "Somthing went wrong");
     }
   };
+
 
   const googleLoginHandler = () => {
     helper.trackByMixpanel("Google Social Button Clicked", {});
@@ -502,12 +531,18 @@ function ConnectWalletModal() {
                 loader={loading.bitgret}
                 clickEvent={() => metaMaskHandler(loginTypes.bitgret)}
               />
+              {/* <ConnectWalletButton
+                img="images/temple-wallet.png"
+                title="Temple Wallet"
+                loader={loading.temple}
+                clickEvent={() => metaMaskHandler(loginTypes.temple)}
+              /> */}
             </div>
 
             <div>
               <p className="text-center text-sm mb-5">Social</p>
 
-              <div className="flex items-center justify-center space-x-4 mb-6">
+              <div className="flex items-center justify-center space-x-4 mb-2">
                 <SocialLoginCard
                   title="Google"
                   click={googleLoginHandler}
@@ -520,9 +555,9 @@ function ConnectWalletModal() {
                 /> */}
               </div>
 
-              <Link to="/" className="block w-fit mx-auto text-center text-sm">
+              {/* <Link to="/" className="block w-fit mx-auto text-center text-sm">
                 Forget Password?
-              </Link>
+              </Link> */}
             </div>
           </div>
 
