@@ -258,6 +258,11 @@ function Hero() {
               >
                 <span className="text-inherit lh-1">Buy Tokens</span>
               </button>
+              <h2 className="text-center mt-4 text-lg hover:text-primary hover:underline">
+                <a href="/how-to-buy" target="_blank">
+                  How to Buy
+                </a>
+              </h2>
             </div>
           </div>
         </div>
