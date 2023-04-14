@@ -684,7 +684,6 @@ aside.EmojiPickerReact.epr-main {
   padding: 5px 15px;
 }
 
-
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -709,14 +708,30 @@ aside.EmojiPickerReact.epr-main {
   fill: green !important;
 }
 
-
 /* Dashboard Styles */
-.custom-btn-mui{
+.custom-btn-mui {
   background-color: #ffef00 !important;
-  
 }
 
 .custom-btn-mui:hover {
   background-color: rgb(178, 167, 0) !important;
+}
 
+.buy-icon-box {
+  min-width: 60px;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 12px;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: -52px;
+  margin-bottom: 36px;
+}
+.buy-icon-box img {
+  transform: rotate(-45deg);
+  width: 40px;
 }
