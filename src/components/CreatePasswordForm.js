@@ -50,84 +50,89 @@ function CreatePasswordForm() {
   };
 
   const onSubmit = async (data) => {
-    setLoading(true);
-	let okcBalance;
-    if (isOkc===loginTypes.okc || isOkc===loginTypes.bitgret) {
-      
-          const balance = await window.ethereum.request({
-            method: "eth_getBalance",
-            params: [accountAddress, "latest"],
-          });
-          
-          if (balance) {
-            okcBalance = (parseInt(balance, 16))/Math.pow(10,18);
-          }
-        }
-    const resObj = {
-      browser: "dummyData",
-      country: "dummayData",
-      device: "Web",
-      loginIp: "dummyData",
-      loginLocation: "dummmyData",
-      email: user.email,
-      userName: user.username,
-      password: data.password,
-      otherReferralCode: user.referal,
-      walletAddress: accountAddress,
-      walletSignature: signature ? signature : "",
-      okcWalletBalance: isOkc===loginTypes.okc ? okcBalance : null,
-      briseBalance: isOkc===loginTypes.bitgret ? okcBalance : null,
-      signupType:isOkc
-
-
-    };
-
-    const loginW = await Api.walletLogin(resObj, "login_model");
     try {
-      MixPanelService.setIdentifier(loginW?.data?.data?.email);
-            MixPanelService.track('sign-up', loginW?.data?.data);
-    } catch (error) {
-      
-    }
-    if (loginW.data.message === "Please verify your account.") {
-      setLoading(false);
-      dispatch(togglePasswordModalVisibility(false));
-      reset({
-        password: "",
-        confirm_password: "",
-      })
-      navigate({
-        pathname: "/verify-account",
-        search: `?email=${user.email}`,
-      });
-    } else {
-      if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
+      setLoading(true);
+      let okcBalance;
+      if (isOkc===loginTypes.okc || isOkc===loginTypes.bitgret) {
+        
+            const balance = await window.ethereum.request({
+              method: "eth_getBalance",
+              params: [accountAddress, "latest"],
+            });
+            
+            if (balance) {
+              okcBalance = (parseInt(balance, 16))/Math.pow(10,18);
+            }
+          }
+      const resObj = {
+        browser: "dummyData",
+        country: "dummayData",
+        device: "Web",
+        loginIp: "dummyData",
+        loginLocation: "dummmyData",
+        email: user.email,
+        userName: user.username,
+        password: data.password,
+        otherReferralCode: user.referal,
+        walletAddress: accountAddress,
+        walletSignature: signature ? signature : "",
+        okcWalletBalance: isOkc===loginTypes.okc ? okcBalance : null,
+        briseBalance: isOkc===loginTypes.bitgret ? okcBalance : null,
+        signupType:isOkc
+
+
+      };
+
+      const loginW = await Api.walletLogin(resObj, "login_model");
+      try {
+        MixPanelService.setIdentifier(loginW?.data?.data?.email);
+              MixPanelService.track('sign-up', loginW?.data?.data);
+      } catch (error) {
+        
+      }
+      if (loginW.data.message === "Please verify your account.") {
         setLoading(false);
-        if (loginW.data.data.authToken) {
-          sessionStorage.setItem(
-            "script-token",
-            JSON.stringify(loginW.data.data.authToken)
-          );
-        }
-
-        sessionStorage.setItem(
-          "userInfo",
-          JSON.stringify({
-            email: user.email,
-			userName: loginW.data.data.userName,
-          })
-        );
-        ToastMessage(`${loginW.data.message}`, true);
-
         dispatch(togglePasswordModalVisibility(false));
         reset({
           password: "",
           confirm_password: "",
         })
+        navigate({
+          pathname: "/verify-account",
+          search: `?email=${user.email}`,
+        });
       } else {
-        ToastMessage("something went wrong");
-        loading(false);
-      }
+        if (loginW && loginW.status === 200 && loginW.data.isSuccess) {
+          setLoading(false);
+          if (loginW.data.data.authToken) {
+            sessionStorage.setItem(
+              "script-token",
+              JSON.stringify(loginW.data.data.authToken)
+            );
+          }
+
+          sessionStorage.setItem(
+            "userInfo",
+            JSON.stringify({
+              email: user.email,
+        userName: loginW.data.data.userName,
+            })
+          );
+          ToastMessage(`${loginW.data.message}`, true);
+
+          dispatch(togglePasswordModalVisibility(false));
+          reset({
+            password: "",
+            confirm_password: "",
+          })
+        } else {
+          ToastMessage("something went wrong");
+          setLoading(false);
+        }
+      }  
+    } catch (error) {
+      ToastMessage(error?.response?.data?.message || "something went wrong");
+      setLoading(false);
     }
   };
   const dispatch = useDispatch();
