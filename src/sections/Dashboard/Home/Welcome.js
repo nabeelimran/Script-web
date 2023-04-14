@@ -204,12 +204,12 @@ function Welcome({}) {
             description="Mint glasses to start earning SPAY"
             clickHandler={handlePaidMint}
           />
-
+          {/* 
           <Card
             title={`${balance.toFixed(2)} SPAY`}
             color="#0E0E0F"
             description="watch to earn!"
-          />
+          /> */}
         </div>
       </div>
 
