@@ -6,6 +6,7 @@ import {
   DialogActions,
   DialogContent,
   Slide,
+  Link,
 } from "@mui/material";
 import {
   Dispatch,
@@ -119,6 +120,13 @@ export default function GlassModal({
           <div className="text-md font-semibold mb-2">
             Voucher Equipped : {rechargeDiscountPercentage > 0 ? "Yes" : "No"}
           </div>
+          <Link
+            target="_blank"
+            href={`https://goerli.etherscan.io/nft/0xf933F3f1d01418ad00271C4e45A218fC8b9396fE/${id}`}
+          >
+            {" "}
+            View on Etherscan
+          </Link>
         </Box>
         {history.length > 0 && (
           <Box>
