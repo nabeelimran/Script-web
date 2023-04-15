@@ -22,7 +22,7 @@ axios.interceptors.request.use(
       config.headers["requestDate"] = currentDate;
       config.headers["url"] = window.location.origin;
     }
-    if (config.url.includes(APIPATH.NOTIFICATIONURL)) {
+    if (config.url.includes(APIPATH.NOTIFICATIONURL) || config.url.includes('https://ipfs.io')) {
       console.log("here");
       config.headers.delete("userAuth");
       config.headers.delete("requestDate");
