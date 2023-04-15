@@ -79,25 +79,30 @@ const RewardHistory = () => {
   };
 
   const onClaimClick = async (type) => {
-    setLoading({ ...loading, [type.toLowerCase()]: true });
-    const apiResponse = await claimPayout(accountAddress.toLowerCase(), type);
+    try {
+      setLoading({ ...loading, [type.toLowerCase()]: true });
+      const apiResponse = await claimPayout(accountAddress.toLowerCase(), type);
 
-    if (apiResponse.signature) {
-      const contractResponse = await earningPayout(
-        apiResponse.amount,
-        apiResponse.nonce,
-        apiResponse.signature,
-        apiResponse.type
-      );
-      console.log("contractResponse ", contractResponse);
+      if (apiResponse.signature) {
+        const contractResponse = await earningPayout(
+          apiResponse.amount,
+          apiResponse.nonce,
+          apiResponse.signature,
+          apiResponse.type
+        );
+        console.log("contractResponse ", contractResponse);
 
-      if (contractResponse.blockHash) {
-        ToastMessage("Reward has been cashed out successfully", true);
-        onClaimUpdate(type);
-      } else {
-        ToastMessage("Something went wrong", false);
-        setLoading({ ...loading, [type.toLowerCase()]: false });
+        if (contractResponse.blockHash) {
+          ToastMessage("Reward has been cashed out successfully", true);
+          onClaimUpdate(type);
+        } else {
+          ToastMessage("Something went wrong", false);
+          setLoading({ ...loading, [type.toLowerCase()]: false });
+        }
       }
+    } catch (error) {
+      ToastMessage("Something went wrong", false);
+      setLoading({ ...loading, [type.toLowerCase()]: false });
     }
   };
 

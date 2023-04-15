@@ -142,7 +142,7 @@ export default function RechargeModal({
               </Typography>
             </RowBox>
           )}
-          <MuiButton
+          <Button
             variant="contained"
             disabled={!glass.drained}
             onClick={handleRechargeGLasses}
@@ -152,7 +152,7 @@ export default function RechargeModal({
             ) : (
               <>Recharge</>
             )}
-          </MuiButton>
+          </Button>
         </GlassBox>
       </DialogContent>
       {/* <DialogActions>
