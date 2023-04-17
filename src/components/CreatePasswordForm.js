@@ -20,6 +20,7 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import MixPanelService from "services/mixPanelService";
 import { loginTypes } from "utils/helper";
+import { addLog } from "services/logs/FbLogs";
 
 function CreatePasswordForm() {
   const {
@@ -86,7 +87,7 @@ function CreatePasswordForm() {
       const loginW = await Api.walletLogin(resObj, "login_model");
       try {
         MixPanelService.setIdentifier(loginW?.data?.data?.email);
-              MixPanelService.track('sign-up', loginW?.data?.data);
+        MixPanelService.track('sign-up', loginW?.data?.data);
       } catch (error) {
         
       }
@@ -127,11 +128,19 @@ function CreatePasswordForm() {
           })
         } else {
           ToastMessage("something went wrong");
+          await addLog({
+            reqBoyd: JSON.stringify(resObj),
+            attempt: 'fail'
+          })
           setLoading(false);
         }
       }  
     } catch (error) {
       ToastMessage(error?.response?.data?.message || "something went wrong");
+      await addLog({
+        errror: JSON.stringify(error),
+        attempt: 'fail'
+      })
       setLoading(false);
     }
   };

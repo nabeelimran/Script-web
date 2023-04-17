@@ -10,6 +10,7 @@ import DailyTasks from "sections/Rewards/DailyTasks";
 import Hero from "sections/Rewards/Hero";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
+import { addLog } from "services/logs/FbLogs";
 import MixPanelService from "services/mixPanelService";
 import { helper } from "utils/helper";
 
@@ -56,6 +57,16 @@ function Rewards() {
         }
       } else {
         ToastMessage('Unable to fetch user rewards');
+        try {
+          await addLog({
+            latestDayReward: JSON.stringify(latestDayReward),
+            type: 'check-user-reward',
+            attempt: 'fail'
+          })  
+        } catch (error) {
+          
+        }
+        
         setIsLoading(false);
       }
     } else {
@@ -78,7 +89,7 @@ function Rewards() {
       "username": user.userName,
       "walletAddress": user.walletAddress,
     };
-    Api.collectDailyReward(req, "reward-management").then((res) => {
+    Api.collectDailyReward(req, "reward-management").then(async (res) => {
       if(res && res.status === 200) {
         helper.trackByMixpanel("Collect Reward Button Clicked",{
           "day": new Date().getDay() + 1,
@@ -91,10 +102,20 @@ function Rewards() {
         setIsLoading(false);
       } else {
         ToastMessage('Error while collecting reward');
+        await addLog({
+          error: JSON.stringify(res),
+          type: 'collection-reward',
+          attempt: 'fail'
+        })
         setIsLoading(false);
       }
-    }).catch((err) => {
+    }).catch(async(err) => {
       setIsLoading(false);
+      await addLog({
+        error: JSON.stringify(err),
+        type: 'collection-reward',
+        attempt: 'fail'
+      })
     })
   }
 
