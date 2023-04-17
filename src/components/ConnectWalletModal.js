@@ -30,6 +30,7 @@ import MixPanelService from "services/mixPanelService";
 import { isLogin } from "redux/reducers/login_state";
 import { loginTypes } from "utils/helper";
 import { TempleWalletService } from "services/TempleWallet";
+import { addLog } from "services/logs/FbLogs";
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -77,9 +78,14 @@ function ConnectWalletModal() {
         if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
           await MetamaskService.changeChain("spaceID");
         }
-        Api.getSpaceIDName(walletAddress).then((res) => {
+        Api.getSpaceIDName(walletAddress).then(async (res) => {
           if (res && res.status === 200) {
             if (!res?.data?.data?.name) {
+              await addLog({
+                loginType: 'spaceId-login',
+                errror: JSON.stringify(res),
+                attempt: 'fail'
+              })
               ToastMessage("BNB username is not found");
               setLoading({ ...loading, bnb: false });
               return;
@@ -89,7 +95,7 @@ function ConnectWalletModal() {
               username: res.data.data.name,
               signupType: loginTypes.bnb,
             };
-            Api.loginWithSpaceID(req).then((resp) => {
+            Api.loginWithSpaceID(req).then(async (resp) => {
               if (resp && resp.status === 200) {
                 setLoading({ ...loading, bnb: false });
                 ToastMessage(`${resp?.data?.message}`, true);
@@ -116,6 +122,11 @@ function ConnectWalletModal() {
                 });
               } else {
                 setLoading({ ...loading, bnb: false });
+                await addLog({
+                  loginType: 'spaceId-login',
+                  errror: JSON.stringify(resp),
+                  attempt: 'fail'
+                })
                 ToastMessage("Unable to login");
               }
             });
@@ -124,6 +135,11 @@ function ConnectWalletModal() {
       }  
     } catch (error) {
       setLoading({ ...loading, bnb: false });
+      await addLog({
+        loginType: 'spaceId-login',
+        errror: JSON.stringify(error),
+        attempt: 'fail'
+      })
       ToastMessage(error?.response?.data?.message || "Something went wrong.");
     }
     
@@ -310,6 +326,13 @@ function ConnectWalletModal() {
               bitgret: false,
             });
             ToastMessage("Somthing went wrong");
+            await addLog({
+              loginType: loginType,
+              walletAddress: accAddres,
+              errror: JSON.stringify(loginW),
+              reqBoyd: JSON.stringify(resObj),
+              attempt: 'fail'
+            })
           }
         }
       }
@@ -317,6 +340,11 @@ function ConnectWalletModal() {
       console.log(error);
       setLoading({ ...loading, okc: false, metamask: false, bitgret: false });
       ToastMessage(error?.response?.data?.message || "Somthing went wrong");
+      await addLog({
+        loginType: loginType,
+        errror: JSON.stringify(error),
+        attempt: 'fail'
+      })
     }
   };
 
@@ -395,11 +423,16 @@ function ConnectWalletModal() {
             ToastMessage(err?.response?.data?.message || "Something went wrong");
           });
       })
-      .catch((err) => {
+      .catch(async (err) => {
         console.log(err);
         ToastMessage(
           err?.error?.message || "Google login popup closed by user."
         );
+        await addLog({
+          loginType: 'social-login',
+          errror: JSON.stringify(err),
+          attempt: 'fail'
+        })
       });
   };
 
