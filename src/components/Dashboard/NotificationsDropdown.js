@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import LocalServices from "services/LocalServices";
 import Api from "services/api";
 import { helper } from "utils/helper";
+import { Link } from "react-router-dom";
+import OutsideClickDetector from "hooks/OutsideClickDetector";
 
-function Notifications() {
+const NotificationsDropdown = () => {
   const [notificationList, setNotificationList] = useState([]);
 
   const getNotifications = async () => {
@@ -32,17 +34,12 @@ function Notifications() {
   }, []);
 
   return (
-    <div className="dashboard-top-spacing dashboard-bottom-spacing">
-      <div className="dashboard-layout">
-        <Title
-          className="text-primary text-left font-semibold mb-6"
-          variant="24"
-        >
-          Notifications
-        </Title>
-        <div className="flex flex-col">
-          {notificationList && notificationList.length > 0
-            ? notificationList.map((notification, index) => (
+    <div className="bg-[#2e3233] p-5 rounded-lg w-[100%] absolute right-0 top-20 z-[1000]">
+      <div className="flex flex-col h-[500px] overflow-auto">
+        {notificationList && notificationList.length > 0
+          ? notificationList
+              .filter((notification, index) => index < 3)
+              .map((notification, index) => (
                 <div className="mb-5" key={index}>
                   <div className="bg-[#0E0E0F] dark:border-neutral-600 rounded-lg shadow-lg dark:bg-neutral-700 w-full">
                     <div className="border-b-2 border-neutral-100 py-3 px-4 dark:border-neutral-600 dark:text-neutral-50">
@@ -82,11 +79,13 @@ function Notifications() {
                   </div>
                 </div>
               ))
-            : null}
-        </div>
+          : null}
       </div>
+      <Link to="/dashboard/notifications">
+        <Button label="See All" className="mx-auto mt-5" />
+      </Link>
     </div>
   );
-}
+};
 
-export default Notifications;
+export default NotificationsDropdown;

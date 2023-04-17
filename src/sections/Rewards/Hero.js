@@ -80,8 +80,8 @@ function Hero({
         </div>
       </section>
 
-      <section className="dashboard-layout grid lg:grid-cols-2 gap-10 lg:gap-20 mt-3 h-[150px]">
-        <div></div>
+      <section className="dashboard-layout grid lg:grid-cols-1 gap-10 lg:gap-20 mt-3 h-[150px]">
+        {/* <div></div> */}
         <Card
           color="#5815BA"
           title="Mint Glasses!"

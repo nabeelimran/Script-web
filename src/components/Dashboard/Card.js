@@ -10,14 +10,18 @@ const Card = ({ color, title, description, clickHandler }) => {
       }}
       onClick={clickHandler}
     >
-      <div className="flex items-start space-x-3">
-        <div className="min-w-[40px] h-[40px] rounded-full bg-white"></div>
+      <div className="flex w-full justify-between">
+        {/* <div className="min-w-[40px] h-[40px] rounded-full bg-white"></div> */}
 
-        <div className="">
-          <p className="fs-16px font-medium mb-1">{title}</p>
+        <div className="m-auto w-full">
+          <p className="text-base lg:text-lg xl:text-2xl font-semibold text-primary">{title}</p>
           <p className="text-sm">{description}</p>
         </div>
+        <div className="flex items-end">
+          <img src="../images/blue-glasses.png" className="w-[200px]" alt="" />
+        </div>
       </div>
+      
     </div>
   );
 };
