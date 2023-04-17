@@ -342,6 +342,27 @@ export const getRewardsHistory = async (address) => {
   return data?.data?.earningPayouts || [];
 };
 
+export const getNonClaimedTransactions = async (userId) => {
+  try {
+    const response = await axios.request({
+      url: "https://stagebackend.script.tv/api/v1/getTransactions",
+      method: "GET",
+      params: {
+        executed: false,
+        userId,
+        page: 0,
+        // type: "PAYOUT_RARE",
+      },
+    });
+
+    console.log("getNonClaimedTransactions", response.data.data);
+
+    return response.data;
+  } catch (error) {
+    console.log("error in getNonClaimedTransactions");
+  }
+};
+
 // export const postMethod = async () => {
 //   const response = await api.request({
 //     url: "/products",
