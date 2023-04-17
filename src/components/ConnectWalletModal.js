@@ -78,10 +78,10 @@ function ConnectWalletModal() {
         if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
           await MetamaskService.changeChain("spaceID");
         }
-        Api.getSpaceIDName(walletAddress).then(async (res) => {
+        Api.getSpaceIDName(walletAddress).then((res) => {
           if (res && res.status === 200) {
             if (!res?.data?.data?.name) {
-              await addLog({
+              addLog({
                 loginType: 'spaceId-login',
                 errror: JSON.stringify(res),
                 attempt: 'fail'
@@ -95,7 +95,7 @@ function ConnectWalletModal() {
               username: res.data.data.name,
               signupType: loginTypes.bnb,
             };
-            Api.loginWithSpaceID(req).then(async (resp) => {
+            Api.loginWithSpaceID(req).then((resp) => {
               if (resp && resp.status === 200) {
                 setLoading({ ...loading, bnb: false });
                 ToastMessage(`${resp?.data?.message}`, true);
@@ -122,7 +122,7 @@ function ConnectWalletModal() {
                 });
               } else {
                 setLoading({ ...loading, bnb: false });
-                await addLog({
+                addLog({
                   loginType: 'spaceId-login',
                   errror: JSON.stringify(resp),
                   attempt: 'fail'
@@ -135,7 +135,7 @@ function ConnectWalletModal() {
       }  
     } catch (error) {
       setLoading({ ...loading, bnb: false });
-      await addLog({
+      addLog({
         loginType: 'spaceId-login',
         errror: JSON.stringify(error),
         attempt: 'fail'
