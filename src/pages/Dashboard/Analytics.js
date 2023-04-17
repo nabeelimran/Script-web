@@ -49,7 +49,7 @@ function Analytics() {
   }
 
   const getVideoWatchAnalytics = (userId) => {
-    Api.getVideoWatchAnalytics(userId, 'watch').then((res) => {
+    Api.getVideoWatchAnalyticsByDate(userId, 'watch').then((res) => {
       if(res && res.status === 200) {
         const analyticData = res?.data?.data;
         if (analyticData && analyticData.length > 0) {
@@ -57,8 +57,8 @@ function Analytics() {
           let durationArr = []
           let videoIdArr = []
           analyticData.forEach(aData => {
-            durationArr.push(aData.duration);
-            videoIdArr.push(aData.videoId);
+            durationArr.push(aData.totalDuration);
+            videoIdArr.push(aData.viewDate);
           });
           data.labels = [...videoIdArr];
           data.datasets[0].data = durationArr.sort();
