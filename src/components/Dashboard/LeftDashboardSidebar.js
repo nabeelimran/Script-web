@@ -73,13 +73,13 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
             img="home.svg"
             onClick={() => setter(false)}
           />
-          {/* <PageLink
+          <PageLink
             link="mint"
             label="Mint"
             img="home.svg"
             onClick={() => setter(false)}
           />
-          <PageLink
+          {/* <PageLink
             link="voucher"
             label="Vouchers"
             img="home.svg"
