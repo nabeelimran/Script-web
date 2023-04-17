@@ -200,7 +200,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* <Route
+          <Route
             path="mint"
             element={
               <PrivateRoute>
@@ -208,7 +208,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route
+          {/* <Route
             path="voucher"
             element={
               <PrivateRoute>

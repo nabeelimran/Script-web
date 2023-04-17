@@ -44,6 +44,7 @@ import {
 import MintBox from "components/Dashboard/MintBox";
 import FreeMintBox from "components/Dashboard/FreeMintBox";
 import GemMintBox from "components/Dashboard/GemMintBox";
+import ComingSoon from "pages/coming-soon";
 
 const MintBoxStyle = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -85,9 +86,15 @@ export default function Glass() {
 
   return (
     <Container maxWidth="md" sx={{ my: 20 }} id="mint">
+      <div>
+        <ComingSoon isLinkActive={true} />
+      </div>
+      {/* commented by dheeraj
       <MintBox accountAddress={accountAddress} balance={balance} />
 
       <FreeMintBox accountAddress={accountAddress} balance={balance} />
+      end of block commented by dheeraj */}
+      
       {/* <GemMintBox accountAddress={accountAddress} balance={balance} /> */}
 
       {/* {contractLoading === "success" && (
