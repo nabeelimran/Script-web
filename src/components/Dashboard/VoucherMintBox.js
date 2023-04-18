@@ -120,15 +120,20 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
       console.log(
         "handleCheckVoucherApproval",
         voucherPrices[type],
-        Number(ethers.utils.formatEther(approval.toString())),
+
+        ethers.utils
+          .parseUnits(voucherPrices[type].toString(), "ether")
+          .toString(),
+        approval,
         type
       );
 
       if (
-        voucherPrices[type] <=
-        Number(Number(ethers.utils.formatEther(approval.toString())))
+        ethers.utils
+          .parseUnits(voucherPrices[type].toString(), "ether")
+          .toString() <= approval
       )
-        setIsVoucherApproved(true);
+        setIsVoucherApproved(false);
       else setIsVoucherApproved(false);
     }
   };
@@ -307,9 +312,9 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
       </VoucherMintBoxStyle>
       {contractLoading === "success" && (
         <Box display="flex" mt={2}>
-          Glass Successfully Minted,
+          Voucher Successfully Minted,{" "}
           <Box>
-            Check you transaction on
+            Check your transaction on
             <Link
               target="_blank"
               href={`https://goerli.etherscan.io/tx/${contractResponse?.transactionHash}`}
