@@ -80,7 +80,7 @@ function CreatePasswordForm() {
         walletSignature: signature ? signature : "",
         okcWalletBalance: isOkc === loginTypes.okc ? okcBalance : null,
         briseBalance: isOkc === loginTypes.bitgret ? okcBalance : null,
-        signupType: isOkc === loginTypes.temple ? okcBalance : null,
+        signupType: loginTypes.temple,
       };
 
       const loginW = await Api.walletLogin(resObj, "login_model");
