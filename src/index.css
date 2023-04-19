@@ -738,3 +738,6 @@ aside.EmojiPickerReact.epr-main {
 .eth-bsd .buy-icon-box {
   margin: -52px 20px 36px;
 }
+.feature-icon {
+  filter: grayscale(1) contrast(5) invert(1);
+}
