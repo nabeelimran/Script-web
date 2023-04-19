@@ -133,7 +133,7 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
           .parseUnits(voucherPrices[type].toString(), "ether")
           .toString() <= approval
       )
-        setIsVoucherApproved(false);
+        setIsVoucherApproved(true);
       else setIsVoucherApproved(false);
     }
   };
