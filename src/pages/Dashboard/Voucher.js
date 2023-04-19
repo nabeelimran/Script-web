@@ -217,6 +217,7 @@ export default function VoucherView() {
         loading: true,
       });
       try {
+        console.log("isApproved", isApproved);
         if (!isApproved) {
           await handleApprove();
         }
@@ -232,6 +233,7 @@ export default function VoucherView() {
             ...superscriptGlassesState,
             loading: false,
           });
+          console.log("response", response);
 
           if (response.status === 1) {
             ToastMessage("Voucher equipped successfully", true);
