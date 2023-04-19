@@ -3,7 +3,6 @@ import Marquee from "react-fast-marquee";
 
 const companies = [
   {
-    // iconImg: "images/partners/poolz.svg",
     iconImg: "images/partners/push-logo.png",
     className: "invert-[100%] brightness-0 h-6 xl:h-20",
   },
@@ -23,15 +22,10 @@ const companies = [
     iconImg: "images/partners/NFTrade.svg",
     className: "invert-[100%] brightness-0 h-10 xl:h-16",
   },
-  // { iconImg: "images/partners/kommunitas.png" , className : "invert-[100%] brightness-0"},
   {
     iconImg: "images/partners/chainlink.svg",
     className: "invert-[100%] brightness-0 h-8 xl:h-12",
   },
-  // {
-  //   iconImg: "images/partners/dwf.svg",
-  //   className: "invert-[100%] brightness-0 h-6 xl:h-14",
-  // },
   {
     iconImg: "images/partners/arcana-network.svg",
     className: "invert-[100%] brightness-0 h-6 xl:h-10",
@@ -56,7 +50,6 @@ const companies = [
     iconImg: "images/partners/gamefi-2.png",
     className: "h-6 xl:h-12 invert-[100%] brightness-0",
   },
-  // { iconImg: "images/partners/spearad.webp" },
   {
     iconImg: "images/partners/unruly.svg",
     className: "invert-[100%] brightness-0 h-6 xl:h-10",
@@ -92,6 +85,30 @@ const companies = [
   {
     iconImg: "images/partners/infinity-pad.svg",
     className: "h-6 xl:h-12 invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/be-in-crypto.png",
+    className: "h-6 xl:h-12 invert-[100%] brightness-0",
+  },
+  {
+    iconImg: "images/partners/bitcoinist.png",
+    className: "h-6 xl:h-10",
+  },
+  {
+    iconImg: "images/partners/gulf-news.png",
+    className: "h-6 xl:h-12",
+  },
+  {
+    iconImg: "images/partners/news-btc.png",
+    className: "h-6 xl:h-16",
+  },
+  {
+    iconImg: "images/partners/yahoo-finance.png",
+    className: "h-6 xl:h-16",
+  },
+  {
+    iconImg: "images/partners/coinspeaker.png",
+    className: "h-6 xl:h-24 feature-icon",
   },
   // { iconImg: "images/partners/d.png" ,className : "invert-[100%] brightness-0"},
   // { iconImg: "images/partners/Do.png" },
