@@ -23,6 +23,7 @@ export default function VoucherCard({
   equippedLoading = false,
   index,
   type,
+  isApproved,
 }) {
   const [tokenId, setTokenId] = useState();
 
@@ -90,7 +91,7 @@ export default function VoucherCard({
             {loading ? (
               <img src={LoaderGif} alt="loader" style={{ height: "20px" }} />
             ) : (
-              <>Equip</>
+              <>{isApproved ? "Equip" : "Approve"}</>
             )}
           </MuiButton>
         </>
