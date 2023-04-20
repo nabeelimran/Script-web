@@ -5,11 +5,17 @@ import useMediaQuery from "hooks/useMediaQuery";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { calculatePayout, claimPayout, getRewardsHistory } from "utils/api";
+import {
+  calculatePayout,
+  claimPayout,
+  getNonClaimedTransactions,
+  getRewardsHistory,
+} from "utils/api";
 import LoaderGif from "../../assets/Loading_icon.gif";
 import { ToastMessage } from "components/ToastMessage";
 import { setGlasses } from "redux/reducers/Profile_State";
 import MuiButton from "components/MuiButton";
+import LocalServices from "services/LocalServices";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
@@ -25,12 +31,14 @@ const RewardHistory = () => {
     rare: false,
     superscript: false,
   });
+  let userId = LocalServices.getServices("user")?.userId || null;
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
 
   useEffect(() => {
     if (accountAddress) {
       (async () => {
+        if (userId) await getNonClaimedTransactions(userId);
         const _history = await getRewardsHistory(accountAddress);
         setHistory(_history || []);
 
