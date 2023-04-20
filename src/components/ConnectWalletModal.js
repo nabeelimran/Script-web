@@ -31,6 +31,7 @@ import { isLogin } from "redux/reducers/login_state";
 import { loginTypes } from "utils/helper";
 import { TempleWalletService } from "services/TempleWallet";
 import { addLog } from "services/logs/FbLogs";
+import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -148,6 +149,7 @@ function ConnectWalletModal() {
   const metaMaskHandler = async (loginType = "metamask") => {
     try {
       let okcBalance;
+      analyticsEventTracker('wallet-login', 'click', window.location.pathname)
       if (loginType === loginTypes.okc) {
         setLoading({ ...loading, okc: true });
         helper.trackByMixpanel("OKC Button Clicked", {});
@@ -351,6 +353,7 @@ function ConnectWalletModal() {
 
   const googleLoginHandler = () => {
     helper.trackByMixpanel("Google Social Button Clicked", {});
+    analyticsEventTracker('social-login', 'click', window.location.pathname)
     dispatch(setIsOkc(loginTypes.gmail));
     const provider = new GoogleAuthProvider();
     signInWithPopup(getAuth(auth), provider)
