@@ -120,13 +120,18 @@ const MintBox = ({ accountAddress, balance }) => {
       const isAllowed = await checkApproval(accountAddress);
       console.log(
         "isAllowed",
-        glassesPrice[type],
-        Number(ethers.utils.formatEther(isAllowed.toString())),
+
+        ethers.utils
+          .parseUnits(glassesPrice[type].toString(), "ether")
+          .toString(),
+        isAllowed,
+        // Number(ethers.utils.formatEther(isAllowed.toString())),
         type
       );
       if (
-        glassesPrice[type] <=
-        Number(ethers.utils.formatEther(isAllowed.toString()))
+        ethers.utils
+          .parseUnits(glassesPrice[type].toString(), "ether")
+          .toString() <= isAllowed
       ) {
         setIsApproved(true);
       } else {
@@ -150,6 +155,7 @@ const MintBox = ({ accountAddress, balance }) => {
         setContractLoading("success");
         setContractResponse(response);
         getPassBalance();
+        await checkIsApproved();
         ToastMessage("Glass minted successfully", true);
       } else {
         setContractLoading("error");
@@ -188,8 +194,8 @@ const MintBox = ({ accountAddress, balance }) => {
         let receipt = await approve();
         setContractLoading("approved");
 
-        ToastMessage("Approved", true);
         await checkIsApproved();
+        ToastMessage("Approved", true);
       } catch (error) {
         console.log(error);
         setContractLoading("error");
@@ -278,9 +284,9 @@ const MintBox = ({ accountAddress, balance }) => {
       </MintBoxStyle>
       {contractLoading === "success" && (
         <Box display="flex" mt={2}>
-          Glass Successfully Minted,
+          Glass Successfully Minted,{" "}
           <Box>
-            Check you transaction on
+            Check your transaction on
             <Link
               target="_blank"
               href={`https://goerli.etherscan.io/tx/${contractResponse?.transactionHash}`}

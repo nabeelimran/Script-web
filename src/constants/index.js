@@ -10,6 +10,7 @@ export const APIPATH = {
 };
 
 export const roomId = 167567;
+export const googleTrackingId = 'UA-265251064-1';
 
 export const  firebaseConfig = {
     apiKey: "AIzaSyApNoRWmRHe4_5E9BVpIpnGSMWj0w6aOBo",
