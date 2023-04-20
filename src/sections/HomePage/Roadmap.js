@@ -9,87 +9,96 @@ SwiperCore.use([Navigation]);
 
 const RoadmapData = [
   {
-    title: "Q4",
-    year: "2022",
-    points: [
-      "Content storage protocol launch",
-      "Full Script Network Testnet",
-      "Video advertising network proprietary layer launch",
-      "SCPT token launch",
-      "SPAY airdrop + token launch",
-      "Streaming server configurations and Backup solutions",
-      "Initial set up and development of brand",
-      "Initial content partner agreements",
-      "SCPT snapshot",
-    ],
-  },
-  {
     title: "Q1",
     year: "2023",
     points: [
-      "Mass content upgrades",
-      "Validator / nodes created – full roll out (staking)",
-      "Token launch – private and public sale",
-      "Genesis block mined",
-      "ScriptBUILD community - a network for nodes, developers and creators.",
-      "Initial channels and content rolled out on the platform",
+      "Platform development and completion",
+      "Server implementation and deployment",
+      "Initial content partner agreements",
+      "Full Script Network Testnet",
+      "Content storage protocol launch",
+      "Major web3 wallet integrations"
     ],
   },
   {
     title: "Q2",
     year: "2023",
     points: [
-      "Mobile App beta (iOS, Android)",
-      "Integration of full live chat function",
-      "Initial content focused live NFT purchasing rollout",
-      "Addition of 3 more live channels to Script TV",
-      "Script NFT video marketplace launch",
-      "dStorage service rollout",
+      "Video advertising network proprietary layer launch",
+      "SCPT token launch",
+      "SPAY airdrop + token launch",
+      "ScriptGLASS completion and integration",
+      "Streaming server configurations and Backup solutions",
+      "Mass content upgrades",
+      "Development of Connected TV architecture",
+      "Implementation of ad serving platform"
     ],
   },
   {
     title: "Q3",
     year: "2023",
     points: [
-      "Start of development project for Mobile App (iOS/Android) and CTV (Connected TV)",
-      "Live video content NFT marketplace roll out",
-      "Onboarding more content partners",
-      "5 more live channels to Script TV",
-      "Subtitles, transcription added",
-      "Ads management – ability for advertisers to create and view their ads",
+      "Validator / nodes created – full roll out (staking)",
+      "ScriptBUILD community - a network for nodes, developers and creators.",
+      "Initial channels and content rolled out on the platform",
+      "Further content upgrade, a further 10 channels added",
+      "Connected TV beta launch",
+      "Full launch of decentralised TV voting protocol"
     ],
   },
   {
     title: "Q4",
     year: "2023",
     points: [
-      "Mobile App full launch (iOS, Android)",
-      "CTV and OTT beta launch",
+      "Mobile App development (iOS, Android)",
+      "Initial content focused live NFT purchasing rollout",
+      "Addition of 20 more live channels to Script TV",
+      "Script NFT video marketplace launch",
+      "dStorage service rollout",
+      "User and content partner panel (analytics) build"
     ],
   },
   {
-    title: "Q1 / Q2",
+    title: "Q1",
+    year: "2024",
+    points: [
+      "Start of development project for Mobile App (iOS/Android) and CTV (Connected TV)",
+      "5 more live channels to Script TV.",
+      "Subtitles, transcription added",
+      "Ads management – ability for advertisers to create and view data for their ads",
+      "Mobile App development (iOS, Android)"
+    ],
+  },
+  {
+    title: "Q2",
+    year: "2024",
+    points: [
+      "Mobile App full launch (iOS, Android)",
+      "CTV and OTT beta launch",
+      "Global brand partnerships and off chain activations for holders through media events"
+    ],
+  },
+  {
+    title: "Q3",
     year: "2024",
     points: [
       "Script Build - Bounty Program launch",
       "Voting control on ads and shows - you decide what you watch OTT / CTV / Smart TV -Integration",
       "Private messaging, content communities – engage with other fans of shows and films you specifically watch",
       "Region based specific content launched across the TV network",
-      "ScreenVERSE Mainnet launch",
       "10 more live channels added to Script TV",
       "ScriptSWAP beta launch - Swap your SPAY tokens for IRL products (ie Cinema tickets)",
-      "Video API for content ingestion, transcoding and distribution",
+      "Video API for content ingestion, transcoding and distribution"
     ],
   },
   {
-    title: "Q3 / Q4",
+    title: "Q4",
     year: "2024",
     points: [
       "Direct integration with larger channels and studios into the TV app",
-      "Reward claim for Screen Zero ticket holders",
       "Script Studios initial content acquisitions",
       "Rollout of large content partnerships",
-      "On-chain global brand integrations",
+      "On-chain global brand integrations"
     ],
   },
   {
