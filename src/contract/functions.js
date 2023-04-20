@@ -127,15 +127,20 @@ export const equipVoucher = async (
   signature,
   setIsDisabled
 ) => {
+  console.log("equipVoucher", { voucherType, glassId, signature });
   try {
     setIsDisabled(true);
     const tx = await scriptTvContract.associateVoucher(
       voucherType,
       glassId,
-      signature
+      signature,
+      {
+        gasLimit: 100000,
+      }
     );
     return await tx.wait();
   } catch (error) {
+    console.log("error", error);
     setIsDisabled(false);
   }
 };

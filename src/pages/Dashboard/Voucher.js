@@ -117,14 +117,21 @@ export default function VoucherView() {
   const checkIsApproved = async () => {
     if (accountAddress) {
       const isAllowed = await checkVoucherForTvApproval(accountAddress);
+      console.log("isAllowed", isAllowed);
       setIsApproved(isAllowed);
     }
   };
 
-  const handleApprove = async () => {
+  const handleApprove = async (onSuccess) => {
     if (accountAddress) {
-      let receipt = await approveVoucherForTv();
-      setIsApproved(!!receipt.status);
+      try {
+        let receipt = await approveVoucherForTv();
+        setIsApproved(!!receipt.status);
+        onSuccess();
+      } catch (error) {
+        console.log("error", error);
+        throw error;
+      }
     }
   };
 
@@ -137,7 +144,14 @@ export default function VoucherView() {
       });
       try {
         if (!isApproved) {
-          await handleApprove();
+          await handleApprove(() => {
+            setCommonGlassesState({
+              ...commonGlassesState,
+              loading: false,
+            });
+            ToastMessage("Approved", true);
+          });
+          return;
         }
         if (isApproved) {
           let signature = await getEquipSignature(tokenId);
@@ -175,12 +189,23 @@ export default function VoucherView() {
         loading: true,
       });
 
+      console.log("handleEquipRare", { tokenId, index, isApproved });
+
       try {
         if (!isApproved) {
-          await handleApprove();
+          await handleApprove(() => {
+            setRareGlassesState({
+              ...rareGlassesState,
+              loading: false,
+            });
+            ToastMessage("Approved", true);
+          });
+          return;
         }
+
         if (isApproved) {
           let signature = await getEquipSignature(tokenId);
+          console.log("signature", signature);
           const response = await equipVoucher(
             1,
             tokenId,
@@ -188,7 +213,7 @@ export default function VoucherView() {
             setIsDisabled
           );
           console.log("response", response);
-          if (response.status === 1) {
+          if (response?.status === 1) {
             ToastMessage("Voucher equipped successfully", true);
           }
           setRareGlassesState({
@@ -219,7 +244,14 @@ export default function VoucherView() {
       try {
         console.log("isApproved", isApproved);
         if (!isApproved) {
-          await handleApprove();
+          await handleApprove(() => {
+            setSuperscriptGlassesState({
+              ...superscriptGlassesState,
+              loading: false,
+            });
+            ToastMessage("Approved", true);
+          });
+          return;
         }
         if (isApproved) {
           let signature = await getEquipSignature(tokenId);
@@ -298,6 +330,7 @@ export default function VoucherView() {
           <VoucherCard
             key={idx}
             index={idx}
+            isApproved={isApproved}
             disabled={isDisabled}
             eligibleGlasses={eligibleGlasses?.length ? eligibleGlasses[0] : []}
             clickHandler={handleEquipCommon}
@@ -328,6 +361,7 @@ export default function VoucherView() {
           <VoucherCard
             key={idx}
             index={idx}
+            isApproved={isApproved}
             disabled={isDisabled}
             eligibleGlasses={eligibleGlasses?.length ? eligibleGlasses[1] : []}
             clickHandler={handleEquipRare}
@@ -360,6 +394,7 @@ export default function VoucherView() {
             disabled={isDisabled}
             index={idx}
             eligibleGlasses={eligibleGlasses?.length ? eligibleGlasses[2] : []}
+            isApproved={isApproved}
             clickHandler={handleEquipSuper}
             loading={
               idx === currentGlassIndex && superscriptGlassesState.loading

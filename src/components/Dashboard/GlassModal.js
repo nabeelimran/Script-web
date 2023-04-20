@@ -63,7 +63,7 @@ export default function GlassModal({
     if (glassTypesWithVouchers) {
       if (glass.type === "COMMON") {
         glassTypesWithVouchers[0].map((glassId) => {
-          if (glassId === glass.id) {
+          if (glassId == glass.id) {
             setRechargeDiscountPercentage(10);
           }
         });
@@ -75,7 +75,7 @@ export default function GlassModal({
         });
       } else if (glass.type === "SUPERSCRIPT") {
         glassTypesWithVouchers[2].map((glassId) => {
-          if (glassId === glass.id) {
+          if (glassId == glass.id) {
             setRechargeDiscountPercentage(30);
           }
         });
