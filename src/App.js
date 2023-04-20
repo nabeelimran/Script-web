@@ -65,6 +65,10 @@ import { ToastMessage } from "components/ToastMessage";
 import { toggleNotification } from "redux/reducers/Notification_State";
 import { helper } from "utils/helper";
 import HowToBuy from "pages/HowToBuy";
+import ReactGA from 'react-ga';
+import { googleTrackingId } from "constants";
+
+ReactGA.initialize(googleTrackingId);
 
 function App() {
   const dispatch = useDispatch();
@@ -105,6 +109,11 @@ function App() {
       }
     }
   }, []);
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, [])
+  
 
   return (
     <Router>
