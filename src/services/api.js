@@ -22,7 +22,7 @@ axios.interceptors.request.use(
       config.headers["requestDate"] = currentDate;
       config.headers["url"] = window.location.origin;
     }
-    if (config.url.includes(APIPATH.NOTIFICATIONURL)) {
+    if (config.url.includes(APIPATH.NOTIFICATIONURL) || config.url.includes('https://ipfs.io')) {
       console.log("here");
       config.headers.delete("userAuth");
       config.headers.delete("requestDate");
@@ -375,8 +375,25 @@ export default class Api {
         screenName: screenName,
       },
     };
+    
     return axios.get(
       `${APIPATH.BASEURL}analytic/graph?userId=${userId}`,
+      options
+    );
+  }
+
+  static getVideoWatchAnalyticsByDate(userId, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      },
+    };
+    return axios.get(
+      `${APIPATH.BASEURL}analyticByDate/graph?userId=${userId}`,
       options
     );
   }

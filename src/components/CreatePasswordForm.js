@@ -20,6 +20,7 @@ import { ToastMessage } from "./ToastMessage";
 import Api from "services/api";
 import MixPanelService from "services/mixPanelService";
 import { loginTypes } from "utils/helper";
+import { addLog } from "services/logs/FbLogs";
 
 function CreatePasswordForm() {
   const {
@@ -37,7 +38,9 @@ function CreatePasswordForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [confPasswordShow, setConfPasswordShow] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { accountAddress,isOkc } = useSelector((state) => state.metamask_state);
+  const { accountAddress, isOkc } = useSelector(
+    (state) => state.metamask_state
+  );
   const { signature } = useSelector((state) => state.metamask_state);
   const navigate = useNavigate();
 
@@ -53,17 +56,16 @@ function CreatePasswordForm() {
     try {
       setLoading(true);
       let okcBalance;
-      if (isOkc===loginTypes.okc || isOkc===loginTypes.bitgret) {
-        
-            const balance = await window.ethereum.request({
-              method: "eth_getBalance",
-              params: [accountAddress, "latest"],
-            });
-            
-            if (balance) {
-              okcBalance = (parseInt(balance, 16))/Math.pow(10,18);
-            }
-          }
+      if (isOkc === loginTypes.okc || isOkc === loginTypes.bitgret) {
+        const balance = await window.ethereum.request({
+          method: "eth_getBalance",
+          params: [accountAddress, "latest"],
+        });
+
+        if (balance) {
+          okcBalance = parseInt(balance, 16) / Math.pow(10, 18);
+        }
+      }
       const resObj = {
         browser: "dummyData",
         country: "dummayData",
@@ -76,27 +78,23 @@ function CreatePasswordForm() {
         otherReferralCode: user.referal,
         walletAddress: accountAddress,
         walletSignature: signature ? signature : "",
-        okcWalletBalance: isOkc===loginTypes.okc ? okcBalance : null,
-        briseBalance: isOkc===loginTypes.bitgret ? okcBalance : null,
-        signupType:isOkc
-
-
+        okcWalletBalance: isOkc === loginTypes.okc ? okcBalance : null,
+        briseBalance: isOkc === loginTypes.bitgret ? okcBalance : null,
+        signupType: loginTypes.temple,
       };
 
       const loginW = await Api.walletLogin(resObj, "login_model");
       try {
         MixPanelService.setIdentifier(loginW?.data?.data?.email);
-              MixPanelService.track('sign-up', loginW?.data?.data);
-      } catch (error) {
-        
-      }
+        MixPanelService.track("sign-up", loginW?.data?.data);
+      } catch (error) {}
       if (loginW.data.message === "Please verify your account.") {
         setLoading(false);
         dispatch(togglePasswordModalVisibility(false));
         reset({
           password: "",
           confirm_password: "",
-        })
+        });
         navigate({
           pathname: "/verify-account",
           search: `?email=${user.email}`,
@@ -115,7 +113,7 @@ function CreatePasswordForm() {
             "userInfo",
             JSON.stringify({
               email: user.email,
-        userName: loginW.data.data.userName,
+              userName: loginW.data.data.userName,
             })
           );
           ToastMessage(`${loginW.data.message}`, true);
@@ -124,14 +122,22 @@ function CreatePasswordForm() {
           reset({
             password: "",
             confirm_password: "",
-          })
+          });
         } else {
           ToastMessage("something went wrong");
+          await addLog({
+            reqBoyd: JSON.stringify(resObj),
+            attempt: "fail",
+          });
           setLoading(false);
         }
-      }  
+      }
     } catch (error) {
       ToastMessage(error?.response?.data?.message || "something went wrong");
+      await addLog({
+        errror: JSON.stringify(error),
+        attempt: "fail",
+      });
       setLoading(false);
     }
   };

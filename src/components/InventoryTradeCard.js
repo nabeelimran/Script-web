@@ -4,7 +4,8 @@ function InventoryTradeCard({ glass, onClick }) {
   console.log("glass", glass);
   return (
     <div
-      className="bg-[#0E0E0F] rounded-2xl py-6 px-7 transition-all duration-200 hover:bg-primary group hover:scale-[1.12] cursor-pointer"
+      // className="bg-[#0E0E0F] rounded-2xl py-6 px-7 transition-all duration-200 hover:bg-primary group hover:scale-[1.12] cursor-pointer"
+      className="rounded-2xl py-6 px-7 transition-all duration-200 bg-primary group cursor-pointer"
       onClick={onClick}
     >
       <div className="mb-8">
@@ -15,14 +16,14 @@ function InventoryTradeCard({ glass, onClick }) {
         />
       </div>
 
-      <div className="bg-primary w-fit py-1 px-3 rounded-md lg:rounded-xl mx-auto mb-3 lg:mb-8 transition-all duration-200 group-hover:bg-[#0E0E0F]">
-        <p className="text-sm xl:text-base text-black transition-all duration-200 group-hover:text-white text-center">
+      <div className="bg-[#0E0E0F] w-fit py-1 px-3 rounded-md lg:rounded-xl mx-auto mb-3 lg:mb-3 transition-all duration-200">
+        <p className="text-sm xl:text-base text-white transition-all duration-200 group-hover:text-white text-center">
           #{glass.tokenId}
         </p>
-        <p className="text-sm xl:text-base text-black transition-all duration-200 group-hover:text-white text-center">
+        <p className="text-sm xl:text-base text-white transition-all duration-200 group-hover:text-white text-center">
           Level: {glass.level}
         </p>
-        <p className="text-sm xl:text-base text-black transition-all duration-200 group-hover:text-white text-center">
+        <p className="text-sm xl:text-base text-white transition-all duration-200 group-hover:text-white text-center">
           Type: {glass.type}
         </p>
       </div>

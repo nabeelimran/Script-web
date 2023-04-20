@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "constants";
 
-
 // Initialize Firebase
 const fireBaseApp = initializeApp(firebaseConfig);
 

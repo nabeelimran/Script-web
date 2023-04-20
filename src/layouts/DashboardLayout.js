@@ -93,7 +93,7 @@ function DashboardLayout() {
   }, [leftSidebarVisible, rightSidebarVisible]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
       {!isAbove1280px && (
         <>
           <BlackScreen
