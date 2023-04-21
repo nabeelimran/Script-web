@@ -82,6 +82,15 @@ function Hero() {
       image: "images/Partnerships.png",
       link: "https://presale.script.tv/",
     },
+    {
+      image: "images/collect-points.png",
+      link: "",
+    },
+    ,
+    {
+      image: "images/minutes-watched.png",
+      link: "",
+    },
   ];
 
   return (
