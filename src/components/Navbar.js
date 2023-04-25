@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import DropdownCard from "./DropdownCard";
 import NavDropdown from "./NavDropdown";
@@ -22,11 +22,16 @@ function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
   const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
   const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const checkToken = () => sessionStorage.getItem("script-token") || null;
   const [profile, setProfile] = useState(null);
   const userId = LocalServices.getServices("user")?.userId || null;
   const { updateProfileState } = useSelector((state) => state.Profile_State);
+
+  const goToDashboard = () => navigate({
+    pathname: '/dashboard',
+  });
 
   const viewUserProfile = (userId) => {
     Api.viewUserProfile(userId, "dashboard").then((res) => {
@@ -256,7 +261,7 @@ function Navbar() {
                 }}
               />
               {checkToken() ? (
-                <div className="w-[34px] rounded-full h-[34px] relative">
+                <div className="w-[34px] rounded-full h-[34px] relative" onClick={goToDashboard}>
                   <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
                   <img
                     src={
