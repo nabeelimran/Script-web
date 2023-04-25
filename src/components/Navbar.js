@@ -16,6 +16,7 @@ import { helper, isBnbUser } from "utils/helper";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "./ToastMessage";
+import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
 
 function Navbar() {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -106,12 +107,21 @@ function Navbar() {
                   anchor={true}
                   others={{
                     href: "/tv",
+                    onclick: () => {
+                      analyticsEventTracker('script-tv', 'click', window.location.pathname)
+                    }
                   }}
                 />
                 <DropdownCard
                   title="Marketplace"
                   teller="COMING SOON"
                   subtitle="Our native marketplace for buying, selling and renting ScriptGLASS ."
+                  others={{
+                    // href: "/tv",
+                    onclick: () => {
+                      analyticsEventTracker('marketplace', 'click', window.location.pathname)
+                    }
+                  }}
                 />
                 <DropdownCard
                   teller="TESTNET"
@@ -122,22 +132,40 @@ function Navbar() {
                   others={{
                     href: "https://wallet.script.tv",
                     target: "_blank",
+                    onclick: () => {
+                      analyticsEventTracker('script-blockchain', 'click', window.location.pathname)
+                    }
                   }}
                 />
                 <DropdownCard
                   to="/research"
                   title="ScriptGLASS"
                   subtitle="Our upgradeable NFT collection"
+                  others={{
+                    onclick: () => {
+                      analyticsEventTracker('script-glass', 'click', window.location.pathname)
+                    }
+                  }}
                 />
                 <DropdownCard
                   teller="COMING SOON"
                   title="dStorage"
                   subtitle="Save 70%+ on transcoding, transferring and storage costs from web2."
+                  others={{
+                    onclick: () => {
+                      analyticsEventTracker('dStorage', 'click', window.location.pathname)
+                    }
+                  }}
                 />
                 <DropdownCard
                   teller="COMING SOON"
                   title="sADs"
                   subtitle="The video advertising layer built on Script Blockchain."
+                  others={{
+                    onclick: () => {
+                      analyticsEventTracker('sADs', 'click', window.location.pathname)
+                    }
+                  }}
                 />
               </NavDropdown>
               <NavDropdown
@@ -223,6 +251,7 @@ function Navbar() {
                     // helper.openLink("https://form.jotform.com/212032981906353");
                     helper.openLink("https://presale.script.tv/");
                     // ToastMessage('Closed')
+                    analyticsEventTracker('buy-now-on-presale', 'click', window.location.pathname)
                   },
                 }}
               />
@@ -256,6 +285,7 @@ function Navbar() {
                       setSidebarVisibility(false);
                       dispatch(toggleModalVisibility(true));
                       helper.trackByMixpanel("Sign In Button Clicked", {});
+                      analyticsEventTracker('signup', 'click', window.location.pathname)
                     },
                   }}
                 />
