@@ -2,6 +2,7 @@ import Button from "components/Button";
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import Title from "components/Title";
+import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
 import { helper } from "utils/helper";
 
 function HowToBuy() {
@@ -18,7 +19,10 @@ function HowToBuy() {
           <Button
             label="Join Presale"
             buttonProps={{
-              onClick: () => helper.openLink("https://presale.script.tv/"),
+              onClick: () => {
+                helper.openLink("https://presale.script.tv/")
+                analyticsEventTracker('buy-now-on-presale', 'click', window.location.pathname)
+              }
             }}
             className="w-[200px] h-[60px] justify-center"
           />

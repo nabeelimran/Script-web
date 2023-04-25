@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Api from "services/api";
 import { helper, isBnbUser } from "utils/helper";
 import LocalServices from "services/LocalServices";
+import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
 
 function TvNavbar({ className }) {
   const [isSidebarVisible, setSidebarVisibility] = useState(false);
@@ -209,6 +210,7 @@ function TvNavbar({ className }) {
                     setSidebarVisibility(false);
                     dispatch(toggleModalVisibility(true));
                     helper.trackByMixpanel('Sign In Button Clicked', {});
+                    analyticsEventTracker('signup', 'click', window.location.pathname)
                   },
                 }}
                 label={

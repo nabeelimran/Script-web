@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import Api from "services/api";
+import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
 import { helper } from "utils/helper";
 
 function Hero() {
@@ -122,7 +123,10 @@ function Hero() {
             <Button
               label="Presale"
               buttonProps={{
-                onClick: () => helper.openLink("https://presale.script.tv/"),
+                onClick: () => {
+                  analyticsEventTracker('buy-now-on-presale', 'click', window.location.pathname)
+                  helper.openLink("https://presale.script.tv/")
+                }
               }}
               className="w-[120px] h-[40px] justify-center"
             />
@@ -260,7 +264,7 @@ function Hero() {
                 <span className="text-inherit lh-1">Buy Tokens</span>
               </button>
               <h2 className="text-center mt-4 text-lg hover:text-primary hover:underline">
-              <Link to="/how-to-buy" className="text-sm">
+              <Link to="/how-to-buy" className="text-sm" onClick={() => analyticsEventTracker('howtobuy', 'click', window.location.pathname)}>
                 How to Buy
               </Link>
               </h2>
