@@ -133,9 +133,9 @@ function App() {
         <Route path="/token" element={<TokenPage />} />
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/node" element={<Validator />} />
-        <Route path="/technology" element={<Technology />} />
+        {/* <Route path="/technology" element={<Technology />} /> */}
         <Route path="/research" element={<Research />} />
-        <Route path="/terms-condition" element={<TermsAndConditions />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
         <Route path="/faq" element={<FAQ />} />

@@ -275,7 +275,7 @@ function EditProfile() {
                 <span className="text-white">
                   By clicking this, you agree to the{" "}
                   <Link
-                    to="/terms-condition"
+                    to="/terms-and-conditions"
                     className="text-primary hover:underline"
                   >
                     Terms & conditions

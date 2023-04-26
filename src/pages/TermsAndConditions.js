@@ -56,7 +56,7 @@ function TermsAndConditions() {
 						<h4 className='dictator-title'>2. About us</h4>
 						<p className='dictator-desc'>
 							We are located and registered in London England
-							under company number: {`{ }`} add registered company
+							under company number: 13108060 add registered company
 							number. Our registered office is at:{" "}
 							{`{20-22 Wenlock Road, London, N1 7GU}`}. <strong className='text-primary'>Script
 							Network</strong> offers a complete ecosystem for television

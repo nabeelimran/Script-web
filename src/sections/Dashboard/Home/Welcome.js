@@ -145,14 +145,14 @@ function Welcome({}) {
             passions.
           </p>
         </div>
-
-        <div className="grid md:grid-cols-3 gap-3 md:gap-6">
+        <div className="grid md:grid-cols-1 gap-1 md:gap-1 mb-5">
           <Card
             color="#5815BA"
             title="Nice Work!"
             description="You have earned N/A SPAY this week!"
           />
-
+        </div>
+        <div className="grid md:grid-cols-3 gap-3 md:gap-6">
           <CardProgress
             color="#0E0E0F"
             title={`${balance.toFixed(2)} SPAY`}
