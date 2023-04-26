@@ -17,11 +17,11 @@ function Footer({ container = "container-two" }) {
     {
       title: "INFORMATION",
       links: [
-        { title: "ScriptGLASS Explained", to: "/research" },
+        { title: "Script Network Explained", to: "/research" },
         { title: "Script Tokens", to: "/token" },
         { title: "Calculator", to: "/calculator" },
         { title: "Run a node", to: "/node" },
-        { title: "Technology", to: "/technology" },
+        // { title: "Technology", to: "/technology" },
         { title: "Report Issue", to: "/report-issue" },
         { title: "Download", to: "/download" },
         {
@@ -83,7 +83,7 @@ function Footer({ container = "container-two" }) {
     {
       title: "TERMS",
       links: [
-        { title: "Terms of Service", to: "/terms-condition" },
+        { title: "Terms of Service", to: "/terms-and-conditions" },
         { title: "Privacy Policy", to: "/privacy-policy" },
         { title: "Cookies Policy", to: "/cookies-policy" },
       ],
