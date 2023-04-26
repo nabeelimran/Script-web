@@ -12,6 +12,9 @@ import UpperPoints from "sections/Research/UpperPoints";
 import WatchToEarn from "sections/Research/WatchToEarn";
 import WhatIsScriptTV from "sections/Research/WhatIsScriptTV";
 import WorkFlow from "sections/Research/WorkFlow";
+import Content from "sections/Technology/Content";
+import Multi from "sections/Technology/Multi";
+import OurVideo from "sections/Technology/OurVideo";
 
 function Research() {
   return (
@@ -121,6 +124,35 @@ function Research() {
             </p>
           </div>
           <img src="images/revenue.jpg" className="w-full" alt="" />
+        </div>
+      </div>
+
+      <div className="mb-20 lg:mb-20">
+        <div className="container-two">
+          <div className="mb-10 lg:mb-8">
+            <div className="mb-3">
+              <Title
+                variant="20"
+                className="text-primary text-left font-medium"
+              >
+                7. Script Technology
+              </Title>
+            </div>
+            <p className="heading-sub text-white text-left">
+              Script.tv is pioneering a new paradigm in blockchain design. A minimal Modular consensus layer for rollups.
+            </p>
+          </div>
+          <div className="mb-24 lg:mb-0">
+            <OurVideo />
+          </div>
+
+          <div className="mb-24 lg:mb-16">
+            <Multi />
+          </div>
+
+          <div className="mb-16 lg:mb-24">
+            <Content />
+          </div>
         </div>
       </div>
 

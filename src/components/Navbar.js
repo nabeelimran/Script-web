@@ -180,7 +180,7 @@ function Navbar() {
               >
                 <DropdownCard
                   to="/research"
-                  title="ScriptGLASS explained"
+                  title="Script Network explained"
                   subtitle="Our user first watch to earn television platform."
                 />
                 <DropdownCard
