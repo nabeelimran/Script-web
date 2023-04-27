@@ -44,6 +44,8 @@ import {
 import MintBox from "components/Dashboard/MintBox";
 import FreeMintBox from "components/Dashboard/FreeMintBox";
 import GemMintBox from "components/Dashboard/GemMintBox";
+import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
+import Title from "components/Title";
 
 const MintBoxStyle = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -65,7 +67,7 @@ export default function Glass() {
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
 
-  console.log("accountAddress", accountAddress);
+  const [currentChain, setCurrentChain] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -75,6 +77,16 @@ export default function Glass() {
     })();
   }, [accountAddress]);
 
+  useEffect(() => {
+    if (!window?.ethereum) return;
+
+    setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+
+    window.ethereum.on("chainChanged", () => {
+      setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+    });
+  }, []);
+
   const getBalance = async () => {
     if (accountAddress) {
       const balance = await balanceOf(accountAddress);
@@ -82,6 +94,24 @@ export default function Glass() {
       setBalance(Number(balance));
     }
   };
+
+  console.log("currentChain", { currentChain });
+
+  if (accountAddress && currentChain && !currentChainSupported(currentChain)) {
+    return (
+      <Container maxWidth="md" sx={{ my: 20 }} id="mint">
+        <p
+          className="text-lg opacity-80 text-center"
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          Current Chain is not supported
+        </p>
+      </Container>
+    );
+  }
 
   return (
     <Container maxWidth="md" sx={{ my: 20 }} id="mint">

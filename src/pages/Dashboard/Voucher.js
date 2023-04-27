@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { OutlinedAccordian } from "components/Accordian";
 import { ToastMessage } from "components/ToastMessage";
 import VoucherMintBox from "components/Dashboard/VoucherMintBox";
+import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
 //import { useAppSelector } from "../../app/hooks";
 
 export default function VoucherView() {
@@ -40,6 +41,8 @@ export default function VoucherView() {
 
   const [currentGlassIndex, setCurrentGlassIndex] = useState(null);
   const [unequippedLoading, setUnequippedLoading] = useState("none");
+
+  const [currentChain, setCurrentChain] = useState(null);
 
   useEffect(() => {
     if (accountAddress) {
@@ -181,6 +184,7 @@ export default function VoucherView() {
       }
     }
   };
+
   const handleEquipRare = async (tokenId, index) => {
     if (accountAddress) {
       setCurrentGlassIndex(index);
@@ -308,6 +312,32 @@ export default function VoucherView() {
   };
 
   console.log("voucherBalance", { voucherBalance, eligibleGlasses });
+
+  useEffect(() => {
+    if (!window?.ethereum) return;
+
+    setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+
+    window.ethereum.on("chainChanged", () => {
+      setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+    });
+  }, []);
+
+  if (accountAddress && currentChain && !currentChainSupported(currentChain)) {
+    return (
+      <Container maxWidth="md" sx={{ my: 20 }} id="mint">
+        <p
+          className="text-lg opacity-80 text-center"
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          Current Chain is not supported
+        </p>
+      </Container>
+    );
+  }
 
   return (
     <Box sx={{ flexGrow: 1, m: 4 }}>

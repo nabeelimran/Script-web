@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import { earningPayout, glassesOfOwnerServer } from "contract/functions";
 import { formatEther } from "ethers/lib/utils";
 import useMediaQuery from "hooks/useMediaQuery";
@@ -16,6 +16,7 @@ import { ToastMessage } from "components/ToastMessage";
 import { setGlasses } from "redux/reducers/Profile_State";
 import MuiButton from "components/MuiButton";
 import LocalServices from "services/LocalServices";
+import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
@@ -34,6 +35,8 @@ const RewardHistory = () => {
   let userId = LocalServices.getServices("user")?.userId || null;
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
+
+  const [currentChain, setCurrentChain] = useState(null);
 
   useEffect(() => {
     if (accountAddress) {
@@ -113,6 +116,32 @@ const RewardHistory = () => {
       setLoading({ ...loading, [type.toLowerCase()]: false });
     }
   };
+
+  useEffect(() => {
+    if (!window?.ethereum) return;
+
+    setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+
+    window.ethereum.on("chainChanged", () => {
+      setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+    });
+  }, []);
+
+  if (accountAddress && currentChain && !currentChainSupported(currentChain)) {
+    return (
+      <Container maxWidth="md" sx={{ my: 20 }} id="mint">
+        <p
+          className="text-lg opacity-80 text-center"
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          Current Chain is not supported
+        </p>
+      </Container>
+    );
+  }
 
   return (
     <Box

@@ -24,6 +24,7 @@ import { getRechargeHistory } from "utils/api";
 import { formatEther } from "ethers/lib/utils";
 import moment from "moment";
 import MuiButton from "components/MuiButton";
+import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -47,6 +48,8 @@ export default function GlassModal({
   const [history, setHistory] = useState([]);
   const [rechargeDiscountPercentage, setRechargeDiscountPercentage] =
     useState(0);
+
+  const [currentChain, setCurrentChain] = useState(null);
 
   useEffect(() => {
     if (id) {
@@ -82,6 +85,16 @@ export default function GlassModal({
       }
     }
   }, [glassTypesWithVouchers, glass]);
+
+  useEffect(() => {
+    if (!window?.ethereum) return;
+
+    setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+
+    window.ethereum.on("chainChanged", () => {
+      setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+    });
+  }, []);
 
   return (
     <StyledDialog
@@ -162,19 +175,40 @@ export default function GlassModal({
           </Box>
         )}
       </DialogContent>
-      <StyledDialogAction>
-        <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
-          recharge
-        </Button>
-        {gemEligible && (
+
+      {currentChain && !currentChainSupported(currentChain) ? (
+        <StyledDialogAction>
+          <div
+            style={{
+              width: "100%",
+            }}
+          >
+            <p
+              className="text-lg opacity-80 text-center"
+              style={{
+                fontSize: "1rem",
+                fontWeight: "bold",
+              }}
+            >
+              Current Chain is not supported
+            </p>
+          </div>
+        </StyledDialogAction>
+      ) : (
+        <StyledDialogAction>
           <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
-            add gem
+            recharge
           </Button>
-        )}
-        <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
-          sell
-        </Button>
-      </StyledDialogAction>
+          {gemEligible && (
+            <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
+              add gem
+            </Button>
+          )}
+          <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
+            sell
+          </Button>
+        </StyledDialogAction>
+      )}
     </StyledDialog>
   );
 }
