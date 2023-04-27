@@ -179,7 +179,7 @@ function TvNavbar({ className }) {
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">
               <Button
-                // link="/marketplace"
+                link="/marketplace"
                 className="mt-8 lg:mt-0 flex justify-center"
                 customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
