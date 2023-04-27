@@ -9,7 +9,12 @@ function Footer({ container = "container-two" }) {
         { title: "Script TV", to: "/tv" },
         { title: "Script Glass", to: "/research" },
         { title: "Marketplace", to: "/marketplace" },
-        { title: "dStorage", to: "/" },
+        {
+          title: "dStorage",
+          to: "https://partners.script.tv/#/partner/theta",
+          target: "_blank",
+          anchorTag: true
+        },
         { title: "Script Blockchain", to: "/node" },
         { title: "sADs", to: "/" }
       ],
