@@ -17,7 +17,7 @@ const companies = [
   },
   {
     iconImg: "images/partners/xord.jpg",
-    className: "w-[18vh]",
+    className: "w-[18vh] mt-4",
   },
   {
     iconImg: "images/partners/NFTrade.svg",
@@ -25,11 +25,11 @@ const companies = [
   },
   {
     iconImg: "images/partners/chainlink.svg",
-    className: "invert-[100%] brightness-0 h-8 xl:h-12",
+    className: "invert-[100%] brightness-0 h-8 xl:h-12 mt-2",
   },
   {
     iconImg: "images/partners/arcana-network.svg",
-    className: "invert-[100%] brightness-0 h-6 xl:h-10",
+    className: "invert-[100%] brightness-0 h-6 xl:h-10 mt-2",
   },
   {
     iconImg: "images/partners/yay-games.png",
