@@ -33,7 +33,7 @@ const companies = [
   },
   {
     iconImg: "images/partners/yay-games.png",
-    className: "invert-[100%] brightness-0 h-6 xl:h-10",
+    className: "invert-[100%] brightness-0 h-6 xl:h-10 mt-2",
   },
   {
     iconImg: "images/partners/gate-io.png",
@@ -53,7 +53,7 @@ const companies = [
   },
   {
     iconImg: "images/partners/unruly.svg",
-    className: "invert-[100%] brightness-0 h-6 xl:h-10",
+    className: "invert-[100%] brightness-0 h-6 xl:h-10 mt-2",
   },
   {
     iconImg: "images/partners/leomark-studios.png",
@@ -61,19 +61,19 @@ const companies = [
   },
   {
     iconImg: "images/partners/panony-group.jpg",
-    className: "invert-[100%] brightness-0 h-6 xl:h-10",
+    className: "invert-[100%] brightness-0 h-6 xl:h-10 mt-2",
   },
   {
     iconImg: "images/partners/gotbit.png",
-    className: "invert-[100%] brightness-0 h-6 xl:h-10",
+    className: "invert-[100%] brightness-0 h-6 xl:h-10 mt-1",
   },
   {
     iconImg: "images/partners/okx.svg",
-    className: "h-6 invert-[100%] brightness-0",
+    className: "h-6 invert-[100%] brightness-0 mt-3",
   },
   {
     iconImg: "images/partners/magna.png",
-    className: "h-5 xl:h-8 invert-[100%] brightness-0",
+    className: "h-5 xl:h-8 invert-[100%] brightness-0 mt-3",
   },
   {
     iconImg: "images/partners/chainport.png",
@@ -89,15 +89,15 @@ const companies = [
   },
   {
     iconImg: "images/partners/be-in-crypto.png",
-    className: "h-6 xl:h-12 invert-[100%] brightness-0",
+    className: "h-6 xl:h-12 invert-[100%] brightness-0 mt-2",
   },
   {
     iconImg: "images/partners/bitcoinist.png",
-    className: "h-6 xl:h-10",
+    className: "h-6 xl:h-10 mt-4",
   },
   {
     iconImg: "images/partners/gulf-news.png",
-    className: "h-6 xl:h-12",
+    className: "h-6 xl:h-12 mt-2",
   },
   {
     iconImg: "images/partners/news-btc.png",
