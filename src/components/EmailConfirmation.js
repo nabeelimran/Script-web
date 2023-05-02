@@ -109,7 +109,7 @@ function EmailConfirmation() {
     if(type){
       switch (type.type) {
         case "required":
-          error = "This field is requird. Please enter e-mail address."
+          error = "This field is required. Please enter e-mail address."
           break;
         case "pattern":
           error = "Invalid Email"
