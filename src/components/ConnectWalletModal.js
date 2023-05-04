@@ -32,6 +32,9 @@ import { loginTypes } from "utils/helper";
 import { TempleWalletService } from "services/TempleWallet";
 import { addLog } from "services/logs/FbLogs";
 import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
+import TrustWalletService from "services/trustWallet";
+import { ethers } from "ethers";
+import BigNumber from 'bignumber.js';
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -43,7 +46,8 @@ function ConnectWalletModal() {
     bnb: false,
     okc: false,
     bitgret: false,
-    temple: false
+    temple: false,
+    trust: false
   });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -147,6 +151,7 @@ function ConnectWalletModal() {
   };
 
   const metaMaskHandler = async (loginType = "metamask") => {
+    debugger
     try {
       let okcBalance;
       analyticsEventTracker('wallet-login', 'click', window.location.pathname)
@@ -159,6 +164,9 @@ function ConnectWalletModal() {
       } else if (loginType === loginTypes.temple) {
         setLoading({ ...loading, temple: true });
         helper.trackByMixpanel("Temple Button Clicked", {});
+      } else if (loginType === loginTypes.trust) {
+        setLoading({ ...loading, trust: true });
+        helper.trackByMixpanel("Trust Button Clicked", {});
       } else {
         setLoading({ ...loading, metamask: true });
         dispatch(setIsOkc(loginTypes.metamask));
@@ -181,6 +189,24 @@ function ConnectWalletModal() {
           setLoading({...loading, temple: false})
           return;
         }
+      } else if(loginType === loginTypes.trust) {
+        const trustWalletProvider = TrustWalletService.checkTrustWallet();
+        if(!trustWalletProvider) {
+          ToastMessage('Trust wallet not installed');
+          return;
+        }
+        const etherProvider = new ethers.providers.Web3Provider(trustWalletProvider);
+        const accountsArr = await window.trustwallet.request({
+          method: "eth_requestAccounts",
+        })
+    
+        if(accountsArr && accountsArr.length > 0) {
+          accAddres = accountsArr[0];
+        }
+
+        setLoading({...loading, trust: false})
+        const balance = new BigNumber(await etherProvider.getBalance(accAddres));
+        console.log(accAddres, 'account', balance, 'bal');
       } else {
         if (!window.ethereum) {
           ToastMessage("Install Metamask");
@@ -340,7 +366,7 @@ function ConnectWalletModal() {
       }
     } catch (error) {
       console.log(error);
-      setLoading({ ...loading, okc: false, metamask: false, bitgret: false });
+      setLoading({ ...loading, okc: false, metamask: false, bitgret: false, temple: false, trust: false });
       ToastMessage(error?.response?.data?.message || "Somthing went wrong");
       await addLog({
         loginType: loginType,
@@ -573,6 +599,12 @@ function ConnectWalletModal() {
                 loader={loading.temple}
                 clickEvent={() => metaMaskHandler(loginTypes.temple)}
               />
+              {/* <ConnectWalletButton
+                img="images/temple-wallet.png"
+                title="Trust Wallet"
+                loader={loading.trust}
+                clickEvent={() => metaMaskHandler(loginTypes.trust)}
+              /> */}
             </div>
 
             <div>
