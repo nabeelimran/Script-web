@@ -89,15 +89,15 @@ const companies = [
   },
   {
     iconImg: "images/partners/be-in-crypto.png",
-    className: "h-6 xl:h-12 invert-[100%] brightness-0 mt-2",
+    className: "h-6 xl:h-10 invert-[100%] brightness-0 mt-2",
   },
   {
     iconImg: "images/partners/bitcoinist.png",
-    className: "h-6 xl:h-10 mt-4",
+    className: "h-6 xl:h-8 mt-4",
   },
   {
     iconImg: "images/partners/gulf-news.png",
-    className: "h-6 xl:h-12 mt-2",
+    className: "h-6 xl:h-10 mt-2",
   },
   {
     iconImg: "images/partners/news-btc.png",
