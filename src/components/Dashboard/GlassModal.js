@@ -116,10 +116,11 @@ export default function GlassModal({
         <Box mb={4}>
           <div className="text-xl font-semibold mb-2">Type : {glass.type}</div>
           <div className="text-md font-semibold mb-2">
-            Level : {glass.level}
+            Level : <ValuesTypography>{glass.level}</ValuesTypography>
           </div>
           <div className="text-md font-semibold mb-2">
-            Total Watch Time : {glass.totalWatchTime}
+            Total Watch Time :
+            <ValuesTypography>{glass.totalWatchTime}</ValuesTypography>
           </div>
           {/* <div className="text-md font-semibold mb-2">
             Max Earnable Time : {glass.maxEarnableTime}
@@ -128,10 +129,13 @@ export default function GlassModal({
             Unpaid Watch Time : {glass.unpaidWatchTime}
           </div> */}
           <div className="text-md font-semibold mb-2">
-            Drained : {glass.drained ? "Yes" : "No"}
+            Drained :{glass.drained ? "Yes" : "No"}
           </div>
           <div className="text-md font-semibold mb-2">
-            Voucher Equipped : {rechargeDiscountPercentage > 0 ? "Yes" : "No"}
+            Voucher Equipped :
+            <ValuesTypography>
+              {rechargeDiscountPercentage > 0 ? "Yes" : "No"}
+            </ValuesTypography>
           </div>
           <Link
             target="_blank"
@@ -241,6 +245,20 @@ const PrimaryTypography = styled(Typography)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   padding: "9px 20px",
   marginTop: 8,
+}));
+
+const ValuesTypography = styled(Typography)(({ theme }) => ({
+  background: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
+  display: "inline-block",
+  margin: "auto",
+  borderRadius: theme.shape.borderRadius,
+  padding: "5px",
+
+  marginLeft: 8,
+  fontWeight: 600,
+  minWidth: 30,
+  textAlign: "center",
 }));
 
 const StyledDialogAction = styled(DialogActions)(({ theme }) => ({

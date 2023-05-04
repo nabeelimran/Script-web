@@ -46,6 +46,7 @@ import FreeMintBox from "components/Dashboard/FreeMintBox";
 import GemMintBox from "components/Dashboard/GemMintBox";
 import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
 import Title from "components/Title";
+import GlassPassBox from "components/Dashboard/GlassPassBox";
 
 const MintBoxStyle = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -116,8 +117,9 @@ export default function Glass() {
   return (
     <Container maxWidth="md" sx={{ my: 20 }} id="mint">
       <MintBox accountAddress={accountAddress} balance={balance} />
-
+      <GlassPassBox accountAddress={accountAddress} />
       <FreeMintBox accountAddress={accountAddress} balance={balance} />
+
       {/* <GemMintBox accountAddress={accountAddress} balance={balance} /> */}
 
       {/* {contractLoading === "success" && (
