@@ -225,5 +225,6 @@ export const loginTypes = {
   bitgret:"BITGERT_SIGNUP",
   gmail:"GMAIL_SIGNUP",
   twitter:"TWITTER_SIGNUP",
-  temple: "TEMPLE_SIGNUP"
+  temple: "TEMPLE_SIGNUP",
+  trust: "TRUST_WALLET_SIGNUP"
 }
