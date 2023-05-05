@@ -111,7 +111,7 @@ function Navbar() {
                   subtitle="Our user first watch to earn television platform."
                   anchor={true}
                   others={{
-                    href: `${helper.generateTokenUrl()}`,
+                    href: `${helper.generateTokenUrl('')}`,
                     onclick: () => {
                       analyticsEventTracker('script-tv', 'click', window.location.pathname)
                     }
@@ -277,21 +277,36 @@ function Navbar() {
                   />
                 </div>
               ) : (
+                // <Button
+                //   className="mt-8 lg:mt-0 flex justify-center text-center"
+                //   customizationClassName="space-x-3 px-0 py-2 w-[120px] rounded-lg font-semibold"
+                //   buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
+                //   label={
+                //     <span className="text-xs xl:text-sm text-black">
+                //       Sign in / Sign up
+                //     </span>
+                //   }
+                //   buttonProps={{
+                //     onClick: () => {
+                //       setSidebarVisibility(false);
+                //       dispatch(toggleModalVisibility(true));
+                //       helper.trackByMixpanel("Sign In Button Clicked", {});
+                //       analyticsEventTracker('signup', 'click', window.location.pathname)
+                //     },
+                //   }}
+                // />
                 <Button
                   className="mt-8 lg:mt-0 flex justify-center text-center"
                   customizationClassName="space-x-3 px-0 py-2 w-[120px] rounded-lg font-semibold"
                   buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
                   label={
                     <span className="text-xs xl:text-sm text-black">
-                      Sign in / Sign up
+                      Launch App
                     </span>
                   }
                   buttonProps={{
                     onClick: () => {
-                      setSidebarVisibility(false);
-                      dispatch(toggleModalVisibility(true));
-                      helper.trackByMixpanel("Sign In Button Clicked", {});
-                      analyticsEventTracker('signup', 'click', window.location.pathname)
+                      helper.openLink(helper.generateTokenUrl(''))
                     },
                   }}
                 />
