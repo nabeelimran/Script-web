@@ -8,7 +8,6 @@ export default class TrustWalletService {
     static isTrustWallet(ethereum) {
         // Identify if Trust Wallet injected provider is present.
         const trustWallet = !!ethereum.isTrust;
-        debugger
         return trustWallet;
     };
 

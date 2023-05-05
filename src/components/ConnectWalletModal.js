@@ -151,7 +151,6 @@ function ConnectWalletModal() {
   };
 
   const metaMaskHandler = async (loginType = "metamask") => {
-    debugger
     try {
       let okcBalance;
       analyticsEventTracker('wallet-login', 'click', window.location.pathname)
