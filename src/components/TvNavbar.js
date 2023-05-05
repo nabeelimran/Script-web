@@ -77,7 +77,7 @@ function TvNavbar({ className }) {
           title={<>script.tv</>}
         /> */}
 
-        <Link to="/">
+        <Link to="/tv">
           <img
             src="images/logo-beta.svg"
             className="w-[100px] xl:w-[144px]"
