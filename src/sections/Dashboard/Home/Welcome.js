@@ -48,7 +48,7 @@ function Welcome({}) {
 
   const goToTVSite = () =>
     navigate({
-      pathname: "/tv",
+      pathname: "/",
     });
 
   const getBalance = async () => {

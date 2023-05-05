@@ -45,7 +45,7 @@ function MetamaskChangeDetectionModal() {
       dispatch(resetEarnedToken(0));
       dispatch(isLogin(false));
       navigate({
-        pathname: "/tv",
+        pathname: "/",
       });
     }
     dispatch(toggleMetamaskChangeDetect(false))
