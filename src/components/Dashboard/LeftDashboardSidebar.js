@@ -34,7 +34,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
     dispatch(resetEarnedToken(0));
     dispatch(isLogin(false));
     navigate({
-      pathname: "/tv",
+      pathname: "/",
     });
   };
 

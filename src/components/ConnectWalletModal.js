@@ -123,7 +123,7 @@ function ConnectWalletModal() {
                 );
                 dispatch(isLogin(true));
                 navigate({
-                  pathname: "/tv",
+                  pathname: "/",
                 });
               } else {
                 setLoading({ ...loading, bnb: false });
@@ -343,7 +343,7 @@ function ConnectWalletModal() {
               dispatch(isLogin(true));
               if (!location.pathname.includes("/dashboard"))
                 navigate({
-                  pathname: "/tv",
+                  pathname: "/",
                 });
             }
           } else {
@@ -441,7 +441,7 @@ function ConnectWalletModal() {
                 dispatch(toggleModalVisibility(false));
                 dispatch(isLogin(true));
                 navigate({
-                  pathname: "/tv",
+                  pathname: "/",
                 });
               }
             } else {
@@ -526,7 +526,7 @@ function ConnectWalletModal() {
                 dispatch(toggleModalVisibility(false));
                 dispatch(isLogin(true));
                 navigate({
-                  pathname: "/tv",
+                  pathname: "/",
                 });
               }
             } else {
