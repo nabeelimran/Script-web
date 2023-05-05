@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { helper } from "utils/helper";
 
 const Card = ({ title, img, subtitle, to = "/" }) => {
   return (
@@ -28,15 +29,15 @@ const HelpDropdownBody = () => {
         <div className="bg-[#1F1F1F] rounded-xl py-4 px-5">
           <div className="space-y-2">
             <a href="https://whitepaper.script.tv/" rel="noreferrer" target="_blank" className="text-sm font-medium">Whitepaper</a> <br/>
-            <Link to="/research" className="text-sm font-medium">Script TV explained</Link> <br/>
-            <Link to="/" className="text-sm font-medium">Blog</Link> <br/>
-            <Link to="/faq" className="text-sm font-medium">FAQ</Link> 
+            <Link to={helper.generateTokenUrl('research')} className="text-sm font-medium">Script TV explained</Link> <br/>
+            <Link to={helper.generateTokenUrl('')} className="text-sm font-medium">Blog</Link> <br/>
+            <Link to={helper.generateTokenUrl('faq')} className="text-sm font-medium">FAQ</Link> 
           </div>
         </div>
       </div>
       <div className="grid lg:grid-cols-2 gap-6 py-5 lg:py-7 px-4 lg:px-8 border-t-1px lg:border-t-0 lg:border-l-1px border-primary">
         <Card
-          to="/research"
+          to={helper.generateTokenUrl('research')}
           title="Learn More"
           img="images/learn-more.png"
           subtitle="More on Script TV"

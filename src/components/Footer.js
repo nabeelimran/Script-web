@@ -1,41 +1,97 @@
 import React from "react";
 import FooterLinksSection from "./FooterLinksSection";
+import { helper } from "utils/helper";
 
 function Footer({ container = "container-two" }) {
   const footerData = [
     {
       title: "PRODUCTS",
       links: [
-        { title: "Script TV", to: "/tv" },
-        { title: "Script Glass", to: "/research" },
-        { title: "Marketplace", to: "/marketplace" },
+        { title: "Script TV", to: "/" },
+        {
+          title: "Script Glass",
+          to: `${helper.generateTokenUrl('research')}`,
+          target: "_blank",
+          anchorTag: true
+        },
+        {
+          title: "Marketplace",
+          to: `${helper.generateTokenUrl('marketplace')}`,
+          target: "_blank",
+          anchorTag: true
+        },
         {
           title: "dStorage",
           to: "https://partners.script.tv/#/partner/theta",
           target: "_blank",
           anchorTag: true
         },
-        { title: "Script Blockchain", to: "/node" },
-        { title: "sADs", to: "/" }
+        {
+          title: "Script Blockchain",
+          to: `${helper.generateTokenUrl('node')}`,
+          target: "_blank",
+          anchorTag: true
+        },
+        {
+          title: "sADs",
+          to: `${helper.generateTokenUrl('')}`,
+          target: "_blank",
+          anchorTag: true
+        }
       ],
     },
     {
       title: "INFORMATION",
       links: [
-        { title: "Script Network Explained", to: "/research" },
-        { title: "Script Tokens", to: "/token" },
-        { title: "Calculator", to: "/calculator" },
-        { title: "Run a node", to: "/node" },
+        {
+          title: "Script Network Explained",
+          to: `${helper.generateTokenUrl('research')}`,
+          target: "_blank",
+          anchorTag: true
+        },
+        {
+          title: "Script Tokens",
+          to: `${helper.generateTokenUrl('')}`,
+          target: "_blank",
+          anchorTag: true
+        },
+        {
+          title: "Calculator",
+          to: `${helper.generateTokenUrl('calculator')}`,
+          target: "_blank",
+          anchorTag: true
+        },
+        {
+          title: "Run a node",
+          to: `${helper.generateTokenUrl('node')}`,
+          target: "_blank",
+          anchorTag: true
+        },
         // { title: "Technology", to: "/technology" },
-        { title: "Report Issue", to: "/report-issue" },
-        { title: "Download", to: "/download" },
+        {
+          title: "Report Issue",
+          to: `${helper.generateTokenUrl('report-issue')}`,
+          target: "_blank",
+          anchorTag: true
+        },
+        {
+          title: "Download",
+          to: `${helper.generateTokenUrl('donwload')}`,
+          target: "_blank",
+          anchorTag: true
+        },
         {
           title: "Status",
           to: "https://status.script.tv/",
           target: "_blank",
           anchorTag: true
         },
-        { title: "How to buy", to: "/how-to-buy" },
+        {
+          title: "How to buy",
+          to: `${helper.generateTokenUrl('how-to-buy')}`,
+          target: "_blank",
+          anchorTag: true
+        },
       ],
     },
     {
@@ -88,9 +144,24 @@ function Footer({ container = "container-two" }) {
     {
       title: "TERMS",
       links: [
-        { title: "Terms of Service", to: "/terms-and-conditions" },
-        { title: "Privacy Policy", to: "/privacy-policy" },
-        { title: "Cookies Policy", to: "/cookies-policy" },
+        {
+          title: "Terms of Service",
+          to: `${helper.generateTokenUrl('terms-and-conditions')}`,
+          target: "_blank",
+          anchorTag: true
+        },
+        {
+          title: "Privacy Policy",
+          to: `${helper.generateTokenUrl('privacy-policy')}`,
+          target: "_blank",
+          anchorTag: true
+        },
+        {
+          title: "Cookies Policy",
+          to: `${helper.generateTokenUrl('cookies-policy')}`,
+          target: "_blank",
+          anchorTag: true
+        },
       ],
     },
   ];
