@@ -49,7 +49,7 @@ const VerifyAccount = () => {
               })
             );
 						dispatch(isLogin(true))
-            navigate("/tv")
+            navigate("/")
             ToastMessage(`${otpVerify.data.message}`, true);
           } else {
             ToastMessage(`${otpVerify?.data?.message || "Invalid OTP"}`);

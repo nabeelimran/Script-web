@@ -63,7 +63,7 @@ function Navbar() {
           imgClassName="w-10"
           textClassName="text-sm xl:text-base"
         /> */}
-        <Link to="/tv">
+        <Link to="/">
           <img
             src="images/logo-beta.svg"
             className="w-[100px] xl:w-[144px]"
@@ -111,7 +111,7 @@ function Navbar() {
                   subtitle="Our user first watch to earn television platform."
                   anchor={true}
                   others={{
-                    href: "/tv",
+                    href: "/",
                     onclick: () => {
                       analyticsEventTracker('script-tv', 'click', window.location.pathname)
                     }

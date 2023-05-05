@@ -143,7 +143,7 @@ function TvNavbar({ className }) {
               <LinkScroller
                 id="tv-community"
                 to="/"
-                wait={location.pathname === "/tv" ? 0 : 200}
+                wait={location.pathname === "/" ? 0 : 200}
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
                 scrollerOptions={{
                   smooth: true,

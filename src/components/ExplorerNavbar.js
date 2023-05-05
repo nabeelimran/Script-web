@@ -114,7 +114,7 @@ function ExplorerNavbar({ className }) {
                 Staking
               </Link>
               <Link
-                to="/tv"
+                to="/"
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               >
                 More

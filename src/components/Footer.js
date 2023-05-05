@@ -70,9 +70,7 @@ function Footer({ container = "container-two" }) {
         // { title: "Technology", to: "/technology" },
         {
           title: "Report Issue",
-          to: `${helper.generateTokenUrl('report-issue')}`,
-          target: "_blank",
-          anchorTag: true
+          to: "/report-issue"
         },
         {
           title: "Download",
