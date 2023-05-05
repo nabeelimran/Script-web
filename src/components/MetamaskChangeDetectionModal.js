@@ -14,6 +14,7 @@ import { isLogin } from "redux/reducers/login_state";
 import { resetEarnedToken } from "redux/reducers/video_State";
 import { useNavigate } from "react-router-dom";
 import Api from "services/api";
+import { helper } from "utils/helper";
 
 function MetamaskChangeDetectionModal() {
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,7 @@ function MetamaskChangeDetectionModal() {
       dispatch(resetEarnedToken(0));
       dispatch(isLogin(false));
       navigate({
-        pathname: "/tv",
+        pathname: helper.generateTokenUrl(''),
       });
     }
     dispatch(toggleMetamaskChangeDetect(false))

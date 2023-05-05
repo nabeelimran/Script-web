@@ -1,12 +1,18 @@
 import React from "react";
 import FooterLinksSection from "./FooterLinksSection";
+import { helper } from "utils/helper";
 
 function Footer({ container = "container-two" }) {
   const footerData = [
     {
       title: "PRODUCTS",
       links: [
-        { title: "Script TV", to: "/tv" },
+        {
+          title: "Script TV",
+          to: `${helper.generateTokenUrl('')}`,
+          target: "_blank",
+          anchorTag: true
+        },
         { title: "Script Glass", to: "/research" },
         { title: "Marketplace", to: "/marketplace" },
         {
@@ -22,12 +28,22 @@ function Footer({ container = "container-two" }) {
     {
       title: "INFORMATION",
       links: [
-        { title: "Script Network Explained", to: "/research" },
+        {
+          title: "Script Network Explained",
+          to: `${helper.generateTokenUrl('')}`,
+          target: "_blank",
+          anchorTag: true
+        },
         { title: "Script Tokens", to: "/token" },
         { title: "Calculator", to: "/calculator" },
         { title: "Run a node", to: "/node" },
         // { title: "Technology", to: "/technology" },
-        { title: "Report Issue", to: "/report-issue" },
+        {
+          title: "Report Issue",
+          to: `${helper.generateTokenUrl('report-issue')}`,
+          target: "_blank",
+          anchorTag: true
+        },
         { title: "Download", to: "/download" },
         {
           title: "Status",

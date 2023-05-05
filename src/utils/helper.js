@@ -3,6 +3,7 @@ import moment from 'moment'
 import LocalServices from 'services/LocalServices';
 import MixPanelService from 'services/mixPanelService';
 import bell from '../assets/bell.wav';
+import { ENV } from 'constants';
 export const helper = {
   formatLocalDate:(date) => moment(date).format("DD/MM/YYYY"),
   formatLocalTime:(date) => moment.utc(date).format("HH:mm"),
@@ -98,6 +99,9 @@ export const helper = {
     ],
     playSound: () => {
       new Audio(bell).play();
+    },
+    generateTokenUrl: (path) => {
+      return `${ENV === 'stage' ? 'https://stage.script.tv/' : 'https://script.tv/'}${path}`;
     }
 }
 
