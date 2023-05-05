@@ -154,7 +154,7 @@ function Hero() {
           </div>
           <div className="flex flex-col md:flex-row items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start space-y-5 md:space-y-0">
             <Button
-              link="/tv"
+              link="/"
               label="Launch app"
               arrowVisible={true}
               iconName="material-symbols:arrow-right-alt-rounded"

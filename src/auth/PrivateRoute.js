@@ -10,7 +10,7 @@ import LocalServices from "services/LocalServices";
   const token = LocalServices.getServices("token")
   if (!token) {
     dispatch(toggleModalVisibility(true));  
-    return <Navigate to="/tv" replace/>;;
+    return <Navigate to="/" replace/>;;
   }
   return children;
 };
