@@ -126,7 +126,9 @@ function App() {
       <CreatePasswordForm />
       <MetamaskChangeDetectionModal />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<TvHomepage />} />
+        <Route path="/token" element={<HomePage />} />
         <Route path="/how-to-buy" element={<HowToBuy/>} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/download" element={<Download />} />
@@ -141,7 +143,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
 
         {/* TV ROUTES */}
-        <Route path="/tv" element={<TvHomepage />} />
+        {/* <Route path="/tv" element={<TvHomepage />} /> */}
         <Route path="/all-channels" element={<AllChannels />} />
         <Route path="/all-categories" element={<AllCategory />} />
         <Route path="/channel-detail" element={<ChannelDetail />} />

@@ -117,6 +117,12 @@ function TvNavbar({ className }) {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
+              <Link
+                to="/token"
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Token
+              </Link>
               <LinkScroller
                 id="homepage-community-section"
                 to="/watch"
