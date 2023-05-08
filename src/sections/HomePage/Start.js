@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import ArrowButton from "components/ArrowButton";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { helper } from "utils/helper";
 
 function Start() {
   const navigate = useNavigate();
@@ -36,9 +37,7 @@ function Start() {
 
           <ArrowButton label="Launch App" variant={1} buttonProps={{
             onClick: () => {
-              navigate({
-                pathname: '/tv'
-              })
+              helper.openLink(helper.generateTokenUrl(''))
             }
           }}/>
         </div>
