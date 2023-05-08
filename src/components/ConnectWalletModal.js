@@ -192,6 +192,7 @@ function ConnectWalletModal() {
         const trustWalletProvider = TrustWalletService.checkTrustWallet();
         if(!trustWalletProvider) {
           ToastMessage('Trust wallet not installed');
+          setLoading({ ...loading, trust: false });
           return;
         }
         const etherProvider = new ethers.providers.Web3Provider(trustWalletProvider);
@@ -598,12 +599,12 @@ function ConnectWalletModal() {
                 loader={loading.temple}
                 clickEvent={() => metaMaskHandler(loginTypes.temple)}
               />
-              {/* <ConnectWalletButton
-                img="images/temple-wallet.png"
+              <ConnectWalletButton
+                img="images/trust_wallet_logo.png"
                 title="Trust Wallet"
                 loader={loading.trust}
                 clickEvent={() => metaMaskHandler(loginTypes.trust)}
-              /> */}
+              />
             </div>
 
             <div>
