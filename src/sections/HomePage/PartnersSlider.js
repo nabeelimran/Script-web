@@ -195,7 +195,7 @@ function PartnersSlider() {
       >
         {companies.map(({ iconImg, className }, i) => (
           <div
-            className="flex justify-center items-center mx-4 lg:mx-6"
+            className="flex justify-center items-center h-[100px] mx-4 lg:mx-6"
             key={i}
           >
             <img
