@@ -49,8 +49,8 @@ function Television() {
             subtitle="Web3"
             title={
               <img
-                src="images/logos/logo-black.png"
-                className="max-w-[40px] mx-auto invert"
+                src="./clean-logo.png"
+                className="max-h-[40px] mx-auto"
                 alt=""
               />
             }
