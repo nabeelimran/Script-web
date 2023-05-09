@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
+  toggleSignUpModalVisibility,
 } from "redux/reducers/connectWalletModal_State";
 import { metamaskCred, setIsOkc, setIsTemple } from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
@@ -626,6 +627,11 @@ function ConnectWalletModal() {
               {/* <Link to="/" className="block w-fit mx-auto text-center text-sm">
                 Forget Password?
               </Link> */}
+              <p onClick={() => {
+                dispatch(toggleSignUpModalVisibility(true))
+              }} className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4">
+                Sign Up
+              </p>
             </div>
           </div>
 
