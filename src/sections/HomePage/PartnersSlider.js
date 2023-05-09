@@ -121,63 +121,63 @@ const companies = [
   // { iconImg: "images/partners/G.png" },
   {
     iconImg: "images/features/BI_dark_background_white_vertical.png",
-    className: "max-w-[200px] max-h-[100px]",
+    className: "max-w-[175px] max-h-[100px]",
   },
   {
     iconImg: "images/features/logo.png",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/logo_800x149_transp-11.png",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/Outlook-Logo.png",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/PANews_Multicolor_Primary.png",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/Sinalogo1.png",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/sohu_com_logo.jpg",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/tencent-to-invest-70bn-in-fintech-1590569834.jpg",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/tGzNhICKOt0f.gif",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/be-in-crypto.png",
-    className: "max-w-[200px] max-h-[100px]",
+    className: "max-w-[175px] max-h-[100px]",
   },
   {
     iconImg: "images/features/gulf-news.png",
-    className: "max-w-[200px] max-h-[100px]",
+    className: "max-w-[175px] max-h-[100px]",
   },
   {
     iconImg: "images/features/news-btc.png",
-    className: "max-w-[200px] max-h-[100px]",
+    className: "max-w-[175px] max-h-[100px]",
   },
   {
     iconImg: "images/features/yahoo-finance.png",
-    className: "max-w-[200px] max-h-[100px]",
+    className: "max-w-[175px] max-h-[100px]",
   },
   {
     iconImg: "images/features/coinspeaker-logo-vector.png",
-    className: "max-w-[200px] max-h-[100px] feature-icon",
+    className: "max-w-[175px] max-h-[100px] feature-icon",
   },
   {
     iconImg: "images/features/bitcoinist.png",
-    className: "max-w-[200px] max-h-[100px]",
+    className: "max-w-[175px] max-h-[100px]",
   },
 ];
 
@@ -194,7 +194,10 @@ function PartnersSlider() {
         direction="left"
       >
         {companies.map(({ iconImg, className }, i) => (
-          <div className="flex justify-center mx-4 lg:mx-8" key={i}>
+          <div
+            className="flex justify-center items-center mx-4 lg:mx-6"
+            key={i}
+          >
             <img
               src={iconImg}
               className={`${className} grayscale-[100%]`}
