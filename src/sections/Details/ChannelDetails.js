@@ -80,7 +80,6 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
     const channelData = channelDetailsRes.isSuccess
       ? channelDetailsRes.data
       : null;
-    debugger
     if(user && user?.userId) {
       if (channelData) {
         const req = {
