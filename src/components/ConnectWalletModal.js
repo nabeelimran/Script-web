@@ -627,11 +627,11 @@ function ConnectWalletModal() {
               {/* <Link to="/" className="block w-fit mx-auto text-center text-sm">
                 Forget Password?
               </Link> */}
-              <p onClick={() => {
+              {/* <p onClick={() => {
                 dispatch(toggleSignUpModalVisibility(true))
               }} className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4">
                 Sign Up
-              </p>
+              </p> */}
             </div>
           </div>
 
