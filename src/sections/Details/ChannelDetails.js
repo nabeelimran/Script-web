@@ -45,27 +45,33 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
   };
 
   const getChannelByChannelId = async () => {
-    return await Api.getChannelDetailByChannelId(
-      channel.id,
-      false,
-      user.userId,
-      "channel-detail"
-    ).then((res) => {
-      if (res && res.status === 200) {
-        const channelInfo = res.data.data;
-        helper.trackByMixpanel("Channel Page View", {
-          email: user?.email || "N/A",
-          title: "Channel Detail",
-          channel_title: channelInfo?.channelName || "N/A",
-        });
-        if (channelInfo) {
-          setChannelFollow(channelInfo.channelSubscribed);
-        } else {
-          setChannelFollow(false);
+    if(user?.userId) {
+      return await Api.getChannelDetailByChannelId(
+        channel.id,
+        false,
+        user?.userId,
+        "channel-detail"
+      ).then((res) => {
+        if (res && res.status === 200) {
+          const channelInfo = res.data.data;
+          helper.trackByMixpanel("Channel Page View", {
+            email: user?.email || "N/A",
+            title: "Channel Detail",
+            channel_title: channelInfo?.channelName || "N/A",
+          });
+          if (channelInfo) {
+            setChannelFollow(channelInfo.channelSubscribed);
+          } else {
+            setChannelFollow(false);
+          }
         }
-      }
-      return res.data;
-    });
+        return res.data;
+      });
+    } else {
+      ToastMessage('Please Login')
+      return null;
+    }
+    
   };
 
   // follow and unfollow channel code
@@ -74,32 +80,38 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
     const channelData = channelDetailsRes.isSuccess
       ? channelDetailsRes.data
       : null;
-    if (channelData) {
-      const req = {
-        channelId: channel?.id || 0,
-        id: 0,
-        subscribeDate: helper.getISOString(),
-        unSubscribe: channelData.channelSubscribed ? true : false, // if channelSubscribed is false then in req it go false else true for unfollow
-        userId: user.userId,
-      };
-      Api.subscribeChannel(req, "watch").then((res) => {
-        if (res && res.status === 200) {
-          if (req.unSubscribe) {
-            try {
-              MixPanelService.setIdentifier(user.email);
-            } catch (error) {}
-
-            helper.trackByMixpanel("Channel Subscribed", {
-              channel_id: req.channelId,
-              email: user?.email || "not-detect",
-              channel_name: channel?.channelName || "",
-            });
+    debugger
+    if(user && user?.userId) {
+      if (channelData) {
+        const req = {
+          channelId: channel?.id || 0,
+          id: 0,
+          subscribeDate: helper.getISOString(),
+          unSubscribe: channelData.channelSubscribed ? true : false, // if channelSubscribed is false then in req it go false else true for unfollow
+          userId: user.userId,
+        };
+        Api.subscribeChannel(req, "watch").then((res) => {
+          if (res && res.status === 200) {
+            if (req.unSubscribe) {
+              try {
+                MixPanelService.setIdentifier(user.email);
+              } catch (error) {}
+  
+              helper.trackByMixpanel("Channel Subscribed", {
+                channel_id: req.channelId,
+                email: user?.email || "not-detect",
+                channel_name: channel?.channelName || "",
+              });
+            }
+            getChannelByChannelId();
+            ToastMessage(res?.data?.message || "Success", true);
           }
-          getChannelByChannelId();
-          ToastMessage(res?.data?.message || "Success", true);
-        }
-      });
+        });
+      }
+    } else {
+      ToastMessage("Please login");
     }
+    
   };
 
   useEffect(() => {
