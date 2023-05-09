@@ -90,6 +90,7 @@ const useLiveChat = (currentShow) => {
 						};
 
 						rows.push(arr);
+						return key;
 					});
 
 					setMessage(rows);

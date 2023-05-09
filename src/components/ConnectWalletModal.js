@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
+  toggleSignUpModalVisibility,
 } from "redux/reducers/connectWalletModal_State";
 import { metamaskCred, setIsOkc, setIsTemple } from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
@@ -465,82 +466,82 @@ function ConnectWalletModal() {
       });
   };
 
-  const twitterLoginHandler = (e) => {
-    helper.trackByMixpanel("Twitter Social Button Clicked", {});
-    helper.comingSoonNotification(e);
-    return;
-    dispatch(setIsOkc(loginTypes.twitter));
-    const provider = new TwitterAuthProvider();
-    signInWithPopup(getAuth(auth), provider)
-      .then((res) => {
-        const gBody = {
-          login: {
-            email: res?.user?.email,
-            device: "Web",
-            password: "",
-            browser: detectBrowser(),
-            signupType: loginTypes.gmail,
-          },
-          user: {
-            email: res?.user?.email,
-            userName: res?.user?.displayName,
-            accountLocked: false,
-            confirmPassword: "",
-            firstName: "",
-            id: 0,
-            lastName: "",
-            middleName: "",
-            password: "",
-            roleId: 0,
-            roleName: "",
-            status: "ACTIVE",
-          },
-        };
-        Api.solicalLogin(gBody, "login-modal")
-          .then((loginRes) => {
-            if (loginRes && loginRes.status === 200) {
-              if (loginRes.data.message === "Please verify your account.") {
-                ToastMessage(`${loginRes.data.message}`);
-                navigate({
-                  pathname: "/verify-account",
-                  search: `?email=${loginRes.data.data.email}`,
-                });
-              } else {
-                ToastMessage(`${loginRes.data.message}`, true);
-                if (loginRes.data.data.authToken) {
-                  sessionStorage.setItem(
-                    "script-token",
-                    JSON.stringify(loginRes.data.data.authToken)
-                  );
-                }
+  // const twitterLoginHandler = (e) => {
+  //   helper.trackByMixpanel("Twitter Social Button Clicked", {});
+  //   helper.comingSoonNotification(e);
+  //   return;
+  //   dispatch(setIsOkc(loginTypes.twitter));
+  //   const provider = new TwitterAuthProvider();
+  //   signInWithPopup(getAuth(auth), provider)
+  //     .then((res) => {
+  //       const gBody = {
+  //         login: {
+  //           email: res?.user?.email,
+  //           device: "Web",
+  //           password: "",
+  //           browser: detectBrowser(),
+  //           signupType: loginTypes.gmail,
+  //         },
+  //         user: {
+  //           email: res?.user?.email,
+  //           userName: res?.user?.displayName,
+  //           accountLocked: false,
+  //           confirmPassword: "",
+  //           firstName: "",
+  //           id: 0,
+  //           lastName: "",
+  //           middleName: "",
+  //           password: "",
+  //           roleId: 0,
+  //           roleName: "",
+  //           status: "ACTIVE",
+  //         },
+  //       };
+  //       Api.solicalLogin(gBody, "login-modal")
+  //         .then((loginRes) => {
+  //           if (loginRes && loginRes.status === 200) {
+  //             if (loginRes.data.message === "Please verify your account.") {
+  //               ToastMessage(`${loginRes.data.message}`);
+  //               navigate({
+  //                 pathname: "/verify-account",
+  //                 search: `?email=${loginRes.data.data.email}`,
+  //               });
+  //             } else {
+  //               ToastMessage(`${loginRes.data.message}`, true);
+  //               if (loginRes.data.data.authToken) {
+  //                 sessionStorage.setItem(
+  //                   "script-token",
+  //                   JSON.stringify(loginRes.data.data.authToken)
+  //                 );
+  //               }
 
-                sessionStorage.setItem(
-                  "userInfo",
-                  JSON.stringify({
-                    email: loginRes.data.data.email,
-                    userId: loginRes.data.data.id,
-                    walletAddress: loginRes.data.data.walletAddress,
-                    userName: loginRes.data.data.userName,
-                  })
-                );
-                dispatch(toggleModalVisibility(false));
-                dispatch(isLogin(true));
-                navigate({
-                  pathname: "/",
-                });
-              }
-            } else {
-              ToastMessage(loginRes?.data?.message || "Something went wrong");
-            }
-          })
-          .catch((err) => {
-            ToastMessage(err?.error?.message || "Something went wrong");
-          });
-      })
-      .catch((err) => {
-        ToastMessage(err?.error?.message || "Something went wrong");
-      });
-  };
+  //               sessionStorage.setItem(
+  //                 "userInfo",
+  //                 JSON.stringify({
+  //                   email: loginRes.data.data.email,
+  //                   userId: loginRes.data.data.id,
+  //                   walletAddress: loginRes.data.data.walletAddress,
+  //                   userName: loginRes.data.data.userName,
+  //                 })
+  //               );
+  //               dispatch(toggleModalVisibility(false));
+  //               dispatch(isLogin(true));
+  //               navigate({
+  //                 pathname: "/",
+  //               });
+  //             }
+  //           } else {
+  //             ToastMessage(loginRes?.data?.message || "Something went wrong");
+  //           }
+  //         })
+  //         .catch((err) => {
+  //           ToastMessage(err?.error?.message || "Something went wrong");
+  //         });
+  //     })
+  //     .catch((err) => {
+  //       ToastMessage(err?.error?.message || "Something went wrong");
+  //     });
+  // };
 
   return (
     <>
@@ -626,6 +627,11 @@ function ConnectWalletModal() {
               {/* <Link to="/" className="block w-fit mx-auto text-center text-sm">
                 Forget Password?
               </Link> */}
+              {/* <p onClick={() => {
+                dispatch(toggleSignUpModalVisibility(true))
+              }} className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4">
+                Sign Up
+              </p> */}
             </div>
           </div>
 
