@@ -50,7 +50,7 @@ function Television() {
             title={
               <img
                 src="./clean-logo.png"
-                className="max-h-[40px] mx-auto "
+                className="max-h-[40px] mx-auto"
                 alt=""
               />
             }
