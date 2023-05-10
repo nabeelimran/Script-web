@@ -10,7 +10,11 @@ import {
   toggleModalVisibility,
   toggleSignUpModalVisibility,
 } from "redux/reducers/connectWalletModal_State";
-import { metamaskCred, setIsOkc, setIsTemple } from "redux/reducers/metamask_state";
+import {
+  metamaskCred,
+  setIsOkc,
+  setIsTemple,
+} from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
 import ConnectWalletButton from "./ConnectWalletButton";
 import SocialLoginCard from "./SocialLoginCard";
@@ -35,7 +39,7 @@ import { addLog } from "services/logs/FbLogs";
 import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
 import TrustWalletService from "services/trustWallet";
 import { ethers } from "ethers";
-import BigNumber from 'bignumber.js';
+import BigNumber from "bignumber.js";
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -48,7 +52,7 @@ function ConnectWalletModal() {
     okc: false,
     bitgret: false,
     temple: false,
-    trust: false
+    trust: false,
   });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -88,10 +92,10 @@ function ConnectWalletModal() {
           if (res && res.status === 200) {
             if (!res?.data?.data?.name) {
               addLog({
-                loginType: 'spaceId-login',
+                loginType: "spaceId-login",
                 errror: JSON.stringify(res),
-                attempt: 'fail'
-              })
+                attempt: "fail",
+              });
               ToastMessage("BNB username is not found");
               setLoading({ ...loading, bnb: false });
               return;
@@ -112,7 +116,7 @@ function ConnectWalletModal() {
                     JSON.stringify(resp.data.data.authToken)
                   );
                 }
-  
+
                 sessionStorage.setItem(
                   "userInfo",
                   JSON.stringify({
@@ -129,32 +133,31 @@ function ConnectWalletModal() {
               } else {
                 setLoading({ ...loading, bnb: false });
                 addLog({
-                  loginType: 'spaceId-login',
+                  loginType: "spaceId-login",
                   errror: JSON.stringify(resp),
-                  attempt: 'fail'
-                })
+                  attempt: "fail",
+                });
                 ToastMessage("Unable to login");
               }
             });
           }
         });
-      }  
+      }
     } catch (error) {
       setLoading({ ...loading, bnb: false });
       addLog({
-        loginType: 'spaceId-login',
+        loginType: "spaceId-login",
         errror: JSON.stringify(error),
-        attempt: 'fail'
-      })
+        attempt: "fail",
+      });
       ToastMessage(error?.response?.data?.message || "Something went wrong.");
     }
-    
   };
 
   const metaMaskHandler = async (loginType = "metamask") => {
     try {
       let okcBalance;
-      analyticsEventTracker('wallet-login', 'click', window.location.pathname)
+      analyticsEventTracker("wallet-login", "click", window.location.pathname);
       if (loginType === loginTypes.okc) {
         setLoading({ ...loading, okc: true });
         helper.trackByMixpanel("OKC Button Clicked", {});
@@ -173,41 +176,45 @@ function ConnectWalletModal() {
         helper.trackByMixpanel("Metamask Button Clicked", {});
       }
       let accAddres;
-      if(loginType === loginTypes.temple) {
+      if (loginType === loginTypes.temple) {
         if (await TempleWalletService.isCheckWalletPlugin()) {
           const templeWalletData = await TempleWalletService.connectWallet();
           if (templeWalletData?.isSuccess) {
             accAddres = templeWalletData.data.accountPkh;
-            setLoading({...loading, temple: false})
+            setLoading({ ...loading, temple: false });
           } else {
-            ToastMessage(templeWalletData?.data?.message || 'User rejected')
-            setLoading({...loading, temple: false})
+            ToastMessage(templeWalletData?.data?.message || "User rejected");
+            setLoading({ ...loading, temple: false });
             return;
           }
         } else {
           ToastMessage("Temple Wallet not installed");
-          setLoading({...loading, temple: false})
+          setLoading({ ...loading, temple: false });
           return;
         }
-      } else if(loginType === loginTypes.trust) {
+      } else if (loginType === loginTypes.trust) {
         const trustWalletProvider = TrustWalletService.checkTrustWallet();
-        if(!trustWalletProvider) {
-          ToastMessage('Trust wallet not installed');
+        if (!trustWalletProvider) {
+          ToastMessage("Trust wallet not installed");
           setLoading({ ...loading, trust: false });
           return;
         }
-        const etherProvider = new ethers.providers.Web3Provider(trustWalletProvider);
+        const etherProvider = new ethers.providers.Web3Provider(
+          trustWalletProvider
+        );
         const accountsArr = await window.trustwallet.request({
           method: "eth_requestAccounts",
-        })
-    
-        if(accountsArr && accountsArr.length > 0) {
+        });
+
+        if (accountsArr && accountsArr.length > 0) {
           accAddres = accountsArr[0];
         }
 
-        setLoading({...loading, trust: false})
-        const balance = new BigNumber(await etherProvider.getBalance(accAddres));
-        console.log(accAddres, 'account', balance, 'bal');
+        setLoading({ ...loading, trust: false });
+        const balance = new BigNumber(
+          await etherProvider.getBalance(accAddres)
+        );
+        console.log(accAddres, "account", balance, "bal");
       } else {
         if (!window.ethereum) {
           ToastMessage("Install Metamask");
@@ -216,7 +223,6 @@ function ConnectWalletModal() {
         }
         accAddres = await MetamaskService.connectHandler();
       }
-      
 
       if (accAddres) {
         dispatch(metamaskCred(accAddres));
@@ -263,7 +269,6 @@ function ConnectWalletModal() {
         }
         if (loginType === loginTypes.temple) {
           dispatch(setIsTemple(loginTypes.temple));
-          
         }
         const isUser = await Api.getUserDetailsByWalletAddress(
           accAddres,
@@ -360,27 +365,33 @@ function ConnectWalletModal() {
               walletAddress: accAddres,
               errror: JSON.stringify(loginW),
               reqBoyd: JSON.stringify(resObj),
-              attempt: 'fail'
-            })
+              attempt: "fail",
+            });
           }
         }
       }
     } catch (error) {
       console.log(error);
-      setLoading({ ...loading, okc: false, metamask: false, bitgret: false, temple: false, trust: false });
+      setLoading({
+        ...loading,
+        okc: false,
+        metamask: false,
+        bitgret: false,
+        temple: false,
+        trust: false,
+      });
       ToastMessage(error?.response?.data?.message || "Somthing went wrong");
       await addLog({
         loginType: loginType,
         errror: JSON.stringify(error),
-        attempt: 'fail'
-      })
+        attempt: "fail",
+      });
     }
   };
 
-
   const googleLoginHandler = () => {
     helper.trackByMixpanel("Google Social Button Clicked", {});
-    analyticsEventTracker('social-login', 'click', window.location.pathname)
+    analyticsEventTracker("social-login", "click", window.location.pathname);
     dispatch(setIsOkc(loginTypes.gmail));
     const provider = new GoogleAuthProvider();
     signInWithPopup(getAuth(auth), provider)
@@ -450,7 +461,9 @@ function ConnectWalletModal() {
             }
           })
           .catch((err) => {
-            ToastMessage(err?.response?.data?.message || "Something went wrong");
+            ToastMessage(
+              err?.response?.data?.message || "Something went wrong"
+            );
           });
       })
       .catch(async (err) => {
@@ -459,10 +472,10 @@ function ConnectWalletModal() {
           err?.error?.message || "Google login popup closed by user."
         );
         await addLog({
-          loginType: 'social-login',
+          loginType: "social-login",
           errror: JSON.stringify(err),
-          attempt: 'fail'
-        })
+          attempt: "fail",
+        });
       });
   };
 
@@ -627,11 +640,14 @@ function ConnectWalletModal() {
               {/* <Link to="/" className="block w-fit mx-auto text-center text-sm">
                 Forget Password?
               </Link> */}
-              {/* <p onClick={() => {
-                dispatch(toggleSignUpModalVisibility(true))
-              }} className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4">
+              <p
+                onClick={() => {
+                  dispatch(toggleSignUpModalVisibility(true));
+                }}
+                className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
+              >
                 Sign Up
-              </p> */}
+              </p>
             </div>
           </div>
 
