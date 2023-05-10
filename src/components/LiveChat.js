@@ -62,6 +62,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 		}
 	};
 
+	
 	const getFormData = ({ typedMessage }) => {
 		if (!typedMessage.trim()) {
 			ToastMessage("Invalid message");
