@@ -22,7 +22,10 @@ axios.interceptors.request.use(
       config.headers["requestDate"] = currentDate;
       config.headers["url"] = window.location.origin;
     }
-    if (config.url.includes(APIPATH.NOTIFICATIONURL) || config.url.includes('https://ipfs.io')) {
+    if (
+      config.url.includes(APIPATH.NOTIFICATIONURL) ||
+      config.url.includes("https://ipfs.io")
+    ) {
       console.log("here");
       config.headers.delete("userAuth");
       config.headers.delete("requestDate");
@@ -375,7 +378,7 @@ export default class Api {
         screenName: screenName,
       },
     };
-    
+
     return axios.get(
       `${APIPATH.BASEURL}analytic/graph?userId=${userId}`,
       options
@@ -801,5 +804,19 @@ export default class Api {
       `${APIPATH.BASEURL}saveUserNotificationViewHistory/${userId}`,
       {}
     );
+  }
+
+  static signupModalApi(data, screenName) {
+    const options = {
+      headers: {
+        ipAddress: "dummyData",
+        latitude: "dummyData",
+        longitude: "dummyData",
+        countryName: "dummyData",
+        screenName: screenName,
+      },
+    };
+
+    return axios.post(`${APIPATH.BASEURL}register`, data, options);
   }
 }
