@@ -5,12 +5,13 @@ import UpperRoot from "./UpperRoot";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSignUpModalVisibility } from "redux/reducers/connectWalletModal_State";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
-import FloatingLabelInput from "./FloatingLabelInput";
 import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { useState } from "react";
 import FloatingInput from "./FloatingInput";
 import Api from "services/api";
+import { ToastMessage } from "./ToastMessage";
+import { useNavigate } from "react-router-dom";
 
 function SignUpModal() {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,7 @@ function SignUpModal() {
     (state) => state.connectWalletModal_State
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -79,7 +81,7 @@ function SignUpModal() {
   };
 
   const signUp = (data) => {
-    console.log(data, "form data");
+    setLoading(true);
     const req = {
       email: data.email,
       userName: data.username,
@@ -94,10 +96,30 @@ function SignUpModal() {
 
     Api.signupModalApi(req, "signUpModal")
       .then((res) => {
-        console.log(res, "console res");
+        if(res && res.isSuccess) {
+          ToastMessage(`${res.message} || Registered Success`);
+          navigate({
+            pathname: "/verify-account",
+            search: `?email=${res.data.email}`,
+          });
+          setLoading(false);
+          dispatch(toggleSignUpModalVisibility(false));
+          reset({
+            username: "",
+            email: "",
+            refral: "",
+            password: "",
+            confirm_password: "",
+          })
+        } else {
+          ToastMessage(res?.message || 'Something went wrong');
+          setLoading(false);
+        }
       })
       .catch((err) => {
         console.log(err);
+        ToastMessage(err?.message || 'Unable to login');
+        setLoading(false);
       });
   };
 
