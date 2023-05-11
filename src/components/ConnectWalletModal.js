@@ -631,13 +631,13 @@ function ConnectWalletModal() {
                 />
               </div>
               <div className="my-4">
-                <LoginButton
+                {/* <LoginButton
                   img="images/email.png"
                   title="Signup via Email Address"
                   clickEvent={() => {
                     dispatch(toggleSignUpModalVisibility(true));
                   }}
-                />
+                /> */}
               </div>
             </div>
             {/* <div>
