@@ -62,7 +62,7 @@ const faqs = [
   },
   {
     question: "Where can I view the whitepaper and the tokenomics?",
-    content: `You can view the tokenomics and the whitepaper, <a class='underline' href='https://whitepaper.script.tv' target='_blank'>here</a>`,
+    content: `You can view the tokenomics and the whitepaper, <a class='underline' href='https://whitepaper.script.tv/script-tokens/scpt'>here</a>`,
   },
   {
     question: "Why are there two different tokens?",
