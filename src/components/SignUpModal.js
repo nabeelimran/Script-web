@@ -97,7 +97,7 @@ function SignUpModal() {
     Api.signupModalApi(req, "signUpModal")
       .then((res) => {
         if(res && res.data && res.data.isSuccess) {
-          ToastMessage(`${res.data.message} || Registered Success`);
+          ToastMessage(`${res?.data?.message || 'Registered Success'}`, true);
           navigate({
             pathname: "/verify-account",
             search: `?email=${res.data.data.email}`,

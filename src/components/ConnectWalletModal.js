@@ -40,6 +40,7 @@ import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent
 import TrustWalletService from "services/trustWallet";
 import { ethers } from "ethers";
 import BigNumber from "bignumber.js";
+import LoginButton from "./LoginButton";
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -620,8 +621,25 @@ function ConnectWalletModal() {
                 clickEvent={() => metaMaskHandler(loginTypes.trust)}
               />
             </div>
-
-            <div>
+            <hr />
+            <div className="my-8">
+              <LoginButton
+                img="images/google-logo.png"
+                title="Continue with Google"
+                clickEvent={googleLoginHandler}
+              />
+            </div>
+            <hr />
+            <div className="my-8">
+              <LoginButton
+                img="images/email.png"
+                title="Sign Up via email address"
+                clickEvent={() => {
+                  dispatch(toggleSignUpModalVisibility(true));
+                }}
+              />
+            </div>
+            {/* <div>
               <p className="text-center text-sm mb-5">Social</p>
 
               <div className="flex items-center justify-center space-x-4 mb-2">
@@ -629,18 +647,18 @@ function ConnectWalletModal() {
                   title="Google"
                   click={googleLoginHandler}
                   icon={<Icon icon="ri:google-fill" className="text-lg" />}
-                />
+                /> */}
                 {/* <SocialLoginCard
                   title="Twitter"
                   click={twitterLoginHandler}
                   icon={<Icon icon="mdi:twitter" className="text-lg" />}
                 /> */}
-              </div>
+              {/* </div> */}
 
               {/* <Link to="/" className="block w-fit mx-auto text-center text-sm">
                 Forget Password?
               </Link> */}
-              <p
+              {/* <p
                 onClick={() => {
                   dispatch(toggleSignUpModalVisibility(true));
                 }}
@@ -648,7 +666,7 @@ function ConnectWalletModal() {
               >
                 Sign Up
               </p>
-            </div>
+            </div> */}
           </div>
 
           <img
