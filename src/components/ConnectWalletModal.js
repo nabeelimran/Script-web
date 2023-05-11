@@ -621,23 +621,24 @@ function ConnectWalletModal() {
                 clickEvent={() => metaMaskHandler(loginTypes.trust)}
               />
             </div>
-            <hr />
-            <div className="my-8">
-              <LoginButton
-                img="images/google-logo.png"
-                title="Continue with Google"
-                clickEvent={googleLoginHandler}
-              />
-            </div>
-            <hr />
-            <div className="my-8">
-              <LoginButton
-                img="images/email.png"
-                title="Sign Up via email address"
-                clickEvent={() => {
-                  dispatch(toggleSignUpModalVisibility(true));
-                }}
-              />
+            <hr style={{color: '#999'}} />
+            <div className="my-4">
+              <div className="mb-2 mt-4">
+                <LoginButton
+                  img="images/google-logo.png"
+                  title="Continue with Google"
+                  clickEvent={googleLoginHandler}
+                />
+              </div>
+              <div className="my-4">
+                <LoginButton
+                  img="images/email.png"
+                  title="Signup via Email Address"
+                  clickEvent={() => {
+                    dispatch(toggleSignUpModalVisibility(true));
+                  }}
+                />
+              </div>
             </div>
             {/* <div>
               <p className="text-center text-sm mb-5">Social</p>
