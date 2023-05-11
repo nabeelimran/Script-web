@@ -745,3 +745,18 @@ aside.EmojiPickerReact.epr-main {
 video::-webkit-media-controls-panel-container {
   display: none !important;
 }
+
+@media all and (max-width: 768px) {
+  .buy-icon-box {
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+  }
+  .buy-icon-box img {
+    width: 30px;
+  }
+  .eth-bsd .buy-icon-box {
+    margin: -45px 15px 30px;
+  }
+}
