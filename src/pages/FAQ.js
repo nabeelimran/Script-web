@@ -21,7 +21,7 @@ const faqs = [
   {
     question: "What makes this app unique?",
     content:
-    "There are multiple aspects, but here are some: <br/> - Script TV are the first linear television platform on blockchain. That means you can watch films, tv series and more, on Script TV original channels, 24/7, at no cost, whilst earning rewards for doing so. This is the first in TV. <br/> -Content layer NFTs. For the first time ever, claim, buy and get rewarded based on spontaneous releases of NFTs during shows / films being aired. This unlocks an entirely different opportunity for holders and owners long term. <br/> - Beyond this, users are able to interact with each other, create content clubs, and yield further benefits from being part of groups.",
+      "There are multiple aspects, but here are some: <br/> - Script TV are the first linear television platform on blockchain. That means you can watch films, tv series and more, on Script TV original channels, 24/7, at no cost, whilst earning rewards for doing so. This is the first in TV. <br/> -Content layer NFTs. For the first time ever, claim, buy and get rewarded based on spontaneous releases of NFTs during shows / films being aired. This unlocks an entirely different opportunity for holders and owners long term. <br/> - Beyond this, users are able to interact with each other, create content clubs, and yield further benefits from being part of groups.",
   },
   {
     question: "How much can i earn staking?",
@@ -62,7 +62,7 @@ const faqs = [
   },
   {
     question: "Where can I view the whitepaper and the tokenomics?",
-    content: `You can view the tokenomics and the whitepaper, <a className='underline' href='${ScriptWPJAN2022}' target='_blank'>here.</a>`,
+    content: `You can view the tokenomics and the whitepaper, <a class='underline' href='https://whitepaper.script.tv' target='_blank'>here</a>`,
   },
   {
     question: "Why are there two different tokens?",
@@ -71,8 +71,8 @@ const faqs = [
   },
   {
     question: "What is ScriptGLASS?",
-    content: 
-      "ScriptGLASS is the NFT collection which is directly integrated to the watch-to-earn protocol within ScriptTV. At least 1 pair of ScriptGLASS must be equipped to watch and earn on a day to day basis. Beyond each glasses being aesthetically unique in color and design, each has a specific rarity which affects how much a users could possibly earn on a day to day basis. When watching content, users will need to re-charge their glasses, upgrade to higher levels (to earn more per day), buy a gem (for multiplier and raffle opportunities), and loot boxes (which is only available to glasses who reach an advanced level). More on this, <a className='underline' href='https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained' target='_blank'>here</a>"
+    content:
+      "ScriptGLASS is the NFT collection which is directly integrated to the watch-to-earn protocol within ScriptTV. At least 1 pair of ScriptGLASS must be equipped to watch and earn on a day to day basis. Beyond each glasses being aesthetically unique in color and design, each has a specific rarity which affects how much a users could possibly earn on a day to day basis. When watching content, users will need to re-charge their glasses, upgrade to higher levels (to earn more per day), buy a gem (for multiplier and raffle opportunities), and loot boxes (which is only available to glasses who reach an advanced level). More on this, <a className='underline' href='https://app.gitbook.com/o/LN18V7dIrEWjgaDnQUuI/s/-MbMrlj27fU9Jm3FoLG-/~/changes/EUY2nCJaZgoG3TVnnCYP/spay-tokenomics/scriptglass-explained' target='_blank'>here</a>",
   },
   // {
   //   question: "I want to partner with Script Network, how can i get in conact?",
