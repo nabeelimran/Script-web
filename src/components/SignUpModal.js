@@ -96,8 +96,8 @@ function SignUpModal() {
 
     Api.signupModalApi(req, "signUpModal")
       .then((res) => {
-        if(res && res.data && res.data.isSuccess) {
-          ToastMessage(`${res?.data?.message || 'Registered Success'}`, true);
+        if (res && res.data && res.data.isSuccess) {
+          ToastMessage(`${res?.data?.message || "Registered Success"}`, true);
           navigate({
             pathname: "/verify-account",
             search: `?email=${res.data.data.email}`,
@@ -110,15 +110,15 @@ function SignUpModal() {
             refral: "",
             password: "",
             confirm_password: "",
-          })
+          });
         } else {
-          ToastMessage(res?.message || 'Something went wrong');
+          ToastMessage(res?.message || "Something went wrong");
           setLoading(false);
         }
       })
       .catch((err) => {
         console.log(err);
-        ToastMessage(err?.message || 'Unable to login');
+        ToastMessage(err?.message || "Unable to login");
         setLoading(false);
       });
   };
@@ -165,7 +165,7 @@ function SignUpModal() {
                       }}
                       error={
                         errors.email &&
-                        "This field is requird. Please enter e-mail address."
+                        "This field is required. Please enter e-mail address."
                       }
                     />
                   </div>
