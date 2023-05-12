@@ -186,7 +186,9 @@ function GreatTeam() {
           {/* Introducing our team – made up of entrepreneurs, product managers,
           strategists, operators, engineers and evangelists all focused on the
           common goal. */}
-          The team has had a wealth of experience in and across some of the largest media and technology companies in the world including…
+          The team has had a wealth of experience consulting, working for or
+          running campaigns across some of the largest media and technology
+          companies in the world including…
         </p>
 
         <div className="pb-2 xl:pb-6 pt-6 flex items-center justify-center flex-wrap border-b-1px mb-10 md:mb-14">
