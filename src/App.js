@@ -68,6 +68,7 @@ import HowToBuy from "pages/HowToBuy";
 import ReactGA from 'react-ga';
 import { googleTrackingId } from "constants";
 import SignUpModal from "components/SignUpModal";
+import SignInModal from "components/SignInModal";
 
 ReactGA.initialize(googleTrackingId);
 
@@ -121,6 +122,7 @@ function App() {
       <ScrollToTop />
       <ConnectWalletModal />
       <SignUpModal />
+      <SignInModal />
       <TableModal />
       <GlassListingPopup />
       <EpgModal />

@@ -9,6 +9,7 @@ import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
   toggleSignUpModalVisibility,
+  toggleSignInModalVisibility,
 } from "redux/reducers/connectWalletModal_State";
 import {
   metamaskCred,
@@ -85,6 +86,7 @@ function ConnectWalletModal() {
       dispatch(setIsOkc(loginTypes.bnb));
       const walletAddress = await MetamaskService.connectHandler();
       if (walletAddress) {
+        dispatch(metamaskCred(walletAddress));
         const chainId = await MetamaskService.getChainId();
         if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
           await MetamaskService.changeChain("spaceID");
@@ -630,15 +632,23 @@ function ConnectWalletModal() {
                   clickEvent={googleLoginHandler}
                 />
               </div>
-              <div className="my-4">
-                {/* <LoginButton
+              {/* <div className="my-4">
+                <LoginButton
                   img="images/email.png"
-                  title="Signup via Email Address"
+                  title="Signin via Email Address"
                   clickEvent={() => {
+                    dispatch(toggleSignInModalVisibility(true));
+                  }}
+                />
+                <p
+                  onClick={() => {
                     dispatch(toggleSignUpModalVisibility(true));
                   }}
-                /> */}
-              </div>
+                  className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
+                >
+                  Signup via Email Address
+                </p>
+              </div> */}
             </div>
             {/* <div>
               <p className="text-center text-sm mb-5">Social</p>
