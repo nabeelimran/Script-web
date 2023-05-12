@@ -632,7 +632,7 @@ function ConnectWalletModal() {
                   clickEvent={googleLoginHandler}
                 />
               </div>
-              <div className="my-4">
+              {/* <div className="my-4">
                 <LoginButton
                   img="images/email.png"
                   title="Signin via Email Address"
@@ -641,14 +641,14 @@ function ConnectWalletModal() {
                   }}
                 />
                 <p
-                onClick={() => {
-                  dispatch(toggleSignUpModalVisibility(true));
-                }}
-                className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
-              >
-                Signup via Email Address
-              </p>
-              </div>
+                  onClick={() => {
+                    dispatch(toggleSignUpModalVisibility(true));
+                  }}
+                  className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
+                >
+                  Signup via Email Address
+                </p>
+              </div> */}
             </div>
             {/* <div>
               <p className="text-center text-sm mb-5">Social</p>

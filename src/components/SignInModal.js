@@ -11,7 +11,9 @@ import { useState } from "react";
 import FloatingInput from "./FloatingInput";
 import Api from "services/api";
 import { ToastMessage } from "./ToastMessage";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { isLogin } from "redux/reducers/login_state";
+import { metamaskCred } from "redux/reducers/metamask_state";
 
 function SignInModal() {
   const [loading, setLoading] = useState(false);
@@ -22,7 +24,7 @@ function SignInModal() {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -80,14 +82,54 @@ function SignInModal() {
   const signIn = (data) => {
     setLoading(true);
     const req = {
+      browser: "dummyData",
+      country: "dummyData",
+      device: "Web",
+      deviceToken: "dummyData",
       email: data.email,
-      password: data.password
+      password: data.password,
+      loginIp: "dummyData",
+      loginLocation: "dummyData",
+      signupType: "email_signup"
     };
 
     Api.signinModalApi(req, "signInModal")
       .then((res) => {
         if(res && res.data && res.data.isSuccess) {
-          
+          if (res.data.message === "Please verify your account.") {
+            ToastMessage(`${res.data.message}`);
+            navigate({
+              pathname: "/verify-account",
+              search: `?email=${res.data.data.email}`,
+            });
+          } else {
+            ToastMessage(`${res.data.message}`, true);
+            if (res.data.data.authToken) {
+              sessionStorage.setItem(
+                "script-token",
+                JSON.stringify(res.data.data.authToken)
+              );
+            }
+            sessionStorage.setItem(
+              "userInfo",
+              JSON.stringify({
+                email: res.data.data.email,
+                userId: res.data.data.id,
+                walletAddress: res.data.data.walletAddress,
+                userName: res.data.data.userName,
+              })
+            );
+            if(res.data.data.walletAddress) {
+              dispatch(metamaskCred(res.data.data.walletAddress));
+            }
+            dispatch(isLogin(true));
+            if (!location.pathname.includes("/dashboard"))
+              navigate({
+                pathname: "/",
+              });
+            }
+          setLoading(false);
+          dispatch(toggleSignInModalVisibility(false));
         } else {
           ToastMessage(res?.message || 'Something went wrong');
           setLoading(false);
