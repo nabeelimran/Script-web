@@ -86,6 +86,7 @@ function ConnectWalletModal() {
       dispatch(setIsOkc(loginTypes.bnb));
       const walletAddress = await MetamaskService.connectHandler();
       if (walletAddress) {
+        dispatch(metamaskCred(walletAddress));
         const chainId = await MetamaskService.getChainId();
         if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
           await MetamaskService.changeChain("spaceID");
