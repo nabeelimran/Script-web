@@ -14,7 +14,7 @@ function ChannelsFree() {
           </div>
 
           <p className="text-sm md:text-base xl:text-xl max-w-[40rem] mx-auto">
-            Drop in to over 100 of hit movies, binge- warthy TV shows, cartoons,
+            Drop in to over 100 of hit movies, binge- worthy TV shows, cartoons,
             sports and more. Anytime, always for free.
           </p>
         </div>
