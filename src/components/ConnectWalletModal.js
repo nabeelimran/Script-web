@@ -9,6 +9,7 @@ import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
   toggleSignUpModalVisibility,
+  toggleSignInModalVisibility,
 } from "redux/reducers/connectWalletModal_State";
 import {
   metamaskCred,
@@ -633,11 +634,19 @@ function ConnectWalletModal() {
               <div className="my-4">
                 <LoginButton
                   img="images/email.png"
-                  title="Signup via Email Address"
+                  title="Signin via Email Address"
                   clickEvent={() => {
-                    dispatch(toggleSignUpModalVisibility(true));
+                    dispatch(toggleSignInModalVisibility(true));
                   }}
                 />
+                <p
+                onClick={() => {
+                  dispatch(toggleSignUpModalVisibility(true));
+                }}
+                className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
+              >
+                Signup via Email Address
+              </p>
               </div>
             </div>
             {/* <div>

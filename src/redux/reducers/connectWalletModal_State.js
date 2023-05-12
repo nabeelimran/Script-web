@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isModalVisible: false,
   isSignUpModalVisible: false,
+  isSignInModalVisible: false,
   isGlassListingModalVisible: false,
   isEmailModal: false,
   isHistoryTableModal: false,
@@ -22,6 +23,9 @@ export const connectWalletModal_State = createSlice({
     },
     toggleSignUpModalVisibility: (state, action) => {
       state.isSignUpModalVisible = action.payload;
+    },
+    toggleSignInModalVisibility: (state, action) => {
+      state.isSignInModalVisible = action.payload;
     },
     toggleGlassListingVisibility: (state, action) => {
       state.isGlassListingModalVisible = action.payload;
@@ -51,6 +55,7 @@ export const connectWalletModal_State = createSlice({
 export const {
   toggleModalVisibility,
   toggleSignUpModalVisibility,
+  toggleSignInModalVisibility,
   toggleGlassListingVisibility,
   toggleHistoryModalVisibility,
   toggleEmailModalVisibility,
