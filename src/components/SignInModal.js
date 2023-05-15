@@ -96,7 +96,7 @@ function SignInModal() {
     Api.signinModalApi(req, "signInModal")
       .then((res) => {
         if(res && res.data && res.data.isSuccess) {
-          if (res.data.message === "Please verify your account.") {
+          if (res.data.message === "Otp has been sent, Please verify your account") {
             ToastMessage(`${res.data.message}`);
             navigate({
               pathname: "/verify-account",
@@ -159,7 +159,7 @@ function SignInModal() {
             <div className="mb-8">
               <Title className="font-medium mb-3">Sign In</Title>
               <p className="text-sm">
-                We knew you’d come around, signin for endless entertainment
+                We knew you’d come around, sign in for endless entertainment
               </p>
             </div>
 
@@ -174,7 +174,7 @@ function SignInModal() {
                       }}
                       error={
                         errors.email &&
-                        "This field is requird. Please enter e-mail address."
+                        "This field is required. Please enter e-mail address."
                       }
                     />
                   </div>

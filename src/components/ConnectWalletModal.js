@@ -581,14 +581,15 @@ function ConnectWalletModal() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 mb-7">
+            <div className="grid grid-cols-2 gap-4 mb-7">
               <ConnectWalletButton
                 clickEvent={() => metaMaskHandler(loginTypes.metamask)}
                 img="images/metamask.svg"
                 loader={loading.metamask}
                 title={
                   <>
-                    Metamask <span className="text-sm">( Recommended )</span>
+                    Metamask
+                    {/* <span className="text-sm">( Recommended )</span> */}
                   </>
                 }
               />
@@ -632,10 +633,10 @@ function ConnectWalletModal() {
                   clickEvent={googleLoginHandler}
                 />
               </div>
-              {/* <div className="my-4">
+              <div className="my-4">
                 <LoginButton
                   img="images/email.png"
-                  title="Signin via Email Address"
+                  title="Sign in via Email Address"
                   clickEvent={() => {
                     dispatch(toggleSignInModalVisibility(true));
                   }}
@@ -646,9 +647,9 @@ function ConnectWalletModal() {
                   }}
                   className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
                 >
-                  Signup via Email Address
+                  Sign up via Email Address
                 </p>
-              </div> */}
+              </div>
             </div>
             {/* <div>
               <p className="text-center text-sm mb-5">Social</p>
