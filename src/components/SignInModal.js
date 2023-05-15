@@ -96,7 +96,7 @@ function SignInModal() {
     Api.signinModalApi(req, "signInModal")
       .then((res) => {
         if(res && res.data && res.data.isSuccess) {
-          if (res.data.message === "Please verify your account.") {
+          if (res.data.message === "Otp has been sent, Please verify your account") {
             ToastMessage(`${res.data.message}`);
             navigate({
               pathname: "/verify-account",
