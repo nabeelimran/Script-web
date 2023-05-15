@@ -636,7 +636,7 @@ function ConnectWalletModal() {
               <div className="my-4">
                 <LoginButton
                   img="images/email.png"
-                  title="Signin via Email Address"
+                  title="Sign in via Email Address"
                   clickEvent={() => {
                     dispatch(toggleSignInModalVisibility(true));
                   }}
@@ -647,7 +647,7 @@ function ConnectWalletModal() {
                   }}
                   className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
                 >
-                  Signup via Email Address
+                  Sign up via Email Address
                 </p>
               </div>
             </div>
