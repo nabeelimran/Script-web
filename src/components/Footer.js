@@ -74,7 +74,7 @@ function Footer({ container = "container-two" }) {
         },
         {
           title: "Download",
-          to: `${helper.generateTokenUrl('donwload')}`,
+          to: `${helper.generateTokenUrl('download')}`,
           target: "_blank",
           anchorTag: true
         },

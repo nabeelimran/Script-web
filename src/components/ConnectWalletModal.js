@@ -581,7 +581,7 @@ function ConnectWalletModal() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-7">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-6 mb-7">
               <ConnectWalletButton
                 clickEvent={() => metaMaskHandler(loginTypes.metamask)}
                 img="images/metamask.svg"
