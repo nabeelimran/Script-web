@@ -72,6 +72,10 @@ function Hero() {
 
   const bannerImgages = [
     {
+      image: "images/bitcoin-pizza.png",
+      link: "https://www.twitter.com/script_network",
+    },
+    {
       image: "images/community-ama.png",
       link: "",
     },
