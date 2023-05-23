@@ -7,7 +7,7 @@ const CountDown = ({ getProgressBarWidth }) => {
   const [seconds, setSeconds] = useState(0);
 
   const generateInterval = () => {
-    const countDownDate = 1684823400000;
+    const countDownDate = 1684843200000;
     const startDate = new Date("Mar 24, 2023").getTime();
 
     // Update the count down every 1 second
