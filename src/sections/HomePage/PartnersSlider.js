@@ -184,7 +184,7 @@ const companies = [
 function PartnersSlider() {
   return (
     <section>
-      <h2 className="font-semibold  text-center mb-5 w-[400px] py-3 bg-[#feef01] text-black rounded-md mx-auto">
+      <h2 className="font-semibold  text-center mb-5 w-[250px] md:w-[400px] py-3 bg-[#feef01] text-black rounded-md mx-auto">
         Featured In
       </h2>
       <Marquee
