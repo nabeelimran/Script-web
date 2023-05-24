@@ -71,10 +71,10 @@ function Hero() {
   };
 
   const bannerImgages = [
-    {
-      image: "images/bitcoin-pizza.png",
-      link: "https://www.twitter.com/script_network",
-    },
+    // {
+    //   image: "images/bitcoin-pizza.png",
+    //   link: "https://www.twitter.com/script_network",
+    // },
     {
       image: "images/community-ama.png",
       link: "",
@@ -83,10 +83,10 @@ function Hero() {
       image: "images/test-launch.png",
       link: "",
     },
-    {
-      image: "images/Partnerships.png",
-      link: "https://presale.script.tv/",
-    },
+    // {
+    //   image: "images/Partnerships.png",
+    //   link: "https://presale.script.tv/",
+    // },
     {
       image: "images/collect-points.png",
       link: "https://crew3.xyz/c/scriptnetwork/questboard",
