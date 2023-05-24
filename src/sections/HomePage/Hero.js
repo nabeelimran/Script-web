@@ -47,7 +47,7 @@ function Hero() {
           </h1>
 
           <div>
-            <div className="bg-transparent rounded p-6 w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer">
+            {/* <div className="bg-transparent rounded p-6 w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer">
               <Title variants={18} className="mb-3 text-center font-semibold">
                 FINAL <span className="ml-2 text-primary">PRESALE</span> NOW ON
               </Title>
@@ -65,15 +65,6 @@ function Hero() {
                   </p>
                 </div>
               </div>
-              {/* <div className="flex border border-[#36e6ae91] justify-between p-3.5 rounded-xl">
-                <div className="flex flex-col">
-                  <p className="m-auto text-lg font-semibold">{((overAllOrderedToken/totalPresaleAmount)*100).toFixed(2)}% <span className="text-primary">SOLD</span></p>
-                </div>
-                <div className="flex flex-col items-end">
-                  <p className="mb-0 font-semibold text-md">{(100 - ((overAllOrderedToken/totalPresaleAmount)*100)).toFixed(2)}%</p>
-                  <p className="text-primary">Remaining</p>
-                </div>
-              </div> */}
               <h5 className="font-medium text-md mb-5 mt-1">
                 <span className="text-primary">1 SCPT</span> = $ 0.00947
               </h5>
@@ -103,13 +94,13 @@ function Hero() {
               >
                 <span className="text-inherit lh-1">Buy Tokens</span>
               </button>
-            </div>
-            {/* <img
+            </div> */}
+            <img
             src="images/hero-img.png"
             className="w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer"
             alt=""
             onClick={() => helper.openLink("https://presale.script.tv/")}
-          /> */}
+          />
           </div>
 
           <p className="fs-18px text-white opacity-50 font-normal mb-8 xl:mb-12 mt-5 md:mt-0">
@@ -209,8 +200,15 @@ function Hero() {
           </div>
         </div>
         <div className="w-full hidden lg:block">
-          <div className="relative z-20">
+        <img
+            src="images/hero-img.png"
+            className="w-full block w-full mx-auto cursor-pointer"
+            alt=""
+            onClick={() => helper.openLink("https://presale.script.tv/")}
+          />
+          {/* <div className="relative z-20">
             <div className="yellow-center-blob -z-20 w-[200px] h-[200px] blur-[140px]"></div>
+            
             <div className="bg-black rounded p-6">
               <Title variants={18} className="mb-3 text-center font-semibold">
                 FINAL<span className="ml-2 text-primary">PRESALE</span> NOW ON
@@ -229,15 +227,6 @@ function Hero() {
                   </p>
                 </div>
               </div>
-              {/* <div className="flex border border-[#36e6ae91] justify-between p-3.5 rounded-xl">
-                <div className="flex flex-col">
-                  <p className="m-auto text-lg font-semibold">{((overAllOrderedToken/totalPresaleAmount)*100).toFixed(2)}% <span className="text-primary">SOLD</span></p>
-                </div>
-                <div className="flex flex-col items-end">
-                  <p className="mb-0 font-semibold text-md">{(100 - ((overAllOrderedToken/totalPresaleAmount)*100)).toFixed(2)}%</p>
-                  <p className="text-primary">Remaining</p>
-                </div>
-              </div> */}
               <h5 className="font-medium text-md mb-5 mt-1">
                 <span className="text-primary">1 SCPT</span> = $ 0.00947
               </h5>
@@ -260,7 +249,7 @@ function Hero() {
                   remaining
                 </p>
               </div>
-              {/* <button
+              <button
                 type="button"
                 className="flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] space-x-3 px-6 xl:px-8 rounded-lg font-semibold w-full justify-center py-4 text-darkGray bg-primary"
                 onClick={() => helper.openLink("https://presale.script.tv/")}
@@ -271,10 +260,10 @@ function Hero() {
               <Link to="/how-to-buy" className="text-sm" onClick={() => analyticsEventTracker('howtobuy', 'click', window.location.pathname)}>
                 How to Buy
               </Link>
-              </h2> */}
+              </h2> 
             </div>
-          </div>
-        </div>
+          </div> */}
+        </div> 
       </div>
     </div>
   );
