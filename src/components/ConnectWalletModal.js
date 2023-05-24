@@ -566,7 +566,7 @@ function ConnectWalletModal() {
       <UpperRoot>
         <section
           ref={modalRef}
-          className={`fixed left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-[90%] max-w-[900px] h-[90vh] max-h-[600px] z-[10000000] overflow-x-hidden overflow-y-auto rounded-xl md:rounded-3xl py-6 md:py-10 px-8 md:px-14 hide-scrollbar transition-all duration-300 shadow-sm shadow-primary ${
+          className={`fixed left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-[90%] max-w-[900px] h-[90vh] max-h-[600px] z-[10000000] overflow-x-hidden overflow-y-auto rounded-xl md:rounded-3xl py-3 md:py-3 px-8 md:px-14 hide-scrollbar transition-all duration-300 shadow-sm shadow-primary ${
             isModalVisible
               ? "pointer-events-auto top-1/2 opacity-100"
               : "opacity-0 pointer-events-none top-[40%]"
@@ -574,14 +574,14 @@ function ConnectWalletModal() {
         >
           {/*  */}
           <div className="lg:w-[50%]">
-            <div className="mb-8">
-              <Title className="font-medium mb-3">Welcome Back</Title>
+            <div className="mb-4">
+              <Title className="font-medium mb-1">Welcome Back</Title>
               <p className="text-sm">
                 We knew you’d come around, sign in for endless entertainment
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-8 gap-y-6 mb-7">
+            <div className="grid grid-cols-3 gap-3 mb-3">
               <ConnectWalletButton
                 clickEvent={() => metaMaskHandler(loginTypes.metamask)}
                 img="images/metamask.svg"
