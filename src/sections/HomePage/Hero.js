@@ -115,9 +115,13 @@ function Hero() {
               label="Presale"
               buttonProps={{
                 onClick: () => {
-                  analyticsEventTracker('buy-now-on-presale', 'click', window.location.pathname)
-                  helper.openLink("https://presale.script.tv/")
-                }
+                  analyticsEventTracker(
+                    "buy-now-on-presale",
+                    "click",
+                    window.location.pathname
+                  );
+                  helper.openLink("https://presale.script.tv/");
+                },
               }}
               className="w-[120px] h-[40px] justify-center"
             />
@@ -145,7 +149,7 @@ function Hero() {
           </div>
           <div className="flex flex-col md:flex-row items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start space-y-5 md:space-y-0">
             <Button
-              link={helper.generateTokenUrl('')}
+              link={helper.generateTokenUrl("")}
               label="Launch app"
               arrowVisible={true}
               iconName="material-symbols:arrow-right-alt-rounded"
@@ -245,7 +249,7 @@ function Hero() {
                   remaining
                 </p>
               </div>
-              <button
+              {/* <button
                 type="button"
                 className="flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] space-x-3 px-6 xl:px-8 rounded-lg font-semibold w-full justify-center py-4 text-darkGray bg-primary"
                 onClick={() => helper.openLink("https://presale.script.tv/")}
@@ -256,7 +260,7 @@ function Hero() {
               <Link to="/how-to-buy" className="text-sm" onClick={() => analyticsEventTracker('howtobuy', 'click', window.location.pathname)}>
                 How to Buy
               </Link>
-              </h2>
+              </h2> */}
             </div>
           </div> */}
         </div> 

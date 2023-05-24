@@ -19,7 +19,7 @@ function JoinOurCommunity() {
             Script tv paving the way for a more interoperable crypto ecosystem.
           </p>
 
-          <div className="bg-primary flex items-center justify-center h-[283px] rounded-xl">
+          <div className="bg-primary flex items-center justify-center h-[200px] md:h-[283px] rounded-xl">
             <img src="images/community-image.png" alt="" />
           </div>
         </div>
