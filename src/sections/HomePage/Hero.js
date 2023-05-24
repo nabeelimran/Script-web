@@ -249,7 +249,7 @@ function Hero() {
                   remaining
                 </p>
               </div>
-              {/* <button
+              <button
                 type="button"
                 className="flex items-center text-xs sm:text-sm xl:text-base min-h-[34px] xl:min-h-[38px] space-x-3 px-6 xl:px-8 rounded-lg font-semibold w-full justify-center py-4 text-darkGray bg-primary"
                 onClick={() => helper.openLink("https://presale.script.tv/")}
@@ -260,7 +260,7 @@ function Hero() {
               <Link to="/how-to-buy" className="text-sm" onClick={() => analyticsEventTracker('howtobuy', 'click', window.location.pathname)}>
                 How to Buy
               </Link>
-              </h2> */}
+              </h2> 
             </div>
           </div> */}
         </div> 
