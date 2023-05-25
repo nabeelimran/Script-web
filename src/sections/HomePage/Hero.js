@@ -111,7 +111,7 @@ function Hero() {
 
           {/* <div className="flex flex-col md:flex-row items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start space-y-5 md:space-y-0"> */}
           <div className="flex flex-col md:flex-row items-center mb-5 justify-center lg:justify-start space-y-5 md:space-y-0 md:space-x-5">
-            <Button
+            {/* <Button
               label="Presale"
               buttonProps={{
                 onClick: () => {
@@ -124,14 +124,14 @@ function Hero() {
                 },
               }}
               className="w-[120px] h-[40px] justify-center"
-            />
+            /> */}
             <Button
               label="Whitepaper"
               variant={2}
               buttonProps={{
                 onClick: () => helper.openLink("https://whitepaper.script.tv/"),
               }}
-              className="w-[120px] h-[40px] justify-center"
+              className="w-[180px] h-[40px] justify-center"
             />
             <Button
               label="Audits"
@@ -144,10 +144,17 @@ function Hero() {
                     "https://whitepaper.script.tv/security-+-audits"
                   ),
               }}
-              className="w-[120px] h-[40px] justify-center"
+              className="w-[180px] h-[40px] justify-center"
+            />
+            <Button
+              link={helper.generateTokenUrl("")}
+              label="Launch app"
+              arrowVisible={true}
+              iconName="material-symbols:arrow-right-alt-rounded"
+              className="w-[200px] h-[40px] justify-center"
             />
           </div>
-          <div className="flex flex-col md:flex-row items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start space-y-5 md:space-y-0">
+          {/* <div className="flex flex-col md:flex-row items-center space-x-5 lg:space-x-7 mb-8 justify-center lg:justify-start space-y-5 md:space-y-0">
             <Button
               link={helper.generateTokenUrl("")}
               label="Launch app"
@@ -155,7 +162,7 @@ function Hero() {
               iconName="material-symbols:arrow-right-alt-rounded"
               className="w-[150px] h-[50px] justify-center md:w-[400px]"
             />
-          </div>
+          </div> */}
 
           <p className="fs-16px font-medium text-white mb-9">
             <span className="opacity-50">Already using script.tv?</span>{" "}

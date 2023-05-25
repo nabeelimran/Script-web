@@ -20,7 +20,7 @@ function HowToBuy() {
             label="Join Presale"
             buttonProps={{
               onClick: () => {
-                helper.openLink("https://presale.script.tv/");
+                // helper.openLink("https://presale.script.tv/");
                 analyticsEventTracker(
                   "buy-now-on-presale",
                   "click",

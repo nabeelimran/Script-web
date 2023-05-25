@@ -243,7 +243,7 @@ function Navbar() {
               </a>
             </div>
             <div className="flex">
-              <Button
+              {/* <Button
                 className="mt-8 mr-4 lg:mt-0 flex justify-center text-center"
                 customizationClassName="space-x-3 px-0 py-2 w-[100px] rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"
@@ -260,7 +260,7 @@ function Navbar() {
                     analyticsEventTracker('buy-now-on-presale', 'click', window.location.pathname)
                   },
                 }}
-              />
+              /> */}
               {checkToken() ? (
                 <div className="w-[34px] rounded-full h-[34px] relative" onClick={goToDashboard}>
                   <div className="w-[10px] h-[10px] rounded-full bg-[#3FC864] absolute top-0 right-0"></div>
