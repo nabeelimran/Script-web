@@ -8,7 +8,8 @@ function KeyStats() {
   const [keyStatsData, setKeyStatsData] = useState({
     earnedReward: 0,
     minutesWatched: 0,
-    twitterFollower: 0
+    twitterFollower: 0,
+    discordFollower: 0
   })
 
   const getGlassKeyStatsData = () => {
@@ -44,7 +45,7 @@ function KeyStats() {
           <KeyStatCard label="Minutes Watched" value={keyStatsData.minutesWatched} />
           <KeyStatCard label="Token Earn for Viewers" value={keyStatsData.earnedReward} />
           <KeyStatCard label="Token Burned" />
-          <KeyStatCard label="Discord" />
+          <KeyStatCard label="Discord" value={keyStatsData.discordFollower}/>
           <KeyStatCard label="Twitter" value={keyStatsData.twitterFollower} />
         </div>
       </div>
