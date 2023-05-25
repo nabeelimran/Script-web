@@ -135,7 +135,7 @@ function Navbar() {
                   subtitle="Our user first watch to The blockchain developed to onboard the next 1 billion content watchers to web3."
                   anchor={true}
                   others={{
-                    href: "https://wallet.script.tv",
+                    href: "https://explorer.script.tv/",
                     target: "_blank",
                     onclick: () => {
                       analyticsEventTracker('script-blockchain', 'click', window.location.pathname)
