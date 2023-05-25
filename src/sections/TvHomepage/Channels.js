@@ -17,6 +17,7 @@ import RecaptchaPopup from "components/RecaptchaPopup";
 import { ToastMessage } from "components/ToastMessage";
 import MixPanelService from "services/mixPanelService";
 import EndRecaptchaPopup from "components/EndRecaptchaPopup";
+import { balanceOf } from "contract/functions";
 
 const channels = [
   {
@@ -211,6 +212,7 @@ function Channels({
   latestVideIdx
 }) {
   const [channels, setChannels] = useState([]);
+  const [contractBalance, setContractBalance] = useState(0)
   const [cursorposition, setCursonPosition] = useState({ marginLeft: 0 });
   const [liveShow, setLiveShow] = useState({});
   let userId = LocalServices.getServices("user")?.userId || null;
@@ -227,6 +229,7 @@ function Channels({
   const [selectedGlass, setselectedGlass] = useState({});
   const [saveDurationRes, setSaveDurationRes] = useState({});
   const [recaptchaCode, setReCaptchaCode] = useState("");
+  const { accountAddress } = useSelector((state) => state.metamask_state);
 
   const changeRecatpchaCode = () => setReCaptchaCode(helper.getRandomNumber(8));
 
@@ -252,6 +255,20 @@ function Channels({
       }
     })
   }
+
+  const getContractBalance = async () => {
+    if(accountAddress) {
+      const balance = await balanceOf(accountAddress);
+      setContractBalance(balance);
+    } else {
+      setContractBalance(0);
+    }
+    
+  }
+
+  useEffect(() => {
+    getContractBalance();
+  }, [accountAddress])
   
   useEffect(()=>{
     let userId = LocalServices.getServices("user")?.userId || null;
@@ -863,8 +880,7 @@ function Channels({
                 variant={1}
               >
                 <h1 className="fs-24px text-black font-semibold mb-1">
-                  {/* {(metamaskBalance / 1000000000000000000)?.toFixed(4)} */}
-                  N/A
+                  {contractBalance}
                 </h1>
                 <h1 className="text-xs xl:text-sm text-black font-medium text-center">
                   SPAY In WALLET
