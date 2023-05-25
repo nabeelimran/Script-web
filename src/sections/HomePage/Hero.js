@@ -130,7 +130,7 @@ function Hero() {
               buttonProps={{
                 onClick: () => helper.openLink("https://whitepaper.script.tv/"),
               }}
-              className="w-[180px] h-[40px] justify-center"
+              className="w-[140px] h-[40px] justify-center"
             />
             <Button
               label="Audits"
