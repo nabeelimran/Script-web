@@ -101,6 +101,8 @@ function GlassListingPopup() {
             setHasMoreData(false);
           }
           
+        } else {
+          setPageNo(0);
         }
       }
     })
@@ -152,7 +154,7 @@ function GlassListingPopup() {
             >
               {glassListingData && glassListingData.length > 0 ? 
                 glassListingData.map((glass, index) =>
-                  <div className={`flex py-2 mb-3 rounded w-11/12 mx-auto bg-[#131313] cursor-pointer ${returnClasses(index + 1)}`}
+                  <div className={`flex py-2 mb-3 rounded w-11/12 mx-auto ${glass.voucherEquipped ? 'voucher-active' : ''} bg-[#131313] cursor-pointer ${returnClasses(index + 1)}`}
                     onClick={() => changeActiveState(index + 1, glass)}
                     key={index}
                   >

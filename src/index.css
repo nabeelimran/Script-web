@@ -650,7 +650,11 @@ video-js .vjs-picture-in-picture-control {
 }
 
 .active-class {
-  border: 1px solid #ffcc00;
+  border: 1px solid #ffcc00 !important;
+}
+
+.voucher-active {
+  border: 1px solid orange;
 }
 
 @media only screen and (max-width: 600px) {
