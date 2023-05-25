@@ -36,7 +36,7 @@ function Hero() {
 
   return (
     <div>
-      <div className="container grid lg:grid-cols-[50%_40%] gap-[10%]">
+      <div className="container grid lg:grid-cols-2 gap-[5%]">
         <div className="text-center lg:text-left relative z-10">
           <h5 className="text-primary mb-4 font-semibold fs-16px">
             Powering Live TV and Film for the next generation.
@@ -97,9 +97,8 @@ function Hero() {
             </div> */}
             <img
             src="images/hero-img.png"
-            className="w-full block lg:hidden max-w-[26rem] mx-auto cursor-pointer"
+            className="block lg:hidden max-w-[26rem] mx-auto cursor-pointer"
             alt=""
-            onClick={() => helper.openLink("https://presale.script.tv/")}
           />
           </div>
 
@@ -211,7 +210,6 @@ function Hero() {
             src="images/hero-img.png"
             className="w-full block w-full mx-auto cursor-pointer"
             alt=""
-            onClick={() => helper.openLink("https://presale.script.tv/")}
           />
           {/* <div className="relative z-20">
             <div className="yellow-center-blob -z-20 w-[200px] h-[200px] blur-[140px]"></div>
