@@ -2,6 +2,7 @@ import KeyStatCard from "components/KeyStatCard";
 import Title from "components/Title";
 import React, { useEffect, useState } from "react";
 import Api from "services/api";
+import { helper } from "utils/helper";
 
 function KeyStats() {
 
@@ -42,11 +43,11 @@ function KeyStats() {
         </div>
 
         <div className="space-y-6 md:space-y-4">
-          <KeyStatCard label="Minutes Watched" value={keyStatsData.minutesWatched} />
-          <KeyStatCard label="Token Earn for Viewers" value={keyStatsData.earnedReward} />
+          <KeyStatCard label="Minutes Watched" value={helper.formatCurrency(keyStatsData.minutesWatched)} />
+          <KeyStatCard label="Token Earn for Viewers" value={helper.formatCurrency(keyStatsData.earnedReward)} />
           <KeyStatCard label="Token Burned" />
-          <KeyStatCard label="Discord" value={keyStatsData.discordFollower}/>
-          <KeyStatCard label="Twitter" value={keyStatsData.twitterFollower} />
+          <KeyStatCard label="Discord" value={helper.formatCurrency(keyStatsData.discordFollower)}/>
+          <KeyStatCard label="Twitter" value={helper.formatCurrency(keyStatsData.twitterFollower)} />
         </div>
       </div>
     </section>

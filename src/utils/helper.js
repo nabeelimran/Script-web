@@ -102,6 +102,13 @@ export const helper = {
     },
     generateTokenUrl: (path) => {
       return `${ENV === 'stage' ? 'https://stagetoken.script.tv/' : 'https://token.script.tv/'}${path}`;
+    },
+    formatCurrency: (amount) => {
+      const formatter = new Intl.NumberFormat('en-US', {
+        currency: 'USD',
+      });
+      
+      return formatter.format(amount);
     }
 }
 
