@@ -560,6 +560,9 @@ function Channels({
 
   // this is used to save the watch time of user
   const saveVideoDuration = async (e) => {
+    if(!userId) {
+      return;
+    } 
     const watchTime = (e.videoPlayTime - e.startTime) / 60
     const req = {
       "showId": latestVideo.id, // show id
