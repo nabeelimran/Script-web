@@ -63,12 +63,6 @@ function Footer({ container = "container-two" }) {
           target: "_blank",
           anchorTag: true,
         },
-        // {
-        //   title: "Telegram",
-        //   to: "https://t.me/scriptnetworkann",
-        //   target: "_blank",
-        //   anchorTag: true,
-        // },
         {
           title: "Twitter",
           to: "https://twitter.com/script_network",
@@ -96,6 +90,12 @@ function Footer({ container = "container-two" }) {
         {
           title: "Github",
           to: "https://github.com/scriptnetwork",
+          target: "_blank",
+          anchorTag: true,
+        },
+        {
+          title: "Telegram",
+          to: "https://t.me/scriptnetworkann",
           target: "_blank",
           anchorTag: true,
         },

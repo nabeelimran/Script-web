@@ -7,7 +7,7 @@ function CoreTeam() {
     <section>
       <div className="container-two">
         <Title className="text-primary font-medium mb-8 lg:mb-12" variant="20">
-          5. Core Team
+          5. Founders
         </Title>
 
         <div className="grid md:grid-cols-2 gap-5 lg:gap-9">
