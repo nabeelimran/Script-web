@@ -44,7 +44,7 @@ function KeyStats() {
 
         <div className="space-y-6 md:space-y-4">
           <KeyStatCard label="Minutes Watched" value={helper.formatCurrency(keyStatsData.minutesWatched)} />
-          <KeyStatCard label="Token Earn for Viewers" value={helper.formatCurrency(keyStatsData.earnedReward)} />
+          <KeyStatCard label="Script Points Earned by Viewers" value={helper.formatCurrency(keyStatsData.earnedReward)} />
           <KeyStatCard label="Token Burned" />
           <KeyStatCard label="Discord" value={helper.formatCurrency(keyStatsData.discordFollower)}/>
           <KeyStatCard label="Twitter" value={helper.formatCurrency(keyStatsData.twitterFollower)} />
