@@ -154,7 +154,7 @@ function Navbar() {
                 />
                 <DropdownCard
                   teller="COMING SOON"
-                  to="https://partners.script.tv/#/partner/theta"
+                  to="https://partners.script.tv/#/partner/script"
                   title="dStorage"
                   subtitle="Save 70%+ on transcoding, transferring and storage costs from web2."
                   others={{

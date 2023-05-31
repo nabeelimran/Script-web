@@ -54,7 +54,16 @@ function Research() {
       <div className="mb-20 lg:mb-20">
         <BlubDivider container="container-two" />
       </div>
-
+      <div className="mb-10 lg:mb-10">
+        <div className="container-two">
+          <Title
+            className="text-left font-medium text-primary mb-2 lg:mb-6"
+            variant="20"
+          >
+            2. Ecosystem Highlights
+          </Title>
+        </div>
+      </div>
       <div className="mb-20 lg:mb-20">
         <WhatIsScriptTV />
       </div>

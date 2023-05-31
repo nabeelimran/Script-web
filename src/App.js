@@ -127,7 +127,7 @@ function App() {
       <MetamaskChangeDetectionModal />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/token" element={<HomePage />} />
+        {/* <Route path="/token" element={<HomePage />} /> */}
         <Route path="/how-to-buy" element={<HowToBuy/>} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/download" element={<Download />} />

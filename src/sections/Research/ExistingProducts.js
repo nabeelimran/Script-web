@@ -35,7 +35,7 @@ function ExistingProducts() {
 
         <BulletPoint point="Script Points: Points are awarded on the basis of tasks being completed across the ecosystem, similar to achievements you collect in a game. These points and tasks vary and will change over time, so users are encouraged to check their dashboard for current tasks and the rewards as much as possible. <br/><br/> Head to <a href='https://get.script.tv/' className='text-primary'>https://get.script.tv/</a> and click sign up in the top right hand corner to create an account and start earning points" />
 
-        <BulletPoint point="Script Blockchain: Run a lightning node, and help secure and scale Script Network whilst getting rewarded per block, or, run a Script Edge node, and get rewarded for transcoding jobs on chain. <br/><br/> Head to <a href='https://faucet.script.tv/' className='text-primary'>https://faucet.script.tv/</a> to get started" />
+        <BulletPoint point="Script Blockchain: Run a lightning node, and help secure and scale Script Network whilst getting rewarded per block, or, run a Script Edge node, and get rewarded for transcoding jobs on chain. <br/><br/> Head to <a href='https://explorer.script.tv/' className='text-primary'>https://explorer.script.tv/</a> to get started" />
       </div>
     </section>
   );
