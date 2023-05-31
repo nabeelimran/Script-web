@@ -168,9 +168,10 @@ function Hero() {
             <a
               href="/"
               onClick={(e) => {
-                e.preventDefault();
-                setSidebarVisibility(false);
-                dispatch(toggleModalVisibility(true));
+                helper.openLink(helper.generateTokenUrl(''))
+                // e.preventDefault();
+                // setSidebarVisibility(false);
+                // dispatch(toggleModalVisibility(true));
               }}
               className="text-primary"
             >
