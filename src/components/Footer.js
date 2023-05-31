@@ -17,7 +17,7 @@ function Footer({ container = "container-two" }) {
         { title: "Marketplace", to: "/marketplace" },
         {
           title: "dStorage",
-          to: "https://partners.script.tv/#/partner/theta",
+          to: "https://partners.script.tv/#/partner/script",
           target: "_blank",
           anchorTag: true
         },
