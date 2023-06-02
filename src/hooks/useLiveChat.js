@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 import { APIPATH, roomId } from "../constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LocalServices from "services/LocalServices";
 import { ToastMessage } from "components/ToastMessage";
 import Api from "services/api";
@@ -20,6 +20,7 @@ const useLiveChat = (currentShow) => {
 
 	const socketRef = useRef();
 	let token = LocalServices.getServices("token");
+	const {isLogin} = useSelector(state => state.login_state)
 
 	const dispatch = useDispatch();
 
@@ -47,7 +48,7 @@ const useLiveChat = (currentShow) => {
 		return () => {
 			socketRef.current.disconnect();
 		};
-	}, [currentShow]);
+	}, [currentShow, isLogin]);
 
 	socketRef?.current?.off("new message");
 	socketRef?.current?.on("new message", receiveMessage);
@@ -72,14 +73,13 @@ const useLiveChat = (currentShow) => {
 							return item
 						}
 					})
-
-					
+					const messages = [...refreshChat, ...oldChats]
+					console.log(messages, ' for sorting ');
+					const sortedMessage = messages.sort((a,b) => a.commentDate - b.commentDate);
 					
 					const group = groupBy(
-						[...refreshChat, ...oldChats],
+						sortedMessage,
 						(result) => moment(result.commentDate).format("DD/MM/YYYY")
-							
-						
 					);
 					
 					const rows = [];
