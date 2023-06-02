@@ -3,6 +3,7 @@ import Button from "components/Button";
 import Title from "components/Title";
 import React from "react";
 import TokenTable from "sections/TokenTable";
+import { helper } from "utils/helper";
 
 function About() {
   return (
@@ -44,7 +45,14 @@ function About() {
         </p>
 
         <div className="flex justify-center mb-10">
-          <Button label="Join the conversation on discord" />
+          <Button
+            label="Join the conversation on discord"
+            buttonProps={{
+              onClick: () => {
+                helper.openLink('https://discord.com/invite/scriptnetwork')
+              },
+            }}
+          />
         </div>
       </div>
 

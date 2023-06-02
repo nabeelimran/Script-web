@@ -3,6 +3,7 @@ import Title from "components/Title";
 import TokenTableCard from "components/TokenTableCard";
 import React, { useEffect, useState } from "react";
 import Api from '../services/api';
+import { helper } from "utils/helper";
 
 function TokenTable() {
 
@@ -37,8 +38,8 @@ function TokenTable() {
         <TokenTableCard
           texts={["1,000,000,000", "Total Supply", "5,000,000,000"]}
         />
-        <TokenTableCard texts={[`${supplyData.totalScptWeiValue}`, "Circulating Supply", `${supplyData.totalSpayWeiValue}`]} />
-        <TokenTableCard texts={["$0.01", "Price At Launch", "$0.005"]} />
+        <TokenTableCard texts={[`${helper.numberFormat(+supplyData.totalScptWeiValue)}`, "Circulating Supply", `${helper.numberFormat(+supplyData.totalSpayWeiValue)}`]} />
+        <TokenTableCard texts={["$0.01", "Price At Launch", "$0.0005"]} />
         <TokenTableCard texts={["Governance", "Use Case", "Transactions"]} />
       </div>
 
@@ -47,7 +48,11 @@ function TokenTable() {
           Want To Learn More?
         </p>
 
-        <Button label="Read the whitepapper " />
+        <Button label="Read the whitepapper " buttonProps={{
+          onClick: () => {
+            helper.openLink('https://whitepaper.script.tv/')
+          },
+        }} />
       </div>
     </div>
   );
