@@ -76,6 +76,10 @@ function Hero() {
     //   link: "https://www.twitter.com/script_network",
     // },
     {
+      image: "images/final_sprint.png",
+      link: "",
+    },
+    {
       image: "images/community-ama.png",
       link: "",
     },
