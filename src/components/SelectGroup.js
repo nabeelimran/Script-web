@@ -46,7 +46,7 @@ const SelectGroup = ({
         >
           {options &&
             options.map((item, i) => (
-              <option key={i} value={item?.id || item?.value} selected={item?.id === valueSelected}>
+              <option className="text-black" key={i} value={item?.id || item?.value} selected={item?.id === valueSelected}>
                 {item?.countryName || item?.title}
               </option>
           ))}
