@@ -13,7 +13,7 @@ function StakingResult({
     <CalculatorLayout>
       <div className="mb-8 lg:mb-12">
         <Title>
-          <span className="text-primary">Result</span>
+          <span className="text-primary">Results</span>
         </Title>
       </div>
       <div className="space-y-6 lg:space-y-5">
@@ -44,8 +44,8 @@ function StakingResult({
                 <thead>
                   <tr>
                     <th className="text-[#ffef00] py-4">Year</th>
-                    <th className="text-[#ffef00] py-4">Interest</th>
-                    <th className="text-[#ffef00] py-4">Amount</th>
+                    <th className="text-[#ffef00] py-4">Reward (SCRIPT NETWORK)</th>
+                    <th className="text-[#ffef00] py-4">Balance (SCRIPT NETWORK)</th>
                   </tr>
                 </thead>
                 <tbody>
