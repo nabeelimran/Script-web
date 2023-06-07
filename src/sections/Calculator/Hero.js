@@ -13,9 +13,9 @@ function Hero({
         <span className="text-primary">Script Network.</span>
       </h1>
 
-      <h4 className="text-center font-semibold fs-18px text-white">
+      {/* <h4 className="text-center font-semibold fs-18px text-white">
         Current Circulating Supply: {totalSCPTVal}
-      </h4>
+      </h4> */}
     </section>
   );
 }

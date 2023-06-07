@@ -21,7 +21,7 @@ function StakingCalculator({
       <div className="mb-12 lg:mb-16">
         <div className="mb-4">
           <Title>
-            <span className="text-primary">Staking Information</span>
+            <span className="text-primary">Script (SCPT) staking calculator</span>
           </Title>
         </div>
 

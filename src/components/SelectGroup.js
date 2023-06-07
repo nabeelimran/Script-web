@@ -9,7 +9,7 @@ const options = [
   { value: "daily", title: "Daily" },
   { value: "weekly", title: "Weekly" },
   { value: "monthly", title: "Monthly" },
-  { value: "yearly", title: "Yearly" },
+  { value: "yearly", title: "Annually" },
 ];
 
 const SelectGroup = ({
