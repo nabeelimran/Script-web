@@ -8,7 +8,7 @@ export const helper = {
   formatLocalDate:(date) => moment(date).format("DD/MM/YYYY"),
   formatLocalTime:(date) => moment.utc(date).format("HH:mm"),
     percentFormat: (num) => num.toFixed(4).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1'),
-    numberFormat: (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+    numberFormat: (num) => num.toFixed(4).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
     currencyFormat: (num) => '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
     openLink: (url) => window.open(url, '_blank'),
     getTimeZone:() => Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -232,3 +232,74 @@ export const loginTypes = {
   temple: "TEMPLE_SIGNUP",
   trust: "TRUST_WALLET_SIGNUP"
 }
+
+export const stakingIntervalCalc = (principal, rate, time, powNumber) => {
+  let p = Math.floor(principal);
+  let roi = parseFloat(rate);
+  let t = parseInt(time);
+  let intervalArr = [];
+  for (let i = 1; i <= Math.floor(t); i++) {
+    const amountInterval = p * Math.pow(1 + roi, (1*powNumber));
+    const interestInterval = amountInterval - p;  
+    p += interestInterval;
+    intervalArr.push({
+      amount: amountInterval.toFixed(6),
+      interest: interestInterval.toFixed(6)
+    })
+  }
+  console.log(intervalArr);
+  return intervalArr;
+}
+
+export const stakingCalc = {
+  dailyCalc: (principal, rate, time) => {
+    const dailyRate = rate / 36500;
+    
+    const amount = principal * Math.pow(1 + dailyRate, (time * 365));
+    const interest = amount - principal;
+    return {
+      amount: amount.toFixed(6),
+      interest: interest.toFixed(6),
+      stakingInterval: stakingIntervalCalc(principal, dailyRate, time, 365)
+    };
+  },
+  weeklyCalc: (principal, rate, time) => {
+    const weeklyRate = rate / 100 / 52;
+    // Calculate the compound interest
+    const amount = principal * Math.pow(1 + weeklyRate, (time * 52));
+    const interest = amount - principal;
+    
+    return {
+      amount: amount.toFixed(6),
+      interest: interest.toFixed(6),
+      stakingInterval: stakingIntervalCalc(principal, weeklyRate, time, 52)
+    };
+  },
+  monthlyCalc: (principal, rate, time) => {
+    // Convert rate from annual percentage to monthly decimal rate
+    const monthlyRate = rate / 100 / 12;
+    // Calculate the compound interest
+    const amount = principal * Math.pow(1 + monthlyRate, (time * 12));
+    const interest = amount - principal;
+    
+    return {
+      amount: amount.toFixed(6),
+      interest: interest.toFixed(6),
+      stakingInterval: stakingIntervalCalc(principal, monthlyRate, time, 12)
+    };
+  },
+  yearlyCalc: (principal, rate, time) => {
+    let p = principal
+    // Convert rate from percentage to decimal
+    const yearlyRate = rate / 100;
+    // Calculate the compound interest
+    const amount = principal * Math.pow(1 + yearlyRate, time);
+    const interest = amount - principal;
+  
+    return {
+      amount: amount.toFixed(6),
+      interest: interest.toFixed(6),
+      stakingInterval: stakingIntervalCalc(principal, yearlyRate, time, 1)
+    };
+  },
+} 
