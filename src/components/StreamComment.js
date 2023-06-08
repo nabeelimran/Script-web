@@ -87,7 +87,8 @@ function StreamComment({ item, chooseMessage }) {
                 {item.msg || item.comment}
               </p>
               <p className="text-xs">
-              {helper.formatLocalTime(item.commentDate)}
+              {/* {helper.formatLocalTime(item.commentDate)} */}
+              {/* {item.timepass} */}
               </p>
             </div>
           </>
@@ -98,7 +99,8 @@ function StreamComment({ item, chooseMessage }) {
                 {item.msg || item.comment}
               </p>
               <p className="text-xs">
-                {helper.formatLocalTime(item.commentDate)}
+                {/* {helper.formatLocalTime(item.commentDate)} */}
+                {/* {item.timepass} */}
                 {/* {moment(new Date(item.commentDate)).format("HH:mm")} */}
               </p>
             </div>
