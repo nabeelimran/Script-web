@@ -83,6 +83,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 					? messageForReply
 					: null,
 			commentDate: moment().toISOString(),
+			timepass: moment().fromNow(),
 			userName: user.userName,
 			userId: user.userId,
 			urlProfileImage: profileImg ? profileImg : null,
@@ -206,7 +207,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 								return (
 									<Fragment key={index}>
 										{/* chooseMessage={chooseMessage} */}
-										<div
+										{/* <div
 											id={item.commentDate}
 											className='flex flex-row justify-center'>
 											<p
@@ -220,7 +221,7 @@ const LiveChat = ({ currentShow, getRewardEarningAmount }) => {
 													? "Today"
 													: item.commentDate}
 											</p>
-										</div>
+										</div> */}
 										{item?.chats?.map((chat) => {
 											return (
 												<Fragment

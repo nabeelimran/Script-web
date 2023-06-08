@@ -75,10 +75,13 @@ const useLiveChat = (currentShow) => {
 					})
 					const messages = [...refreshChat, ...oldChats]
 					console.log(messages, ' for sorting ');
-					const sortedMessage = messages.sort((a,b) => a.commentDate - b.commentDate);
-					
+					// let sortedMessage = messages.sort((a,b) => a.commentDate - b.commentDate);
+					// sortedMessage = sortedMessage.map((msg) => {
+					// 	msg.timepass = moment(msg.commentDate).fromNow()
+					// 	return msg;
+					// });
 					const group = groupBy(
-						sortedMessage,
+						messages,
 						(result) => moment(result.commentDate).format("DD/MM/YYYY")
 					);
 					
@@ -114,20 +117,21 @@ const useLiveChat = (currentShow) => {
 	function sendMessage(data) {
 		const msgFormat = {
 			commentDate: moment(data.commentDate).format("DD/MM/YYYY"),
+			timepass: moment(data.commentDate).fromNow(),
 			chats: [data],
 		};
 		let newMessgae = message.map((item) => {
-			if (item.commentDate === msgFormat.commentDate) {
+			// if (item.commentDate === msgFormat.commentDate) {
 				item.chats.push(data);
-			}
+			// }
 			return item;
 		});
-		let findOne = newMessgae.find(
-			(item) => item.commentDate === msgFormat.commentDate
-		);
-		if (!findOne) {
-			newMessgae.push(msgFormat);
-		}
+		// let findOne = newMessgae.find(
+		// 	(item) => item.commentDate === msgFormat.commentDate
+		// );
+		// if (!findOne) {
+		// 	newMessgae.push(msgFormat);
+		// }
 
 		setMessage(newMessgae);
 		socketRef.current.emit("send message", data);
@@ -145,6 +149,7 @@ const useLiveChat = (currentShow) => {
 
 		const msgFormat = {
 			commentDate: moment(arg.commentDate).format("DD/MM/YYYY"),
+			timepass: moment(arg.commentDate).fromNow(),
 			chats: [arg],
 		};
 		let msg = message;
