@@ -78,7 +78,7 @@ function ReportIssueForm() {
             console.log(type)
             switch (type.type) {
                 case "required":
-                error = "This field is requird.";
+                error = "This field is required.";
                 break;
                 case "pattern":
                 error = "Invalid Email"

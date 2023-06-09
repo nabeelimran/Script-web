@@ -56,7 +56,7 @@ function ChangePassword() {
     if (type) {
       switch (type.type) {
         case "required":
-          error = "This field is requird. Please enter password";
+          error = "This field is required. Please enter password";
           break;
         case "minLength":
           error = "Password must have at least 8 characters";

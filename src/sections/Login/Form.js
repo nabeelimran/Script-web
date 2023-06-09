@@ -29,7 +29,7 @@ function Form() {
           type="email"
           label="Email address*"
           placeholder="Enter your email adress"
-          error={errors.email && "This field is requird. Please enter e-mail address."}
+          error={errors.email && "This field is required. Please enter e-mail address."}
           other={{
             ...register("email", { required: true }),
           }}
