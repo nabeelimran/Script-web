@@ -1,5 +1,4 @@
 import ListIntended from "components/ListIntended";
-import Title from "components/Title";
 import React from "react";
 
 function WhatIsScriptTV() {

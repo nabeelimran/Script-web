@@ -289,7 +289,6 @@ export const stakingCalc = {
     };
   },
   yearlyCalc: (principal, rate, time) => {
-    let p = principal
     // Convert rate from percentage to decimal
     const yearlyRate = rate / 100;
     // Calculate the compound interest

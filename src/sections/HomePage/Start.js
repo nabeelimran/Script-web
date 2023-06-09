@@ -1,11 +1,10 @@
 import { Icon } from "@iconify/react";
 import ArrowButton from "components/ArrowButton";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { helper } from "utils/helper";
 
 function Start() {
-  const navigate = useNavigate();
+  
   return (
     <section>
       <div className="container grid md:grid-cols-[.8fr_1fr] gap-8 md:gap-20">
