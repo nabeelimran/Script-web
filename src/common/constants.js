@@ -186,7 +186,6 @@ export const formatCurrency = (amount) => {
   const formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
   });
-  
   return formatter.format(amount);
 }
 

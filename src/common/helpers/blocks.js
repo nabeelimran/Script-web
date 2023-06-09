@@ -12,7 +12,6 @@ export function averageFee(block) {
     .toString(10);
 }
 
-
 export function hash(block, trunc = null) {
   let a = _.get(block, 'hash')
   if (trunc && trunc > 0) {
