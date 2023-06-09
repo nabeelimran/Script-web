@@ -64,7 +64,6 @@ export const CurrencyLabels = {
   scptwei: 'SCPT',
   SPAYWei: 'SPAY',
   SCPTWei: 'SCPT',
-  SPAYWei:'SPAY',
   spaywei: 'SPAY'
 }
 
