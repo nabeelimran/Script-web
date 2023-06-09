@@ -72,7 +72,7 @@ export const helper = {
       const char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
       let result = '';
       for (let i = size; i > 0; i--) {
-        result += char[Math.round(Math.random() * (char.length - 1))];
+        result += Date.now() % char.length;
       }
       return result;
     },
