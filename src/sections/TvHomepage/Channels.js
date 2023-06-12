@@ -257,13 +257,17 @@ function Channels({
   }
 
   const getContractBalance = async () => {
-    if(accountAddress) {
-      const balance = await balanceOf(accountAddress);
-      setContractBalance(balance);
-    } else {
+    try {
+      if(accountAddress) {
+        const balance = await balanceOf(accountAddress);
+        debugger
+        setContractBalance(balance);
+      } else {
+        setContractBalance(0);
+      }  
+    } catch (error) {
       setContractBalance(0);
     }
-    
   }
 
   useEffect(() => {

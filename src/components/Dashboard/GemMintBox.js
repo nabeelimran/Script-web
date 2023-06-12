@@ -111,10 +111,15 @@ const GemMintBox = ({ accountAddress, balance }) => {
   };
 
   const checkIsApproved = async () => {
-    if (accountAddress) {
-      const isAllowed = await checkApproval(accountAddress);
-      setIsApproved(isAllowed);
+    try {
+      if (accountAddress) {
+        const isAllowed = await checkApproval(accountAddress);
+        setIsApproved(isAllowed);
+      }  
+    } catch (error) {
+      setIsApproved(false);
     }
+    
   };
 
   const handleApprove = async () => {

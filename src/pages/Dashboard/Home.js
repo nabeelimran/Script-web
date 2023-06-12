@@ -32,10 +32,14 @@ function Home() {
   };
 
   const getBalance = async () => {
-    const response = await balanceOf(accountAddress);
-    console.log("response", response);
-    // The value we return becomes the `fulfilled` action payload
-    dispatch(fetchBalanceAsync(response));
+    try {
+      const response = await balanceOf(accountAddress);
+      console.log("response", response);
+      // The value we return becomes the `fulfilled` action payload
+      dispatch(fetchBalanceAsync(response));  
+    } catch (error) {
+      dispatch(fetchBalanceAsync(0));
+    }
   };
 
   return (

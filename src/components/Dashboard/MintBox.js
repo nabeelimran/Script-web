@@ -87,18 +87,27 @@ const MintBox = ({ accountAddress, balance }) => {
   }, [type]);
 
   const checkPassIsApproved = async () => {
-    if (accountAddress) {
-      const isAllowed = await checkGlassPassApproval(accountAddress);
-      console.log("checkPassIsApproved", isAllowed);
-      setIsPassApproved(isAllowed);
+    try {
+      if (accountAddress) {
+        const isAllowed = await checkGlassPassApproval(accountAddress);
+        console.log("checkPassIsApproved", isAllowed);
+        setIsPassApproved(isAllowed);
+      }  
+    } catch (error) {
+      setIsPassApproved(false);
     }
+    
   };
 
   const getPassBalance = async () => {
-    if (accountAddress) {
-      const balance = await getGlassPassBalance(accountAddress);
-      console.log("passBalance", balance);
-      setPassBalance(Number(balance));
+    try {
+      if (accountAddress) {
+        const balance = await getGlassPassBalance(accountAddress);
+        console.log("passBalance", balance);
+        setPassBalance(Number(balance));
+      }  
+    } catch (error) {
+      setPassBalance(0);
     }
   };
 
@@ -116,27 +125,31 @@ const MintBox = ({ accountAddress, balance }) => {
   };
 
   const checkIsApproved = async () => {
-    if (accountAddress) {
-      const isAllowed = await checkApproval(accountAddress);
-      console.log(
-        "isAllowed",
-
-        ethers.utils
-          .parseUnits(glassesPrice[type].toString(), "ether")
-          .toString(),
-        isAllowed,
-        // Number(ethers.utils.formatEther(isAllowed.toString())),
-        type
-      );
-      if (
-        ethers.utils
-          .parseUnits(glassesPrice[type].toString(), "ether")
-          .toString() <= isAllowed
-      ) {
-        setIsApproved(true);
-      } else {
-        setIsApproved(false);
-      }
+    try {
+      if (accountAddress) {
+        const isAllowed = await checkApproval(accountAddress);
+        console.log(
+          "isAllowed",
+  
+          ethers.utils
+            .parseUnits(glassesPrice[type].toString(), "ether")
+            .toString(),
+          isAllowed,
+          // Number(ethers.utils.formatEther(isAllowed.toString())),
+          type
+        );
+        if (
+          ethers.utils
+            .parseUnits(glassesPrice[type].toString(), "ether")
+            .toString() <= isAllowed
+        ) {
+          setIsApproved(true);
+        } else {
+          setIsApproved(false);
+        }
+      } 
+    } catch (error) {
+      setIsApproved(false);
     }
   };
 
