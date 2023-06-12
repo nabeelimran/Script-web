@@ -7,7 +7,7 @@ function ConnectWalletButton({ img, title,clickEvent,loader }) {
     <button onClick={clickEvent}  className="w-full bg-[#131313] py-0 md:py-4 h-[50px] md:h-auto flex flex-col sm:flex-col items-center space-y-4 sm:space-y-0 sm:space-x-4 justify-center rounded-lg px-6">
       <div className="flex flex-col sm:flex-col items-center space-y-3 sm:space-y-0 sm:space-x-4">
         <img src={img} className="w-[26px]" alt="" />
-        <p className="text-sm pt-3" style={{'margin-left': 0}}>{title}</p>
+        <p className="text-sm md:pt-3" style={{'margin-left': 0}}>{title}</p>
       </div>
 
       {/* <div className="flex items-center space-x-3">
