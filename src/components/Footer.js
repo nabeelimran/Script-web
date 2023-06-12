@@ -109,7 +109,7 @@ function Footer({ container = "container-two" }) {
         },
         {
           title: "Blog",
-          to: "https://medium.com/@scriptnetwork",
+          to: "https://medium.com/script-network",
           target: "_blank",
           anchorTag: true,
         },
