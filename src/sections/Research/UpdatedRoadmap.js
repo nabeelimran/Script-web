@@ -204,7 +204,7 @@ function UpdatedRoadmap() {
                 <BulletPoint point="Website" />
               </a>
               <a
-                href="https://medium.com/@scriptnetwork"
+                href="https://medium.com/script-network"
                 className="w-fit block"
                 target="_blank"
                 rel="noreferrer"
