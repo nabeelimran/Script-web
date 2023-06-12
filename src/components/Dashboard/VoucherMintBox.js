@@ -107,35 +107,45 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
   }, [accountAddress]);
 
   const getBalance = async () => {
-    if (accountAddress) {
-      const balance = await balanceOf(accountAddress);
-      setBalance(Number(balance));
+    try {
+      if (accountAddress) {
+        const balance = await balanceOf(accountAddress);
+        setBalance(Number(balance));
+      }  
+    } catch (error) {
+      setBalance(0);
     }
+    
   };
 
   const handleCheckVoucherApproval = async () => {
-    if (accountAddress) {
-      let approval = await checkVoucherApproval(accountAddress);
-
-      console.log(
-        "handleCheckVoucherApproval",
-        voucherPrices[type],
-
-        ethers.utils
-          .parseUnits(voucherPrices[type].toString(), "ether")
-          .toString(),
-        approval,
-        type
-      );
-
-      if (
-        ethers.utils
-          .parseUnits(voucherPrices[type].toString(), "ether")
-          .toString() <= approval
-      )
-        setIsVoucherApproved(true);
-      else setIsVoucherApproved(false);
+    try {
+      if (accountAddress) {
+        let approval = await checkVoucherApproval(accountAddress);
+  
+        console.log(
+          "handleCheckVoucherApproval",
+          voucherPrices[type],
+  
+          ethers.utils
+            .parseUnits(voucherPrices[type].toString(), "ether")
+            .toString(),
+          approval,
+          type
+        );
+  
+        if (
+          ethers.utils
+            .parseUnits(voucherPrices[type].toString(), "ether")
+            .toString() <= approval
+        )
+          setIsVoucherApproved(true);
+        else setIsVoucherApproved(false);
+      }  
+    } catch (error) {
+      setIsVoucherApproved(false);
     }
+    
   };
 
   const checkVoucherEligibility = async () => {
@@ -166,9 +176,13 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
   };
 
   const checkIsApproved = async () => {
-    if (accountAddress) {
-      const isAllowed = await checkVoucherForTvApproval(accountAddress);
-      setIsApproved(isAllowed);
+    try {
+      if (accountAddress) {
+        const isAllowed = await checkVoucherForTvApproval(accountAddress);
+        setIsApproved(isAllowed);
+      }  
+    } catch (error) {
+      setIsApproved(false);
     }
   };
 

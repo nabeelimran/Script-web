@@ -619,7 +619,7 @@ function ConnectWalletModal() {
               />
               <ConnectWalletButton
                 img="images/ens-logo.png"
-                title="ENS"
+                title=".ens domain"
                 loader={loading.trust}
                 clickEvent={() => helper.comingSoonNotification()}
               />

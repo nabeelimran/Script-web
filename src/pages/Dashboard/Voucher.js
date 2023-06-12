@@ -99,10 +99,14 @@ export default function VoucherView() {
   };
 
   const handleFetchVouchers = async () => {
-    if (accountAddress) {
-      const vouchers = await getVoucherBalance(accountAddress);
-      console.log("vouchers", vouchers);
-      setVoucherBalance(vouchers);
+    try {
+      if (accountAddress) {
+        const vouchers = await getVoucherBalance(accountAddress);
+        console.log("vouchers", vouchers);
+        setVoucherBalance(vouchers);
+      }  
+    } catch (error) {
+      setVoucherBalance(0);
     }
   };
 
@@ -115,10 +119,14 @@ export default function VoucherView() {
   };
 
   const checkIsApproved = async () => {
-    if (accountAddress) {
-      const isAllowed = await checkVoucherForTvApproval(accountAddress);
-      console.log("isAllowed", isAllowed);
-      setIsApproved(isAllowed);
+    try {
+      if (accountAddress) {
+        const isAllowed = await checkVoucherForTvApproval(accountAddress);
+        console.log("isAllowed", isAllowed);
+        setIsApproved(isAllowed);
+      }  
+    } catch (error) {
+      setIsApproved(false);
     }
   };
 
