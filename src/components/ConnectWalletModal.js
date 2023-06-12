@@ -581,7 +581,7 @@ function ConnectWalletModal() {
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 mb-3">
+            <div className="grid md:grid-cols-3 gap-3 mb-3 sm:grid-cols-2">
               <ConnectWalletButton
                 clickEvent={() => metaMaskHandler(loginTypes.metamask)}
                 img="images/metamask.svg"
@@ -618,11 +618,17 @@ function ConnectWalletModal() {
                 clickEvent={() => metaMaskHandler(loginTypes.temple)}
               />
               <ConnectWalletButton
+                img="images/ens-logo.png"
+                title="ENS"
+                loader={loading.trust}
+                clickEvent={() => helper.comingSoonNotification()}
+              />
+              {/* <ConnectWalletButton
                 img="images/trust_wallet_logo.png"
                 title="Trust Wallet"
                 loader={loading.trust}
                 clickEvent={() => metaMaskHandler(loginTypes.trust)}
-              />
+              /> */}
             </div>
             <hr style={{color: '#999'}} />
             <div className="my-4">
