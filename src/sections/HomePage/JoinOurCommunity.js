@@ -40,7 +40,7 @@ function JoinOurCommunity() {
             IconComponent={() => <Icon icon="mdi:twitter" />}
           />
           <SocialCard
-            link="https://medium.com/@scriptnetwork"
+            link="https://medium.com/script-network"
             title="Blog"
             IconComponent={() => <Icon icon="bi:medium" />}
           />
