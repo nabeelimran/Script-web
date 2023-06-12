@@ -29,7 +29,7 @@ function Checkbox({
       />
       {title && !link && (
         <label htmlFor={id} className={labelClassName}>
-          {title && title}
+          {title}
         </label>
       )}
       {

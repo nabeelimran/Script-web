@@ -1,10 +1,10 @@
 import Checkbox from "components/Checkbox";
 import Title from "components/Title";
 import { ToastMessage } from "components/ToastMessage";
-import TvNavbar from "components/TvNavbar";
 import React from "react";
 import { helper } from "utils/helper";
 import NodeAgrement from "../files/Script-Network-Node-Operator-Agreement-2.pdf"
+import Navbar from "components/Navbar";
 
 function Download() {
 	const [isAllow, setIsAllow] = React.useState(false);
@@ -34,7 +34,7 @@ function Download() {
 	return (
 		<div className='container'>
 			<div className='mb-4 sm:mb-2 relative z-50'>
-				<TvNavbar />
+				<Navbar />
 			</div>
 			<div className='dashboard-top-spacing dashboard-bottom-spacing dashboard-layout min-h-screen flex flex-col'>
 				<div className='space-y-6 max-w-[500px] mx-auto w-full flex flex-col justify-center'>

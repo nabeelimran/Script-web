@@ -1,5 +1,3 @@
 export function arrayUnique(array) {
-    return [...new Set(array.filter(a => a != null))]
-  }
-  
-  
+  return [...new Set(array.filter(a => a != null))]
+}

@@ -1,22 +1,22 @@
 import Button from "components/Button";
-import CountDown from "components/CountDown";
-import Title from "components/Title";
 import OutsideClickDetector from "hooks/OutsideClickDetector";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+// import CountDown from "components/CountDown";
+// import Title from "components/Title";
+// import { Link } from "react-router-dom";
+// import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
+// import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
 import Api from "services/api";
-import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
 import { helper } from "utils/helper";
 
 function Hero() {
-  const [isSidebarVisible, setSidebarVisibility] = useState(false);
-  const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
-  const dispatch = useDispatch();
-  const [countDownWidth, setCountDownWidth] = useState(0);
+  // const [isSidebarVisible, setSidebarVisibility] = useState(false);
+  // const sidebarRef = OutsideClickDetector(() => setSidebarVisibility(false));
+  // const dispatch = useDispatch();
+  // const [countDownWidth, setCountDownWidth] = useState(0);
   const [overAllOrderedToken, setOverAllOrderedToken] = useState(0);
-  const totalPresaleAmount = 70290000;
+  // const totalPresaleAmount = 70290000;
 
   const getOverAllOrderedToken = () => {
     Api.getOverAllOrderedToken().then((res) => {
@@ -26,9 +26,9 @@ function Hero() {
     });
   };
 
-  const getProgressBarWidth = (progressBarWidth) => {
-    setCountDownWidth(progressBarWidth);
-  };
+  // const getProgressBarWidth = (progressBarWidth) => {
+  //   setCountDownWidth(progressBarWidth);
+  // };
 
   useEffect(() => {
     getOverAllOrderedToken();

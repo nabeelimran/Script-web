@@ -64,7 +64,6 @@ export const CurrencyLabels = {
   scptwei: 'SCPT',
   SPAYWei: 'SPAY',
   SCPTWei: 'SCPT',
-  SPAYWei:'SPAY',
   spaywei: 'SPAY'
 }
 
@@ -187,7 +186,6 @@ export const formatCurrency = (amount) => {
   const formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
   });
-  
   return formatter.format(amount);
 }
 

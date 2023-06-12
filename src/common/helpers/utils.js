@@ -5,11 +5,13 @@ import { WEI } from "common/constants";
 import { ethers } from "ethers";
 
 export function truncateMiddle(str, maxLength = 20, separator = "...") {
-  if (str && str.length <= 20) return str;
+  if (str && str.length <= 20) {
+    return str;
+  }
 
-  let diff = maxLength - separator.length;
-  let front = Math.ceil(diff / 2);
-  let back = Math.floor(diff / 2);
+  const diff = maxLength - separator.length;
+  const front = Math.ceil(diff / 2);
+  const back = Math.floor(diff / 2);
   return str.substr(0, front) + separator + str.substr(str.length - back);
 }
 
@@ -36,7 +38,6 @@ export function formatCoin(weiAmount, length = 4) {
 }
 
 export function priceCoin(weiAmount, price) {
-  // debugger
   return new BigNumber(weiAmount)
     .dividedBy(WEI)
     .multipliedBy(price)
@@ -54,8 +55,8 @@ export function sumCoin(weiAmountA, weiAmountB) {
 
 export function getQueryParam(search, name) {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  let regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-  let results = regex.exec(search);
+  const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+  const results = regex.exec(search);
   return results === null
     ? ""
     : decodeURIComponent(results[1].replace(/\+/g, " "));

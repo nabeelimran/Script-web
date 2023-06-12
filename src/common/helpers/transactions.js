@@ -5,6 +5,8 @@ import moment from 'moment';
 import { TxnTypes, TxnTypeText, TxnStatus, WEI } from 'common/constants';
 BigNumber.config({ EXPONENTIAL_AT: 1e+9 });
 
+const dataOutputs = 'data.outputs'
+const dataInputs = 'data.inputs'
 
 export function totalCoinValue(set, key = 'SPAYWei') {
   //_.forEach(set, v => console.log(_.get(v, `coins.${key}`, 0)))
@@ -15,7 +17,7 @@ export function from(txn, trunc = null, account = null) {
   let path;
   // if ([TxnTypes.RESERVE_FUND, TxnTypes.SERVICE_PAYMENT].includes(txn.type)) {
   //   path = 'data.source.address';
-  // } else 
+  // } else
   if (txn.type === TxnTypes.SPLIT_CONTRACT) {
     path = 'data.initiator.address';
   } else if (txn.type === TxnTypes.COINBASE) {
@@ -41,10 +43,10 @@ export function to(txn, trunc = null, address = null) {
   let path, isSelf;
   if (txn.type === TxnTypes.SERVICE_PAYMENT) {
     path = 'data.target.address';
-  } 
+  }
   // else if (txn.type === TxnTypes.RESERVE_FUND) {
   //   return '';
-  // } 
+  // }
   else if (txn.type === TxnTypes.WITHDRAW_STAKE) {
     path = 'data.source.address';
   } else if (txn.type === TxnTypes.DEPOSIT_STAKE || txn.type === TxnTypes.DEPOSIT_STAKE_TX_V2) {
@@ -58,7 +60,7 @@ export function to(txn, trunc = null, address = null) {
   } else if (txn.type === TxnTypes.SMART_CONTRACT) {
     path = 'data.to.address'
   } else {
-    const outputs = _.get(txn, 'data.outputs');
+    const outputs = _.get(txn, dataOutputs);
     isSelf = outputs.some(output => {
       return output.address === address;
     })
@@ -102,8 +104,8 @@ export function gasPrice(txn) {
 
 export function value(txn) {
   let values = [
-    totalCoinValue(_.get(txn, 'data.inputs'), 'SPAYWei'),
-    totalCoinValue(_.get(txn, 'data.inputs'), 'SCPTWei')];
+    totalCoinValue(_.get(txn, dataInputs), 'SPAYWei'),
+    totalCoinValue(_.get(txn, dataInputs), 'SCPTWei')];
   return _.chain(values)
     .map(v => v ? new BigNumber(v).dividedBy(WEI) : "0")
     .filter(Boolean)
@@ -120,47 +122,49 @@ export function hash(txn, trunc = null) {
 }
 
 export function age(txn) {
-  if (!txn.timestamp || !_.isNumber(parseInt(txn.timestamp)))
+  if (!txn.timestamp || !_.isNumber(parseInt(txn.timestamp))) {
     return null;
+  }
   return moment(parseInt(txn.timestamp) * 1000).fromNow(true);
 }
 
 export function date(txn) {
-  if (!txn.timestamp || !_.isNumber(parseInt(txn.timestamp)))
+  if (!txn.timestamp || !_.isNumber(parseInt(txn.timestamp))) {
     return null;
+  }
   return moment(parseInt(txn.timestamp) * 1000).format("MM/DD/YY hh:mma");
 }
 
 export function coins(txn, account = null) {
-  let coins = { 'scptwei': 0, 'spaywei': 0 };
+  let coin = { 'scptwei': 0, 'spaywei': 0 };
   let outputs = null, inputs = null, index = 0;
   switch (txn.type) {
     case TxnTypes.COINBASE:
-      outputs = _.get(txn, 'data.outputs');
+      outputs = _.get(txn, dataOutputs);
       if (!account || txn.data.proposer.address === account.address) {
-        coins = {
-          'scptwei': totalCoinValue(_.get(txn, 'data.outputs'), 'SCPTWei').toFixed(),
-          'spaywei': totalCoinValue(_.get(txn, 'data.outputs'), 'SPAYWei').toFixed()
+        coin = {
+          'scptwei': totalCoinValue(_.get(txn, dataOutputs), 'SCPTWei').toFixed(),
+          'spaywei': totalCoinValue(_.get(txn, dataOutputs), 'SPAYWei').toFixed()
         }
-      } else if (outputs.some(output => { return output.address === account.address; })) {
+      } else if (outputs.some(output => output.address === account.address )) {
         index = outputs.findIndex(e => e.address === account.address);
-        coins = outputs[index].coins;
+        coin = outputs[index].coins;
       }
       break;
     case TxnTypes.TRANSFER:
-      outputs = _.get(txn, 'data.outputs');
-      inputs = _.get(txn, 'data.inputs')
+      outputs = _.get(txn, dataOutputs);
+      inputs = _.get(txn, dataInputs)
       if (!account) {
-        coins = {
-          'SCPTWei': totalCoinValue(_.get(txn, 'data.inputs'), 'SCPTWei').toFixed(),
-          'SPAYWei': totalCoinValue(_.get(txn, 'data.inputs'), 'SPAYWei').toFixed()
+        coin = {
+          'SCPTWei': totalCoinValue(_.get(txn, dataInputs), 'SCPTWei').toFixed(),
+          'SPAYWei': totalCoinValue(_.get(txn, dataInputs), 'SPAYWei').toFixed()
         }
-      } else if (inputs.some(input => { return input.address === account.address; })) {
+      } else if (inputs.some(input => input.address === account.address )) {
         index = inputs.findIndex(e => e.address === account.address);
-        coins = inputs[index].coins;
-      } else if (outputs.some(output => { return output.address === account.address; })) {
+        coin = inputs[index].coins;
+      } else if (outputs.some(output => output.address === account.address )) {
         index = outputs.findIndex(e => e.address === account.address);
-        coins = outputs[index].coins;
+        coin = outputs[index].coins;
       }
       break
     case TxnTypes.SLASH:
@@ -169,29 +173,29 @@ export function coins(txn, account = null) {
     case TxnTypes.SMART_CONTRACT:
       break
     case TxnTypes.RESERVE_FUND:
-      outputs = _.get(txn, 'data.outputs');
-      inputs = _.get(txn, 'data.inputs')
+      outputs = _.get(txn, dataOutputs);
+      inputs = _.get(txn, dataInputs)
       if (!account) {
-        coins = {
-          'SCPTWei': totalCoinValue(_.get(txn, 'data.inputs'), 'SCPTWei').toFixed(),
-          'SPAYWei': totalCoinValue(_.get(txn, 'data.inputs'), 'SPAYWei').toFixed()
+        coin = {
+          'SCPTWei': totalCoinValue(_.get(txn, dataInputs), 'SCPTWei').toFixed(),
+          'SPAYWei': totalCoinValue(_.get(txn, dataInputs), 'SPAYWei').toFixed()
         }
-      } else if (inputs.some(input => { return input.address === account.address; })) {
+      } else if (inputs.some(input => input.address === account.address )) {
         index = inputs.findIndex(e => e.address === account.address);
-        coins = inputs[index].coins;
-      } else if (outputs.some(output => { return output.address === account.address; })) {
+        coin = inputs[index].coins;
+      } else if (outputs.some(output => output.address === account.address )) {
         index = outputs.findIndex(e => e.address === account.address);
-        coins = outputs[index].coins;
+        coin = outputs[index].coins;
       }
       break
     case TxnTypes.SERVICE_PAYMENT:
     case TxnTypes.DEPOSIT_STAKE:
     case TxnTypes.WITHDRAW_STAKE:
     case TxnTypes.DEPOSIT_STAKE_TX_V2:
-      coins = txn.data.source.coins;
+      coin = txn.data.source.coins;
       break
     default:
       break;
   }
-  return coins;
+  return coin;
 }

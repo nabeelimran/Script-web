@@ -1,12 +1,9 @@
 import BlubDivider from "components/BlubDivider";
-import BulletPoint from "components/BulletPoint";
 import LinkScroller from "components/LinkScroller";
-import ListIntended from "components/ListIntended";
 import ReadMoreCards from "components/ReadMoreCards";
 import ScriptDocumentation from "components/ScriptDocumentation";
 import Title from "components/Title";
-import React, { Component, useEffect, useState }  from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState }  from "react";
 import Api from "services/api";
 
 function UpdatedRoadmap() {
@@ -207,7 +204,7 @@ function UpdatedRoadmap() {
                 <BulletPoint point="Website" />
               </a>
               <a
-                href="https://medium.com/@scriptnetwork"
+                href="https://medium.com/script-network"
                 className="w-fit block"
                 target="_blank"
                 rel="noreferrer"

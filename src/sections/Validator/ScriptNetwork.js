@@ -1,4 +1,3 @@
-import BigNumber from "bignumber.js";
 import { formatCurrency } from "common/constants";
 import { sumCoin } from "common/helpers/utils";
 import ScriptNetworkCard from "components/ScriptNetworkCard";

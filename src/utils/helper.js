@@ -72,7 +72,7 @@ export const helper = {
       const char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
       let result = '';
       for (let i = size; i > 0; i--) {
-        result += char[Math.round(Math.random() * (char.length - 1))];
+        result += Date.now() % char.length;
       }
       return result;
     },
@@ -289,7 +289,6 @@ export const stakingCalc = {
     };
   },
   yearlyCalc: (principal, rate, time) => {
-    let p = principal
     // Convert rate from percentage to decimal
     const yearlyRate = rate / 100;
     // Calculate the compound interest
