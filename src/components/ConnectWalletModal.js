@@ -42,6 +42,7 @@ import TrustWalletService from "services/trustWallet";
 import { ethers } from "ethers";
 import BigNumber from "bignumber.js";
 import LoginButton from "./LoginButton";
+import EnsService from "services/ens";
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ function ConnectWalletModal() {
     bitgret: false,
     temple: false,
     trust: false,
+    ens: false,
   });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -76,41 +78,99 @@ function ConnectWalletModal() {
     helper.trackByMixpanel("Wallet Connect Button Clicked", {});
   };
 
-  const spaceIdConnectHandler = async () => {
+  const spaceIdConnectHandler = async (loginType) => {
     try {
       if (!window.ethereum) {
         ToastMessage("Install Metamask");
         return;
       }
-      setLoading({ ...loading, bnb: true });
-      dispatch(setIsOkc(loginTypes.bnb));
-      const walletAddress = await MetamaskService.connectHandler();
-      if (walletAddress) {
-        dispatch(metamaskCred(walletAddress));
-        const chainId = await MetamaskService.getChainId();
-        if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
-          await MetamaskService.changeChain("spaceID");
-        }
-        Api.getSpaceIDName(walletAddress).then((res) => {
-          if (res && res.status === 200) {
-            if (!res?.data?.data?.name) {
-              addLog({
-                loginType: "spaceId-login",
-                errror: JSON.stringify(res),
-                attempt: "fail",
+
+      if(loginType === loginTypes.bnb) {
+        setLoading({ ...loading, bnb: true });
+        dispatch(setIsOkc(loginTypes.bnb));
+        const walletAddress = await MetamaskService.connectHandler();
+        if (walletAddress) {
+          dispatch(metamaskCred(walletAddress));
+          const chainId = await MetamaskService.getChainId();
+          if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
+            await MetamaskService.changeChain("spaceID");
+          }
+          Api.getSpaceIDName(walletAddress).then((res) => {
+            if (res && res.status === 200) {
+              if (!res?.data?.data?.name) {
+                addLog({
+                  loginType: "spaceId-login",
+                  errror: JSON.stringify(res),
+                  attempt: "fail",
+                });
+                ToastMessage("BNB username is not found");
+                setLoading({ ...loading, bnb: false });
+                return;
+              }
+              const req = {
+                walletAddress,
+                username: res.data.data.name,
+                signupType: loginTypes.bnb,
+              };
+              Api.loginWithSpaceID(req).then((resp) => {
+                if (resp && resp.status === 200) {
+                  setLoading({ ...loading, bnb: false });
+                  ToastMessage(`${resp?.data?.message}`, true);
+                  dispatch(toggleModalVisibility(false));
+                  if (resp.data.data.authToken) {
+                    sessionStorage.setItem(
+                      "script-token",
+                      JSON.stringify(resp.data.data.authToken)
+                    );
+                  }
+  
+                  sessionStorage.setItem(
+                    "userInfo",
+                    JSON.stringify({
+                      email: resp?.data?.data?.email || "",
+                      userId: resp.data.data.id,
+                      walletAddress: resp.data.data.walletAddress,
+                      userName: resp.data.data.username,
+                    })
+                  );
+                  dispatch(isLogin(true));
+                  navigate({
+                    pathname: "/",
+                  });
+                } else {
+                  setLoading({ ...loading, bnb: false });
+                  addLog({
+                    loginType: "spaceId-login",
+                    errror: JSON.stringify(resp),
+                    attempt: "fail",
+                  });
+                  ToastMessage("Unable to login");
+                }
               });
-              ToastMessage("BNB username is not found");
-              setLoading({ ...loading, bnb: false });
-              return;
             }
+          });
+        }
+      } else {
+        setLoading({ ...loading, ens: true });
+        dispatch(setIsOkc(loginTypes.ens));
+        const walletAddress = await MetamaskService.connectHandler();
+        if (walletAddress) {
+          dispatch(metamaskCred(walletAddress));
+          const chainId = await MetamaskService.getChainId();
+          if (chainId && chainId !== metamaskNetwork.ethereumMainnet.chainId) {
+            await MetamaskService.changeChain("ethereumMainnet");
+          }
+
+          const ensUserName = await EnsService.resolveNameByAddress(walletAddress);
+          if(ensUserName && ensUserName.includes('.eth')) {
             const req = {
               walletAddress,
-              username: res.data.data.name,
-              signupType: loginTypes.bnb,
+              username: ensUserName,
+              signupType: loginTypes.ens,
             };
             Api.loginWithSpaceID(req).then((resp) => {
               if (resp && resp.status === 200) {
-                setLoading({ ...loading, bnb: false });
+                setLoading({ ...loading, ens: false });
                 ToastMessage(`${resp?.data?.message}`, true);
                 dispatch(toggleModalVisibility(false));
                 if (resp.data.data.authToken) {
@@ -134,22 +194,25 @@ function ConnectWalletModal() {
                   pathname: "/",
                 });
               } else {
-                setLoading({ ...loading, bnb: false });
+                setLoading({ ...loading, ens: false });
                 addLog({
-                  loginType: "spaceId-login",
+                  loginType: "ens-login",
                   errror: JSON.stringify(resp),
                   attempt: "fail",
                 });
                 ToastMessage("Unable to login");
               }
             });
+          } else {
+            ToastMessage('Ens username not found');
+            setLoading({ ...loading, ens: false });
           }
-        });
+        }
       }
     } catch (error) {
-      setLoading({ ...loading, bnb: false });
+      setLoading({ ...loading, bnb: false, ens: false });
       addLog({
-        loginType: "spaceId-login",
+        loginType: "spaceId-ens-login",
         errror: JSON.stringify(error),
         attempt: "fail",
       });
@@ -173,6 +236,9 @@ function ConnectWalletModal() {
       } else if (loginType === loginTypes.trust) {
         setLoading({ ...loading, trust: true });
         helper.trackByMixpanel("Trust Button Clicked", {});
+      } else if(loginType === loginTypes.ens) {
+        setLoading({ ...loading, ens: true });
+        helper.trackByMixpanel("ENS Button Clicked", {});
       } else {
         setLoading({ ...loading, metamask: true });
         dispatch(setIsOkc(loginTypes.metamask));
@@ -218,6 +284,44 @@ function ConnectWalletModal() {
           await etherProvider.getBalance(accAddres)
         );
         console.log(accAddres, "account", balance, "bal");
+      } else if (loginType === loginTypes.ens) {
+        if (!window.ethereum) {
+          ToastMessage("Install Metamask");
+          setLoading(false);
+          return false;
+        }
+        const chainId = await MetamaskService.getChainId();
+        if (chainId && chainId !== metamaskNetwork.ethereumMainnet.chainId) {
+          try {
+            await MetamaskService.changeChain("ethereumMainnet");
+          } catch (error) {
+            setLoading({
+              ...loading,
+              okc: false,
+              metamask: false,
+              bitgret: false,
+              ens: false
+            });
+
+            console.log(error);
+          }
+        }
+        accAddres = await MetamaskService.connectHandler();
+        const ensName = await EnsService.resolveNameByAddress(accAddres);
+        if(ensName && ensName.includes('.eth')) {
+
+        } else {
+          setLoading({
+            ...loading,
+            okc: false,
+            metamask: false,
+            bitgret: false,
+            ens: false
+          });
+          ToastMessage(`ENS Username not found`);
+          return;
+        }
+        
       } else {
         if (!window.ethereum) {
           ToastMessage("Install Metamask");
@@ -597,7 +701,7 @@ function ConnectWalletModal() {
                 img="images/space_id_logo.png"
                 title=".bnb Domain"
                 loader={loading.bnb}
-                clickEvent={spaceIdConnectHandler}
+                clickEvent={() => spaceIdConnectHandler(loginTypes.bnb)}
               />
               <ConnectWalletButton
                 img="images/okc_logo.png"
@@ -620,8 +724,8 @@ function ConnectWalletModal() {
               <ConnectWalletButton
                 img="images/ens-logo.png"
                 title=".ens domain"
-                loader={loading.trust}
-                clickEvent={() => helper.comingSoonNotification()}
+                loader={loading.ens}
+                clickEvent={() => spaceIdConnectHandler(loginTypes.ens)}
               />
               {/* <ConnectWalletButton
                 img="images/trust_wallet_logo.png"
