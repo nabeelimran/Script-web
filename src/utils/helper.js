@@ -222,7 +222,7 @@ export const detectBrowser = () => {
 
 export const isBnbUser = () => {
   const user = LocalServices.getServices('user') || null;
-  if(user && user.userName && user.userName.includes('.bnb')) {
+  if(user && user.userName && (user.userName.includes('.bnb') || user.userName.includes('.eth'))) {
     return true;
   }
   return false
@@ -237,5 +237,6 @@ export const loginTypes = {
   gmail:"GMAIL_SIGNUP",
   twitter:"TWITTER_SIGNUP",
   temple: "TEMPLE_SIGNUP",
-  trust: "TRUST_WALLET_SIGNUP"
+  trust: "TRUST_WALLET_SIGNUP",
+  ens: "ENS_SIGNUP"
 }

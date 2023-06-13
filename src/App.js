@@ -69,6 +69,7 @@ import ReactGA from 'react-ga';
 import { googleTrackingId } from "constants";
 import SignUpModal from "components/SignUpModal";
 import SignInModal from "components/SignInModal";
+import enwsData from './assets/xml/enws_sp_utc.xml'
 
 ReactGA.initialize(googleTrackingId);
 
@@ -89,7 +90,6 @@ function App() {
       dispatch(toggleNotification(false))
     }
   }, [isNotificationReceived])
-
 
   useEffect(() => {
     try {
