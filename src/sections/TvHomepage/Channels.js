@@ -260,7 +260,6 @@ function Channels({
     try {
       if(accountAddress) {
         const balance = await balanceOf(accountAddress);
-        debugger
         setContractBalance(balance);
       } else {
         setContractBalance(0);
