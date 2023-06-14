@@ -44,7 +44,6 @@ function EmailConfirmation() {
   const { isEmailModal } = useSelector(
     (state) => state.connectWalletModal_State
   );
-  const { accountAddress } = useSelector((state) => state.metamask_state);
   const modalRef = OutsideClickDetector(() =>
     dispatch(toggleEmailModalVisibility(false))
   );
@@ -65,14 +64,11 @@ function EmailConfirmation() {
       "login_modal"
     );
     
-    if (emailCheck.status == 200) {
+    if (emailCheck.status === 200) {
       if (
         emailCheck.data.data.isEmailExist === false &&
         emailCheck.data.data.isUserNameExist === false
       ) {
-        // const signeture = await MetamaskService.signatureRequest(
-        //   accountAddress
-        // );
         const signeture = "dummySignature";
         if (signeture) {
           if(data.referal) {
@@ -131,7 +127,12 @@ function EmailConfirmation() {
       <UpperRoot>
         <section
           ref={modalRef}
-          className={`fixed left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-[90%] max-w-[900px] h-[90vh] max-h-[600px] z-[10000000] overflow-x-hidden overflow-y-auto rounded-xl md:rounded-3xl py-6 md:py-10 px-8 md:px-14 hide-scrollbar transition-all duration-300 shadow-sm shadow-primary ${
+          className={
+            `fixed left-1/2 -translate-x-1/2 -translate-y-1/2
+            bg-black w-[90%] max-w-[900px] h-[90vh] max-h-[600px] z-[10000000]
+            overflow-x-hidden overflow-y-auto rounded-xl md:rounded-3xl py-6 md:py-10
+            px-8 md:px-14 hide-scrollbar transition-all duration-300 shadow-sm
+          shadow-primary ${
             isEmailModal
               ? "pointer-events-auto top-1/2 opacity-100"
               : "opacity-0 pointer-events-none top-[40%]"

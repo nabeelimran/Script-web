@@ -9,10 +9,6 @@ function EndRecaptchaPopup({ open, setOpen, selectedGlass, user }) {
   const [active, setActive] = useState(1);
   const [loader, setLoader] = useState(false);
 
-  const changeActiveState = (id) => {
-    setActive(id);
-  };
-
   const endSession = () => {
     setLoader(true);
     if(selectedGlass && selectedGlass.sessionId) {
@@ -37,14 +33,6 @@ function EndRecaptchaPopup({ open, setOpen, selectedGlass, user }) {
       setLoader(false);
     }
   }
-
-  const returnClasses = (id) => {
-    if (id === active) {
-      return "active-class";
-    } else {
-      return "";
-    }
-  };
 
   return (
     <PopupClose

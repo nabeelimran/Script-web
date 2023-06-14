@@ -11,7 +11,7 @@ const CountDown = ({ getProgressBarWidth }) => {
     const startDate = new Date("Mar 24, 2023").getTime();
 
     // Update the count down every 1 second
-    const x = setInterval(() => {
+    setInterval(() => {
       // Get today's date and time
       const now = new Date().getTime();
       const distanceWhole = countDownDate - startDate;
@@ -22,19 +22,19 @@ const CountDown = ({ getProgressBarWidth }) => {
       const minutesTotal = Math.floor(distanceWhole / (1000 * 60));
 
       // Time calculations for days, hours, minutes and seconds
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
+      const day = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hour = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const minute = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const second = Math.floor((distance % (1000 * 60)) / 1000);
       const progressBarWidth = Math.floor(
         ((minutesTotal - minutesLeft) / minutesTotal) * 100
       ); // increment order
-      setDays(days > 0 ? days : 0);
-      setHours(hours > 0 ? hours : 0);
-      setMinutes(minutes > 0 ? minutes : 0);
-      setSeconds(seconds > 0 ? seconds : 0);
+      setDays(day > 0 ? days : 0);
+      setHours(hour > 0 ? hours : 0);
+      setMinutes(minute > 0 ? minutes : 0);
+      setSeconds(second > 0 ? seconds : 0);
       getProgressBarWidth(progressBarWidth >= 100 ? 100 : progressBarWidth);
     });
   };
