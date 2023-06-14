@@ -49,7 +49,10 @@ function ChannelDetail() {
     useEffect(() => {
         const queryParam = new URLSearchParams(location.search);
         const channelId = queryParam.get('channelId');
-        getChannelByChannelId(channelId);
+        if(channelId) {
+            getChannelByChannelId(channelId);
+        }
+        
         if(token) {
             getPastSchedulingDetails(channelId);
             getSchedulingDetailsByDate(channelId);
