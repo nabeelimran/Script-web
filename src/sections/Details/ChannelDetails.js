@@ -47,6 +47,9 @@ function ChannelDetails({ channel, pastShows, currentShows }) {
   };
 
   const getChannelByChannelId = async () => {
+    if(!channel?.id) {
+      return;
+    }
     if(user?.userId) {
       return await Api.getChannelDetailByChannelId(
         channel.id,
