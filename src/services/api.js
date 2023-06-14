@@ -29,7 +29,6 @@ axios.interceptors.request.use(
       config.headers.delete("url");
       config.headers.delete("Authorization");
     }
-    // config.headers['Content-Type'] = 'application/json';
     return config;
   },
   (error) => {
