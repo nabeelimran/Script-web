@@ -10,6 +10,36 @@ const channels = [
   { img: "/images/channels/film.svg", className: "w-full lg:w-auto", id:1908 },
   { img: "/images/channels/irl.svg", className: "w-full lg:w-14", id:621730 },
   { img: "/images/channels/asmr.png", className: "w-full lg:w-20", id:727149 },
+  {
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686649580791-SOFAST_logo-assets_1080x1080_EN-EN_black-removebg-preview.png',
+    className: "w-full lg:w-20",
+    id:785352
+  },
+  {
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686649563899-Copy_of_Horizontal_logo.jpg',
+    className: "w-full lg:w-20",
+    id: 785357
+  },
+  {
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686649119608-SOFAST_logo-assets_1080x1080_EN-ES_black-removebg-preview.png',
+    className: "w-full lg:w-20",
+    id: 785353
+  },
+  {
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686138368812-LOL_TV.jpeg',
+    className: "w-full lg:w-20",
+    id: 785355
+  },
+  {
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686649247898-Copy_of_300x300_White_logo_LOGO-PRIME-FIGHT.png',
+    className: "w-full lg:w-20",
+    id: 785356
+  },
+  {
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686138272920-WESHORT.png',
+    className: "w-full lg:w-20",
+    id: 785354
+  }
 ];
 
 const ImgBox = ({ children }) => {

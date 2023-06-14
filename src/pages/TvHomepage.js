@@ -41,7 +41,7 @@ function TvHomepage() {
 		Api.getChannels("watch").then((res) => {
 			// for suffal channel
 			res.data.data.forEach((d, i) => {
-				if(d.id === 621730) {
+				if(d.id === 785352) {
 					res.data.data.splice(i, 1);
     				res.data.data.unshift(d);
 				}
