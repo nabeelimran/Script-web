@@ -118,11 +118,12 @@ function Navbar() {
                 />
                 <DropdownCard
                   teller="COMING SOON"
-                  to="https://partners.script.tv/#/partner/script"
+                  // to="https://partners.script.tv/#/partner/script"
                   title="dStorage"
                   subtitle="Save 70%+ on transcoding, transferring and storage costs from web2."
                   others={{
                     onclick: () => {
+                      helper.openLink('https://partners.script.tv/#/partner/script')
                       analyticsEventTracker('dStorage', 'click', window.location.pathname)
                     }
                   }}
