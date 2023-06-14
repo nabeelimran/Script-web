@@ -146,7 +146,11 @@ function Hero() {
               className="w-[180px] h-[40px] justify-center"
             />
             <Button
-              link={helper.generateTokenUrl("")}
+              buttonProps={{
+                onClick: () => {
+                  helper.openLink(helper.generateTokenUrl(""))
+                },
+              }}
               label="Launch app"
               arrowVisible={true}
               iconName="material-symbols:arrow-right-alt-rounded"
