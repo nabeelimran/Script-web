@@ -62,7 +62,12 @@ function Button({
       disabled={disable}
       className={`flex items-center text-xs sm:text-sm xl:text-base ${buttonHeightClassName} ${customizationClassName} ${className} ${variants[variant]} ${iconName === 'ion:shield-checkmark' ? "green-icon" : ""}`}
     >
-      {loader ? (<img src={LoaderGif} alt="loader" style={{height:"16px"}}/>) : null}
+      {loader ? 
+        (
+          <img src={LoaderGif} alt="loader" style={{height:"16px"}}/>
+        )
+        : null
+      }
       {LeftComponent && <LeftComponent />}
       <span className="text-inherit lh-1">{label}</span>
       {RightComponent && <RightComponent />}
