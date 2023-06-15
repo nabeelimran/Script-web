@@ -7,7 +7,7 @@ import HomePage from "pages/HomePage";
 import Marketplace from "pages/Marketplace";
 import PrivacyPolicy from "pages/PrivacyPolicy";
 import Research from "pages/Research";
-import Technology from "pages/Technology";
+// import Technology from "pages/Technology";
 import TermsAndConditions from "pages/TermsAndConditions";
 import TokenPage from "pages/TokenPage";
 import Validator from "pages/Validator";

@@ -103,9 +103,9 @@ export function gasPrice(txn) {
 }
 
 export function value(txn) {
-  let values = [
-    totalCoinValue(_.get(txn, dataInputs), 'SPAYWei'),
-    totalCoinValue(_.get(txn, dataInputs), 'SCPTWei')];
+  const values = [
+    totalCoinValue(_.get(txn, 'data.inputs'), 'SPAYWei'),
+    totalCoinValue(_.get(txn, 'data.inputs'), 'SCPTWei')];
   return _.chain(values)
     .map(v => v ? new BigNumber(v).dividedBy(WEI) : "0")
     .filter(Boolean)
