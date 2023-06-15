@@ -101,7 +101,7 @@ export function gasPrice(txn) {
 }
 
 export function value(txn) {
-  let values = [
+  const values = [
     totalCoinValue(_.get(txn, 'data.inputs'), 'SPAYWei'),
     totalCoinValue(_.get(txn, 'data.inputs'), 'SCPTWei')];
   return _.chain(values)
