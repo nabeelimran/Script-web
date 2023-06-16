@@ -53,7 +53,7 @@ function TvHomepage() {
 			// dispatch(playingVideo(res.data.data[0].liveShows[0]))
 			//dispatch(videoShows(res.data.data[0].liveShows[0]))
 			//setAdsList(res.data.data[0].adsData)
-		});
+		}).catch(err => console.log(err));
 	};
 
 	useEffect(() => {

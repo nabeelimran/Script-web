@@ -48,6 +48,8 @@ function ChannelsRow({ channels, channleDetails, changeVideo }) {
 							indexnum={index}
 							title={channel.title}
 							time={channel.time}
+							utcStartTimeString={channel.utcStartTimeString}
+							utcStopTimeString={channel.utcStopTimeString}
 							id={channel.id}
 							data={channel}
 						/>

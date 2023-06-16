@@ -9,7 +9,7 @@ import React, { useDeferredValue, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Api from "services/api";
 import { useDispatch, useSelector } from "react-redux";
-import { helper } from "utils/helper";
+import { helper, updateShowDetails } from "utils/helper";
 import { toggleGlassListingVisibility, toggleModalVisibility, updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
@@ -296,7 +296,7 @@ function Channels({
         res.data.data.forEach((d, i) => {
           if(d.id === 785352) {
             res.data.data.splice(i, 1);
-              res.data.data.unshift(d);
+            res.data.data.unshift(d);
           }
         });
         let chData = JSON.parse(JSON.stringify(res.data.data));
@@ -305,15 +305,36 @@ function Channels({
            (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
          );
          // if(liveshows && liveshows.length > 0) {
-           ch.liveShows = liveshows.map((show) => {
-             let res = getDurationInMinute(show.startTime, show.endTime);
-             show.duration = res.duration;
-             show.time = res.time;
-             show.selected = false;
-             show.isVisible = res.isVisible
-             return show;
-           });
-           return ch;
+          ch.liveShows = liveshows.map((show) => {
+            let res = getDurationInMinute(show.startTime, show.endTime);
+            show.duration = res.duration;
+            show.time = res.time;
+            show.selected = false;
+            const updatedShowDetail = updateShowDetails(show.channelId);
+             if(updatedShowDetail) {
+              if(updatedShowDetail.title) {
+                show.title = updatedShowDetail.title;
+              }
+
+              if(show.title = updatedShowDetail.description) {
+                show.description = updatedShowDetail.description;
+              }
+
+              if(updatedShowDetail.videoThumbnailUrl) {
+                show.videoThumbnailUrl = updatedShowDetail.videoThumbnailUrl;
+              }
+
+              if(updatedShowDetail.utcStartTimeString) {
+                show.utcStartTimeString = updatedShowDetail.utcStartTimeString;
+              }
+
+              if(updatedShowDetail.utcStopTimeString) {
+                show.utcStopTimeString = updatedShowDetail.utcStopTimeString;
+              }
+             }
+            return show;
+          });
+          return ch;
        
          // } 
        });
@@ -353,10 +374,10 @@ function Channels({
            }
           
          }
-         
+         console.log('set channels', chData);
          setChannels(chData);
   
-      });
+      }).catch(err => console.log(err));
     }
     
 
@@ -372,7 +393,7 @@ function Channels({
         res.data.data.forEach((d, i) => {
           if(d.id === 785352) {
             res.data.data.splice(i, 1);
-              res.data.data.unshift(d);
+            res.data.data.unshift(d);
           }
         });
         let chData = JSON.parse(JSON.stringify(res.data.data));
@@ -387,6 +408,20 @@ function Channels({
              show.time = res.time;
              show.selected = false;
              show.isVisible = res.isVisible
+             const updatedShowDetail = updateShowDetails(show.channelId);
+             if(updatedShowDetail) {
+              if(updatedShowDetail.title) {
+                show.title = updatedShowDetail.title;
+              }
+
+              if(show.title = updatedShowDetail.description) {
+                show.description = updatedShowDetail.description;
+              }
+
+              if(updatedShowDetail.videoThumbnailUrl) {
+                show.videoThumbnailUrl = updatedShowDetail.videoThumbnailUrl;
+              }
+             }
              return show;
            });
            return ch;
@@ -433,7 +468,7 @@ function Channels({
          setChannels(chData);
   
   
-      });
+      }).catch(err => console.log(err));
     }
     // }
   }, [latestChaneelID,latestVideIdx]);

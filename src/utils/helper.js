@@ -4,6 +4,8 @@ import LocalServices from 'services/LocalServices';
 import MixPanelService from 'services/mixPanelService';
 import bell from '../assets/bell.wav';
 import { ENV } from 'constants';
+import { xmlDataList } from 'assets/xml/xmlData';
+import XmlService from 'services/XmlService';
 export const helper = {
   formatLocalDate:(date) => moment(date).format("DD/MM/YYYY"),
   formatLocalTime:(date) => moment.utc(date).format("HH:mm"),
@@ -239,4 +241,61 @@ export const loginTypes = {
   temple: "TEMPLE_SIGNUP",
   trust: "TRUST_WALLET_SIGNUP",
   ens: "ENS_SIGNUP"
+}
+
+export const updateShowDetails = (channelId) => {
+  let result = {};
+  if(xmlDataList.filter((file) => file.id === channelId)?.length > 0) {
+    const jsonObject = XmlService.parseXmlToJson(xmlDataList.filter((file) => file.id === channelId)[0].xmlData);
+    const today = moment.utc();
+    const timeInMin = (today.hour() * 60) + today.minute()
+    jsonObject.children = jsonObject.children.map((child) => {
+      if(child.name === "programme") {
+        const startTimestamp = parseInt(child.attributes.start.split(' ')[0]);
+        const stopTimestamp = parseInt(child.attributes.stop.split(' ')[0]);
+        child.attributes.utcStart = moment(startTimestamp).utc();
+        child.attributes.utcStartTime = moment(startTimestamp).utc().hour() * 60 + moment(startTimestamp).utc().minute();
+        child.attributes.utcStartTimeString = `${moment(startTimestamp).utc().hour()}:${moment(startTimestamp).utc().minute()}`
+        child.attributes.utcStop = moment(stopTimestamp).utc();
+        child.attributes.utcStopTime = (moment(stopTimestamp).utc().hour() * 60) + moment(stopTimestamp).utc().minute();
+        child.attributes.utcStopTimeString = `${moment(stopTimestamp).utc().hour()}:${moment(stopTimestamp).utc().minute()}`
+      }
+      return child;
+    })
+
+    jsonObject.children.forEach((child) => {
+      if(child?.name === "programme" && child?.attributes?.utcStartTime >= timeInMin && child.attributes.utcStartTime <= timeInMin) {
+        result.utcStartTimeString = child?.attributes?.utcStartTimeString;
+        result.utcStopTimeString = child?.attributes?.utcStopTimeString;
+        child?.children.forEach((attr) => {
+          if(attr.name === 'title') {
+            result.title = attr.value
+          }
+          if(attr.name === 'desc') {
+            result.description = attr.value
+          }
+          if(attr.name === 'icon') {
+            result.videoThumbnailUrl = attr.attributes.src;
+          }
+        })
+      } else {
+        result.utcStartTimeString = child?.attributes?.utcStartTimeString;
+        result.utcStopTimeString = child?.attributes?.utcStopTimeString;
+        child?.children.forEach((attr) => {
+          if(attr.name === 'title') {
+            result.title = attr.value
+          }
+          if(attr.name === 'desc') {
+            result.description = attr.value
+          }
+          if(attr.name === 'icon') {
+            result.videoThumbnailUrl = attr.attributes.src;
+          }
+        })
+      }
+    });
+
+    return result.toString() !== '{}' ? result : null;
+  }
+  return null;
 }
