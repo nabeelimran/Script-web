@@ -597,97 +597,107 @@ function Channels({
 
   // this is used to save the watch time of user
   const saveVideoDuration = async (e) => {
-    if(!userId) {
-      return;
-    } 
-    const watchTime = (e.videoPlayTime - e.startTime) / 60
-    const req = {
-      "showId": latestVideo.id, // show id
-      "videoId": latestVideo.videoId, // video id
-      "userId": userId ? userId : 0,
-      "videoDuration": +watchTime.toFixed(),  // duration in minute
-      "glassId": selectedGlass && selectedGlass?.sessionId ? selectedGlass?.glassId : 0
-    };
-    
-    if (+watchTime.toFixed() > 0) {
-      helper.trackByMixpanel('Stream Duration', {
-        "channel_id": latestVideo.channelId,
-        "email" : user.email,
-        "channel_name" : latestVideo.channelName,
-        "stream_name" : latestVideo.title,
-        "stream_duration" : "STREAM_DURATION(Hours)",
-        "seconds" : req.videoDuration
-      })
-      let watchApiCalled=false;
-      if(!watchApiCalled){
-        watchApiCalled=true;
-      const res = await Api.saveVideoDuration(req, 'watch')
-      if (res && res.status === 200) {
-        console.log(res.data.data, 'save duration')
-        setSaveDurationRes(res.data.data)
-        if(res.data.data.drained) {
-          const endSessionReq = {
-            glassId: selectedGlass.glassId,
-            userId: user.userId,
-            sessionId: selectedGlass?.sessionId
-          }
-          Api.endSession(endSessionReq, 'watch').then((res) => {
-            if(res && res.status === 200) {
-              ToastMessage('Session has been ended successfully', true);
-              getSelectedGlass();
-            } else {
-              ToastMessage(res?.data?.message || 'Unable to close session');
+    try {
+      if(!userId) {
+        return;
+      } 
+      const watchTime = (e.videoPlayTime - e.startTime) / 60
+      const req = {
+        "showId": latestVideo.id, // show id
+        "videoId": latestVideo.videoId, // video id
+        "userId": userId ? userId : 0,
+        "videoDuration": +watchTime.toFixed(),  // duration in minute
+        "glassId": selectedGlass && selectedGlass?.sessionId ? selectedGlass?.glassId : 0
+      };
+      
+      if (+watchTime.toFixed() > 0) {
+        helper.trackByMixpanel('Stream Duration', {
+          "channel_id": latestVideo.channelId,
+          "email" : user.email,
+          "channel_name" : latestVideo.channelName,
+          "stream_name" : latestVideo.title,
+          "stream_duration" : "STREAM_DURATION(Hours)",
+          "seconds" : req.videoDuration
+        })
+        let watchApiCalled=false;
+        if(!watchApiCalled){
+          watchApiCalled=true;
+        const res = await Api.saveVideoDuration(req, 'watch')
+        if (res && res.status === 200) {
+          console.log(res.data.data, 'save duration')
+          setSaveDurationRes(res.data.data)
+          if(res.data.data.drained) {
+            const endSessionReq = {
+              glassId: selectedGlass.glassId,
+              userId: user.userId,
+              sessionId: selectedGlass?.sessionId
             }
-          })
+            Api.endSession(endSessionReq, 'watch').then((res) => {
+              if(res && res.status === 200) {
+                ToastMessage('Session has been ended successfully', true);
+                getSelectedGlass();
+              } else {
+                ToastMessage(res?.data?.message || 'Unable to close session');
+              }
+            })
+          }
+          watchApiCalled=false;
+        } else {
+          watchApiCalled=false;
         }
-        watchApiCalled=false;
-      } else {
-        watchApiCalled=false;
+        // .then((res) => {
+        //   if (res && res.status === 200) {
+        //     console.log(res.data.data, 'save duration')
+        //     setSaveDurationRes(res.data.data)
+        //     if(res.data.data.drained) {
+        //       const endSessionReq = {
+        //         glassId: selectedGlass.glassId,
+        //         userId: user.userId,
+        //         sessionId: selectedGlass?.sessionId
+        //       }
+        //       Api.endSession(endSessionReq, 'watch').then((res) => {
+        //         if(res && res.status === 200) {
+        //           ToastMessage('Session has been ended successfully', true);
+        //           getSelectedGlass();
+        //         } else {
+        //           ToastMessage(res?.data?.message || 'Unable to close session');
+        //         }
+        //       })
+        //     }
+        //     watchApiCalled=false;
+        //   } else {
+        //     watchApiCalled=false;
+        //   }
+        // })
       }
-      // .then((res) => {
-      //   if (res && res.status === 200) {
-      //     console.log(res.data.data, 'save duration')
-      //     setSaveDurationRes(res.data.data)
-      //     if(res.data.data.drained) {
-      //       const endSessionReq = {
-      //         glassId: selectedGlass.glassId,
-      //         userId: user.userId,
-      //         sessionId: selectedGlass?.sessionId
-      //       }
-      //       Api.endSession(endSessionReq, 'watch').then((res) => {
-      //         if(res && res.status === 200) {
-      //           ToastMessage('Session has been ended successfully', true);
-      //           getSelectedGlass();
-      //         } else {
-      //           ToastMessage(res?.data?.message || 'Unable to close session');
-      //         }
-      //       })
-      //     }
-      //     watchApiCalled=false;
-      //   } else {
-      //     watchApiCalled=false;
-      //   }
-      // })
+    }  
+    } catch (error) {
+      console.log(error); 
     }
-  }
+    
   }
 
   // this is used to save token earned by watch
   const setVideoTokenBalance = (action, token) => {
-    const authToken = sessionStorage.getItem('script-token'); // auth token
-    if (authToken) {
-      const req = {
-        userId: userId ? userId : 0,
-        amount: action === 'setDefault' ? 0 : token.toFixed(2)
-      };
-      Api.addVideoToken(req, 'watch').then((res) => {
-        if (res && res.success) {
-          // setVideoTokenEarned(token);
-        } else {
-          
-        }
-      })
+    try {
+      const authToken = sessionStorage.getItem('script-token'); // auth token
+      if (authToken) {
+        const req = {
+          userId: userId ? userId : 0,
+          amount: action === 'setDefault' ? 0 : token.toFixed(2)
+        };
+        Api.addVideoToken(req, 'watch').then((res) => {
+          if (res && res.success) {
+            // setVideoTokenEarned(token);
+          } else {
+            
+          }
+        })
+      }  
+    } catch (error) {
+      console.log(error, 'error');
     }
+    
   }
 
   // follow and unfollow channel code
