@@ -36,9 +36,6 @@ function ChannelsRow({ channels, channleDetails, changeVideo }) {
 			</div>
 			{currenChannels && (
 				<div className='flex space-x-3 overflow-x-scroll hide-scrollbar'>
-					{
-						currenChannels[0]?.channelId === 785354 && console.log('currenChannels', currenChannels)
-					}
 					{currenChannels.map((channel, index) => (
 						<ChannelBox
 							onClick={() => selector(channel)}

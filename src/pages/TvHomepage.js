@@ -46,7 +46,6 @@ function TvHomepage() {
     				res.data.data.unshift(d);
 				}
 			});
-			console.log(res.data.data);
 			setchannels(res.data.data);
 			setCurrentVideo(res.data.data[0].liveShows[0]);
 			// dispatch(allChannel(res.data.data))

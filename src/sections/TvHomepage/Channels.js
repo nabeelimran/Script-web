@@ -374,7 +374,6 @@ function Channels({
            }
           
          }
-         console.log('set channels', chData);
          setChannels(chData);
   
       }).catch(err => console.log(err));
