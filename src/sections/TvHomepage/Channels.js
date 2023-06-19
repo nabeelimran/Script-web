@@ -313,7 +313,7 @@ function Channels({
             const updatedShowDetail = updateShowDetails(show.channelId);
              if(updatedShowDetail) {
               if(updatedShowDetail.title) {
-                show.title = updatedShowDetail.title;
+                show.xmltitle = updatedShowDetail.title;
               }
 
               if(show.title = updatedShowDetail.description) {
@@ -411,7 +411,7 @@ function Channels({
              const updatedShowDetail = updateShowDetails(show.channelId);
              if(updatedShowDetail) {
               if(updatedShowDetail.title) {
-                show.title = updatedShowDetail.title;
+                show.xmltitle = updatedShowDetail.title;
               }
 
               if(show.title = updatedShowDetail.description) {

@@ -294,7 +294,6 @@ export const updateShowDetails = (channelId) => {
         })
       }
     });
-
     return result.toString() !== '{}' ? result : null;
   }
   return null;

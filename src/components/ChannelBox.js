@@ -53,7 +53,7 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data, utcStartTi
     >
       <div className="max-w-[200px] space-y-[2px] z-50">
         <p className="text-xs md:text-base font-medium two-lines-only">
-          {title}
+          {data?.xmltitle ? data.xmltitle : title}
         </p>
         {time && (
           <div className="flex items-center space-x-2">
