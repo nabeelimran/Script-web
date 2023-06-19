@@ -51,7 +51,7 @@ const closeModal=()=>{
          
           <div className="">
             <div className="mb-8 flex justify-between">
-            <p className=" text-lg mb-3">{data.title}</p>
+            <p className=" text-lg mb-3">{data?.title}</p>
               <a onClick={()=>closeModal()} className="text-lg ">&times;</a>
             </div>
 
@@ -64,9 +64,9 @@ const closeModal=()=>{
             </div>
 
             <div>
-              <p className=" text-lg ">{data.title}</p>
-              <p className="text-sm">{data.duration} min</p>
-              <p className="text-sm mb-3">{data.channelName}</p>
+              <p className=" text-lg ">{data?.title}</p>
+              <p className="text-sm">{data?.duration} min</p>
+              <p className="text-sm mb-3">{data?.channelName}</p>
               <Button
               type="submit"
               buttonProps={{
