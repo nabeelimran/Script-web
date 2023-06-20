@@ -157,7 +157,7 @@ function TvHomepage() {
 
 		if (channel && channel.length > 0) {
 			setAdsList(
-				channel.filter((c) => c.id === show?.channelId)[0].adsData || []
+				channel.filter((c) => c.id === show?.channelId)[0]?.adsData || []
 			);
 		}
 	};
