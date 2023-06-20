@@ -12,7 +12,7 @@ const NavbarLeft = () => {
         textClassName="text-sm"
         title={<>Script Network</>}
       /> */}
-      <Link to="/tv">
+      <Link to="/">
         <img
           src="images/logo-beta.svg"
           className="w-[100px] xl:w-[144px]"

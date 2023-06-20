@@ -51,22 +51,22 @@ const closeModal=()=>{
          
           <div className="">
             <div className="mb-8 flex justify-between">
-            <p className=" text-lg mb-3">{data.title}</p>
+            <p className=" text-lg mb-3">{data?.xmltitle ? data?.xmltitle : data?.title}</p>
               <a onClick={()=>closeModal()} className="text-lg ">&times;</a>
             </div>
 
             <div className="flex justify-center mb-7 h-[300px]">
             <img
-            src={data.videoThumbnailUrl}
+            src={data?.videoThumbnailUrl}
             className="object-fill"
             alt=""
           />
             </div>
 
             <div>
-              <p className=" text-lg ">{data.title}</p>
-              <p className="text-sm">{data.duration} min</p>
-              <p className="text-sm mb-3">{data.channelName}</p>
+              <p className=" text-lg ">{data?.xmltitle ? data?.xmltitle : data?.title}</p>
+              <p className="text-sm">{data?.duration} min</p>
+              <p className="text-sm mb-3">{data?.channelName}</p>
               <Button
               type="submit"
               buttonProps={{

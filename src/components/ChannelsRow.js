@@ -34,7 +34,6 @@ function ChannelsRow({ channels, channleDetails, changeVideo }) {
 					alt=''
 				/>
 			</div>
-
 			{currenChannels && (
 				<div className='flex space-x-3 overflow-x-scroll hide-scrollbar'>
 					{currenChannels.map((channel, index) => (
@@ -48,6 +47,8 @@ function ChannelsRow({ channels, channleDetails, changeVideo }) {
 							indexnum={index}
 							title={channel.title}
 							time={channel.time}
+							utcStartTimeString={channel.utcStartTimeString}
+							utcStopTimeString={channel.utcStopTimeString}
 							id={channel.id}
 							data={channel}
 						/>

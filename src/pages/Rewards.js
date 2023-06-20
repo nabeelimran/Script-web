@@ -75,48 +75,56 @@ function Rewards() {
   };
 
   const collectLoginReward = () => {
-    if(!user) {
-      ToastMessage('User not found');
-      setIsLoading(false);
-      return;
-    }
-    const req = {
-      "dayType": null,
-      "rewardCollected": true,
-      "rewardPoint": 10,
-      "rewardType": "DAILY_SIGN_IN",
-      "userId": user.userId,
-      "username": user.userName,
-      "walletAddress": user.walletAddress,
-    };
-    Api.collectDailyReward(req, "reward-management").then(async (res) => {
-      if(res && res.status === 200) {
-        helper.trackByMixpanel("Collect Reward Button Clicked",{
-          "day": new Date().getDay() + 1,
-          "email" : user.email,
-          "amount" : 10
-        })
-        dispatch(updateRewardPoint(true))
-        getTotalRewardPoints();
-        ToastMessage('Reward collected successfully', true);
+    try {
+      if(!user) {
+        ToastMessage('User not found');
         setIsLoading(false);
-      } else {
-        ToastMessage('Error while collecting reward');
+        return;
+      }
+      const req = {
+        "dayType": null,
+        "rewardCollected": true,
+        "rewardPoint": 10,
+        "rewardType": "DAILY_SIGN_IN",
+        "userId": user.userId,
+        "username": user.userName,
+        "walletAddress": user.walletAddress,
+      };
+      Api.collectDailyReward(req, "reward-management").then(async (res) => {
+        if(res && res.status === 200) {
+          helper.trackByMixpanel("Collect Reward Button Clicked",{
+            "day": new Date().getDay() + 1,
+            "email" : user.email,
+            "amount" : 10
+          })
+          dispatch(updateRewardPoint(true))
+          getTotalRewardPoints();
+          ToastMessage('Reward collected successfully', true);
+          setIsLoading(false);
+        } else {
+          ToastMessage('Error while collecting reward');
+          await addLog({
+            error: JSON.stringify(res),
+            type: 'collection-reward',
+            attempt: 'fail'
+          })
+          setIsLoading(false);
+        }
+      }).catch(async(err) => {
+        setIsLoading(false);
         await addLog({
-          error: JSON.stringify(res),
+          error: JSON.stringify(err),
           type: 'collection-reward',
           attempt: 'fail'
         })
-        setIsLoading(false);
-      }
-    }).catch(async(err) => {
-      setIsLoading(false);
-      await addLog({
-        error: JSON.stringify(err),
-        type: 'collection-reward',
+      })  
+    } catch (error) {
+      addLog({
+        error: JSON.stringify(error),
+        type: 'collection-reward-error',
         attempt: 'fail'
       })
-    })
+    }
   }
 
   useEffect(() => {

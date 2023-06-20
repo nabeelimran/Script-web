@@ -67,6 +67,9 @@ import { helper } from "utils/helper";
 import HowToBuy from "pages/HowToBuy";
 import ReactGA from 'react-ga';
 import { googleTrackingId } from "constants";
+import SignUpModal from "components/SignUpModal";
+import SignInModal from "components/SignInModal";
+import enwsData from './assets/xml/enws_sp_utc.xml'
 
 ReactGA.initialize(googleTrackingId);
 
@@ -87,7 +90,6 @@ function App() {
       dispatch(toggleNotification(false))
     }
   }, [isNotificationReceived])
-
 
   useEffect(() => {
     try {
@@ -119,6 +121,8 @@ function App() {
     <Router>
       <ScrollToTop />
       <ConnectWalletModal />
+      <SignUpModal />
+      <SignInModal />
       <TableModal />
       <GlassListingPopup />
       <EpgModal />
@@ -126,22 +130,23 @@ function App() {
       <CreatePasswordForm />
       <MetamaskChangeDetectionModal />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/how-to-buy" element={<HowToBuy/>} />
+        <Route path="/" element={<TvHomepage />} />
+        {/* <Route path="/token" element={<HomePage />} />
+        <Route path="/how-to-buy" element={<HowToBuy/>} /> */}
         <Route path="/coming-soon" element={<ComingSoon />} />
-        <Route path="/download" element={<Download />} />
+        {/* <Route path="/download" element={<Download />} />
         <Route path="/token" element={<TokenPage />} />
         <Route path="/calculator" element={<Calculator />} />
-        <Route path="/node" element={<Validator />} />
+        <Route path="/node" element={<Validator />} /> */}
         {/* <Route path="/technology" element={<Technology />} /> */}
-        <Route path="/research" element={<Research />} />
+        {/* <Route path="/research" element={<Research />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
-        <Route path="/faq" element={<FAQ />} />
+        <Route path="/faq" element={<FAQ />} /> */}
 
         {/* TV ROUTES */}
-        <Route path="/tv" element={<TvHomepage />} />
+        {/* <Route path="/tv" element={<TvHomepage />} /> */}
         <Route path="/all-channels" element={<AllChannels />} />
         <Route path="/all-categories" element={<AllCategory />} />
         <Route path="/channel-detail" element={<ChannelDetail />} />

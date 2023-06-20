@@ -8,8 +8,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   toggleEmailModalVisibility,
   toggleModalVisibility,
+  toggleSignUpModalVisibility,
+  toggleSignInModalVisibility,
 } from "redux/reducers/connectWalletModal_State";
-import { metamaskCred, setIsOkc, setIsTemple } from "redux/reducers/metamask_state";
+import {
+  metamaskCred,
+  setIsOkc,
+  setIsTemple,
+} from "redux/reducers/metamask_state";
 import BlackScreen from "./BlackScreen";
 import ConnectWalletButton from "./ConnectWalletButton";
 import SocialLoginCard from "./SocialLoginCard";
@@ -32,6 +38,11 @@ import { loginTypes } from "utils/helper";
 import { TempleWalletService } from "services/TempleWallet";
 import { addLog } from "services/logs/FbLogs";
 import analyticsEventTracker from "services/google-analytics/trackAnalyticsEvent";
+import TrustWalletService from "services/trustWallet";
+import { ethers } from "ethers";
+import BigNumber from "bignumber.js";
+import LoginButton from "./LoginButton";
+import EnsService from "services/ens";
 
 function ConnectWalletModal() {
   const navigate = useNavigate();
@@ -43,7 +54,9 @@ function ConnectWalletModal() {
     bnb: false,
     okc: false,
     bitgret: false,
-    temple: false
+    temple: false,
+    trust: false,
+    ens: false,
   });
   const { isModalVisible } = useSelector(
     (state) => state.connectWalletModal_State
@@ -65,40 +78,99 @@ function ConnectWalletModal() {
     helper.trackByMixpanel("Wallet Connect Button Clicked", {});
   };
 
-  const spaceIdConnectHandler = async () => {
+  const spaceIdConnectHandler = async (loginType) => {
     try {
       if (!window.ethereum) {
         ToastMessage("Install Metamask");
         return;
       }
-      setLoading({ ...loading, bnb: true });
-      dispatch(setIsOkc(loginTypes.bnb));
-      const walletAddress = await MetamaskService.connectHandler();
-      if (walletAddress) {
-        const chainId = await MetamaskService.getChainId();
-        if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
-          await MetamaskService.changeChain("spaceID");
-        }
-        Api.getSpaceIDName(walletAddress).then((res) => {
-          if (res && res.status === 200) {
-            if (!res?.data?.data?.name) {
-              addLog({
-                loginType: 'spaceId-login',
-                errror: JSON.stringify(res),
-                attempt: 'fail'
-              })
-              ToastMessage("BNB username is not found");
-              setLoading({ ...loading, bnb: false });
-              return;
+
+      if(loginType === loginTypes.bnb) {
+        setLoading({ ...loading, bnb: true });
+        dispatch(setIsOkc(loginTypes.bnb));
+        const walletAddress = await MetamaskService.connectHandler();
+        if (walletAddress) {
+          dispatch(metamaskCred(walletAddress));
+          const chainId = await MetamaskService.getChainId();
+          if (chainId && chainId !== metamaskNetwork.spaceID.chainId) {
+            await MetamaskService.changeChain("spaceID");
+          }
+          Api.getSpaceIDName(walletAddress).then((res) => {
+            if (res && res.status === 200) {
+              if (!res?.data?.data?.name) {
+                addLog({
+                  loginType: "spaceId-login",
+                  errror: JSON.stringify(res),
+                  attempt: "fail",
+                });
+                ToastMessage("BNB username is not found");
+                setLoading({ ...loading, bnb: false });
+                return;
+              }
+              const req = {
+                walletAddress,
+                username: res.data.data.name,
+                signupType: loginTypes.bnb,
+              };
+              Api.loginWithSpaceID(req).then((resp) => {
+                if (resp && resp.status === 200) {
+                  setLoading({ ...loading, bnb: false });
+                  ToastMessage(`${resp?.data?.message}`, true);
+                  dispatch(toggleModalVisibility(false));
+                  if (resp.data.data.authToken) {
+                    sessionStorage.setItem(
+                      "script-token",
+                      JSON.stringify(resp.data.data.authToken)
+                    );
+                  }
+  
+                  sessionStorage.setItem(
+                    "userInfo",
+                    JSON.stringify({
+                      email: resp?.data?.data?.email || "",
+                      userId: resp.data.data.id,
+                      walletAddress: resp.data.data.walletAddress,
+                      userName: resp.data.data.username,
+                    })
+                  );
+                  dispatch(isLogin(true));
+                  navigate({
+                    pathname: "/",
+                  });
+                } else {
+                  setLoading({ ...loading, bnb: false });
+                  addLog({
+                    loginType: "spaceId-login",
+                    errror: JSON.stringify(resp),
+                    attempt: "fail",
+                  });
+                  ToastMessage("Unable to login");
+                }
+              });
             }
+          });
+        }
+      } else {
+        setLoading({ ...loading, ens: true });
+        dispatch(setIsOkc(loginTypes.ens));
+        const walletAddress = await MetamaskService.connectHandler();
+        if (walletAddress) {
+          dispatch(metamaskCred(walletAddress));
+          const chainId = await MetamaskService.getChainId();
+          if (chainId && chainId !== metamaskNetwork.ethereumMainnet.chainId) {
+            await MetamaskService.changeChain("ethereumMainnet");
+          }
+
+          const ensUserName = await EnsService.resolveNameByAddress(walletAddress);
+          if(ensUserName && ensUserName.includes('.eth')) {
             const req = {
               walletAddress,
-              username: res.data.data.name,
-              signupType: loginTypes.bnb,
+              username: ensUserName,
+              signupType: loginTypes.ens,
             };
             Api.loginWithSpaceID(req).then((resp) => {
               if (resp && resp.status === 200) {
-                setLoading({ ...loading, bnb: false });
+                setLoading({ ...loading, ens: false });
                 ToastMessage(`${resp?.data?.message}`, true);
                 dispatch(toggleModalVisibility(false));
                 if (resp.data.data.authToken) {
@@ -107,7 +179,7 @@ function ConnectWalletModal() {
                     JSON.stringify(resp.data.data.authToken)
                   );
                 }
-  
+
                 sessionStorage.setItem(
                   "userInfo",
                   JSON.stringify({
@@ -119,37 +191,39 @@ function ConnectWalletModal() {
                 );
                 dispatch(isLogin(true));
                 navigate({
-                  pathname: "/tv",
+                  pathname: "/",
                 });
               } else {
-                setLoading({ ...loading, bnb: false });
+                setLoading({ ...loading, ens: false });
                 addLog({
-                  loginType: 'spaceId-login',
+                  loginType: "ens-login",
                   errror: JSON.stringify(resp),
-                  attempt: 'fail'
-                })
+                  attempt: "fail",
+                });
                 ToastMessage("Unable to login");
               }
             });
+          } else {
+            ToastMessage('Ens username not found');
+            setLoading({ ...loading, ens: false });
           }
-        });
-      }  
+        }
+      }
     } catch (error) {
-      setLoading({ ...loading, bnb: false });
+      setLoading({ ...loading, bnb: false, ens: false });
       addLog({
-        loginType: 'spaceId-login',
+        loginType: "spaceId-ens-login",
         errror: JSON.stringify(error),
-        attempt: 'fail'
-      })
+        attempt: "fail",
+      });
       ToastMessage(error?.response?.data?.message || "Something went wrong.");
     }
-    
   };
 
   const metaMaskHandler = async (loginType = "metamask") => {
     try {
       let okcBalance;
-      analyticsEventTracker('wallet-login', 'click', window.location.pathname)
+      analyticsEventTracker("wallet-login", "click", window.location.pathname);
       if (loginType === loginTypes.okc) {
         setLoading({ ...loading, okc: true });
         helper.trackByMixpanel("OKC Button Clicked", {});
@@ -159,28 +233,95 @@ function ConnectWalletModal() {
       } else if (loginType === loginTypes.temple) {
         setLoading({ ...loading, temple: true });
         helper.trackByMixpanel("Temple Button Clicked", {});
+      } else if (loginType === loginTypes.trust) {
+        setLoading({ ...loading, trust: true });
+        helper.trackByMixpanel("Trust Button Clicked", {});
+      } else if(loginType === loginTypes.ens) {
+        setLoading({ ...loading, ens: true });
+        helper.trackByMixpanel("ENS Button Clicked", {});
       } else {
         setLoading({ ...loading, metamask: true });
         dispatch(setIsOkc(loginTypes.metamask));
         helper.trackByMixpanel("Metamask Button Clicked", {});
       }
       let accAddres;
-      if(loginType === loginTypes.temple) {
+      if (loginType === loginTypes.temple) {
         if (await TempleWalletService.isCheckWalletPlugin()) {
           const templeWalletData = await TempleWalletService.connectWallet();
           if (templeWalletData?.isSuccess) {
             accAddres = templeWalletData.data.accountPkh;
-            setLoading({...loading, temple: false})
+            setLoading({ ...loading, temple: false });
           } else {
-            ToastMessage(templeWalletData?.data?.message || 'User rejected')
-            setLoading({...loading, temple: false})
+            ToastMessage(templeWalletData?.data?.message || "User rejected");
+            setLoading({ ...loading, temple: false });
             return;
           }
         } else {
           ToastMessage("Temple Wallet not installed");
-          setLoading({...loading, temple: false})
+          setLoading({ ...loading, temple: false });
           return;
         }
+      } else if (loginType === loginTypes.trust) {
+        const trustWalletProvider = TrustWalletService.checkTrustWallet();
+        if (!trustWalletProvider) {
+          ToastMessage("Trust wallet not installed");
+          setLoading({ ...loading, trust: false });
+          return;
+        }
+        const etherProvider = new ethers.providers.Web3Provider(
+          trustWalletProvider
+        );
+        const accountsArr = await window.trustwallet.request({
+          method: "eth_requestAccounts",
+        });
+
+        if (accountsArr && accountsArr.length > 0) {
+          accAddres = accountsArr[0];
+        }
+
+        setLoading({ ...loading, trust: false });
+        const balance = new BigNumber(
+          await etherProvider.getBalance(accAddres)
+        );
+        console.log(accAddres, "account", balance, "bal");
+      } else if (loginType === loginTypes.ens) {
+        if (!window.ethereum) {
+          ToastMessage("Install Metamask");
+          setLoading(false);
+          return false;
+        }
+        const chainId = await MetamaskService.getChainId();
+        if (chainId && chainId !== metamaskNetwork.ethereumMainnet.chainId) {
+          try {
+            await MetamaskService.changeChain("ethereumMainnet");
+          } catch (error) {
+            setLoading({
+              ...loading,
+              okc: false,
+              metamask: false,
+              bitgret: false,
+              ens: false
+            });
+
+            console.log(error);
+          }
+        }
+        accAddres = await MetamaskService.connectHandler();
+        const ensName = await EnsService.resolveNameByAddress(accAddres);
+        if(ensName && ensName.includes('.eth')) {
+
+        } else {
+          setLoading({
+            ...loading,
+            okc: false,
+            metamask: false,
+            bitgret: false,
+            ens: false
+          });
+          ToastMessage(`ENS Username not found`);
+          return;
+        }
+        
       } else {
         if (!window.ethereum) {
           ToastMessage("Install Metamask");
@@ -189,7 +330,6 @@ function ConnectWalletModal() {
         }
         accAddres = await MetamaskService.connectHandler();
       }
-      
 
       if (accAddres) {
         dispatch(metamaskCred(accAddres));
@@ -236,7 +376,6 @@ function ConnectWalletModal() {
         }
         if (loginType === loginTypes.temple) {
           dispatch(setIsTemple(loginTypes.temple));
-          
         }
         const isUser = await Api.getUserDetailsByWalletAddress(
           accAddres,
@@ -317,7 +456,7 @@ function ConnectWalletModal() {
               dispatch(isLogin(true));
               if (!location.pathname.includes("/dashboard"))
                 navigate({
-                  pathname: "/tv",
+                  pathname: "/",
                 });
             }
           } else {
@@ -333,27 +472,33 @@ function ConnectWalletModal() {
               walletAddress: accAddres,
               errror: JSON.stringify(loginW),
               reqBoyd: JSON.stringify(resObj),
-              attempt: 'fail'
-            })
+              attempt: "fail",
+            });
           }
         }
       }
     } catch (error) {
       console.log(error);
-      setLoading({ ...loading, okc: false, metamask: false, bitgret: false });
+      setLoading({
+        ...loading,
+        okc: false,
+        metamask: false,
+        bitgret: false,
+        temple: false,
+        trust: false,
+      });
       ToastMessage(error?.response?.data?.message || "Somthing went wrong");
       await addLog({
         loginType: loginType,
         errror: JSON.stringify(error),
-        attempt: 'fail'
-      })
+        attempt: "fail",
+      });
     }
   };
 
-
   const googleLoginHandler = () => {
     helper.trackByMixpanel("Google Social Button Clicked", {});
-    analyticsEventTracker('social-login', 'click', window.location.pathname)
+    analyticsEventTracker("social-login", "click", window.location.pathname);
     dispatch(setIsOkc(loginTypes.gmail));
     const provider = new GoogleAuthProvider();
     signInWithPopup(getAuth(auth), provider)
@@ -415,7 +560,7 @@ function ConnectWalletModal() {
                 dispatch(toggleModalVisibility(false));
                 dispatch(isLogin(true));
                 navigate({
-                  pathname: "/tv",
+                  pathname: "/",
                 });
               }
             } else {
@@ -423,7 +568,9 @@ function ConnectWalletModal() {
             }
           })
           .catch((err) => {
-            ToastMessage(err?.response?.data?.message || "Something went wrong");
+            ToastMessage(
+              err?.response?.data?.message || "Something went wrong"
+            );
           });
       })
       .catch(async (err) => {
@@ -432,89 +579,89 @@ function ConnectWalletModal() {
           err?.error?.message || "Google login popup closed by user."
         );
         await addLog({
-          loginType: 'social-login',
+          loginType: "social-login",
           errror: JSON.stringify(err),
-          attempt: 'fail'
-        })
+          attempt: "fail",
+        });
       });
   };
 
-  const twitterLoginHandler = (e) => {
-    helper.trackByMixpanel("Twitter Social Button Clicked", {});
-    helper.comingSoonNotification(e);
-    return;
-    dispatch(setIsOkc(loginTypes.twitter));
-    const provider = new TwitterAuthProvider();
-    signInWithPopup(getAuth(auth), provider)
-      .then((res) => {
-        const gBody = {
-          login: {
-            email: res?.user?.email,
-            device: "Web",
-            password: "",
-            browser: detectBrowser(),
-            signupType: loginTypes.gmail,
-          },
-          user: {
-            email: res?.user?.email,
-            userName: res?.user?.displayName,
-            accountLocked: false,
-            confirmPassword: "",
-            firstName: "",
-            id: 0,
-            lastName: "",
-            middleName: "",
-            password: "",
-            roleId: 0,
-            roleName: "",
-            status: "ACTIVE",
-          },
-        };
-        Api.solicalLogin(gBody, "login-modal")
-          .then((loginRes) => {
-            if (loginRes && loginRes.status === 200) {
-              if (loginRes.data.message === "Please verify your account.") {
-                ToastMessage(`${loginRes.data.message}`);
-                navigate({
-                  pathname: "/verify-account",
-                  search: `?email=${loginRes.data.data.email}`,
-                });
-              } else {
-                ToastMessage(`${loginRes.data.message}`, true);
-                if (loginRes.data.data.authToken) {
-                  sessionStorage.setItem(
-                    "script-token",
-                    JSON.stringify(loginRes.data.data.authToken)
-                  );
-                }
+  // const twitterLoginHandler = (e) => {
+  //   helper.trackByMixpanel("Twitter Social Button Clicked", {});
+  //   helper.comingSoonNotification(e);
+  //   return;
+  //   dispatch(setIsOkc(loginTypes.twitter));
+  //   const provider = new TwitterAuthProvider();
+  //   signInWithPopup(getAuth(auth), provider)
+  //     .then((res) => {
+  //       const gBody = {
+  //         login: {
+  //           email: res?.user?.email,
+  //           device: "Web",
+  //           password: "",
+  //           browser: detectBrowser(),
+  //           signupType: loginTypes.gmail,
+  //         },
+  //         user: {
+  //           email: res?.user?.email,
+  //           userName: res?.user?.displayName,
+  //           accountLocked: false,
+  //           confirmPassword: "",
+  //           firstName: "",
+  //           id: 0,
+  //           lastName: "",
+  //           middleName: "",
+  //           password: "",
+  //           roleId: 0,
+  //           roleName: "",
+  //           status: "ACTIVE",
+  //         },
+  //       };
+  //       Api.solicalLogin(gBody, "login-modal")
+  //         .then((loginRes) => {
+  //           if (loginRes && loginRes.status === 200) {
+  //             if (loginRes.data.message === "Please verify your account.") {
+  //               ToastMessage(`${loginRes.data.message}`);
+  //               navigate({
+  //                 pathname: "/verify-account",
+  //                 search: `?email=${loginRes.data.data.email}`,
+  //               });
+  //             } else {
+  //               ToastMessage(`${loginRes.data.message}`, true);
+  //               if (loginRes.data.data.authToken) {
+  //                 sessionStorage.setItem(
+  //                   "script-token",
+  //                   JSON.stringify(loginRes.data.data.authToken)
+  //                 );
+  //               }
 
-                sessionStorage.setItem(
-                  "userInfo",
-                  JSON.stringify({
-                    email: loginRes.data.data.email,
-                    userId: loginRes.data.data.id,
-                    walletAddress: loginRes.data.data.walletAddress,
-                    userName: loginRes.data.data.userName,
-                  })
-                );
-                dispatch(toggleModalVisibility(false));
-                dispatch(isLogin(true));
-                navigate({
-                  pathname: "/tv",
-                });
-              }
-            } else {
-              ToastMessage(loginRes?.data?.message || "Something went wrong");
-            }
-          })
-          .catch((err) => {
-            ToastMessage(err?.error?.message || "Something went wrong");
-          });
-      })
-      .catch((err) => {
-        ToastMessage(err?.error?.message || "Something went wrong");
-      });
-  };
+  //               sessionStorage.setItem(
+  //                 "userInfo",
+  //                 JSON.stringify({
+  //                   email: loginRes.data.data.email,
+  //                   userId: loginRes.data.data.id,
+  //                   walletAddress: loginRes.data.data.walletAddress,
+  //                   userName: loginRes.data.data.userName,
+  //                 })
+  //               );
+  //               dispatch(toggleModalVisibility(false));
+  //               dispatch(isLogin(true));
+  //               navigate({
+  //                 pathname: "/",
+  //               });
+  //             }
+  //           } else {
+  //             ToastMessage(loginRes?.data?.message || "Something went wrong");
+  //           }
+  //         })
+  //         .catch((err) => {
+  //           ToastMessage(err?.error?.message || "Something went wrong");
+  //         });
+  //     })
+  //     .catch((err) => {
+  //       ToastMessage(err?.error?.message || "Something went wrong");
+  //     });
+  // };
 
   return (
     <>
@@ -523,7 +670,7 @@ function ConnectWalletModal() {
       <UpperRoot>
         <section
           ref={modalRef}
-          className={`fixed left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-[90%] max-w-[900px] h-[90vh] max-h-[600px] z-[10000000] overflow-x-hidden overflow-y-auto rounded-xl md:rounded-3xl py-6 md:py-10 px-8 md:px-14 hide-scrollbar transition-all duration-300 shadow-sm shadow-primary ${
+          className={`fixed left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-[90%] max-w-[900px] h-[90vh] max-h-[600px] z-[10000000] overflow-x-hidden overflow-y-auto rounded-xl md:rounded-3xl py-3 md:py-3 px-8 md:px-14 hide-scrollbar transition-all duration-300 shadow-sm shadow-primary ${
             isModalVisible
               ? "pointer-events-auto top-1/2 opacity-100"
               : "opacity-0 pointer-events-none top-[40%]"
@@ -531,21 +678,22 @@ function ConnectWalletModal() {
         >
           {/*  */}
           <div className="lg:w-[50%]">
-            <div className="mb-8">
-              <Title className="font-medium mb-3">Welcome Back</Title>
+            <div className="mb-4">
+              <Title className="font-medium mb-1">Welcome Back</Title>
               <p className="text-sm">
                 We knew you’d come around, sign in for endless entertainment
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 mb-7">
+            <div className="grid md:grid-cols-3 gap-3 mb-3 sm:grid-cols-2">
               <ConnectWalletButton
                 clickEvent={() => metaMaskHandler(loginTypes.metamask)}
                 img="images/metamask.svg"
                 loader={loading.metamask}
                 title={
                   <>
-                    Metamask <span className="text-sm">( Recommended )</span>
+                    Metamask
+                    {/* <span className="text-sm">( Recommended )</span> */}
                   </>
                 }
               />
@@ -553,7 +701,7 @@ function ConnectWalletModal() {
                 img="images/space_id_logo.png"
                 title=".bnb Domain"
                 loader={loading.bnb}
-                clickEvent={spaceIdConnectHandler}
+                clickEvent={() => spaceIdConnectHandler(loginTypes.bnb)}
               />
               <ConnectWalletButton
                 img="images/okc_logo.png"
@@ -573,9 +721,47 @@ function ConnectWalletModal() {
                 loader={loading.temple}
                 clickEvent={() => metaMaskHandler(loginTypes.temple)}
               />
+              <ConnectWalletButton
+                img="images/ens-logo.png"
+                title=".ens domain"
+                loader={loading.ens}
+                clickEvent={() => spaceIdConnectHandler(loginTypes.ens)}
+              />
+              {/* <ConnectWalletButton
+                img="images/trust_wallet_logo.png"
+                title="Trust Wallet"
+                loader={loading.trust}
+                clickEvent={() => metaMaskHandler(loginTypes.trust)}
+              /> */}
             </div>
-
-            <div>
+            <hr style={{color: '#999'}} />
+            <div className="my-4">
+              <div className="mb-2 mt-4">
+                <LoginButton
+                  img="images/google-logo.png"
+                  title="Continue with Google"
+                  clickEvent={googleLoginHandler}
+                />
+              </div>
+              <div className="my-4">
+                <LoginButton
+                  img="images/email.png"
+                  title="Sign in via Email Address"
+                  clickEvent={() => {
+                    dispatch(toggleSignInModalVisibility(true));
+                  }}
+                />
+                <p
+                  onClick={() => {
+                    dispatch(toggleSignUpModalVisibility(true));
+                  }}
+                  className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
+                >
+                  Sign up via Email Address
+                </p>
+              </div>
+            </div>
+            {/* <div>
               <p className="text-center text-sm mb-5">Social</p>
 
               <div className="flex items-center justify-center space-x-4 mb-2">
@@ -583,18 +769,26 @@ function ConnectWalletModal() {
                   title="Google"
                   click={googleLoginHandler}
                   icon={<Icon icon="ri:google-fill" className="text-lg" />}
-                />
+                /> */}
                 {/* <SocialLoginCard
                   title="Twitter"
                   click={twitterLoginHandler}
                   icon={<Icon icon="mdi:twitter" className="text-lg" />}
                 /> */}
-              </div>
+              {/* </div> */}
 
               {/* <Link to="/" className="block w-fit mx-auto text-center text-sm">
                 Forget Password?
               </Link> */}
-            </div>
+              {/* <p
+                onClick={() => {
+                  dispatch(toggleSignUpModalVisibility(true));
+                }}
+                className="block w-fit mx-auto text-center text-sm cursor-pointer mt-4"
+              >
+                Sign Up
+              </p>
+            </div> */}
           </div>
 
           <img

@@ -48,20 +48,28 @@ function Welcome({}) {
 
   const goToTVSite = () =>
     navigate({
-      pathname: "/tv",
+      pathname: "/",
     });
 
   const getBalance = async () => {
-    if (accountAddress) {
-      const balance = await balanceOf(accountAddress);
-      setBalance(Number(balance));
+    try {
+      if (accountAddress) {
+        const balance = await balanceOf(accountAddress);
+        setBalance(Number(balance));
+      }  
+    } catch (error) {
+      setBalance(0);
     }
   };
 
   const handleCheckVoucherApproval = async () => {
-    if (accountAddress) {
-      let approval = await checkVoucherApproval(accountAddress);
-      setIsVoucherApproved(approval);
+    try {
+      if (accountAddress) {
+        let approval = await checkVoucherApproval(accountAddress);
+        setIsVoucherApproved(approval);
+      }  
+    } catch (error) {
+      setIsVoucherApproved(false);
     }
   };
   const checkVoucherEligibility = async () => {

@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tv generator-info-name="Evrideo EPG generator">
+<channel id="1000000466.com">
+<display-name>LOL-TV</display-name>
+</channel>
+<programme channel="1000000466.com" start="20230614100341 +0000" stop="20230614115847 +0000">
+<title lang="EN">Frank &amp; Fearless</title>
+<desc lang="EN">An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5a5deb6b-e1c3-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Frank&Fearless_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Frank &amp; Fearless|DESCRIPTION_EN=An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Leon Schuster|Themba Ntuli|Kenneth Nkosi |director=Gray Hofmeyr|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230614120147 +0000" stop="20230614133715 +0000">
+<title lang="EN">Killer Drag Queens On Dope</title>
+<desc lang="EN">Killer Drag Queens on Dope! is the wild story of Ginger &amp; Coco, two dolls with a little secret... They&apos;re contract killers who work for a one-eyed lunatic named Uncle A. Half the cutthroats in town are trying to kill them, the other half are trying to sleep with them and Uncle A is just getting started. Ginger is hell on heels. Coco never met a drug she didn&apos;t like. Together, they&apos;re Killer Drag Queens on Dope!</desc>
+<category lang="en">Movie</category>
+<length units="minutes">95</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_82eb6f33-095a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_KillerDragQueensOnDope_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Killer Drag Queens On Dope|DESCRIPTION_EN=Killer Drag Queens on Dope! is the wild story of Ginger &amp; Coco, two dolls with a little secret... They&apos;re contract killers who work for a one-eyed lunatic named Uncle A. Half the cutthroats in town are trying to kill them, the other half are trying to sleep with them and Uncle A is just getting started. Ginger is hell on heels. Coco never met a drug she didn&apos;t like. Together, they&apos;re Killer Drag Queens on Dope!|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Alexis Arquette|Omar Alexis|Mario Diaz|director=Lazer Saric|Language=English|release_date=2003|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230614134158 +0000" stop="20230614150532 +0000">
+<title lang="EN">A Raunchy Christmas Story </title>
+<desc lang="EN">A group of pre millennials arrange a secluded Christmas party to put the romance back into a friend&apos;s life. Unbeknownst to them an investigative journalist and a soviet spy are among the guests.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">83</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5d7ad94b-f259-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_A RaunchyChristmasStory_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=A Raunchy Christmas Story |DESCRIPTION_EN=A group of pre millennials arrange a secluded Christmas party to put the romance back into a friend&apos;s life. Unbeknownst to them an investigative journalist and a soviet spy are among the guests.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Chris Andersen|Tanya Anderson|Jeremy Biltz|director=Maria Biltz|Monica Biltz|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230614150913 +0000" stop="20230614165350 +0000">
+<title lang="EN">Nothing Good Ever Happens</title>
+<desc lang="EN">Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.</desc>
+<category lang="en"/>
+<length units="minutes">104</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_3a2e2b1a-09c0-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_NothingGoodEverHappens_Movie_English2</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Nothing Good Ever Happens|DESCRIPTION_EN=Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Al Snow, Erin R. Ryan, Marylee Osborne|director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230614165828 +0000" stop="20230614185415 +0000">
+<title lang="EN">Girl Wired</title>
+<desc lang="EN">A Preteen computer prodigy, Glory Vinci has invented an advance medical Ray Gun that can read peoples moods. She has been offered a scholarship to a prestigious Graduate Research Program but her guardian Grandfather is in gambling trouble with the mob, and when the nefarious gangsters discover that Gloria&apos;s device can read and steal anybody&apos;s credit card number they want to get their hands on it. They use Gloria&apos;s grandfathers debt to gain leverage on the family to make her give it to them but Gloria&apos;s just to smart for the mobsters and turns the tables on them. A hilarious family comedy.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_bae71899-075a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_GirlWired_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Girl Wired|DESCRIPTION_EN=A Preteen computer prodigy, Glory Vinci has invented an advance medical Ray Gun that can read peoples moods. She has been offered a scholarship to a prestigious Graduate Research Program but her guardian Grandfather is in gambling trouble with the mob, and when the nefarious gangsters discover that Gloria&apos;s device can read and steal anybody&apos;s credit card number they want to get their hands on it. They use Gloria&apos;s grandfathers debt to gain leverage on the family to make her give it to them but Gloria&apos;s just to smart for the mobsters and turns the tables on them. A hilarious family comedy.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Serenity Starr Foreman|Tom Noga|Garnet Harding|Howie Johnson|James Chavez|Molly Lajoie|Xander Simmons|director=Tony D&apos;Alessio|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230614185847 +0000" stop="20230614204817 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">109</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ddeba77d-116f-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230614205157 +0000" stop="20230614222015 +0000">
+<title lang="EN">Running Funny</title>
+<desc lang="EN">Michael and Eddie are two broke college graduates who rent an “apartment” from Stan, a cantankerous blind war veteran. As they begin their tumultuous transition into the real world they quickly discover that finding a job will be a lot harder than securing their degrees. Running Funny is a heartfelt comedy about the transitions we all make, and the lessons we all must learn. </desc>
+<category lang="en">Movie</category>
+<length units="minutes">88</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_edb86c0b-015a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Running Funny_ Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Running Funny|DESCRIPTION_EN=Michael and Eddie are two broke college graduates who rent an “apartment” from Stan, a cantankerous blind war veteran. As they begin their tumultuous transition into the real world they quickly discover that finding a job will be a lot harder than securing their degrees. Running Funny is a heartfelt comedy about the transitions we all make, and the lessons we all must learn. |EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Louis Zorich|Max Osinski|Gene Gallerano |director=Anthony Grippa|Language=English|release_date=2007|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230614222438 +0000" stop="20230614235223 +0000">
+<title lang="EN">Cabin Of Errors</title>
+<desc lang="EN">When Peter and Nancy split up, their friends plot to bring them back together during a trip to a cabin. But things go hilariously wrong when Peter comes to the cabin with other intentions. A modern day romantic comedy farce.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">87</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ba12d510-a7b8-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_CabinOfErrors_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Cabin Of Errors|DESCRIPTION_EN=When Peter and Nancy split up, their friends plot to bring them back together during a trip to a cabin. But things go hilariously wrong when Peter comes to the cabin with other intentions. A modern day romantic comedy farce.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Isaac Platizky, Laura Chaneski|director=Sean Feuer|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230614235646 +0000" stop="20230615012504 +0000">
+<title lang="EN">Running Funny</title>
+<desc lang="EN">Michael and Eddie are two broke college graduates who rent an “apartment” from Stan, a cantankerous blind war veteran. As they begin their tumultuous transition into the real world they quickly discover that finding a job will be a lot harder than securing their degrees. Running Funny is a heartfelt comedy about the transitions we all make, and the lessons we all must learn. </desc>
+<category lang="en">Movie</category>
+<length units="minutes">88</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_edb86c0b-015a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Running Funny_ Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Running Funny|DESCRIPTION_EN=Michael and Eddie are two broke college graduates who rent an “apartment” from Stan, a cantankerous blind war veteran. As they begin their tumultuous transition into the real world they quickly discover that finding a job will be a lot harder than securing their degrees. Running Funny is a heartfelt comedy about the transitions we all make, and the lessons we all must learn. |EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Louis Zorich|Max Osinski|Gene Gallerano |director=Anthony Grippa|Language=English|release_date=2007|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615012947 +0000" stop="20230615031916 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">109</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ddeba77d-116f-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615032359 +0000" stop="20230615045927 +0000">
+<title lang="EN">Killer Drag Queens On Dope</title>
+<desc lang="EN">Killer Drag Queens on Dope! is the wild story of Ginger &amp; Coco, two dolls with a little secret... They&apos;re contract killers who work for a one-eyed lunatic named Uncle A. Half the cutthroats in town are trying to kill them, the other half are trying to sleep with them and Uncle A is just getting started. Ginger is hell on heels. Coco never met a drug she didn&apos;t like. Together, they&apos;re Killer Drag Queens on Dope!</desc>
+<category lang="en">Movie</category>
+<length units="minutes">95</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_82eb6f33-095a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_KillerDragQueensOnDope_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Killer Drag Queens On Dope|DESCRIPTION_EN=Killer Drag Queens on Dope! is the wild story of Ginger &amp; Coco, two dolls with a little secret... They&apos;re contract killers who work for a one-eyed lunatic named Uncle A. Half the cutthroats in town are trying to kill them, the other half are trying to sleep with them and Uncle A is just getting started. Ginger is hell on heels. Coco never met a drug she didn&apos;t like. Together, they&apos;re Killer Drag Queens on Dope!|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Alexis Arquette|Omar Alexis|Mario Diaz|director=Lazer Saric|Language=English|release_date=2003|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615050410 +0000" stop="20230615062744 +0000">
+<title lang="EN">A Raunchy Christmas Story </title>
+<desc lang="EN">A group of pre millennials arrange a secluded Christmas party to put the romance back into a friend&apos;s life. Unbeknownst to them an investigative journalist and a soviet spy are among the guests.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">83</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5d7ad94b-f259-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_A RaunchyChristmasStory_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=A Raunchy Christmas Story |DESCRIPTION_EN=A group of pre millennials arrange a secluded Christmas party to put the romance back into a friend&apos;s life. Unbeknownst to them an investigative journalist and a soviet spy are among the guests.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Chris Andersen|Tanya Anderson|Jeremy Biltz|director=Maria Biltz|Monica Biltz|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615063227 +0000" stop="20230615081705 +0000">
+<title lang="EN">Nothing Good Ever Happens </title>
+<desc lang="EN">Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">104</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_b91fe4ae-045a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_NothingGoodEverHappens_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Nothing Good Ever Happens |DESCRIPTION_EN=Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Al Snow|Erin R. Ryan|Marylee Osborne |director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615082143 +0000" stop="20230615101112 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">109</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_0491915f-08c0-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English2</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615101535 +0000" stop="20230615121041 +0000">
+<title lang="EN">Frank &amp; Fearless</title>
+<desc lang="EN">An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5a5deb6b-e1c3-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Frank&Fearless_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Frank &amp; Fearless|DESCRIPTION_EN=An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Leon Schuster|Themba Ntuli|Kenneth Nkosi |director=Gray Hofmeyr|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615121421 +0000" stop="20230615134425 +0000">
+<title lang="EN">Beach Babe Bingo</title>
+<desc lang="EN">The water is cool and the girls are hot, what more could you want? Jump in and go for a swim, then wash up for a fun night out because the beach has nothing but sand and babes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">90</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_7ff5f3f4-f659-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_BeachBabeBingo_Art_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Beach Babe Bingo|DESCRIPTION_EN=The water is cool and the girls are hot, what more could you want? Jump in and go for a swim, then wash up for a fun night out because the beach has nothing but sand and babes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Dawna Lee Heising|Vida Ghaffari|Brinke Stevens|director=Dustin Ferguson| Henrique Couto|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615134904 +0000" stop="20230615154410 +0000">
+<title lang="EN">Frank &amp; Fearless</title>
+<desc lang="EN">An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5a5deb6b-e1c3-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Frank&Fearless_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Frank &amp; Fearless|DESCRIPTION_EN=An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Leon Schuster|Themba Ntuli|Kenneth Nkosi |director=Gray Hofmeyr|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615154848 +0000" stop="20230615171633 +0000">
+<title lang="EN">Cabin Of Errors</title>
+<desc lang="EN">When Peter and Nancy split up, their friends plot to bring them back together during a trip to a cabin. But things go hilariously wrong when Peter comes to the cabin with other intentions. A modern day romantic comedy farce.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">87</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ba12d510-a7b8-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_CabinOfErrors_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Cabin Of Errors|DESCRIPTION_EN=When Peter and Nancy split up, their friends plot to bring them back together during a trip to a cabin. But things go hilariously wrong when Peter comes to the cabin with other intentions. A modern day romantic comedy farce.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Isaac Platizky, Laura Chaneski|director=Sean Feuer|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615172013 +0000" stop="20230615184736 +0000">
+<title lang="EN">The Malibu Beach Vampires</title>
+<desc lang="EN">In addition to the traditional bloodsuckers, there are other kinds of vampires, you know...such as some politicians, military people, and evangelists.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">87</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_2df0a564-0a5a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_MalibuBeachVampires_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=The Malibu Beach Vampires|DESCRIPTION_EN=In addition to the traditional bloodsuckers, there are other kinds of vampires, you know...such as some politicians, military people, and evangelists.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Kelly Galindo|Christina Walker|Mimi Spivak|director=Francis Patrick Creighton|Language=English|release_date=1991|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615185117 +0000" stop="20230615202644 +0000">
+<title lang="EN">Killer Drag Queens On Dope</title>
+<desc lang="EN">Killer Drag Queens on Dope! is the wild story of Ginger &amp; Coco, two dolls with a little secret... They&apos;re contract killers who work for a one-eyed lunatic named Uncle A. Half the cutthroats in town are trying to kill them, the other half are trying to sleep with them and Uncle A is just getting started. Ginger is hell on heels. Coco never met a drug she didn&apos;t like. Together, they&apos;re Killer Drag Queens on Dope!</desc>
+<category lang="en">Movie</category>
+<length units="minutes">95</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_82eb6f33-095a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_KillerDragQueensOnDope_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Killer Drag Queens On Dope|DESCRIPTION_EN=Killer Drag Queens on Dope! is the wild story of Ginger &amp; Coco, two dolls with a little secret... They&apos;re contract killers who work for a one-eyed lunatic named Uncle A. Half the cutthroats in town are trying to kill them, the other half are trying to sleep with them and Uncle A is just getting started. Ginger is hell on heels. Coco never met a drug she didn&apos;t like. Together, they&apos;re Killer Drag Queens on Dope!|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Alexis Arquette|Omar Alexis|Mario Diaz|director=Lazer Saric|Language=English|release_date=2003|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615202945 +0000" stop="20230615215730 +0000">
+<title lang="EN">Cabin Of Errors</title>
+<desc lang="EN">When Peter and Nancy split up, their friends plot to bring them back together during a trip to a cabin. But things go hilariously wrong when Peter comes to the cabin with other intentions. A modern day romantic comedy farce.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">87</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ba12d510-a7b8-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_CabinOfErrors_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Cabin Of Errors|DESCRIPTION_EN=When Peter and Nancy split up, their friends plot to bring them back together during a trip to a cabin. But things go hilariously wrong when Peter comes to the cabin with other intentions. A modern day romantic comedy farce.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Isaac Platizky, Laura Chaneski|director=Sean Feuer|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615220110 +0000" stop="20230615235616 +0000">
+<title lang="EN">Frank &amp; Fearless</title>
+<desc lang="EN">An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5a5deb6b-e1c3-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Frank&Fearless_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Frank &amp; Fearless|DESCRIPTION_EN=An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Leon Schuster|Themba Ntuli|Kenneth Nkosi |director=Gray Hofmeyr|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230615235916 +0000" stop="20230616015503 +0000">
+<title lang="EN">Girl Wired</title>
+<desc lang="EN">A Preteen computer prodigy, Glory Vinci has invented an advance medical Ray Gun that can read peoples moods. She has been offered a scholarship to a prestigious Graduate Research Program but her guardian Grandfather is in gambling trouble with the mob, and when the nefarious gangsters discover that Gloria&apos;s device can read and steal anybody&apos;s credit card number they want to get their hands on it. They use Gloria&apos;s grandfathers debt to gain leverage on the family to make her give it to them but Gloria&apos;s just to smart for the mobsters and turns the tables on them. A hilarious family comedy.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_bae71899-075a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_GirlWired_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Girl Wired|DESCRIPTION_EN=A Preteen computer prodigy, Glory Vinci has invented an advance medical Ray Gun that can read peoples moods. She has been offered a scholarship to a prestigious Graduate Research Program but her guardian Grandfather is in gambling trouble with the mob, and when the nefarious gangsters discover that Gloria&apos;s device can read and steal anybody&apos;s credit card number they want to get their hands on it. They use Gloria&apos;s grandfathers debt to gain leverage on the family to make her give it to them but Gloria&apos;s just to smart for the mobsters and turns the tables on them. A hilarious family comedy.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Serenity Starr Foreman|Tom Noga|Garnet Harding|Howie Johnson|James Chavez|Molly Lajoie|Xander Simmons|director=Tony D&apos;Alessio|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616015947 +0000" stop="20230616033342 +0000">
+<title lang="EN">References</title>
+<desc lang="EN">A newly divorced woman seeking a fresh start in a small town falls for a handsome local with a "player" reputation. In order to prove his feelings for her are real, she sets out to verify his resume of past girlfriends.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">93</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_9add5a90-c2b8-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_References_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=References|DESCRIPTION_EN=A newly divorced woman seeking a fresh start in a small town falls for a handsome local with a "player" reputation. In order to prove his feelings for her are real, she sets out to verify his resume of past girlfriends.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Michael Jason Allen|Laney Smith|director=Michael Jason Allen|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616033722 +0000" stop="20230616050056 +0000">
+<title lang="EN">A Raunchy Christmas Story </title>
+<desc lang="EN">A group of pre millennials arrange a secluded Christmas party to put the romance back into a friend&apos;s life. Unbeknownst to them an investigative journalist and a soviet spy are among the guests.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">83</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5d7ad94b-f259-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_A RaunchyChristmasStory_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=A Raunchy Christmas Story |DESCRIPTION_EN=A group of pre millennials arrange a secluded Christmas party to put the romance back into a friend&apos;s life. Unbeknownst to them an investigative journalist and a soviet spy are among the guests.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Chris Andersen|Tanya Anderson|Jeremy Biltz|director=Maria Biltz|Monica Biltz|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616050528 +0000" stop="20230616065458 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">109</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ddeba77d-116f-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616065838 +0000" stop="20230616084315 +0000">
+<title lang="EN">Nothing Good Ever Happens</title>
+<desc lang="EN">Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.</desc>
+<category lang="en"/>
+<length units="minutes">104</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_3a2e2b1a-09c0-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_NothingGoodEverHappens_Movie_English2</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Nothing Good Ever Happens|DESCRIPTION_EN=Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Al Snow, Erin R. Ryan, Marylee Osborne|director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616084753 +0000" stop="20230616103723 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">109</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_0491915f-08c0-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English2</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616104103 +0000" stop="20230616122540 +0000">
+<title lang="EN">Nothing Good Ever Happens </title>
+<desc lang="EN">Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">104</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_b91fe4ae-045a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_NothingGoodEverHappens_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Nothing Good Ever Happens |DESCRIPTION_EN=Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Al Snow|Erin R. Ryan|Marylee Osborne |director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616122920 +0000" stop="20230616140736 +0000">
+<title lang="EN">Making Out</title>
+<desc lang="EN">A screenwriter and self-proclaimed hopeless romantic meets a beautiful actress and they decide to act out their ideal love scenarios. When real feelings start to jump off the page and become real will he tell her how he feels? They&apos;re in love, probably.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">98</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_4a660776-fe59-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_MakingOut_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Making Out|DESCRIPTION_EN=A screenwriter and self-proclaimed hopeless romantic meets a beautiful actress and they decide to act out their ideal love scenarios. When real feelings start to jump off the page and become real will he tell her how he feels? They&apos;re in love, probably.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Titus Young Wolverton|Erin R. Ryan|Geoff Burkman|director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616141116 +0000" stop="20230616160622 +0000">
+<title lang="EN">Frank &amp; Fearless</title>
+<desc lang="EN">An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5a5deb6b-e1c3-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Frank&Fearless_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Frank &amp; Fearless|DESCRIPTION_EN=An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Leon Schuster|Themba Ntuli|Kenneth Nkosi |director=Gray Hofmeyr|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616160922 +0000" stop="20230616182640 +0000">
+<title lang="EN">1st Bite</title>
+<desc lang="EN">Set on a tropical island in Thailand, the strange plight of a beleaguered chef who, while romancing a mysterious woman, discovers the diabolical Zen of cooking. Following a near death escape, he returns to Montreal and falls hard for the woman of his life who unfortunately craves only his cooking but not his loving. Worse still, strange things surfacing around him indicate that his journey to the Far East has deep, divine implications. The stage is set for him to take the 1st bite of true love and end the cycle of suffering for all involved.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">137</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_502d31b4-0b5a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_1st_Bite_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=1st Bite|DESCRIPTION_EN=Set on a tropical island in Thailand, the strange plight of a beleaguered chef who, while romancing a mysterious woman, discovers the diabolical Zen of cooking. Following a near death escape, he returns to Montreal and falls hard for the woman of his life who unfortunately craves only his cooking but not his loving. Worse still, strange things surfacing around him indicate that his journey to the Far East has deep, divine implications. The stage is set for him to take the 1st bite of true love and end the cycle of suffering for all involved.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=David La Haye|Leah Pinsent|Napakpapha Nakprasitte|director=Hunt Hoe|Language=English|release_date=2006|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616183122 +0000" stop="20230616202052 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">109</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ddeba77d-116f-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616202515 +0000" stop="20230616220952 +0000">
+<title lang="EN">Nothing Good Ever Happens</title>
+<desc lang="EN">Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.</desc>
+<category lang="en"/>
+<length units="minutes">104</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_3a2e2b1a-09c0-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_NothingGoodEverHappens_Movie_English2</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Nothing Good Ever Happens|DESCRIPTION_EN=Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Al Snow, Erin R. Ryan, Marylee Osborne|director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230616221430 +0000" stop="20230617000936 +0000">
+<title lang="EN">Frank &amp; Fearless</title>
+<desc lang="EN">An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5a5deb6b-e1c3-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Frank&Fearless_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Frank &amp; Fearless|DESCRIPTION_EN=An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Leon Schuster|Themba Ntuli|Kenneth Nkosi |director=Gray Hofmeyr|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617001316 +0000" stop="20230617014039 +0000">
+<title lang="EN">The Malibu Beach Vampires</title>
+<desc lang="EN">In addition to the traditional bloodsuckers, there are other kinds of vampires, you know...such as some politicians, military people, and evangelists.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">87</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_2df0a564-0a5a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_MalibuBeachVampires_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=The Malibu Beach Vampires|DESCRIPTION_EN=In addition to the traditional bloodsuckers, there are other kinds of vampires, you know...such as some politicians, military people, and evangelists.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Kelly Galindo|Christina Walker|Mimi Spivak|director=Francis Patrick Creighton|Language=English|release_date=1991|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617014523 +0000" stop="20230617040240 +0000">
+<title lang="EN">1st Bite</title>
+<desc lang="EN">Set on a tropical island in Thailand, the strange plight of a beleaguered chef who, while romancing a mysterious woman, discovers the diabolical Zen of cooking. Following a near death escape, he returns to Montreal and falls hard for the woman of his life who unfortunately craves only his cooking but not his loving. Worse still, strange things surfacing around him indicate that his journey to the Far East has deep, divine implications. The stage is set for him to take the 1st bite of true love and end the cycle of suffering for all involved.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">137</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_502d31b4-0b5a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_1st_Bite_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=1st Bite|DESCRIPTION_EN=Set on a tropical island in Thailand, the strange plight of a beleaguered chef who, while romancing a mysterious woman, discovers the diabolical Zen of cooking. Following a near death escape, he returns to Montreal and falls hard for the woman of his life who unfortunately craves only his cooking but not his loving. Worse still, strange things surfacing around him indicate that his journey to the Far East has deep, divine implications. The stage is set for him to take the 1st bite of true love and end the cycle of suffering for all involved.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=David La Haye|Leah Pinsent|Napakpapha Nakprasitte|director=Hunt Hoe|Language=English|release_date=2006|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617040620 +0000" stop="20230617053406 +0000">
+<title lang="EN">Cabin Of Errors</title>
+<desc lang="EN">When Peter and Nancy split up, their friends plot to bring them back together during a trip to a cabin. But things go hilariously wrong when Peter comes to the cabin with other intentions. A modern day romantic comedy farce.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">87</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ba12d510-a7b8-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_CabinOfErrors_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Cabin Of Errors|DESCRIPTION_EN=When Peter and Nancy split up, their friends plot to bring them back together during a trip to a cabin. But things go hilariously wrong when Peter comes to the cabin with other intentions. A modern day romantic comedy farce.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Isaac Platizky, Laura Chaneski|director=Sean Feuer|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617053844 +0000" stop="20230617072813 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">109</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ddeba77d-116f-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617073256 +0000" stop="20230617090019 +0000">
+<title lang="EN">The Malibu Beach Vampires</title>
+<desc lang="EN">In addition to the traditional bloodsuckers, there are other kinds of vampires, you know...such as some politicians, military people, and evangelists.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">87</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_2df0a564-0a5a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_MalibuBeachVampires_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=The Malibu Beach Vampires|DESCRIPTION_EN=In addition to the traditional bloodsuckers, there are other kinds of vampires, you know...such as some politicians, military people, and evangelists.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Kelly Galindo|Christina Walker|Mimi Spivak|director=Francis Patrick Creighton|Language=English|release_date=1991|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617090359 +0000" stop="20230617103754 +0000">
+<title lang="EN">References</title>
+<desc lang="EN">A newly divorced woman seeking a fresh start in a small town falls for a handsome local with a "player" reputation. In order to prove his feelings for her are real, she sets out to verify his resume of past girlfriends.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">93</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_9add5a90-c2b8-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_References_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=References|DESCRIPTION_EN=A newly divorced woman seeking a fresh start in a small town falls for a handsome local with a "player" reputation. In order to prove his feelings for her are real, she sets out to verify his resume of past girlfriends.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Michael Jason Allen|Laney Smith|director=Michael Jason Allen|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617104054 +0000" stop="20230617134444 +0000">
+<title lang="EN">Beach Babe Bingo</title>
+<desc lang="EN">The water is cool and the girls are hot, what more could you want? Jump in and go for a swim, then wash up for a fun night out because the beach has nothing but sand and babes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">183</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_7ff5f3f4-f659-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_BeachBabeBingo_Art_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Beach Babe Bingo|DESCRIPTION_EN=The water is cool and the girls are hot, what more could you want? Jump in and go for a swim, then wash up for a fun night out because the beach has nothing but sand and babes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Dawna Lee Heising|Vida Ghaffari|Brinke Stevens|director=Dustin Ferguson| Henrique Couto|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617134926 +0000" stop="20230617153404 +0000">
+<title lang="EN">Nothing Good Ever Happens </title>
+<desc lang="EN">Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">104</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_b91fe4ae-045a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_NothingGoodEverHappens_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Nothing Good Ever Happens |DESCRIPTION_EN=Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Al Snow|Erin R. Ryan|Marylee Osborne |director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617153744 +0000" stop="20230617171559 +0000">
+<title lang="EN">Making Out</title>
+<desc lang="EN">A screenwriter and self-proclaimed hopeless romantic meets a beautiful actress and they decide to act out their ideal love scenarios. When real feelings start to jump off the page and become real will he tell her how he feels? They&apos;re in love, probably.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">98</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_4a660776-fe59-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_MakingOut_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Making Out|DESCRIPTION_EN=A screenwriter and self-proclaimed hopeless romantic meets a beautiful actress and they decide to act out their ideal love scenarios. When real feelings start to jump off the page and become real will he tell her how he feels? They&apos;re in love, probably.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Titus Young Wolverton|Erin R. Ryan|Geoff Burkman|director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617172037 +0000" stop="20230617185432 +0000">
+<title lang="EN">References</title>
+<desc lang="EN">A newly divorced woman seeking a fresh start in a small town falls for a handsome local with a "player" reputation. In order to prove his feelings for her are real, she sets out to verify his resume of past girlfriends.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">93</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_d3e3d10e-005a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_References__Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=References|DESCRIPTION_EN=A newly divorced woman seeking a fresh start in a small town falls for a handsome local with a "player" reputation. In order to prove his feelings for her are real, she sets out to verify his resume of past girlfriends.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Michael Jason Allen|Laney Smith|director=Michael Jason Allen|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617185812 +0000" stop="20230617204249 +0000">
+<title lang="EN">Nothing Good Ever Happens </title>
+<desc lang="EN">Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">104</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_b91fe4ae-045a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_NothingGoodEverHappens_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Nothing Good Ever Happens |DESCRIPTION_EN=Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Al Snow|Erin R. Ryan|Marylee Osborne |director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617204733 +0000" stop="20230617222128 +0000">
+<title lang="EN">References</title>
+<desc lang="EN">A newly divorced woman seeking a fresh start in a small town falls for a handsome local with a "player" reputation. In order to prove his feelings for her are real, she sets out to verify his resume of past girlfriends.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">93</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_d3e3d10e-005a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_References__Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=References|DESCRIPTION_EN=A newly divorced woman seeking a fresh start in a small town falls for a handsome local with a "player" reputation. In order to prove his feelings for her are real, she sets out to verify his resume of past girlfriends.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Michael Jason Allen|Laney Smith|director=Michael Jason Allen|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230617222508 +0000" stop="20230618001437 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">109</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ddeba77d-116f-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230618001817 +0000" stop="20230618021323 +0000">
+<title lang="EN">Frank &amp; Fearless</title>
+<desc lang="EN">An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5a5deb6b-e1c3-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Frank&Fearless_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Frank &amp; Fearless|DESCRIPTION_EN=An aging reprobate, a rural boy, a large dog and an orphaned baby rhino set out to stop the rhino slaughter. Their quest buffets them between high comedy and searing tragedy, until they end up an inspiration and a conscience to a world in need of heroes.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Leon Schuster|Themba Ntuli|Kenneth Nkosi |director=Gray Hofmeyr|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230618021623 +0000" stop="20230618035151 +0000">
+<title lang="EN">Killer Drag Queens On Dope</title>
+<desc lang="EN">Killer Drag Queens on Dope! is the wild story of Ginger &amp; Coco, two dolls with a little secret... They&apos;re contract killers who work for a one-eyed lunatic named Uncle A. Half the cutthroats in town are trying to kill them, the other half are trying to sleep with them and Uncle A is just getting started. Ginger is hell on heels. Coco never met a drug she didn&apos;t like. Together, they&apos;re Killer Drag Queens on Dope!</desc>
+<category lang="en">Movie</category>
+<length units="minutes">95</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_82eb6f33-095a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_KillerDragQueensOnDope_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Killer Drag Queens On Dope|DESCRIPTION_EN=Killer Drag Queens on Dope! is the wild story of Ginger &amp; Coco, two dolls with a little secret... They&apos;re contract killers who work for a one-eyed lunatic named Uncle A. Half the cutthroats in town are trying to kill them, the other half are trying to sleep with them and Uncle A is just getting started. Ginger is hell on heels. Coco never met a drug she didn&apos;t like. Together, they&apos;re Killer Drag Queens on Dope!|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Alexis Arquette|Omar Alexis|Mario Diaz|director=Lazer Saric|Language=English|release_date=2003|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230618035635 +0000" stop="20230618052009 +0000">
+<title lang="EN">A Raunchy Christmas Story </title>
+<desc lang="EN">A group of pre millennials arrange a secluded Christmas party to put the romance back into a friend&apos;s life. Unbeknownst to them an investigative journalist and a soviet spy are among the guests.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">83</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_5d7ad94b-f259-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_A RaunchyChristmasStory_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=A Raunchy Christmas Story |DESCRIPTION_EN=A group of pre millennials arrange a secluded Christmas party to put the romance back into a friend&apos;s life. Unbeknownst to them an investigative journalist and a soviet spy are among the guests.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Chris Andersen|Tanya Anderson|Jeremy Biltz|director=Maria Biltz|Monica Biltz|Language=English|release_date=2018|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230618052349 +0000" stop="20230618070826 +0000">
+<title lang="EN">Nothing Good Ever Happens</title>
+<desc lang="EN">Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.</desc>
+<category lang="en"/>
+<length units="minutes">104</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_3a2e2b1a-09c0-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_NothingGoodEverHappens_Movie_English2</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Nothing Good Ever Happens|DESCRIPTION_EN=Neil who is a painter and graphic designer, on a morning just like any other morning his girlfriend Amanda leaves him and moves out of their house (don&apos;t worry, it&apos;s a rental.) That morning Neil tries to cope as best he knows how, but in a strange turn of events he ends up shooting back a glass of bleach. He wakes up to suicide watch and court appointed therapy as well as the empty void Amanda left. Now Neil has to decide what he can do to feel better about himself. Should he get Amanda back? Make his old friends like him again? Confront his estranged father? Eat a ton of Chinese food? Or maybe he should just finish his latest goddamned painting.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Al Snow, Erin R. Ryan, Marylee Osborne|director=Henrique Couto|Language=English|release_date=2016|subtitle_en=|episode_system=|genre=Comedy|category_en=|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230618071304 +0000" stop="20230618090851 +0000">
+<title lang="EN">Girl Wired</title>
+<desc lang="EN">A Preteen computer prodigy, Glory Vinci has invented an advance medical Ray Gun that can read peoples moods. She has been offered a scholarship to a prestigious Graduate Research Program but her guardian Grandfather is in gambling trouble with the mob, and when the nefarious gangsters discover that Gloria&apos;s device can read and steal anybody&apos;s credit card number they want to get their hands on it. They use Gloria&apos;s grandfathers debt to gain leverage on the family to make her give it to them but Gloria&apos;s just to smart for the mobsters and turns the tables on them. A hilarious family comedy.</desc>
+<category lang="en">Movie</category>
+<length units="minutes">115</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_bae71899-075a-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_GirlWired_Movie_Eng</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Girl Wired|DESCRIPTION_EN=A Preteen computer prodigy, Glory Vinci has invented an advance medical Ray Gun that can read peoples moods. She has been offered a scholarship to a prestigious Graduate Research Program but her guardian Grandfather is in gambling trouble with the mob, and when the nefarious gangsters discover that Gloria&apos;s device can read and steal anybody&apos;s credit card number they want to get their hands on it. They use Gloria&apos;s grandfathers debt to gain leverage on the family to make her give it to them but Gloria&apos;s just to smart for the mobsters and turns the tables on them. A hilarious family comedy.|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Serenity Starr Foreman|Tom Noga|Garnet Harding|Howie Johnson|James Chavez|Molly Lajoie|Xander Simmons|director=Tony D&apos;Alessio|Language=English|release_date=2019|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+<programme channel="1000000466.com" start="20230618091324 +0000" stop="20230618100800 +0000">
+<title lang="EN">Gumshoe</title>
+<desc lang="EN">When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?</desc>
+<category lang="en">Movie</category>
+<length units="minutes">54</length>
+<icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/a7e707fb-ff41-ec11-90f1-a0423f495001/thumb/thumb_ddeba77d-116f-ec11-90f1-a0423f495001.png" width="320" height="180"/>
+<episode-num system="assetID">LOL_TV_Comedy_Gumshoe_Movie_English</episode-num>
+<episode-num system="evrideo-media-metadata">TITLE_EN=Gumshoe|DESCRIPTION_EN=When hopeless New Orleans private eye Biff Basham is hired by a seductive nightclub singer to pay off a blackmailer, he thinks his money worries are over. But when his client&apos;s husband is murdered, he is plunged into a dangerous world of organized crime and espionage in this zany comedy. Can Biff unmask the killer before he becomes the next victim?|EventType=|ThumbnailUrl=|VideoUrl=|rating=NR|cast=Arnie Pantoja|Rachele Brooke Smith|Casey Groves|director=Michael Webb|Language=English|release_date=2017|subtitle_en=|episode_system=|genre=Comedy|category_en=Movie|Season=|AVAILABILITY_END=|AVAILABILITY_START=|EPISODE=|EPISODE TITLE=|LONG_DESCRIPTION_EN=|RESOLUTION=|RUN IN USA=|RUN TIME=|TYPE=</episode-num>
+<rating>
+<value>NR</value>
+</rating>
+</programme>
+</tv>

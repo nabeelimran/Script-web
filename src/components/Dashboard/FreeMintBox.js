@@ -82,39 +82,44 @@ const FreeMintBox = ({ accountAddress, balance }) => {
   };
 
   const checkFreeMint = async () => {
-    if (accountAddress) {
-      let freeclaimed = await isFreeClaimed(accountAddress.toLowerCase());
-      if (freeclaimed) {
-        setFreeMintEligible(false);
-        return;
-      }
-
-      let passBalance = await getGlassPassBalance(accountAddress);
-      console.log(
-        "passBalance",
-        passBalance,
-        "points",
-        points,
-        "accountAddress"
-      );
-
-      let mintTx = await getFreeGlassTxn(accountAddress.toLowerCase());
-      console.log("mintTx", mintTx);
-      if (
-        mintTx?.signature &&
-        !mintTx?.executed &&
-        mintTx.type === "FREE_MINT"
-      ) {
-        setFreeMintData(mintTx);
-        setFreeMintEligible(true);
-        return;
-      }
-      if (passBalance || points >= 2000) {
-        setFreeMintEligible(true);
-      } else {
-        setFreeMintEligible(false);
-      }
+    try {
+      if (accountAddress) {
+        let freeclaimed = await isFreeClaimed(accountAddress.toLowerCase());
+        if (freeclaimed) {
+          setFreeMintEligible(false);
+          return;
+        }
+  
+        let passBalance = await getGlassPassBalance(accountAddress);
+        console.log(
+          "passBalance",
+          passBalance,
+          "points",
+          points,
+          "accountAddress"
+        );
+  
+        let mintTx = await getFreeGlassTxn(accountAddress.toLowerCase());
+        console.log("mintTx", mintTx);
+        if (
+          mintTx?.signature &&
+          !mintTx?.executed &&
+          mintTx.type === "FREE_MINT"
+        ) {
+          setFreeMintData(mintTx);
+          setFreeMintEligible(true);
+          return;
+        }
+        if (passBalance || points >= 2000) {
+          setFreeMintEligible(true);
+        } else {
+          setFreeMintEligible(false);
+        }
+      }  
+    } catch (error) {
+      setFreeMintEligible(false);
     }
+    
   };
 
   const ResolveIsApproved = () => {
@@ -122,10 +127,17 @@ const FreeMintBox = ({ accountAddress, balance }) => {
   };
 
   const checkIsApproved = async () => {
-    if (accountAddress) {
-      const isAllowed = await checkApproval(accountAddress);
-      setIsApproved(isAllowed);
+    try {
+      if (accountAddress) {
+        const isAllowed = await checkApproval(accountAddress);
+        setIsApproved(isAllowed);
+      } else {
+        setIsApproved(false);
+      }  
+    } catch (error) {
+      setIsApproved(false);
     }
+    
   };
 
   const handleApprove = async () => {

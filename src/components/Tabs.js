@@ -7,7 +7,7 @@ function Tabs({ pastShows, currentShows, tabsOptions }) {
   return (
     <div>
       <ul
-        className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none pl-0 mb-8 border-b mx-6 w-2/5"
+        className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none pl-0 mb-8 border-b mx-6 w-auto md:w-2/5"
         id="tabs-tab"
         role="tablist"
       >
@@ -16,7 +16,7 @@ function Tabs({ pastShows, currentShows, tabsOptions }) {
               <li className="nav-item" role="presentation" key={index}>
                 <a
                   href={option.tagId}
-                  className="nav-link block capitalize mr-8 py-5 hover:no-underline focus:text-primary"
+                  className="nav-link block capitalize mr-8 py-2 md:py-5 hover:no-underline focus:text-primary"
                   id="tabs-home-tab"
                   data-bs-toggle="pill"
                   data-bs-target={option.tagId}

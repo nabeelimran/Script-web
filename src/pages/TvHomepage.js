@@ -38,26 +38,27 @@ function TvHomepage() {
   const [latestChaneelID, setLatestChaneelID] = useState(null);
   const [latestVideIdx, setLatestVideoIdx] = useState(null);
 
-  let userId = LocalServices.getServices("user")?.userId || null;
-  const { refreshChannel } = useSelector((state) => state.refresh_state);
-  const getChannels = () => {
-    Api.getChannels("watch").then((res) => {
-      // for suffal channel
-      res.data.data.forEach((d, i) => {
-        if (d.id === 621730) {
-          res.data.data.splice(i, 1);
+	let userId = LocalServices.getServices("user")?.userId || null;
+	const { refreshChannel } = useSelector(
+		(state) => state.refresh_state
+	);
+	const getChannels = () => {
+		Api.getChannels("watch").then((res) => {
+			// for suffal channel
+			res.data.data.forEach((d, i) => {
+				if(d.id === 785352) {
+					res.data.data.splice(i, 1);
           res.data.data.unshift(d);
-        }
-      });
-      console.log(res.data.data);
-      setchannels(res.data.data);
-      setCurrentVideo(res.data.data[0].liveShows[0]);
-      // dispatch(allChannel(res.data.data))
-      // dispatch(playingVideo(res.data.data[0].liveShows[0]))
-      //dispatch(videoShows(res.data.data[0].liveShows[0]))
-      //setAdsList(res.data.data[0].adsData)
-    });
-  };
+				}
+			});
+			setchannels(res.data.data);
+			setCurrentVideo(res.data.data[0].liveShows[0]);
+			// dispatch(allChannel(res.data.data))
+			// dispatch(playingVideo(res.data.data[0].liveShows[0]))
+			//dispatch(videoShows(res.data.data[0].liveShows[0]))
+			//setAdsList(res.data.data[0].adsData)
+		}).catch(err => console.log(err));
+	};
 
   useEffect(() => {
     // getChannels();

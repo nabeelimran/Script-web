@@ -37,7 +37,7 @@ function Start() {
           <ArrowButton label="Launch App" variant={1} buttonProps={{
             onClick: () => {
               navigate({
-                pathname: '/tv'
+                pathname: '/'
               })
             }
           }}/>

@@ -77,7 +77,7 @@ function TvNavbar({ className }) {
           title={<>script.tv</>}
         /> */}
 
-        <Link to="/tv">
+        <Link to="/">
           <img
             src="images/logo-beta.svg"
             className="w-[100px] xl:w-[144px]"
@@ -117,6 +117,12 @@ function TvNavbar({ className }) {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-5 lg:space-y-0 lg:space-x-6 xl:space-x-6">
+              <Link
+                onClick={ () => helper.openLink(helper.generateTokenUrl('')) }
+                className="nav-link text-sm xl:text-base font-medium cursor-pointer"
+              >
+                Token
+              </Link>
               <LinkScroller
                 id="homepage-community-section"
                 to="/watch"
@@ -136,8 +142,8 @@ function TvNavbar({ className }) {
 
               <LinkScroller
                 id="tv-community"
-                to="/tv"
-                wait={location.pathname === "/tv" ? 0 : 200}
+                to="/"
+                wait={location.pathname === "/" ? 0 : 200}
                 className="nav-link text-sm xl:text-base font-medium cursor-pointer"
                 scrollerOptions={{
                   smooth: true,
@@ -179,7 +185,7 @@ function TvNavbar({ className }) {
 
             <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-4">
               <Button
-                link="/marketplace"
+                link={helper.generateTokenUrl('marketplace')}
                 className="mt-8 lg:mt-0 flex justify-center"
                 customizationClassName="space-x-3 px-5 rounded-lg font-semibold"
                 buttonHeightClassName="min-h-[30px] xl:min-h-[32px]"

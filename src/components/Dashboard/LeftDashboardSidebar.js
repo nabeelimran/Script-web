@@ -34,7 +34,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
     dispatch(resetEarnedToken(0));
     dispatch(isLogin(false));
     navigate({
-      pathname: "/tv",
+      pathname: "/",
     });
   };
 
@@ -57,7 +57,7 @@ function LeftDashboardSidebar({ width, breakpointMatched, state }) {
             textClassName="text-xs lg:text-sm"
           /> */}
 
-          <Link to="/tv">
+          <Link to="/">
             <img
               src="images/logo-beta.svg"
               className="w-[100px] xl:w-[144px]"

@@ -30,7 +30,7 @@ function Form() {
           label="Username"
           placeholder="Enter Your Name"
           error={
-            errors.username && "This field is requird. Please enter username."
+            errors.username && "This field is required. Please enter username."
           }
           other={{
             ...register("username", { required: true }),

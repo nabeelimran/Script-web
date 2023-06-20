@@ -60,27 +60,31 @@ const MintBox = ({ accountAddress, balance }) => {
   };
 
   const checkIsApproved = async () => {
-    if (accountAddress) {
-      const isAllowed = await checkApproval(accountAddress);
-      console.log(
-        "isAllowed",
-
-        ethers.utils
-          .parseUnits(glassesPrice[type].toString(), "ether")
-          .toString(),
-        isAllowed,
-        // Number(ethers.utils.formatEther(isAllowed.toString())),
-        type
-      );
-      if (
-        ethers.utils
-          .parseUnits(glassesPrice[type].toString(), "ether")
-          .toString() <= isAllowed
-      ) {
-        setIsApproved(true);
-      } else {
-        setIsApproved(false);
-      }
+    try {
+      if (accountAddress) {
+        const isAllowed = await checkApproval(accountAddress);
+        console.log(
+          "isAllowed",
+  
+          ethers.utils
+            .parseUnits(glassesPrice[type].toString(), "ether")
+            .toString(),
+          isAllowed,
+          // Number(ethers.utils.formatEther(isAllowed.toString())),
+          type
+        );
+        if (
+          ethers.utils
+            .parseUnits(glassesPrice[type].toString(), "ether")
+            .toString() <= isAllowed
+        ) {
+          setIsApproved(true);
+        } else {
+          setIsApproved(false);
+        }
+      } 
+    } catch (error) {
+      setIsApproved(false);
     }
   };
 

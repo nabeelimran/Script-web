@@ -29,18 +29,18 @@ function JoinOurCommunity() {
             title="Discord"
             IconComponent={() => <Icon icon="ic:outline-discord" />}
           />
-          {/* <SocialCard
+          <SocialCard
             link="https://t.me/scriptnetworkann"
             title="Telegram"
             IconComponent={() => <Icon icon="file-icons:telegram" />}
-          /> */}
+          />
           <SocialCard
             link="https://twitter.com/script_network"
             title="Twitter"
             IconComponent={() => <Icon icon="mdi:twitter" />}
           />
           <SocialCard
-            link="https://medium.com/@scriptnetwork"
+            link="https://medium.com/script-network"
             title="Blog"
             IconComponent={() => <Icon icon="bi:medium" />}
           />

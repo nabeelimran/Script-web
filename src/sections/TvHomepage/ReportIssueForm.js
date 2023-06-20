@@ -56,7 +56,7 @@ function ReportIssueForm() {
                     ToastMessage(res?.data?.message || 'Success', true);
                     setLoading(false);
                     navigate({
-                        pathname: "/tv",
+                        pathname: "/",
                     })
                 } else {
                     ToastMessage(res?.data?.message || 'Something went wrong');
@@ -78,7 +78,7 @@ function ReportIssueForm() {
             console.log(type)
             switch (type.type) {
                 case "required":
-                error = "This field is requird.";
+                error = "This field is required.";
                 break;
                 case "pattern":
                 error = "Invalid Email"

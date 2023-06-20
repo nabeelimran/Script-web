@@ -92,8 +92,8 @@ const Content = forwardRef(({ isAbove1024px, open, setOpen }, ref) => {
 
             <LinkScroller
               id="tv-community"
-              to="/tv"
-              wait={location.pathname === "/tv" ? 0 : 200}
+              to="/"
+              wait={location.pathname === "/" ? 0 : 200}
               className="nav-link text-sm xl:text-base font-medium cursor-pointer"
               scrollerOptions={{
                 smooth: true,
