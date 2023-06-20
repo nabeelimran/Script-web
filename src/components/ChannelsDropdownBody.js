@@ -3,13 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { helper } from "utils/helper";
 
 const channels = [
-  { img: "/images/channels/cultured-one.svg", className: "w-full lg:w-20", id:1922 },
-  { img: "/images/channels/toom.svg", className: "w-full lg:w-20", id:1913 },
-  { img: "/images/channels/drama.svg", className: "w-full lg:w-auto", id:1911 },
+  // { img: "/images/channels/cultured-one.svg", className: "w-full lg:w-20", id:1922 },
+  // { img: "/images/channels/toom.svg", className: "w-full lg:w-20", id:1913 },
+  // { img: "/images/channels/drama.svg", className: "w-full lg:w-auto", id:1911 },
   // { img: "/images/channels/cultured-two.svg", className: "w-full lg:w-20", id:1922 },
-  { img: "/images/channels/film.svg", className: "w-full lg:w-auto", id:1908 },
-  { img: "/images/channels/irl.svg", className: "w-full lg:w-14", id:621730 },
-  { img: "/images/channels/asmr.png", className: "w-full lg:w-20", id:727149 },
+  // { img: "/images/channels/film.svg", className: "w-full lg:w-auto", id:1908 },
+  // { img: "/images/channels/irl.svg", className: "w-full lg:w-14", id:621730 },
+  // { img: "/images/channels/asmr.png", className: "w-full lg:w-20", id:727149 },
   {
     img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686649580791-SOFAST_logo-assets_1080x1080_EN-EN_black-removebg-preview.png',
     className: "w-full lg:w-20",
