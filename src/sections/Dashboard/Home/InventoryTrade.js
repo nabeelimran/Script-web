@@ -87,10 +87,14 @@ function InventoryTrade() {
 
   useEffect(() => {
     (async () => {
-      if (accountAddress) {
-        const vouchers = await fetchEquippedVouchers(accountAddress);
-        console.log("handleFetchEquipped", vouchers);
-        setGlassTypesWithVouchers(vouchers);
+      try {
+        if (accountAddress) {
+          const vouchers = await fetchEquippedVouchers(accountAddress);
+          console.log("handleFetchEquipped", vouchers);
+          setGlassTypesWithVouchers(vouchers);
+        }  
+      } catch (error) {
+        console.log(error);
       }
     })();
   }, [accountAddress]);
