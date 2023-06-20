@@ -195,10 +195,14 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
   };
 
   const handleFetchEquipped = async () => {
-    if (accountAddress) {
-      const vouchers = await fetchEquippedVouchers(accountAddress);
-      console.log("handleFetchEquipped", vouchers);
-      setEquippedBalance(vouchers);
+    try {
+      if (accountAddress) {
+        const vouchers = await fetchEquippedVouchers(accountAddress);
+        console.log("handleFetchEquipped", vouchers);
+        setEquippedBalance(vouchers);
+      }  
+    } catch (error) {
+      console.log(error);  
     }
   };
 
