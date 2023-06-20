@@ -16,7 +16,7 @@ const channels = [
     id:785352
   },
   {
-    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686649563899-Copy_of_Horizontal_logo.jpg',
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1687260261375-edgy_urban_(1).png',
     className: "w-full lg:w-20",
     id: 785357
   },
@@ -26,7 +26,7 @@ const channels = [
     id: 785353
   },
   {
-    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686138368812-LOL_TV.jpeg',
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1687260228141-lol.png',
     className: "w-full lg:w-20",
     id: 785355
   },
@@ -36,7 +36,7 @@ const channels = [
     id: 785356
   },
   {
-    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1686138272920-WESHORT.png',
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1687260241287-w_(1).png',
     className: "w-full lg:w-20",
     id: 785354
   }
