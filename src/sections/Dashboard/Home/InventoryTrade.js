@@ -71,7 +71,7 @@ function InventoryTrade() {
   const [rechargeDiscountPercentage, setRechargeDiscountPercentage] =
     useState(0);
 
-  console.log("InventoryTrade ", glasses);
+  console.log("InventoryTrade window ", window.ethereum.chainId);
 
   useEffect(() => {
     if (accountAddress && glasses?.length) {

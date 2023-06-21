@@ -12,26 +12,9 @@ import {
 } from "@mui/material";
 import MuiButton from "components/MuiButton";
 import { ToastMessage } from "components/ToastMessage";
-import {
-  approve,
-  approveGlassPass,
-  checkApproval,
-  checkGlassPassApproval,
-  getGlassPassBalance,
-  mintGlasses,
-} from "contract/functions";
+import { approve, checkApproval, mintGlasses } from "contract/functions";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
-
-const RowBox = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  maxWidth: 240,
-  width: "100%",
-  height: 40,
-  marginBottom: 4,
-}));
 
 const MintBoxStyle = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -54,10 +37,7 @@ const MintBox = ({ accountAddress, balance }) => {
   const [type, setType] = useState(1);
   const [contractLoading, setContractLoading] = useState(false);
 
-  const [useGlassPass, setUseGlassPass] = useState(false);
-  const [isPassApproved, setIsPassApproved] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
-  const [passBalance, setPassBalance] = useState(0);
 
   const [contractResponse, setContractResponse] = useState(null);
 
@@ -65,18 +45,7 @@ const MintBox = ({ accountAddress, balance }) => {
 
   useEffect(() => {
     setGlassTypePrice(glassesPrice[type]);
-    setUseGlassPass(false);
   }, [type]);
-
-  useEffect(() => {
-    (async () => {
-      if (!accountAddress) return;
-
-      getPassBalance();
-      checkIsApproved();
-      checkPassIsApproved();
-    })();
-  }, [accountAddress]);
 
   useEffect(() => {
     (async () => {
@@ -84,44 +53,10 @@ const MintBox = ({ accountAddress, balance }) => {
 
       checkIsApproved();
     })();
-  }, [type]);
-
-  const checkPassIsApproved = async () => {
-    try {
-      if (accountAddress) {
-        const isAllowed = await checkGlassPassApproval(accountAddress);
-        console.log("checkPassIsApproved", isAllowed);
-        setIsPassApproved(isAllowed);
-      }  
-    } catch (error) {
-      setIsPassApproved(false);
-    }
-    
-  };
-
-  const getPassBalance = async () => {
-    try {
-      if (accountAddress) {
-        const balance = await getGlassPassBalance(accountAddress);
-        console.log("passBalance", balance);
-        setPassBalance(Number(balance));
-      }  
-    } catch (error) {
-      setPassBalance(0);
-    }
-  };
-
-  const handleSwitch = (event) => {
-    setUseGlassPass(event.target.checked);
-  };
+  }, [accountAddress, type]);
 
   const ResolveIsApproved = () => {
-    console.log("useGlassPass MintBox", useGlassPass);
-    if (useGlassPass) {
-      return isPassApproved;
-    } else {
-      return isApproved;
-    }
+    return isApproved;
   };
 
   const checkIsApproved = async () => {
@@ -160,14 +95,14 @@ const MintBox = ({ accountAddress, balance }) => {
   const onMintGlasses = async () => {
     try {
       setContractLoading("processing");
-      const response = await mintGlasses(type, useGlassPass);
+      const response = await mintGlasses(type);
 
       console.log("response", response);
 
       if (response.status === 1) {
         setContractLoading("success");
         setContractResponse(response);
-        getPassBalance();
+
         await checkIsApproved();
         ToastMessage("Glass minted successfully", true);
       } else {
@@ -177,25 +112,6 @@ const MintBox = ({ accountAddress, balance }) => {
       console.log(error);
       setContractLoading("error");
       ToastMessage("Glass minting failed");
-    }
-  };
-
-  const handlePassApprove = async () => {
-    if (accountAddress) {
-      try {
-        setContractLoading("processing");
-
-        let receipt = await approveGlassPass();
-
-        setContractLoading("approved");
-
-        ToastMessage("Approved", true);
-        await checkPassIsApproved();
-      } catch (error) {
-        console.log(error);
-        setContractLoading("error");
-        ToastMessage("Approval failed");
-      }
     }
   };
 
@@ -218,26 +134,11 @@ const MintBox = ({ accountAddress, balance }) => {
   };
 
   return (
-    <Box mb={4}>
+    <Box mb={6}>
       {" "}
-      <Typography variant="h4" color="textSecondary" align="center" mb={4}>
+      <Typography variant="h4" color="textSecondary" align="center" mb={3}>
         Mint your glass
       </Typography>
-      <RowBox>
-        {type === 2 && passBalance ? (
-          <>
-            <Typography>Mint using glass pass</Typography>
-            <Switch
-              checked={useGlassPass}
-              // disabled={level<20}
-              onChange={handleSwitch}
-              inputProps={{ "aria-label": "Glass Pass" }}
-            />
-          </>
-        ) : (
-          <></>
-        )}
-      </RowBox>
       <MintBoxStyle>
         <Box>
           <Typography
@@ -246,10 +147,7 @@ const MintBox = ({ accountAddress, balance }) => {
           >
             MINT PRICE
           </Typography>
-          <Typography variant="h4">
-            {type === 2 && passBalance && useGlassPass ? 0 : glassTypePrice}{" "}
-            SPAY
-          </Typography>
+          <Typography variant="h4">{glassTypePrice} SPAY</Typography>
         </Box>
         <Box>
           <FormControl fullWidth>
@@ -276,7 +174,7 @@ const MintBox = ({ accountAddress, balance }) => {
               >
                 {contractLoading === "processing"
                   ? "Minting..."
-                  : balance > glassTypePrice || useGlassPass
+                  : balance > glassTypePrice
                   ? "Mint"
                   : "Low balance"}
               </MuiButton>
@@ -284,7 +182,7 @@ const MintBox = ({ accountAddress, balance }) => {
               <MuiButton
                 variant="contained"
                 color="primary"
-                onClick={useGlassPass ? handlePassApprove : handleApprove}
+                onClick={handleApprove}
                 disabled={contractLoading === "processing"}
               >
                 {contractLoading === "processing" ? "Approving..." : "Approve"}

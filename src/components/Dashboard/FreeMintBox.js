@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import MuiButton from "components/MuiButton";
+import { ToastMessage } from "components/ToastMessage";
 import {
   approve,
   approveGlassPass,
@@ -141,8 +142,19 @@ const FreeMintBox = ({ accountAddress, balance }) => {
 
   const handleApprove = async () => {
     if (accountAddress) {
-      let receipt = await approve();
-      setIsApproved(!!receipt.status);
+      try {
+        setContractLoading("processing");
+
+        let receipt = await approve();
+        setContractLoading("approved");
+
+        await checkIsApproved();
+        ToastMessage("Approved", true);
+      } catch (error) {
+        console.log(error);
+        setContractLoading("error");
+        ToastMessage("Approval failed");
+      }
     }
   };
 
@@ -159,6 +171,7 @@ const FreeMintBox = ({ accountAddress, balance }) => {
         }
 
         console.log(res);
+
         await mintFreeGlasses(
           accountAddress.toLowerCase(),
           res.nonce ?? res.id,
@@ -166,6 +179,7 @@ const FreeMintBox = ({ accountAddress, balance }) => {
         );
         setFreeMintEligible(false);
         setContractLoading("success");
+        ToastMessage("Glass minted successfully", true);
       }
     } catch (error) {
       console.log(error);
@@ -174,8 +188,8 @@ const FreeMintBox = ({ accountAddress, balance }) => {
   };
 
   return (
-    <Box mb={4}>
-      <Typography variant="h4" color="textSecondary" align="center" mb={4}>
+    <Box mb={6}>
+      <Typography variant="h4" color="textSecondary" align="center" mb={3}>
         Freemium glasses
       </Typography>
       <FreeMintBoxStyle>
@@ -209,8 +223,9 @@ const FreeMintBox = ({ accountAddress, balance }) => {
                 variant="contained"
                 color="primary"
                 onClick={handleApprove}
+                disabled={contractLoading === "processing"}
               >
-                Approve
+                {contractLoading === "processing" ? "Approving..." : "Approve"}
               </MuiButton>
             )
           ) : (

@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import { earningPayout, glassesOfOwnerServer } from "contract/functions";
 import { formatEther } from "ethers/lib/utils";
 import useMediaQuery from "hooks/useMediaQuery";
@@ -16,6 +16,7 @@ import { ToastMessage } from "components/ToastMessage";
 import { setGlasses } from "redux/reducers/Profile_State";
 import MuiButton from "components/MuiButton";
 import LocalServices from "services/LocalServices";
+import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
@@ -34,6 +35,8 @@ const RewardHistory = () => {
   let userId = LocalServices.getServices("user")?.userId || null;
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
+
+  const [currentChain, setCurrentChain] = useState(null);
 
   useEffect(() => {
     if (accountAddress) {
@@ -58,12 +61,6 @@ const RewardHistory = () => {
       })();
     }
   }, [accountAddress]);
-
-  const onGlassUpdate = async () => {
-    const response = await glassesOfOwnerServer(accountAddress);
-
-    dispatch(setGlasses(response));
-  };
 
   const onClaimUpdate = async (type) => {
     if (type === "COMMON") {
@@ -114,6 +111,32 @@ const RewardHistory = () => {
     }
   };
 
+  useEffect(() => {
+    if (!window?.ethereum) return;
+
+    setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+
+    window.ethereum.on("chainChanged", () => {
+      setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+    });
+  }, []);
+
+  if (accountAddress && currentChain && !currentChainSupported(currentChain)) {
+    return (
+      <Container maxWidth="md" sx={{ my: 20 }} id="mint">
+        <p
+          className="text-lg opacity-80 text-center"
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          Current Chain is not supported
+        </p>
+      </Container>
+    );
+  }
+
   return (
     <Box
       p={2}
@@ -145,7 +168,7 @@ const RewardHistory = () => {
           <>
             <Box
               margin="0 auto"
-              width={isAbove768px ? 500 : "100%"}
+              width={isAbove768px ? 900 : "100%"}
               display="flex"
               flexDirection="column"
               justifyContent="space-between"
@@ -154,112 +177,105 @@ const RewardHistory = () => {
               <h2 className="text-xl my-2 text-[#FFD700] font-semibold  mb-3">
                 Claimable Rewards
               </h2>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                mb={2}
-              >
-                <h2
-                  className="text-md  
-              
-                font-semibold text-center"
-                >
-                  COMMON GLASS : {commonRewards?.payout.toFixed(2) || 0} SPAY
-                </h2>
-
-                <MuiButton
-                  variant="contained"
-                  color="primary"
-                  disabled={!commonRewards?.payout}
-                  onClick={() => onClaimClick("COMMON")}
-                  sx={{
-                    width: 80,
-                    height: 35,
-                  }}
-                >
-                  {loading.common ? (
-                    <img
-                      src={LoaderGif}
-                      alt="loader"
-                      style={{ height: "20px" }}
-                    />
-                  ) : (
-                    <>Claim</>
-                  )}
-                </MuiButton>
-              </Box>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                mb={2}
-              >
-                <h2
-                  className="text-md  
-                
-                font-semibold text-center"
-                >
-                  RARE GLASS : {rareRewards?.payout.toFixed(2) || 0} SPAY
-                </h2>
-
-                <MuiButton
-                  variant="contained"
-                  color="primary"
-                  disabled={!rareRewards?.payout}
-                  onClick={() => onClaimClick("RARE")}
-                  sx={{
-                    width: 80,
-                    height: 35,
-                  }}
-                >
-                  {loading.rare ? (
-                    <img
-                      src={LoaderGif}
-                      alt="loader"
-                      style={{ height: "20px" }}
-                    />
-                  ) : (
-                    <>Claim</>
-                  )}
-                </MuiButton>
-              </Box>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                mb={2}
-              >
-                <h2 className="text-md  font-semibold text-center">
-                  SUPERSCRIPT GLASS :{" "}
-                  {superscriptRewards?.payout.toFixed(2) || 0} SPAY
-                </h2>
-
-                <MuiButton
-                  variant="contained"
-                  color="primary"
-                  disabled={!superscriptRewards?.payout}
-                  onClick={() => onClaimClick("SUPERSCRIPT")}
-                  sx={{
-                    width: 80,
-                    height: 35,
-                  }}
-                >
-                  {loading.superscript ? (
-                    <img
-                      src={LoaderGif}
-                      alt="loader"
-                      style={{ height: "20px" }}
-                    />
-                  ) : (
-                    <>Claim</>
-                  )}
-                </MuiButton>
-              </Box>
+              <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
+                <thead>
+                  <tr>
+                    <th className="text-[#ffef00] py-4">Type</th>
+                    <th className="text-[#ffef00] py-4">Reward</th>
+                    <th className="text-[#ffef00] py-4">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="py-4 uppercase">Common Glass</td>
+                    <td className="py-4">
+                      {commonRewards?.payout.toFixed(2) || 0} SPAY
+                    </td>
+                    <td className="py-4">
+                      <MuiButton
+                        variant="contained"
+                        color="primary"
+                        disabled={!commonRewards?.payout}
+                        onClick={() => onClaimClick("COMMON")}
+                        sx={{
+                          width: 80,
+                          height: 35,
+                        }}
+                      >
+                        {loading.common ? (
+                          <img
+                            src={LoaderGif}
+                            alt="loader"
+                            style={{ height: "20px" }}
+                          />
+                        ) : (
+                          <>Claim</>
+                        )}
+                      </MuiButton>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-4 uppercase">Rare Glass</td>
+                    <td className="py-4">
+                      {rareRewards?.payout.toFixed(2) || 0} SPAY
+                    </td>
+                    <td className="py-4">
+                      <MuiButton
+                        variant="contained"
+                        color="primary"
+                        disabled={!rareRewards?.payout}
+                        onClick={() => onClaimClick("RARE")}
+                        sx={{
+                          width: 80,
+                          height: 35,
+                        }}
+                      >
+                        {loading.rare ? (
+                          <img
+                            src={LoaderGif}
+                            alt="loader"
+                            style={{ height: "20px" }}
+                          />
+                        ) : (
+                          <>Claim</>
+                        )}
+                      </MuiButton>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-4 uppercase">Superscript Glass</td>
+                    <td className="py-4">
+                      {superscriptRewards?.payout.toFixed(2) || 0} SPAY
+                    </td>
+                    <td className="py-4">
+                      <MuiButton
+                        variant="contained"
+                        color="primary"
+                        disabled={!superscriptRewards?.payout}
+                        onClick={() => onClaimClick("SUPERSCRIPT")}
+                        sx={{
+                          width: 80,
+                          height: 35,
+                        }}
+                      >
+                        {loading.superscript ? (
+                          <img
+                            src={LoaderGif}
+                            alt="loader"
+                            style={{ height: "20px" }}
+                          />
+                        ) : (
+                          <>Claim</>
+                        )}
+                      </MuiButton>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </Box>
             <Box
               margin="0 auto"
-              width={isAbove768px ? 500 : "100%"}
+              width={isAbove768px ? 900 : "100%"}
               display="flex"
               flexDirection="column"
               justifyContent="space-between"
@@ -268,69 +284,34 @@ const RewardHistory = () => {
               <h2 className="text-xl my-2 text-[#FFD700] font-semibold  mb-3">
                 Vested Rewards
               </h2>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                mb={2}
-              >
-                <h2
-                  className="text-md  
-              
-                font-semibold text-center"
-                >
-                  COMMON GLASS : {commonRewards?.vested.toFixed(2) || 0} SPAY
-                </h2>
-
-                {/* <MuiButton
-                  variant="contained"
-                  color="primary"
-                  disabled={!commonRewards?.vested}
-                >
-                  Claim
-                </MuiButton> */}
-              </Box>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                mb={2}
-              >
-                <h2
-                  className="text-md  
-                
-                font-semibold text-center"
-                >
-                  RARE GLASS : {rareRewards?.vested.toFixed(2) || 0} SPAY
-                </h2>
-
-                {/* <MuiButton
-                  variant="contained"
-                  color="primary"
-                  disabled={!rareRewards?.vested}
-                >
-                  Claim
-                </MuiButton> */}
-              </Box>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                mb={2}
-              >
-                <h2 className="text-md  font-semibold text-center">
-                  SUPERSCRIPT GLASS :{" "}
-                  {superscriptRewards?.vested.toFixed(2) || 0} SPAY
-                </h2>
-
-                {/* <Button
-                  variant="contained"
-                  color="primary"
-                  disabled={!superscriptRewards?.vested}
-                >
-                  Claim
-                </Button> */}
-              </Box>
+              <table className="stake-nodes-table evenBg text-left rounded-lg w-full">
+                <thead>
+                  <tr>
+                    <th className="text-[#ffef00] py-4">Type</th>
+                    <th className="text-[#ffef00] py-4">Reward</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="py-4 uppercase">Common Glass</td>
+                    <td className="py-4">
+                      {commonRewards?.vested.toFixed(2) || 0} SPAY
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-4 uppercase">Rare Glass</td>
+                    <td className="py-4">
+                      {rareRewards?.vested.toFixed(2) || 0} SPAY
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-4 uppercase">Superscript Glass</td>
+                    <td className="py-4">
+                      {superscriptRewards?.vested.toFixed(2) || 0} SPAY
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </Box>
           </>
         ) : (
