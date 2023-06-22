@@ -52,10 +52,15 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data, utcStartTi
       }
     >
       <div className="max-w-[200px] space-y-[2px] z-50">
-        <p className="text-xs md:text-base font-medium two-lines-only">
-          {data?.xmltitle ? data.xmltitle : title}
-        </p>
-        {time && (
+        <div className="flex items-center space-x-2">
+          <p className="text-xs md:text-base font-medium two-lines-only">
+            {data?.xmltitle ? data.xmltitle : title}
+          </p>
+          <button className="flex text-base opacity-80" onClick={(e)=>viewShowDetail(e)}>
+            <Icon icon="material-symbols:info-outline" />
+          </button>
+        </div>
+        {/* {time && (
           <div className="flex items-center space-x-2">
             {
               utcStartTimeString && utcStopTimeString ? (
@@ -69,7 +74,7 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data, utcStartTi
               <Icon icon="material-symbols:info-outline" />
             </button>
           </div>
-        )}
+        )} */}
       </div>
 
       <div
