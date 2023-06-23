@@ -830,7 +830,7 @@ function Channels({
                 <div className="flex-1 w-full">
                   <div className="md:max-w-[300px] w-full text-center md:text-left">
                     {/* <FillBar barColor="#6C6C6C" bgColor="#1F1F1F" /> */}
-                    <p className="text-sm font-bold">{liveShow.title}</p>
+                    <p className="text-sm font-bold">{liveShow?.xmltitle ? liveShow?.xmltitle : liveShow?.title}</p>
                     <p className="text-sm">
                       {liveShow.description
                         ? liveShow.description
