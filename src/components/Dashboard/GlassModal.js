@@ -61,7 +61,6 @@ export default function GlassModal({
   }, [id]);
 
   useEffect(() => {
-    console.log("glassTypesWithVouchers", glassTypesWithVouchers);
     setRechargeDiscountPercentage(0);
     if (glassTypesWithVouchers) {
       if (glass.type === "COMMON") {
@@ -160,7 +159,6 @@ export default function GlassModal({
                 {history.length > 0
                   ? history.map((data, index) => (
                       <tr key={index}>
-                        {console.log(data)}
                         <td className="py-4">
                           {`${formatEther(data?.amount)} SPAY` || ""}
                         </td>

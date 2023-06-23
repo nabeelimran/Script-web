@@ -63,16 +63,6 @@ const MintBox = ({ accountAddress, balance }) => {
     try {
       if (accountAddress) {
         const isAllowed = await checkApproval(accountAddress);
-        console.log(
-          "isAllowed",
-  
-          ethers.utils
-            .parseUnits(glassesPrice[type].toString(), "ether")
-            .toString(),
-          isAllowed,
-          // Number(ethers.utils.formatEther(isAllowed.toString())),
-          type
-        );
         if (
           ethers.utils
             .parseUnits(glassesPrice[type].toString(), "ether")
@@ -96,8 +86,6 @@ const MintBox = ({ accountAddress, balance }) => {
     try {
       setContractLoading("processing");
       const response = await mintGlasses(type);
-
-      console.log("response", response);
 
       if (response.status === 1) {
         setContractLoading("success");

@@ -42,8 +42,6 @@ export default function GemModal({
   const { accountAddress } = useSelector((state) => state.metamask_state);
   const { balance } = useSelector((state) => state.Profile_State);
 
-  console.log("gem component balance", balance);
-
   useEffect(() => {
     if (accountAddress) {
       fetchPrice();
@@ -53,7 +51,6 @@ export default function GemModal({
   const fetchPrice = async () => {
     if (accountAddress) {
       let price = await getGemPrice(id);
-      console.log("price", { price, id });
       setPrice(price);
     }
   };

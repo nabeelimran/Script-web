@@ -43,7 +43,6 @@ function Hero() {
     React.useState(0);
   const [lastVideoHistory, setLastVideoHistory] = React.useState(null);
   let userId = LocalServices.getServices("user")?.userId || null;
-  console.log("userId", userId);
   const { isLogin } = useSelector((state) => state.login_state);
 
   React.useEffect(() => {

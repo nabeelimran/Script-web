@@ -67,7 +67,6 @@ const GlassPassBox = ({ accountAddress, balance }) => {
   const checkPassIsApproved = async () => {
     if (accountAddress) {
       const isAllowed = await checkGlassPassApproval(accountAddress);
-      console.log("checkPassIsApproved", isAllowed);
       setIsPassApproved(isAllowed);
     }
   };
@@ -94,7 +93,6 @@ const GlassPassBox = ({ accountAddress, balance }) => {
   const getPassBalance = async () => {
     if (accountAddress) {
       const balance = await getGlassPassBalance(accountAddress);
-      console.log("passBalance", balance);
       setPassBalance(Number(balance));
     }
   };
@@ -103,8 +101,6 @@ const GlassPassBox = ({ accountAddress, balance }) => {
     try {
       setContractLoading("processing");
       const response = await mintGlasses(2, true);
-
-      console.log("response", response);
 
       if (response.status === 1) {
         setContractLoading("success");

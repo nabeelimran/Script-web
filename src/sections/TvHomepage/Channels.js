@@ -384,9 +384,7 @@ function Channels({
   }, [timeline]);
 
   useEffect(() => {
-    console.log("channel change",latestChaneelID , latestVideIdx)
     if(latestChaneelID>=0 && latestVideIdx>=0) {
-      console.log("inside channel effect")
       Api.getChannels("watch").then((res) => {
         // for suffal channel
         res.data.data.forEach((d, i) => {
@@ -451,7 +449,6 @@ function Channels({
                }
              }, 1000)
            }else{
-            console.log("default")
              chData[channelIndex].liveShows[videoIndex].selected = true;
              setLiveShow(chData[channelIndex].liveShows[videoIndex]);
              setSelectedChannel(chData[channelIndex]);
@@ -514,10 +511,7 @@ function Channels({
     },[])
 
   useEffect(()=>{
-    console.log('earned token', earnedToken);
     if(earnedToken>0) {
-  
-
       saveVideoDuration(videoTimeWatch)
       setVideoTokenBalance('', earnedToken);
     }

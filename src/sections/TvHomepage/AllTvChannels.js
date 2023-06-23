@@ -166,7 +166,6 @@ function AllTvChannels({
 	useEffect(() => {
 		let videoWatchInterval;
 		let durationcheckinterval;
-		console.log(playerRef, "REFFF");
 		if (isPlayerReady && show && playerRef && playerRef.current) {
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
@@ -209,10 +208,8 @@ function AllTvChannels({
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
 				
 				if(!videoWatchInterval){
-					console.log('new interval started');
 					videoWatchInterval = setInterval(() => {
 					let userId = LocalServices.getServices("user")?.userId || null;
-					console.log('interval started')
 					const videoWatchTime = {
 						startTime: videoStartTime,
 						endTime: playerRef?.current?.duration() || document.getElementsByTagName('video')[0].duration,
@@ -284,7 +281,6 @@ function AllTvChannels({
 	};
 
 	const getRewardEarningAmount = (token) => {
-		console.log("TOKENNN",token)
 		if(token===0){
 			chatToken.current.innerText = "0.0000"
 

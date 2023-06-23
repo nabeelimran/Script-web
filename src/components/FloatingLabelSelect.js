@@ -31,7 +31,6 @@ function FloatingLabelSelect({
       className={`did-floating-label-content relative ${className}`}
       style={{ "--float-font-size": floatingFontSize }}
     >
-      {console.log(valueSelected, 'value')}
       <select
         onChange={(event) => changeFruit(event.target.value)}
         className={`${

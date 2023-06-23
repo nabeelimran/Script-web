@@ -58,9 +58,7 @@ function TvHomepage() {
 	useEffect(() => {
 		
 		// getChannels();
-		console.log("refresh effeced called",refreshChannel)
 		if (refreshChannel) {
-			console.log("refresh");
 			let nextIndex =0;
 			let channelIndex = 0
 			const currentChannel = channel.filter(

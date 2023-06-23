@@ -1,7 +1,6 @@
 import React from "react";
 
 const Card = ({ color, title, description, clickHandler }) => {
-  console.log(color);
   return (
     <div
       className={`py-4 px-5 rounded-lg flex items-center cursor-pointer bg-[${color}]`}

@@ -91,16 +91,8 @@ const FreeMintBox = ({ accountAddress, balance }) => {
         }
   
         let passBalance = await getGlassPassBalance(accountAddress);
-        console.log(
-          "passBalance",
-          passBalance,
-          "points",
-          points,
-          "accountAddress"
-        );
-  
+        
         let mintTx = await getFreeGlassTxn(accountAddress.toLowerCase());
-        console.log("mintTx", mintTx);
         if (
           mintTx?.signature &&
           !mintTx?.executed &&
@@ -169,8 +161,6 @@ const FreeMintBox = ({ accountAddress, balance }) => {
         } else {
           res = await claimGlasses(accountAddress.toLowerCase());
         }
-
-        console.log(res);
 
         await mintFreeGlasses(
           accountAddress.toLowerCase(),

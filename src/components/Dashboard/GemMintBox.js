@@ -101,7 +101,6 @@ const GemMintBox = ({ accountAddress, balance }) => {
   const getGemEligibleGlasses = async () => {
     if (accountAddress) {
       let glasses = await getGemsEligibility(accountAddress);
-      console.log("glasses", glasses);
       setGemEligibleGlasses(glasses);
     }
   };

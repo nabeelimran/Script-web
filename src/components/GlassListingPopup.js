@@ -77,7 +77,6 @@ function GlassListingPopup() {
   };
 
   const getGlassesList = () => {
-    console.log("pipiuouoo");
     Api.getGlassesList(user?.walletAddress, pageNo, 10, "watch").then((res) => {
       if (res && res.status === 200) {
         if (res?.data?.data?.content && res?.data?.data?.content?.length > 0) {
@@ -90,7 +89,7 @@ function GlassListingPopup() {
               ...glassListingData,
               ...res?.data?.data?.content,
             ];
-            console.log(unDrainedList, "unDrainedList");
+            
             const uniqueUnDrainedList = [
               ...unDrainedList.reduce((list, o) => {
                 if (!list.some((obj) => obj.id === o.id)) {
@@ -99,7 +98,7 @@ function GlassListingPopup() {
                 return list;
               }, []),
             ];
-            console.log(uniqueUnDrainedList, "uniqueUnDrainedList");
+            
             setActive(uniqueUnDrainedList[0]);
             setGlassListingData(uniqueUnDrainedList);
             setTotalGlasses(res?.data?.data?.totalrecords);
@@ -116,7 +115,6 @@ function GlassListingPopup() {
 
   const fetchData = () => {
     setPageNo((prevPageNo) => prevPageNo + 1);
-    console.log(pageNo, "pageNo");
   };
 
   useEffect(() => {
@@ -138,12 +136,9 @@ function GlassListingPopup() {
     }
   }, [isGlassListingModalVisible, pageNo]);
 
-  console.log(glassListingData, "glassListingData");
-
   return (
     <>
       <UpperRoot>
-        {console.log(glassListingData, "data")}
         <section
           ref={modalRef}
           className={`fixed left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-[90%] max-w-[900px] h-[90vh] max-h-[600px] z-[10000000] overflow-x-hidden overflow-y-auto rounded-xl md:rounded-3xl py-6 md:py-10 px-8 md:px-14 hide-scrollbar transition-all duration-300 shadow-sm shadow-primary ${
