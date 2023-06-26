@@ -77,7 +77,6 @@ function App() {
   const dispatch = useDispatch();
   const { isNotificationReceived } = useSelector((state) => state.Notification_State)
   try {
-    console.log("init mixpanel");
     MixPanelService.init();
   } catch (error) {
     console.log("error while connecting mixpanel", error);
@@ -93,7 +92,6 @@ function App() {
 
   useEffect(() => {
     try {
-      console.log("init mixpanel");
       MixPanelService.init();
     } catch (error) {
       console.log("error while connecting mixpanel", error);
@@ -105,7 +103,6 @@ function App() {
     if(user && user.email) {
       if (window.ethereum) {
         window.ethereum.on("accountsChanged", () => {
-          console.log('metmask address changed')
           dispatch(toggleMetamaskChangeDetect(true))
         });
       }

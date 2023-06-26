@@ -1,7 +1,6 @@
 import React from "react";
 
 function InventoryTradeCard({ glass, onClick }) {
-  console.log("glass", glass);
   return (
     <div
       // className="bg-[#0E0E0F] rounded-2xl py-6 px-7 transition-all duration-200 hover:bg-primary group hover:scale-[1.12] cursor-pointer"

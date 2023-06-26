@@ -77,3 +77,11 @@ export function getHex(str) {
 export const fromWei = (weiAmount) => {
   return ethers.utils.formatEther(weiAmount) || 0;
 };
+
+export const parseChainIdHex = (chainId) => {
+  return parseInt(chainId, 16);
+};
+
+export const currentChainSupported = (currentChain) => {
+  return _.includes([137, 4, 56], currentChain);
+};

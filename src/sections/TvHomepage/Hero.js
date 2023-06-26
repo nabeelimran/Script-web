@@ -43,7 +43,6 @@ function Hero() {
     React.useState(0);
   const [lastVideoHistory, setLastVideoHistory] = React.useState(null);
   let userId = LocalServices.getServices("user")?.userId || null;
-  console.log("userId", userId);
   const { isLogin } = useSelector((state) => state.login_state);
 
   React.useEffect(() => {
@@ -91,6 +90,14 @@ function Hero() {
     //   image: "images/Partnerships.png",
     //   link: "https://presale.script.tv/",
     // },
+    {
+      image: "images/collect-points.png",
+      link: "https://crew3.xyz/c/scriptnetwork/questboard",
+    },
+    {
+      image: "images/minutes-watched.png",
+      link: "",
+    },
     {
       image: "images/collect-points.png",
       link: "https://crew3.xyz/c/scriptnetwork/questboard",

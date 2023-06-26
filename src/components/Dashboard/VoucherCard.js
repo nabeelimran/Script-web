@@ -27,16 +27,6 @@ export default function VoucherCard({
 }) {
   const [tokenId, setTokenId] = useState();
 
-  // console.log("VoucherCard", {
-  //   equipped,
-  //   glassId,
-  //   eligibleGlasses,
-  //   disabled,
-  //   clickHandler,
-  //   loading,
-  //   index,
-  // });
-
   const handleTypeSelect = (e, child) => {
     setTokenId(Number(e.target.value));
   };

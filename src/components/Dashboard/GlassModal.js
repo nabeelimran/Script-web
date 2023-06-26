@@ -24,6 +24,7 @@ import { getRechargeHistory } from "utils/api";
 import { formatEther } from "ethers/lib/utils";
 import moment from "moment";
 import MuiButton from "components/MuiButton";
+import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -48,6 +49,8 @@ export default function GlassModal({
   const [rechargeDiscountPercentage, setRechargeDiscountPercentage] =
     useState(0);
 
+  const [currentChain, setCurrentChain] = useState(null);
+
   useEffect(() => {
     if (id) {
       (async () => {
@@ -58,7 +61,6 @@ export default function GlassModal({
   }, [id]);
 
   useEffect(() => {
-    console.log("glassTypesWithVouchers", glassTypesWithVouchers);
     setRechargeDiscountPercentage(0);
     if (glassTypesWithVouchers) {
       if (glass.type === "COMMON") {
@@ -83,6 +85,16 @@ export default function GlassModal({
     }
   }, [glassTypesWithVouchers, glass]);
 
+  useEffect(() => {
+    if (!window?.ethereum) return;
+
+    setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+
+    window.ethereum.on("chainChanged", () => {
+      setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+    });
+  }, []);
+
   return (
     <StyledDialog
       open={open}
@@ -103,10 +115,11 @@ export default function GlassModal({
         <Box mb={4}>
           <div className="text-xl font-semibold mb-2">Type : {glass.type}</div>
           <div className="text-md font-semibold mb-2">
-            Level : {glass.level}
+            Level : <ValuesTypography>{glass.level}</ValuesTypography>
           </div>
           <div className="text-md font-semibold mb-2">
-            Total Watch Time : {glass.totalWatchTime}
+            Total Watch Time :
+            <ValuesTypography>{glass.totalWatchTime}</ValuesTypography>
           </div>
           {/* <div className="text-md font-semibold mb-2">
             Max Earnable Time : {glass.maxEarnableTime}
@@ -115,10 +128,13 @@ export default function GlassModal({
             Unpaid Watch Time : {glass.unpaidWatchTime}
           </div> */}
           <div className="text-md font-semibold mb-2">
-            Drained : {glass.drained ? "Yes" : "No"}
+            Drained :{glass.drained ? "Yes" : "No"}
           </div>
           <div className="text-md font-semibold mb-2">
-            Voucher Equipped : {rechargeDiscountPercentage > 0 ? "Yes" : "No"}
+            Voucher Equipped :
+            <ValuesTypography>
+              {rechargeDiscountPercentage > 0 ? "Yes" : "No"}
+            </ValuesTypography>
           </div>
           <Link
             target="_blank"
@@ -143,7 +159,6 @@ export default function GlassModal({
                 {history.length > 0
                   ? history.map((data, index) => (
                       <tr key={index}>
-                        {console.log(data)}
                         <td className="py-4">
                           {`${formatEther(data?.amount)} SPAY` || ""}
                         </td>
@@ -162,19 +177,40 @@ export default function GlassModal({
           </Box>
         )}
       </DialogContent>
-      <StyledDialogAction>
-        <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
-          recharge
-        </Button>
-        {gemEligible && (
+
+      {currentChain && !currentChainSupported(currentChain) ? (
+        <StyledDialogAction>
+          <div
+            style={{
+              width: "100%",
+            }}
+          >
+            <p
+              className="text-lg opacity-80 text-center"
+              style={{
+                fontSize: "1rem",
+                fontWeight: "bold",
+              }}
+            >
+              Current Chain is not supported
+            </p>
+          </div>
+        </StyledDialogAction>
+      ) : (
+        <StyledDialogAction>
           <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
-            add gem
+            recharge
           </Button>
-        )}
-        <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
-          sell
-        </Button>
-      </StyledDialogAction>
+          {gemEligible && (
+            <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
+              add gem
+            </Button>
+          )}
+          <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>
+            sell
+          </Button>
+        </StyledDialogAction>
+      )}
     </StyledDialog>
   );
 }
@@ -207,6 +243,20 @@ const PrimaryTypography = styled(Typography)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   padding: "9px 20px",
   marginTop: 8,
+}));
+
+const ValuesTypography = styled(Typography)(({ theme }) => ({
+  background: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
+  display: "inline-block",
+  margin: "auto",
+  borderRadius: theme.shape.borderRadius,
+  padding: "5px",
+
+  marginLeft: 8,
+  fontWeight: 600,
+  minWidth: 30,
+  textAlign: "center",
 }));
 
 const StyledDialogAction = styled(DialogActions)(({ theme }) => ({

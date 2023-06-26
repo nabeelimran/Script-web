@@ -44,7 +44,7 @@ function Watch() {
           }
           //dispatch(videoShows(res.data.data[0].liveShows[0]))
           //setAdsList(res.data.data[0].adsData)
-        })
+        }).catch(err => console.log(err))
     }
 
     // this is used to get the token earned by video based on user id

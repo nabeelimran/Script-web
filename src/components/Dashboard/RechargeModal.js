@@ -58,7 +58,6 @@ export default function RechargeModal({
 
   const handleGetRechargeCost = async () => {
     let cost = await getRechargeCost(glass?.id);
-    console.log("rechargeCost ", cost);
     setCost(cost);
   };
 
@@ -96,8 +95,6 @@ export default function RechargeModal({
       }
     }
   };
-
-  console.log("rechargeDiscountPercentage", rechargeDiscountPercentage);
 
   return (
     <StyledDialog

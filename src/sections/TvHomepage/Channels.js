@@ -9,7 +9,7 @@ import React, { useDeferredValue, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Api from "services/api";
 import { useDispatch, useSelector } from "react-redux";
-import { helper } from "utils/helper";
+import { helper, updateShowDetails } from "utils/helper";
 import { toggleGlassListingVisibility, toggleModalVisibility, updateCurrentVideo } from "redux/reducers/connectWalletModal_State";
 import { earnedTokenRed } from "redux/reducers/video_State";
 import LocalServices from "services/LocalServices";
@@ -296,7 +296,7 @@ function Channels({
         res.data.data.forEach((d, i) => {
           if(d.id === 621730) {
             res.data.data.splice(i, 1);
-              res.data.data.unshift(d);
+            res.data.data.unshift(d);
           }
         });
         let chData = JSON.parse(JSON.stringify(res.data.data));
@@ -305,15 +305,36 @@ function Channels({
            (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
          );
          // if(liveshows && liveshows.length > 0) {
-           ch.liveShows = liveshows.map((show) => {
-             let res = getDurationInMinute(show.startTime, show.endTime);
-             show.duration = res.duration;
-             show.time = res.time;
-             show.selected = false;
-             show.isVisible = res.isVisible
-             return show;
-           });
-           return ch;
+          ch.liveShows = liveshows.map((show) => {
+            let res = getDurationInMinute(show.startTime, show.endTime);
+            show.duration = res.duration;
+            show.time = res.time;
+            show.selected = false;
+            const updatedShowDetail = updateShowDetails(show.channelId);
+             if(updatedShowDetail) {
+              if(updatedShowDetail.title) {
+                show.xmltitle = updatedShowDetail.title;
+              }
+
+              if(show.title = updatedShowDetail.description) {
+                show.description = updatedShowDetail.description;
+              }
+
+              if(updatedShowDetail.videoThumbnailUrl) {
+                show.videoThumbnailUrl = updatedShowDetail.videoThumbnailUrl;
+              }
+
+              if(updatedShowDetail.utcStartTimeString) {
+                show.utcStartTimeString = updatedShowDetail.utcStartTimeString;
+              }
+
+              if(updatedShowDetail.utcStopTimeString) {
+                show.utcStopTimeString = updatedShowDetail.utcStopTimeString;
+              }
+             }
+            return show;
+          });
+          return ch;
        
          // } 
        });
@@ -353,10 +374,9 @@ function Channels({
            }
           
          }
-         
          setChannels(chData);
   
-      });
+      }).catch(err => console.log(err));
     }
     
 
@@ -364,15 +384,13 @@ function Channels({
   }, [timeline]);
 
   useEffect(() => {
-    console.log("channel change",latestChaneelID , latestVideIdx)
     if(latestChaneelID>=0 && latestVideIdx>=0) {
-      console.log("inside channel effect")
       Api.getChannels("watch").then((res) => {
         // for suffal channel
         res.data.data.forEach((d, i) => {
           if(d.id === 621730) {
             res.data.data.splice(i, 1);
-              res.data.data.unshift(d);
+            res.data.data.unshift(d);
           }
         });
         let chData = JSON.parse(JSON.stringify(res.data.data));
@@ -387,6 +405,20 @@ function Channels({
              show.time = res.time;
              show.selected = false;
              show.isVisible = res.isVisible
+             const updatedShowDetail = updateShowDetails(show.channelId);
+             if(updatedShowDetail) {
+              if(updatedShowDetail.title) {
+                show.xmltitle = updatedShowDetail.title;
+              }
+
+              if(show.title = updatedShowDetail.description) {
+                show.description = updatedShowDetail.description;
+              }
+
+              if(updatedShowDetail.videoThumbnailUrl) {
+                show.videoThumbnailUrl = updatedShowDetail.videoThumbnailUrl;
+              }
+             }
              return show;
            });
            return ch;
@@ -417,7 +449,6 @@ function Channels({
                }
              }, 1000)
            }else{
-            console.log("default")
              chData[channelIndex].liveShows[videoIndex].selected = true;
              setLiveShow(chData[channelIndex].liveShows[videoIndex]);
              setSelectedChannel(chData[channelIndex]);
@@ -433,7 +464,7 @@ function Channels({
          setChannels(chData);
   
   
-      });
+      }).catch(err => console.log(err));
     }
     // }
   }, [latestChaneelID,latestVideIdx]);
@@ -480,10 +511,7 @@ function Channels({
     },[])
 
   useEffect(()=>{
-    console.log('earned token', earnedToken);
     if(earnedToken>0) {
-  
-
       saveVideoDuration(videoTimeWatch)
       setVideoTokenBalance('', earnedToken);
     }
@@ -638,7 +666,7 @@ function Channels({
       }
     }  
     } catch (error) {
-     console.log(error); 
+      console.log(error); 
     }
     
   }
@@ -802,7 +830,7 @@ function Channels({
                 <div className="flex-1 w-full">
                   <div className="md:max-w-[300px] w-full text-center md:text-left">
                     {/* <FillBar barColor="#6C6C6C" bgColor="#1F1F1F" /> */}
-                    <p className="text-sm font-bold">{liveShow.title}</p>
+                    <p className="text-sm font-bold">{liveShow?.xmltitle ? liveShow?.xmltitle : liveShow?.title}</p>
                     <p className="text-sm">
                       {liveShow.description
                         ? liveShow.description

@@ -202,8 +202,9 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
         setEquippedBalance(vouchers);
       }  
     } catch (error) {
-      console.log(error);  
+      console.log(error);
     }
+    
   };
 
   const ResolveIsApproved = () => {

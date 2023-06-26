@@ -46,22 +46,19 @@ function TvHomepage() {
     				res.data.data.unshift(d);
 				}
 			});
-			console.log(res.data.data);
 			setchannels(res.data.data);
 			setCurrentVideo(res.data.data[0].liveShows[0]);
 			// dispatch(allChannel(res.data.data))
 			// dispatch(playingVideo(res.data.data[0].liveShows[0]))
 			//dispatch(videoShows(res.data.data[0].liveShows[0]))
 			//setAdsList(res.data.data[0].adsData)
-		});
+		}).catch(err => console.log(err));
 	};
 
 	useEffect(() => {
 		
 		// getChannels();
-		console.log("refresh effeced called",refreshChannel)
 		if (refreshChannel) {
-			console.log("refresh");
 			let nextIndex =0;
 			let channelIndex = 0
 			const currentChannel = channel.filter(
@@ -158,7 +155,7 @@ function TvHomepage() {
 
 		if (channel && channel.length > 0) {
 			setAdsList(
-				channel.filter((c) => c.id === show.channelId)[0]?.adsData || []
+				channel.filter((c) => c.id === show?.channelId)[0]?.adsData || []
 			);
 		}
 	};

@@ -5,7 +5,6 @@ import FillBar from "./FillBar";
 import Popup from "./Popup";
 
 function GlassPopup({ open, setOpen, selectedGlass, saveDurationRes }) {
-
   return (
     <>
       <Popup
@@ -15,22 +14,45 @@ function GlassPopup({ open, setOpen, selectedGlass, saveDurationRes }) {
       >
         <div className="flex justify-end">
           <button onClick={() => setOpen(false)}>
-            <Icon icon="maki:cross"/>
+            <Icon icon="maki:cross" />
           </button>
         </div>
         <img
-          src={helper.glassImages[Math.floor(Math.random() * helper.glassImages.length)]}
+          src={
+            helper.glassImages[
+              Math.floor(Math.random() * helper.glassImages.length)
+            ]
+          }
           className="mx-auto max-w-[70px] w-full mb-5"
           alt=""
         />
 
         <div className="space-y-2 mb-3">
           <div className="space-y-1 w-full">
-            <FillBar barColor="#FF0015" bgColor="#434242" progress= {
-              selectedGlass.glassId || saveDurationRes.maxEarnableTime ? `${(selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0) / (selectedGlass?.glass?.maxEarnableTime || 0) * 100}%` : '0%'
-              } />
+            <FillBar
+              barColor="#FF0015"
+              bgColor="#434242"
+              progress={
+                selectedGlass.glassId || saveDurationRes.maxEarnableTime
+                  ? `${
+                      ((selectedGlass
+                        ? saveDurationRes?.maxEarnableTime ||
+                          selectedGlass?.glass?.maxEarnableTime ||
+                          0
+                        : 0) /
+                        (selectedGlass?.glass?.maxEarnableTime || 0)) *
+                      100
+                    }%`
+                  : "0%"
+              }
+            />
             <p className="text-center font-medium text-sm text-black">
-              {selectedGlass ? saveDurationRes?.maxEarnableTime || selectedGlass?.glass?.maxEarnableTime || 0 : 0} / {selectedGlass?.glass?.maxEarnableTime || 0}
+              {selectedGlass
+                ? saveDurationRes?.maxEarnableTime ||
+                  selectedGlass?.glass?.maxEarnableTime ||
+                  0
+                : 0}{" "}
+              / {selectedGlass?.glass?.maxEarnableTime || 0}
             </p>
           </div>
           <div className="space-y-1 w-full">

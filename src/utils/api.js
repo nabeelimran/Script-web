@@ -294,6 +294,7 @@ export const fetchEquippedVouchers = async (address) => {
   );
   let data = await response.json();
   let events = data.data.users.length ? data.data.users[0].vouchers : [];
+  console.log("fetchEquippedVouchers events", events);
   return splitByVoucherType(events);
 };
 

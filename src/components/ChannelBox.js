@@ -6,7 +6,7 @@ import { ToastMessage } from "./ToastMessage";
 
 
 
-const ChannelBox = ({ title, time,indexnum, id, state, onClick, data }) => {
+const ChannelBox = ({ title, time,indexnum, id, state, onClick, data, utcStartTimeString, utcStopTimeString }) => {
   // const isActive = state.getter === id ? true : false;
   const dispatch = useDispatch();
 
@@ -52,18 +52,29 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data }) => {
       }
     >
       <div className="max-w-[200px] space-y-[2px] z-50">
-        <p className="text-xs md:text-base font-medium two-lines-only">
-          {title}
-        </p>
-
-        {time && (
+        <div className="flex items-center space-x-2">
+          <p className="text-xs md:text-base font-medium two-lines-only">
+            {data?.xmltitle ? data.xmltitle : title}
+          </p>
+          <button className="flex text-base opacity-80" onClick={(e)=>viewShowDetail(e)}>
+            <Icon icon="material-symbols:info-outline" />
+          </button>
+        </div>
+        {/* {time && (
           <div className="flex items-center space-x-2">
-            <p className="text-xs md:text-sm font-medium">{time}</p>
+            {
+              utcStartTimeString && utcStopTimeString ? (
+                <p className="text-xs md:text-sm font-medium">{utcStartTimeString} - {utcStopTimeString}</p>
+              ) : (
+                <p className="text-xs md:text-sm font-medium">{time}</p>
+              )
+            }
+            
             <button className="flex text-base opacity-80" onClick={(e)=>viewShowDetail(e)}>
               <Icon icon="material-symbols:info-outline" />
             </button>
           </div>
-        )}
+        )} */}
       </div>
 
       <div

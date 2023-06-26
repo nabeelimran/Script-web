@@ -74,7 +74,6 @@ const useLiveChat = (currentShow) => {
 						}
 					})
 					const messages = [...refreshChat, ...oldChats]
-					console.log(messages, ' for sorting ');
 					// let sortedMessage = messages.sort((a,b) => a.commentDate - b.commentDate);
 					// sortedMessage = sortedMessage.map((msg) => {
 					// 	msg.timepass = moment(msg.commentDate).fromNow()

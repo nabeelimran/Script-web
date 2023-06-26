@@ -170,34 +170,43 @@ export default class Api {
     );
   }
   static getChannels(screenName) {
-    const options = {
-      headers: {
-        ipAddress: "dummyData",
-        latitude: "dummyData",
-        longitude: "dummyData",
-        countryName: "dummyData",
-        screenName: screenName,
-      },
-    };
-    return axios.get(
-      `${APIPATH.BASEURL}show/details?zoneId=${helper.getTimeZone()}`,
-      options
-    );
+    try {
+      const options = {
+        headers: {
+          ipAddress: "dummyData",
+          latitude: "dummyData",
+          longitude: "dummyData",
+          countryName: "dummyData",
+          screenName: screenName,
+        },
+      };
+      return axios.get(
+        `${APIPATH.BASEURL}show/details?zoneId=${helper.getTimeZone()}`,
+        options
+      );  
+    } catch (error) {
+      return error;
+    }
   }
   static getShows(screenName) {
-    const options = {
-      headers: {
-        ipAddress: "dummyData",
-        latitude: "dummyData",
-        longitude: "dummyData",
-        countryName: "dummyData",
-        screenName: screenName,
-      },
-    };
-    return axios.get(
-      `${APIPATH.BASEURL}live/shows?zoneId=${helper.getTimeZone()}`,
-      options
-    );
+    try {
+      const options = {
+        headers: {
+          ipAddress: "dummyData",
+          latitude: "dummyData",
+          longitude: "dummyData",
+          countryName: "dummyData",
+          screenName: screenName,
+        },
+      };
+      return axios.get(
+        `${APIPATH.BASEURL}live/shows?zoneId=${helper.getTimeZone()}`,
+        options
+      );  
+    } catch (error) {
+      return error;
+    }
+    
   }
 
   static getVideoTokenEarned(userId, screenName) {

@@ -45,7 +45,6 @@ function Button({
       {LeftComponent && <LeftComponent />}
       <span className="text-inherit lh-1">{label}</span>
       {RightComponent && <RightComponent />}
-      {console.log(iconName, 'icon', arrowVisible)}
       {arrowVisible && (
         <Icon
           icon={iconName}

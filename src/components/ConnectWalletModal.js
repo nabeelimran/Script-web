@@ -283,7 +283,6 @@ function ConnectWalletModal() {
         const balance = new BigNumber(
           await etherProvider.getBalance(accAddres)
         );
-        console.log(accAddres, "account", balance, "bal");
       } else if (loginType === loginTypes.ens) {
         if (!window.ethereum) {
           ToastMessage("Install Metamask");
