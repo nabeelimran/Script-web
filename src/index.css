@@ -749,3 +749,7 @@ aside.EmojiPickerReact.epr-main {
 video::-webkit-media-controls-panel-container {
   display: none !important;
 }
+
+body > iframe {
+  display: none !important;
+}
