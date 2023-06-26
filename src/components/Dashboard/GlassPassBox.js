@@ -147,7 +147,7 @@ const GlassPassBox = ({ accountAddress, balance }) => {
                 color="primary"
                 onClick={onMintGlassPass}
               >
-                {contractLoading === "processing" ? "Minting..." : "Mint"}
+                {contractLoading === "processing" ? "Minting..." : "Exchange"}
               </MuiButton>
             ) : (
               <MuiButton

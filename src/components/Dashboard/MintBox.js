@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import MuiButton from "components/MuiButton";
 import { ToastMessage } from "components/ToastMessage";
-import { approve, checkApproval, mintGlasses } from "contract/functions";
+import { approve, checkApproval, getNextImg, mintGlasses } from "contract/functions";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 
@@ -35,6 +35,7 @@ const MintBox = ({ accountAddress, balance }) => {
   const glassesPrice = [10, 20, 30];
 
   const [type, setType] = useState(1);
+  const [nextImg, setNextImg] = useState('');
   const [contractLoading, setContractLoading] = useState(false);
 
   const [isApproved, setIsApproved] = useState(false);
@@ -42,6 +43,10 @@ const MintBox = ({ accountAddress, balance }) => {
   const [contractResponse, setContractResponse] = useState(null);
 
   const [glassTypePrice, setGlassTypePrice] = useState(10);
+
+  useEffect(() => {
+    fetchNextImg();
+  }, []);
 
   useEffect(() => {
     setGlassTypePrice(glassesPrice[type]);
@@ -104,6 +109,7 @@ const MintBox = ({ accountAddress, balance }) => {
         setContractResponse(response);
 
         await checkIsApproved();
+        fetchNextImg();
         ToastMessage("Glass minted successfully", true);
       } else {
         setContractLoading("error");
@@ -132,6 +138,18 @@ const MintBox = ({ accountAddress, balance }) => {
       }
     }
   };
+  const fetchNextImg = async () => {
+    if (accountAddress) {
+      try {
+        let nextImg = await getNextImg();
+        setNextImg(nextImg);
+        // console.log(nextImg);
+      } catch (error) {
+      }
+    }
+  };
+
+
 
   return (
     <Box mb={6}>
@@ -139,6 +157,9 @@ const MintBox = ({ accountAddress, balance }) => {
       <Typography variant="h4" color="textSecondary" align="center" mb={3}>
         Mint your glass
       </Typography>
+      <Box sx={{display: 'flex', justifyContent: 'center', mb:1}}>
+        <img src={nextImg} style={{maxWidth: 120, borderRadius: 12}} alt="glasses" />
+      </Box>
       <MintBoxStyle>
         <Box>
           <Typography
@@ -200,7 +221,7 @@ const MintBox = ({ accountAddress, balance }) => {
             Check your transaction on
             <Link
               target="_blank"
-              href={`https://goerli.etherscan.io/tx/${contractResponse?.transactionHash}`}
+              href={`https://testnet.bscscan.com/tx/${contractResponse?.transactionHash}`}
             >
               {" "}
               Etherscan

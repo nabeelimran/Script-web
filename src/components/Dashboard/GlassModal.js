@@ -25,6 +25,7 @@ import { formatEther } from "ethers/lib/utils";
 import moment from "moment";
 import MuiButton from "components/MuiButton";
 import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
+import GlassService from "services/GlassService";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -113,12 +114,14 @@ export default function GlassModal({
           <br />
           <PrimaryTypography>#{id}</PrimaryTypography>
         </GlassBox>
-        <Box mb={4}>
-          <div className="text-xl font-semibold mb-2">Type : {glass.type}</div>
-          <div className="text-md font-semibold mb-2">
+        <Box mb={4} mx="auto" width="fit-content">
+          <div style={{ color: "#000" }} className="text-xl font-semibold mb-2">
+            Type : {glass.type}
+          </div>
+          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Level : <ValuesTypography>{glass.level}</ValuesTypography>
           </div>
-          <div className="text-md font-semibold mb-2">
+          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Total Watch Time :
             <ValuesTypography>{glass.totalWatchTime}</ValuesTypography>
           </div>
@@ -128,22 +131,31 @@ export default function GlassModal({
           <div className="text-md font-semibold mb-2">
             Unpaid Watch Time : {glass.unpaidWatchTime}
           </div> */}
-          <div className="text-md font-semibold mb-2">
-            Drained :{glass.drained ? "Yes" : "No"}
+          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+            Battery:
+            <ValuesTypography>
+              {(glass.maxEarnableTime /
+                GlassService.getMinutesPerDepletion(glass.type, glass.level)) *
+                100}
+              %
+            </ValuesTypography>
           </div>
-          <div className="text-md font-semibold mb-2">
+          {/* <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+            Drained :{glass.drained ? "Yes" : "No"}
+          </div> */}
+          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Voucher Equipped :
             <ValuesTypography>
               {rechargeDiscountPercentage > 0 ? "Yes" : "No"}
             </ValuesTypography>
           </div>
-          <Link
+          {/* <Link
             target="_blank"
             href={`https://goerli.etherscan.io/nft/0xf933F3f1d01418ad00271C4e45A218fC8b9396fE/${id}`}
           >
             {" "}
-            View on Etherscan
-          </Link>
+            View on BSC Scan
+          </Link> */}
         </Box>
         {history.length > 0 && (
           <Box>
@@ -220,7 +232,7 @@ export default function GlassModal({
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
     maxWidth: 600,
-    background: theme.palette.grey[600],
+    background: "#fff",
     margin: 0,
     padding: 24,
     maxHeight: 600,
@@ -272,4 +284,4 @@ const StyledDialogAction = styled(DialogActions)(({ theme }) => ({
   },
 }));
 
-const buttonStyle = { maxWidth: 126, width: "100%" };
+const buttonStyle = { maxWidth: 126, width: "100%", backgroundColor: "#000" };
