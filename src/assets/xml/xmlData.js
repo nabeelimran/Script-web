@@ -61975,5 +61975,458 @@ export const xmlDataList = [
       </rating>
       </programme>
       </tv>`
+  },
+  {
+    id: 785356,
+    name: 'Prime Flight',
+    xmlData: `<tv generator-info-name="Evrideo EPG generator">
+    <channel id="1000000668.com">
+    <display-name>PRIME-FIGHT</display-name>
+    </channel>
+    <programme channel="1000000668.com" start="20230626093154 +0000" stop="20230626110237 +0000">
+    <title lang="en">King of Kings World Heroes Series in Lithuania 2019</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">90</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_30fbc958-ac1b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00007</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Heroes Series in Lithuania 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230626110713 +0000" stop="20230626123805 +0000">
+    <title lang="en">MMA Bushido’77 Fighting Championship 2019</title>
+    <desc lang="en">Part 1 of MMA Fighting Championship in Vilnius </desc>
+    <category lang="en"/>
+    <length units="minutes">90</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_efe4b00e-9618-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00006</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of MMA Fighting Championship in Vilnius |director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=MMA Bushido’77 Fighting Championship 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230626124241 +0000" stop="20230626152646 +0000">
+    <title lang="en">King of kings World Grand Prix in Vilnius 2018</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_ccfe6c96-a91b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00036</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of kings World Grand Prix in Vilnius 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230626153117 +0000" stop="20230626173630 +0000">
+    <title lang="en">King of Kings World Grand Prix in Latvia 2019</title>
+    <desc lang="en">Part 2 of World grand Prix in Riga </desc>
+    <category lang="en"/>
+    <length units="minutes">125</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_a2cfe2fc-1c17-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00014</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Riga |director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Grand Prix in Latvia 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230626174108 +0000" stop="20230626192916 +0000">
+    <title lang="en">King of Kings World Series in Tallinn 2020</title>
+    <desc lang="en">Part 1 of the World Heroes series in Tallinn </desc>
+    <category lang="en"/>
+    <length units="minutes">108</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_fd939500-8718-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00012</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Tallinn |director=|episode=|Episode title=|Language=English|rating=R|release_date=2020|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Series in Tallinn 2020|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230626193351 +0000" stop="20230626215841 +0000">
+    <title lang="en">King of Kings World Grand Prix in Warsaw 2021</title>
+    <desc lang="en">Part 1 of the World Heroes series in Warsaw</desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_dcd4ceb6-8918-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00024</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Warsaw|director=|episode=|Episode title=|Language=English|rating=R|release_date=2021|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Grand Prix in Warsaw 2021|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230626220318 +0000" stop="20230627004739 +0000">
+    <title lang="en">King of kings World Grand Prix in Vilnius 2018</title>
+    <desc lang="en">Part 2 of World grand Prix in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_92665459-ab1b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00037</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of kings World Grand Prix in Vilnius 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230627005220 +0000" stop="20230627033624 +0000">
+    <title lang="en">King of kings World Grand Prix in Vilnius 2018</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_ccfe6c96-a91b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00036</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of kings World Grand Prix in Vilnius 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230627034100 +0000" stop="20230627070000 +0000">
+    <title lang="en">King of Kings World Championship in Vilnius 2021</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">199</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_9be22b9b-2117-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00041</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2021|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Championship in Vilnius 2021|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230627070437 +0000" stop="20230627092920 +0000">
+    <title lang="en">King of Kings World Heroes Series in Lithuania 2019</title>
+    <desc lang="en">Part 3 of World grand Prix in Kaunas </desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_9de61836-9518-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00025</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 3 of World grand Prix in Kaunas |director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Heroes Series in Lithuania 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230627093357 +0000" stop="20230627115848 +0000">
+    <title lang="en">King of Kings Fight Series in London 2019</title>
+    <desc lang="en">Part 2 of World grand Prix in London</desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_666083fc-8518-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00022</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in London|director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings Fight Series in London 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230627120323 +0000" stop="20230627173623 +0000">
+    <title lang="en">King of kings World Grand Prix in Vilnius 2018</title>
+    <desc lang="en">Part 2 of World grand Prix in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">333</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_92665459-ab1b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00037</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of kings World Grand Prix in Vilnius 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230627174056 +0000" stop="20230627200555 +0000">
+    <title lang="en">King of Kings Fight Series in Helsinki 2019</title>
+    <desc lang="en">Part 2 of World grand Prix in Kaunas</desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_f6ce6aaa-8318-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00021</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Kaunas|director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings Fight Series in Helsinki 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230627201027 +0000" stop="20230627223508 +0000">
+    <title lang="en">King Of Kings Fight Series in Riga 2018</title>
+    <desc lang="en">Part 2 of World grand Prix in Riga</desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_0571ff86-1a17-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00019</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Riga|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King Of Kings Fight Series in Riga 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230627223947 +0000" stop="20230628012351 +0000">
+    <title lang="en">King Of Kings World Heroes Series in Riga 2018</title>
+    <desc lang="en">Part 1 of World Heroes Series event in Riga </desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_b8d6c4f0-1217-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00027</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of World Heroes Series event in Riga |director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King Of Kings World Heroes Series in Riga 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628012824 +0000" stop="20230628041250 +0000">
+    <title lang="en">King of kings World Grand Prix in Slovakia 2018</title>
+    <desc lang="en">Part 2 of World grand Prix in Slovakia</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_5706bed4-a71b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00035</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Slovakia|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of kings World Grand Prix in Slovakia 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628041518 +0000" stop="20230628065942 +0000">
+    <title lang="en">King Of Kings World Heroes Series in Riga 2018</title>
+    <desc lang="en">Part 1 of World Heroes Series event in Riga </desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_b8d6c4f0-1217-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00027</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of World Heroes Series event in Riga |director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King Of Kings World Heroes Series in Riga 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628070413 +0000" stop="20230628090931 +0000">
+    <title lang="en">King of Kings World Grand Prix in Latvia 2019</title>
+    <desc lang="en">Part 2 of World grand Prix in Riga </desc>
+    <category lang="en"/>
+    <length units="minutes">125</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_a2cfe2fc-1c17-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00014</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Riga |director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Grand Prix in Latvia 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628091405 +0000" stop="20230628132913 +0000">
+    <title lang="en">King of Kings World GP in Warsaw 2021</title>
+    <desc lang="en">Part 2 of World grand Prix in Warsaw</desc>
+    <category lang="en"/>
+    <length units="minutes">255</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_31a07ad2-8b18-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00043</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Warsaw|director=|episode=|Episode title=|Language=English|rating=R|release_date=2021|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World GP in Warsaw 2021|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628133354 +0000" stop="20230628155851 +0000">
+    <title lang="en">King of Kings World Heroes Series in Lithuania 2019</title>
+    <desc lang="en">Part 3 of World grand Prix in Kaunas </desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_9de61836-9518-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00025</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 3 of World grand Prix in Kaunas |director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Heroes Series in Lithuania 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628160328 +0000" stop="20230628184747 +0000">
+    <title lang="en">King of Kings Mega Series in Vilnius 2022</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_ade65161-2517-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00029</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2022|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings Mega Series in Vilnius 2022|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628185220 +0000" stop="20230628202328 +0000">
+    <title lang="en">MMA Bushido’77 Fighting Championship 2019</title>
+    <desc lang="en">Part 1 of MMA Fighting Championship in Vilnius </desc>
+    <category lang="en"/>
+    <length units="minutes">91</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_efe4b00e-9618-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00006</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of MMA Fighting Championship in Vilnius |director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=MMA Bushido’77 Fighting Championship 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628202804 +0000" stop="20230628234717 +0000">
+    <title lang="en">King of Kings World Championship in Vilnius 2021</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">199</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_9be22b9b-2117-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00041</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2021|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Championship in Vilnius 2021|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230628235145 +0000" stop="20230629021634 +0000">
+    <title lang="en">King of Kings Fight Series in Helsinki 2019</title>
+    <desc lang="en">Part 2 of World grand Prix in Kaunas</desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_f6ce6aaa-8318-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00021</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Kaunas|director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings Fight Series in Helsinki 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230629022111 +0000" stop="20230629035150 +0000">
+    <title lang="en">King of Kings World Heroes Series in Lithuania 2019</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">90</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_30fbc958-ac1b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00007</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Heroes Series in Lithuania 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230629035618 +0000" stop="20230629062100 +0000">
+    <title lang="en">King of Kings World Series in Tallinn 2020</title>
+    <desc lang="en">Part 2 of World grand Prix in Tallinn </desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_b6d38a5c-8818-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00023</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Tallinn |director=|episode=|Episode title=|Language=English|rating=R|release_date=2020|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Series in Tallinn 2020|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230629062535 +0000" stop="20230629090957 +0000">
+    <title lang="en">King of Kings in Slovakia 2022</title>
+    <desc lang="en">Part 2 of World grand Prix in Slovakia</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_1fe0a49b-2d17-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00031</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Slovakia|director=|episode=|Episode title=|Language=English|rating=R|release_date=2022|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings in Slovakia 2022|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230629091436 +0000" stop="20230629123339 +0000">
+    <title lang="en">King of Kings World Championship in Vilnius 2021</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">199</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_9be22b9b-2117-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00041</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2021|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Championship in Vilnius 2021|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230629123817 +0000" stop="20230629152232 +0000">
+    <title lang="en">King of kings World Grand Prix in Slovakia 2018</title>
+    <desc lang="en">Part 1 of the World Heroes series in Slovakia</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_f303490b-a61b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00034</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Slovakia|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of kings World Grand Prix in Slovakia 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230629152709 +0000" stop="20230629184606 +0000">
+    <title lang="en">King Of Kings Fight Series in Riga 2018</title>
+    <desc lang="en">Part 1 of the World Heroes series in Riga </desc>
+    <category lang="en"/>
+    <length units="minutes">198</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_002a4526-1917-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00040</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Riga |director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King Of Kings Fight Series in Riga 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230629185038 +0000" stop="20230629211525 +0000">
+    <title lang="en">King of Kings World Series in Tallinn 2020</title>
+    <desc lang="en">Part 2 of World grand Prix in Tallinn </desc>
+    <category lang="en"/>
+    <length units="minutes">144</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_b6d38a5c-8818-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00023</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Tallinn |director=|episode=|Episode title=|Language=English|rating=R|release_date=2020|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Series in Tallinn 2020|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230629212001 +0000" stop="20230630000424 +0000">
+    <title lang="en">King of kings World Grand Prix in Slovakia 2018</title>
+    <desc lang="en">Part 1 of the World Heroes series in Slovakia</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_f303490b-a61b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00034</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Slovakia|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of kings World Grand Prix in Slovakia 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230630000905 +0000" stop="20230630013948 +0000">
+    <title lang="en">King of Kings World Heroes Series in Lithuania 2019</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">90</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_30fbc958-ac1b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00007</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Heroes Series in Lithuania 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230630014425 +0000" stop="20230630031516 +0000">
+    <title lang="en">MMA Bushido’77 Fighting Championship 2019</title>
+    <desc lang="en">Part 1 of MMA Fighting Championship in Vilnius </desc>
+    <category lang="en"/>
+    <length units="minutes">90</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_efe4b00e-9618-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00006</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of MMA Fighting Championship in Vilnius |director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=MMA Bushido’77 Fighting Championship 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230630031953 +0000" stop="20230630060357 +0000">
+    <title lang="en">King of kings World Grand Prix in Vilnius 2018</title>
+    <desc lang="en">Part 1 of the World Heroes series in Vilnius</desc>
+    <category lang="en"/>
+    <length units="minutes">164</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_ccfe6c96-a91b-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00036</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Vilnius|director=|episode=|Episode title=|Language=English|rating=R|release_date=2018|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of kings World Grand Prix in Vilnius 2018|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230630060829 +0000" stop="20230630081341 +0000">
+    <title lang="en">King of Kings World Grand Prix in Latvia 2019</title>
+    <desc lang="en">Part 2 of World grand Prix in Riga </desc>
+    <category lang="en"/>
+    <length units="minutes">125</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_a2cfe2fc-1c17-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00014</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 2 of World grand Prix in Riga |director=|episode=|Episode title=|Language=English|rating=R|release_date=2019|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Grand Prix in Latvia 2019|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    <programme channel="1000000668.com" start="20230630081820 +0000" stop="20230630094157 +0000">
+    <title lang="en">King of Kings World Series in Tallinn 2020</title>
+    <desc lang="en">Part 1 of the World Heroes series in Tallinn </desc>
+    <category lang="en"/>
+    <length units="minutes">83</length>
+    <icon src="https://s3.eu-central-1.wasabisys.com/icpublicuploads/d000103d-1d16-ed11-90f1-a0423f495001/thumb/thumb_fd939500-8718-ed11-90f1-a0423f495001.png" width="320" height="180"/>
+    <episode-num system="assetID">PRIME00012</episode-num>
+    <episode-num system="evrideo-media-metadata">availability_end=|availability_start=|cast=N/A|category_en=|description_en=Part 1 of the World Heroes series in Tallinn |director=|episode=|Episode title=|Language=English|rating=R|release_date=2020|Resolution=FHD|Run in USA=|Run Time=|season=|subtitle_en=|title_en=King of Kings World Series in Tallinn 2020|Type=VIDEO|LONG_DESCRIPTION_EN=</episode-num>
+    <rating>
+    <value>R</value>
+    </rating>
+    </programme>
+    </tv>`
   }
 ]
