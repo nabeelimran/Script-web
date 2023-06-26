@@ -26,7 +26,7 @@ const channels = [
     id: 785353
   },
   {
-    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1687260228141-lol.png',
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1687510335304-lol_tv.png',
     className: "w-full lg:w-20",
     id: 785355
   },
@@ -36,7 +36,7 @@ const channels = [
     id: 785356
   },
   {
-    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1687260241287-w_(1).png',
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1687509996086-weshort_horizontal_no-payoff_white-logo[1].png',
     className: "w-full lg:w-20",
     id: 785354
   }
