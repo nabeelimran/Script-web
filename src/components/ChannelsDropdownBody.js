@@ -40,11 +40,11 @@ const channels = [
     className: "w-full lg:w-20",
     id: 785354
   },
-  {
-    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1671707226725-ASMR.png',
-    className: "w-full lg:w-20",
-    id: 727149
-  }
+  // {
+  //   img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1671707226725-ASMR.png',
+  //   className: "w-full lg:w-20",
+  //   id: 727149
+  // }
 ];
 
 const ImgBox = ({ children }) => {
