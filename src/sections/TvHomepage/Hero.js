@@ -102,10 +102,10 @@ function Hero() {
     //   image: "images/collect-points.png",
     //   link: "https://crew3.xyz/c/scriptnetwork/questboard",
     // },
-    {
-      image: "images/minutes-watched.png",
-      link: "",
-    },
+    // {
+    //   image: "images/minutes-watched.png",
+    //   link: "",
+    // },
   ];
 
   return (
