@@ -157,7 +157,7 @@ function Welcome({}) {
           <Card
             color="#5815BA"
             title="Nice Work!"
-            description="You have earned N/A SPAY this week!"
+            description="You have earned 0 SPAY this week!"
           />
         </div>
         <div className="grid md:grid-cols-3 gap-3 md:gap-6">

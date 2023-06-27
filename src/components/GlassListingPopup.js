@@ -12,7 +12,8 @@ import Popup from "./Popup";
 import { ToastMessage } from "./ToastMessage";
 import UpperRoot from "./UpperRoot";
 import LoaderGif from "../assets/Loading_icon.gif";
-import { Typography, styled } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
+import GlassService from "services/GlassService";
 
 function GlassListingPopup() {
   const user = LocalServices.getServices("user") || null;
@@ -163,26 +164,38 @@ function GlassListingPopup() {
               {glassListingData && glassListingData.length > 0 ? (
                 glassListingData.map((glass, index) => (
                   <div
-                    className={`flex py-2 mb-3 rounded w-11/12 mx-auto ${
+                    className={`flex justify-between px-2 py-2 mb-3 rounded w-11/12 mx-auto ${
                       glass.voucherEquipped ? "voucher-active" : ""
                     } bg-[#131313] cursor-pointer ${returnClasses(index + 1)}`}
                     onClick={() => changeActiveState(index + 1, glass)}
                     key={index}
                   >
                     <img
-                      src={
-                        helper.glassImages[
-                          Math.floor(Math.random() * helper.glassImages.length)
-                        ]
-                      }
+                      src={`https://ahram-bucket.s3.eu-central-1.amazonaws.com/assets/${glass.tokenId}.png`}
                       alt=""
-                      className="w-[60px] xl:w-[80px] mx-4"
+                      className="w-[60px] xl:w-[80px]"
                     />
                     <div className="flex items-center">
-                      <h6>#{glass.tokenId}</h6>
-                      {/* <p className="text-xs">
-                        Test
-                      </p> */}
+                      ID:<ValuesTypography>{glass.tokenId}</ValuesTypography>
+                    </div>
+                    <div className="flex items-center">
+                      <h6>
+                        Level:<ValuesTypography>{glass.level}</ValuesTypography>
+                      </h6>
+                    </div>
+                    <div className="flex items-center">
+                      <h6>
+                        Battery:
+                        <ValuesTypography>
+                          {(glass.maxEarnableTime /
+                            GlassService.getMinutesPerDepletion(
+                              glass.type,
+                              glass.level
+                            )) *
+                            100}
+                          %
+                        </ValuesTypography>
+                      </h6>
                     </div>
                   </div>
                 ))
