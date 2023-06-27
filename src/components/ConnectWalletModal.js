@@ -703,10 +703,10 @@ function ConnectWalletModal() {
                 clickEvent={() => spaceIdConnectHandler(loginTypes.bnb)}
               />
               <ConnectWalletButton
-                img="images/okc_logo.png"
-                title="OKT Chain"
-                loader={loading.okc}
-                clickEvent={() => metaMaskHandler(loginTypes.okc)}
+                img="images/ens-logo.png"
+                title=".ens domain"
+                loader={loading.ens}
+                clickEvent={() => spaceIdConnectHandler(loginTypes.ens)}
               />
               <ConnectWalletButton
                 img="images/bitgret_logo.png"
@@ -721,10 +721,10 @@ function ConnectWalletModal() {
                 clickEvent={() => metaMaskHandler(loginTypes.temple)}
               />
               <ConnectWalletButton
-                img="images/ens-logo.png"
-                title=".ens domain"
-                loader={loading.ens}
-                clickEvent={() => spaceIdConnectHandler(loginTypes.ens)}
+                img="images/okc_logo.png"
+                title="OKT Chain"
+                loader={loading.okc}
+                clickEvent={() => metaMaskHandler(loginTypes.okc)}
               />
               {/* <ConnectWalletButton
                 img="images/trust_wallet_logo.png"
