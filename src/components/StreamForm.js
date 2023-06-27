@@ -7,6 +7,7 @@ import LocalServices from "services/LocalServices";
 import { useDispatch } from "react-redux";
 import { toggleModalVisibility } from "redux/reducers/connectWalletModal_State";
 import EmojiPicker from "emoji-picker-react";
+import OutsideClickDetector from "hooks/OutsideClickDetector";
 
 function StreamForm({ submitHandler, messageForReply, removeReplyMessage }) {
   const {
@@ -33,6 +34,10 @@ function StreamForm({ submitHandler, messageForReply, removeReplyMessage }) {
       reset();
     }
   };
+
+  const modalRef = OutsideClickDetector(() => {
+    setIsEmoji(false);
+  });
 
   const emojiHandler = (res) => {
     setValue("typedMessage", getValues("typedMessage") + res.emoji);
@@ -80,6 +85,7 @@ function StreamForm({ submitHandler, messageForReply, removeReplyMessage }) {
             <button
               type="button"
               className="absolute top-1/2 right-4 -translate-y-1/2 z-20 opacity-60 text-xl"
+              ref={modalRef}
               onClick={(e) => {
                 e.preventDefault();
                 setIsEmoji(!isEmoji);
