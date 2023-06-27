@@ -83,5 +83,5 @@ export const parseChainIdHex = (chainId) => {
 };
 
 export const currentChainSupported = (currentChain) => {
-  return _.includes([137, 4, 56], currentChain);
+  return _.includes([56, 97], currentChain);
 };

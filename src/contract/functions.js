@@ -47,7 +47,7 @@ if (window.ethereum) {
 
   scriptPassContract = new ethers.Contract(
     glassPassAddress,
-    ScriptGlassABI,
+    ScriptGlassPassABI,
     signer
   );
 }
@@ -73,6 +73,11 @@ export const approveVoucherForTv = async () => {
 
 export const checkVoucherForTvApproval = async (user) => {
   return await scriptVoucher.isApprovedForAll(user, scriptTvAddress);
+};
+
+export const getNextImg = async () => {
+  let next = (await scriptGlassContract.getNextTokenId()).toString();
+  return `https://ahram-bucket.s3.eu-central-1.amazonaws.com/assets/${next}.png`
 };
 
 export const approveVoucher = async () => {
@@ -156,6 +161,7 @@ export const isFreeClaimed = async (address) => {
 };
 
 export const mintFreeGlasses = async (address, nonce, signature) => {
+  console.log(address, nonce, signature);
   const tx = await scriptTvContract.mintFreemiumGlasses(
     address,
     nonce,
