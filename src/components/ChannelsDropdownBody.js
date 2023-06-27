@@ -39,6 +39,11 @@ const channels = [
     img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1687509996086-weshort_horizontal_no-payoff_white-logo[1].png',
     className: "w-full lg:w-20",
     id: 785354
+  },
+  {
+    img: 'https://scripttv.s3.eu-central-1.amazonaws.com/1671707226725-ASMR.png',
+    className: "w-full lg:w-20",
+    id: 727149
   }
 ];
 
