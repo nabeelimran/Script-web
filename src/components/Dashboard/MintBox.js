@@ -212,7 +212,7 @@ const MintBox = ({ accountAddress, balance }) => {
               href={`https://testnet.bscscan.com/tx/${contractResponse?.transactionHash}`}
             >
               {" "}
-              Etherscan
+              BscScan
             </Link>
           </Box>
         </Box>
