@@ -11,16 +11,16 @@ const Card = ({
       <div className="xl:flex items-center justify-between mb-4 xl:mb-6">
         <div className="flex items-center space-x-3">
           <img
-            src="images/logos/clean-logo.png"
-            className="w-[40px] xl:w-[50px]"
+            src="images/logo-beta.svg"
+            className="w-[100px] xl:w-[100px]"
             alt=""
           />
-          <div>
+          {/* <div>
             <p className="text-sm xl:text-base text-primary font-bold">
               Scripttv
             </p>
             <p className="text-xs xl:text-sm">@scripttv</p>
-          </div>
+          </div> */}
         </div>
 
         <p className="text-xs xl:text-sm text-primary absolute top-3 right-6 xl:static">
