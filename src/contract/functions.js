@@ -186,10 +186,10 @@ export const mintVoucher = async (address, type, tokenId, nonce, signature) => {
     type,
     tokenId,
     nonce,
-    signature
-    // {
-    //   gasLimit: 1000000,
-    // }
+    signature,
+    {
+      gasLimit: 150000,
+    }
   );
   return await tx.wait();
 };

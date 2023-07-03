@@ -92,10 +92,10 @@ export default function VoucherView() {
   const handleEligibleGlasses = () => {
     if (accountAddress && glasses.length && equippedBalance?.length) {
       let types = splitByType(glasses);
-      let common = types.COMMON.filter((x) => !equippedBalance[0].includes(x));
-      let rare = types.RARE.filter((x) => !equippedBalance[0].includes(x));
+      let common = types.COMMON.filter((x) => !equippedBalance[0].includes(x+''));
+      let rare = types.RARE.filter((x) => !equippedBalance[1].includes(x+''));
       let superscript = types.SUPERSCRIPT.filter(
-        (x) => !equippedBalance[0].includes(x)
+        (x) => !equippedBalance[2].includes(x+'')
       );
       setEligibleGlasses([[...common], [...rare], [...superscript]]);
     }
