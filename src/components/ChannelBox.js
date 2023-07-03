@@ -25,7 +25,7 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data, utcStartTi
       borderLeft:'2px solid black'
     }
     let minWidth=160;
-    if(data && (data.duration === 1 || data.duration < 160)) {
+    if(data && data.channelId !== 727149 && (data.duration === 1 || data.duration < 160)) {
       data.duration = 1439;
     }
     let res=(data.duration/30)*160;
