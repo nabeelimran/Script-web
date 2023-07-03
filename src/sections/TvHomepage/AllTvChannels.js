@@ -175,7 +175,7 @@ function AllTvChannels({
 						if (
 							playerRef.current?.currentTime() &&
 							playerRef.current.currentTime() ===
-								(playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration)
+								(playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration || 0)
 						) {
 							dispatch(refreshChannelAction(true));
 						}
@@ -215,7 +215,7 @@ function AllTvChannels({
 					console.log('interval started')
 					const videoWatchTime = {
 						startTime: videoStartTime,
-						endTime: playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration,
+						endTime: playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration || 0,
 						videoPlayTime:
 							(new Date().getTime() -
 								new Date(show.startTime).getTime()) /
