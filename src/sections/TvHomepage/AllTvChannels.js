@@ -82,7 +82,7 @@ function AllTvChannels({
 		const videoDurationInMin = Math.ceil(
 			(videDurationInSec && videDurationInSec > 0
 				? videDurationInSec
-				: document.getElementsByTagName("video")[0].duration) / 60
+				: document.getElementsByTagName("video")[0]?.duration) / 60
 		);
 		const currentTimeInMin = Math.ceil(
 			(videoCurrentTimeInSec && videoCurrentTimeInSec > 0
@@ -170,12 +170,12 @@ function AllTvChannels({
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
 					durationcheckinterval = setInterval(() => {
-						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration(),document.getElementsByTagName('video')[0].duration)
 						if (
 							playerRef.current?.currentTime() &&
 							playerRef.current.currentTime() ===
 								(playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration || 0)
 						) {
+							console.log('step 1 refresh channel set to true');
 							dispatch(refreshChannelAction(true));
 						}
 					}, 10000);
