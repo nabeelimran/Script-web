@@ -59,11 +59,7 @@ function TvHomepage() {
 		// getChannels();
 		console.log("refresh effeced called",refreshChannel)
 		if (refreshChannel) {
-<<<<<<< Updated upstream
-			console.log("refresh");
-=======
 			console.log('step 2 refresh channel');
->>>>>>> Stashed changes
 			let nextIndex =0;
 			let channelIndex = 0
 			const currentChannel = channel.filter(
