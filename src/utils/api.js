@@ -204,7 +204,7 @@ export const getVoucherEligibility = async (address) => {
   }
 };
 
-export const getVoucherSignature = async (address, type) => {
+export const getVoucherSignature = async (address, type, tokenId) => {
   try {
     const response = await api.request({
       url: "/scripts/claim-voucher",
@@ -212,6 +212,7 @@ export const getVoucherSignature = async (address, type) => {
       params: {
         address,
         type,
+        tokenId
       },
     });
 

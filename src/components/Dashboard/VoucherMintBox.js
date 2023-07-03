@@ -226,12 +226,14 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
         setContractLoading("processing");
         const res = await getVoucherSignature(
           accountAddress.toLowerCase(),
-          type
+          type,
+          voucherEligible.types[type]
         );
         console.log("res", res);
         const response = await mintVoucher(
           res.address,
           res.voucherType,
+          res.tokenId,
           res.nonce,
           res.signature
         );
