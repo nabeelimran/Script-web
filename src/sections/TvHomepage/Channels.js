@@ -966,8 +966,9 @@ function Channels({
         </div>
 
         <div className="grid gap-3">
+          {console.log('channel renderer', channels)}
           {channels.map((ch, index) =>
-            ch.liveShows[0]?.duration ? (
+            ch?.liveShows?.length ? (
               <ChannelsRow
                 key={index}
                 channleDetails={ch}
