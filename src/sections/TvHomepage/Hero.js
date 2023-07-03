@@ -75,10 +75,10 @@ function Hero() {
     //   image: "images/bitcoin-pizza.png",
     //   link: "https://www.twitter.com/script_network",
     // },
-    {
-      image: "images/final_sprint.png",
-      link: "",
-    },
+    // {
+    //   image: "images/final_sprint.png",
+    //   link: "",
+    // },
     {
       image: "images/community-ama.png",
       link: "",
