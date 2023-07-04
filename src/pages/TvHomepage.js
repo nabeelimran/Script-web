@@ -21,6 +21,7 @@ import {
 	updateCurrentVideo,
 	updateEpgData,
 } from "redux/reducers/connectWalletModal_State";
+import ShowEpg from "sections/PlanbyEpg/ShowEpg";
 
 function TvHomepage() {
 	const dispatch = useDispatch();
@@ -198,6 +199,9 @@ function TvHomepage() {
 						latestVideIdx={latestVideIdx}
 					/>
 				)}
+			</div>
+			<div className='mb-12'>
+				<ShowEpg />
 			</div>
 
 			<div className='mb-12'>

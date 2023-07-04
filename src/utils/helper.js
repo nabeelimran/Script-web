@@ -12,6 +12,8 @@ import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 export const helper = {
+  epgStartDate: () => moment().utcOffset(0).set({hour:0, minute:0, second:0, millisecond:0}),
+  epgEndDate: () => moment().utcOffset(0).set({hour:24, minute:0, second:0, millisecond:0}),
   formatLocalDate:(date) => moment(date).format("DD/MM/YYYY"),
   formatLocalTime:(date) => moment.utc(date).format("HH:mm"),
     percentFormat: (num) => num.toFixed(4).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1'),
