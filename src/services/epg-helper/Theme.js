@@ -1,6 +1,6 @@
 export const theme = {
     primary: {
-      600: "#1a202c",
+      600: "#161616",
       900: "#000000"
     },
     grey: { 300: "#d1d1d1" },
@@ -11,7 +11,7 @@ export const theme = {
     scrollbar: {
       border: "#ffffff",
       thumb: {
-        bg: "#e1e1e1"
+        bg: "#ffef00"
       }
     },
     loader: {

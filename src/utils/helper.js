@@ -293,3 +293,23 @@ export const updateShowDetails = (channelId) => {
   }
   return null;
 }
+
+export const planByEpg = (channelId) => {
+  if(xmlDataList.filter((file) => file.id === channelId)?.length > 0) {
+    const jsonObject = XmlService.parseXmlToJson(xmlDataList.filter((file) => file.id === channelId)[0].xmlData);
+    jsonObject.children = jsonObject.children.map((child) => {
+      if(child.name === "programme") {
+        const startTimestamp = child.attributes.start.split(' ')[0];
+        const stopTimestamp = child.attributes.stop.split(' ')[0];
+        child.attributes.utcStart = dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ');
+        child.attributes.utcStartTime = dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').hour() * 60 + dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').minute();
+        child.attributes.utcStartTimeString = `${dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').hour()}:${helper.convertTwoDigit(dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').minute().toString())}`
+        child.attributes.utcStop = dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ');
+        child.attributes.utcStopTime = (dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').hour() * 60) + dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').minute();
+        child.attributes.utcStopTimeString = `${dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').hour()}:${helper.convertTwoDigit(dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').minute().toString())}`
+      }
+      return child;
+    })
+    return jsonObject;
+  }
+}

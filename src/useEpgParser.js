@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import { theme } from "./services/epg-helper/Theme";
 import { useEpg } from "planby";
 import Api from "services/api";
-import { helper } from "utils/helper";
+import { helper, planByEpg } from "utils/helper";
 
 export function useEpgParser() {
   const [channels, setChannels] = useState([]);
@@ -46,20 +46,41 @@ export function useEpgParser() {
       });
 
       if(channels?.length && showChannelList?.length) {
-        showChannelList.forEach((channel) => {
-          channels.forEach((showChannel) => {
-            if(showChannel.uuid === channel.id) {
-              channel.liveShows.forEach((show) => {
-                epg.push({
-                  id: show.id,
-                  description: show.description,
-                  title: show.title,
-                  since: new Date(show.startTime),
-                  till: new Date(show.endTime),
-                  channelUuid: show.channelId,
-                  image: show.videoThumbnailUrl
-                })
-              })  
+        showChannelList.forEach((showChannel) => {
+          channels.forEach((channel) => {
+            if(channel.uuid === showChannel.id) {
+              showChannel.liveShows.forEach((show) => {
+                if(channel.uuid === 727149) {
+                  epg.push({
+                    id: show.id,
+                    description: show.description,
+                    title: show.title,
+                    since: new Date(show.startTime),
+                    till: new Date(show.endTime),
+                    channelUuid: show.channelId,
+                    image: show.videoThumbnailUrl
+                  })
+                } else {
+                  const xmlJSONData = planByEpg(channel.uuid);
+                  debugger
+                  if(xmlJSONData.children.length) {
+                    xmlJSONData.children.forEach((jsonData) => {
+                      if(jsonData.name === "programme") {
+                        epg.push({
+                          id: show.id,
+                          description: jsonData.children.filter((child) => child.name === "desc")[0].value,
+                          title: jsonData.children.filter((child) => child.name === "title")[0].value,
+                          since: new Date(jsonData.attributes.utcStart),
+                          till: new Date(jsonData.attributes.utcStop),
+                          channelUuid: show.channelId,
+                          image: show.videoThumbnailUrl
+                        })
+                      }
+                      
+                    })
+                  }
+              }
+            })
             }
           })
         })
