@@ -80,6 +80,10 @@ function Hero() {
     //   link: "",
     // },
     {
+      image: "images/glass-pass.png",
+      link: ""
+    },
+    {
       image: "images/community-ama.png",
       link: "",
     },
