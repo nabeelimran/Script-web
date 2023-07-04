@@ -33,7 +33,7 @@ export const ProgramItem = ({ program, clickFn, ...rest }) => {
       <ProgramBox width={styles.width} style={styles.position} onClick={() => getProgramData(program)}>
         <ProgramContent width={styles.width} isLive={isLive}>
           <ProgramFlex>
-            {isLive && isMinWidth && <ProgramImage src={image} alt="Preview" />}
+            {/* {isLive && isMinWidth && <ProgramImage src={image} alt="Preview" />} */}
             <ProgramStack>
               <ProgramTitle>{title}</ProgramTitle>
               <ProgramText>
