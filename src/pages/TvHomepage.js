@@ -177,7 +177,6 @@ function TvHomepage() {
 			</div>
 
 			<div className='mb-6'>
-				{console.log('tvhomepage 176', channel, currentVideo)}
 				{channel.length > 0 && currentVideo && (
 					<AllTvChannels
 						show={currentVideo}
@@ -188,7 +187,6 @@ function TvHomepage() {
 			</div>
 
 			<div className='mb-12' id='videoTag'>
-				{console.log('tvhomepage 187', channel, currentVideo)}
 				{channel.length > 0 && currentVideo && (
 					<Channels
 						channeldata={channel}
