@@ -116,7 +116,8 @@ export const helper = {
       });
       
       return formatter.format(amount);
-    }
+    },
+    convertTwoDigit: (minute) => minute && minute.length === 1 ? `0${minute}` : minute
 }
 
 export const metamaskNetwork = {
@@ -260,10 +261,10 @@ export const updateShowDetails = (channelId) => {
         const stopTimestamp = child.attributes.stop.split(' ')[0];
         child.attributes.utcStart = dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ');
         child.attributes.utcStartTime = dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').hour() * 60 + dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').minute();
-        child.attributes.utcStartTimeString = `${dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').hour()}:${dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').minute()}`
+        child.attributes.utcStartTimeString = `${dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').hour()}:${helper.convertTwoDigit(dayjs(startTimestamp, 'YYYYMMDDHHmmss ZZ').minute().toString())}`
         child.attributes.utcStop = dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ');
         child.attributes.utcStopTime = (dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').hour() * 60) + dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').minute();
-        child.attributes.utcStopTimeString = `${dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').hour()}:${dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').minute()}`
+        child.attributes.utcStopTimeString = `${dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').hour()}:${helper.convertTwoDigit(dayjs(stopTimestamp, 'YYYYMMDDHHmmss ZZ').minute().toString())}`
       }
       return child;
     })
