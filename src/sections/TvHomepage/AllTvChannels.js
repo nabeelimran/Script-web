@@ -153,7 +153,7 @@ function AllTvChannels({
 		fluid: true,
 		sources: [
 			{
-				src: "https://api.script.tv/ipfs/QmVCYfHwUBtdDSJg5DkvFQpgDdsmjBGyTaZEWrDo1NDXKT/master.m3u8",
+				src: "https://streams.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/script_sofast/diQ7G9vaxhcQl5G6/ewnsabren_eng.m3u8",
 				type: "application/x-mpegURL",
 			},
 		],
