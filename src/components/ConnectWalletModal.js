@@ -705,7 +705,7 @@ function ConnectWalletModal() {
               />
               <ConnectWalletButton
                 img="images/ens-logo.png"
-                title=".ens domain"
+                title=".ens Domain"
                 loader={loading.ens}
                 clickEvent={() => spaceIdConnectHandler(loginTypes.ens)}
               />
