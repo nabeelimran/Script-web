@@ -82,7 +82,7 @@ function AllTvChannels({
 		const videoDurationInMin = Math.ceil(
 			(videDurationInSec && videDurationInSec > 0
 				? videDurationInSec
-				: document.getElementsByTagName("video")[0].duration) / 60
+				: document.getElementsByTagName("video")[0]?.duration) / 60
 		);
 		const currentTimeInMin = Math.ceil(
 			(videoCurrentTimeInSec && videoCurrentTimeInSec > 0
@@ -153,7 +153,7 @@ function AllTvChannels({
 		fluid: true,
 		sources: [
 			{
-				src: "https://api.script.tv/ipfs/QmVCYfHwUBtdDSJg5DkvFQpgDdsmjBGyTaZEWrDo1NDXKT/master.m3u8",
+				src: "https://streams.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/script_sofast/diQ7G9vaxhcQl5G6/ewnsabren_eng.m3u8",
 				type: "application/x-mpegURL",
 			},
 		],
@@ -171,12 +171,12 @@ function AllTvChannels({
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
 					durationcheckinterval = setInterval(() => {
-						// console.log(playerRef.current?.currentTime(),playerRef.current.currentTime() , playerRef.current.duration(),document.getElementsByTagName('video')[0].duration)
 						if (
 							playerRef.current?.currentTime() &&
 							playerRef.current.currentTime() ===
-								(playerRef?.current?.duration() || document.getElementsByTagName('video')[0].duration)
+								(playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration || 0)
 						) {
+							console.log('step 1 refresh channel set to true');
 							dispatch(refreshChannelAction(true));
 						}
 					}, 10000);
@@ -215,7 +215,7 @@ function AllTvChannels({
 					console.log('interval started')
 					const videoWatchTime = {
 						startTime: videoStartTime,
-						endTime: playerRef?.current?.duration() || document.getElementsByTagName('video')[0].duration,
+						endTime: playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration || 0,
 						videoPlayTime:
 							(new Date().getTime() -
 								new Date(show.startTime).getTime()) /

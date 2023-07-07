@@ -120,9 +120,9 @@ const useLiveChat = (currentShow) => {
 			chats: [data],
 		};
 		let newMessgae = message.map((item) => {
-			// if (item.commentDate === msgFormat.commentDate) {
+			if (item.commentDate === msgFormat.commentDate) {
 				item.chats.push(data);
-			// }
+			}
 			return item;
 		});
 		// let findOne = newMessgae.find(

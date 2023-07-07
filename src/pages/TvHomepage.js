@@ -56,11 +56,10 @@ function TvHomepage() {
 	};
 
 	useEffect(() => {
-		
 		// getChannels();
 		console.log("refresh effeced called",refreshChannel)
 		if (refreshChannel) {
-			console.log("refresh");
+			console.log('step 2 refresh channel');
 			let nextIndex =0;
 			let channelIndex = 0
 			const currentChannel = channel.filter(
@@ -73,7 +72,6 @@ function TvHomepage() {
 			//dispatch(playingChannel(currentChannel))
 			if (currentChannel[0]) {
 				currentChannel[0].liveShows.map((c, i) => {
-					
 					if (
 						c.videoId === currentVideo.videoId &&
 						new Date().getTime() > new Date(c.endTime).getTime()
@@ -84,18 +82,25 @@ function TvHomepage() {
 					}
 					
 				});
-				console.log("nextIndex",nextIndex)
 				if(nextIndex>=0){
 					console.log("DISPATCH NEXT VIDEO",)
 					let nextVideo = currentChannel[0].liveShows[nextIndex +1];
-					
 					//dispatch(playingVideo(nextVideo))
-				dispatch(updateEpgData(nextVideo));
-				setCurrentVideo(nextVideo)
-				setLatestChaneelID(channelIndex)
-				setLatestVideoIdx(nextIndex)
-				dispatch(updateCurrentVideo(true));
-				console.log("EXP",channelIndex,nextIndex)
+					if(nextVideo) {
+						dispatch(updateEpgData(nextVideo));
+						setCurrentVideo(nextVideo)
+						setLatestChaneelID(channelIndex)
+						setLatestVideoIdx(nextIndex)
+						dispatch(updateCurrentVideo(true));
+						console.log("EXP",channelIndex,nextIndex)
+					} else {
+						console.log("FRESH CHANNEL")
+						getChannels();
+						dispatch(updateEpgData(currentVideo));
+						dispatch(updateCurrentVideo(true));
+						setLatestChaneelID(0);
+						setLatestVideoIdx(0);
+					}
 				}else{
 					console.log("FRESH CHANNEL")
 					getChannels();
@@ -104,8 +109,6 @@ function TvHomepage() {
 					setLatestChaneelID(0);
 					setLatestVideoIdx(0);
 				}
-
-				
 			}
 			dispatch(refreshChannelAction(false))
 		}

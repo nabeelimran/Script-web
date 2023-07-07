@@ -25,6 +25,9 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data, utcStartTi
       borderLeft:'2px solid black'
     }
     let minWidth=160;
+    if(data && data.channelId !== 727149 && (data.duration === 1 || data.duration < 160)) {
+      data.duration = 1439;
+    }
     let res=(data.duration/30)*160;
     if(res>minWidth){
       style.minWidth=res;
@@ -52,15 +55,15 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data, utcStartTi
       }
     >
       <div className="max-w-[200px] space-y-[2px] z-50">
-        <div className="flex items-center space-x-2">
+        {/* <div className="flex items-center space-x-2"> */}
           <p className="text-xs md:text-base font-medium two-lines-only">
             {data?.xmltitle ? data.xmltitle : title}
           </p>
-          <button className="flex text-base opacity-80" onClick={(e)=>viewShowDetail(e)}>
+          {/* <button className="flex text-base opacity-80" onClick={(e)=>viewShowDetail(e)}>
             <Icon icon="material-symbols:info-outline" />
-          </button>
-        </div>
-        {/* {time && (
+          </button> */}
+        {/* </div> */}
+        {time && (
           <div className="flex items-center space-x-2">
             {
               utcStartTimeString && utcStopTimeString ? (
@@ -74,7 +77,7 @@ const ChannelBox = ({ title, time,indexnum, id, state, onClick, data, utcStartTi
               <Icon icon="material-symbols:info-outline" />
             </button>
           </div>
-        )} */}
+        )}
       </div>
 
       <div

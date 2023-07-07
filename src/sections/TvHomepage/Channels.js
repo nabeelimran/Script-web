@@ -350,7 +350,6 @@ function Channels({
              }
          }, 1000)
          } else {
-           
            if(channelIndex !=0 && channelIndex > 0 && latestVideIdx !== null && latestChaneelID!==null && latestChaneelID>=0 && latestVideIdx>=0){
              console.log("CHANNEL REFRESH")
              chData[latestChaneelID].liveShows[latestVideIdx].selected = true;
@@ -767,6 +766,7 @@ function Channels({
   useEffect(() => {
     
     if (changecurrentVideo) {
+      debugger
       dispatch(updateCurrentVideo(false));
       let chdata = JSON.parse(JSON.stringify(channels));
       chdata = chdata.map((ch) => {
@@ -776,6 +776,7 @@ function Channels({
           }
           if (ls && data && ls.id === data.id) {
             ls.selected = true;
+            setLiveShow(ls);
           }
           return ls;
         });
@@ -972,8 +973,9 @@ function Channels({
         </div>
 
         <div className="grid gap-3">
+          {console.log('channel renderer', channels)}
           {channels.map((ch, index) =>
-            ch.liveShows[0]?.duration ? (
+            ch?.liveShows?.length ? (
               <ChannelsRow
                 key={index}
                 channleDetails={ch}
