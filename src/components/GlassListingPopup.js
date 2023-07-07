@@ -187,12 +187,12 @@ function GlassListingPopup() {
                       <h6>
                         Battery:
                         <ValuesTypography>
-                          {(glass.maxEarnableTime /
+                          {((glass.maxEarnableTime /
                             GlassService.getMinutesPerDepletion(
                               glass.type,
                               glass.level
                             )) *
-                            100}
+                            100).toFixed(2)}
                           %
                         </ValuesTypography>
                       </h6>

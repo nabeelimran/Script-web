@@ -32,6 +32,7 @@ import {
   getVoucherEligibility,
   getVoucherSignature,
 } from "utils/api";
+import voucherImg from '../../assets/images/voucher-alt.png'
 
 const RowBox = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -263,7 +264,9 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
       <Typography variant="h4" color="textSecondary" align="center" mb={1}>
         Mint your vouchers
       </Typography>
-      <RowBox></RowBox>
+      <Box sx={{display: 'flex', justifyContent: 'center', mb:1}}>
+        <img src={voucherImg} style={{maxWidth: 120, borderRadius: 12}} alt="glasses" />
+      </Box>
       <VoucherMintBoxStyle>
         <Box>
           <Typography
@@ -338,10 +341,10 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
             Check your transaction on
             <Link
               target="_blank"
-              href={`https://goerli.etherscan.io/tx/${contractResponse?.transactionHash}`}
+              href={`https://testnet.bscscan.com/tx/${contractResponse?.transactionHash}`}
             >
               {" "}
-              Etherscan
+              BscScan
             </Link>
           </Box>
         </Box>

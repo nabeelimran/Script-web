@@ -345,7 +345,7 @@ export default function VoucherView() {
             fontWeight: "bold",
           }}
         >
-          Current Chain is not supported
+          Current Chain is not supported. Please switch to BSC Testnet
         </p>
       </Container>
     );

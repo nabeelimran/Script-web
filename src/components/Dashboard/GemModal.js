@@ -143,6 +143,7 @@ const GlassBox = styled(Box)(({ theme }) => ({
 }));
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
+  margin: 'auto 24px',
   "& .MuiPaper-root": {
     padding: "28px 50px",
     background: theme.palette.background.default,

@@ -112,7 +112,7 @@ export default function GlassModal({
             alt="glasses"
           />
           <br />
-          <PrimaryTypography>#{id}</PrimaryTypography>
+          <PrimaryTypography>Token Id #{id}</PrimaryTypography>
         </GlassBox>
         <Box mb={4} mx="auto" width="fit-content">
           <div style={{ color: "#000" }} className="text-xl font-semibold mb-2">
@@ -121,6 +121,10 @@ export default function GlassModal({
           <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Level : <ValuesTypography>{glass.level}</ValuesTypography>
           </div>
+          {glass.gemsRecords.length? <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+            Gem :
+            <ValuesTypography>{glass.gemsRecords[0].gemType}</ValuesTypography>
+          </div>:<></>}
           <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Total Watch Time :
             <ValuesTypography>{glass.totalWatchTime}</ValuesTypography>
@@ -134,9 +138,9 @@ export default function GlassModal({
           <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Battery:
             <ValuesTypography>
-              {(glass.maxEarnableTime /
+              {((glass.maxEarnableTime /
                 GlassService.getMinutesPerDepletion(glass.type, glass.level)) *
-                100}
+                100).toFixed(2)}
               %
             </ValuesTypography>
           </div>
@@ -151,10 +155,10 @@ export default function GlassModal({
           </div>
           {/* <Link
             target="_blank"
-            href={`https://goerli.etherscan.io/nft/0xf933F3f1d01418ad00271C4e45A218fC8b9396fE/${id}`}
+            href={`https://testnet.bscscan.com/nft/0xf933F3f1d01418ad00271C4e45A218fC8b9396fE/${id}`}
           >
             {" "}
-            View on BSC Scan
+            View on BscScan
           </Link> */}
         </Box>
         {history.length > 0 && (
@@ -204,9 +208,10 @@ export default function GlassModal({
               style={{
                 fontSize: "1rem",
                 fontWeight: "bold",
+                color: "#000"
               }}
             >
-              Current Chain is not supported
+              Current Chain is not supported. Please switch to BSC Testnet
             </p>
           </div>
         </StyledDialogAction>
@@ -230,6 +235,7 @@ export default function GlassModal({
 }
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
+  margin: 'auto 24px',
   "& .MuiPaper-root": {
     maxWidth: 600,
     background: "#fff",
