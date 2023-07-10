@@ -20,14 +20,14 @@ import { currentChainSupported, parseChainIdHex } from "common/helpers/utils";
 
 const RewardHistory = () => {
   const [history, setHistory] = useState([]);
-  const [rewards, setRewards] = useState(null);
+  // const [rewards, setRewards] = useState(null);
   const dispatch = useDispatch();
 
   const [commonRewards, setCommonRewards] = useState(null);
   const [rareRewards, setRareRewards] = useState(null);
   const [superscriptRewards, setSuperscriptRewards] = useState(null);
   const [pendingRewards, setPendingRewards] = useState(null);
-  const isAbove768px = useMediaQuery("(min-width: 768px)");
+  const isAbove768px = useMediaQuery("(min-width: 940px) and (max-width: 1280px)");
   const [loading, setLoading] = useState({
     common: false,
     rare: false,
@@ -126,6 +126,8 @@ const RewardHistory = () => {
     } catch (error) {
       ToastMessage("Something went wrong", false);
       setLoading({ ...loading, [type.toLowerCase()]: false });
+      onClaimUpdate(type);
+      fetchUnclaimedRewards();
     }
   };
 
@@ -458,10 +460,10 @@ const RewardHistory = () => {
                   {history.length > 0
                     ? history.map((data, index) => (
                         <tr key={index}>
-                          {console.log(data)}
+                          {/* {console.log(data)} */}
                           <td className="py-4">Daily Reward</td>
                           <td className="py-4">
-                            {`${formatEther(data?.amount)} SPAY` || ""}
+                            {`${Number(formatEther(data?.amount)).toFixed(4)} SPAY` || ""}
                           </td>
                           <td className="py-4">
                             {moment(data?.blockTimestamp * 1000).fromNow() || 0}

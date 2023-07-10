@@ -301,9 +301,9 @@ export const fetchEquippedVouchers = async (address) => {
 
 export const getRechargeHistory = async (glassId) => {
   let query = `{
-    rechargeGlasses(where: {glassId: "${glassId}"}) {
+    glassesRechargeds(where: {glassId: "${glassId}"}) {
       glassId
-      amount:value
+      amount:discountedAmount
       address:from
       blockTimestamp
     }
@@ -317,14 +317,14 @@ export const getRechargeHistory = async (glassId) => {
     }
   );
   let data = await response.json();
-  console.log("recharge history", data.data.rechargeGlasses);
-  return data?.data?.rechargeGlasses || [];
+  console.log("recharge history", data.data.glassesRechargeds);
+  return data?.data?.glassesRechargeds || [];
 };
 
 export const getRewardsHistory = async (address) => {
-  console.log("address", address);
+  // console.log("address", address);
   let query = `{
-    earningPayouts(where: {to: "${address.toLowerCase()}"})
+    payoutEarneds(where: {to: "${address.toLowerCase()}"})
     { 
       address:to
       amount 
@@ -340,8 +340,8 @@ export const getRewardsHistory = async (address) => {
     }
   );
   let data = await response.json();
-  console.log("rewards history", data);
-  return data?.data?.earningPayouts || [];
+  // console.log("rewards history", data);
+  return data?.data?.payoutEarneds || [];
 };
 
 export const getNonClaimedTransactions = async (userId) => {

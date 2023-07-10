@@ -107,6 +107,12 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
     })();
   }, [accountAddress]);
 
+  const refresh = () => {
+    checkVoucherEligibility();
+    handleCheckVoucherApproval();
+    getBalance();
+  }
+
   const getBalance = async () => {
     try {
       if (accountAddress) {
@@ -176,47 +182,6 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
     }
   };
 
-  const checkIsApproved = async () => {
-    try {
-      if (accountAddress) {
-        const isAllowed = await checkVoucherForTvApproval(accountAddress);
-        setIsApproved(isAllowed);
-      }  
-    } catch (error) {
-      setIsApproved(false);
-    }
-  };
-
-  const handleFetchVouchers = async () => {
-    if (accountAddress) {
-      const vouchers = await getVoucherBalance(accountAddress);
-      console.log("vouchers", vouchers);
-      setVoucherBalance(vouchers);
-    }
-  };
-
-  const handleFetchEquipped = async () => {
-    try {
-      if (accountAddress) {
-        const vouchers = await fetchEquippedVouchers(accountAddress);
-        console.log("handleFetchEquipped", vouchers);
-        setEquippedBalance(vouchers);
-      }  
-    } catch (error) {
-      console.log(error);
-    }
-    
-  };
-
-  const ResolveIsApproved = () => {
-    console.log("useGlassPass VoucherMintBox", useGlassPass);
-    if (useGlassPass) {
-      return isPassApproved;
-    } else {
-      return isApproved;
-    }
-  };
-
   const handleTypeSelect = (e) => {
     setType(Number(e.target.value));
   };
@@ -246,6 +211,7 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
           setContractLoading("success");
           setContractResponse(response);
           onVoucherMintSuccess();
+          refresh();
           ToastMessage("Voucher Minted Successfully", true);
         } else {
           setContractLoading("error");

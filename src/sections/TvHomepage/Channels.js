@@ -931,7 +931,7 @@ function Channels({
                 variant={1}
               >
                 <h1 className="fs-24px text-black font-semibold mb-1">
-                  {contractBalance}
+                  {contractBalance.toFixed(2)}
                 </h1>
                 <h1 className="text-xs xl:text-sm text-black font-medium text-center">
                   SPAY In WALLET
@@ -941,7 +941,7 @@ function Channels({
               <SquareBox to="/dashboard" className="flex-1 xl:flex-auto">
                 <h1 className="fs-24px text-primary font-semibold mb-1 break-all">
                   {/* {earnedToken.toFixed(4)} */}
-                  N/A
+                  0
                 </h1>
                 <h1 className="text-xs xl:text-sm text-primary font-medium text-center">
                   Earned Today
