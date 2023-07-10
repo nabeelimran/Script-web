@@ -4,9 +4,11 @@ import { helper } from "../utils/helper";
 import LocalServices from "./LocalServices";
 import * as moment from "moment";
 import CryptoService from "./CryptoService";
+import { ToastMessage } from "components/ToastMessage";
+import { addLog } from "./logs/FbLogs";
 
 axios.interceptors.request.use(
-  (config) => {
+  async (config) => {
     const token = LocalServices.getServices("token");
     let user = "scriptNetwork";
     let nonce =
@@ -26,19 +28,37 @@ axios.interceptors.request.use(
       config.url.includes(APIPATH.NOTIFICATIONURL) ||
       config.url.includes("https://ipfs.io")
     ) {
-      console.log("here");
       config.headers.delete("userAuth");
       config.headers.delete("requestDate");
       config.headers.delete("url");
       config.headers.delete("Authorization");
     }
-    // config.headers['Content-Type'] = 'application/json';
     return config;
   },
   (error) => {
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 );
+
+axios.interceptors.response.use((res) => {
+  return res;
+}, (error) => {
+  addLog({
+    type: 'xhr',
+    error: JSON.stringify(error),
+    url: error?.response?.config?.url || 'N/A',
+    token: error?.response?.config?.headers?.Authorization || 'N/A',
+    userInfo: sessionStorage.getItem('userInfo') || 'N/A', 
+    message: error?.message || 'N/A'
+  }, 'apilog')
+  if(error.status === 401 || error.response.status === 401) {
+    sessionStorage.clear();
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 2000)
+    ToastMessage('Login expire. Please relogin');
+  }
+})
 
 export default class Api {
   static fetchMediumBlog(blogLimit) {
