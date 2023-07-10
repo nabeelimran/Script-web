@@ -7,6 +7,8 @@ import CryptoService from "./CryptoService";
 import { ToastMessage } from "components/ToastMessage";
 import { addLog } from "./logs/FbLogs";
 
+const axiosInstance = axios.create();
+
 axios.interceptors.request.use(
   async (config) => {
     const token = LocalServices.getServices("token");
@@ -43,6 +45,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use((res) => {
   return res;
 }, (error) => {
+  const { config, response } = error;
   addLog({
     type: 'xhr',
     error: JSON.stringify(error),
@@ -51,6 +54,20 @@ axios.interceptors.response.use((res) => {
     userInfo: sessionStorage.getItem('userInfo') || 'N/A', 
     message: error?.message || 'N/A'
   }, 'apilog')
+
+  // retry mechanism
+  if (!config || !response || (response.status !== 200 && response.status !== 201)) {
+    const maxRetryAttempts = 2;
+    const retryInterval = 1000;
+
+    if (config && config.retryAttempts < maxRetryAttempts) {
+      config.retryAttempts = config.retryAttempts ? config.retryAttempts + 1 : 1;
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(axiosInstance(config)), retryInterval);
+      });
+    }
+  }
+
   if(error.status === 401 || error.response.status === 401) {
     sessionStorage.clear();
     setTimeout(() => {
