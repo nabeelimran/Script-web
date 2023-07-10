@@ -7,7 +7,11 @@ const Card = ({
   post
 }) => {
   return (
-    <div className="bg-shade-grayis rounded-2xl py-5 md:py-7 px-6 md:px-8 flex flex-col relative" onClick={() => helper.openLink(post.twitterPostLink)}>
+    <div className="bg-shade-grayis rounded-2xl py-5 md:py-7 px-6 md:px-8 flex flex-col relative" onClick={() => {
+      if(post.twitterPostLink) {
+        helper.openLink(post.twitterPostLink)
+      }
+    }}>
       <div className="xl:flex items-center justify-between mb-4 xl:mb-6">
         <div className="flex items-center space-x-3">
           <img

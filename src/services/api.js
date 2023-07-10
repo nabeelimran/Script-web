@@ -4,9 +4,13 @@ import { helper } from "../utils/helper";
 import LocalServices from "./LocalServices";
 import * as moment from "moment";
 import CryptoService from "./CryptoService";
+import { ToastMessage } from "components/ToastMessage";
+import { addLog } from "./logs/FbLogs";
+
+const axiosInstance = axios.create();
 
 axios.interceptors.request.use(
-  (config) => {
+  async (config) => {
     const token = LocalServices.getServices("token");
     let user = "scriptNetwork";
     let nonce =
@@ -26,19 +30,53 @@ axios.interceptors.request.use(
       config.url.includes(APIPATH.NOTIFICATIONURL) ||
       config.url.includes("https://ipfs.io")
     ) {
-      console.log("here");
       config.headers.delete("userAuth");
       config.headers.delete("requestDate");
       config.headers.delete("url");
       config.headers.delete("Authorization");
     }
-    // config.headers['Content-Type'] = 'application/json';
     return config;
   },
   (error) => {
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 );
+
+axios.interceptors.response.use((res) => {
+  return res;
+}, (error) => {
+  const { config, response } = error;
+  addLog({
+    type: 'xhr',
+    error: JSON.stringify(error),
+    response: JSON.stringify(error?.response || {"na": "N/A"}),
+    url: error?.response?.config?.url || error?.config?.url || 'N/A',
+    token: error?.response?.config?.headers?.Authorization || error?.config?.headers?.Authorization || 'N/A',
+    userInfo: sessionStorage.getItem('userInfo') || 'N/A', 
+    message: error?.message || 'N/A'
+  }, 'apilog')
+
+  // retry mechanism
+  if (!config || !response || (response.status !== 200 && response.status !== 201)) {
+    const maxRetryAttempts = 2;
+    const retryInterval = 1000;
+
+    if (config && config.retryAttempts < maxRetryAttempts) {
+      config.retryAttempts = config.retryAttempts ? config.retryAttempts + 1 : 1;
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(axiosInstance(config)), retryInterval);
+      });
+    }
+  }
+
+  if(error.status === 401 || error.response.status === 401) {
+    sessionStorage.clear();
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 2000)
+    ToastMessage('Login expire. Please relogin');
+  }
+})
 
 export default class Api {
   static fetchMediumBlog(blogLimit) {

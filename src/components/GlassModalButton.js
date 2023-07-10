@@ -21,10 +21,7 @@ function GlassModalButton({
   const token = LocalServices.getServices("token");
   const dispatch = useDispatch();
 
-  console.log("selectedGlass", selectedGlass);
-
   const handleGlassModal = () => {
-    console.log("handleGlassModal", { token });
     if (token) {
       if (selectedGlass && JSON.stringify(selectedGlass) !== "{}") {
         setModal((val) => !val);
@@ -75,7 +72,6 @@ function GlassModalButton({
           alt=""
         />
         <div className="py-1 px-3 text-[10px] xl:text-xs bg-black font-medium rounded">
-          {console.log(selectedGlass)}
           {selectedGlass && JSON.stringify(selectedGlass) !== "{}"
             ? `#${selectedGlass?.glass?.tokenId}`
             : "Choose"}
