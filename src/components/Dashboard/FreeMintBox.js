@@ -66,7 +66,6 @@ const FreeMintBox = ({ accountAddress, balance }) => {
       if (!accountAddress) return;
       await fetchPoints();
       checkFreeMint();
-      checkIsApproved();
     })();
   }, [accountAddress]);
 
@@ -89,7 +88,7 @@ const FreeMintBox = ({ accountAddress, balance }) => {
           setFreeMintEligible(false);
           return;
         }
-  
+
         let passBalance = await getGlassPassBalance(accountAddress);
         console.log(
           "passBalance",
@@ -98,7 +97,7 @@ const FreeMintBox = ({ accountAddress, balance }) => {
           points,
           "accountAddress"
         );
-  
+
         let mintTx = await getFreeGlassTxn(accountAddress.toLowerCase());
         console.log("mintTx", mintTx);
         if (
@@ -115,46 +114,9 @@ const FreeMintBox = ({ accountAddress, balance }) => {
         } else {
           setFreeMintEligible(false);
         }
-      }  
+      }
     } catch (error) {
       setFreeMintEligible(false);
-    }
-    
-  };
-
-  const ResolveIsApproved = () => {
-    return isApproved;
-  };
-
-  const checkIsApproved = async () => {
-    try {
-      if (accountAddress) {
-        const isAllowed = await checkApproval(accountAddress);
-        setIsApproved(isAllowed);
-      } else {
-        setIsApproved(false);
-      }  
-    } catch (error) {
-      setIsApproved(false);
-    }
-    
-  };
-
-  const handleApprove = async () => {
-    if (accountAddress) {
-      try {
-        setContractLoading("processing");
-
-        let receipt = await approve();
-        setContractLoading("approved");
-
-        await checkIsApproved();
-        ToastMessage("Approved", true);
-      } catch (error) {
-        console.log(error);
-        setContractLoading("error");
-        ToastMessage("Approval failed");
-      }
     }
   };
 
@@ -205,29 +167,14 @@ const FreeMintBox = ({ accountAddress, balance }) => {
 
         <Box>
           {accountAddress ? (
-            ResolveIsApproved() ? (
-              <MuiButton
-                disabled={contractLoading === "processing" || !freeMintEligible}
-                variant="contained"
-                color="primary"
-                onClick={handleFreeMint}
-              >
-                {contractLoading === "processing"
-                  ? "Minting..."
-                  : balance > 0
-                  ? "Mint"
-                  : "Low balance"}
-              </MuiButton>
-            ) : (
-              <MuiButton
-                variant="contained"
-                color="primary"
-                onClick={handleApprove}
-                disabled={contractLoading === "processing"}
-              >
-                {contractLoading === "processing" ? "Approving..." : "Approve"}
-              </MuiButton>
-            )
+            <MuiButton
+              disabled={contractLoading === "processing" || !freeMintEligible}
+              variant="contained"
+              color="primary"
+              onClick={handleFreeMint}
+            >
+              {contractLoading === "processing" ? "Minting..." : "Mint"}
+            </MuiButton>
           ) : (
             <Typography>Connect your wallet</Typography>
           )}

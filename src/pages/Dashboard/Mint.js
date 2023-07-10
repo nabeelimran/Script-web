@@ -113,7 +113,7 @@ export default function Glass() {
             fontWeight: "bold",
           }}
         >
-          Current Chain is not supported
+          Current Chain is not supported. Please switch to BSC Testnet
         </p>
       </Container>
     );
@@ -133,10 +133,10 @@ export default function Glass() {
           <div>
             check you transaction on
             <a
-              href={`https://goerli.etherscan.io/tx/${contractResponse?.transactionHash}`}
+              href={`https://testnet.bscscan.com/tx/${contractResponse?.transactionHash}`}
             >
               {" "}
-              Etherscan
+              BscScan
             </a>
           </div>
         </div>

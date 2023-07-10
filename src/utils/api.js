@@ -204,7 +204,7 @@ export const getVoucherEligibility = async (address) => {
   }
 };
 
-export const getVoucherSignature = async (address, type) => {
+export const getVoucherSignature = async (address, type, tokenId) => {
   try {
     const response = await api.request({
       url: "/scripts/claim-voucher",
@@ -212,6 +212,7 @@ export const getVoucherSignature = async (address, type) => {
       params: {
         address,
         type,
+        tokenId
       },
     });
 
@@ -351,14 +352,13 @@ export const getNonClaimedTransactions = async (userId) => {
       params: {
         executed: false,
         userId,
-        page: 0,
         // type: "PAYOUT_RARE",
       },
     });
 
-    console.log("getNonClaimedTransactions", response.data.data);
+    // console.log("getNonClaimedTransactions", response.data.data);
 
-    return response.data;
+    return response.data.data?.content ?? [];
   } catch (error) {
     console.log("error in getNonClaimedTransactions");
   }

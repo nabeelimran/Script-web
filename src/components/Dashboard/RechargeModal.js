@@ -109,7 +109,7 @@ export default function RechargeModal({
       <GemBox mb={3}>
         <Typography variant="h1">ID # {glass?.id}</Typography>
       </GemBox>
-      <DialogContent sx={{ p: 0, overflow: "hidden" }}>
+      <DialogContent sx={{ p: 0, overflowX: "hidden" }}>
         <GlassBox>
           <Typography variant="h1" textAlign="center" color="primary">
             Recharge
@@ -119,6 +119,7 @@ export default function RechargeModal({
               width: "50%",
               display: "block",
               margin: "12px auto 0px auto",
+              borderRadius: 12
             }}
             src={glass.img}
             alt="glasses"
@@ -174,8 +175,10 @@ const GlassBox = styled(Box)(({ theme }) => ({
 }));
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
+  // width: '80%',
+  margin: 'auto 24px',
   "& .MuiPaper-root": {
-    padding: "28px 50px",
+    padding: "28px 28px",
     background: theme.palette.background.default,
     margin: 0,
   },

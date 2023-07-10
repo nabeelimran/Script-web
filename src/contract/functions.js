@@ -180,15 +180,16 @@ export const rechargeGlasees = async (amount, nonce, signature, glassId) => {
   return await tx.wait();
 };
 
-export const mintVoucher = async (address, type, nonce, signature) => {
+export const mintVoucher = async (address, type, tokenId, nonce, signature) => {
   const tx = await scriptTvContract.mintRechargeVoucher(
     address,
     type,
+    tokenId,
     nonce,
-    signature
-    // {
-    //   gasLimit: 1000000,
-    // }
+    signature,
+    {
+      gasLimit: 150000,
+    }
   );
   return await tx.wait();
 };

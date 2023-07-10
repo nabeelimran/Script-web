@@ -753,3 +753,8 @@ video::-webkit-media-controls-panel-container {
 body > iframe {
   display: none !important;
 }
+
+.swiper-slide {
+  height: auto !important;
+  display: grid;
+}
