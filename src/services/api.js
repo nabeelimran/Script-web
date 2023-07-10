@@ -49,8 +49,9 @@ axios.interceptors.response.use((res) => {
   addLog({
     type: 'xhr',
     error: JSON.stringify(error),
-    url: error?.response?.config?.url || 'N/A',
-    token: error?.response?.config?.headers?.Authorization || 'N/A',
+    response: JSON.stringify(error?.response || {"na": "N/A"}),
+    url: error?.response?.config?.url || error?.config?.url || 'N/A',
+    token: error?.response?.config?.headers?.Authorization || error?.config?.headers?.Authorization || 'N/A',
     userInfo: sessionStorage.getItem('userInfo') || 'N/A', 
     message: error?.message || 'N/A'
   }, 'apilog')
