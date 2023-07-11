@@ -18,6 +18,7 @@ import { ToastMessage } from "components/ToastMessage";
 import MixPanelService from "services/mixPanelService";
 import EndRecaptchaPopup from "components/EndRecaptchaPopup";
 import { balanceOf } from "contract/functions";
+import { liveShowsAction } from "redux/reducers/refresh_state";
 
 const channels = [
   {
@@ -240,10 +241,10 @@ function Channels({
 		(state) => state.connectWalletModal_State
 	);
   const {isLogin} = useSelector(state => state.login_state)
-  const { refreshChannel, showUpdated } = useSelector(
+  const { refreshChannel, showUpdated, liveShowState} = useSelector(
 		(state) => state.refresh_state
 	);
-
+  
   const getSelectedGlass = () => {
     Api.getSelectGlass(userId, "watch").then((res) => {
       if(res && res.status === 200) {
@@ -289,15 +290,9 @@ function Channels({
 
   useEffect(() => {
     if(timeline.length) { 
-      Api.getChannels("watch").then((res) => {
-        // for suffal channel
-        res.data.data.forEach((d, i) => {
-          if(d.id === 785352) {
-            res.data.data.splice(i, 1);
-            res.data.data.unshift(d);
-          }
-        });
-        let chData = JSON.parse(JSON.stringify(res.data.data));
+
+      if(liveShowState && liveShowState.length) {
+        let chData = JSON.parse(JSON.stringify(liveShowState));
         chData = chData.map((ch) => {
          let liveshows = ch.liveShows.filter(
            (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
@@ -372,8 +367,89 @@ function Channels({
           
          }
          setChannels(chData);
+      } else {
+        Api.getChannels("watch").then((res) => {
+          // for suffal channel
+          if(res.status === 200) {
+            dispatch(liveShowsAction(res.data.data));
+          }
+          let chData = JSON.parse(JSON.stringify(res.data.data));
+          chData = chData.map((ch) => {
+           let liveshows = ch.liveShows.filter(
+             (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
+           );
+           // if(liveshows && liveshows.length > 0) {
+            ch.liveShows = liveshows.map((show) => {
+              let res = getDurationInMinute(show.startTime, show.endTime);
+              show.duration = res.duration;
+              show.time = res.time;
+              show.selected = false;
+              const updatedShowDetail = updateShowDetails(show.channelId);
+               if(updatedShowDetail) {
+                if(updatedShowDetail.title) {
+                  show.xmltitle = updatedShowDetail.title;
+                }
   
-      }).catch(err => console.log(err));
+                if(show.title = updatedShowDetail.description) {
+                  show.description = updatedShowDetail.description;
+                }
+  
+                if(updatedShowDetail.videoThumbnailUrl) {
+                  show.videoThumbnailUrl = updatedShowDetail.videoThumbnailUrl;
+                }
+  
+                if(updatedShowDetail.utcStartTimeString) {
+                  show.utcStartTimeString = updatedShowDetail.utcStartTimeString;
+                }
+  
+                if(updatedShowDetail.utcStopTimeString) {
+                  show.utcStopTimeString = updatedShowDetail.utcStopTimeString;
+                }
+               }
+              return show;
+            });
+            return ch;
+         
+           // } 
+         });
+         // if(chData && chData.length > 0 && chData[0] && chData[0].liveShows && chData[0].liveShows.length > 0) {
+           if (queryChannelId) {
+             let activeChannel = chData.filter(ch => ch.id === +queryChannelId);
+             activeChannel[0].liveShows[0].selected = true;
+             setLiveShow(activeChannel[0].liveShows[0]);
+             setSelectedChannel(activeChannel[0]);
+             setTimeout(() => {
+               if(userId) {
+                 getChannelByChannelId(activeChannel[0]);
+               }
+           }, 1000)
+           } else {
+             if(channelIndex !=0 && channelIndex > 0 && latestVideIdx !== null && latestChaneelID!==null && latestChaneelID>=0 && latestVideIdx>=0){
+               console.log("CHANNEL REFRESH")
+               chData[latestChaneelID].liveShows[latestVideIdx].selected = true;
+               setLiveShow(chData[latestChaneelID].liveShows[latestVideIdx]);
+               setSelectedChannel(chData[latestChaneelID]);
+               setTimeout(() => {
+                 if(userId) {
+                   getChannelByChannelId(chData[latestChaneelID]);
+                 }
+               }, 1000)
+             }else{
+              console.log("default")
+               chData[channelIndex].liveShows[videoIndex].selected = true;
+               setLiveShow(chData[channelIndex].liveShows[videoIndex]);
+               setSelectedChannel(chData[channelIndex]);
+               setTimeout(() => {
+                 if(userId) {
+                   getChannelByChannelId(chData[channelIndex]);
+                 }
+               }, 1000)
+             }
+            
+           }
+           setChannels(chData);
+        }).catch(err => console.log(err));
+      }
     }
     
 
@@ -383,16 +459,9 @@ function Channels({
   useEffect(() => {
     console.log("channel change",latestChaneelID , latestVideIdx)
     if(latestChaneelID>=0 && latestVideIdx>=0) {
-      console.log("inside channel effect")
-      Api.getChannels("watch").then((res) => {
-        // for suffal channel
-        res.data.data.forEach((d, i) => {
-          if(d.id === 785352) {
-            res.data.data.splice(i, 1);
-            res.data.data.unshift(d);
-          }
-        });
-        let chData = JSON.parse(JSON.stringify(res.data.data));
+      
+      if(liveShowState && liveShowState.length) {
+        let chData = JSON.parse(JSON.stringify(liveShowState));
         chData = chData.map((ch) => {
          let liveshows = ch.liveShows.filter(
            (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
@@ -458,13 +527,90 @@ function Channels({
                }
              }, 1000)
            }
-          
          }
-         
          setChannels(chData);
+      } else {
+        Api.getChannels("watch").then((res) => {
+          // for suffal channel
+          if(res?.status === 200) {
+            dispatch(liveShowsAction(res.data.data));
+          }
+          let chData = JSON.parse(JSON.stringify(res.data.data));
+          chData = chData.map((ch) => {
+           let liveshows = ch.liveShows.filter(
+             (ls) => new Date(ls.startTime).getDate() <= new Date().getDate() + 1
+           );
+           // if(liveshows && liveshows.length > 0) {
+             ch.liveShows = liveshows.map((show) => {
+               let res = getDurationInMinute(show.startTime, show.endTime);
+               show.duration = res.duration;
+               show.time = res.time;
+               show.selected = false;
+               show.isVisible = res.isVisible
+               const updatedShowDetail = updateShowDetails(show.channelId);
+               if(updatedShowDetail) {
+                if(updatedShowDetail.title) {
+                  show.xmltitle = updatedShowDetail.title;
+                }
   
+                if(show.title = updatedShowDetail.description) {
+                  show.description = updatedShowDetail.description;
+                }
   
-      }).catch(err => console.log(err));
+                if(updatedShowDetail.videoThumbnailUrl) {
+                  show.videoThumbnailUrl = updatedShowDetail.videoThumbnailUrl;
+                }
+               }
+               return show;
+             });
+             return ch;
+         
+           // } 
+         });
+         // if(chData && chData.length > 0 && chData[0] && chData[0].liveShows && chData[0].liveShows.length > 0) {
+           if (queryChannelId) {
+             let activeChannel = chData.filter(ch => ch.id === +queryChannelId);
+             activeChannel[0].liveShows[0].selected = true;
+             setLiveShow(activeChannel[0].liveShows[0]);
+             setSelectedChannel(activeChannel[0]);
+             setTimeout(() => {
+               if(userId) {
+                 getChannelByChannelId(activeChannel[0]);
+               }
+           }, 1000)
+           } else {
+             
+             if(channelIndex !=0 && channelIndex > 0 && latestVideIdx !== null && latestChaneelID!==null && latestChaneelID>=0 && latestVideIdx>=0){
+               console.log("CHANNEL REFRESH")
+               chData[latestChaneelID].liveShows[latestVideIdx].selected = true;
+               setLiveShow(chData[latestChaneelID].liveShows[latestVideIdx]);
+               setSelectedChannel(chData[latestChaneelID]);
+               setTimeout(() => {
+                 if(userId) {
+                   getChannelByChannelId(chData[latestChaneelID]);
+                 }
+               }, 1000)
+             }else{
+              console.log("default")
+               chData[channelIndex].liveShows[videoIndex].selected = true;
+               setLiveShow(chData[channelIndex].liveShows[videoIndex]);
+               setSelectedChannel(chData[channelIndex]);
+               setTimeout(() => {
+                 if(userId) {
+                   getChannelByChannelId(chData[channelIndex]);
+                 }
+               }, 1000)
+             }
+            
+           }
+           
+           setChannels(chData);
+    
+    
+        }).catch(err => console.log(err));
+      }
+
+      
     }
     // }
   }, [latestChaneelID,latestVideIdx]);

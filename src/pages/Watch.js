@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { liveShowsAction } from "redux/reducers/refresh_state";
 import { videoShows } from "redux/reducers/video_State";
 import Api from "services/api";
 import LocalServices from "services/LocalServices";
@@ -30,21 +31,38 @@ function Watch() {
 
     const { refreshChannel } = useSelector(
         (state) => state.connectWalletModal_State
-      );
+    );
+
+    const { liveShowState } = useSelector(
+		(state) => state.refresh_state
+	);
+
     const getChannels = () => {
-        Api.getChannels("watch").then((res) => {
-          
-          setchannels(res.data.data);
-          if (channelId) {
-            const activeChannelData = res.data.data.filter(d => d.id === +channelId)[0];
-            console.log(activeChannelData, 'activeChannelData');
-            setCurrentVideo(activeChannelData?.liveShows[0] || []) 
-          } else {
-            setCurrentVideo(res.data.data[0].liveShows[0])
-          }
-          //dispatch(videoShows(res.data.data[0].liveShows[0]))
-          //setAdsList(res.data.data[0].adsData)
-        }).catch(err => console.log(err))
+        if(liveShowState && liveShowState.length) {
+            setchannels(liveShowState);
+            if (channelId) {
+                const activeChannelData = liveShowState.filter(d => d.id === +channelId)[0];
+                setCurrentVideo(activeChannelData?.liveShows[0] || []) 
+            } else {
+                setCurrentVideo(liveShowState[0].liveShows[0])
+            }
+        } else {
+            Api.getChannels("watch").then((res) => {
+                if(res?.status === 200) {
+                    dispatch(liveShowsAction(res.data.data));
+                }
+                setchannels(res.data.data);
+                if (channelId) {
+                  const activeChannelData = res.data.data.filter(d => d.id === +channelId)[0];
+                  console.log(activeChannelData, 'activeChannelData');
+                  setCurrentVideo(activeChannelData?.liveShows[0] || []) 
+                } else {
+                  setCurrentVideo(res.data.data[0].liveShows[0])
+                }
+                //dispatch(videoShows(res.data.data[0].liveShows[0]))
+                //setAdsList(res.data.data[0].adsData)
+              }).catch(err => console.log(err))
+        }
     }
 
     // this is used to get the token earned by video based on user id

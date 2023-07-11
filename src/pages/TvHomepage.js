@@ -11,7 +11,7 @@ import KeyStats from "sections/TvHomepage/KeyStats";
 import React, { useEffect, useState } from "react";
 import Api from "../services/api";
 import { allChannel, playingChannel, playingVideo, videoShows } from "../redux/reducers/video_State";
-import { refreshChannelAction } from "redux/reducers/refresh_state";
+import { liveShowsAction, refreshChannelAction } from "redux/reducers/refresh_state";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MetamaskService from "services/metamask";
@@ -40,12 +40,9 @@ function TvHomepage() {
 	const getChannels = () => {
 		Api.getChannels("watch").then((res) => {
 			// for suffal channel
-			res.data.data.forEach((d, i) => {
-				if(d.id === 785352) {
-					res.data.data.splice(i, 1);
-    				res.data.data.unshift(d);
-				}
-			});
+			if(res.status === 200) {
+				dispatch(liveShowsAction(res.data.data));
+			}
 			setchannels(res.data.data);
 			setCurrentVideo(res.data.data[0].liveShows[0]);
 			// dispatch(allChannel(res.data.data))
