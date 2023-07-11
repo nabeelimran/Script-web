@@ -302,14 +302,13 @@ const VoucherMintBox = ({ accountAddress, onVoucherMintSuccess }) => {
       </VoucherMintBoxStyle>
       {contractLoading === "success" && (
         <Box display="flex" mt={2}>
-          Voucher Successfully Minted,{" "}
+          Voucher successfully minted,
           <Box>
             Check your transaction on
             <Link
               target="_blank"
               href={`https://testnet.bscscan.com/tx/${contractResponse?.transactionHash}`}
             >
-              {" "}
               BscScan
             </Link>
           </Box>

@@ -21,8 +21,6 @@ function Home() {
   useEffect(() => {
     (async () => {
       if (!accountAddress) return;
-      console.log('window?.ethereum?.chainId ', parseChainIdHex(currentChain));
-
       await getGlasses();
       getBalance();
 

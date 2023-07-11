@@ -50,34 +50,42 @@ export default function GemModal({
   useEffect(() => {
     if (accountAddress) {
       fetchPrice();
+      checkIsApproved();
     }
   }, [id, accountAddress]);
 
   const fetchPrice = async () => {
-    if (accountAddress) {
-      let price = await getGemPrice(id);
-      console.log("price", { price, id });
-      setPrice(price);
+    try {
+      if (accountAddress) {
+        let price = await getGemPrice(id);
+        console.log("price", { price, id });
+        setPrice(price);
+      }
+    } catch (error) {
     }
   };
 
   const handleEquipGem = async () => {
-    if (accountAddress) {
-      let res;
-      await checkIsApproved();
-      if (isApproved) {
-        if (claimData?.signature) {
-          res = claimData;
+    try {
+      if (accountAddress) {
+        let res;
+        // await checkIsApproved();
+        if (isApproved) {
+          if (claimData?.signature) {
+            res = claimData;
+          } else {
+            res = await getGemSignature(id);
+            setClaimData(res);
+          }
+          await equipgem(res.tokenId, res.gemType, res.nonce, res.signature);
+          handleClose();
+          setGemEligibleGlasses([]);
         } else {
-          res = await getGemSignature(id);
-          setClaimData(res);
+          await handleApprove();
+          // ToastMessage("Insufficient Approval");
         }
-        await equipgem(res.tokenId, res.gemType, res.nonce, res.signature);
-        handleClose();
-        setGemEligibleGlasses([]);
-      } else {
-        ToastMessage("Insufficient Approval");
       }
+    } catch (error) {
     }
   };
 
@@ -93,7 +101,6 @@ export default function GemModal({
           setIsApproved(true);
         } else {
           setIsApproved(false);
-          await handleApprove();
           // checkIsApproved()
         }
       } 
@@ -103,16 +110,19 @@ export default function GemModal({
   };
 
   const handleApprove = async () => {
-    if (accountAddress) {
-      try {
-        let receipt = await approve();
-        setIsApproved(true);
-      } catch (error) {
-        console.log(error);
-        setIsApproved(false)
-        // setContractLoading("error");
-        // ToastMessage("Approval failed");
+    try {
+      if (accountAddress) {
+        try {
+          let receipt = await approve();
+          setIsApproved(true);
+        } catch (error) {
+          console.log(error);
+          setIsApproved(false)
+          // setContractLoading("error");
+          // ToastMessage("Approval failed");
+        }
       }
+    } catch (error) {
     }
   };
 
@@ -163,7 +173,7 @@ export default function GemModal({
             disabled={balance <= price}
             onClick={handleEquipGem}
           >
-            Add Gem
+            {isApproved? "Add Gem": "Approve"}
           </MuiButton>
         </GlassBox>
       </DialogContent>
