@@ -518,7 +518,7 @@ function Channels({
   
 
       saveVideoDuration(videoTimeWatch)
-      setVideoTokenBalance('', earnedToken);
+      // setVideoTokenBalance('', earnedToken);
     }
   },[earnedToken])
 
