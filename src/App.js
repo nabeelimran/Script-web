@@ -70,6 +70,7 @@ import { googleTrackingId } from "constants";
 import SignUpModal from "components/SignUpModal";
 import SignInModal from "components/SignInModal";
 import enwsData from './assets/xml/enws_sp_utc.xml'
+import { checkShowUpdate } from "redux/reducers/refresh_state";
 
 ReactGA.initialize(googleTrackingId);
 
@@ -115,6 +116,9 @@ function App() {
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
     document.cookie = "cookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setInterval(() => {
+      dispatch(checkShowUpdate(Date.now()))
+    }, 30000)
   }, [])
   
 

@@ -240,7 +240,7 @@ function Channels({
 		(state) => state.connectWalletModal_State
 	);
   const {isLogin} = useSelector(state => state.login_state)
-  const { refreshChannel } = useSelector(
+  const { refreshChannel, showUpdated } = useSelector(
 		(state) => state.refresh_state
 	);
 
@@ -288,9 +288,7 @@ function Channels({
 
 
   useEffect(() => {
-   
-    if(timeline.length) {
-     
+    if(timeline.length) { 
       Api.getChannels("watch").then((res) => {
         // for suffal channel
         res.data.data.forEach((d, i) => {
@@ -380,7 +378,7 @@ function Channels({
     
 
     // }
-  }, [timeline]);
+  }, [timeline, showUpdated]);
 
   useEffect(() => {
     console.log("channel change",latestChaneelID , latestVideIdx)

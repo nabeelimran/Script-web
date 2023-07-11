@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-refreshChannel:false
-  
+  refreshChannel:false,
+  showUpdated: Date.now(),
 };
 
 export const refresh_state = createSlice({
@@ -11,11 +11,14 @@ export const refresh_state = createSlice({
   reducers: {
     refreshChannelAction:(state,action)=>{
       state.refreshChannel=action.payload;
+    },
+    checkShowUpdate: (state, action) => {
+      state.showUpdated = action.payload;
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { refreshChannelAction } = refresh_state.actions;
+export const { refreshChannelAction, checkShowUpdate } = refresh_state.actions;
 
 export default refresh_state.reducer;
