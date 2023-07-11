@@ -764,7 +764,6 @@ function Channels({
   useEffect(() => {
     
     if (changecurrentVideo) {
-      debugger
       dispatch(updateCurrentVideo(false));
       let chdata = JSON.parse(JSON.stringify(channels));
       chdata = chdata.map((ch) => {
