@@ -71,6 +71,7 @@ import SignUpModal from "components/SignUpModal";
 import SignInModal from "components/SignInModal";
 import enwsData from './assets/xml/enws_sp_utc.xml'
 import { checkShowUpdate } from "redux/reducers/refresh_state";
+import { Helmet } from "react-helmet";
 
 ReactGA.initialize(googleTrackingId);
 
@@ -123,163 +124,171 @@ function App() {
   
 
   return (
-    <Router>
-      <ScrollToTop />
-      <ConnectWalletModal />
-      <SignUpModal />
-      <SignInModal />
-      <TableModal />
-      <GlassListingPopup />
-      <EpgModal />
-      <EmailConfirmation />
-      <CreatePasswordForm />
-      <MetamaskChangeDetectionModal />
-      <Routes>
-        <Route path="/" element={<TvHomepage />} />
-        {/* <Route path="/token" element={<HomePage />} />
-        <Route path="/how-to-buy" element={<HowToBuy/>} /> */}
-        <Route path="/coming-soon" element={<ComingSoon />} />
-        {/* <Route path="/download" element={<Download />} />
-        <Route path="/token" element={<TokenPage />} />
-        <Route path="/calculator" element={<Calculator />} />
-        <Route path="/node" element={<Validator />} /> */}
-        {/* <Route path="/technology" element={<Technology />} /> */}
-        {/* <Route path="/research" element={<Research />} />
-        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/cookies-policy" element={<CookiesPolicy />} />
-        <Route path="/faq" element={<FAQ />} /> */}
+    <>
+      <Helmet>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+      </Helmet>
+      <Router>
+        <ScrollToTop />
+        <ConnectWalletModal />
+        <SignUpModal />
+        <SignInModal />
+        <TableModal />
+        <GlassListingPopup />
+        <EpgModal />
+        <EmailConfirmation />
+        <CreatePasswordForm />
+        <MetamaskChangeDetectionModal />
+        <Routes>
+          <Route path="/" element={<TvHomepage />} />
+          {/* <Route path="/token" element={<HomePage />} />
+          <Route path="/how-to-buy" element={<HowToBuy/>} /> */}
+          <Route path="/coming-soon" element={<ComingSoon />} />
+          {/* <Route path="/download" element={<Download />} />
+          <Route path="/token" element={<TokenPage />} />
+          <Route path="/calculator" element={<Calculator />} />
+          <Route path="/node" element={<Validator />} /> */}
+          {/* <Route path="/technology" element={<Technology />} /> */}
+          {/* <Route path="/research" element={<Research />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/cookies-policy" element={<CookiesPolicy />} />
+          <Route path="/faq" element={<FAQ />} /> */}
 
-        {/* TV ROUTES */}
-        {/* <Route path="/tv" element={<TvHomepage />} /> */}
-        <Route path="/all-channels" element={<AllChannels />} />
-        <Route path="/all-categories" element={<AllCategory />} />
-        <Route path="/channel-detail" element={<ChannelDetail />} />
-        <Route path="/category-detail" element={<CategoryDetail />} />
-        <Route
-          path="/report-issue"
-          element={
-            <PrivateRoute>
-              <ReportIssue />
-            </PrivateRoute>
-          }
-        />
-
-        <Route path="/wallet" element={<Wallet />} />
-
-        <Route path="/watch" element={<Watch />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/verify-account" element={<VerifyAccount />} />
-
-        {/* <Route path="explorer" element={<Explorer />} />
-        <Route path="stake" element={<Stake />} />
-        <Route path="blocks" element={<Blocks />} />
-        <Route path="txs" element={<Transactions />} />
-        <Route path="account-details" element={<AccountDetails />} />
-
-        <Route path="connect-wallet" element={<ConnectWallet />} />
-
-        <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
-          <Route path="key-store" element={<KeyStore />} />
-          <Route path="mnemonics" element={<Mnemonics />} />
-          <Route path="private-key" element={<PrivateKey />} />
-        </Route> */}
-
-        <Route
-          path="dashboard"
-          element={
-            <PrivateRoute>
-              <DashboardLayout />
-            </PrivateRoute>
-          }
-        >
+          {/* TV ROUTES */}
+          {/* <Route path="/tv" element={<TvHomepage />} /> */}
+          <Route path="/all-channels" element={<AllChannels />} />
+          <Route path="/all-categories" element={<AllCategory />} />
+          <Route path="/channel-detail" element={<ChannelDetail />} />
+          <Route path="/category-detail" element={<CategoryDetail />} />
           <Route
-            path=""
-            index
+            path="/report-issue"
             element={
               <PrivateRoute>
-                <Home />
+                <ReportIssue />
               </PrivateRoute>
             }
           />
-          <Route
-            path="change-password"
-            element={
-              <PrivateRoute>
-                <ChangePassword />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="edit-profile"
-            element={
-              <PrivateRoute>
-                <EditProfile />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="mint"
-            element={
-              <PrivateRoute>
-                <Mint />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="voucher"
-            element={
-              <PrivateRoute>
-                <Voucher />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="reward-history"
-            element={
-              <PrivateRoute>
-                <RewardHistory />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="notifications"
-            element={
-              <PrivateRoute>
-                <Notifications />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="share-referral"
-            element={
-              <PrivateRoute>
-                <ShareRefferal />
-              </PrivateRoute>
-            }
-          />
-          {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
-          {/* <Route path="reward" element={<Rewards />} /> */}
-          <Route path="leaderboard" element={<LeaderBoard />} />
-          <Route
-            path="analytics"
-            element={
-              <PrivateRoute>
-                <Analytics />
-              </PrivateRoute>
-            }
-          />
-          <Route path="coming-soon" element={<ComingSoon />} />
-        </Route>
 
-        {/* MARKETPLACE */}
-        <Route path="marketplace" element={<Marketplace />} />
-        <Route path="details" element={<Details />} />
+          <Route path="/wallet" element={<Wallet />} />
 
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </Router>
+          <Route path="/watch" element={<Watch />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/verify-account" element={<VerifyAccount />} />
+
+          {/* <Route path="explorer" element={<Explorer />} />
+          <Route path="stake" element={<Stake />} />
+          <Route path="blocks" element={<Blocks />} />
+          <Route path="txs" element={<Transactions />} />
+          <Route path="account-details" element={<AccountDetails />} />
+
+          <Route path="connect-wallet" element={<ConnectWallet />} />
+
+          <Route path="/unlock-wallet" element={<UnlockWalletPageLayout />}>
+            <Route path="key-store" element={<KeyStore />} />
+            <Route path="mnemonics" element={<Mnemonics />} />
+            <Route path="private-key" element={<PrivateKey />} />
+          </Route> */}
+
+          <Route
+            path="dashboard"
+            element={
+              <PrivateRoute>
+                <DashboardLayout />
+              </PrivateRoute>
+            }
+          >
+            <Route
+              path=""
+              index
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="change-password"
+              element={
+                <PrivateRoute>
+                  <ChangePassword />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="edit-profile"
+              element={
+                <PrivateRoute>
+                  <EditProfile />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="mint"
+              element={
+                <PrivateRoute>
+                  <Mint />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="voucher"
+              element={
+                <PrivateRoute>
+                  <Voucher />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="reward-history"
+              element={
+                <PrivateRoute>
+                  <RewardHistory />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="notifications"
+              element={
+                <PrivateRoute>
+                  <Notifications />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="share-referral"
+              element={
+                <PrivateRoute>
+                  <ShareRefferal />
+                </PrivateRoute>
+              }
+            />
+            {/* <Route path="token-mapping" element={<PrivateRoute><TokenMapping /></PrivateRoute>} /> */}
+            {/* <Route path="reward" element={<Rewards />} /> */}
+            <Route path="leaderboard" element={<LeaderBoard />} />
+            <Route
+              path="analytics"
+              element={
+                <PrivateRoute>
+                  <Analytics />
+                </PrivateRoute>
+              }
+            />
+            <Route path="coming-soon" element={<ComingSoon />} />
+          </Route>
+
+          {/* MARKETPLACE */}
+          <Route path="marketplace" element={<Marketplace />} />
+          <Route path="details" element={<Details />} />
+
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
+    </>
+    
   );
 }
 
