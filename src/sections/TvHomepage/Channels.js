@@ -931,7 +931,7 @@ function Channels({
                 variant={1}
               >
                 <h1 className="fs-24px text-black font-semibold mb-1">
-                  {contractBalance.toFixed(2)}
+                  {contractBalance? contractBalance.toFixed(2):0}
                 </h1>
                 <h1 className="text-xs xl:text-sm text-black font-medium text-center">
                   SPAY In WALLET

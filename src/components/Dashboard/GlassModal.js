@@ -62,30 +62,43 @@ export default function GlassModal({
   }, [id]);
 
   useEffect(() => {
-    console.log("glassTypesWithVouchers", glassTypesWithVouchers);
+    console.log("glass.voucherEquipped", glass.voucherEquipped);
     setRechargeDiscountPercentage(0);
-    if (glassTypesWithVouchers) {
-      if (glass.type === "COMMON") {
-        glassTypesWithVouchers[0].map((glassId) => {
-          if (glassId == glass.id) {
-            setRechargeDiscountPercentage(10);
-          }
-        });
-      } else if (glass.type === "RARE") {
-        glassTypesWithVouchers[1].map((glassId) => {
-          if (glassId == glass.id) {
-            setRechargeDiscountPercentage(20);
-          }
-        });
-      } else if (glass.type === "SUPERSCRIPT") {
-        glassTypesWithVouchers[2].map((glassId) => {
-          if (glassId == glass.id) {
-            setRechargeDiscountPercentage(30);
-          }
-        });
+    if (glass.voucherEquipped) {
+      switch (glass.type) {
+        case "COMMON":
+          setRechargeDiscountPercentage(10);
+          break;
+        case "RARE":
+          setRechargeDiscountPercentage(20);
+          break;
+        case "SUPERSCRIPT":
+          setRechargeDiscountPercentage(30);
+          break;
       }
     }
-  }, [glassTypesWithVouchers, glass]);
+    // if (glassTypesWithVouchers) {
+    //   if (glass.type === "COMMON") {
+    //     glassTypesWithVouchers[0].map((glassId) => {
+    //       if (glassId == glass.id) {
+    //         setRechargeDiscountPercentage(10);
+    //       }
+    //     });
+    //   } else if (glass.type === "RARE") {
+    //     glassTypesWithVouchers[1].map((glassId) => {
+    //       if (glassId == glass.id) {
+    //         setRechargeDiscountPercentage(20);
+    //       }
+    //     });
+    //   } else if (glass.type === "SUPERSCRIPT") {
+    //     glassTypesWithVouchers[2].map((glassId) => {
+    //       if (glassId == glass.id) {
+    //         setRechargeDiscountPercentage(30);
+    //       }
+    //     });
+    //   }
+    // }
+  }, [glass]);
 
   useEffect(() => {
     if (!window?.ethereum) return;
