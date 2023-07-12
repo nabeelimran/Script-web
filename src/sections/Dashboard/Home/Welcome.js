@@ -15,6 +15,7 @@ import {
   checkVoucherApproval,
   mintVoucher,
 } from "contract/functions";
+import { parseChainIdHex } from "common/helpers/utils";
 
 const voucherType = ["COMMON", "RARE", "SUPERSCRIPT"];
 
@@ -26,9 +27,12 @@ function Welcome({}) {
   );
 
   const { accountAddress } = useSelector((state) => state.metamask_state);
+  const { balance } = useSelector((state) => state.Profile_State);
 
   const [isVoucherApproved, setIsVoucherApproved] = useState(false);
-  const [balance, setBalance] = useState(0);
+  // const [balance, setBalance] = useState(0);
+  const [currentChain, setCurrentChain] = useState(null);
+
 
   const [voucherEligible, setVoucherEligible] = useState({
     eligibility: false,
@@ -42,25 +46,44 @@ function Welcome({}) {
       if (!accountAddress) return;
       await checkVoucherEligibility();
       await handleCheckVoucherApproval();
-      await getBalance();
+      // await getBalance();
     })();
   }, [accountAddress]);
+
+  // useEffect(() => {
+  //   if (!window?.ethereum) return;
+
+  //   setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+
+  //   window.ethereum.on("chainChanged", () => {
+  //     let chainId = parseChainIdHex(window?.ethereum?.chainId)
+  //     console.log("chainId: welcome",chainId, accountAddress);
+  //     setCurrentChain(chainId);
+  //     getBalance();
+  //     if (chainId === 97) {
+  //       setTimeout(() => {
+  //       }, 1000);
+  //     }
+  //   });
+  // }, []);
 
   const goToTVSite = () =>
     navigate({
       pathname: "/",
     });
 
-  const getBalance = async () => {
-    try {
-      if (accountAddress) {
-        const balance = await balanceOf(accountAddress);
-        setBalance(Number(balance));
-      }  
-    } catch (error) {
-      setBalance(0);
-    }
-  };
+  // const getBalance = async () => {
+  //   try {
+  //     if (accountAddress) {
+  //       console.log('balance: welcome');
+  //       const balance = await balanceOf(accountAddress);
+  //       console.log('balance: ',balance);
+  //       setBalance(Number(balance));
+  //     }  
+  //   } catch (error) {
+  //     setBalance(0);
+  //   }
+  // };
 
   const handleCheckVoucherApproval = async () => {
     try {
@@ -163,7 +186,7 @@ function Welcome({}) {
         <div className="grid md:grid-cols-3 gap-3 md:gap-6">
           <CardProgress
             color="#0E0E0F"
-            title={`${balance.toFixed(2)} SPAY`}
+            title={`${Number(balance).toFixed(2)} SPAY`}
             description="Accumulate 10,000 SPAY"
             barColor="#FF38DC"
             progress={balance > 10000 ? "100%" : `${(balance / 10000) * 100}%`}

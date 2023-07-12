@@ -93,6 +93,7 @@ export default function RechargeModal({
         setRechargeStatus({ loading: false });
         ToastMessage("Recharge Failed", false);
         handleClose();
+        onGlassUpdate();
       }
     }
   };

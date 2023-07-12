@@ -15,6 +15,7 @@ import { ToastMessage } from "components/ToastMessage";
 import { approve, checkApproval, getNextImg, mintGlasses } from "contract/functions";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
+import dummyGlass from "../../assets/images/glasses.png";
 
 const MintBoxStyle = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -35,7 +36,7 @@ const MintBox = ({ accountAddress, balance }) => {
   const glassesPrice = [10, 20, 30];
 
   const [type, setType] = useState(1);
-  const [nextImg, setNextImg] = useState('');
+  const [nextImg, setNextImg] = useState(dummyGlass);
   const [contractLoading, setContractLoading] = useState(false);
 
   const [isApproved, setIsApproved] = useState(false);
@@ -46,7 +47,7 @@ const MintBox = ({ accountAddress, balance }) => {
 
   useEffect(() => {
     fetchNextImg();
-  }, []);
+  }, [accountAddress]);
 
   useEffect(() => {
     setGlassTypePrice(glassesPrice[type]);
@@ -138,6 +139,7 @@ const MintBox = ({ accountAddress, balance }) => {
       }
     }
   };
+
   const fetchNextImg = async () => {
     if (accountAddress) {
       try {
@@ -153,7 +155,6 @@ const MintBox = ({ accountAddress, balance }) => {
 
   return (
     <Box mb={6}>
-      {" "}
       <Typography variant="h4" color="textSecondary" align="center" mb={3}>
         Mint your glass
       </Typography>
@@ -216,14 +217,13 @@ const MintBox = ({ accountAddress, balance }) => {
       </MintBoxStyle>
       {contractLoading === "success" && (
         <Box display="flex" mt={2}>
-          Glass Successfully Minted,{" "}
+          Glass successfully minted,
           <Box>
-            Check your transaction on
+            check your transaction on
             <Link
               target="_blank"
               href={`https://testnet.bscscan.com/tx/${contractResponse?.transactionHash}`}
             >
-              {" "}
               BscScan
             </Link>
           </Box>

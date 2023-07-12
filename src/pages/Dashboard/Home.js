@@ -1,3 +1,4 @@
+import { parseChainIdHex } from "common/helpers/utils";
 import { balanceOf, glassesOfOwnerServer } from "contract/functions";
 import Rewards from "pages/Rewards";
 import React, { useEffect, useState } from "react";
@@ -13,17 +14,33 @@ import { getRechargeHistory, getVoucherEligibility } from "utils/api";
 
 function Home() {
   const { accountAddress } = useSelector((state) => state.metamask_state);
+  const [currentChain, setCurrentChain] = useState(null);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       if (!accountAddress) return;
       await getGlasses();
-      await getBalance();
+      getBalance();
 
       getVoucherEligibility(accountAddress);
     })();
   }, [accountAddress]);
+
+  useEffect(() => {
+    if (!window?.ethereum) return;
+
+    setCurrentChain(parseChainIdHex(window?.ethereum?.chainId));
+
+    window.ethereum.on("chainChanged", () => {
+      let chainId = parseChainIdHex(window?.ethereum?.chainId)
+      setCurrentChain(chainId);
+      if (chainId === 97) {
+        getBalance();
+      }
+    });
+  }, []);
 
   const getGlasses = async () => {
     const response = await glassesOfOwnerServer(accountAddress);
@@ -34,7 +51,6 @@ function Home() {
   const getBalance = async () => {
     try {
       const response = await balanceOf(accountAddress);
-      console.log("response", response);
       // The value we return becomes the `fulfilled` action payload
       dispatch(fetchBalanceAsync(response));  
     } catch (error) {

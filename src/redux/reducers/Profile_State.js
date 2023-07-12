@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   updateProfileState: false,
   glasses: [],
+  balance:0
 };
 
 export const Profile_State = createSlice({

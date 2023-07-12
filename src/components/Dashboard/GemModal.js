@@ -19,10 +19,12 @@ import { TransitionProps } from "@mui/material/transitions";
 import { styled } from "@mui/material/styles";
 import gem from "../../assets/images/gem.png";
 
-import { equipgem } from "contract/functions";
+import { approve, checkApproval, equipgem } from "contract/functions";
 import { useDispatch, useSelector } from "react-redux";
 import { getGemPrice, getGemSignature } from "utils/api";
 import MuiButton from "components/MuiButton";
+import { ethers } from "ethers";
+import { ToastMessage } from "components/ToastMessage";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -38,6 +40,7 @@ export default function GemModal({
   const dispatch = useDispatch();
 
   const [price, setPrice] = useState(0);
+  const [isApproved, setIsApproved] = useState(false);
   const [claimData, setClaimData] = useState();
   const { accountAddress } = useSelector((state) => state.metamask_state);
   const { balance } = useSelector((state) => state.Profile_State);
@@ -47,29 +50,79 @@ export default function GemModal({
   useEffect(() => {
     if (accountAddress) {
       fetchPrice();
+      checkIsApproved();
     }
   }, [id, accountAddress]);
 
   const fetchPrice = async () => {
-    if (accountAddress) {
-      let price = await getGemPrice(id);
-      console.log("price", { price, id });
-      setPrice(price);
+    try {
+      if (accountAddress) {
+        let price = await getGemPrice(id);
+        console.log("price", { price, id });
+        setPrice(price);
+      }
+    } catch (error) {
     }
   };
 
   const handleEquipGem = async () => {
-    if (accountAddress) {
-      let res;
-      if (claimData?.signature) {
-        res = claimData;
-      } else {
-        res = await getGemSignature(id);
-        setClaimData(res);
+    try {
+      if (accountAddress) {
+        let res;
+        // await checkIsApproved();
+        if (isApproved) {
+          if (claimData?.signature) {
+            res = claimData;
+          } else {
+            res = await getGemSignature(id);
+            setClaimData(res);
+          }
+          await equipgem(res.tokenId, res.gemType, res.nonce, res.signature);
+          handleClose();
+          setGemEligibleGlasses([]);
+        } else {
+          await handleApprove();
+          // ToastMessage("Insufficient Approval");
+        }
       }
-      handleClose();
-      await equipgem(res.tokenId, res.gemType, res.nonce, res.signature);
-      setGemEligibleGlasses([]);
+    } catch (error) {
+    }
+  };
+
+  const checkIsApproved = async () => {
+    try {
+      if (accountAddress) {
+        const isAllowed = await checkApproval(accountAddress);
+        if (
+          ethers.utils
+            .parseUnits(price.toString(), "ether")
+            .toString() <= isAllowed
+        ) {
+          setIsApproved(true);
+        } else {
+          setIsApproved(false);
+          // checkIsApproved()
+        }
+      } 
+    } catch (error) {
+      setIsApproved(false);
+    }
+  };
+
+  const handleApprove = async () => {
+    try {
+      if (accountAddress) {
+        try {
+          let receipt = await approve();
+          setIsApproved(true);
+        } catch (error) {
+          console.log(error);
+          setIsApproved(false)
+          // setContractLoading("error");
+          // ToastMessage("Approval failed");
+        }
+      }
+    } catch (error) {
     }
   };
 
@@ -120,7 +173,7 @@ export default function GemModal({
             disabled={balance <= price}
             onClick={handleEquipGem}
           >
-            Add Gem
+            {isApproved? "Add Gem": "Approve"}
           </MuiButton>
         </GlassBox>
       </DialogContent>

@@ -42,7 +42,6 @@ function DashboardLayout() {
 
   const getGlasses = async () => {
     let response = await glassesOfOwnerServer(accountAddress);
-    response = response.sort((a,b) => b.level - a.level)
     dispatch(setGlasses(response));
   };
 

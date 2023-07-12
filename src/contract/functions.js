@@ -22,6 +22,12 @@ let scriptGlassContract;
 let scriptPassContract;
 
 if (window.ethereum) {
+  initializeProviderAndContract();
+  window.ethereum.on('chainChanged', async (chainId) => {
+    initializeProviderAndContract();
+  });
+}
+function initializeProviderAndContract() {
   const provider = new ethers.providers.Web3Provider(window?.ethereum);
   const signer = provider.getSigner();
 
@@ -213,13 +219,14 @@ export const glassesOfOwner = async (address) => {
 
 export const glassesOfOwnerServer = async (address) => {
   let glassList = await getGlasses(address);
-  return glassList.map((item) => ({
+  glassList =  glassList.map((item) => ({
     ...item,
     id: item.tokenId,
     realId: item.id,
     img: `https://ahram-bucket.s3.eu-central-1.amazonaws.com/assets/${item.tokenId}.png`,
     gem: item.gemsRecords.length ? item.gemsRecords[0].gemType : "",
   }));
+  return glassList.sort((a,b) => b.level - a.level)
 };
 
 export const getVoucherBalance = async (address) => {

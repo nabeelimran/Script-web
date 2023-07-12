@@ -15,7 +15,7 @@ export const getRechargeCost = async (glassId) => {
       },
     });
 
-    console.log("getRechargeCost", response);
+    // console.log("getRechargeCost", response);
 
     return response.data.rechargeCost;
   } catch (error) {
@@ -65,7 +65,7 @@ export const getGlasses = async (address) => {
       },
     });
 
-    console.log("getGlasses", response.data);
+    // console.log("getGlasses", response.data);
 
     return response.data;
   } catch (error) {
@@ -146,7 +146,7 @@ export const getGemsEligibility = async (address) => {
       },
     });
 
-    console.log("/scripts/check-gem-eligibility", response.data);
+    // console.log("/scripts/check-gem-eligibility", response.data);
 
     return response.data;
   } catch (error) {
@@ -196,7 +196,7 @@ export const getVoucherEligibility = async (address) => {
       },
     });
 
-    console.log("/scripts/check-voucher-eligibility", response.data);
+    // console.log("/scripts/check-voucher-eligibility", response.data);
 
     return response.data;
   } catch (error) {
@@ -233,7 +233,7 @@ export const calculatePayout = async (address, type) => {
       },
     });
 
-    console.log("/scripts/calculatePayout", response.data);
+    // console.log("/scripts/calculatePayout", response.data);
 
     return response.data;
   } catch (error) {
@@ -252,7 +252,7 @@ export const claimPayout = async (address, type) => {
       },
     });
 
-    console.log("/scripts/claimPayout", response.data);
+    // console.log("/scripts/claimPayout", response.data);
 
     return response.data;
   } catch (error) {
@@ -295,15 +295,15 @@ export const fetchEquippedVouchers = async (address) => {
   );
   let data = await response.json();
   let events = data.data.users.length ? data.data.users[0].vouchers : [];
-  console.log("fetchEquippedVouchers events", events);
+  // console.log("fetchEquippedVouchers events", events);
   return splitByVoucherType(events);
 };
 
 export const getRechargeHistory = async (glassId) => {
   let query = `{
-    rechargeGlasses(where: {glassId: "${glassId}"}) {
+    glassesRechargeds(where: {glassId: "${glassId}"}) {
       glassId
-      amount:value
+      amount:discountedAmount
       address:from
       blockTimestamp
     }
@@ -317,14 +317,14 @@ export const getRechargeHistory = async (glassId) => {
     }
   );
   let data = await response.json();
-  console.log("recharge history", data.data.rechargeGlasses);
-  return data?.data?.rechargeGlasses || [];
+  // console.log("recharge history", data.data.glassesRechargeds);  
+  return data?.data?.glassesRechargeds || [];
 };
 
 export const getRewardsHistory = async (address) => {
-  console.log("address", address);
+  // console.log("address", address);
   let query = `{
-    earningPayouts(where: {to: "${address.toLowerCase()}"})
+    payoutEarneds(where: {to: "${address.toLowerCase()}"})
     { 
       address:to
       amount 
@@ -340,8 +340,8 @@ export const getRewardsHistory = async (address) => {
     }
   );
   let data = await response.json();
-  console.log("rewards history", data);
-  return data?.data?.earningPayouts || [];
+  // console.log("rewards history", data);
+  return data?.data?.payoutEarneds || [];
 };
 
 export const getNonClaimedTransactions = async (userId) => {
@@ -350,7 +350,7 @@ export const getNonClaimedTransactions = async (userId) => {
       url: "https://stagebackend.script.tv/api/v1/getTransactions",
       method: "GET",
       params: {
-        executed: false,
+        size: 100,
         userId,
         // type: "PAYOUT_RARE",
       },
