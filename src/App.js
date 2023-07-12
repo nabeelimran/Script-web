@@ -115,6 +115,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log('***********************************************')
+    console.log('****************Version: 0.1.0*****************')
+    console.log('***********************************************')
     ReactGA.pageview(window.location.pathname + window.location.search);
     document.cookie = "cookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     // const showTimer = setInterval(() => {
