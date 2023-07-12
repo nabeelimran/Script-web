@@ -117,13 +117,13 @@ function App() {
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
     document.cookie = "cookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    const showTimer = setInterval(() => {
-      dispatch(checkShowUpdate(Date.now()))
-    }, 30000)
+    // const showTimer = setInterval(() => {
+    //   dispatch(checkShowUpdate(Date.now()))
+    // }, 30000)
 
-    return () => {
-			clearInterval(showTimer);			
-		};
+    // return () => {
+		// 	clearInterval(showTimer);			
+		// };
   }, [])
   
 

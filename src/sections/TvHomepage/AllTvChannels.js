@@ -99,7 +99,6 @@ function AllTvChannels({
 			});
 		}
 		if (slots.length > 0) {
-			console.log(slots, "slots of ads");
 			// isSlotCreated = true;
 		}
 	};
@@ -166,7 +165,6 @@ function AllTvChannels({
 	useEffect(() => {
 		let videoWatchInterval;
 		let durationcheckinterval;
-		console.log(playerRef, "REFFF");
 		if (isPlayerReady && show && playerRef && playerRef.current) {
 			playerRef.current.on("timeupdate", (evt) => {
 				if (playerRef && playerRef.current) {
@@ -176,7 +174,6 @@ function AllTvChannels({
 							playerRef.current.currentTime() ===
 								(playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration || 0)
 						) {
-							console.log('step 1 refresh channel set to true');
 							dispatch(refreshChannelAction(true));
 						}
 					}, 10000);
@@ -209,32 +206,28 @@ function AllTvChannels({
 				const videoStartTime = getVideoCurrentTimePace(show.startTime);
 				
 				if(!videoWatchInterval){
-					console.log('new interval started');
 					videoWatchInterval = setInterval(() => {
-					let userId = LocalServices.getServices("user")?.userId || null;
-					console.log('interval started')
-					const videoWatchTime = {
-						startTime: videoStartTime,
-						endTime: playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration || 0,
-						videoPlayTime:
-							(new Date().getTime() -
-								new Date(show.startTime).getTime()) /
-							1000,
-					};
-					if (
-						show.startTime &&
-						videoWatchTime &&
-						videoWatchTime.endTime
-					) {
-						// let eToken = earnedToken + 0.05
-						dispatch(getVideoTimeWatch(videoWatchTime));
-						console.log('dispatch video time');
-						if (userId) {
-							console.log("DISPATCH FROM HERE");
-							dispatch(earnedTokenRed(0.05));
+						let userId = LocalServices.getServices("user")?.userId || null;
+						const videoWatchTime = {
+							startTime: videoStartTime,
+							endTime: playerRef?.current?.duration() || document.getElementsByTagName('video')[0]?.duration || 0,
+							videoPlayTime:
+								(new Date().getTime() -
+									new Date(show.startTime).getTime()) /
+								1000,
+						};
+						if (
+							show.startTime &&
+							videoWatchTime &&
+							videoWatchTime.endTime
+						) {
+							// let eToken = earnedToken + 0.05
+							dispatch(getVideoTimeWatch(videoWatchTime));
+							if (userId) {
+								dispatch(earnedTokenRed(0.05));
+							}
+							//checkVideoWatchTime(videoWatchTime)
 						}
-						//checkVideoWatchTime(videoWatchTime)
-					}
 					}, 60000);
 				}
 			});
@@ -284,10 +277,8 @@ function AllTvChannels({
 	};
 
 	const getRewardEarningAmount = (token) => {
-		console.log("TOKENNN",token)
 		if(token===0){
 			chatToken.current.innerText = "0.0000"
-
 		}else{
 
 			chatToken.current.innerText = token
