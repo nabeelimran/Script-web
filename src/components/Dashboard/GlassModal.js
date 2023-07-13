@@ -119,10 +119,9 @@ export default function GlassModal({
     >
       <DialogContent style={{ overflowY: "scroll" }}>
         <GlassBox>
-          <div className="relative">
-            {/* <div className="absolute h-full w-full bg-[#ffef00] mix-blend-darken top-0 left-0 right-0"></div> */}
+          <div className="w-4/5 mx-auto" >
             <img
-              style={{ width: "80%", margin: "auto", borderRadius: "12px" }}
+              style={{ borderRadius: "12px" }}
               src={img}
               alt="glasses"
             />
@@ -131,13 +130,13 @@ export default function GlassModal({
           <PrimaryTypography>Token Id #{id}</PrimaryTypography>
         </GlassBox>
         <Box mb={4} mx="auto" width="fit-content">
-          <div style={{ color: "#000" }} className="text-xl font-semibold mb-2">
+          <div className="text-xl font-semibold mb-2">
             Type : {glass.type}
           </div>
-          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+          <div className="text-md font-semibold mb-2">
             Level : <ValuesTypography>{glass.level}</ValuesTypography>
           </div>
-          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+          <div className="text-md font-semibold mb-2">
             Gem :
             <ValuesTypography>
               {glass.gemsRecords.length
@@ -147,7 +146,7 @@ export default function GlassModal({
                 : "Not Present"}
             </ValuesTypography>
           </div>
-          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+          <div className="text-md font-semibold mb-2">
             Total Watch Time :
             <ValuesTypography>{glass.totalWatchTime}</ValuesTypography>
           </div>
@@ -157,7 +156,7 @@ export default function GlassModal({
           <div className="text-md font-semibold mb-2">
             Unpaid Watch Time : {glass.unpaidWatchTime}
           </div> */}
-          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+          <div className="text-md font-semibold mb-2">
             Battery:
             <ValuesTypography>
               {(
@@ -171,10 +170,10 @@ export default function GlassModal({
               %
             </ValuesTypography>
           </div>
-          {/* <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+          {/* <div className="text-md font-semibold mb-2">
             Drained :{glass.drained ? "Yes" : "No"}
           </div> */}
-          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+          <div className="text-md font-semibold mb-2">
             Voucher Equipped :
             <ValuesTypography>
               {rechargeDiscountPercentage > 0 ? "Yes" : "No"}
@@ -235,7 +234,7 @@ export default function GlassModal({
               style={{
                 fontSize: "1rem",
                 fontWeight: "bold",
-                color: "#000",
+                // color: "#000",
               }}
             >
               Current Chain is not supported. Please switch to BSC Testnet
@@ -265,7 +264,7 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
   margin: 24,
   "& .MuiPaper-root": {
     maxWidth: 600,
-    background: "#fff",
+    background: theme.palette.grey[600],
     margin: 0,
     padding: 24,
     maxHeight: 600,
@@ -318,4 +317,4 @@ const StyledDialogAction = styled(DialogActions)(({ theme }) => ({
   },
 }));
 
-const buttonStyle = { maxWidth: 126, width: "100%", backgroundColor: "#000" };
+const buttonStyle = { maxWidth: 126, width: "100%"};
