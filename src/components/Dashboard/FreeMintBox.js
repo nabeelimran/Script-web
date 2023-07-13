@@ -3,6 +3,7 @@ import {
   Button,
   FormControl,
   InputLabel,
+  Link,
   MenuItem,
   Select,
   styled,
@@ -134,13 +135,14 @@ const FreeMintBox = ({ accountAddress, balance }) => {
 
         console.log(res);
 
-        await mintFreeGlasses(
+        let response = await mintFreeGlasses(
           accountAddress.toLowerCase(),
           res.nonce ?? res.id,
           res.signature
         );
         setFreeMintEligible(false);
         setContractLoading("success");
+        setContractResponse(response);
         ToastMessage("Glass minted successfully", true);
       }
     } catch (error) {
@@ -180,6 +182,20 @@ const FreeMintBox = ({ accountAddress, balance }) => {
           )}
         </Box>
       </FreeMintBoxStyle>
+      {contractLoading === "success" && (
+        <Box display="flex" mt={2}>
+          Glass successfully minted,
+          <Box>
+            check your transaction on
+            <Link
+              target="_blank"
+              href={`https://testnet.bscscan.com/tx/${contractResponse?.transactionHash}`}
+            >
+              BscScan
+            </Link>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };
