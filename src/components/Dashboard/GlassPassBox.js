@@ -3,6 +3,7 @@ import {
   Button,
   FormControl,
   InputLabel,
+  Link,
   MenuItem,
   Select,
   styled,
@@ -164,6 +165,20 @@ const GlassPassBox = ({ accountAddress, balance }) => {
           )}
         </Box>
       </GlassPassBoxStyle>
+      {contractLoading === "success" && (
+        <Box display="flex" mt={2}>
+          Glass successfully minted,
+          <Box>
+            check your transaction on
+            <Link
+              target="_blank"
+              href={`https://testnet.bscscan.com/tx/${contractResponse?.transactionHash}`}
+            >
+              BscScan
+            </Link>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };

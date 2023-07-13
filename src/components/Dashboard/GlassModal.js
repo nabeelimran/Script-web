@@ -119,11 +119,14 @@ export default function GlassModal({
     >
       <DialogContent style={{ overflowY: "scroll" }}>
         <GlassBox>
-          <img
-            style={{ width: "80%", borderRadius: "12px" }}
-            src={img}
-            alt="glasses"
-          />
+          <div className="relative">
+            {/* <div className="absolute h-full w-full bg-[#ffef00] mix-blend-darken top-0 left-0 right-0"></div> */}
+            <img
+              style={{ width: "80%", margin: "auto", borderRadius: "12px" }}
+              src={img}
+              alt="glasses"
+            />
+          </div>
           <br />
           <PrimaryTypography>Token Id #{id}</PrimaryTypography>
         </GlassBox>
@@ -134,10 +137,16 @@ export default function GlassModal({
           <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Level : <ValuesTypography>{glass.level}</ValuesTypography>
           </div>
-          {glass.gemsRecords.length? <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
+          <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Gem :
-            <ValuesTypography>{glass.gemsRecords[0].gemType}</ValuesTypography>
-          </div>:<></>}
+            <ValuesTypography>
+              {glass.gemsRecords.length
+                ? glass.gemsRecords[0].gemType
+                : glass.level < 10
+                ? "Not Eligible"
+                : "Not Present"}
+            </ValuesTypography>
+          </div>
           <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Total Watch Time :
             <ValuesTypography>{glass.totalWatchTime}</ValuesTypography>
@@ -151,9 +160,14 @@ export default function GlassModal({
           <div style={{ color: "#000" }} className="text-md font-semibold mb-2">
             Battery:
             <ValuesTypography>
-              {((glass.maxEarnableTime /
-                GlassService.getMinutesPerDepletion(glass.type, glass.level)) *
-                100).toFixed(2)}
+              {(
+                (glass.maxEarnableTime /
+                  GlassService.getMinutesPerDepletion(
+                    glass.type,
+                    glass.level
+                  )) *
+                100
+              ).toFixed(2)}
               %
             </ValuesTypography>
           </div>
@@ -221,7 +235,7 @@ export default function GlassModal({
               style={{
                 fontSize: "1rem",
                 fontWeight: "bold",
-                color: "#000"
+                color: "#000",
               }}
             >
               Current Chain is not supported. Please switch to BSC Testnet
@@ -248,13 +262,14 @@ export default function GlassModal({
 }
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
-  margin: 'auto 24px',
+  margin: 24,
   "& .MuiPaper-root": {
     maxWidth: 600,
     background: "#fff",
     margin: 0,
     padding: 24,
     maxHeight: 600,
+    height: "100%",
     // overflow: "scroll",
   },
 }));
