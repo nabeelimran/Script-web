@@ -767,7 +767,6 @@ function Channels({
           watchApiCalled=true;
         const res = await Api.saveVideoDuration(req, 'watch')
         if (res && res.status === 200) {
-          console.log(res.data.data, 'save duration')
           setSaveDurationRes(res.data.data)
           if(res.data.data.drained) {
             const endSessionReq = {
